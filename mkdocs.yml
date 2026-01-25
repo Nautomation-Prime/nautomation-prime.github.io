@@ -1,7 +1,9 @@
 site_name: Nautomation Prime
 site_description: Enterprise Cisco Logic, Explained Line-by-Line.
 theme:
-  name: material  # This makes it look like professional documentation
+  name: material
+  logo: assets/nautomationprime.png  # Point this to your uploaded file
+  favicon: assets/favicon.ico # Optional: Adds the little icon to the browser tab
 
 nav:
   - Home: index.md
