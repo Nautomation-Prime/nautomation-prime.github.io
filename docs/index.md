@@ -1,6 +1,6 @@
 ![Nautomation Prime Logo](assets/nautomation_prime_logo_cropped.png)
 ### "Cisco Python Automation, Explained Line-by-Line."
-### Under Contruction
+
 ---
 
 ## Welcome to the Source of Truth for Network Automation
