@@ -23,4 +23,4 @@ Need a custom solution for your specific topology? We provide expert consultancy
 
 ---
 
-> **Mission:** To empower engineers through transparency and provide enterprises with automation that eliminates error and accelerates growth.
+> **Mission:** To empower engineers through Python-driven transparency and provide enterprises with hardened automation that eliminates error and accelerates growth.
