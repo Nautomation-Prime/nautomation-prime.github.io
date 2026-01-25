@@ -5,7 +5,7 @@ theme:
 
 nav:
   - Home: index.md
-  - Services: services.md
+  - Custom Services: services.md
   - Deep Dives:
     - Introduction: deep-dives/index.md
   - Script Library:
