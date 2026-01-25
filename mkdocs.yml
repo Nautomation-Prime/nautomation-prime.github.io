@@ -1,0 +1,8 @@
+site_name: Nautomation Prime
+site_description: Enterprise Cisco Logic, Explained Line-by-Line.
+theme:
+  name: material  # This makes it look like professional documentation
+
+nav:
+  - Home: index.md
+  - Services: services.md
