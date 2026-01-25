@@ -1,7 +1,14 @@
-site_name: Nautomation Prime - Under Contruction
+site_name: Nautomation Prime
 site_description: Enterprise Cisco Logic, Explained Line-by-Line.
 theme:
   name: material
+  logo: assets/nautomation_prime_logo_cropped.png # Keeps logo in the header
+  favicon: assets/favicon.ico # Recommended for the browser tab
+
+markdown_extensions:
+  - pymdownx.emoji:
+      emoji_index: !!python/name:materialx.emoji.twemoji
+      emoji_generator: !!python/name:materialx.emoji.to_svg
 
 nav:
   - Home: index.md
