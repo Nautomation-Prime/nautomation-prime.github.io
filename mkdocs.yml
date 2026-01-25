@@ -2,7 +2,6 @@ site_name: Nautomation Prime
 site_description: Enterprise Cisco Logic, Explained Line-by-Line.
 theme:
   name: material
-  logo: assets/Nautomation_Prime_Logo_2.jpg
 
 nav:
   - Home: index.md
