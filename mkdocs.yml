@@ -2,8 +2,7 @@ site_name: Nautomation Prime
 site_description: Enterprise Cisco Logic, Explained Line-by-Line.
 theme:
   name: material
-  logo: assets/nautomationprime.png  # Point this to your uploaded file
-  favicon: assets/favicon.ico # Optional: Adds the little icon to the browser tab
+  logo: assets/nautomationprimelogo.png  # Point this to your uploaded file
 
 nav:
   - Home: index.md
