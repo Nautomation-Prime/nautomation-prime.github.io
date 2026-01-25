@@ -13,6 +13,12 @@ We build bespoke tools tailored to your specific topology. We don't just provide
 * **Fleet Upgrades:** Intelligent Python workflows for IOS-XE and NX-OS software management.
 * **Compliance Auditing:** Automated "Golden Config" verification against your enterprise standards.
 
+### 🚀 Zero-Install Deployment (Portable Bundles)
+We understand that enterprise workstations are often restricted. Our custom solutions can be delivered as **Portable Python Bundles**.
+* **No Installation Required:** Run our automation tools directly from a folder or USB drive without needing to install Python on the local machine.
+* **Full Transparency:** Unlike compiled binaries, our bundles keep the source code visible and auditable, maintaining our commitment to "Line-by-Line" clarity.
+* **Self-Contained:** All required libraries (Netmiko, Nornir, etc.) are pre-packaged within the bundle for a "plug-and-play" experience.
+
 ### 🔐 API & Security Automation (ISE)
 Streamline your Zero Trust architecture through programmatic control.
 * **Identity Services Engine (ISE):** Automation of SGT assignments and endpoint profiling via the ERS/OpenAPI.
