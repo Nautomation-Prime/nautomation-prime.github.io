@@ -3,7 +3,7 @@
 
 The **CDP Network Audit Tool** is a high-performance, multi-threaded discovery utility designed to map Cisco topologies with precision. It transforms raw Cisco Discovery Protocol (CDP) data into structured enterprise intelligence by combining Python automation with hardened security practices.
 
-### [Github page link to code](https://github.com/Nautomation-Prime/Cisco_CDP_Network_Audit)
+### [link to Script on Github](https://github.com/Nautomation-Prime/Cisco_CDP_Network_Audit)
 
 ---
 
