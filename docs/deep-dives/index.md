@@ -13,7 +13,7 @@ Our Deep Dives are built for engineers who refuse to treat automation as a "blac
 | :--- | :--- | :--- |
 | **[CDP Network Audit](./cdp-audit.md)** | A multi-threaded discovery utility that crawls topologies via CDP. | Thread-Safety, Jump-Hosts, TextFSM |
 | *Upcoming: IOS-XE Upgrade* | Automated software management for enterprise switch stacks. | Pre-checks, Binary Verification |
-| *Upcoming: ISE API Auditor* | Programmatic policy verification for Zero Trust environments. | REST API, JSON Parsing |
+| *Upcoming: Access Switch Audit* | Audit a list of access switches. | Detailed summary output to MS Excel |
 
 ---
 
