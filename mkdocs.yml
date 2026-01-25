@@ -16,5 +16,6 @@ nav:
   - Custom Services: services.md
   - Deep Dives:
     - Introduction: deep-dives/index.md
+    - CDP Network Audit: deep-dives/cdp-audit.md
   - Script Library:
     - Overview: scripts/index.md
