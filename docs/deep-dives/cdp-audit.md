@@ -3,7 +3,7 @@
 
 The **CDP Network Audit Tool** is a high-performance, multi-threaded discovery utility designed to map Cisco topologies with precision. It transforms raw Cisco Discovery Protocol (CDP) data into structured enterprise intelligence by combining Python automation with hardened security practices.
 
-### [link to Script on Github](https://github.com/Nautomation-Prime/Cisco_CDP_Network_Audit)
+[:material-github: View Source Code on GitHub](https://github.com/Nautomation-Prime/Cisco_CDP_Network_Audit){ .md-button .md-button--primary }
 
 ---
 
@@ -105,6 +105,14 @@ Consistent with the **Nautomation Prime** delivery model, this tool is available
 * **Zero-Install Portable Bundle:** A self-contained package including the Python interpreter and all libraries (Netmiko, Pandas, TextFSM) for use on restricted Windows jump boxes.
 
 * **Scheduled Docker Appliance:** A pre-built container designed for autonomous execution and periodic auditing.
+
+---
+
+## 📁 Repository & Downloads
+Ready to audit your own network? Access the hardened source code and pre-configured templates below.
+
+* **[View Full Repository](https://github.com/Nautomation-Prime/Cisco_CDP_Network_Audit)**: Access the code, TextFSM templates, and Excel master.
+* **[Download Latest Release](https://github.com/Nautomation-Prime/Cisco_CDP_Network_Audit/archive/refs/heads/main.zip)**: Get a clean ZIP of the production-ready files.
 
 ---
 
