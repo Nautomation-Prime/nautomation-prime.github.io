@@ -1,0 +1,77 @@
+# Script Library
+### Production-Ready Automation for Cisco Infrastructure
+
+Welcome to the **Nautomation Prime Script Library**. Here you'll find open-source, hardened Python automation tools designed for enterprise Cisco deployments.
+
+---
+
+## 📚 Available Scripts
+
+### CDP Network Audit Tool
+**Status:** ✅ Available  
+**Description:** A high-performance, multi-threaded discovery utility that maps Cisco topologies via CDP.
+
+**Features:**
+- Multi-threaded concurrent device discovery
+- Jump-host (bastion) support for isolated networks
+- Windows Credential Manager integration
+- TextFSM template-based parsing
+- Excel reporting with custom formatting
+
+[📖 View Deep Dive Documentation](../deep-dives/cdp-audit.md) | [:material-github: GitHub Repository](https://github.com/Nautomation-Prime/Cisco_CDP_Network_Audit)
+
+---
+
+## 🔄 Coming Soon
+
+### IOS-XE Software Upgrade Orchestrator
+Automated, intelligent firmware management for switch stacks with pre-flight verification and binary integrity checks.
+
+### Access Switch Audit Suite
+Comprehensive auditing tool for access layer switches with detailed Excel reporting and compliance mapping.
+
+---
+
+## 🛠️ Getting Started with Scripts
+
+### Prerequisites
+- Python 3.8+
+- Netmiko or equivalent SSH library
+- Network access to target devices
+- Appropriate credentials/permissions
+
+### Installation
+
+Each script repository includes installation instructions in its README. Typically:
+
+```bash
+git clone https://github.com/Nautomation-Prime/<script-name>
+cd <script-name>
+pip install -r requirements.txt
+```
+
+### Configuration
+
+All scripts follow the **Nautomation Prime** philosophy of transparency and security:
+- Credentials are stored in OS credential managers (Windows Credential Manager, etc.)
+- Configuration files are well-documented with inline comments
+- Pre-flight validation checks prevent unsafe deployments
+
+### Support & Questions
+
+For issues, feature requests, or questions about any script:
+- Check the **Deep Dives** documentation for detailed explanations
+- Open an issue on the respective GitHub repository
+- [Contact Nautomation Prime](../services.md#start-a-consultation) for consulting services
+
+---
+
+## 📖 The "Prime" Philosophy
+
+All scripts in this library adhere to three core principles:
+
+1. **Line-by-Line Transparency** - Every function is documented, every decision explained
+2. **Hardened for Production** - Robust error handling, security best practices, pre-flight checks
+3. **Vendor-Neutral** - Built on industry-standard libraries like Netmiko, Nornir, and TextFSM
+
+> **Mission:** To empower engineers through Python-driven transparency and provide enterprises with hardened automation that eliminates error and accelerates growth.

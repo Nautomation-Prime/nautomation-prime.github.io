@@ -1,19 +1,66 @@
 site_name: Nautomation Prime
-site_description: Enterprise Cisco Logic, Explained Line-by-Line.
+site_description: Enterprise Cisco Python Automation, Explained Line-by-Line.
+site_url: https://nautomation-prime.github.io/
+repo_url: https://github.com/Nautomation-Prime/Nautomation-Prime.github.io
+repo_name: GitHub
+edit_uri: edit/main/docs/
+
 theme:
   name: material
+  features:
+    - navigation.tabs
+    - navigation.tabs.sticky
+    - navigation.top
+    - toc.integrate
+    - search.suggest
+    - search.highlight
+    - content.code.copy
+    - content.tooltips
+  palette:
+    - scheme: default
+      primary: blue
+      accent: blue
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - scheme: slate
+      primary: blue
+      accent: blue
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
 
 markdown_extensions:
   - attr_list
   - pymdownx.emoji:
       emoji_index: !!python/name:materialx.emoji.twemoji
       emoji_generator: !!python/name:materialx.emoji.to_svg
+  - pymdownx.highlight:
+      use_pygments: true
+  - pymdownx.superfences
+  - pymdownx.inlinehilite
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.details
+  - toc:
+      permalink: true
+  - tables
+  - md_in_html
+
+extra:
+  social:
+    - icon: fontawesome/brands/linkedin
+      link: https://www.linkedin.com/company/nautomationprime
+      name: LinkedIn
+    - icon: fontawesome/brands/github
+      link: https://github.com/Nautomation-Prime
+      name: GitHub
 
 nav:
   - Home: index.md
-  - Custom Services: services.md
-  - Deep Dives:
-    - Introduction: deep-dives/index.md
+  - Getting Started: getting-started.md
+  - Services: services.md
+  - Technical Resources:
+    - Deep Dives: deep-dives/index.md
     - CDP Network Audit: deep-dives/cdp-audit.md
-  - Script Library:
-    - Overview: scripts/index.md
+  - Script Library: scripts/index.md

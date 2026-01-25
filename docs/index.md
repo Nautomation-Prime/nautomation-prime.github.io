@@ -1,28 +1,83 @@
 ![Nautomation Prime Logo](assets/nautomation_prime_logo_cropped.png)
-### "Cisco Python Automation, Explained Line-by-Line."
+
+# Cisco Python Automation, Explained Line-by-Line
 
 ---
 
-## Welcome to the Source of Truth for Network Automation
-Nautomation Prime exists to bridge the gap between complex Cisco infrastructure and streamlined **Python-driven automation**. 
+## Welcome
 
-We believe that network code should never be a "black box." Here, we take the world's most common network pain points and solve them with hardened, production-ready code—explained line-by-line so you can deploy with total confidence.
+Nautomation Prime bridges the gap between **complex Cisco infrastructure** and **streamlined Python-driven automation**. 
+
+We believe network code should never be a "black box." Here, we solve the world's most common network pain points with **hardened, production-ready code**—explained line-by-line so you can deploy with total confidence.
+
+---
+
+## 🚀 Quick Navigation
+
+=== "New Here?"
+    **[Get Started](./getting-started.md)** with our onboarding guide.
+    
+    Learn what Nautomation Prime offers and which path is right for you.
+
+=== "Learn Python Automation"
+    **[Technical Deep Dives](./deep-dives/index.md)** teach you the "why" behind production automation.
+    
+    Start with [CDP Network Audit](./deep-dives/cdp-audit.md)—learn threading, security, and enterprise patterns.
+
+=== "Deploy Pre-Built Tools"
+    **[Script Library](./scripts/index.md)** has production-ready automation.
+    
+    Tools are documented, hardened, and explained line-by-line.
+
+=== "Need Custom Solutions?"
+    **[Services](./services.md)** covers bespoke automation, portable bundles, and Docker containers.
+    
+    We build automation tailored to your specific topology.
 
 ---
 
 ## What We Offer
 
-### 🔍 [Deep Dives](./deep-dives/index.md)
-Detailed walkthroughs of Python scripts. We don't just give you the code; we explain the logic, the libraries, and the safety checks.
+### 📖 [Deep Dives](./deep-dives/index.md)
+Detailed walkthroughs of production Python scripts. We explain the logic, the libraries, the safety checks, and the engineering decisions behind every line.
+
+**Featured:** [CDP Network Audit Tool](./deep-dives/cdp-audit.md) — Multi-threaded topology discovery with hardened security
+
+### 📚 [Script Library](./scripts/index.md)
+Open-source, production-ready automation tools for Cisco infrastructure.
+
+**Available:** CDP Network Audit, IOS-XE Upgrade Orchestrator (coming soon), Access Switch Audit (coming soon)
 
 ### 🐳 [Scheduled Automation (Docker)](./services.md#scheduled-automation)
-Continuous network oversight. We provide pre-built Docker containers for daily config audits, health checks, and automated reporting.
+Pre-built containers for continuous network oversight. Daily config audits, health checks, and automated reporting—no human intervention needed.
 
-### 🚀 [Zero-Install Solutions](./services.md#zero-install)
-No Python installed? No problem. We deliver portable "plug-and-play" bundles for Windows and Linux that run without needing admin rights.
+### 🚀 [Zero-Install Bundles](./services.md#zero-install-deployment-portable-bundles)
+No Python installed? No problem. Portable, "plug-and-play" bundles run on Windows and Linux without installation or admin rights. Full source code included.
 
-### 🛠️ [Bespoke Services](./services.md)
-Need a custom solution for your specific topology? We provide expert consultancy for Zero Trust deployment and bulk provisioning.
+### 🛠️ [Bespoke Services](./services.md#custom-python-scripting)
+Custom solutions tailored to your topology. Expert consultancy for Zero Trust deployment, bulk provisioning, ISE automation, and more.
+
+---
+
+## The "Prime" Philosophy
+
+Every tool and guide adheres to three core principles:
+
+| Principle | What It Means |
+| :--- | :--- |
+| **Line-by-Line Transparency** | We explain the *why* behind the code, not just the *what*. Every design decision is documented. |
+| **Hardened for Production** | Robust error handling, pre-flight safety checks, enterprise credential management, and thread-safe operations. |
+| **Vendor-Neutral** | Built on industry-standard libraries (Netmiko, Nornir, PyATS). Your skills remain portable. |
+
+---
+
+## Get Started
+
+- **First time here?** → [Getting Started Guide](./getting-started.md)
+- **Ready to learn?** → [Technical Deep Dives](./deep-dives/index.md)
+- **Need automation?** → [Services](./services.md)
+- **Want scripts?** → [Script Library](./scripts/index.md)
+- **Have questions?** → [LinkedIn](https://www.linkedin.com/company/nautomationprime)
 
 ---
 

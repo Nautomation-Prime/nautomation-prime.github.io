@@ -1,2 +1,70 @@
-# Nautomation-Prime.github.io
-"Bridge the gap between Cisco infrastructure and Python-driven automation with line-by-line transparency."
+# Nautomation Prime
+
+**"Bridge the gap between Cisco infrastructure and Python-driven automation with line-by-line transparency."**
+
+---
+
+## About This Site
+
+This is the home of **Nautomation Prime**—a collection of production-ready network automation tools, technical guides, and consulting services for Cisco infrastructure.
+
+### What You'll Find Here
+
+- **📖 Technical Deep Dives** — In-depth explanations of Python automation concepts with real Cisco examples
+- **📚 Script Library** — Open-source, hardened automation tools ready to deploy
+- **🛠️ Services** — Custom automation, portable bundles, and Docker containers
+- **🚀 Getting Started** — Guides to help you find what you need
+
+---
+
+## Quick Links
+
+- **[📖 View the Site](https://nautomation-prime.github.io/)** — Main documentation
+- **[🚀 Getting Started](https://nautomation-prime.github.io/getting-started/)** — First-time visitor guide
+- **[💬 Contact on LinkedIn](https://www.linkedin.com/company/nautomationprime)** — Reach out for questions or services
+
+---
+
+## Building Locally
+
+### Requirements
+
+- [MkDocs](https://www.mkdocs.org/) 1.4+
+- [Material for MkDocs](https://squidfunk.github.io/mkdocs-material/)
+
+### Installation & Serving
+
+```bash
+# Clone this repository
+git clone https://github.com/Nautomation-Prime/Nautomation-Prime.github.io
+cd Nautomation-Prime.github.io
+
+# Install dependencies
+pip install mkdocs mkdocs-material
+
+# Serve locally (opens at http://localhost:8000)
+mkdocs serve
+
+# Build static site
+mkdocs build
+```
+
+---
+
+## Our Philosophy
+
+Every tool, script, and guide follows three core principles:
+
+1. **Line-by-Line Transparency** — We explain the *why*, not just the *what*
+2. **Hardened for Production** — Enterprise-grade error handling and security
+3. **Vendor-Neutral** — Built on industry-standard libraries (Netmiko, Nornir, PyATS)
+
+---
+
+## License
+
+See [LICENSE](LICENSE) for details.
+
+---
+
+> **Mission:** To empower engineers through Python-driven transparency and provide enterprises with hardened automation that eliminates error and accelerates growth.
