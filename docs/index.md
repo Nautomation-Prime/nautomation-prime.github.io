@@ -15,11 +15,14 @@ We believe that network code should never be a "black box." Here, we take the wo
 ### 🔍 [Deep Dives](./deep-dives/placeholder.md)
 Detailed walkthroughs of Python scripts. We don't just give you the code; we explain the logic, the libraries, and the safety checks.
 
-### 💻 [The Script Library](./scripts/placeholder.md)
-A collection of ready-to-use Python tools for IOS-XE, NX-OS, and Cisco ISE.
+### 🐳 [Scheduled Automation (Docker)](./services.md#scheduled-automation)
+Continuous network oversight. We provide pre-built Docker containers for daily config audits, health checks, and automated reporting.
+
+### 🚀 [Zero-Install Solutions](./services.md#zero-install)
+No Python installed? No problem. We deliver portable "plug-and-play" bundles for Windows and Linux that run without needing admin rights.
 
 ### 🛠️ [Bespoke Services](./services.md)
-Need a custom solution for your specific topology? We provide expert consultancy for Zero Trust deployment, automated audits, and bulk provisioning.
+Need a custom solution for your specific topology? We provide expert consultancy for Zero Trust deployment and bulk provisioning.
 
 ---
 
