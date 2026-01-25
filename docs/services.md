@@ -33,13 +33,12 @@ Turn CLI data into actionable insights with custom Python parsers.
 For enterprises looking for continuous oversight, we provide pre-built Docker containers designed for autonomous execution.
 * **Scheduled Auditing:** Automate "Golden Config" checks or security scans to run daily or weekly without human intervention.
 * **Health Monitoring:** Containers that periodically poll Cisco ISE or IOS-XE devices to alert you to anomalies before they become outages.
-
-## 🚀 Zero-Install Deployment (Portable Bundles) {: #zero-install }
-Our containers come pre-configured with the necessary Python environments and logic—just pull, run, and let the automation work for you.
+* **Zero-Touch Maintenance:** Our containers come pre-configured with the necessary Python environments and logic—just pull, run, and let the automation work for you.
 
 ---
 
 ## The "Prime" Advantage
+...
 * **Line-by-Line Transparency:** Every bespoke script comes with a detailed explanation of the logic.
 * **Hardened for Enterprise:** Our code includes robust error-handling and "Pre-flight" safety checks.
 * **Vendor-Neutral Foundation:** We leverage industry-standard libraries like **Netmiko**, **Nornir**, and **PyATS**.
