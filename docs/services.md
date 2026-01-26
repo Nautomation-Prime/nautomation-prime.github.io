@@ -55,16 +55,6 @@ Ready to eliminate manual error and accelerate your network operations?
 
 **[Contact Nautomation Prime](https://forms.office.com/Pages/ResponsePage.aspx?id=DQSIkWdsW0yxEjajBLZtrQAAAAAAAAAAAAO__ZCPnztUMEtPWTVHN0JQTjZMME5YTTgxMEhRN0MwQS4u) ** to discuss your automation needs.
 
-<iframe 
-  src="https://forms.office.com/Pages/ResponsePage.aspx?id=DQSIkWdsW0yxEjajBLZtrQAAAAAAAAAAAAO__ZCPnztUMEtPWTVHN0JQTjZMME5YTTgxMEhRN0MwQS4u"
-  width="100%" 
-  height="800"
-  frameborder="0"
-  marginwidth="0"
-  marginheight="0"
-  allowfullscreen>
-</iframe>
-
 ---
 
 > **Mission:** To empower engineers through Python-driven transparency and provide enterprises with hardened automation that eliminates error and accelerates growth.
