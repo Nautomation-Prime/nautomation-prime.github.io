@@ -72,7 +72,7 @@ See each repository's README for platform-specific instructions.
 
 ### Configuration
 
-All scripts follow the **Nautomation Prime** philosophy of transparency and security:
+All scripts follow the **Nautomation Prime** philosophy of transparency and security:  
 - Credentials are stored in OS credential managers (Windows Credential Manager, etc.)  
 - Configuration files are well-documented with inline comments.  
 - Pre-flight validation checks prevent unsafe deployments.  
