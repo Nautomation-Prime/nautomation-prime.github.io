@@ -453,4 +453,14 @@ Once comfortable, customize the discovery heuristics for your specific topology.
 
 ---
 
+## 📝 License
+
+GNU General Public License v3.0
+
+## 👤 Author
+
+Christopher Davies
+
+---
+
 > **Mission Statement:** To empower engineers through Python-driven transparency and provide enterprises with hardened automation that eliminates error and accelerates growth.
