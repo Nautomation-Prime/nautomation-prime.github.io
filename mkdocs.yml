@@ -64,4 +64,5 @@ nav:
   - Technical Resources:
     - Deep Dives: deep-dives/index.md
     - CDP Network Audit: deep-dives/cdp-audit.md
+    - Access Switch Audit: deep-dives/access-switch-audit.md
   - Script Library: scripts/index.md
