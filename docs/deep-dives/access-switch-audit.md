@@ -10,14 +10,14 @@ A modular Python utility that connects to Cisco switches (optionally through an 
 ## ✨ What This Tool Does
 
 - Audits access ports across multiple Cisco switches in parallel
-- Normalizes interface names (e.g., `GigabitEthernet1/0/1` → `Gi1/0/1`) for cross-command matching
+- Normalises interface names (e.g., `GigabitEthernet1/0/1` → `Gi1/0/1`) for cross-command matching
 - Enriches interfaces with:
   - PoE draw and state (`show power inline`)
-  - LLDP/CDP neighbor presence (`show lldp neighbors detail`, `show cdp neighbors detail`)
+  - LLDP/CDP neighbour presence (`show lldp neighbors detail`, `show cdp neighbors detail`)
 - Classifies port mode & VLAN using `show interfaces status` (access / trunk / routed)
 - Flags stale access ports using conservative rules
 - Exports Excel with an at-a-glance SUMMARY and one sheet per device, with filters, frozen header, column auto-size, and conditional formatting
-- Shows a progress bar while running concurrent device jobs
+- Shows a progress bar whilst running concurrent device jobs
 
 > **Design note:** The workbook intentionally uses filters only (no Excel tables), and places SUMMARY first.
 
@@ -34,7 +34,7 @@ Every function in this tool includes explicit documentation of *what it does* an
 Access layer audits run on infrastructure that cannot afford downtime. You'll notice patterns like concurrent connection pooling, per-device failure isolation, graceful fallbacks when commands fail, and secure credential rotation. These aren't "nice to have"—they're mandatory for enterprise reliability.
 
 ### **Principle 3: Vendor-Neutral**
-This tool is built on industry-standard Python libraries: **Netmiko** (multi-device SSH), **Paramiko** (jump host tunneling), **Pandas & OpenPyXL** (Excel generation), and **TextFSM** (intelligent parsing). Your skills remain portable across vendors.
+This tool is built on industry-standard Python libraries: **Netmiko** (multi-device SSH), **Paramiko** (jump host tunnelling), **Pandas & OpenPyXL** (Excel generation), and **TextFSM** (intelligent parsing). Your skills remain portable across vendors.
 
 ---
 
@@ -87,7 +87,7 @@ The tool operates as a modular Python application with four primary components:
 | Component | Responsibility | Why It Matters |
 | :--- | :--- | :--- |
 | **CredentialManager** | Secure credential retrieval from OS stores | Passwords never touch plaintext or config files |
-| **JumpManager** | Persistent SSH tunneling through a bastion host | Centralizes network access control; supports air-gapped environments |
+| **JumpManager** | Persistent SSH tunnelling through a bastion host | Centralises network access control; supports air-gapped environments |
 | **PortAuditor (Netmiko)** | Parallel device SSH connections and command collection | Audits 20+ switches in minutes, not hours |
 | **PortIntelligence** | Multi-source port classification and risk flagging | Detects stale, misconfigured, or problematic ports automatically |
 | **ExcelReporter** | Professional, templated workbook generation | Operations teams get insights immediately, not raw data dumps |
@@ -212,11 +212,11 @@ For each device, the tool collects five commands in sequence:
 | `show interfaces` | Parse interface types, error counters, activity | Use TextFSM if available; use internal parser otherwise |
 | `show interfaces status` | Extract port mode, VLAN, status using fixed-width parsing | Built-in fallback parser (no external dependency) |
 | `show power inline` | Collect PoE admin/oper state and power draw | Empty dict if device is non-PoE or command fails |
-| `show cdp/lldp neighbors detail` | Detect peer devices on each port | Boolean flag (true if neighbor present) |
+| `show cdp/lldp neighbors detail` | Detect peer devices on each port | Boolean flag (true if neighbour present) |
 
 **Why This Command Set?**
 - Comprehensive but minimal: each command provides data no other command offers
-- Covers the three dimensions of port health: *configuration* (mode/VLAN), *activity* (errors, last input), *attachment* (PoE, neighbors)
+- Covers the three dimensions of port health: *configuration* (mode/VLAN), *activity* (errors, last input), *attachment* (PoE, neighbours)
 
 ### The Intelligence Layer: Port Classification
 
@@ -252,7 +252,7 @@ A conservative approach is used only for ports in `access` mode and when `--stal
 - **If Status = `connected`** → mark stale = True only if `Last input ≥ <stale-days>`
 - **If Status ≠ `connected`** → mark stale = True when both conditions hold:
   1. No PoE draw (PoE power is blank/`-`/0.0), and
-  2. No LLDP/CDP neighbor present on the port
+  2. No LLDP/CDP neighbour present on the port
 
 This tends to avoid false positives on trunk/routed ports and on access ports actively in use.
 
@@ -268,7 +268,7 @@ For each device the script attempts to gather:
 - **Interfaces** via TextFSM (`show interfaces`) when available
 - **Port mode & VLAN** via a robust, fixed-width parser of `show interfaces status`
 - **PoE details:** admin/oper state, power draw (W), class, device (`show power inline`)
-- **Neighbor presence:** LLDP/CDP seen on the port (boolean)
+- **Neighbour presence:** LLDP/CDP seen on the port (boolean)
 - **Error counters:** input, output, CRC (from `show interfaces` parsed data)
 - **Activity indicator:** "Last input" time (seconds parsed when present)
 
@@ -292,14 +292,14 @@ The workbook contains:
 Columns typically include (when available):
 
 - `Device`, `Mgmt IP`, `Interface` (long form), `Description`
-- `Status` (normalized: connected / notconnect / administratively down / err-disabled)
+- `Status` (normalised: connected / notconnect / administratively down / err-disabled)
 - `AdminDown`, `Connected`, `ErrDisabled` (booleans for quick filters)
 - `Mode` (access/trunk/routed), `VLAN`
 - `Duplex`, `Speed`, `Type`
 - `Input Errors`, `Output Errors`, `CRC Errors`
 - `Last Input` (raw text)
 - `PoE Power (W)`, `PoE Oper`, `PoE Admin`
-- `LLDP/CDP Neighbor` (boolean)
+- `LLDP/CDP Neighbour` (boolean)
 - `Stale (≥<N> d)` (boolean)
 
 ### Formatting
@@ -399,13 +399,13 @@ A: On Windows, from Credential Manager (default target `MyApp/ADM`). Otherwise, 
 A: From `show interfaces status`: if VLAN column is `trunk`/`rspan` → `trunk`; if `routed` → `routed`; otherwise `access`.
 
 **Q: How is a port considered stale?**  
-A: Only for access ports and when `--stale-days > 0`. Connected ports are flagged stale only if `Last input ≥ N days`. Disconnected ports require both no PoE draw and no LLDP/CDP neighbor to be flagged stale.
+A: Only for access ports and when `--stale-days > 0`. Connected ports are flagged stale only if `Last input ≥ N days`. Disconnected ports require both no PoE draw and no LLDP/CDP neighbour to be flagged stale.
 
 ---
 
-## 📝 License
+## 📋 Licence
 
-GNU General Public License v3.0
+GNU General Public Licence v3.0
 
 ## 👤 Author
 

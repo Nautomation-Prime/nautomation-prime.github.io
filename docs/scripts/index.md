@@ -33,7 +33,7 @@ Welcome to the **Nautomation Prime Script Library**. Here you'll find open-sourc
 
 **Features:**
 - Parallel device SSH connections for high-speed audits
-- Conservative "Stale Port" detection logic using PoE, neighbors, and input timers
+- Conservative "Stale Port" detection logic using PoE, neighbours, and input timers
 - Multi-source port classification (Access vs. Trunk vs. Routed)
 - Professional Excel workbooks with automated conditional formatting
 - Full Jump-Host (Bastion) integration for restricted environments

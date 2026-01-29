@@ -10,12 +10,12 @@ A threaded discovery utility that starts from one or more seed Cisco devices and
 ## ✨ Highlights
 
 - **Parallel discovery** with a worker pool (configurable via `config.py` or environment variables)
-- **Two-tier authentication**: primary user first, then customizable fallback user if primary fails
+- **Two-tier authentication**: primary user first, then customisable fallback user if primary fails
 - **Jump server / bastion support** (Paramiko channel + Netmiko sock)
 - **DNS enrichment** for discovered hostnames
 - **Excel report** written from a pre-formatted template with multiple sheets
 - **Hybrid logging**: optional `logging.conf`; sensible defaults otherwise
-- **Fully customizable** via `config.py` including fallback username, credential targets, and jump host
+- **Fully customisable** via `config.py` including fallback username, credential targets, and jump host
 
 ---
 
@@ -30,7 +30,7 @@ Every function in this tool is extensively documented. We don't just explain *wh
 You'll notice patterns like thread locks, exception handling, retry logic, and graceful cleanup. These aren't "nice to have"—they're essential for running automation on critical infrastructure without surprises.
 
 ### **Principle 3: Vendor-Neutral**
-This tool is built on industry-standard libraries: **Netmiko** (SSH connection handling), **Paramiko** (SSH tunneling), **Pandas & OpenPyXL** (Excel reporting), and **TextFSM** (parsing). Your skills remain portable.
+This tool is built on industry-standard libraries: **Netmiko** (SSH connection handling), **Paramiko** (SSH tunnelling), **Pandas & OpenPyXL** (Excel reporting), and **TextFSM** (parsing). Your skills remain portable.
 
 ---
 
@@ -84,7 +84,7 @@ The tool supports two configuration methods:
 
 ### Method 1: config.py (Primary)
 
-Edit `config.py` in the repository root to customize settings:
+Edit `config.py` in the repository root to customise settings:
 
 ```python
 # config.py - User-configurable settings
@@ -102,7 +102,7 @@ CDP_JUMP_SERVER = ""  # e.g., "bastion.corp.local"
 CDP_PRIMARY_CRED_TARGET = "MyApp/ADM"
 CDP_FALLBACK_CRED_TARGET = "MyApp/Answer"
 
-# Fallback username (customize as needed)
+# Fallback username (customise as needed)
 CDP_FALLBACK_USERNAME = "answer"  # or "localadmin", "backup", etc.
 
 # Logging configuration path
@@ -113,7 +113,7 @@ LOGGING_CONFIG = "ProgramFiles/Config_Files/logging.conf"
 - Simple to edit and version control
 - Settings persist across runs
 - No need to set environment variables each time
-- Easy to customize fallback username for your environment
+- Easy to customise fallback username for your environment
 
 ### Method 2: Environment Variables (Override)
 
@@ -158,14 +158,14 @@ The tool operates as a modular Python application with four primary components:
 
 ## 🔐 Credentials Model
 
-This tool supports a **primary credential** and a **customizable fallback credential**:
+This tool supports a **primary credential** and a **customisable fallback credential**:
 
 - **Primary credentials** (used for the jump and the device): read from Windows Credential Manager if present (default target `MyApp/ADM`), else prompted. You can optionally save what you type back to Credential Manager.
 - **Fallback credentials** (device hop only, jump still uses primary): username is configurable via `config.py` (default: `answer`). Password is read from Credential Manager (default target `MyApp/Answer`) or prompted; you may choose to save it.
 
 > **Note:** On non-Windows platforms, prompts are used (no Credential Manager).
 >
-> **Customization:** You can change the fallback username in `config.py` by setting `CDP_FALLBACK_USERNAME` to match your environment (e.g., `localadmin`, `backup`, `netops`).
+> **Customisation:** You can change the fallback username in `config.py` by setting `CDP_FALLBACK_USERNAME` to match your environment (e.g., `localadmin`, `backup`, `netops`).
 
 ### Why Credential Management Matters
 
@@ -195,9 +195,9 @@ def __init__(self):
 - This design means users can edit `config.py` once and forget, or use env vars for dynamic scenarios
 
 **Why This Matters:**
-- **config.py**: Persistent settings that match your organization's standards
+- **config.py**: Persistent settings that match your organisation's standards
 - **Environment variables**: Runtime overrides for different environments (dev/prod)
-- **Fallback username**: No longer hardcoded—customize to match your local accounts (e.g., `localadmin`, `netops`, `backup`)
+- **Fallback username**: No longer hardcoded—customise to match your local accounts (e.g., `localadmin`, `netops`, `backup`)
 - Credentials themselves are still stored securely in Credential Manager
 
 ### `_read_win_cred(target_name: str)`
@@ -240,14 +240,14 @@ The credential retrieval orchestrator with multi-step fallback:
 
 **Two-Credential Model:**
 - **Primary:** Your main automation account (flexible username, likely AD-backed)
-- **Fallback:** A secondary user on each device (username customizable in `config.py`, typically a local account)
+- **Fallback:** A secondary user on each device (username customisable in `config.py`, typically a local account)
 
 **Why This Design:**
 - Zero installation friction - first run prompts, subsequent runs use saved credentials
-- Two credentials maximize success: primary fails → retry with fallback
+- Two credentials maximise success: primary fails → retry with fallback
 - Jump host always uses primary (tighter control)
 - Device can fall back to secondary user (local account)
-- Fully customizable to match your organization's account naming standards
+- Fully customisable to match your organisation's account naming standards
 
 ---
 
@@ -281,7 +281,7 @@ python -m main
    - Fallback password (username from `config.py`; reads from CredMan if present; else prompts; optional save)
    - Jump server (from `config.py`, env var, or prompt; blank = direct)
 
-The tool validates/normalizes seeds to IP addresses, de-duplicates them, then starts the threaded discovery.
+The tool validates/normalises seeds to IP addresses, de-duplicates them, then starts the threaded discovery.
 
 ---
 
@@ -414,9 +414,9 @@ else:
 
 **Why This Two-Credential Model:**
 - Jump host always uses primary (tightest control)
-- Device can use fallback if primary fails (username customizable in `config.py`)
+- Device can use fallback if primary fails (username customisable in `config.py`)
 - Resilience: if your primary account is locked, fallback account can still work
-- Flexibility: adapt to your organization's local account naming conventions
+- Flexibility: adapt to your organisation's local account naming conventions
 
 **Direct Connection:**
 Simply pass device IP to Netmiko.
@@ -439,7 +439,7 @@ Executes CDP and version commands on target device with fallback credentials.
 
 **Strategy:**
 1. Try with primary credentials
-2. On auth failure, catch and retry with fallback (customizable fallback user on device)
+2. On auth failure, catch and retry with fallback (customisable fallback user on device)
 3. Don't retry auth failures (credentials won't change between attempts)
 4. Do retry transient errors (timeouts, SSH glitches) up to 3 times
 5. Always disconnect in finally block (prevent socket leaks)
@@ -666,15 +666,15 @@ Done!
  Conn errors: 3
 ```
 
-> **Note:** The fallback username shown in the prompt reflects your `config.py` setting. Default is 'answer', but you can customize it to 'localadmin', 'backup', etc.
+> **Note:** The fallback username shown in the prompt reflects your `config.py` setting. Default is 'answer', but you can customise it to 'localadmin', 'backup', etc.
 
 ---
 
-## 🛠️ Customization Points
+## 🛠️ Customisation Points
 
-- **User settings**: Edit `config.py` to customize worker threads, timeouts, jump server, credential targets, and fallback username.
+- **User settings**: Edit `config.py` to customise worker threads, timeouts, jump server, credential targets, and fallback username.
 - **Template paths**: Adjust in `main.py` under the `ProgramFiles/...` constants.
-- **Queueing heuristics** (which neighbors to crawl): `parse_outputs_and_enqueue_neighbors()`.
+- **Queueing heuristics** (which neighbours to crawl): `parse_outputs_and_enqueue_neighbours()`.
 - **Retry counts / timeouts**: Configure in `config.py` or override via environment variables.
 - **Logging**: Provide a `logging.conf` that matches your standards (path configurable in `config.py`).
 - **Fallback account**: Set `CDP_FALLBACK_USERNAME` in `config.py` to match your local admin account naming.
@@ -686,12 +686,12 @@ Done!
 After studying this code, you should understand:
 
 ✅ **Concurrent programming** — How thread pools and locks prevent race conditions  
-✅ **SSH tunneling** — How direct-tcpip channels work and why they're safer  
+✅ **SSH tunnelling** — How direct-tcpip channels work and why they're safer  
 ✅ **Credential management** — OS-level credential stores vs. plaintext files  
 ✅ **TextFSM parsing** — How to extract structured data from CLI output  
 ✅ **Error handling** — Retry strategies and graceful degradation  
 ✅ **Excel automation** — Template-driven reporting with data overlay  
-✅ **Network discovery** — CDP heuristics and neighbor crawling logic  
+✅ **Network discovery** — CDP heuristics and neighbour crawling logic  
 
 ---
 
@@ -728,19 +728,19 @@ Ready to audit your own network? Access the hardened source code and pre-configu
 ## 🎬 Next Steps
 
 1. **Clone the repository:** `git clone https://github.com/Nautomation-Prime/Cisco_CDP_Network_Audit`
-2. **Customize config.py** to match your environment (fallback username, credential targets, jump server)
+2. **Customise config.py** to match your environment (fallback username, credential targets, jump server)
 3. **Read the README** for installation and configuration details
 4. **Set up credentials** in Windows Credential Manager (or let the script prompt you on first run)
 5. **Run your first discovery** against a test device
 6. **Review the Excel output** to understand the report format
 
-Once comfortable, customize the discovery heuristics and template for your specific topology.
+Once comfortable, customise the discovery heuristics and template for your specific topology.
 
 ---
 
-## 📝 License
+## 📋 Licence
 
-GNU General Public License v3.0
+GNU General Public Licence v3.0
 
 ## 👤 Author
 
