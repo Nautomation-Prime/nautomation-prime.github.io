@@ -11,14 +11,17 @@ Welcome to the **Nautomation Prime Script Library**. Here you'll find open-sourc
 
 ### CDP Network Audit Tool
 **Status:** ✅ Available  
-**Description:** A high-performance, multi-threaded discovery utility that maps Cisco topologies via CDP.
+**Description:** A threaded discovery utility that starts from seed Cisco devices and crawls the network using Cisco Discovery Protocol (CDP), producing structured Excel reports with professional formatting.
 
 **Features:**
-- Multi-threaded concurrent device discovery
-- Jump-host (bastion) support for isolated networks
-- Windows Credential Manager integration
-- TextFSM template-based parsing
-- Excel reporting with custom formatting
+- Parallel discovery with configurable worker pool (via environment variables)
+- Two-tier authentication (primary user with fallback to 'answer' user)
+- Jump server / bastion support (Paramiko channel + Netmiko sock)
+- DNS enrichment for discovered hostnames
+- Excel reporting from pre-formatted templates with multiple sheets
+- Hybrid logging with optional logging.conf
+- Up to 3 automatic retries for transient connectivity issues
+- Comprehensive error tracking (authentication failures, connection errors)
 
 [📖 View Deep Dive Documentation](../deep-dives/cdp-audit.md) | [:material-github: GitHub Repository](https://github.com/Nautomation-Prime/Cisco_CDP_Network_Audit)
 

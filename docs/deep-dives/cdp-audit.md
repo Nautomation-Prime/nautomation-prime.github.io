@@ -1,9 +1,21 @@
 # Deep Dive: CDP Network Audit Tool
 ### "Cisco Python Automation, Explained Line-by-Line."
 
-The **CDP Network Audit Tool** is a high-performance, multi-threaded discovery utility designed to map Cisco topologies with precision. It transforms raw Cisco Discovery Protocol (CDP) data into structured enterprise intelligence by combining Python automation with hardened security practices.
+A threaded discovery utility that starts from one or more seed Cisco devices and crawls the network using Cisco Discovery Protocol (CDP). It connects (optionally via a jump server), collects `show cdp neighbors detail` and `show version`, parses them with TextFSM, and outputs a structured Excel report based on a supplied template. Designed for reliability, concurrency, and repeatable reporting.
 
 [:material-github: View Source Code on GitHub](https://github.com/Nautomation-Prime/Cisco_CDP_Network_Audit){ .md-button .md-button--primary }
+
+---
+
+## ✨ Highlights
+
+- **Parallel discovery** with a worker pool (configurable via `config.py` or environment variables)
+- **Two-tier authentication**: primary user first, then customizable fallback user if primary fails
+- **Jump server / bastion support** (Paramiko channel + Netmiko sock)
+- **DNS enrichment** for discovered hostnames
+- **Excel report** written from a pre-formatted template with multiple sheets
+- **Hybrid logging**: optional `logging.conf`; sensible defaults otherwise
+- **Fully customizable** via `config.py` including fallback username, credential targets, and jump host
 
 ---
 
@@ -22,6 +34,115 @@ This tool is built on industry-standard libraries: **Netmiko** (SSH connection h
 
 ---
 
+## 🧱 Repository Layout (Expected)
+
+```
+.
+├── main.py
+├── config.py                      # User-configurable settings
+├── .vscode/
+└── ProgramFiles/
+    ├── textfsm/
+    │   ├── cisco_ios_show_cdp_neighbors_detail.textfsm
+    │   └── cisco_ios_show_version.textfsm
+    └── config_files/
+        ├── 1 - CDP Network Audit _ Template.xlsx
+        └── logging.conf               # optional
+```
+
+> **Note:** Paths are case-sensitive on Linux/macOS; keep names exactly as shown.
+
+---
+
+## 📦 Requirements
+
+- **Python:** 3.7+
+- **Python packages:** `pandas`, `openpyxl`, `textfsm`, `paramiko`, `netmiko`
+- **(Windows only, optional)** `pywin32` for Windows Credential Manager integration
+
+Install in one go:
+
+```bash
+pip install pandas openpyxl textfsm paramiko netmiko pywin32
+```
+
+### Required Support Files
+
+- **TextFSM templates:**
+  - `ProgramFiles/textfsm/cisco_ios_show_cdp_neighbors_detail.textfsm`
+  - `ProgramFiles/textfsm/cisco_ios_show_version.textfsm`
+- **Excel template:**
+  - `ProgramFiles/config_files/1 - CDP Network Audit _ Template.xlsx`
+
+The script validates presence of these files at startup and exits if any are missing.
+
+---
+
+## ⚙️ Configuration Options
+
+The tool supports two configuration methods:
+
+### Method 1: config.py (Primary)
+
+Edit `config.py` in the repository root to customize settings:
+
+```python
+# config.py - User-configurable settings
+
+# Worker thread pool size
+CDP_LIMIT = 10
+
+# SSH/auth/read timeouts (seconds)
+CDP_TIMEOUT = 10
+
+# Jump server (leave empty for direct connections)
+CDP_JUMP_SERVER = ""  # e.g., "bastion.corp.local"
+
+# Windows Credential Manager targets
+CDP_PRIMARY_CRED_TARGET = "MyApp/ADM"
+CDP_FALLBACK_CRED_TARGET = "MyApp/Answer"
+
+# Fallback username (customize as needed)
+CDP_FALLBACK_USERNAME = "answer"  # or "localadmin", "backup", etc.
+
+# Logging configuration path
+LOGGING_CONFIG = "ProgramFiles/Config_Files/logging.conf"
+```
+
+**Why config.py?**
+- Simple to edit and version control
+- Settings persist across runs
+- No need to set environment variables each time
+- Easy to customize fallback username for your environment
+
+### Method 2: Environment Variables (Override)
+
+Environment variables take precedence over `config.py` if set:
+
+| Variable | Description | config.py Default |
+|:---------|:------------|:------------------|
+| `CDP_LIMIT` | Max concurrent worker threads | 10 |
+| `CDP_TIMEOUT` | SSH/auth/read timeouts (seconds) | 10 |
+| `CDP_JUMP_SERVER` | Jump host (IP/hostname). Empty = direct | (empty) |
+| `CDP_PRIMARY_CRED_TARGET` | CredMan target for primary creds | MyApp/ADM |
+| `CDP_FALLBACK_CRED_TARGET` | CredMan target for fallback creds | MyApp/Answer |
+| `CDP_FALLBACK_USERNAME` | Fallback username | answer |
+| `LOGGING_CONFIG` | Path to INI logging config | ProgramFiles/Config_Files/logging.conf |
+
+**Example (Windows PowerShell):**
+
+```powershell
+$env:CDP_LIMIT = "20"
+$env:CDP_TIMEOUT = "15"
+$env:CDP_JUMP_SERVER = "bastion.corp.local"
+$env:CDP_PRIMARY_CRED_TARGET = "MyApp/ADM"
+$env:CDP_FALLBACK_CRED_TARGET = "MyApp/LocalAdmin"
+$env:CDP_FALLBACK_USERNAME = "localadmin"
+$env:LOGGING_CONFIG = "ProgramFiles/Config_Files/logging.conf"
+```
+
+---
+
 ## 🏗️ Technical Architecture
 
 The tool operates as a modular Python application with four primary components:
@@ -35,7 +156,16 @@ The tool operates as a modular Python application with four primary components:
 
 ---
 
-## 🔐 CredentialManager: Secure Credential Handling
+## 🔐 Credentials Model
+
+This tool supports a **primary credential** and a **customizable fallback credential**:
+
+- **Primary credentials** (used for the jump and the device): read from Windows Credential Manager if present (default target `MyApp/ADM`), else prompted. You can optionally save what you type back to Credential Manager.
+- **Fallback credentials** (device hop only, jump still uses primary): username is configurable via `config.py` (default: `answer`). Password is read from Credential Manager (default target `MyApp/Answer`) or prompted; you may choose to save it.
+
+> **Note:** On non-Windows platforms, prompts are used (no Credential Manager).
+>
+> **Customization:** You can change the fallback username in `config.py` by setting `CDP_FALLBACK_USERNAME` to match your environment (e.g., `localadmin`, `backup`, `netops`).
 
 ### Why Credential Management Matters
 
@@ -49,20 +179,26 @@ The tool operates as a modular Python application with four primary components:
 
 ```python
 def __init__(self):
-    # Read credential target names from environment (with sensible defaults)
-    self.primary_target = os.getenv("CDP_PRIMARY_CRED_TARGET", "MyApp/ADM")
-    self.answer_target = os.getenv("CDP_ANSWER_CRED_TARGET", "MyApp/Answer")
+    # Import config.py settings
+    import config
+    
+    # Read from environment variables (override) or config.py (default)
+    self.primary_target = os.getenv("CDP_PRIMARY_CRED_TARGET", config.CDP_PRIMARY_CRED_TARGET)
+    self.fallback_target = os.getenv("CDP_FALLBACK_CRED_TARGET", config.CDP_FALLBACK_CRED_TARGET)
+    self.fallback_username = os.getenv("CDP_FALLBACK_USERNAME", config.CDP_FALLBACK_USERNAME)
 ```
 
 **Line-by-Line:**
-- We read environment variables to allow customization per environment
-- Default targets are `MyApp/ADM` (primary admin user) and `MyApp/Answer` (fallback user)
-- This design means you can have different credential targets in dev vs. production
+- Import settings from `config.py` as the baseline configuration
+- Environment variables override `config.py` if set (for runtime flexibility)
+- Three configurable values: primary target, fallback target, and fallback username
+- This design means users can edit `config.py` once and forget, or use env vars for dynamic scenarios
 
 **Why This Matters:**
-- Credentials are no longer part of the script or repository
-- Environment variables can be injected at container runtime
-- Easy to rotate target names without changing code
+- **config.py**: Persistent settings that match your organization's standards
+- **Environment variables**: Runtime overrides for different environments (dev/prod)
+- **Fallback username**: No longer hardcoded—customize to match your local accounts (e.g., `localadmin`, `netops`, `backup`)
+- Credentials themselves are still stored securely in Credential Manager
 
 ### `_read_win_cred(target_name: str)`
 
@@ -104,13 +240,66 @@ The credential retrieval orchestrator with multi-step fallback:
 
 **Two-Credential Model:**
 - **Primary:** Your main automation account (flexible username, likely AD-backed)
-- **Answer:** A fallback user on each device (username is fixed as 'answer', local account)
+- **Fallback:** A secondary user on each device (username customizable in `config.py`, typically a local account)
 
 **Why This Design:**
 - Zero installation friction - first run prompts, subsequent runs use saved credentials
-- Two credentials maximize success: primary fails → retry with answer
+- Two credentials maximize success: primary fails → retry with fallback
 - Jump host always uses primary (tighter control)
-- Device can fall back to answer user (weaker account)
+- Device can fall back to secondary user (local account)
+- Fully customizable to match your organization's account naming standards
+
+---
+
+## 🌐 Jump Server Behaviour
+
+- Set `CDP_JUMP_SERVER` in `config.py` or via environment variable to specify a jump host.
+- If empty, you will be prompted during runtime; leaving it blank uses direct device connections.
+- The jump is created with Paramiko and a `direct-tcpip` channel; Netmiko is then bound to that channel (no local listener required).
+
+> **Note:** Host key policy defaults to a warning (accepts unknown keys but logs a warning). For production environments, prefer strict host key checking via `known_hosts` management.
+>
+> **Tip:** Configure your jump server in `config.py` for permanent use, or leave it empty to be prompted each time for flexibility.
+
+---
+
+## 🚀 How to Run (Interactive Flow)
+
+1. Ensure templates and Excel file exist under `ProgramFiles/...` (see above).
+2. Set env vars as needed (optional).
+3. Run:
+
+```bash
+python -m main
+# or: python main.py
+```
+
+4. Follow prompts:
+   - Site name (used in the output filename)
+   - Seed devices (comma-separated IPv4 / resolvable hostnames)
+   - Primary credentials (reads from CredMan if present; else prompts; optional save)
+   - Fallback password (username from `config.py`; reads from CredMan if present; else prompts; optional save)
+   - Jump server (from `config.py`, env var, or prompt; blank = direct)
+
+The tool validates/normalizes seeds to IP addresses, de-duplicates them, then starts the threaded discovery.
+
+---
+
+## 🧪 What Gets Collected
+
+For each visited device the tool attempts to collect:
+
+- `show version` (hostname, serials, uptime) — for local context.
+- `show cdp neighbors detail` — parsed into structured rows.
+- DNS resolution for all discovered hostnames (best-effort), in parallel.
+
+### Discovery Heuristics
+
+- Only Switch-capable CDP entries (and not hosts) with a management IP are queued as crawl candidates.
+- Deduplication is performed by hostname and IP to reduce churn.
+- Each target is retried up to 3 times for transient connectivity issues.
+
+---
 
 ### `prompt_for_inputs()`
 
@@ -119,7 +308,7 @@ Orchestrates all interactive input collection in one flow:
 1. **Site name** - Used in Excel filename (max 50 chars)
 2. **Seed devices** - Comma-separated IPs or hostnames
 3. **Primary credentials** - Main automation account
-4. **Answer credentials** - Fallback device account
+4. **Fallback credentials** - Fallback device account (username from `config.py`, default: `answer`)
 
 ---
 
@@ -220,13 +409,14 @@ if primary:
     device_user, device_pass = primary_user, primary_pass
 else:
     jump_user, jump_pass = primary_user, primary_pass  # Jump always uses primary
-    device_user, device_pass = answer_user, answer_pass  # Device uses fallback
+    device_user, device_pass = fallback_user, fallback_pass  # Device uses fallback
 ```
 
 **Why This Two-Credential Model:**
 - Jump host always uses primary (tightest control)
-- Device can use answer if primary fails
-- Resilience: if your primary account is locked, answer account can still work
+- Device can use fallback if primary fails (username customizable in `config.py`)
+- Resilience: if your primary account is locked, fallback account can still work
+- Flexibility: adapt to your organization's local account naming conventions
 
 **Direct Connection:**
 Simply pass device IP to Netmiko.
@@ -249,7 +439,7 @@ Executes CDP and version commands on target device with fallback credentials.
 
 **Strategy:**
 1. Try with primary credentials
-2. On auth failure, catch and retry with fallback (answer user on device)
+2. On auth failure, catch and retry with fallback (customizable fallback user on device)
 3. Don't retry auth failures (credentials won't change between attempts)
 4. Do retry transient errors (timeouts, SSH glitches) up to 3 times
 5. Always disconnect in finally block (prevent socket leaks)
@@ -345,14 +535,27 @@ Data starts at row 12 (after headers and metadata).
 - **Professional:** Charts, filters, styling all maintained
 - **Automated:** No manual Excel editing required
 
-### Multiple Output Sheets
+### Output File Details
 
-| Sheet | Purpose | Rows |
-| :--- | :--- | :--- |
-| **Audit** | Main CDP data with local/remote ports, platforms | 12+ |
-| **DNS Resolved** | Hostname → IP mappings | 5+ |
-| **Authentication Errors** | List of IPs that failed auth | 5+ |
-| **Connection Errors** | IPs with connection failures + error type | 5+ |
+An output file named `<site_name>_CDP_Network_Audit.xlsx` is created by copying the template.
+
+### Sheets
+
+- **Audit** — Main CDP dataset. Also stamped with metadata:
+  - `B4`: Site name
+  - `B5`: Date
+  - `B6`: Time
+  - `B7`: Primary seed
+  - `B8`: Secondary seed (or "Secondary Seed device not given")
+- **DNS Resolved** — Two columns: `Hostname`, `IP Address`
+- **Authentication Errors** — One column: `Authentication Errors` (IP list)
+- **Connection Errors** — Two columns: `IP Address`, `Error`
+
+### Columns in Audit (Data Rows)
+
+`LOCAL_HOST`, `LOCAL_IP`, `LOCAL_PORT`, `LOCAL_SERIAL`, `LOCAL_UPTIME`, `DESTINATION_HOST`, `REMOTE_PORT`, `MANAGEMENT_IP`, `PLATFORM`.
+
+> **Note:** The template governs formatting/filters/charts (if any). The writer appends data starting at the appropriate row offsets to preserve the layout.
 
 ---
 
@@ -394,6 +597,87 @@ finally:
 
 ### Pattern 5: Template-Driven Reporting
 Copy → stamp metadata → append data using overlay mode.
+
+---
+
+## 🧰 Logging
+
+- If a config file is present, logging is configured via `logging.config.fileConfig()`.
+- Otherwise, a basic console logger is configured at INFO with timestamps.
+- You can set `LOGGING_CONFIG` to point to an INI file anywhere; if not set, the tool looks for `ProgramFiles/Config_Files/logging.conf`.
+
+---
+
+## 🧯 Errors & Retry Behaviour
+
+- **Authentication failures**: the host is recorded under Authentication Errors.
+- **Connectivity/timeouts**: the host is recorded under Connection Errors with the last error tag (e.g., `NetmikoTimeoutException`, `SSHException`, `socket.timeout`).
+- **Retries**: up to 3 attempts for each device before recording a connection error.
+- **Graceful exit**: workers always `task_done()` to avoid queue hangs.
+
+---
+
+## 📈 Performance
+
+- Worker threads = `CDP_LIMIT` (default 10).
+- DNS resolution runs in a small parallel pool after discovery.
+- Use a conservative limit on older/CPU-bound platforms; increase on fast links.
+
+---
+
+## 🔒 Security Considerations
+
+- Prefer Credential Manager (Windows) or other secret stores instead of plaintext.
+- Ensure jump host is hardened; consider strict host key verification.
+- Output workbooks can contain sensitive topology data — share on a need-to-know basis.
+
+---
+
+## ❌ Exit Codes
+
+- **0** — Success
+- **1** — Required TextFSM or Excel template missing / invalid
+- **130** — Interrupted by user (Ctrl+C)
+
+---
+
+## ✅ Example Session
+
+```
+=== CDP Network Audit ===
+Enter site name (used in Excel filename, max 50 chars): MKD-Campus
+Enter one or more seed device IPs or hostnames (comma-separated, max 500): 10.10.0.11, sw-core-1
+...
+Press Enter to accept, or type a different username: opsadmin
+Enter switch/jump password (Primary): ********
+Store Primary creds in Credential Manager as 'MyApp/ADM'? [y/N]
+Enter 'answer' password (fallback user from config.py): ********
+Store 'answer' password in Credential Manager as 'MyApp/Answer'? [y/N]
+
+Enter jump server IP/hostname (or leave blank to use device directly)
+Enter IP Address: bastion.corp.local
+
+INFO Validated 2 seed device(s) for discovery
+... (threaded discovery logs) ...
+Done!
+ Discovered devices: 42
+ CDP entries: 314
+ Auth errors: 1
+ Conn errors: 3
+```
+
+> **Note:** The fallback username shown in the prompt reflects your `config.py` setting. Default is 'answer', but you can customize it to 'localadmin', 'backup', etc.
+
+---
+
+## 🛠️ Customization Points
+
+- **User settings**: Edit `config.py` to customize worker threads, timeouts, jump server, credential targets, and fallback username.
+- **Template paths**: Adjust in `main.py` under the `ProgramFiles/...` constants.
+- **Queueing heuristics** (which neighbors to crawl): `parse_outputs_and_enqueue_neighbors()`.
+- **Retry counts / timeouts**: Configure in `config.py` or override via environment variables.
+- **Logging**: Provide a `logging.conf` that matches your standards (path configurable in `config.py`).
+- **Fallback account**: Set `CDP_FALLBACK_USERNAME` in `config.py` to match your local admin account naming.
 
 ---
 
@@ -444,12 +728,13 @@ Ready to audit your own network? Access the hardened source code and pre-configu
 ## 🎬 Next Steps
 
 1. **Clone the repository:** `git clone https://github.com/Nautomation-Prime/Cisco_CDP_Network_Audit`
-2. **Read the README** for installation and configuration
-3. **Set up credentials** in Windows Credential Manager
-4. **Run your first discovery** against a test device
-5. **Review the Excel output** to understand the report format
+2. **Customize config.py** to match your environment (fallback username, credential targets, jump server)
+3. **Read the README** for installation and configuration details
+4. **Set up credentials** in Windows Credential Manager (or let the script prompt you on first run)
+5. **Run your first discovery** against a test device
+6. **Review the Excel output** to understand the report format
 
-Once comfortable, customize the discovery heuristics for your specific topology.
+Once comfortable, customize the discovery heuristics and template for your specific topology.
 
 ---
 
