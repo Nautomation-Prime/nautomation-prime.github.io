@@ -13,4 +13,4 @@ They may not be:
 
 without prior written consent.
 
-Brand identity is **not** covered under any open‑source license.
+Brand identity is **not** covered under any open‑source licence.

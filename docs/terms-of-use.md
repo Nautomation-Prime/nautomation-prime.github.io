@@ -11,12 +11,12 @@ Website content may not be copied, republished, or redistributed without permiss
 
 ## 2. Code Licensing
 
-Code available in public repositories under the Nautomation Prime GitHub organisation is licensed under the **GNU GPL‑3.0 license**, unless stated otherwise.
+Code available in public repositories under the Nautomation Prime GitHub organisation is licenced under the **GNU GPL‑3.0 licence**, unless stated otherwise.
 
-Bespoke code delivered to clients is licensed under either:
+Bespoke code delivered to clients is licenced under either:
 
-- **MIT License**, or  
-- **Apache License 2.0**  
+- **MIT Licence**, or  
+- **Apache Licence 2.0**  
 
 as agreed upon during engagement.
 
