@@ -1,0 +1,14 @@
+# Nautomation Prime MkDocs Website Requirements
+# Install: pip install -r requirements.txt
+
+# Core dependencies
+mkdocs>=1.5.0
+mkdocs-material>=9.5.0
+
+# Plugins
+mkdocs-git-revision-date-localized-plugin>=1.2.0
+
+# Optional (uncomment when needed)
+# mkdocs-minify-plugin>=0.7.0  # Minify HTML/CSS/JS for faster loading
+# mkdocs-redirects>=1.2.0      # Manage URL redirects
+# mkdocs-awesome-pages-plugin>=2.9.0  # Better page organization
