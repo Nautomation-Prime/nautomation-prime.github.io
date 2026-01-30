@@ -73,10 +73,10 @@ Every engagement is scoped individually, but pricing is typically determined by:
 
 To give you a sense of scale (all prices exclude VAT):
 
-- **Small Automation Script** (e.g., VLAN audit across 20 switches): £800–£1,500
-- **Medium Complexity Tool** (e.g., multi-threaded CDP topology mapper with Excel reporting for 100+ devices): £2,000–£4,000
-- **Enterprise-Grade Solution** (e.g., ISE SGT automation with API integration, pre-flight validation, and Docker deployment): £5,000–£10,000+
-- **Ongoing Retainer** (monthly automation support, script maintenance, and feature additions): £1,200–£2,500/month
+- **Simple Automation Script** (e.g., single-device configuration audit, basic VLAN provisioning): £1,200–£2,500
+- **Medium Complexity Tool** (e.g., multi-threaded inventory collection with Excel reporting for 50+ devices): £3,000–£5,500
+- **Enterprise-Grade Solution** (e.g., multi-threaded CDP topology mapper, ISE SGT automation, portable Docker containers with full documentation): £6,000–£12,000+
+- **Ongoing Retainer** (monthly automation support, script maintenance, and feature additions): £1,500–£3,000/month
 
 These are **indicative ranges**—actual quotes depend on your specific requirements. A detailed scope call is always free.
 
@@ -112,7 +112,7 @@ Consider a mid-sized UK enterprise with 200 Cisco devices:
 
 **Total:** 245 hours of repetitive engineering work annually.
 
-At an average senior engineer cost of **£50/hour** (internal cost, not salary), that's **£12,250/year** in manual effort. A £3,000 automation investment pays for itself in **3 months**, then delivers savings every year thereafter.
+At an average senior engineer cost of **£50/hour** (internal cost, not salary), that's **£12,250/year** in manual effort. A £6,000 automation investment pays for itself in **6 months**, then delivers savings every year thereafter.
 
 Beyond cost, you gain:
 - **Elimination of human error** in production changes
