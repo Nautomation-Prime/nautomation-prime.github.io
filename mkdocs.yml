@@ -41,6 +41,15 @@ copyright: >
 extra:
   metadata:
     keywords: "Cisco automation, Python network automation, Nautomation Prime, network scripting"
+  footer_links:
+    - title: "Privacy Policy"
+      url: "/legal/privacy-policy/"
+    - title: "Terms of Use"
+      url: "/legal/terms-of-use/"
+    - title: "Disclaimer"
+      url: "/legal/disclaimer/"
+    - title: "Licensing"
+      url: "/legal/licensing/"
   social:
     - icon: fontawesome/brands/linkedin
       link: https://www.linkedin.com/company/nautomationprime
