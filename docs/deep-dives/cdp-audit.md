@@ -15,7 +15,8 @@ A threaded discovery utility that starts from one or more seed Cisco devices and
 - **DNS enrichment** for discovered hostnames
 - **Excel report** written from a pre-formatted template with multiple sheets
 - **Hybrid logging**: optional `logging.conf`; sensible defaults otherwise
-- **Fully customisable** via `config.py` including fallback username, credential targets, and jump host
+- **Centralized configuration** via comprehensive `config.py` with 200+ lines of documented settings
+- **Fully customisable** including fallback username, credential targets, jump host, Excel formatting, and more
 
 ---
 
@@ -39,13 +40,13 @@ This tool is built on industry-standard libraries: **Netmiko** (SSH connection h
 ```
 .
 ├── main.py
-├── config.py                      # User-configurable settings
 ├── .vscode/
 └── ProgramFiles/
     ├── textfsm/
     │   ├── cisco_ios_show_cdp_neighbors_detail.textfsm
     │   └── cisco_ios_show_version.textfsm
     └── config_files/
+        ├── config.py                  # User-configurable settings
         ├── 1 - CDP Network Audit _ Template.xlsx
         └── logging.conf               # optional
 ```
@@ -80,50 +81,75 @@ The script validates presence of these files at startup and exits if any are mis
 
 ## ⚙️ Configuration Options
 
-The tool supports two configuration methods:
+The tool uses a comprehensive configuration system with two configuration methods:
 
-### Method 1: config.py (Primary)
+### Method 1: ProgramFiles/config_files/config.py (Primary)
 
-Edit `config.py` in the repository root to customise settings:
+**All configurable settings are now centralized in a single, well-documented config.py file.**
 
+The config file is located at `ProgramFiles/config_files/config.py` and contains extensive inline documentation. Key settings include:
+
+**Network Connection Settings:**
 ```python
-# config.py - User-configurable settings
+JUMP_HOST = "10.112.250.6"  # Default jump/bastion server
+DEVICE_TYPE = "cisco_ios"    # Netmiko device type
+SSH_PORT = 22                # SSH port for connections
+```
 
-# Worker thread pool size
-CDP_LIMIT = 10
+**Performance Settings:**
+```python
+DEFAULT_LIMIT = 10           # Max concurrent worker threads
+DEFAULT_TIMEOUT = 10         # SSH/auth/read timeouts (seconds)
+MAX_RETRY_ATTEMPTS = 3       # Connection retries per device
+DNS_MAX_WORKERS = 32         # Max DNS resolution threads
+DNS_MIN_WORKERS = 4          # Min DNS resolution threads
+```
 
-# SSH/auth/read timeouts (seconds)
-CDP_TIMEOUT = 10
+**Credential Settings:**
+```python
+CRED_TARGET = "MyApp/ADM"    # Primary credential target in Windows Credential Manager
+ALT_CREDS = "MyApp/Answer"   # Fallback credential target
+CDP_FALLBACK_USERNAME = "answer"  # Fallback username (customizable)
+```
 
-# Jump server (leave empty for direct connections)
-CDP_JUMP_SERVER = ""  # e.g., "bastion.corp.local"
+**File Paths:**
+```python
+CDP_TEMPLATE = Path("ProgramFiles/textfsm/cisco_ios_show_cdp_neighbors_detail.textfsm")
+VER_TEMPLATE = Path("ProgramFiles/textfsm/cisco_ios_show_version.textfsm")
+EXCEL_TEMPLATE = Path("ProgramFiles/config_files/1 - CDP Network Audit _ Template.xlsx")
+LOGGING_CONFIG_PATH = Path("ProgramFiles/Config_Files/logging.conf")
+```
 
-# Windows Credential Manager targets
-CDP_PRIMARY_CRED_TARGET = "MyApp/ADM"
-CDP_FALLBACK_CRED_TARGET = "MyApp/Answer"
-
-# Fallback username (customise as needed)
-CDP_FALLBACK_USERNAME = "answer"  # or "localadmin", "backup", etc.
-
-# Logging configuration path
-LOGGING_CONFIG = "ProgramFiles/Config_Files/logging.conf"
+**Excel Report Settings:**
+```python
+EXCEL_SHEET_AUDIT = "Audit"
+EXCEL_SHEET_DNS = "DNS Resolved"
+EXCEL_SHEET_AUTH_ERRORS = "Authentication Errors"
+EXCEL_SHEET_CONN_ERRORS = "Connection Errors"
+EXCEL_CELL_SITE_NAME = "B4"
+EXCEL_CELL_DATE = "B5"
+# ... and many more Excel customization options
 ```
 
 **Why config.py?**
-- Simple to edit and version control
-- Settings persist across runs
-- No need to set environment variables each time
-- Easy to customise fallback username for your environment
+- **Centralized Configuration**: All settings in one well-documented file
+- **Extensive Documentation**: Each setting has inline comments explaining purpose and usage
+- **Version Control Friendly**: Settings persist across runs and can be committed
+- **Easy Customization**: Modify defaults to match your organization's standards
+- **No Environment Variables Needed**: Set once and forget
+- **Comprehensive Coverage**: Network, credentials, paths, Excel formatting, DNS, logging, and more
+
+> **Note:** The config.py file contains over 200 lines of configuration options and documentation. See the file directly for complete details and usage examples.
 
 ### Method 2: Environment Variables (Override)
 
-Environment variables take precedence over `config.py` if set:
+Environment variables can override specific config.py settings at runtime:
 
 | Variable | Description | config.py Default |
 |:---------|:------------|:------------------|
 | `CDP_LIMIT` | Max concurrent worker threads | 10 |
 | `CDP_TIMEOUT` | SSH/auth/read timeouts (seconds) | 10 |
-| `CDP_JUMP_SERVER` | Jump host (IP/hostname). Empty = direct | (empty) |
+| `CDP_JUMP_SERVER` | Jump host (IP/hostname). Empty = direct | "" |
 | `CDP_PRIMARY_CRED_TARGET` | CredMan target for primary creds | MyApp/ADM |
 | `CDP_FALLBACK_CRED_TARGET` | CredMan target for fallback creds | MyApp/Answer |
 | `CDP_FALLBACK_USERNAME` | Fallback username | answer |
@@ -140,6 +166,12 @@ $env:CDP_FALLBACK_CRED_TARGET = "MyApp/LocalAdmin"
 $env:CDP_FALLBACK_USERNAME = "localadmin"
 $env:LOGGING_CONFIG = "ProgramFiles/Config_Files/logging.conf"
 ```
+
+**When to Use Environment Variables:**
+- Temporary overrides for testing
+- Different settings per environment (dev/staging/prod)
+- CI/CD pipelines with dynamic configuration
+- Running multiple instances with different settings
 
 ---
 
@@ -179,26 +211,26 @@ This tool supports a **primary credential** and a **customisable fallback creden
 
 ```python
 def __init__(self):
-    # Import config.py settings
-    import config
+    # Import config module for settings
+    from ProgramFiles.config_files import config
     
     # Read from environment variables (override) or config.py (default)
-    self.primary_target = os.getenv("CDP_PRIMARY_CRED_TARGET", config.CDP_PRIMARY_CRED_TARGET)
-    self.fallback_target = os.getenv("CDP_FALLBACK_CRED_TARGET", config.CDP_FALLBACK_CRED_TARGET)
+    self.primary_target = os.getenv("CDP_PRIMARY_CRED_TARGET", config.CRED_TARGET)
+    self.fallback_target = os.getenv("CDP_FALLBACK_CRED_TARGET", config.ALT_CREDS)
     self.fallback_username = os.getenv("CDP_FALLBACK_USERNAME", config.CDP_FALLBACK_USERNAME)
 ```
 
 **Line-by-Line:**
-- Import settings from `config.py` as the baseline configuration
-- Environment variables override `config.py` if set (for runtime flexibility)
+- Import the centralized config module from `ProgramFiles/config_files/config.py`
+- Environment variables override config.py if set (for runtime flexibility)
 - Three configurable values: primary target, fallback target, and fallback username
-- This design means users can edit `config.py` once and forget, or use env vars for dynamic scenarios
+- This design means you can edit config.py once to match your organization's standards, or use env vars for dynamic scenarios
 
 **Why This Matters:**
-- **config.py**: Persistent settings that match your organisation's standards
-- **Environment variables**: Runtime overrides for different environments (dev/prod)
-- **Fallback username**: No longer hardcoded—customise to match your local accounts (e.g., `localadmin`, `netops`, `backup`)
-- Credentials themselves are still stored securely in Credential Manager
+- **config.py**: Persistent, version-controlled settings that match your organization's standards
+- **Environment variables**: Runtime overrides for different environments (dev/prod) or testing
+- **Fallback username**: No longer hardcoded—customize in config.py to match your local accounts (e.g., `localadmin`, `netops`, `backup`)
+- Credentials themselves are still stored securely in Credential Manager (Windows) or prompted on other platforms
 
 ### `_read_win_cred(target_name: str)`
 
@@ -253,13 +285,14 @@ The credential retrieval orchestrator with multi-step fallback:
 
 ## 🌐 Jump Server Behaviour
 
-- Set `CDP_JUMP_SERVER` in `config.py` or via environment variable to specify a jump host.
+- Set `JUMP_HOST` in `config.py` to specify a default jump host.
+- Alternatively, use the `CDP_JUMP_SERVER` environment variable to override at runtime.
 - If empty, you will be prompted during runtime; leaving it blank uses direct device connections.
 - The jump is created with Paramiko and a `direct-tcpip` channel; Netmiko is then bound to that channel (no local listener required).
 
 > **Note:** Host key policy defaults to a warning (accepts unknown keys but logs a warning). For production environments, prefer strict host key checking via `known_hosts` management.
 >
-> **Tip:** Configure your jump server in `config.py` for permanent use, or leave it empty to be prompted each time for flexibility.
+> **Tip:** Configure your jump server in `config.py` (`JUMP_HOST = "10.112.250.6"`) for permanent use, or leave it empty to be prompted each time for flexibility.
 
 ---
 
