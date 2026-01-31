@@ -44,8 +44,39 @@ Welcome to the **Nautomation Prime Script Library**. Here you'll find open-sourc
 
 ## 🔄 Coming Soon
 
+### Zero Touch Provisioning (ZTP) Tool
+**Status:** 🚧 In Development  
+**Description:** Automated deployment solution for Cisco devices that streamlines initial configuration and reduces deployment time from hours to minutes.
+
+**Planned Features:**
+- Automated device configuration from templates
+- DHCP option integration for network-based provisioning
+- Email notifications for deployment status and errors
+- HTTP server integration for configuration and log file management
+- Pre-flight validation and rollback capabilities
+- Multi-device orchestration with dependency management
+- Comprehensive logging with remote log collection
+
+**Current Status:** Core functionality tested and validated. Additional features (email notifications, HTTP log server integration) under active development.
+
+---
+
 ### IOS-XE Software Upgrade Orchestrator
-Automated, intelligent firmware management for switch stacks with pre-flight verification and binary integrity checks.
+**Status:** 🚧 In Development  
+**Description:** Automated, intelligent firmware management for Cisco IOS-XE switch stacks that eliminates manual upgrade errors and reduces downtime through comprehensive pre-flight validation.
+
+**Planned Features:**
+- Pre-flight validation (disk space, compatibility, current version checks)
+- Binary integrity verification (MD5/SHA checksums)
+- Automated file transfer to target devices (SCP/TFTP/HTTP)
+- Stack-aware upgrade orchestration with rolling restarts
+- Version compliance reporting across the estate
+- Rollback capability for failed upgrades
+- Parallel upgrade support for multiple stacks
+- Email notifications and comprehensive logging
+- Integration with maintenance windows and change control systems
+
+**Current Status:** Architecture and design phase. Feature set being finalized based on enterprise deployment requirements.
 
 ---
 
