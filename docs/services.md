@@ -49,11 +49,140 @@ Our engagement model is built on three core commitments:
 
 ---
 
+## Investment & Engagement Model
+
+### How We Price Bespoke Automation
+
+Nautomation Prime operates on a **fixed-fee project basis**—you receive a detailed scope, deliverables list, and total cost estimate upfront. No hourly billing, no surprise invoices, no scope creep.
+
+This model protects both parties: you gain budget certainty, and we're incentivised to deliver efficient, well-architected solutions rather than dragging out billable hours.
+
+#### What Influences Project Cost?
+
+Every engagement is scoped individually, but pricing is typically determined by:
+
+| Factor | Impact on Scope |
+| :--- | :--- |
+| **Device Count** | A 50-device access layer audit has different complexity than a 500-device campus. |
+| **Infrastructure Complexity** | Legacy IOS vs. modern IOS-XE, and distributed topologies require additional validation logic. |
+| **Deliverable Type** | A standalone Python script is a different engagement than a Dockerised container with Grafana dashboards. |
+| **Integration Requirements** | Connecting to ISE, ServiceNow, or your CMDB adds development and testing overhead. |
+| **Documentation Depth** | Line-by-line code explanations (our standard) vs. operational runbooks vs. full knowledge transfer workshops. |
+
+#### Typical Project Ranges
+
+To give you a sense of scale (all prices exclude VAT):
+
+- **Simple Automation Script** (e.g., single-device configuration audit, basic VLAN provisioning): £1,200–£2,500
+- **Medium Complexity Tool** (e.g., multi-threaded inventory collection with Excel reporting for 50+ devices): £3,000–£5,500
+- **Enterprise-Grade Solution** (e.g., multi-threaded CDP topology mapper, ISE SGT automation, portable Docker containers with full documentation): £6,000–£12,000+
+
+These are **indicative ranges**—actual quotes depend on your specific requirements. A detailed scope call is always free.
+
+---
+
+### Why Fixed-Fee Pricing Works for Network Automation
+
+**For You:**
+- **Predictable budgets** for finance and procurement teams
+- **No incentive for inefficiency**—we're motivated to deliver clean, maintainable code
+- **Single invoice** per project phase—simpler accounting
+
+**For Us:**
+- **Rewards engineering excellence**—the better our architecture, the more efficient our delivery
+- **Encourages reusable components**—we build smarter over time
+- **Aligns with our philosophy**—"Line-by-Line Transparency" means we document once, properly
+
+---
+
+### The ROI Case for Python Automation
+
+Industry research consistently shows Python-driven network automation delivers measurable returns:
+
+> **Cisco & ACG Study (2023):** Mature automation deployments achieve **55% OPEX reduction** in network operations.
+
+#### What Does This Mean for Your Team?
+
+Consider a mid-sized UK enterprise with 200 Cisco devices:
+
+- **Manual provisioning time:** ~15 minutes per device for VLAN/SVI changes × 50 changes/year = **125 hours**
+- **Compliance audits:** Manual "golden config" checks across 200 devices quarterly = **80 hours/year**
+- **Incident response:** CLI data gathering during outages = **40 hours/year** (conservative)
+
+**Total:** 245 hours of repetitive engineering work annually.
+
+At an average senior engineer cost of **£50/hour** (internal cost, not salary), that's **£12,250/year** in manual effort. A £6,000 automation investment pays for itself in **6 months**, then delivers savings every year thereafter.
+
+Beyond cost, you gain:
+- **Elimination of human error** in production changes
+- **Audit trails** for compliance and security teams
+- **Instant runbooks** embedded in the code itself
+- **Faster incident response**—data gathering in seconds, not hours
+
+---
+
+### What You Receive in Every Engagement
+
+Regardless of project size, all deliverables include:
+
+✅ **Production-hardened Python code** with enterprise-grade error handling  
+✅ **Line-by-line documentation** explaining every design decision  
+✅ **Pre-flight validation logic** to prevent misconfigurations before deployment  
+✅ **Comprehensive README** with installation, usage, and troubleshooting guides  
+✅ **Example inventory files** tailored to your environment  
+✅ **Post-delivery support window** (typically 30 days for bug fixes and adjustments)
+
+Optional add-ons available:
+- **Knowledge transfer workshops** (remote or on-site)
+- **CI/CD pipeline integration** (GitHub Actions, GitLab CI, Jenkins)
+- **Custom Grafana/Prometheus dashboards** for scheduled automation containers
+- **Extended support contracts** for ongoing maintenance
+
+---
+
+### The Engagement Process
+
+1. **Discovery Call** (30–60 minutes, free)  
+   We discuss your pain points, topology, and automation goals. No obligation.
+
+2. **Scope & Proposal** (delivered within 5 business days)  
+   Detailed project plan with deliverables, timeline, and fixed-fee quote.
+
+3. **Agreement & Kickoff**  
+   Once approved, we schedule a technical deep-dive to gather inventory, credentials (securely), and validation criteria.
+
+4. **Development & Testing** (typical turnaround: 2–4 weeks for medium projects)  
+   You receive progress updates and can request checkpoint reviews.
+
+5. **Delivery & Handover**  
+   Final code, documentation, and a walkthrough session. Your team gains full ownership and understanding.
+
+6. **Support Window** (30 days post-delivery)  
+   Bug fixes and minor adjustments included. Feature additions quoted separately.
+
+---
+
+### About Nautomation Prime
+
+We are a **UK-based, specialist network automation consultancy** focused exclusively on Cisco infrastructure and Python-driven solutions. 
+
+As a boutique practice, you work directly with the principal engineer on every engagement—no junior developers, no outsourcing, no knowledge loss between "sales" and "delivery." You get senior-level expertise from discovery through to production deployment.
+
+**Credentials & Compliance:**
+- VAT-registered UK business (VAT number provided on invoices)
+- Professional Indemnity & Public Liability Insurance
+- GDPR-compliant data handling (see [Privacy Policy](legal/privacy-policy.md))
+- All client code licenced under MIT or Apache 2.0 (your choice)
+
+---
+
 ## Get Started Today
 
 Ready to eliminate manual error and accelerate your network operations?
 
-**[Contact Nautomation Prime](https://forms.office.com/Pages/ResponsePage.aspx?id=DQSIkWdsW0yxEjajBLZtrQAAAAAAAAAAAAO__ZCPnztUMEtPWTVHN0JQTjZMME5YTTgxMEhRN0MwQS4u)** to discuss your automation needs.
+**[Request a Free Scope Call](https://forms.office.com/Pages/ResponsePage.aspx?id=DQSIkWdsW0yxEjajBLZtrQAAAAAAAAAAAAO__ZCPnztUMEtPWTVHN0JQTjZMME5YTTgxMEhRN0MwQS4u)** to discuss your automation needs.
+
+Typical response time: **within 24 hours** (UK business days).
 
 ---
 

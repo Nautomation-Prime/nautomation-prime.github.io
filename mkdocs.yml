@@ -1,25 +1,31 @@
 site_name: Nautomation Prime
 site_description: Enterprise Cisco Python Automation, Explained Line-by-Line.
 site_url: https://nautomation-prime.github.io/
+site_author: Christopher Davies
 repo_url: https://github.com/Nautomation-Prime/Nautomation-Prime.github.io
 repo_name: GitHub
 edit_uri: edit/main/docs/
-strict: true
+strict: false
 
 theme:
   name: material
   favicon: assets/favicon.ico
+  language: en
   features:
     - navigation.tabs
     - navigation.tabs.sticky
     - navigation.top
+    - navigation.tracking  # Track visited pages
+    - navigation.indexes  # Enable index pages for sections
     - toc.integrate
     - content.code.copy
+    - content.code.annotate  # Enable code annotations
     - content.tooltips
     - search.share
     - search.suggest
     - search.highlight
     - search.stemmer
+    - announce.dismiss  # Allow dismissing announcements
 
   palette:
     - scheme: default
@@ -36,11 +42,34 @@ theme:
         name: Switch to light mode
 
 copyright: >
-  © Nautomation Prime — Not affiliated with Cisco Systems, Inc. · Empowering Network Automation Professionals
+  © 2026 Christopher Davies T/A Nautomation Prime — Not affiliated with Cisco Systems, Inc.<br>
+  Empowering Network Automation Professionals · Built with Material for MkDocs
 
 extra:
   metadata:
     keywords: "Cisco automation, Python network automation, Nautomation Prime, network scripting"
+  generator: false  # Removes default "Made with Material for MkDocs" (we added custom attribution above)
+  status:
+    new: Recently added
+    deprecated: Deprecated
+  consent:
+    title: Cookie consent
+    description: >- 
+      We use cookies to recognize your repeated visits and preferences, as well
+      as to measure the effectiveness of our documentation and whether users
+      find what they're searching for. With your consent, you're helping us to
+      make our documentation better.
+  footer_links:
+    - title: "Privacy Policy"
+      url: "/legal/privacy-policy/"
+    - title: "Terms of Use"
+      url: "/legal/terms-of-use/"
+    - title: "Disclaimer"
+      url: "/legal/disclaimer/"
+    - title: "Licensing"
+      url: "/legal/licensing/"
+    - title: "Brand Usage"
+      url: "/legal/brand/"
   social:
     - icon: fontawesome/brands/linkedin
       link: https://www.linkedin.com/company/nautomationprime
@@ -50,9 +79,19 @@ extra:
       name: GitHub
 
 markdown_extensions:
+  - abbr  # Enable abbreviations/glossary
+  - admonition  # Call-out boxes (notes, warnings, tips)
   - attr_list
+  - def_list  # Definition lists
+  - footnotes  # Footnote support
   - pymdownx.betterem:
       smart_enable: all
+  - pymdownx.caret  # Superscript (^) and insert (^^)
+  - pymdownx.mark  # Highlighting (==text==)
+  - pymdownx.tilde  # Strikethrough (~~text~~) and subscript (~)
+  - pymdownx.critic  # Track changes
+  - pymdownx.keys  # Keyboard keys (++ctrl+alt+del++)
+  - pymdownx.smartsymbols  # Smart symbols (copyright, arrows, etc.)
   - pymdownx.emoji:
       emoji_index: !!python/name:material.extensions.emoji.twemoji
       emoji_generator: !!python/name:material.extensions.emoji.to_svg
@@ -62,13 +101,29 @@ markdown_extensions:
       anchor_linenums: true
   - pymdownx.superfences
   - pymdownx.inlinehilite
+  - pymdownx.snippets  # Include content from other files
+  - pymdownx.tasklist:  # Task lists with checkboxes
+      custom_checkbox: true
   - pymdownx.tabbed:
       alternate_style: true
   - pymdownx.details
   - toc:
       permalink: true
+      permalink_title: Anchor link to this section
   - tables
   - md_in_html
+
+plugins:
+  - search:
+      separator: '[\s\-,:!=\[\]()"/]+|(?!\b)(?=[A-Z][a-z])|\.(?!\d)|&[lg]t;'
+      lang: en
+  - tags  # Enable tags for content categorization
+  - git-revision-date-localized:  # Show last updated dates
+      enable_creation_date: false  # Only show "last updated", not creation date
+      type: date
+      fallback_to_build_date: true
+      enable_git_follow: false  # Disable to avoid quirks with new files
+      strict: false  # Don't show warnings for files without git logs
 
 nav:
   - Home: index.md
@@ -79,9 +134,10 @@ nav:
       - CDP Network Audit: deep-dives/cdp-audit.md
       - Access Switch Audit: deep-dives/access-switch-audit.md
   - Script Library: scripts/index.md
+  - About: about.md
   - Legal:
-      - Privacy Policy: privacy-policy.md
-      - Terms of Use: terms-of-use.md
-      - Licensing: licensing.md
-      - Disclaimer: disclaimer.md
-      - Brand & Logo Usage: brand.md
+      - Privacy Policy: legal/privacy-policy.md
+      - Terms of Use: legal/terms-of-use.md
+      - Licensing: legal/licensing.md
+      - Disclaimer: legal/disclaimer.md
+      - Brand & Logo Usage: legal/brand.md

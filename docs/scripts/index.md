@@ -14,14 +14,16 @@ Welcome to the **Nautomation Prime Script Library**. Here you'll find open-sourc
 **Description:** A threaded discovery utility that starts from seed Cisco devices and crawls the network using Cisco Discovery Protocol (CDP), producing structured Excel reports with professional formatting.
 
 **Features:**
-- Parallel discovery with configurable worker pool (via environment variables)
-- Two-tier authentication (primary user with fallback to 'answer' user)
+- Parallel discovery with configurable worker pool (via config.py or environment variable overrides)
+- Centralised configuration with comprehensive config.py (200+ documented settings)
+- Two-tier authentication (primary user with customisable fallback username)
 - Jump server / bastion support (Paramiko channel + Netmiko sock)
 - DNS enrichment for discovered hostnames
 - Excel reporting from pre-formatted templates with multiple sheets
 - Hybrid logging with optional logging.conf
 - Up to 3 automatic retries for transient connectivity issues
 - Comprehensive error tracking (authentication failures, connection errors)
+- Extensive customisation options (credentials, paths, Excel formatting, DNS, logging, and more)
 
 [📖 View Deep Dive Documentation](../deep-dives/cdp-audit.md) | [:material-github: GitHub Repository](https://github.com/Nautomation-Prime/Cisco_CDP_Network_Audit)
 
@@ -29,7 +31,7 @@ Welcome to the **Nautomation Prime Script Library**. Here you'll find open-sourc
 
 ### Access Switch Port Audit Tool
 **Status:** ✅ Available  
-**Description:** A production-hardened collector designed to map interface health and utilization across your access layer.
+**Description:** A production-hardened collector designed to map interface health and utilisation across your access layer.
 
 **Features:**
 - Parallel device SSH connections for high-speed audits
@@ -44,8 +46,39 @@ Welcome to the **Nautomation Prime Script Library**. Here you'll find open-sourc
 
 ## 🔄 Coming Soon
 
+### Zero Touch Provisioning (ZTP) Tool
+**Status:** 🚧 In Development  
+**Description:** Automated deployment solution for Cisco devices that streamlines initial configuration and reduces deployment time from hours to minutes.
+
+**Planned Features:**
+- Automated device configuration from templates
+- DHCP option integration for network-based provisioning
+- Email notifications for deployment status and errors
+- HTTP server integration for configuration and log file management
+- Pre-flight validation and rollback capabilities
+- Multi-device orchestration with dependency management
+- Comprehensive logging with remote log collection
+
+**Current Status:** Core functionality tested and validated. Additional features (email notifications, HTTP log server integration) under active development.
+
+---
+
 ### IOS-XE Software Upgrade Orchestrator
-Automated, intelligent firmware management for switch stacks with pre-flight verification and binary integrity checks.
+**Status:** 🚧 In Development  
+**Description:** Automated, intelligent firmware management for Cisco IOS-XE switch stacks that eliminates manual upgrade errors and reduces downtime through comprehensive pre-flight validation.
+
+**Planned Features:**
+- Pre-flight validation (disk space, compatibility, current version checks)
+- Binary integrity verification (MD5/SHA checksums)
+- Automated file transfer to target devices (SCP/TFTP/HTTP)
+- Stack-aware upgrade orchestration with rolling restarts
+- Version compliance reporting across the estate
+- Rollback capability for failed upgrades
+- Parallel upgrade support for multiple stacks
+- Email notifications and comprehensive logging
+- Integration with maintenance windows and change control systems
+
+**Current Status:** Architecture and design phase. Feature set being finalized based on enterprise deployment requirements.
 
 ---
 

@@ -31,8 +31,9 @@ This is the home of **Nautomation Prime**—a collection of production-ready net
 
 **Requirements:**
 - Python 3.8+
-- [MkDocs](https://www.mkdocs.org/) 1.4+
-- [Material for MkDocs](https://squidfunk.github.io/mkdocs-material/)
+- [MkDocs](https://www.mkdocs.org/) 1.5+
+- [Material for MkDocs](https://squidfunk.github.io/mkdocs-material/) 9.5+
+- Git revision date plugin (for auto "last updated" dates)
 
 **Setup:**
 ```bash
@@ -41,7 +42,7 @@ git clone https://github.com/Nautomation-Prime/Nautomation-Prime.github.io
 cd Nautomation-Prime.github.io
 
 # Install dependencies
-pip install mkdocs mkdocs-material
+pip install -r requirements.txt
 
 # Start local server (opens at http://localhost:8000)
 mkdocs serve
