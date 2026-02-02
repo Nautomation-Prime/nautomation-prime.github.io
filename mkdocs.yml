@@ -137,10 +137,10 @@ nav:
       - CDP Network Audit: deep-dives/cdp-audit.md
       - Access Switch Audit: deep-dives/access-switch-audit.md
   - Script Library: scripts/index.md
-  - About: about.md
   - Legal:
       - Privacy Policy: legal/privacy-policy.md
       - Terms of Use: legal/terms-of-use.md
       - Licensing: legal/licensing.md
       - Disclaimer: legal/disclaimer.md
       - Brand & Logo Usage: legal/brand.md
+  - About: about.md
