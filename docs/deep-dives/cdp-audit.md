@@ -1,7 +1,7 @@
 # Deep Dive: CDP Network Audit Tool
 ### "Cisco Python Automation, Explained Line-by-Line."
 
-A threaded discovery utility that starts from one or more seed Cisco devices and crawls the network using Cisco Discovery Protocol (CDP). It connects (optionally via a jump server), collects `show cdp neighbors detail` and `show version`, parses them with TextFSM, and outputs a structured Excel report based on a supplied template. Designed for reliability, concurrency, and repeatable reporting.
+A threaded network discovery utility that starts from one or more seed Cisco devices and crawls the topology via **Cisco Discovery Protocol (CDP)**. It connects (optionally through an SSH jump/bastion host), collects `show cdp neighbors detail` and `show version`, parses outputs with **TextFSM**, enriches with **DNS resolution**, and writes a structured **Excel report** from a pre-formatted template. Designed for reliability, safe concurrency, and repeatable reporting in enterprise environments.
 
 [:material-github: View Source Code on GitHub](https://github.com/Nautomation-Prime/Cisco_CDP_Network_Audit){ .md-button .md-button--primary }
 
@@ -40,18 +40,20 @@ This tool is built on industry-standard libraries: **Netmiko** (SSH connection h
 ```
 .
 ├── main.py
+├── config.yaml                  # YAML configuration file (NEW!)
 ├── .vscode/
 └── ProgramFiles/
     ├── textfsm/
     │   ├── cisco_ios_show_cdp_neighbors_detail.textfsm
     │   └── cisco_ios_show_version.textfsm
     └── config_files/
-        ├── config.py                  # User-configurable settings
+        ├── config_loader.py       # Python class to load config.yaml
         ├── 1 - CDP Network Audit _ Template.xlsx
-        └── logging.conf               # optional
+        └── logging.conf           # optional
 ```
 
 > **Note:** Paths are case-sensitive on Linux/macOS; keep names exactly as shown.
+> **Key Change:** Configuration is now in human-readable YAML format at the project root, loaded via `config_loader.py`.
 
 ---
 
@@ -93,72 +95,80 @@ The script validates presence of these files at startup and exits if any are mis
 
 ## ⚙️ Configuration Options
 
-The tool uses a comprehensive configuration system with two configuration methods:
+The tool uses a **comprehensive YAML-based configuration system** with two configuration methods:
 
-### Method 1: ProgramFiles/config_files/config.py (Primary)
+### Method 1: config.yaml (Primary) — YAML Configuration
 
-**All configurable settings are now centralized in a single, well-documented config.py file.**
+**All configurable settings are centralized in a YAML configuration file** located at the project root.
 
-The config file is located at `ProgramFiles/config_files/config.py` and contains extensive inline documentation. Key settings include:
+The `config.yaml` file provides a human-readable, version-control-friendly format for all settings. The configuration is loaded via `ProgramFiles/config_files/config_loader.py` which provides a `Config` class with property accessors for type-safe configuration access.
 
-**Network Connection Settings:**
-```python
-JUMP_HOST = "10.112.250.6"  # Default jump/bastion server
-DEVICE_TYPE = "cisco_ios"    # Netmiko device type
-SSH_PORT = 22                # SSH port for connections
+**Key settings include:**
+
+**Network Connection Settings (YAML):**
+```yaml
+network:
+  jump_host: "192.0.2.10"  # Default jump/bastion server
+  device_type: "cisco_ios"    # Netmiko device type
+  ssh_port: 22                # SSH port for connections
 ```
 
-**Performance Settings:**
-```python
-DEFAULT_LIMIT = 10           # Max concurrent worker threads
-DEFAULT_TIMEOUT = 10         # SSH/auth/read timeouts (seconds)
-MAX_RETRY_ATTEMPTS = 3       # Connection retries per device
-DNS_MAX_WORKERS = 32         # Max DNS resolution threads
-DNS_MIN_WORKERS = 4          # Min DNS resolution threads
+**Performance Settings (YAML):**
+```yaml
+performance:
+  default_limit: 10            # Max concurrent worker threads
+  default_timeout: 10          # SSH/auth/read timeouts (seconds)
+  max_retry_attempts: 3        # Connection retries per device
+  dns_max_workers: 32          # Max DNS resolution threads
+  dns_min_workers: 4           # Min DNS resolution threads
 ```
 
-**Credential Settings:**
-```python
-CRED_TARGET = "MyApp/ADM"    # Primary credential target in Windows Credential Manager
-ALT_CREDS = "MyApp/Answer"   # Fallback credential target
-CDP_FALLBACK_USERNAME = "answer"  # Fallback username (customizable)
+**Credential Settings (YAML):**
+```yaml
+credentials:
+  cred_target: "MyApp/ADM"     # Primary credential target in Windows Credential Manager
+  alt_creds: "MyApp/Answer"    # Fallback credential target
+  cdp_fallback_username: "answer"  # Fallback username (fully customizable!)
 ```
 
-**File Paths:**
-```python
-CDP_TEMPLATE = Path("ProgramFiles/textfsm/cisco_ios_show_cdp_neighbors_detail.textfsm")
-VER_TEMPLATE = Path("ProgramFiles/textfsm/cisco_ios_show_version.textfsm")
-EXCEL_TEMPLATE = Path("ProgramFiles/config_files/1 - CDP Network Audit _ Template.xlsx")
-LOGGING_CONFIG_PATH = Path("ProgramFiles/Config_Files/logging.conf")
+**Why YAML Configuration?**
+
+- **Human-Readable**: Easy to read and edit without Python knowledge
+- **Version Control Friendly**: Plain text format works seamlessly with Git
+- **Hierarchical Structure**: Natural grouping of related settings
+- **Comment Support**: Inline documentation stays with configuration
+- **Type Safety**: Config loader validates types and provides sensible defaults
+- **No Code Execution**: Unlike Python config files, YAML is data-only (safer)
+
+**File Paths (YAML):**
+```yaml
+paths:
+  cdp_template: "ProgramFiles/textfsm/cisco_ios_show_cdp_neighbors_detail.textfsm"
+  ver_template: "ProgramFiles/textfsm/cisco_ios_show_version.textfsm"
+  excel_template: "ProgramFiles/config_files/1 - CDP Network Audit _ Template.xlsx"
+  logging_config: "ProgramFiles/Config_Files/logging.conf"
 ```
 
-**Excel Report Settings:**
-```python
-EXCEL_SHEET_AUDIT = "Audit"
-EXCEL_SHEET_DNS = "DNS Resolved"
-EXCEL_SHEET_AUTH_ERRORS = "Authentication Errors"
-EXCEL_SHEET_CONN_ERRORS = "Connection Errors"
-EXCEL_CELL_SITE_NAME = "B4"
-EXCEL_CELL_DATE = "B5"
-# ... and many more Excel customization options
+**Excel Report Settings (YAML):**
+```yaml
+excel:
+  sheet_audit: "Audit"
+  sheet_dns: "DNS Resolved"
+  sheet_auth_errors: "Authentication Errors"
+  sheet_conn_errors: "Connection Errors"
+  cell_site_name: "B4"
+  cell_date: "B5"
+  # ... and many more Excel customization options
 ```
 
-**Why config.py?**
-- **Centralized Configuration**: All settings in one well-documented file
-- **Extensive Documentation**: Each setting has inline comments explaining purpose and usage
-- **Version Control Friendly**: Settings persist across runs and can be committed
-- **Easy Customization**: Modify defaults to match your organization's standards
-- **No Environment Variables Needed**: Set once and forget
-- **Comprehensive Coverage**: Network, credentials, paths, Excel formatting, DNS, logging, and more
-
-> **Note:** The config.py file contains over 200 lines of configuration options and documentation. See the file directly for complete details and usage examples.
+> **Note:** The config.yaml file contains comprehensive settings covering network, credentials, paths, Excel formatting, DNS, logging, and more. See the file directly for complete details and usage examples.
 
 ### Method 2: Environment Variables (Override)
 
-Environment variables can override specific config.py settings at runtime:
+Environment variables can override specific config.yaml settings at runtime:
 
-| Variable | Description | config.py Default |
-|:---------|:------------|:------------------|
+| Variable | Description | config.yaml Default |
+|:---------|:------------|:--------------------|
 | `CDP_LIMIT` | Max concurrent worker threads | 10 |
 | `CDP_TIMEOUT` | SSH/auth/read timeouts (seconds) | 10 |
 | `CDP_JUMP_SERVER` | Jump host (IP/hostname). Empty = direct | "" |
@@ -185,6 +195,8 @@ $env:LOGGING_CONFIG = "ProgramFiles/Config_Files/logging.conf"
 - CI/CD pipelines with dynamic configuration
 - Running multiple instances with different settings
 
+> **Best Practice:** Use config.yaml for persistent organizational defaults, and environment variables for runtime-specific overrides.
+
 ---
 
 ## 🏗️ Technical Architecture
@@ -202,14 +214,14 @@ The tool operates as a modular Python application with four primary components:
 
 ## 🔐 Credentials Model
 
-This tool supports a **primary credential** and a **customisable fallback credential**:
+This tool supports a **primary credential** and a **fully customizable fallback credential**:
 
 - **Primary credentials** (used for the jump and the device): read from Windows Credential Manager if present (default target `MyApp/ADM`), else prompted. You can optionally save what you type back to Credential Manager.
-- **Fallback credentials** (device hop only, jump still uses primary): username is configurable via `config.py` (default: `answer`). Password is read from Credential Manager (default target `MyApp/Answer`) or prompted; you may choose to save it.
+- **Fallback credentials** (device hop only, jump still uses primary): **username is fully customizable via config.yaml** (default: `answer`). Password is read from Credential Manager (default target `MyApp/Answer`) or prompted; you may choose to save it.
 
 > **Note:** On non-Windows platforms, prompts are used (no Credential Manager).
 >
-> **Customisation:** You can change the fallback username in `config.py` by setting `CDP_FALLBACK_USERNAME` to match your environment (e.g., `localadmin`, `backup`, `netops`).
+> **Customization:** Change the fallback username in `config.yaml` by setting `cdp_fallback_username` under the `credentials` section to match your environment (e.g., `localadmin`, `backup`, `netops`, `svc_network`).
 
 ### Why Credential Management Matters
 
@@ -223,25 +235,29 @@ This tool supports a **primary credential** and a **customisable fallback creden
 
 ```python
 def __init__(self):
-    # Import config module for settings
-    from ProgramFiles.config_files import config
+    # Load YAML config via config_loader module
+    from ProgramFiles.config_files.config_loader import Config
+    config = Config()
     
-    # Read from environment variables (override) or config.py (default)
+    # Read from environment variables (override) or config.yaml (default)
     self.primary_target = os.getenv("CDP_PRIMARY_CRED_TARGET", config.CRED_TARGET)
     self.fallback_target = os.getenv("CDP_FALLBACK_CRED_TARGET", config.ALT_CREDS)
     self.fallback_username = os.getenv("CDP_FALLBACK_USERNAME", config.CDP_FALLBACK_USERNAME)
 ```
 
 **Line-by-Line:**
-- Import the centralized config module from `ProgramFiles/config_files/config.py`
-- Environment variables override config.py if set (for runtime flexibility)
+- Import the Config class from `config_loader.py` which parses `config.yaml`
+- Instantiate Config to load YAML settings with validation and type safety
+- Environment variables override YAML config if set (for runtime flexibility)
 - Three configurable values: primary target, fallback target, and fallback username
-- This design means you can edit config.py once to match your organization's standards, or use env vars for dynamic scenarios
+- The config loader validates YAML syntax and provides defaults for missing values
 
 **Why This Matters:**
-- **config.py**: Persistent, version-controlled settings that match your organization's standards
+- **config.yaml**: Human-readable, persistent, version-controlled settings that match your organization's standards
 - **Environment variables**: Runtime overrides for different environments (dev/prod) or testing
-- **Fallback username**: No longer hardcoded—customize in config.py to match your local accounts (e.g., `localadmin`, `netops`, `backup`)
+- **Config loader**: Provides type-safe property accessors and validation
+- **Fallback username**: No longer hardcoded—customize in config.yaml to match your local accounts (e.g., `localadmin`, `netops`, `backup`)
+- **Separation of concerns**: Configuration data (YAML) is separate from configuration logic (Python class)
 - Credentials themselves are still stored securely in Credential Manager (Windows) or prompted on other platforms
 
 ### `_read_win_cred(target_name: str)`
@@ -297,34 +313,35 @@ The credential retrieval orchestrator with multi-step fallback:
 
 ## 🌐 Jump Server Behaviour
 
-- Set `JUMP_HOST` in `config.py` to specify a default jump host.
+- Set `jump_host` in the `network` section of `config.yaml` to specify a default jump host.
 - Alternatively, use the `CDP_JUMP_SERVER` environment variable to override at runtime.
 - If empty, you will be prompted during runtime; leaving it blank uses direct device connections.
 - The jump is created with Paramiko and a `direct-tcpip` channel; Netmiko is then bound to that channel (no local listener required).
 
 > **Note:** Host key policy defaults to a warning (accepts unknown keys but logs a warning). For production environments, prefer strict host key checking via `known_hosts` management.
 >
-> **Tip:** Configure your jump server in `config.py` (`JUMP_HOST = "10.112.250.6"`) for permanent use, or leave it empty to be prompted each time for flexibility.
+> **Tip:** Configure your jump server in `config.yaml` (`jump_host: "192.0.2.10"`) for permanent use, or leave it empty to be prompted each time for flexibility.
 
 ---
 
 ## 🚀 How to Run (Interactive Flow)
 
 1. Ensure templates and Excel file exist under `ProgramFiles/...` (see above).
-2. Set env vars as needed (optional).
-3. Run:
+2. (Optional) Customize `config.yaml` with your organization's defaults.
+3. (Optional) Set environment variables as needed for runtime overrides.
+4. Run:
 
 ```bash
 python -m main
 # or: python main.py
 ```
 
-4. Follow prompts:
+5. Follow prompts:
    - Site name (used in the output filename)
    - Seed devices (comma-separated IPv4 / resolvable hostnames)
    - Primary credentials (reads from CredMan if present; else prompts; optional save)
-   - Fallback password (username from `config.py`; reads from CredMan if present; else prompts; optional save)
-   - Jump server (from `config.py`, env var, or prompt; blank = direct)
+   - Fallback password (username from `config.yaml`; reads from CredMan if present; else prompts; optional save)
+   - Jump server (from `config.yaml`, env var, or prompt; blank = direct)
 
 The tool validates/normalises seeds to IP addresses, de-duplicates them, then starts the threaded discovery.
 
@@ -423,8 +440,8 @@ if "Switch" in caps and "Host" not in caps and mgmt_ip:
 
 **Example:**
 ```
-Router (Switch, Router) + 10.1.1.5  → Queue it
-IP Phone (Host) + 10.1.1.50          → Skip (endpoint)
+Router (Switch, Router) + 192.0.2.5  → Queue it
+IP Phone (Host) + 192.0.2.50         → Skip (endpoint)
 Access Point (Host) + no Mgmt IP     → Skip (non-addressable)
 ```
 
@@ -690,19 +707,20 @@ Copy → stamp metadata → append data using overlay mode.
 
 ```
 === CDP Network Audit ===
-Enter site name (used in Excel filename, max 50 chars): MKD-Campus
-Enter one or more seed device IPs or hostnames (comma-separated, max 500): 10.10.0.11, sw-core-1
+Enter site name (used in Excel filename, max 50 chars): HQ-Campus
+Enter one or more seed device IPs or hostnames (comma-separated, max 500): 192.0.2.11, core-sw-1
 ...
-Press Enter to accept, or type a different username: opsadmin
+Press Enter to accept, or type a different username: netadmin
 Enter switch/jump password (Primary): ********
 Store Primary creds in Credential Manager as 'MyApp/ADM'? [y/N]
-Enter 'answer' password (fallback user from config.py): ********
+Enter 'answer' password (fallback user from config.yaml): ********
 Store 'answer' password in Credential Manager as 'MyApp/Answer'? [y/N]
 
-Enter jump server IP/hostname (or leave blank to use device directly)
-Enter IP Address: bastion.corp.local
+Use jump host '192.0.2.10'? [Y/n]
+Press Enter to accept the default shown.
 
 INFO Validated 2 seed device(s) for discovery
+INFO Using jump server: 192.0.2.10
 ... (threaded discovery logs) ...
 Done!
  Discovered devices: 42
@@ -711,18 +729,46 @@ Done!
  Conn errors: 3
 ```
 
-> **Note:** The fallback username shown in the prompt reflects your `config.py` setting. Default is 'answer', but you can customise it to 'localadmin', 'backup', etc.
+> **Note:** The fallback username shown in the prompt reflects your `config.yaml` setting. Default is 'answer', but you can customise it to 'localadmin', 'backup', etc. by editing the `credentials` section of `config.yaml`.
+
+**If you had customized your config.yaml:**
+
+```yaml
+credentials:
+  cdp_fallback_username: "localadmin"
+```
+
+The prompt would show:
+
+```
+Enter 'localadmin' password (fallback user from config.yaml): ********
+```
 
 ---
 
 ## 🛠️ Customisation Points
 
-- **User settings**: Edit `config.py` to customise worker threads, timeouts, jump server, credential targets, and fallback username.
-- **Template paths**: Adjust in `main.py` under the `ProgramFiles/...` constants.
-- **Queueing heuristics** (which neighbors to crawl): `parse_outputs_and_enqueue_neighbors()`.
-- **Retry counts / timeouts**: Configure in `config.py` or override via environment variables.
-- **Logging**: Provide a `logging.conf` that matches your standards (path configurable in `config.py`).
-- **Fallback account**: Set `CDP_FALLBACK_USERNAME` in `config.py` to match your local admin account naming.
+- **User settings**: Edit `config.yaml` to customise worker threads, timeouts, jump server, credential targets, and fallback username.
+- **Template paths**: Adjust in `config.yaml` under the `paths` section.
+- **Queueing heuristics** (which neighbors to crawl): Modify `parse_outputs_and_enqueue_neighbors()` in `main.py`.
+- **Retry counts / timeouts**: Configure in `config.yaml` under `performance` or override via environment variables.
+- **Logging**: Provide a `logging.conf` that matches your standards (path configurable in `config.yaml`).
+- **Fallback account**: Set `cdp_fallback_username` in `config.yaml` (under `credentials`) to match your local admin account naming.
+- **Excel formatting**: Customize cell locations and sheet names in `config.yaml` under `excel`.
+
+**Example config.yaml Customization:**
+
+```yaml
+credentials:
+  cdp_fallback_username: "localadmin"  # Change from default 'answer'
+  
+network:
+  jump_host: "bastion.corp.local"  # Set your default jump host
+  
+performance:
+  default_limit: 15  # Increase concurrent workers for faster discovery
+  default_timeout: 15  # Increase timeout for slower networks
+```
 
 ---
 
@@ -773,13 +819,33 @@ Ready to audit your own network? Access the hardened source code and pre-configu
 ## 🎬 Next Steps
 
 1. **Clone the repository:** `git clone https://github.com/Nautomation-Prime/Cisco_CDP_Network_Audit`
-2. **Customise config.py** to match your environment (fallback username, credential targets, jump server)
+2. **Customise config.yaml** to match your environment:
+   - Set `jump_host` under `network` section
+   - Customize `cdp_fallback_username` under `credentials` section
+   - Adjust `default_limit` and `default_timeout` under `performance` section
+   - Configure credential targets if different from defaults
 3. **Read the README** for installation and configuration details
 4. **Set up credentials** in Windows Credential Manager (or let the script prompt you on first run)
 5. **Run your first discovery** against a test device
 6. **Review the Excel output** to understand the report format
 
 Once comfortable, customise the discovery heuristics and template for your specific topology.
+
+**Example config.yaml for Enterprise Use:**
+
+```yaml
+network:
+  jump_host: "bastion.corp.example.com"
+  
+credentials:
+  cdp_fallback_username: "svc_network"  # Enterprise service account
+  cred_target: "NetworkAudit/Primary"
+  alt_creds: "NetworkAudit/Fallback"
+  
+performance:
+  default_limit: 20  # Faster discovery for large environments
+  default_timeout: 15  # Accommodate slower WAN links
+```
 
 ---
 
