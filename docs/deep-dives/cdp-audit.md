@@ -324,6 +324,106 @@ The credential retrieval orchestrator with multi-step fallback:
 
 ---
 
+## 🚀 Quick Start: Using the Launcher (Recommended)
+
+The repository now includes a **professional Windows batch launcher** (`run.bat`) that provides the easiest way to run the tool with default settings.
+
+### Why Use the Launcher?
+
+- **Zero configuration required** - Just double-click or run from command line
+- **Automatic validation** - Checks for Python environment and required files before execution
+- **Helpful diagnostics** - Clear error messages if something is missing
+- **Professional interface** - Clean output with status indicators and progress messages
+- **Safe execution** - Validates environment before running the script
+
+### Using run.bat
+
+**Option 1: Double-click**
+
+Simply double-click `run.bat` in Windows Explorer to launch the tool with default behavior.
+
+**Option 2: Command Line (Default Behavior)**
+
+```cmd
+run.bat
+```
+
+This runs the CDP Network Audit with all default settings from `config.yaml`.
+
+### What the Launcher Does
+
+1. **Validates the environment:**
+   - Checks that the `portable_env` virtual environment exists
+   - Verifies Python executable is present
+   - Confirms `main.py` exists
+   - Validates required TextFSM templates are present
+   - Validates Excel template exists
+
+2. **Provides clear feedback:**
+   - Shows [OK] for successful checks
+   - Shows [WARNING] for missing optional files
+   - Shows [ERROR] for critical missing components
+   - Displays helpful troubleshooting tips on failure
+
+3. **Runs the tool:**
+   - Activates the virtual environment
+   - Executes the main script
+   - Captures and displays the exit code
+   - Provides common troubleshooting tips if errors occur
+
+### Example Output
+
+```
+================================================================================
+                    CDP NETWORK AUDIT TOOL
+================================================================================
+
+Starting validation checks...
+
+[OK] Python Environment: Found at portable_env\Scripts\python.exe
+[OK] Required support files found
+[OK] All validation checks passed
+
+================================================================================
+
+Running CDP Network Audit...
+
+================================================================================
+
+[Script output appears here]
+
+================================================================================
+
+[SUCCESS] Script completed successfully
+
+================================================================================
+```
+
+---
+
+## 🚀 Advanced: Command Line with Arguments
+
+For advanced users who need to **customize behavior beyond the defaults**, you can still run the tool directly with Python and command-line arguments.
+
+### When to Use Command Line Arguments
+
+Use `python main.py` with arguments when you need to:
+
+- Override default settings from `config.yaml`
+- Run with different parameters for testing
+- Integrate with automation scripts
+- Pass runtime-specific configuration
+
+### Method 1: Using the Launcher with Arguments
+
+You can pass arguments to `run.bat` and they will be forwarded to the Python script:
+
+```cmd
+run.bat --timeout 20 --workers 15
+```
+
+### Method 2: Direct Python Execution
+
 ## 🚀 How to Run (Interactive Flow)
 
 1. Ensure templates and Excel file exist under `ProgramFiles/...` (see above).
