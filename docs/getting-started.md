@@ -101,7 +101,7 @@ Every tool, script, and guide adheres to three principles:
 
 ### Request Custom Automation
 1. Document your use case and network topology
-2. [Contact Nautomation Prime via LinkedIn](https://www.linkedin.com/company/nautomationprime)
+2. Contact us via [email](mailto:nautomationprime.f3wfe@simplelogin.com) or [LinkedIn](https://www.linkedin.com/company/nautomationprime)
 3. Describe any constraints (e.g., restricted environments, specific platforms)
 4. Receive a detailed proposal and timeline
 
@@ -119,7 +119,7 @@ Every tool, script, and guide adheres to three principles:
 A: Not necessarily! We offer portable bundles that run without Python installation. Ideal for restricted enterprise environments where Python may not be permitted.
 
 **Q: Can you automate my specific network topology?**  
-A: Absolutely! Our bespoke services cover custom scripting for any topology. [Reach out on LinkedIn](https://www.linkedin.com/company/nautomationprime) to discuss your specific requirements.
+A: Absolutely! Our bespoke services cover custom scripting for any topology. Contact us via [email](mailto:nautomationprime.f3wfe@simplelogin.com) or [LinkedIn](https://www.linkedin.com/company/nautomationprime) to discuss your specific requirements.
 
 **Q: Are these tools vendor-locked to Cisco?**  
 A: Our tools are built on vendor-neutral libraries like **Netmiko** and **Nornir**. While designed for Cisco, the patterns and concepts apply across other vendors (Juniper, Arista, etc.).
@@ -137,7 +137,7 @@ A: All tools are maintained on GitHub with active development. Issues and featur
 - **Learn:** Dive into a [Deep Dive](deep-dives/index.md)
 - **Deploy:** Browse the [Script Library](scripts/index.md)
 - **Build:** Explore [Services](services.md) for custom solutions
-- **Connect:** [Reach out on LinkedIn](https://www.linkedin.com/company/nautomationprime)
+- **Connect:** Contact us via [email](mailto:nautomationprime.f3wfe@simplelogin.com) or [LinkedIn](https://www.linkedin.com/company/nautomationprime)
 
 ---
 

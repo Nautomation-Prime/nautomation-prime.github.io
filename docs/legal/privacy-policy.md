@@ -27,41 +27,35 @@ This website itself does **not**:
 - Use analytics or tracking  
 - Store logs for profiling or marketing purposes  
 
-However, when you choose to contact us via the **Microsoft Forms contact form**, Microsoft may collect:
-
-- Your name  
-- Your email address  
-- The content of your message  
-- Any information you voluntarily submit  
+When you contact us via email, we receive only the information you choose to include in your message.  
 
 ## 2. How Your Data Is Processed
 
-All form submissions are processed by **Microsoft Forms**, which acts as a data processor on our behalf.  
-Data is stored securely within Microsoft’s cloud services according to Microsoft’s privacy and security standards.
+Email communications are processed through our email provider **SimpleLogin**, which provides privacy-focused email forwarding.  
 
-Microsoft’s privacy statement can be found here:  
-https://privacy.microsoft.com/
+SimpleLogin's privacy policy can be found here:  
+https://simplelogin.io/privacy/
 
 ## 3. Purpose of Processing
 
-We use the information you submit *solely* for:
+We use the information you provide in email communications *solely* for:
 
 - Responding to your enquiry  
 - Discussing potential work or collaboration  
 - Following up about questions you have raised  
 
-We do **not** use your data for marketing or any unrelated purpose.
+We do **not** use your data for marketing, sharing with third parties, or any unrelated purpose.
 
 ## 4. Legal Basis
 
 The legal bases for using your data are:
 
 - **Legitimate interest** — to respond to your enquiry  
-- **Consent** — which is provided when you submit the form  
+- **Consent** — which is provided when you contact us  
 
 ## 5. Data Retention
 
-Your form submissions are kept only as long as necessary to handle your enquiry, unless ongoing communication requires otherwise. After this, data may be deleted.
+Email communications are kept only as long as necessary to handle your enquiry, unless ongoing collaboration or legal requirements necessitate longer retention. You may request deletion of your data at any time.
 
 ## 6. Your Rights
 
@@ -71,12 +65,11 @@ If you are in the UK or EU, you have the right to:
 - Request correction of inaccurate data  
 - Request deletion of your data  
 
-To exercise these rights, please contact us using the same Microsoft Forms contact page.
+To exercise these rights, please contact us via email at [nautomationprime.f3wfe@simplelogin.com](mailto:nautomationprime.f3wfe@simplelogin.com).
 
 ## 7. International Transfers
 
-Microsoft may process form data in regions outside the UK/EU.  
-Such transfers occur under Microsoft’s secure contractual and operational safeguards.
+SimpleLogin is a privacy-focused service that may process email data in regions outside the UK/EU under appropriate data protection safeguards.
 
 ## 8. Children’s Privacy
 
@@ -85,4 +78,4 @@ We do not knowingly collect information from minors.
 
 ## 9. Contact
 
-For any privacy-related questions, please use the contact form on this website.
+For any privacy-related questions, please contact us at [nautomationprime.f3wfe@simplelogin.com](mailto:nautomationprime.f3wfe@simplelogin.com).
