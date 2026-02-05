@@ -32,8 +32,11 @@ A comprehensive Python-based orchestration framework for automating Cisco IOS-XE
 - End-to-end upgrade workflows (discovery, validation, execution, rollback)
 - Platform-specific considerations (ISSU, dual SUPs, StackWise Virtual)
 - Fault tolerance and error handling strategies
-- Integration with Excel-based inventory and existing automation tools
+- **Integration with Cisco Catalyst Center, Ansible, and Nornir** - Detailed analysis of when and why to use Python alongside these popular platforms
+- Excel-based inventory management and existing automation tool integration
 - Security, compliance, and audit trail requirements
+
+**Unique Feature:** This design includes in-depth comparisons explaining why Python orchestration **complements** (not replaces) tools like Catalyst Center and Ansible, with decision matrices and real-world use cases.
 
 **Status:** :fontawesome-solid-drafting-compass: Design & Planning Phase
 

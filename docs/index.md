@@ -81,7 +81,7 @@ Every tool and guide adheres to three core principles:
 | :--- | :--- |
 | **Line-by-Line Transparency** | We explain the *why* behind the code, not just the *what*. Every design decision is documented. |
 | **Hardened for Production** | Robust error handling, pre-flight safety checks, enterprise credential management, and thread-safe operations. |
-| **Vendor-Neutral** | Built on industry-standard libraries (Netmiko, Nornir, PyATS). Your skills remain portable. |
+| **Vendor-Neutral** | Built on industry-standard libraries (Netmiko, Nornir, NAPALM, PyATS). Works alongside Ansible and Cisco Catalyst Center. |
 
 ---
 

@@ -21,8 +21,9 @@ At Nautomation Prime, we bridge the gap between complex infrastructure and strea
 ### 🛠️ Custom Python Scripting
 We build bespoke tools tailored to your specific topology. We don't just provide code; we provide transparency.  
 * **Automated Provisioning:** Scripts for bulk VLAN, SVI, and Interface configurations.  
-* **Fleet Upgrades:** Intelligent Python workflows for IOS and IOS-XE software management.  
-* **Compliance Auditing:** Automated "Golden Config" verification against your enterprise standards.
+* **Fleet Upgrades:** Intelligent Python workflows for IOS and IOS-XE software management, with expertise in Nornir-based parallelization and Ansible integration.  
+* **Compliance Auditing:** Automated "Golden Config" verification against your enterprise standards.  
+* **Framework Integration:** Expert guidance on integrating Python orchestration with Cisco Catalyst Center, Ansible, and Nornir for hybrid automation strategies.
 
 ### 🚀 Zero-Install Deployment (Portable Bundles)
 We understand that enterprise workstations are often restricted. Our custom solutions can be delivered as **Portable Python Bundles**.  
@@ -56,7 +57,7 @@ Our engagement model is built on three core commitments:
 | :--- | :--- |
 | **Line-by-Line Transparency** | Every script includes detailed explanations. You understand your automation, not just run it. |
 | **Hardened for Enterprise** | Production-grade error handling, pre-flight validation, and security best practices—not shortcuts. |
-| **Vendor-Neutral** | Built on Netmiko, Nornir, and PyATS. Your skills remain portable beyond Cisco. |
+| **Framework Agnostic** | Expertise across Netmiko, Nornir, Ansible, NAPALM, and PyATS. We integrate with your existing tools (Catalyst Center, AWX/Tower) rather than forcing replacements. |
 
 ---
 

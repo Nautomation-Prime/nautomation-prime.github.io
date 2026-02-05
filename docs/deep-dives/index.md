@@ -24,7 +24,7 @@ Our Deep Dives are built for engineers who refuse to treat automation as a "blac
 | :--- | :--- | :--- |
 | **[CDP Network Audit](./cdp-audit.md)** | A threaded discovery utility that crawls Cisco networks via CDP with two-tier authentication and jump server support. | Thread-Safety, Two-Tier Auth, Jump-Hosts, DNS Enrichment, TextFSM |
 | **[Access Switch Port Audit](./access-switch-audit.md)** | Parallel port health collection across your access layer, exported to Excel. | Multi-threaded Collection, Stale Detection, PoE Intelligence |
-| *Upcoming: IOS-XE Software Upgrade Orchestrator* | Automated, intelligent firmware management for Cisco IOS-XE switch stacks that eliminates manual upgrade errors through comprehensive validation. | Pre-Flight Validation, Binary Verification, Stack-Aware Orchestration, Rollback Capability |
+| *Upcoming: IOS-XE Software Upgrade Orchestrator* | Automated, intelligent firmware management for Cisco IOS-XE devices. Includes comprehensive analysis of integrating Python with Catalyst Center, Ansible, and Nornir. | Pre-Flight Validation, Binary Verification, Stack-Aware Orchestration, Rollback Capability, Framework Integration |
 | *Upcoming: Zero Touch Provisioning (ZTP)* | Automated deployment solution for Cisco devices that streamlines initial configuration and reduces deployment time. | Template-Based Config, DHCP Integration, Remote Logging |
 
 ---
