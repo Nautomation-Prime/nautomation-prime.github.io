@@ -48,7 +48,8 @@ Detailed walkthroughs of production Python scripts. We explain the logic, the li
 ### 📚 [Script Library](./scripts/index.md)
 Open-source, production-ready automation tools for Cisco infrastructure.
 
-**Available:** CDP Network Audit, IOS-XE Upgrade Orchestrator (coming soon), Access Switch Audit (coming soon)
+**Available:** CDP Network Audit, Access Switch Audit  
+**Coming Soon:** IOS-XE Upgrade Orchestrator, Zero Touch Provisioning (ZTP)
 
 ### 🐳 [Scheduled Automation (Docker)](./services.md#scheduled-automation)
 Pre-built containers for continuous network oversight. Daily config audits, health checks, and automated reporting—no human intervention needed.
@@ -78,7 +79,7 @@ Every tool and guide adheres to three core principles:
 - **New to Nautomation Prime?** → [Getting Started Guide](./getting-started.md) for philosophy and pathways
 - **Want to Learn?** → [Technical Deep Dives](./deep-dives/index.md) for production-grade walkthroughs
 - **Ready to Deploy?** → [Script Library](./scripts/index.md) or explore [Services](./services.md)
-- **Have Questions?** → Check [Getting Started FAQ](./getting-started.md#frequently-asked-questions) or [reach out on LinkedIn](https://www.linkedin.com/company/nautomationprime)
+- **Have Questions?** → Check [Getting Started FAQ](./getting-started.md#frequently-asked-questions) or contact us via [email](mailto:nautomationprime.f3wfe@simplelogin.com) or [LinkedIn](https://www.linkedin.com/company/nautomationprime)
 
 ---
 
