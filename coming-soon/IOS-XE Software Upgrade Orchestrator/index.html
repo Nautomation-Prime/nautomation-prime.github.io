@@ -1,0 +1,2520 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Comprehensive design and planning blueprint for automating IOS-XE software upgrades across Cisco platforms with Python, including ISSU, rollback mechanisms, and platform-specific workflows.">
+      
+      
+        <meta name="author" content="Christopher Davies">
+      
+      
+        <link rel="canonical" href="https://nautomation-prime.github.io/coming-soon/IOS-XE%20Software%20Upgrade%20Orchestrator/">
+      
+      
+        <link rel="prev" href="../">
+      
+      
+        <link rel="next" href="../../legal/privacy-policy/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/favicon.ico">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+    
+    
+      
+        <title>Cisco IOS-XE Software Upgrade Orchestrator - Nautomation Prime</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="blue">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#design-and-planning-document-cisco-ios-xe-software-upgrade-orchestrator" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Nautomation Prime" class="md-header__button md-logo" aria-label="Nautomation Prime" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Nautomation Prime
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Cisco IOS-XE Software Upgrade Orchestrator
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="blue"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="blue" data-md-color-accent="blue"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/Nautomation-Prime/Nautomation-Prime.github.io" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../getting-started/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Getting Started
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../services/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Services
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../deep-dives/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Technical Resources
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../scripts/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Script Library
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Coming Soon
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../legal/privacy-policy/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Legal
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../about/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  About
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Nautomation Prime" class="md-nav__button md-logo" aria-label="Nautomation Prime" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Nautomation Prime
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/Nautomation-Prime/Nautomation-Prime.github.io" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Getting Started
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../services/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Services
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../deep-dives/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Technical Resources
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Technical Resources
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../deep-dives/cdp-audit/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CDP Network Audit
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../deep-dives/access-switch-audit/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Access Switch Audit
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../scripts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Script Library
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Coming Soon
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_6" id="__nav_6_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Coming Soon
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    IOS-XE Upgrade Orchestrator
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    IOS-XE Upgrade Orchestrator
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#quick-reference" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quick Reference
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Introduction
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#high-level-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        High-Level Architecture
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="High-Level Architecture">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#architectural-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Architectural Overview
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#workflow-stages-end-to-end-upgrade-process" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Workflow Stages: End-to-End Upgrade Process
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Workflow Stages: End-to-End Upgrade Process">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-discovery-and-inventory" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Discovery and Inventory
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-image-selection-and-validation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Image Selection and Validation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-pre-upgrade-checks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Pre-Upgrade Checks
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-image-transfer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Image Transfer
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-upgrade-execution" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Upgrade Execution
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-post-upgrade-verification-and-health-checks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Post-Upgrade Verification and Health Checks
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7-rollback-and-recovery" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Rollback and Recovery
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#modular-breakdown-key-components" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Modular Breakdown: Key Components
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Modular Breakdown: Key Components">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-inventory-and-state-management-module" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Inventory and State Management Module
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-device-abstraction-module" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Device Abstraction Module
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-workflow-engine-module" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Workflow Engine Module
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-transport-and-execution-module" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Transport and Execution Module
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-logging-and-observability-module" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Logging and Observability Module
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-operator-interaction-module" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Operator Interaction Module
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7-integration-module" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Integration Module
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fault-tolerance-retries-and-idempotency" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Fault Tolerance, Retries, and Idempotency
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#edge-case-handling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Edge Case Handling
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Edge Case Handling">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#dual-supervisors-sups-and-stackwise-virtual" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Dual Supervisors (SUPs) and StackWise Virtual
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#issu-vs-non-issu-upgrades" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ISSU vs. Non-ISSU Upgrades
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#platform-specific-considerations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Platform-Specific Considerations
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#state-management-and-excel-driven-source-of-truth" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        State Management and Excel-Driven Source-of-Truth
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cli-based-interaction-model-and-operator-workflows" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CLI-Based Interaction Model and Operator Workflows
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#security-considerations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Security Considerations
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#logging-telemetry-and-observability" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Logging, Telemetry, and Observability
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#human-in-the-loop-and-approvalrollback-policies" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Human-in-the-Loop and Approval/Rollback Policies
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#testing-staging-and-lab-validation-strategies" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Testing, Staging, and Lab Validation Strategies
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#common-pitfalls-and-failure-modes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Common Pitfalls and Failure Modes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#integration-with-existing-automation-tools" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Integration with Existing Automation Tools
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#compliance-audit-trail-and-reporting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Compliance, Audit Trail, and Reporting
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#error-handling-and-escalation-procedures" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Error Handling and Escalation Procedures
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#smu-fpga-and-platform-firmware-handling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SMU, FPGA, and Platform Firmware Handling
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#time-windows-scheduling-and-maintenance-window-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Time Windows, Scheduling, and Maintenance Window Management
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#decision-trees-and-diagrams" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Decision Trees and Diagrams
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conclusion-and-next-steps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conclusion and Next Steps
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Legal
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Legal
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../legal/privacy-policy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Privacy Policy
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../legal/terms-of-use/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Terms of Use
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../legal/licensing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Licensing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../legal/disclaimer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Disclaimer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../legal/brand/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Brand & Logo Usage
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    About
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  <nav class="md-tags" >
+    
+      
+      
+      
+      
+        <span class="md-tag">Automation</span>
+      
+    
+      
+      
+      
+      
+        <span class="md-tag">Coming Soon</span>
+      
+    
+      
+      
+      
+      
+        <span class="md-tag">IOS-XE</span>
+      
+    
+      
+      
+      
+      
+        <span class="md-tag">Orchestration</span>
+      
+    
+      
+      
+      
+      
+        <span class="md-tag">Python</span>
+      
+    
+      
+      
+      
+      
+        <span class="md-tag">Software Upgrade</span>
+      
+    
+  </nav>
+
+
+  
+  
+
+
+<h1 id="design-and-planning-document-cisco-ios-xe-software-upgrade-orchestrator">Design and Planning Document: Cisco IOS-XE Software Upgrade Orchestrator<a class="headerlink" href="#design-and-planning-document-cisco-ios-xe-software-upgrade-orchestrator" title="Anchor link to this section">&para;</a></h1>
+<div class="admonition info">
+<p class="admonition-title">Project Status: Design &amp; Planning Phase</p>
+<p>This document represents the comprehensive design blueprint for an upcoming automation tool. Implementation is currently in the planning stage.</p>
+</div>
+<hr />
+<h2 id="quick-reference">Quick Reference<a class="headerlink" href="#quick-reference" title="Anchor link to this section">&para;</a></h2>
+<p><strong>Jump to Section:</strong></p>
+<ul>
+<li><a href="#high-level-architecture">High-Level Architecture</a> - System components and design philosophy</li>
+<li><a href="#workflow-stages-end-to-end-upgrade-process">Workflow Stages</a> - End-to-end upgrade process breakdown</li>
+<li><a href="#edge-case-handling">Platform-Specific Handling</a> - ISSU, dual SUPs, StackWise considerations</li>
+<li><a href="#rollback-and-recovery">Rollback Mechanisms</a> - Recovery strategies and procedures</li>
+<li><a href="#security-considerations">Security Considerations</a> - Credential management and access controls</li>
+<li><a href="#modular-breakdown-key-components">Module Breakdown</a> - Detailed component architecture</li>
+</ul>
+<hr />
+<h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Anchor link to this section">&para;</a></h2>
+<p>Upgrading Cisco IOS-XE devices is a critical, high-stakes operation for enterprise and service provider networks. The process is fraught with complexity, risk, and platform-specific nuances. Manual upgrades are time-consuming, error-prone, and difficult to scale. Automation is essential for maintaining network security, stability, and compliance, especially as device fleets grow and maintenance windows shrink. This document presents a comprehensive design and planning blueprint for a Python-based "IOS-XE Software Upgrade Orchestrator." The orchestrator aims to automate the end-to-end upgrade process for Cisco IOS-XE devices, supporting image validation, pre-checks, image transfer, upgrade execution, post-checks, and robust rollback mechanisms. The design emphasizes modularity, fault tolerance, scalability, and integration with an Excel-driven source-of-truth and CLI-based operator workflows.</p>
+<hr />
+<h2 id="high-level-architecture">High-Level Architecture<a class="headerlink" href="#high-level-architecture" title="Anchor link to this section">&para;</a></h2>
+<h3 id="architectural-overview">Architectural Overview<a class="headerlink" href="#architectural-overview" title="Anchor link to this section">&para;</a></h3>
+<p>The orchestrator is conceived as a modular, extensible Python application capable of orchestrating upgrades across diverse IOS-XE platforms (Catalyst 9k, ISR, ASR, NCS, etc.). It interfaces with devices via SSH/CLI, leverages an Excel (or CSV) file as the authoritative inventory and configuration source, and supports integration with existing automation frameworks (e.g., Ansible, Netmiko, Nornir).</p>
+<p><strong>Key architectural components:</strong><br />
+- <strong>Inventory and State Management Layer:</strong> Reads and writes device inventory, upgrade status, and configuration data from/to Excel or a similar source-of-truth.<br />
+- <strong>Device Abstraction Layer:</strong> Encapsulates platform-specific logic and provides a uniform interface for device operations.<br />
+- <strong>Workflow Engine:</strong> Orchestrates the upgrade process, managing workflow stages, error handling, and operator interactions.<br />
+- <strong>Transport and Execution Layer:</strong> Handles CLI connections, command execution, and file transfers (SCP, TFTP, HTTP).<br />
+- <strong>Logging and Observability Layer:</strong> Provides detailed logging, telemetry, and audit trails for compliance and troubleshooting.<br />
+- <strong>Operator Interaction Layer:</strong> Supports CLI-based prompts, approvals, and rollback triggers, enabling human-in-the-loop workflows.  </p>
+<p><strong>Textual Architecture Diagram Description:</strong></p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-0-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-0-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-0-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-0-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-0-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-0-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-0-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-0-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-0-10">10</a></span>
+<span class="normal"><a href="#__codelineno-0-11">11</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1"></a>+-------------------------------------------------------------+
+<a id="__codelineno-0-2" name="__codelineno-0-2"></a>|                IOS-XE Software Upgrade Orchestrator         |
+<a id="__codelineno-0-3" name="__codelineno-0-3"></a>+-------------------------------------------------------------+
+<a id="__codelineno-0-4" name="__codelineno-0-4"></a>|  [Inventory/State] &lt;--&gt; [Workflow Engine] &lt;--&gt; [Operator]   |
+<a id="__codelineno-0-5" name="__codelineno-0-5"></a>|         |                        |                |         |
+<a id="__codelineno-0-6" name="__codelineno-0-6"></a>|         v                        v                v         |
+<a id="__codelineno-0-7" name="__codelineno-0-7"></a>|  [Device Abstraction] &lt;--&gt; [Transport/Exec] &lt;--&gt; [Logging]  |
+<a id="__codelineno-0-8" name="__codelineno-0-8"></a>+-------------------------------------------------------------+
+<a id="__codelineno-0-9" name="__codelineno-0-9"></a>|                  [External Integrations]                    |
+<a id="__codelineno-0-10" name="__codelineno-0-10"></a>|   (Ansible, Netmiko, Nornir, DNA Center, Excel, Git, etc.)  |
+<a id="__codelineno-0-11" name="__codelineno-0-11"></a>+-------------------------------------------------------------+
+</code></pre></div></td></tr></table></div>
+<p>This layered approach ensures separation of concerns, extensibility, and maintainability. Each module can be independently developed, tested, and replaced as requirements evolve.</p>
+<hr />
+<h2 id="workflow-stages-end-to-end-upgrade-process">Workflow Stages: End-to-End Upgrade Process<a class="headerlink" href="#workflow-stages-end-to-end-upgrade-process" title="Anchor link to this section">&para;</a></h2>
+<p>A robust upgrade orchestrator must implement a well-defined, repeatable workflow. Each stage is designed to be idempotent, fault-tolerant, and capable of handling partial failures or retries.</p>
+<h3 id="1-discovery-and-inventory">1. Discovery and Inventory<a class="headerlink" href="#1-discovery-and-inventory" title="Anchor link to this section">&para;</a></h3>
+<p><strong>Purpose:</strong> Identify target devices, gather current state, and validate readiness for upgrade.</p>
+<ul>
+<li><strong>Inventory Source:</strong> Devices and upgrade parameters are sourced from an Excel file (or CSV/DB), which acts as the single source-of-truth (SoT).</li>
+<li><strong>Discovery Mechanisms:</strong> Use CDP/LLDP, SNMP, or CLI-based discovery to validate device reachability and gather hardware/software details.</li>
+<li><strong>State Collection:</strong> Collect current software version, boot mode (install vs. bundle), available flash space, redundancy status (dual SUPs, StackWise), and platform type.</li>
+</ul>
+<p><strong>Best Practices:</strong>
+- Ensure inventory is up-to-date and validated against live device data.
+- Use unique device identifiers (hostname, serial, management IP) to avoid ambiguity.
+- Maintain upgrade state and history in the source-of-truth for auditability.</p>
+<div class="admonition warning">
+<p class="admonition-title">Common Pitfalls</p>
+<ul>
+<li>Stale or inconsistent inventory data leading to missed or duplicate upgrades.</li>
+<li>Incomplete discovery of stack members or redundant supervisors.</li>
+</ul>
+</div>
+<h3 id="2-image-selection-and-validation">2. Image Selection and Validation<a class="headerlink" href="#2-image-selection-and-validation" title="Anchor link to this section">&para;</a></h3>
+<p><strong>Purpose:</strong> Select the appropriate IOS-XE image, validate compatibility, and ensure integrity.</p>
+<ul>
+<li><strong>Image Selection:</strong> Choose image based on platform, desired version (preferably LTS for stability), and compatibility with hardware modules.</li>
+<li><strong>Compatibility Checks:</strong> Cross-reference Cisco release notes for memory, hardware, and feature compatibility.</li>
+<li><strong>Integrity Verification:</strong> Validate image using MD5/SHA2 checksums before and after transfer.</li>
+<li><strong>Image Repository:</strong> Support local, network (SCP/TFTP/HTTP), or cloud-based image repositories.</li>
+</ul>
+<p><strong>Best Practices:</strong>
+- Always use images downloaded from Cisco.com and verify cryptographic hashes.
+- Maintain a catalog of approved images and their checksums in the source-of-truth.
+- Automate compatibility checks using structured release note data where possible.</p>
+<div class="admonition warning">
+<p class="admonition-title">Common Pitfalls</p>
+<ul>
+<li>Skipping hash verification, leading to device boot failures due to corrupt images.</li>
+<li>Selecting images incompatible with hardware or feature requirements.</li>
+</ul>
+</div>
+<h3 id="3-pre-upgrade-checks">3. Pre-Upgrade Checks<a class="headerlink" href="#3-pre-upgrade-checks" title="Anchor link to this section">&para;</a></h3>
+<p><strong>Purpose:</strong> Assess device health, backup configurations, and ensure upgrade prerequisites are met.</p>
+<ul>
+<li><strong>Health Checks:</strong> Verify device uptime, CPU/memory utilization, interface/link status, and redundancy state.</li>
+<li><strong>Backup:</strong> Save running and startup configurations, current image, and critical logs to a remote server (TFTP/SCP/FTP).</li>
+<li><strong>Flash Space:</strong> Check available storage and remove inactive packages if necessary.</li>
+<li><strong>Redundancy/HA:</strong> Confirm stateful switchover (SSO) readiness for dual SUPs or StackWise Virtual.</li>
+<li><strong>Maintenance Window:</strong> Validate that upgrade is scheduled within an approved window.</li>
+</ul>
+<p><strong>Best Practices:</strong>
+- Automate pre-checks and halt the workflow if any critical check fails.
+- Store backups with clear naming conventions and timestamps for easy retrieval.
+- Document all pre-check results for compliance and troubleshooting.</p>
+<div class="admonition warning">
+<p class="admonition-title">Common Pitfalls</p>
+<ul>
+<li>Insufficient flash space causing upgrade failures.</li>
+<li>Missing configuration backups, complicating recovery from failed upgrades.</li>
+</ul>
+</div>
+<h3 id="4-image-transfer">4. Image Transfer<a class="headerlink" href="#4-image-transfer" title="Anchor link to this section">&para;</a></h3>
+<p><strong>Purpose:</strong> Reliably transfer the validated image to the device using secure and efficient protocols.</p>
+<ul>
+<li><strong>Supported Protocols:</strong> SCP (preferred for security), SFTP, FTP, TFTP, HTTP/HTTPS.</li>
+<li><strong>Transfer Validation:</strong> Verify image integrity post-transfer using hash checks.</li>
+<li><strong>Parallelization:</strong> For large-scale upgrades, batch transfers to avoid network congestion.</li>
+</ul>
+<p><strong>Comparison Table: Image Transfer Methods</strong></p>
+<table>
+<thead>
+<tr>
+<th>Protocol</th>
+<th>Security</th>
+<th>Speed</th>
+<th>Authentication</th>
+<th>Use Case</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SCP</td>
+<td>High</td>
+<td>Fast</td>
+<td>Yes</td>
+<td>Preferred for secure envs</td>
+</tr>
+<tr>
+<td>SFTP</td>
+<td>High</td>
+<td>Medium</td>
+<td>Yes</td>
+<td>Secure, slower than SCP</td>
+</tr>
+<tr>
+<td>FTP</td>
+<td>Low</td>
+<td>Medium</td>
+<td>Yes</td>
+<td>Legacy, avoid if possible</td>
+</tr>
+<tr>
+<td>TFTP</td>
+<td>None</td>
+<td>Fast</td>
+<td>No</td>
+<td>Simple, not secure</td>
+</tr>
+<tr>
+<td>HTTP(S)</td>
+<td>High</td>
+<td>Fast</td>
+<td>Yes (HTTPS)</td>
+<td>Modern, scalable</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition tip">
+<p class="admonition-title">Protocol Selection</p>
+<p>SCP and HTTPS are preferred for secure environments. TFTP is fast but insecure and should be avoided unless in isolated, trusted networks. Always verify image integrity after transfer.</p>
+</div>
+<p><strong>Best Practices:</strong>
+- Use SCP or HTTPS for all production upgrades.
+- Automate retries with exponential backoff in case of transient network failures.
+- Log transfer times and throughput for performance monitoring.</p>
+<div class="admonition warning">
+<p class="admonition-title">Common Pitfalls</p>
+<ul>
+<li>Firewall or ACLs blocking transfer ports.</li>
+<li>Incomplete or interrupted transfers leading to corrupt images.</li>
+</ul>
+</div>
+<h3 id="5-upgrade-execution">5. Upgrade Execution<a class="headerlink" href="#5-upgrade-execution" title="Anchor link to this section">&para;</a></h3>
+<p><strong>Purpose:</strong> Perform the actual software upgrade using platform-appropriate methods.</p>
+<ul>
+<li><strong>Upgrade Modes:</strong> Support both Install Mode (recommended for Catalyst 9k and modern platforms) and Bundle Mode (legacy).</li>
+<li><strong>Commands:</strong></li>
+<li><strong>Install Mode:</strong> <code>install add file ...</code>, <code>install activate</code>, <code>install commit</code></li>
+<li><strong>Bundle Mode:</strong> Copy <code>.bin</code> to flash, update boot variable, reload</li>
+<li><strong>Redundancy Handling:</strong> For dual SUPs or StackWise Virtual, coordinate upgrade steps to maintain HA and minimize downtime.</li>
+<li><strong>ISSU Support:</strong> Where available, perform In-Service Software Upgrade to avoid traffic disruption (see ISSU vs. non-ISSU matrix below).</li>
+</ul>
+<p><strong>Upgrade Method Comparison Table</strong></p>
+<table>
+<thead>
+<tr>
+<th>Mode</th>
+<th>Platforms</th>
+<th>Downtime</th>
+<th>Complexity</th>
+<th>Rollback Support</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Install</td>
+<td>Cat9k, ISR, ASR</td>
+<td>Low</td>
+<td>Medium</td>
+<td>Yes</td>
+<td>Preferred, modular</td>
+</tr>
+<tr>
+<td>Bundle</td>
+<td>Legacy, some ISR</td>
+<td>High</td>
+<td>Low</td>
+<td>Limited</td>
+<td>Simple, more downtime</td>
+</tr>
+<tr>
+<td>ISSU</td>
+<td>Cat9k (HA/SSO)</td>
+<td>Minimal</td>
+<td>High</td>
+<td>Yes</td>
+<td>Only within certain releases</td>
+</tr>
+<tr>
+<td>Non-ISSU</td>
+<td>All</td>
+<td>High</td>
+<td>Low</td>
+<td>Yes</td>
+<td>Requires reload</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Best Practices:</strong>
+- Use Install Mode wherever possible for efficiency and rollback support.
+- Automate command execution and monitor for prompts or errors.
+- For stacks or dual SUPs, upgrade standby first, verify, then switchover.</p>
+<div class="admonition warning">
+<p class="admonition-title">Common Pitfalls</p>
+<ul>
+<li>Boot variable misconfiguration leading to ROMmon boots.</li>
+<li>Stack member version mismatches causing split-brain scenarios.</li>
+</ul>
+</div>
+<h3 id="6-post-upgrade-verification-and-health-checks">6. Post-Upgrade Verification and Health Checks<a class="headerlink" href="#6-post-upgrade-verification-and-health-checks" title="Anchor link to this section">&para;</a></h3>
+<p><strong>Purpose:</strong> Confirm successful upgrade, device health, and service restoration.</p>
+<ul>
+<li><strong>Version Check:</strong> Verify running version matches target.</li>
+<li><strong>System Health:</strong> Check logs, interface/link status, routing, and protocol adjacencies.</li>
+<li><strong>Redundancy:</strong> Confirm HA/SSO is re-established and all members are in sync.</li>
+<li><strong>Service Validation:</strong> Run application-specific or customer-defined tests (e.g., ping, SNMP, traffic flows).</li>
+</ul>
+<p><strong>Best Practices:</strong>
+- Automate post-checks and compare results to pre-upgrade baselines.
+- Document all verification steps and outcomes.
+- Rollback immediately if critical failures are detected.</p>
+<div class="admonition warning">
+<p class="admonition-title">Common Pitfalls</p>
+<ul>
+<li>Overlooking subtle issues (e.g., missing licenses, feature regressions).</li>
+<li>Failing to validate all stack members or redundant supervisors.</li>
+</ul>
+</div>
+<h3 id="7-rollback-and-recovery">7. Rollback and Recovery<a class="headerlink" href="#7-rollback-and-recovery" title="Anchor link to this section">&para;</a></h3>
+<p><strong>Purpose:</strong> Restore device to previous state in case of upgrade failure or post-upgrade issues.</p>
+<ul>
+<li><strong>Rollback Mechanisms:</strong></li>
+<li><strong>Install Mode:</strong> Use <code>install rollback to committed</code> or set boot variable to previous image and reload.</li>
+<li><strong>Bundle Mode:</strong> Set boot variable to previous <code>.bin</code> and reload.</li>
+<li><strong>Configuration Rollback:</strong> Use configuration archives and <code>configure replace</code> to revert to known-good config.</li>
+<li><strong>Trigger Conditions:</strong> Automated (failed health checks) or manual (operator approval).</li>
+<li><strong>Rollback Verification:</strong> Confirm device is restored to previous version and operational state.</li>
+</ul>
+<p><strong>Rollback Strategies Table</strong></p>
+<table>
+<thead>
+<tr>
+<th>Rollback Type</th>
+<th>Supported Modes</th>
+<th>Downtime</th>
+<th>Automation</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Install rollback</td>
+<td>Install</td>
+<td>Medium</td>
+<td>Yes</td>
+<td>Fast, preserves config</td>
+</tr>
+<tr>
+<td>Boot var revert</td>
+<td>All</td>
+<td>High</td>
+<td>Yes</td>
+<td>Requires reload, manual intervention</td>
+</tr>
+<tr>
+<td>Config replace</td>
+<td>All</td>
+<td>Low</td>
+<td>Yes</td>
+<td>For config errors, not image failures</td>
+</tr>
+<tr>
+<td>SMU rollback</td>
+<td>Install</td>
+<td>Medium</td>
+<td>Yes</td>
+<td>For patch-level rollbacks</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Best Practices:</strong>
+- Always maintain backups of previous images and configurations.
+- Automate rollback triggers based on health check failures.
+- Document rollback events and root causes for continuous improvement.</p>
+<div class="admonition danger">
+<p class="admonition-title">Critical: Common Pitfalls</p>
+<ul>
+<li>Removing previous images from flash, making rollback impossible.</li>
+<li>Incomplete rollback (e.g., config restored but image not).</li>
+</ul>
+</div>
+<hr />
+<h2 id="modular-breakdown-key-components">Modular Breakdown: Key Components<a class="headerlink" href="#modular-breakdown-key-components" title="Anchor link to this section">&para;</a></h2>
+<p>A modular design is essential for maintainability, extensibility, and testability. Each module should have a clear interface and responsibility.</p>
+<h3 id="1-inventory-and-state-management-module">1. Inventory and State Management Module<a class="headerlink" href="#1-inventory-and-state-management-module" title="Anchor link to this section">&para;</a></h3>
+<ul>
+<li><strong>Functions:</strong> Read/write device inventory, upgrade parameters, and state from Excel/CSV/DB.</li>
+<li><strong>Features:</strong> Support for versioning, audit trails, and integration with external SoT systems (NetBox, Git, etc.).</li>
+<li><strong>Edge Cases:</strong> Handle concurrent updates, partial failures, and data validation.</li>
+</ul>
+<h3 id="2-device-abstraction-module">2. Device Abstraction Module<a class="headerlink" href="#2-device-abstraction-module" title="Anchor link to this section">&para;</a></h3>
+<ul>
+<li><strong>Functions:</strong> Encapsulate platform-specific logic (e.g., Catalyst 9k vs. ISR vs. ASR).</li>
+<li><strong>Features:</strong> Device capability detection, command mapping, and error normalization.</li>
+<li><strong>Edge Cases:</strong> Unsupported platforms, feature mismatches, or custom hardware modules.</li>
+</ul>
+<h3 id="3-workflow-engine-module">3. Workflow Engine Module<a class="headerlink" href="#3-workflow-engine-module" title="Anchor link to this section">&para;</a></h3>
+<ul>
+<li><strong>Functions:</strong> Orchestrate upgrade workflow stages, manage state transitions, and handle retries.</li>
+<li><strong>Features:</strong> Support for batching, parallel execution, and operator approvals.</li>
+<li><strong>Edge Cases:</strong> Partial failures, idempotency, and workflow resumption after interruption.</li>
+</ul>
+<h3 id="4-transport-and-execution-module">4. Transport and Execution Module<a class="headerlink" href="#4-transport-and-execution-module" title="Anchor link to this section">&para;</a></h3>
+<ul>
+<li><strong>Functions:</strong> Manage CLI connections (SSH), command execution, and file transfers.</li>
+<li><strong>Features:</strong> Support for multiple protocols, connection pooling, and secure credential handling.</li>
+<li><strong>Edge Cases:</strong> Network failures, authentication errors, and protocol timeouts.</li>
+</ul>
+<h3 id="5-logging-and-observability-module">5. Logging and Observability Module<a class="headerlink" href="#5-logging-and-observability-module" title="Anchor link to this section">&para;</a></h3>
+<ul>
+<li><strong>Functions:</strong> Provide structured logging, telemetry, and audit trails.</li>
+<li><strong>Features:</strong> Integration with SIEM/log management tools (Splunk, ELK, etc.), real-time alerts, and compliance reporting.</li>
+<li><strong>Edge Cases:</strong> Log storage limits, sensitive data redaction, and log correlation across devices.</li>
+</ul>
+<h3 id="6-operator-interaction-module">6. Operator Interaction Module<a class="headerlink" href="#6-operator-interaction-module" title="Anchor link to this section">&para;</a></h3>
+<ul>
+<li><strong>Functions:</strong> Support CLI-based prompts, approvals, and rollback triggers.</li>
+<li><strong>Features:</strong> Human-in-the-loop workflows, escalation procedures, and notification integration (email, Slack, etc.).</li>
+<li><strong>Edge Cases:</strong> Operator unavailability, approval timeouts, and conflicting actions.</li>
+</ul>
+<h3 id="7-integration-module">7. Integration Module<a class="headerlink" href="#7-integration-module" title="Anchor link to this section">&para;</a></h3>
+<ul>
+<li><strong>Functions:</strong> Interface with external automation tools (Ansible, Netmiko, Nornir, DNA Center).</li>
+<li><strong>Features:</strong> API adapters, event hooks, and data synchronization.</li>
+<li><strong>Edge Cases:</strong> Version mismatches, API changes, and integration failures.</li>
+</ul>
+<hr />
+<h2 id="fault-tolerance-retries-and-idempotency">Fault Tolerance, Retries, and Idempotency<a class="headerlink" href="#fault-tolerance-retries-and-idempotency" title="Anchor link to this section">&para;</a></h2>
+<p><strong>Fault Tolerance:</strong> The orchestrator must gracefully handle transient and permanent failures at every stage. This includes:<br />
+- <strong>Retries:</strong> Implement exponential backoff for network or transfer errors.<br />
+- <strong>Dead Letter Queues:</strong> Capture and log unrecoverable failures for manual intervention.<br />
+- <strong>Circuit Breakers:</strong> Temporarily halt operations on repeated failures to avoid cascading issues.<br />
+- <strong>Observability:</strong> Provide real-time metrics and alerts for failures, retries, and workflow status.  </p>
+<p><strong>Idempotency:</strong> All operations should be designed so that repeated execution with the same input yields the same result, preventing unintended side effects (e.g., duplicate image transfers, repeated reloads).</p>
+<p><strong>Decision Tree Diagram Description: Fault Handling</strong></p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-1-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-1-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-1-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-1-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-1-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-1-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-1-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-1-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-1-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-1-10">10</a></span>
+<span class="normal"><a href="#__codelineno-1-11">11</a></span>
+<span class="normal"><a href="#__codelineno-1-12">12</a></span>
+<span class="normal"><a href="#__codelineno-1-13">13</a></span>
+<span class="normal"><a href="#__codelineno-1-14">14</a></span>
+<span class="normal"><a href="#__codelineno-1-15">15</a></span>
+<span class="normal"><a href="#__codelineno-1-16">16</a></span>
+<span class="normal"><a href="#__codelineno-1-17">17</a></span>
+<span class="normal"><a href="#__codelineno-1-18">18</a></span>
+<span class="normal"><a href="#__codelineno-1-19">19</a></span>
+<span class="normal"><a href="#__codelineno-1-20">20</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1"></a>[Start Upgrade]
+<a id="__codelineno-1-2" name="__codelineno-1-2"></a>      |
+<a id="__codelineno-1-3" name="__codelineno-1-3"></a>      v
+<a id="__codelineno-1-4" name="__codelineno-1-4"></a>[Pre-Check Success?]--No--&gt;[Abort/Notify]
+<a id="__codelineno-1-5" name="__codelineno-1-5"></a>      |
+<a id="__codelineno-1-6" name="__codelineno-1-6"></a>     Yes
+<a id="__codelineno-1-7" name="__codelineno-1-7"></a>      v
+<a id="__codelineno-1-8" name="__codelineno-1-8"></a>[Image Transfer Success?]--No--&gt;[Retry (max N)?]--No--&gt;[Dead Letter/Alert]
+<a id="__codelineno-1-9" name="__codelineno-1-9"></a>      |                                 |
+<a id="__codelineno-1-10" name="__codelineno-1-10"></a>     Yes                                Yes
+<a id="__codelineno-1-11" name="__codelineno-1-11"></a>      v                                  v
+<a id="__codelineno-1-12" name="__codelineno-1-12"></a>[Upgrade Execution Success?]--No--&gt;[Rollback/Notify]
+<a id="__codelineno-1-13" name="__codelineno-1-13"></a>      |
+<a id="__codelineno-1-14" name="__codelineno-1-14"></a>     Yes
+<a id="__codelineno-1-15" name="__codelineno-1-15"></a>      v
+<a id="__codelineno-1-16" name="__codelineno-1-16"></a>[Post-Check Success?]--No--&gt;[Rollback/Notify]
+<a id="__codelineno-1-17" name="__codelineno-1-17"></a>      |
+<a id="__codelineno-1-18" name="__codelineno-1-18"></a>     Yes
+<a id="__codelineno-1-19" name="__codelineno-1-19"></a>      v
+<a id="__codelineno-1-20" name="__codelineno-1-20"></a>[Mark Success/Complete]
+</code></pre></div></td></tr></table></div>
+<hr />
+<h2 id="edge-case-handling">Edge Case Handling<a class="headerlink" href="#edge-case-handling" title="Anchor link to this section">&para;</a></h2>
+<h3 id="dual-supervisors-sups-and-stackwise-virtual">Dual Supervisors (SUPs) and StackWise Virtual<a class="headerlink" href="#dual-supervisors-sups-and-stackwise-virtual" title="Anchor link to this section">&para;</a></h3>
+<ul>
+<li><strong>Dual SUPs:</strong> Upgrade standby supervisor first, verify, then switchover and upgrade the former active. Ensure SSO is maintained and minimize traffic disruption.</li>
+<li><strong>StackWise Virtual:</strong> Coordinate upgrade across both virtual stack members, ensuring version consistency and stack health.</li>
+<li><strong>Chassis-Specific Behaviors:</strong> Handle platform-specific requirements (e.g., bootloader/CPLD upgrades, module compatibility).</li>
+</ul>
+<div class="admonition tip">
+<p class="admonition-title">Best Practices</p>
+<ul>
+<li>Automate detection of redundancy state and adapt workflow accordingly.</li>
+<li>Validate both active and standby SUPs post-upgrade.</li>
+<li>For StackWise, use <code>software auto-upgrade enable</code> to synchronize stack members.</li>
+</ul>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Common Pitfalls</p>
+<ul>
+<li>Upgrading both SUPs simultaneously, causing loss of redundancy.</li>
+<li>Stack member version mismatches leading to split-brain.</li>
+</ul>
+</div>
+<h3 id="issu-vs-non-issu-upgrades">ISSU vs. Non-ISSU Upgrades<a class="headerlink" href="#issu-vs-non-issu-upgrades" title="Anchor link to this section">&para;</a></h3>
+<p><strong>ISSU (In-Service Software Upgrade):</strong><br />
+- <strong>Supported Platforms:</strong> Only certain Catalyst 9k models with dual SUPs/StackWise Virtual, and only within specific release trains.<br />
+- <strong>Benefits:</strong> Minimal or no downtime, seamless traffic switchover.<br />
+- <strong>Limitations:</strong> Not supported on all platforms or for major version jumps.  </p>
+<p><strong>Non-ISSU:</strong>
+- <strong>Supported Platforms:</strong> All.<br />
+- <strong>Drawbacks:</strong> Requires device reload, causes downtime.  </p>
+<p><strong>ISSU Support Matrix Table (Excerpt)</strong></p>
+<table>
+<thead>
+<tr>
+<th>Platform</th>
+<th>ISSU Supported</th>
+<th>Min. Release</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Cat 9400 (dual)</td>
+<td>Yes</td>
+<td>16.9.1</td>
+<td>SSO required</td>
+</tr>
+<tr>
+<td>Cat 9500 (SVL)</td>
+<td>Yes</td>
+<td>16.9.2</td>
+<td>StackWise Virtual only</td>
+</tr>
+<tr>
+<td>Cat 9600 (dual)</td>
+<td>Yes</td>
+<td>16.12.1</td>
+<td>SSO required</td>
+</tr>
+<tr>
+<td>ISR/ASR Routers</td>
+<td>No</td>
+<td>N/A</td>
+<td>Only non-ISSU</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Decision Tree: ISSU vs. Non-ISSU</strong></p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-2-1">1</a></span>
+<span class="normal"><a href="#__codelineno-2-2">2</a></span>
+<span class="normal"><a href="#__codelineno-2-3">3</a></span>
+<span class="normal"><a href="#__codelineno-2-4">4</a></span>
+<span class="normal"><a href="#__codelineno-2-5">5</a></span>
+<span class="normal"><a href="#__codelineno-2-6">6</a></span>
+<span class="normal"><a href="#__codelineno-2-7">7</a></span>
+<span class="normal"><a href="#__codelineno-2-8">8</a></span>
+<span class="normal"><a href="#__codelineno-2-9">9</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1"></a>[Is Platform ISSU-Capable?]--No--&gt;[Use Non-ISSU]
+<a id="__codelineno-2-2" name="__codelineno-2-2"></a>      |
+<a id="__codelineno-2-3" name="__codelineno-2-3"></a>     Yes
+<a id="__codelineno-2-4" name="__codelineno-2-4"></a>      v
+<a id="__codelineno-2-5" name="__codelineno-2-5"></a>[Is Upgrade Within Supported Release Train?]--No--&gt;[Use Non-ISSU]
+<a id="__codelineno-2-6" name="__codelineno-2-6"></a>      |
+<a id="__codelineno-2-7" name="__codelineno-2-7"></a>     Yes
+<a id="__codelineno-2-8" name="__codelineno-2-8"></a>      v
+<a id="__codelineno-2-9" name="__codelineno-2-9"></a>[ISSU Upgrade]
+</code></pre></div></td></tr></table></div>
+<h3 id="platform-specific-considerations">Platform-Specific Considerations<a class="headerlink" href="#platform-specific-considerations" title="Anchor link to this section">&para;</a></h3>
+<div class="admonition tip">
+<p class="admonition-title">Platform Requirements</p>
+<ul>
+<li><strong>Catalyst 9k:</strong> Prefer Install Mode, support for ISSU in certain scenarios, modular image management.</li>
+<li><strong>ISR/ASR Routers:</strong> Typically non-ISSU, require reload, ensure VM memory for virtual platforms.</li>
+<li><strong>NCS:</strong> May have unique upgrade steps, especially for service provider features.</li>
+</ul>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Always Consult Cisco Documentation</p>
+<p>Always consult latest Cisco release notes for platform-specific caveats. Maintain a mapping of platform capabilities and required upgrade steps.</p>
+</div>
+<hr />
+<h2 id="state-management-and-excel-driven-source-of-truth">State Management and Excel-Driven Source-of-Truth<a class="headerlink" href="#state-management-and-excel-driven-source-of-truth" title="Anchor link to this section">&para;</a></h2>
+<p><strong>Excel as SoT:</strong> Excel (or CSV) files are commonly used as the initial source-of-truth for device inventory and upgrade parameters. For scalability and reliability, consider migration to a database or open-source SoT tool (e.g., NetBox) as the environment grows.</p>
+<p><strong>Key Data Fields:</strong>
+- Device hostname, management IP, platform/model, current version, target version, image path, upgrade status, last upgrade timestamp, rollback status, operator notes.</p>
+<p><strong>State Persistence:</strong>
+- Update Excel/SoT after each workflow stage (e.g., pre-check passed, image transferred, upgrade complete).
+- Use version control (e.g., Git) for change tracking and auditability.</p>
+<p><strong>Integration Strategies:</strong>
+- Abstract Excel/CSV access behind a data access layer for future migration to databases or APIs.
+- Support bidirectional updates (orchestration writes status, operators can update approvals/notes).</p>
+<hr />
+<h2 id="cli-based-interaction-model-and-operator-workflows">CLI-Based Interaction Model and Operator Workflows<a class="headerlink" href="#cli-based-interaction-model-and-operator-workflows" title="Anchor link to this section">&para;</a></h2>
+<p><strong>CLI Interaction:</strong>
+- The orchestrator should support CLI-based prompts for operator approvals, rollback triggers, and status queries.
+- For human-in-the-loop workflows, implement approval gates before disruptive actions (e.g., reload, rollback).</p>
+<p><strong>Operator Workflow Example:</strong>
+1. Operator reviews pre-check results and approves upgrade.
+2. Orchestrator proceeds with image transfer and upgrade.
+3. If post-checks fail, operator is prompted to approve rollback.
+4. All actions and approvals are logged for compliance.</p>
+<p><strong>Best Practices:</strong>
+- Provide clear, actionable prompts and status messages.
+- Support both interactive and unattended (batch) modes.
+- Integrate with notification systems (email, Slack, etc.) for approvals and alerts.</p>
+<hr />
+<h2 id="security-considerations">Security Considerations<a class="headerlink" href="#security-considerations" title="Anchor link to this section">&para;</a></h2>
+<div class="admonition warning">
+<p class="admonition-title">Critical Security Requirements</p>
+<p><strong>Credential Management:</strong></p>
+<ul>
+<li>Store device credentials securely (e.g., encrypted vault, environment variables).</li>
+<li>Support per-device or per-group credentials for least privilege.</li>
+</ul>
+<p><strong>Image Integrity:</strong></p>
+<ul>
+<li>Always verify image hashes before and after transfer.</li>
+<li>Use signed images where supported.</li>
+</ul>
+<p><strong>Access Controls:</strong></p>
+<ul>
+<li>Restrict orchestrator execution to authorized operators.</li>
+<li>Log all actions for auditability.</li>
+</ul>
+<p><strong>Network Security:</strong></p>
+<ul>
+<li>Use secure protocols (SSH, SCP, HTTPS) for all device and file transfers.</li>
+<li>Avoid exposing sensitive data in logs or error messages.</li>
+</ul>
+</div>
+<hr />
+<h2 id="logging-telemetry-and-observability">Logging, Telemetry, and Observability<a class="headerlink" href="#logging-telemetry-and-observability" title="Anchor link to this section">&para;</a></h2>
+<p><strong>Logging:</strong>
+- Structured, timestamped logs for all workflow stages, actions, and errors.
+- Integration with log management/SIEM tools for compliance and troubleshooting.</p>
+<p><strong>Telemetry:</strong>
+- Metrics on upgrade duration, success/failure rates, transfer speeds, and error types.
+- Real-time dashboards for monitoring upgrade progress across devices.</p>
+<p><strong>Audit Trails:</strong>
+- Record all operator actions, approvals, and rollbacks.
+- Retain logs for compliance with regulatory requirements.</p>
+<hr />
+<h2 id="human-in-the-loop-and-approvalrollback-policies">Human-in-the-Loop and Approval/Rollback Policies<a class="headerlink" href="#human-in-the-loop-and-approvalrollback-policies" title="Anchor link to this section">&para;</a></h2>
+<p><strong>Approval Workflows:</strong>
+- Require operator approval before disruptive actions (reload, rollback).
+- Support fast-track approvals for critical or emergency upgrades.</p>
+<p><strong>Escalation Procedures:</strong>
+- Define escalation paths for failed upgrades or unresponsive operators.
+- Integrate with incident management systems (PagerDuty, ServiceNow).</p>
+<p><strong>Audit Logging:</strong>
+- Maintain detailed records of all approvals, rejections, and escalations.</p>
+<hr />
+<h2 id="testing-staging-and-lab-validation-strategies">Testing, Staging, and Lab Validation Strategies<a class="headerlink" href="#testing-staging-and-lab-validation-strategies" title="Anchor link to this section">&para;</a></h2>
+<p><strong>Staging:</strong>
+- Test orchestrator workflows in a lab environment with representative hardware and topologies.
+- Simulate common failure scenarios (e.g., image corruption, flash full, network loss).</p>
+<p><strong>Verification Matrices:</strong>
+- Maintain test matrices covering ISSU vs. non-ISSU, platform types, and edge cases.</p>
+<p><strong>Best Practices:</strong>
+- Use golden images and known-good configurations for baseline validation.
+- Automate test execution and result collection.</p>
+<hr />
+<h2 id="common-pitfalls-and-failure-modes">Common Pitfalls and Failure Modes<a class="headerlink" href="#common-pitfalls-and-failure-modes" title="Anchor link to this section">&para;</a></h2>
+<div class="admonition danger">
+<p class="admonition-title">Critical Pitfalls to Avoid</p>
+<ul>
+<li>Skipping image hash verification, leading to boot failures.</li>
+<li>Insufficient flash space, causing transfer or install failures.</li>
+<li>Boot variable misconfiguration, resulting in ROMmon boots.</li>
+<li>Stack member version mismatches, causing split-brain.</li>
+<li>Incomplete backups, complicating recovery.</li>
+</ul>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Failure Modes</p>
+<ul>
+<li>Network loss during transfer or upgrade.</li>
+<li>Device reloads into ROMmon due to image or config errors.</li>
+<li>Partial stack upgrades, leaving members out-of-sync.</li>
+</ul>
+</div>
+<div class="admonition success">
+<p class="admonition-title">Mitigation Strategies</p>
+<ul>
+<li>Automate all checks and halt on critical failures.</li>
+<li>Maintain robust rollback and recovery procedures.</li>
+<li>Log and alert on all failures for rapid response.</li>
+</ul>
+</div>
+<hr />
+<h2 id="integration-with-existing-automation-tools">Integration with Existing Automation Tools<a class="headerlink" href="#integration-with-existing-automation-tools" title="Anchor link to this section">&para;</a></h2>
+<p><strong>Ansible:</strong> Use Ansible playbooks for batch upgrades, leveraging the orchestrator as a custom module or via CLI integration.</p>
+<p><strong>Netmiko/Nornir:</strong> Integrate for device connection management and command execution.</p>
+<p><strong>Cisco DNA Center:</strong> For large-scale environments, consider integration with Cisco DNA Center APIs for inventory and upgrade orchestration.</p>
+<p><strong>Source-of-Truth Tools:</strong> Plan for future migration from Excel to NetBox, Git, or other SoT platforms for improved scalability and reliability.</p>
+<hr />
+<h2 id="compliance-audit-trail-and-reporting">Compliance, Audit Trail, and Reporting<a class="headerlink" href="#compliance-audit-trail-and-reporting" title="Anchor link to this section">&para;</a></h2>
+<p><strong>Compliance:</strong>
+- Ensure all upgrade actions are logged and traceable.
+- Generate reports on upgrade status, failures, and operator actions.</p>
+<p><strong>Audit Trail:</strong>
+- Maintain detailed logs for all workflow stages, approvals, and rollbacks.
+- Support export to CSV, PDF, or integration with compliance tools.</p>
+<p><strong>Reporting:</strong>
+- Real-time dashboards for upgrade progress.
+- Historical reports for trend analysis and continuous improvement.</p>
+<hr />
+<h2 id="error-handling-and-escalation-procedures">Error Handling and Escalation Procedures<a class="headerlink" href="#error-handling-and-escalation-procedures" title="Anchor link to this section">&para;</a></h2>
+<p><strong>Error Handling:</strong>
+- Classify errors (transient vs. permanent) and handle accordingly.
+- Implement retries with exponential backoff for transient errors.
+- Route unrecoverable errors to dead letter queues for manual intervention.</p>
+<p><strong>Escalation:</strong>
+- Notify operators and escalate to higher-level support if errors persist.
+- Provide actionable error messages and remediation steps.</p>
+<hr />
+<h2 id="smu-fpga-and-platform-firmware-handling">SMU, FPGA, and Platform Firmware Handling<a class="headerlink" href="#smu-fpga-and-platform-firmware-handling" title="Anchor link to this section">&para;</a></h2>
+<p><strong>SMU (Software Maintenance Upgrade):</strong>
+- Support installation, activation, and rollback of SMU packages for critical patches.
+- Automate compatibility checks and ensure SMUs are committed post-activation.</p>
+<p><strong>FPGA/Firmware:</strong>
+- Detect and manage required FPGA or platform firmware upgrades as part of the workflow.
+- Schedule firmware upgrades during maintenance windows due to potential reloads.</p>
+<hr />
+<h2 id="time-windows-scheduling-and-maintenance-window-management">Time Windows, Scheduling, and Maintenance Window Management<a class="headerlink" href="#time-windows-scheduling-and-maintenance-window-management" title="Anchor link to this section">&para;</a></h2>
+<p><strong>Scheduling:</strong>
+- Support scheduling upgrades within approved maintenance windows.
+- Batch upgrades to avoid network congestion and minimize impact.</p>
+<p><strong>Window Management:</strong>
+- Validate that upgrades do not exceed allocated windows.
+- Provide rollback triggers if upgrades overrun or fail within the window.</p>
+<hr />
+<h2 id="decision-trees-and-diagrams">Decision Trees and Diagrams<a class="headerlink" href="#decision-trees-and-diagrams" title="Anchor link to this section">&para;</a></h2>
+<p><strong>Upgrade Path Decision Tree (Textual Description):</strong></p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-3-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-3-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-3-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-3-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-3-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-3-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-3-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-3-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-3-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-3-10">10</a></span>
+<span class="normal"><a href="#__codelineno-3-11">11</a></span>
+<span class="normal"><a href="#__codelineno-3-12">12</a></span>
+<span class="normal"><a href="#__codelineno-3-13">13</a></span>
+<span class="normal"><a href="#__codelineno-3-14">14</a></span>
+<span class="normal"><a href="#__codelineno-3-15">15</a></span>
+<span class="normal"><a href="#__codelineno-3-16">16</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1"></a>[Start]
+<a id="__codelineno-3-2" name="__codelineno-3-2"></a>  |
+<a id="__codelineno-3-3" name="__codelineno-3-3"></a>  v
+<a id="__codelineno-3-4" name="__codelineno-3-4"></a>[Is Device in Install Mode?]--No--&gt;[Convert to Install Mode]
+<a id="__codelineno-3-5" name="__codelineno-3-5"></a>  |
+<a id="__codelineno-3-6" name="__codelineno-3-6"></a> Yes
+<a id="__codelineno-3-7" name="__codelineno-3-7"></a>  v
+<a id="__codelineno-3-8" name="__codelineno-3-8"></a>[Is Platform ISSU-Capable?]--No--&gt;[Plan Non-ISSU Upgrade]
+<a id="__codelineno-3-9" name="__codelineno-3-9"></a>  |
+<a id="__codelineno-3-10" name="__codelineno-3-10"></a> Yes
+<a id="__codelineno-3-11" name="__codelineno-3-11"></a>  v
+<a id="__codelineno-3-12" name="__codelineno-3-12"></a>[Is Upgrade Within Supported Release Train?]--No--&gt;[Plan Non-ISSU Upgrade]
+<a id="__codelineno-3-13" name="__codelineno-3-13"></a>  |
+<a id="__codelineno-3-14" name="__codelineno-3-14"></a> Yes
+<a id="__codelineno-3-15" name="__codelineno-3-15"></a>  v
+<a id="__codelineno-3-16" name="__codelineno-3-16"></a>[Plan ISSU Upgrade]
+</code></pre></div></td></tr></table></div>
+<p><strong>Rollback Decision Tree:</strong></p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-4-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-4-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-4-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-4-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-4-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-4-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-4-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-4-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-4-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-4-10">10</a></span>
+<span class="normal"><a href="#__codelineno-4-11">11</a></span>
+<span class="normal"><a href="#__codelineno-4-12">12</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1"></a>[Post-Upgrade Health Check]
+<a id="__codelineno-4-2" name="__codelineno-4-2"></a>  |
+<a id="__codelineno-4-3" name="__codelineno-4-3"></a>  v
+<a id="__codelineno-4-4" name="__codelineno-4-4"></a>[Success?]--Yes--&gt;[Mark Complete]
+<a id="__codelineno-4-5" name="__codelineno-4-5"></a>  |
+<a id="__codelineno-4-6" name="__codelineno-4-6"></a> No
+<a id="__codelineno-4-7" name="__codelineno-4-7"></a>  v
+<a id="__codelineno-4-8" name="__codelineno-4-8"></a>[Is Rollback Possible?]--No--&gt;[Escalate/Manual Intervention]
+<a id="__codelineno-4-9" name="__codelineno-4-9"></a>  |
+<a id="__codelineno-4-10" name="__codelineno-4-10"></a> Yes
+<a id="__codelineno-4-11" name="__codelineno-4-11"></a>  v
+<a id="__codelineno-4-12" name="__codelineno-4-12"></a>[Initiate Rollback]
+</code></pre></div></td></tr></table></div>
+<hr />
+<h2 id="conclusion-and-next-steps">Conclusion and Next Steps<a class="headerlink" href="#conclusion-and-next-steps" title="Anchor link to this section">&para;</a></h2>
+<p>A well-designed IOS-XE Software Upgrade Orchestrator is a force multiplier for network operations, enabling safe, scalable, and auditable upgrades across diverse Cisco platforms. By adhering to modular design, best practices, and robust error handling, the orchestrator minimizes risk, reduces downtime, and streamlines compliance. Integration with an Excel-driven source-of-truth and CLI-based operator workflows ensures accessibility and adaptability for a wide range of environments.</p>
+<div class="admonition success">
+<p class="admonition-title">Next Steps</p>
+<ul>
+<li>Finalize module interfaces and data models.</li>
+<li>Develop and test each module independently, starting with inventory and device abstraction.</li>
+<li>Implement robust logging, error handling, and rollback mechanisms.</li>
+<li>Validate workflows in a lab environment, covering all supported platforms and edge cases.</li>
+<li>Plan for future integration with advanced SoT tools and automation frameworks.</li>
+</ul>
+</div>
+<hr />
+<div class="admonition info">
+<p class="admonition-title">Want to Contribute or Collaborate?</p>
+<p>This design document is part of Nautomation Prime's commitment to transparent, production-ready automation. If you have feedback, suggestions, or would like to collaborate on implementation, please visit our <a href="../../about/">about page</a> for contact information.</p>
+</div>
+
+
+
+
+
+
+
+  
+    
+  
+  
+
+
+  <aside class="md-source-file">
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="Last update">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="February 5, 2026 17:52:02 UTC">February 5, 2026</span>
+  </span>
+
+    
+    
+    
+    
+  </aside>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      © 2026 Christopher Davies T/A Nautomation Prime — Not affiliated with Cisco Systems, Inc.<br> Empowering Network Automation Professionals · Built with Material for MkDocs
+
+    </div>
+  
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+    <a href="https://www.linkedin.com/company/nautomationprime" target="_blank" rel="noopener" title="LinkedIn" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3M135.4 416H69V202.2h66.5V416zM102.2 96a38.5 38.5 0 1 1 0 77 38.5 38.5 0 1 1 0-77m282.1 320h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+    <a href="https://github.com/Nautomation-Prime" target="_blank" rel="noopener" title="GitHub" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+    
+    
+    
+    
+    <a href="mailto:nautomationprime.f3wfe@simplelogin.com" target="_blank" rel="noopener" title="Contact Nautomation Prime" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m20 8-8 5-8-5V6l8 5 8-5m0-2H4c-1.11 0-2 .89-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+      <div class="md-consent" data-md-component="consent" id="__consent" hidden>
+        <div class="md-consent__overlay"></div>
+        <aside class="md-consent__inner">
+          <form class="md-consent__form md-grid md-typeset" name="consent">
+            
+
+
+  
+
+
+<h4>Cookie consent</h4>
+<p>We use cookies to recognize your repeated visits and preferences, as well as to measure the effectiveness of our documentation and whether users find what they're searching for. With your consent, you're helping us to make our documentation better.</p>
+<input class="md-toggle" type="checkbox" id="__settings" >
+<div class="md-consent__settings">
+  <ul class="task-list">
+    
+    
+      
+    
+    
+      
+        
+  
+  
+    
+    
+  
+  <li class="task-list-item">
+    <label class="task-list-control">
+      <input type="checkbox" name="github" checked>
+      <span class="task-list-indicator"></span>
+      GitHub
+    </label>
+  </li>
+
+      
+    
+    
+  </ul>
+</div>
+<div class="md-consent__controls">
+  
+    
+      <button class="md-button md-button--primary">Accept</button>
+    
+    
+    
+  
+    
+    
+    
+      <label class="md-button" for="__settings">Manage settings</label>
+    
+  
+</div>
+          </form>
+        </aside>
+      </div>
+      <script>var consent=__md_get("__consent");if(consent)for(var input of document.forms.consent.elements)input.name&&(input.checked=consent[input.name]||!1);else"file:"!==location.protocol&&setTimeout((function(){document.querySelector("[data-md-component=consent]").hidden=!1}),250);var form=document.forms.consent;for(var action of["submit","reset"])form.addEventListener(action,(function(e){if(e.preventDefault(),"reset"===e.type)for(var n of document.forms.consent.elements)n.name&&(n.checked=!1);__md_set("__consent",Object.fromEntries(Array.from(new FormData(form).keys()).map((function(e){return[e,!0]})))),location.hash="",location.reload()}))</script>
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.tracking", "navigation.indexes", "toc.integrate", "content.code.copy", "content.code.annotate", "content.tooltips", "search.share", "search.suggest", "search.highlight", "search.stemmer", "announce.dismiss"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>
