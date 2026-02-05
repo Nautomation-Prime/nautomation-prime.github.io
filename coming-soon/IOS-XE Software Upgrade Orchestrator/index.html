@@ -1227,6 +1227,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#nornir-the-python-native-framework-for-scalable-network-automation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Nornir: The Python-Native Framework for Scalable Network Automation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#other-automation-tool-integrations" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2566,9 +2577,242 @@
 <p><strong>Use Ansible for device-level task execution and idempotency</strong>, and <strong>develop Python orchestrators for workflow state management, conditional logic, and integrations</strong> that extend Ansible's capabilities. This approach leverages Ansible's mature ecosystem while adding the flexibility and control of Python for complex enterprise workflows.</p>
 </div>
 <hr />
+<h3 id="nornir-the-python-native-framework-for-scalable-network-automation">Nornir: The Python-Native Framework for Scalable Network Automation<a class="headerlink" href="#nornir-the-python-native-framework-for-scalable-network-automation" title="Anchor link to this section">&para;</a></h3>
+<div class="admonition info">
+<p class="admonition-title">What is Nornir?</p>
+<p><strong>Nornir</strong> is a pure-Python automation framework specifically designed for network operations at scale. Unlike Ansible (which uses YAML-based playbooks), Nornir is <strong>Python-native</strong>—you write automation logic in Python itself, giving you the full power of a programming language without abstraction layers.</p>
+<p><strong>Why it's less known:</strong> Nornir is newer (first released in 2018) and targets a more technical audience (network engineers who code in Python). It lacks the marketing presence of Ansible/Red Hat, but has become the framework of choice for sophisticated network automation engineers who need Python's flexibility with built-in scalability.</p>
+</div>
+<p><strong>Why Nornir is Ideally Suited for IOS-XE Upgrade Orchestration:</strong></p>
+<ol>
+<li>
+<p><strong>Python-Native Design</strong></p>
+<ul>
+<li><strong>No DSL Abstraction:</strong> You write pure Python—no need to learn YAML syntax, Jinja2 templating quirks, or Ansible-specific modules. If you know Python, you know Nornir.</li>
+<li><strong>Full Language Features:</strong> Use classes, decorators, context managers, async/await, and any Python library (openpyxl, pandas, requests) directly in your automation logic.</li>
+<li><strong>Why It Matters:</strong> IOS-XE upgrades require complex conditional logic, state management, and error handling that's easier to express in Python than YAML-based playbooks.</li>
+</ul>
+</li>
+<li>
+<p><strong>Built-In Parallelization and Thread Management</strong></p>
+<ul>
+<li><strong>Automatic Concurrency:</strong> Nornir executes tasks across devices in parallel using thread pools (configurable workers). No need to manually manage threading like you would with raw Netmiko + threading.</li>
+<li><strong>Granular Control:</strong> Set concurrency limits per task (e.g., 50 concurrent connections for pre-checks, but only 10 for image transfers to avoid network saturation).</li>
+<li><strong>Why It Matters:</strong> Upgrading hundreds of devices requires efficient parallelization. Nornir handles this out-of-the-box with better control than Ansible's <code>serial</code> or <code>forks</code> settings.</li>
+</ul>
+</li>
+<li>
+<p><strong>Flexible Inventory System</strong></p>
+<ul>
+<li><strong>Multiple Inventory Sources:</strong> Nornir supports SimpleInventory (YAML), NetBox, Ansible inventory, or custom inventory plugins. You can also build inventories programmatically from Excel, CSV, or databases.</li>
+<li><strong>Rich Host Data:</strong> Each host object carries arbitrary data (groups, custom attributes, credentials), accessible in tasks.</li>
+<li><strong>Why It Matters:</strong> For Excel-driven workflows, you can write a custom Nornir inventory plugin that reads directly from Excel, mapping columns to host attributes (platform, target version, maintenance window).</li>
+</ul>
+</li>
+<li>
+<p><strong>Plugin Architecture for Extensibility</strong></p>
+<ul>
+<li><strong>Task Plugins:</strong> Encapsulate reusable operations (e.g., <code>netmiko_send_command</code>, <code>napalm_get</code>, custom <code>ios_xe_upgrade_install_mode</code>).</li>
+<li><strong>Connection Plugins:</strong> Manage device connections (Netmiko, NAPALM, Scrapli, or custom SSH implementations).</li>
+<li><strong>Inventory, Processor, and Runner Plugins:</strong> Customize every aspect of Nornir's behavior.</li>
+<li><strong>Why It Matters:</strong> You can develop custom plugins for IOS-XE-specific upgrade operations (StackWise coordination, dual-SUP handling) and reuse them across projects.</li>
+</ul>
+</li>
+<li>
+<p><strong>Integrated Result Object and Error Handling</strong></p>
+<ul>
+<li><strong>Structured Results:</strong> Every task returns a <code>Result</code> object with success/failure status, output, exception details, and host info. Results are aggregated in a <code>AggregatedResult</code> object for easy analysis.</li>
+<li><strong>Granular Error Handling:</strong> Continue executing tasks even if some hosts fail (<code>on_failed=True</code>), or halt execution on first failure. Analyze failed hosts and retry selectively.</li>
+<li><strong>Why It Matters:</strong> Upgrades involve multi-stage workflows where you need to track which devices succeeded/failed at each stage (pre-check, transfer, upgrade, verify) and handle partial failures gracefully.</li>
+</ul>
+</li>
+<li>
+<p><strong>Integration with Netmiko, NAPALM, and Scrapli</strong></p>
+<ul>
+<li><strong>Leverage Existing Libraries:</strong> Nornir plugins provide seamless integration with Netmiko (CLI automation), NAPALM (structured data retrieval), and Scrapli (fast, modern SSH library).</li>
+<li><strong>Best of Both Worlds:</strong> Use Netmiko for raw CLI commands, NAPALM for standardized getters (facts, interfaces), and Scrapli for performance-critical operations.</li>
+<li><strong>Why It Matters:</strong> You don't reinvent the wheel—Nornir orchestrates existing, battle-tested libraries while providing structure, parallelization, and result handling.</li>
+</ul>
+</li>
+</ol>
+<p><strong>How Nornir Enhances This Python Orchestrator:</strong></p>
+<div class="admonition success">
+<p class="admonition-title">Integration Strategies</p>
+<p><strong>1. Use Nornir as the Core Execution Engine</strong></p>
+<ul>
+<li>Replace custom threading/multiprocessing code with Nornir's built-in parallelization.</li>
+<li>Define upgrade workflow stages as Nornir tasks: <code>pre_check_task()</code>, <code>transfer_image_task()</code>, <code>upgrade_task()</code>, <code>verify_task()</code>.</li>
+<li>Execute tasks across device inventory with automatic concurrency management: <code>nr.run(task=pre_check_task)</code>.</li>
+</ul>
+<p><strong>2. Custom Nornir Inventory from Excel</strong></p>
+<ul>
+<li>Develop a custom Nornir inventory plugin that reads device list, credentials, and upgrade parameters from Excel.</li>
+<li>Map Excel columns to Nornir host attributes: <code>hostname</code>, <code>platform</code>, <code>target_version</code>, <code>maintenance_window</code>, etc.</li>
+<li>Filter inventory dynamically: <code>nr_filtered = nr.filter(platform="catalyst9k", maintenance_window="tonight")</code>.</li>
+</ul>
+<p><strong>3. Encapsulate IOS-XE Upgrade Logic in Nornir Tasks</strong></p>
+<ul>
+<li>Create custom Nornir tasks for platform-specific operations:<ul>
+<li><code>ios_xe_install_mode_upgrade()</code>: Handles <code>install add</code>, <code>install activate</code>, <code>install commit</code> workflow.</li>
+<li><code>stackwise_version_check()</code>: Validates all stack members are running same version.</li>
+<li><code>dual_sup_upgrade()</code>: Coordinates standby-first upgrade logic.</li>
+</ul>
+</li>
+<li>Reuse tasks across different upgrade scenarios and device groups.</li>
+</ul>
+<p><strong>4. Leverage Nornir Processors for Logging and State Tracking</strong></p>
+<ul>
+<li>Use Nornir's <code>processor</code> framework to automatically log every task execution to Excel, database, or SIEM.</li>
+<li>Example: Custom processor updates Excel row with upgrade status after each task completes.</li>
+</ul>
+<p><strong>5. Conditional Task Execution Based on Results</strong></p>
+<ul>
+<li>Analyze <code>AggregatedResult</code> after each stage to determine next steps:
+    <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-3-1">1</a></span>
+<span class="normal"><a href="#__codelineno-3-2">2</a></span>
+<span class="normal"><a href="#__codelineno-3-3">3</a></span>
+<span class="normal"><a href="#__codelineno-3-4">4</a></span>
+<span class="normal"><a href="#__codelineno-3-5">5</a></span>
+<span class="normal"><a href="#__codelineno-3-6">6</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1"></a><span class="n">result</span> <span class="o">=</span> <span class="n">nr</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">task</span><span class="o">=</span><span class="n">pre_check_task</span><span class="p">)</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2"></a><span class="n">failed_hosts</span> <span class="o">=</span> <span class="p">[</span><span class="n">host</span> <span class="k">for</span> <span class="n">host</span><span class="p">,</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">result</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="n">r</span><span class="o">.</span><span class="n">failed</span><span class="p">]</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3"></a><span class="k">if</span> <span class="n">failed_hosts</span><span class="p">:</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4"></a>    <span class="c1"># Remove failed hosts from inventory, notify operator</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5"></a>    <span class="n">nr</span> <span class="o">=</span> <span class="n">nr</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="o">~</span><span class="n">F</span><span class="p">(</span><span class="n">name__any</span><span class="o">=</span><span class="n">failed_hosts</span><span class="p">))</span>
+<a id="__codelineno-3-6" name="__codelineno-3-6"></a><span class="n">nr</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">task</span><span class="o">=</span><span class="n">transfer_image_task</span><span class="p">)</span>  <span class="c1"># Only successful hosts proceed</span>
+</code></pre></div></td></tr></table></div></li>
+<li>Implement multi-tier rollback: if post-verification fails, execute rollback tasks only on affected hosts.</li>
+</ul>
+</div>
+<p><strong>Nornir vs. Raw Python with Netmiko/Threading:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Aspect</th>
+<th>Raw Python + Netmiko + Threading</th>
+<th>Nornir + Netmiko</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Parallelization</strong></td>
+<td>Manual thread pool management</td>
+<td>Built-in, configurable workers</td>
+</tr>
+<tr>
+<td><strong>Inventory Management</strong></td>
+<td>Custom data structures (lists, dicts)</td>
+<td>Rich inventory objects with filtering</td>
+</tr>
+<tr>
+<td><strong>Task Encapsulation</strong></td>
+<td>Functions scattered across modules</td>
+<td>Reusable task plugins</td>
+</tr>
+<tr>
+<td><strong>Result Handling</strong></td>
+<td>Manual result aggregation</td>
+<td>Structured <code>Result</code> and <code>AggregatedResult</code></td>
+</tr>
+<tr>
+<td><strong>Error Handling</strong></td>
+<td>Try/except in each thread</td>
+<td>Integrated failure tracking</td>
+</tr>
+<tr>
+<td><strong>Code Complexity</strong></td>
+<td>Higher (threading boilerplate)</td>
+<td>Lower (framework handles concurrency)</td>
+</tr>
+<tr>
+<td><strong>Reusability</strong></td>
+<td>Limited (project-specific)</td>
+<td>High (plugins, tasks shareable)</td>
+</tr>
+<tr>
+<td><strong>Learning Curve</strong></td>
+<td>Python threading/multiprocessing</td>
+<td>Nornir concepts (tasks, inventory, results)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Real-World Use Case: Nornir-Powered Upgrade Orchestrator</strong></p>
+<p>A network team develops an IOS-XE upgrade orchestrator using Nornir:</p>
+<ol>
+<li><strong>Custom Excel Inventory Plugin:</strong> Reads device list from Excel (hostname, IP, platform, target version, maintenance window). Filters devices scheduled for tonight's maintenance window.</li>
+<li><strong>Pre-Check Task:</strong> Nornir executes <code>pre_check_task()</code> across 200 devices in parallel (20 workers). Task uses Netmiko to check flash space, version, and redundancy status. Results aggregated; 5 devices fail (insufficient flash). Excel updated with failure reasons.</li>
+<li><strong>Image Transfer Task:</strong> Remaining 195 devices proceed to <code>transfer_image_task()</code>. Task uses SCP via Netmiko, verifies hash. 2 devices fail (network timeout). Orchestrator logs failures, removes from inventory.</li>
+<li><strong>Upgrade Task:</strong> 193 devices execute <code>ios_xe_install_mode_upgrade()</code> task. Task detects dual-SUP chassis, executes standby-first upgrade logic. Real-time progress logged to Excel.</li>
+<li><strong>Verification Task:</strong> <code>verify_task()</code> confirms version, redundancy, and interface status. All devices pass.</li>
+<li><strong>Rollback Logic:</strong> If any device failed verification, orchestrator would execute <code>rollback_task()</code> only on failed hosts.</li>
+</ol>
+<p><strong>Benefits:</strong>
+- <strong>Minimal Boilerplate:</strong> Nornir handles threading, connection pooling, result aggregation—team focuses on upgrade logic.
+- <strong>Parallel Execution:</strong> 200 devices pre-checked in minutes (vs. hours sequentially).
+- <strong>Structured Results:</strong> Easy to identify which devices failed at which stage, generate Excel reports.
+- <strong>Reusable Tasks:</strong> <code>dual_sup_upgrade()</code> task reused across multiple projects.</p>
+<p><strong>Decision Matrix: When to Use Nornir</strong></p>
+<table>
+<thead>
+<tr>
+<th>Scenario</th>
+<th>Raw Python + Netmiko</th>
+<th>Nornir + Netmiko</th>
+<th>Ansible</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Small-scale (&lt; 10 devices)</td>
+<td>✅ Simple, sufficient</td>
+<td>⚠️ Overkill</td>
+<td>✅ Quick playbooks</td>
+</tr>
+<tr>
+<td>Large-scale (100+ devices)</td>
+<td>⚠️ Manual threading overhead</td>
+<td>✅ Ideal choice</td>
+<td>✅ Good option</td>
+</tr>
+<tr>
+<td>Complex Python logic</td>
+<td>✅ Full control</td>
+<td>✅ Best of both worlds</td>
+<td>⚠️ YAML limitations</td>
+</tr>
+<tr>
+<td>Team already uses Ansible</td>
+<td>⚠️ Learning curve</td>
+<td>⚠️ Paradigm shift</td>
+<td>✅ Leverage existing</td>
+</tr>
+<tr>
+<td>Need reusable task library</td>
+<td>⚠️ Manual abstraction</td>
+<td>✅ Plugin architecture</td>
+<td>⚠️ Role-based reuse</td>
+</tr>
+<tr>
+<td>Excel-driven workflows</td>
+<td>✅ Full flexibility</td>
+<td>✅ Custom inventory plugin</td>
+<td>⚠️ Requires pre-processing</td>
+</tr>
+<tr>
+<td>Real-time operator interaction</td>
+<td>✅ Native Python</td>
+<td>✅ Native Python</td>
+<td>⚠️ Requires AWX/Tower</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition tip">
+<p class="admonition-title">Best Practice Recommendation</p>
+<p><strong>For Python-first teams building large-scale network automation</strong>, Nornir is the ideal framework. It provides structure, scalability, and built-in parallelization without sacrificing Python's flexibility. For this IOS-XE upgrade orchestrator, Nornir would serve as the <strong>execution engine</strong>, handling device connections, task parallelization, and result aggregation, while your custom Python logic manages workflow orchestration, Excel integration, and business rules.</p>
+</div>
+<hr />
 <h3 id="other-automation-tool-integrations">Other Automation Tool Integrations<a class="headerlink" href="#other-automation-tool-integrations" title="Anchor link to this section">&para;</a></h3>
-<p><strong>Netmiko/Nornir:</strong> Integrate for low-level device connection management and command execution when Ansible modules don't provide sufficient granularity.</p>
-<p><strong>Source-of-Truth Tools:</strong> Plan for future migration from Excel to NetBox, Git, or other SoT platforms for improved scalability and reliability.</p>
+<p><strong>Netmiko (Standalone):</strong> For teams not using Nornir or Ansible, integrate Netmiko directly for low-level device connection management and command execution. Requires manual thread management for parallel operations.</p>
+<p><strong>Source-of-Truth Tools:</strong> Plan for future migration from Excel to NetBox, Git, or other SoT platforms for improved scalability and reliability. Both Nornir and Ansible provide native NetBox inventory plugins.</p>
 <hr />
 <h2 id="compliance-audit-trail-and-reporting">Compliance, Audit Trail, and Reporting<a class="headerlink" href="#compliance-audit-trail-and-reporting" title="Anchor link to this section">&para;</a></h2>
 <p><strong>Compliance:</strong>
@@ -2608,39 +2852,6 @@
 <hr />
 <h2 id="decision-trees-and-diagrams">Decision Trees and Diagrams<a class="headerlink" href="#decision-trees-and-diagrams" title="Anchor link to this section">&para;</a></h2>
 <p><strong>Upgrade Path Decision Tree (Textual Description):</strong></p>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-3-1"> 1</a></span>
-<span class="normal"><a href="#__codelineno-3-2"> 2</a></span>
-<span class="normal"><a href="#__codelineno-3-3"> 3</a></span>
-<span class="normal"><a href="#__codelineno-3-4"> 4</a></span>
-<span class="normal"><a href="#__codelineno-3-5"> 5</a></span>
-<span class="normal"><a href="#__codelineno-3-6"> 6</a></span>
-<span class="normal"><a href="#__codelineno-3-7"> 7</a></span>
-<span class="normal"><a href="#__codelineno-3-8"> 8</a></span>
-<span class="normal"><a href="#__codelineno-3-9"> 9</a></span>
-<span class="normal"><a href="#__codelineno-3-10">10</a></span>
-<span class="normal"><a href="#__codelineno-3-11">11</a></span>
-<span class="normal"><a href="#__codelineno-3-12">12</a></span>
-<span class="normal"><a href="#__codelineno-3-13">13</a></span>
-<span class="normal"><a href="#__codelineno-3-14">14</a></span>
-<span class="normal"><a href="#__codelineno-3-15">15</a></span>
-<span class="normal"><a href="#__codelineno-3-16">16</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1"></a>[Start]
-<a id="__codelineno-3-2" name="__codelineno-3-2"></a>  |
-<a id="__codelineno-3-3" name="__codelineno-3-3"></a>  v
-<a id="__codelineno-3-4" name="__codelineno-3-4"></a>[Is Device in Install Mode?]--No--&gt;[Convert to Install Mode]
-<a id="__codelineno-3-5" name="__codelineno-3-5"></a>  |
-<a id="__codelineno-3-6" name="__codelineno-3-6"></a> Yes
-<a id="__codelineno-3-7" name="__codelineno-3-7"></a>  v
-<a id="__codelineno-3-8" name="__codelineno-3-8"></a>[Is Platform ISSU-Capable?]--No--&gt;[Plan Non-ISSU Upgrade]
-<a id="__codelineno-3-9" name="__codelineno-3-9"></a>  |
-<a id="__codelineno-3-10" name="__codelineno-3-10"></a> Yes
-<a id="__codelineno-3-11" name="__codelineno-3-11"></a>  v
-<a id="__codelineno-3-12" name="__codelineno-3-12"></a>[Is Upgrade Within Supported Release Train?]--No--&gt;[Plan Non-ISSU Upgrade]
-<a id="__codelineno-3-13" name="__codelineno-3-13"></a>  |
-<a id="__codelineno-3-14" name="__codelineno-3-14"></a> Yes
-<a id="__codelineno-3-15" name="__codelineno-3-15"></a>  v
-<a id="__codelineno-3-16" name="__codelineno-3-16"></a>[Plan ISSU Upgrade]
-</code></pre></div></td></tr></table></div>
-<p><strong>Rollback Decision Tree:</strong></p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-4-1"> 1</a></span>
 <span class="normal"><a href="#__codelineno-4-2"> 2</a></span>
 <span class="normal"><a href="#__codelineno-4-3"> 3</a></span>
@@ -2652,18 +2863,51 @@
 <span class="normal"><a href="#__codelineno-4-9"> 9</a></span>
 <span class="normal"><a href="#__codelineno-4-10">10</a></span>
 <span class="normal"><a href="#__codelineno-4-11">11</a></span>
-<span class="normal"><a href="#__codelineno-4-12">12</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1"></a>[Post-Upgrade Health Check]
+<span class="normal"><a href="#__codelineno-4-12">12</a></span>
+<span class="normal"><a href="#__codelineno-4-13">13</a></span>
+<span class="normal"><a href="#__codelineno-4-14">14</a></span>
+<span class="normal"><a href="#__codelineno-4-15">15</a></span>
+<span class="normal"><a href="#__codelineno-4-16">16</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1"></a>[Start]
 <a id="__codelineno-4-2" name="__codelineno-4-2"></a>  |
 <a id="__codelineno-4-3" name="__codelineno-4-3"></a>  v
-<a id="__codelineno-4-4" name="__codelineno-4-4"></a>[Success?]--Yes--&gt;[Mark Complete]
+<a id="__codelineno-4-4" name="__codelineno-4-4"></a>[Is Device in Install Mode?]--No--&gt;[Convert to Install Mode]
 <a id="__codelineno-4-5" name="__codelineno-4-5"></a>  |
-<a id="__codelineno-4-6" name="__codelineno-4-6"></a> No
+<a id="__codelineno-4-6" name="__codelineno-4-6"></a> Yes
 <a id="__codelineno-4-7" name="__codelineno-4-7"></a>  v
-<a id="__codelineno-4-8" name="__codelineno-4-8"></a>[Is Rollback Possible?]--No--&gt;[Escalate/Manual Intervention]
+<a id="__codelineno-4-8" name="__codelineno-4-8"></a>[Is Platform ISSU-Capable?]--No--&gt;[Plan Non-ISSU Upgrade]
 <a id="__codelineno-4-9" name="__codelineno-4-9"></a>  |
 <a id="__codelineno-4-10" name="__codelineno-4-10"></a> Yes
 <a id="__codelineno-4-11" name="__codelineno-4-11"></a>  v
-<a id="__codelineno-4-12" name="__codelineno-4-12"></a>[Initiate Rollback]
+<a id="__codelineno-4-12" name="__codelineno-4-12"></a>[Is Upgrade Within Supported Release Train?]--No--&gt;[Plan Non-ISSU Upgrade]
+<a id="__codelineno-4-13" name="__codelineno-4-13"></a>  |
+<a id="__codelineno-4-14" name="__codelineno-4-14"></a> Yes
+<a id="__codelineno-4-15" name="__codelineno-4-15"></a>  v
+<a id="__codelineno-4-16" name="__codelineno-4-16"></a>[Plan ISSU Upgrade]
+</code></pre></div></td></tr></table></div>
+<p><strong>Rollback Decision Tree:</strong></p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-5-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-5-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-5-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-5-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-5-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-5-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-5-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-5-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-5-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-5-10">10</a></span>
+<span class="normal"><a href="#__codelineno-5-11">11</a></span>
+<span class="normal"><a href="#__codelineno-5-12">12</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1"></a>[Post-Upgrade Health Check]
+<a id="__codelineno-5-2" name="__codelineno-5-2"></a>  |
+<a id="__codelineno-5-3" name="__codelineno-5-3"></a>  v
+<a id="__codelineno-5-4" name="__codelineno-5-4"></a>[Success?]--Yes--&gt;[Mark Complete]
+<a id="__codelineno-5-5" name="__codelineno-5-5"></a>  |
+<a id="__codelineno-5-6" name="__codelineno-5-6"></a> No
+<a id="__codelineno-5-7" name="__codelineno-5-7"></a>  v
+<a id="__codelineno-5-8" name="__codelineno-5-8"></a>[Is Rollback Possible?]--No--&gt;[Escalate/Manual Intervention]
+<a id="__codelineno-5-9" name="__codelineno-5-9"></a>  |
+<a id="__codelineno-5-10" name="__codelineno-5-10"></a> Yes
+<a id="__codelineno-5-11" name="__codelineno-5-11"></a>  v
+<a id="__codelineno-5-12" name="__codelineno-5-12"></a>[Initiate Rollback]
 </code></pre></div></td></tr></table></div>
 <hr />
 <h2 id="conclusion-and-next-steps">Conclusion and Next Steps<a class="headerlink" href="#conclusion-and-next-steps" title="Anchor link to this section">&para;</a></h2>
@@ -2703,7 +2947,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="February 5, 2026 18:31:29 UTC">February 5, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="February 5, 2026 18:45:34 UTC">February 5, 2026</span>
   </span>
 
     
