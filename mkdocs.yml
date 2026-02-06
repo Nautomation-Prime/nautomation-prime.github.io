@@ -139,6 +139,7 @@ nav:
   - Script Library: scripts/index.md
   - Coming Soon:
       - Overview: coming-soon/index.md
+      - Cisco IOS-XE Zero Touch Provisioning: coming-soon/Cisco IOS-XE Zero Touch Provisioning.md
       - IOS-XE Upgrade Orchestrator: coming-soon/IOS-XE Software Upgrade Orchestrator.md
   - Legal:
       - Privacy Policy: legal/privacy-policy.md
