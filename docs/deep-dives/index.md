@@ -1,5 +1,4 @@
 ---
-title: Technical Deep Dives
 description: Line-by-line breakdowns of production-ready Cisco Python automation. Learn threading, security, and enterprise patterns through comprehensive guides.
 tags:
   - Deep Dives
