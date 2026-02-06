@@ -1161,10 +1161,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#decision-tree-diagram-description-fault-handling" class="md-nav__link">
+  <a href="#fault-handling-decision-flow" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Decision Tree Diagram Description: Fault Handling
+        Fault Handling Decision Flow
       
     </span>
   </a>
@@ -1902,29 +1902,37 @@
 <li><strong>Logging and Observability Layer:</strong> Provides detailed logging, telemetry, and audit trails for compliance and troubleshooting.  </li>
 <li><strong>Operator Interaction Layer:</strong> Supports CLI-based prompts, approvals, and rollback triggers, enabling human-in-the-loop workflows.</li>
 </ul>
-<p><strong>Textual Architecture Diagram Description:</strong></p>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1"> 1</a></span>
-<span class="normal"><a href="#__codelineno-0-2"> 2</a></span>
-<span class="normal"><a href="#__codelineno-0-3"> 3</a></span>
-<span class="normal"><a href="#__codelineno-0-4"> 4</a></span>
-<span class="normal"><a href="#__codelineno-0-5"> 5</a></span>
-<span class="normal"><a href="#__codelineno-0-6"> 6</a></span>
-<span class="normal"><a href="#__codelineno-0-7"> 7</a></span>
-<span class="normal"><a href="#__codelineno-0-8"> 8</a></span>
-<span class="normal"><a href="#__codelineno-0-9"> 9</a></span>
-<span class="normal"><a href="#__codelineno-0-10">10</a></span>
-<span class="normal"><a href="#__codelineno-0-11">11</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1"></a>+-------------------------------------------------------------+
-<a id="__codelineno-0-2" name="__codelineno-0-2"></a>|                IOS-XE Software Upgrade Orchestrator         |
-<a id="__codelineno-0-3" name="__codelineno-0-3"></a>+-------------------------------------------------------------+
-<a id="__codelineno-0-4" name="__codelineno-0-4"></a>|  [Inventory/State] &lt;--&gt; [Workflow Engine] &lt;--&gt; [Operator]   |
-<a id="__codelineno-0-5" name="__codelineno-0-5"></a>|         |                        |                |         |
-<a id="__codelineno-0-6" name="__codelineno-0-6"></a>|         v                        v                v         |
-<a id="__codelineno-0-7" name="__codelineno-0-7"></a>|  [Device Abstraction] &lt;--&gt; [Transport/Exec] &lt;--&gt; [Logging]  |
-<a id="__codelineno-0-8" name="__codelineno-0-8"></a>+-------------------------------------------------------------+
-<a id="__codelineno-0-9" name="__codelineno-0-9"></a>|                  [External Integrations]                    |
-<a id="__codelineno-0-10" name="__codelineno-0-10"></a>|   (Ansible, Netmiko, Nornir, DNA Center, Excel, Git, etc.)  |
-<a id="__codelineno-0-11" name="__codelineno-0-11"></a>+-------------------------------------------------------------+
-</code></pre></div></td></tr></table></div>
+<p><strong>Architecture Diagram:</strong></p>
+<pre class="mermaid"><code>graph TB
+    subgraph Orchestrator["IOS-XE Software Upgrade Orchestrator"]
+        subgraph Top[" "]
+            INV[Inventory/State]
+            WF[Workflow Engine]
+            OP[Operator]
+        end
+        subgraph Bottom[" "]
+            DA[Device Abstraction]
+            TE[Transport/Exec]
+            LOG[Logging]
+        end
+    end
+
+    subgraph EXT["External Integrations"]
+        INT["Ansible, Netmiko, Nornir&lt;br/&gt;DNA Center, Excel, Git"]
+    end
+
+    INV &lt;--&gt; WF
+    WF &lt;--&gt; OP
+    INV --&gt; DA
+    WF --&gt; TE
+    OP --&gt; LOG
+    DA &lt;--&gt; TE
+    TE &lt;--&gt; LOG
+    DA --&gt; INT
+    TE --&gt; INT
+
+    style Orchestrator fill:#e1f5ff
+    style EXT fill:#fff4e6</code></pre>
 <p>This layered approach ensures separation of concerns, extensibility, and maintainability. Each module can be independently developed, tested, and replaced as requirements evolve.</p>
 <hr />
 <h2 id="workflow-stages-end-to-end-upgrade-process">Workflow Stages: End-to-End Upgrade Process<a class="headerlink" href="#workflow-stages-end-to-end-upgrade-process" title="Anchor link to this section">&para;</a></h2>
@@ -2281,47 +2289,26 @@
 </ul>
 <h4 id="idempotency">Idempotency<a class="headerlink" href="#idempotency" title="Anchor link to this section">&para;</a></h4>
 <p>All operations should be designed so that repeated execution with the same input yields the same result, preventing unintended side effects (e.g., duplicate image transfers, repeated reloads).</p>
-<h4 id="decision-tree-diagram-description-fault-handling">Decision Tree Diagram Description: Fault Handling<a class="headerlink" href="#decision-tree-diagram-description-fault-handling" title="Anchor link to this section">&para;</a></h4>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-1-1"> 1</a></span>
-<span class="normal"><a href="#__codelineno-1-2"> 2</a></span>
-<span class="normal"><a href="#__codelineno-1-3"> 3</a></span>
-<span class="normal"><a href="#__codelineno-1-4"> 4</a></span>
-<span class="normal"><a href="#__codelineno-1-5"> 5</a></span>
-<span class="normal"><a href="#__codelineno-1-6"> 6</a></span>
-<span class="normal"><a href="#__codelineno-1-7"> 7</a></span>
-<span class="normal"><a href="#__codelineno-1-8"> 8</a></span>
-<span class="normal"><a href="#__codelineno-1-9"> 9</a></span>
-<span class="normal"><a href="#__codelineno-1-10">10</a></span>
-<span class="normal"><a href="#__codelineno-1-11">11</a></span>
-<span class="normal"><a href="#__codelineno-1-12">12</a></span>
-<span class="normal"><a href="#__codelineno-1-13">13</a></span>
-<span class="normal"><a href="#__codelineno-1-14">14</a></span>
-<span class="normal"><a href="#__codelineno-1-15">15</a></span>
-<span class="normal"><a href="#__codelineno-1-16">16</a></span>
-<span class="normal"><a href="#__codelineno-1-17">17</a></span>
-<span class="normal"><a href="#__codelineno-1-18">18</a></span>
-<span class="normal"><a href="#__codelineno-1-19">19</a></span>
-<span class="normal"><a href="#__codelineno-1-20">20</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1"></a>[Start Upgrade]
-<a id="__codelineno-1-2" name="__codelineno-1-2"></a>      |
-<a id="__codelineno-1-3" name="__codelineno-1-3"></a>      v
-<a id="__codelineno-1-4" name="__codelineno-1-4"></a>[Pre-Check Success?]--No--&gt;[Abort/Notify]
-<a id="__codelineno-1-5" name="__codelineno-1-5"></a>      |
-<a id="__codelineno-1-6" name="__codelineno-1-6"></a>     Yes
-<a id="__codelineno-1-7" name="__codelineno-1-7"></a>      v
-<a id="__codelineno-1-8" name="__codelineno-1-8"></a>[Image Transfer Success?]--No--&gt;[Retry (max N)?]--No--&gt;[Dead Letter/Alert]
-<a id="__codelineno-1-9" name="__codelineno-1-9"></a>      |                                 |
-<a id="__codelineno-1-10" name="__codelineno-1-10"></a>     Yes                                Yes
-<a id="__codelineno-1-11" name="__codelineno-1-11"></a>      v                                  v
-<a id="__codelineno-1-12" name="__codelineno-1-12"></a>[Upgrade Execution Success?]--No--&gt;[Rollback/Notify]
-<a id="__codelineno-1-13" name="__codelineno-1-13"></a>      |
-<a id="__codelineno-1-14" name="__codelineno-1-14"></a>     Yes
-<a id="__codelineno-1-15" name="__codelineno-1-15"></a>      v
-<a id="__codelineno-1-16" name="__codelineno-1-16"></a>[Post-Check Success?]--No--&gt;[Rollback/Notify]
-<a id="__codelineno-1-17" name="__codelineno-1-17"></a>      |
-<a id="__codelineno-1-18" name="__codelineno-1-18"></a>     Yes
-<a id="__codelineno-1-19" name="__codelineno-1-19"></a>      v
-<a id="__codelineno-1-20" name="__codelineno-1-20"></a>[Mark Success/Complete]
-</code></pre></div></td></tr></table></div>
+<h4 id="fault-handling-decision-flow">Fault Handling Decision Flow<a class="headerlink" href="#fault-handling-decision-flow" title="Anchor link to this section">&para;</a></h4>
+<pre class="mermaid"><code>flowchart TD
+    Start[Start Upgrade] --&gt; PreCheck{Pre-Check Success?}
+    PreCheck --&gt;|No| Abort[Abort/Notify]
+    PreCheck --&gt;|Yes| ImgTransfer{Image Transfer Success?}
+    ImgTransfer --&gt;|No| Retry{Retry max N?}
+    Retry --&gt;|No| DeadLetter[Dead Letter/Alert]
+    Retry --&gt;|Yes| ImgTransfer
+    ImgTransfer --&gt;|Yes| UpgradeExec{Upgrade Execution Success?}
+    UpgradeExec --&gt;|No| Rollback1[Rollback/Notify]
+    UpgradeExec --&gt;|Yes| PostCheck{Post-Check Success?}
+    PostCheck --&gt;|No| Rollback2[Rollback/Notify]
+    PostCheck --&gt;|Yes| Success[Mark Success/Complete]
+
+    style Start fill:#e1f5ff
+    style Success fill:#c8e6c9
+    style Abort fill:#ffcdd2
+    style DeadLetter fill:#ffcdd2
+    style Rollback1 fill:#fff9c4
+    style Rollback2 fill:#fff9c4</code></pre>
 <hr />
 <h2 id="edge-case-handling">Edge Case Handling<a class="headerlink" href="#edge-case-handling" title="Anchor link to this section">&para;</a></h2>
 <h3 id="dual-supervisors-sups-and-stackwise-virtual">Dual Supervisors (SUPs) and StackWise Virtual<a class="headerlink" href="#dual-supervisors-sups-and-stackwise-virtual" title="Anchor link to this section">&para;</a></h3>
@@ -2395,24 +2382,16 @@
 </tbody>
 </table>
 <h4 id="decision-tree-issu-vs-non-issu">Decision Tree: ISSU vs. Non-ISSU<a class="headerlink" href="#decision-tree-issu-vs-non-issu" title="Anchor link to this section">&para;</a></h4>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-2-1">1</a></span>
-<span class="normal"><a href="#__codelineno-2-2">2</a></span>
-<span class="normal"><a href="#__codelineno-2-3">3</a></span>
-<span class="normal"><a href="#__codelineno-2-4">4</a></span>
-<span class="normal"><a href="#__codelineno-2-5">5</a></span>
-<span class="normal"><a href="#__codelineno-2-6">6</a></span>
-<span class="normal"><a href="#__codelineno-2-7">7</a></span>
-<span class="normal"><a href="#__codelineno-2-8">8</a></span>
-<span class="normal"><a href="#__codelineno-2-9">9</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1"></a>[Is Platform ISSU-Capable?]--No--&gt;[Use Non-ISSU]
-<a id="__codelineno-2-2" name="__codelineno-2-2"></a>      |
-<a id="__codelineno-2-3" name="__codelineno-2-3"></a>     Yes
-<a id="__codelineno-2-4" name="__codelineno-2-4"></a>      v
-<a id="__codelineno-2-5" name="__codelineno-2-5"></a>[Is Upgrade Within Supported Release Train?]--No--&gt;[Use Non-ISSU]
-<a id="__codelineno-2-6" name="__codelineno-2-6"></a>      |
-<a id="__codelineno-2-7" name="__codelineno-2-7"></a>     Yes
-<a id="__codelineno-2-8" name="__codelineno-2-8"></a>      v
-<a id="__codelineno-2-9" name="__codelineno-2-9"></a>[ISSU Upgrade]
-</code></pre></div></td></tr></table></div>
+<pre class="mermaid"><code>flowchart TD
+    Start{Is Platform&lt;br/&gt;ISSU-Capable?}
+    Start --&gt;|No| NonISSU1[Use Non-ISSU]
+    Start --&gt;|Yes| ReleaseTrain{Is Upgrade Within&lt;br/&gt;Supported Release Train?}
+    ReleaseTrain --&gt;|No| NonISSU2[Use Non-ISSU]
+    ReleaseTrain --&gt;|Yes| ISSU[ISSU Upgrade]
+
+    style ISSU fill:#c8e6c9
+    style NonISSU1 fill:#fff9c4
+    style NonISSU2 fill:#fff9c4</code></pre>
 <h3 id="platform-specific-considerations">Platform-Specific Considerations<a class="headerlink" href="#platform-specific-considerations" title="Anchor link to this section">&para;</a></h3>
 <div class="admonition tip">
 <p class="admonition-title">Platform Requirements</p>
@@ -2960,17 +2939,17 @@
 <p><strong>5. Conditional Task Execution Based on Results</strong></p>
 <ul>
 <li>Analyze <code>AggregatedResult</code> after each stage to determine next steps:
-    <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-3-1">1</a></span>
-<span class="normal"><a href="#__codelineno-3-2">2</a></span>
-<span class="normal"><a href="#__codelineno-3-3">3</a></span>
-<span class="normal"><a href="#__codelineno-3-4">4</a></span>
-<span class="normal"><a href="#__codelineno-3-5">5</a></span>
-<span class="normal"><a href="#__codelineno-3-6">6</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1"></a><span class="n">result</span> <span class="o">=</span> <span class="n">nr</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">task</span><span class="o">=</span><span class="n">pre_check_task</span><span class="p">)</span>
-<a id="__codelineno-3-2" name="__codelineno-3-2"></a><span class="n">failed_hosts</span> <span class="o">=</span> <span class="p">[</span><span class="n">host</span> <span class="k">for</span> <span class="n">host</span><span class="p">,</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">result</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="n">r</span><span class="o">.</span><span class="n">failed</span><span class="p">]</span>
-<a id="__codelineno-3-3" name="__codelineno-3-3"></a><span class="k">if</span> <span class="n">failed_hosts</span><span class="p">:</span>
-<a id="__codelineno-3-4" name="__codelineno-3-4"></a>    <span class="c1"># Remove failed hosts from inventory, notify operator</span>
-<a id="__codelineno-3-5" name="__codelineno-3-5"></a>    <span class="n">nr</span> <span class="o">=</span> <span class="n">nr</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="o">~</span><span class="n">F</span><span class="p">(</span><span class="n">name__any</span><span class="o">=</span><span class="n">failed_hosts</span><span class="p">))</span>
-<a id="__codelineno-3-6" name="__codelineno-3-6"></a><span class="n">nr</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">task</span><span class="o">=</span><span class="n">transfer_image_task</span><span class="p">)</span>  <span class="c1"># Only successful hosts proceed</span>
+    <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1">1</a></span>
+<span class="normal"><a href="#__codelineno-0-2">2</a></span>
+<span class="normal"><a href="#__codelineno-0-3">3</a></span>
+<span class="normal"><a href="#__codelineno-0-4">4</a></span>
+<span class="normal"><a href="#__codelineno-0-5">5</a></span>
+<span class="normal"><a href="#__codelineno-0-6">6</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1"></a><span class="n">result</span> <span class="o">=</span> <span class="n">nr</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">task</span><span class="o">=</span><span class="n">pre_check_task</span><span class="p">)</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2"></a><span class="n">failed_hosts</span> <span class="o">=</span> <span class="p">[</span><span class="n">host</span> <span class="k">for</span> <span class="n">host</span><span class="p">,</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">result</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="n">r</span><span class="o">.</span><span class="n">failed</span><span class="p">]</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3"></a><span class="k">if</span> <span class="n">failed_hosts</span><span class="p">:</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4"></a>    <span class="c1"># Remove failed hosts from inventory, notify operator</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5"></a>    <span class="n">nr</span> <span class="o">=</span> <span class="n">nr</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="o">~</span><span class="n">F</span><span class="p">(</span><span class="n">name__any</span><span class="o">=</span><span class="n">failed_hosts</span><span class="p">))</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6"></a><span class="n">nr</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">task</span><span class="o">=</span><span class="n">transfer_image_task</span><span class="p">)</span>  <span class="c1"># Only successful hosts proceed</span>
 </code></pre></div></td></tr></table></div></li>
 <li>Implement multi-tier rollback: if post-verification fails, execute rollback tasks only on affected hosts.</li>
 </ul>
@@ -3163,73 +3142,34 @@
 </ul>
 <hr />
 <h2 id="decision-trees-and-diagrams">Decision Trees and Diagrams<a class="headerlink" href="#decision-trees-and-diagrams" title="Anchor link to this section">&para;</a></h2>
-<p><strong>Upgrade Path Decision Tree (Textual Description):</strong></p>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-4-1"> 1</a></span>
-<span class="normal"><a href="#__codelineno-4-2"> 2</a></span>
-<span class="normal"><a href="#__codelineno-4-3"> 3</a></span>
-<span class="normal"><a href="#__codelineno-4-4"> 4</a></span>
-<span class="normal"><a href="#__codelineno-4-5"> 5</a></span>
-<span class="normal"><a href="#__codelineno-4-6"> 6</a></span>
-<span class="normal"><a href="#__codelineno-4-7"> 7</a></span>
-<span class="normal"><a href="#__codelineno-4-8"> 8</a></span>
-<span class="normal"><a href="#__codelineno-4-9"> 9</a></span>
-<span class="normal"><a href="#__codelineno-4-10">10</a></span>
-<span class="normal"><a href="#__codelineno-4-11">11</a></span>
-<span class="normal"><a href="#__codelineno-4-12">12</a></span>
-<span class="normal"><a href="#__codelineno-4-13">13</a></span>
-<span class="normal"><a href="#__codelineno-4-14">14</a></span>
-<span class="normal"><a href="#__codelineno-4-15">15</a></span>
-<span class="normal"><a href="#__codelineno-4-16">16</a></span>
-<span class="normal"><a href="#__codelineno-4-17">17</a></span>
-<span class="normal"><a href="#__codelineno-4-18">18</a></span>
-<span class="normal"><a href="#__codelineno-4-19">19</a></span>
-<span class="normal"><a href="#__codelineno-4-20">20</a></span>
-<span class="normal"><a href="#__codelineno-4-21">21</a></span>
-<span class="normal"><a href="#__codelineno-4-22">22</a></span>
-<span class="normal"><a href="#__codelineno-4-23">23</a></span>
-<span class="normal"><a href="#__codelineno-4-24">24</a></span>
-<span class="normal"><a href="#__codelineno-4-25">25</a></span>
-<span class="normal"><a href="#__codelineno-4-26">26</a></span>
-<span class="normal"><a href="#__codelineno-4-27">27</a></span>
-<span class="normal"><a href="#__codelineno-4-28">28</a></span>
-<span class="normal"><a href="#__codelineno-4-29">29</a></span>
-<span class="normal"><a href="#__codelineno-4-30">30</a></span>
-<span class="normal"><a href="#__codelineno-4-31">31</a></span>
-<span class="normal"><a href="#__codelineno-4-32">32</a></span>
-<span class="normal"><a href="#__codelineno-4-33">33</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1"></a>[Start]
-<a id="__codelineno-4-2" name="__codelineno-4-2"></a>  |
-<a id="__codelineno-4-3" name="__codelineno-4-3"></a>  v
-<a id="__codelineno-4-4" name="__codelineno-4-4"></a>[Is Device in Install Mode?]--No--&gt;[Convert to Install Mode]
-<a id="__codelineno-4-5" name="__codelineno-4-5"></a>  |
-<a id="__codelineno-4-6" name="__codelineno-4-6"></a> Yes
-<a id="__codelineno-4-7" name="__codelineno-4-7"></a>  v
-<a id="__codelineno-4-8" name="__codelineno-4-8"></a>[Is Platform ISSU-Capable?]--No--&gt;[Plan Non-ISSU Upgrade]
-<a id="__codelineno-4-9" name="__codelineno-4-9"></a>  |
-<a id="__codelineno-4-10" name="__codelineno-4-10"></a> Yes
-<a id="__codelineno-4-11" name="__codelineno-4-11"></a>  v
-<a id="__codelineno-4-12" name="__codelineno-4-12"></a>[Is Upgrade Within Supported Release Train?]--No--&gt;[Plan Non-ISSU Upgrade]
-<a id="__codelineno-4-13" name="__codelineno-4-13"></a>  |
-<a id="__codelineno-4-14" name="__codelineno-4-14"></a> Yes
-<a id="__codelineno-4-15" name="__codelineno-4-15"></a>  v
-<a id="__codelineno-4-16" name="__codelineno-4-16"></a>[Plan ISSU Upgrade]
-<a id="__codelineno-4-17" name="__codelineno-4-17"></a>```text
-<a id="__codelineno-4-18" name="__codelineno-4-18"></a>
-<a id="__codelineno-4-19" name="__codelineno-4-19"></a>**Rollback Decision Tree:**
-<a id="__codelineno-4-20" name="__codelineno-4-20"></a>
-<a id="__codelineno-4-21" name="__codelineno-4-21"></a>```text
-<a id="__codelineno-4-22" name="__codelineno-4-22"></a>[Post-Upgrade Health Check]
-<a id="__codelineno-4-23" name="__codelineno-4-23"></a>  |
-<a id="__codelineno-4-24" name="__codelineno-4-24"></a>  v
-<a id="__codelineno-4-25" name="__codelineno-4-25"></a>[Success?]--Yes--&gt;[Mark Complete]
-<a id="__codelineno-4-26" name="__codelineno-4-26"></a>  |
-<a id="__codelineno-4-27" name="__codelineno-4-27"></a> No
-<a id="__codelineno-4-28" name="__codelineno-4-28"></a>  v
-<a id="__codelineno-4-29" name="__codelineno-4-29"></a>[Is Rollback Possible?]--No--&gt;[Escalate/Manual Intervention]
-<a id="__codelineno-4-30" name="__codelineno-4-30"></a>  |
-<a id="__codelineno-4-31" name="__codelineno-4-31"></a> Yes
-<a id="__codelineno-4-32" name="__codelineno-4-32"></a>  v
-<a id="__codelineno-4-33" name="__codelineno-4-33"></a>[Initiate Rollback]
-</code></pre></div></td></tr></table></div>
+<p><strong>Upgrade Path Decision Flow:</strong></p>
+<pre class="mermaid"><code>flowchart TD
+    Start([Start]) --&gt; InstallMode{Is Device in&lt;br/&gt;Install Mode?}
+    InstallMode --&gt;|No| Convert[Convert to Install Mode]
+    Convert --&gt; ISSUCapable
+    InstallMode --&gt;|Yes| ISSUCapable{Is Platform&lt;br/&gt;ISSU-Capable?}
+    ISSUCapable --&gt;|No| NonISSU1[Plan Non-ISSU Upgrade]
+    ISSUCapable --&gt;|Yes| ReleaseTrain{Is Upgrade Within&lt;br/&gt;Supported Release Train?}
+    ReleaseTrain --&gt;|No| NonISSU2[Plan Non-ISSU Upgrade]
+    ReleaseTrain --&gt;|Yes| ISSU[Plan ISSU Upgrade]
+
+    style Start fill:#e1f5ff
+    style ISSU fill:#c8e6c9
+    style NonISSU1 fill:#fff9c4
+    style NonISSU2 fill:#fff9c4
+    style Convert fill:#ffe0b2</code></pre>
+<p><strong>Rollback Decision Flow:</strong></p>
+<pre class="mermaid"><code>flowchart TD
+    Start([Post-Upgrade Health Check]) --&gt; Success{Success?}
+    Success --&gt;|Yes| Complete[Mark Complete]
+    Success --&gt;|No| RollbackPossible{Is Rollback&lt;br/&gt;Possible?}
+    RollbackPossible --&gt;|No| Escalate[Escalate/Manual Intervention]
+    RollbackPossible --&gt;|Yes| Rollback[Initiate Rollback]
+
+    style Start fill:#e1f5ff
+    style Complete fill:#c8e6c9
+    style Escalate fill:#ffcdd2
+    style Rollback fill:#fff9c4</code></pre>
 <hr />
 <h2 id="conclusion-and-next-steps">Conclusion and Next Steps<a class="headerlink" href="#conclusion-and-next-steps" title="Anchor link to this section">&para;</a></h2>
 <p>A well-designed IOS-XE Software Upgrade Orchestrator is a force multiplier for network operations, enabling safe, scalable, and auditable upgrades across diverse Cisco platforms. By adhering to modular design, best practices, and robust error handling, the orchestrator minimizes risk, reduces downtime, and streamlines compliance. Integration with an Excel-driven source-of-truth and CLI-based operator workflows ensures accessibility and adaptability for a wide range of environments.</p>
@@ -3268,7 +3208,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="February 6, 2026 16:49:08 UTC">February 6, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="February 6, 2026 18:50:42 UTC">February 6, 2026</span>
   </span>
 
     
@@ -3417,6 +3357,8 @@
     
     
       <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="https://unpkg.com/mermaid@10.6.1/dist/mermaid.min.js"></script>
       
     
   </body>
