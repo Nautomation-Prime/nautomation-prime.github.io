@@ -2658,13 +2658,13 @@
 <li>If a device doesn't advertise a management IP, we have no way to SSH to it</li>
 <li>Queueing it would just cause failures</li>
 </ul>
-<p><strong>Example:</strong>
+<p><strong>Example:</strong></p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-15-1">1</a></span>
 <span class="normal"><a href="#__codelineno-15-2">2</a></span>
 <span class="normal"><a href="#__codelineno-15-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1"></a>Router (Switch, Router) + 192.0.2.5  → Queue it
 <a id="__codelineno-15-2" name="__codelineno-15-2"></a>IP Phone (Host) + 192.0.2.50         → Skip (endpoint)
 <a id="__codelineno-15-3" name="__codelineno-15-3"></a>Access Point (Host) + no Mgmt IP     → Skip (non-addressable)
-</code></pre></div></td></tr></table></div></p>
+</code></pre></div></td></tr></table></div>
 <h3 id="_paramiko_jump_client-paramikosshclient"><code>_paramiko_jump_client(...) -&gt; paramiko.SSHClient</code><a class="headerlink" href="#_paramiko_jump_client-paramikosshclient" title="Anchor link to this section">&para;</a></h3>
 <p>Creates a secure SSH connection to a jump/bastion host.</p>
 <p><strong>Key Design Choices:</strong></p>
@@ -2831,11 +2831,11 @@ Without <code>task_done()</code>, <code>queue.join()</code> waits forever on mai
 <hr />
 <h2 id="key-design-patterns">🔑 Key Design Patterns<a class="headerlink" href="#key-design-patterns" title="Anchor link to this section">&para;</a></h2>
 <h3 id="pattern-1-thread-safe-data-accumulation">Pattern 1: Thread-Safe Data Accumulation<a class="headerlink" href="#pattern-1-thread-safe-data-accumulation" title="Anchor link to this section">&para;</a></h3>
-<p><div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-20-1">1</a></span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-20-1">1</a></span>
 <span class="normal"><a href="#__codelineno-20-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1"></a><span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_lock</span><span class="p">:</span>
 <a id="__codelineno-20-2" name="__codelineno-20-2"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">results</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">new_data</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
-Only one thread updates shared data at a time.</p>
+<p>Only one thread updates shared data at a time.</p>
 <h3 id="pattern-2-graceful-worker-shutdown">Pattern 2: Graceful Worker Shutdown<a class="headerlink" href="#pattern-2-graceful-worker-shutdown" title="Anchor link to this section">&para;</a></h3>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-21-1">1</a></span>
 <span class="normal"><a href="#__codelineno-21-2">2</a></span>
@@ -3120,7 +3120,7 @@ Only one thread updates shared data at a time.</p>
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="February 6, 2026 14:01:13 UTC">February 6, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="February 6, 2026 14:08:44 UTC">February 6, 2026</span>
   </span>
 
     
