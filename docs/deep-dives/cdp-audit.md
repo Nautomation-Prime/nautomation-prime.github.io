@@ -54,7 +54,7 @@ This tool is built on industry-standard libraries: **Netmiko** (SSH connection h
 
 ## 🧱 Repository Layout (Expected)
 
-```
+```text
 .
 ├── main.py
 ├── config.yaml                  # YAML configuration file (NEW!)
@@ -406,7 +406,7 @@ This runs the CDP Network Audit with all default settings from `config.yaml`.
 
 ### Example Output
 
-```
+```batch
 ================================================================================
                     CDP NETWORK AUDIT TOOL
 ================================================================================
@@ -578,7 +578,8 @@ if "Switch" in caps and "Host" not in caps and mgmt_ip:
 - Queueing it would just cause failures
 
 **Example:**
-```
+
+```batch
 Router (Switch, Router) + 192.0.2.5  → Queue it
 IP Phone (Host) + 192.0.2.50         → Skip (endpoint)
 Access Point (Host) + no Mgmt IP     → Skip (non-addressable)
@@ -785,6 +786,7 @@ An output file named `<site_name>_CDP_Network_Audit.xlsx` is created by copying 
 with self.data_lock:
     self.results.append(new_data)
 ```
+
 Only one thread updates shared data at a time.
 
 ### Pattern 2: Graceful Worker Shutdown
@@ -866,7 +868,7 @@ Copy → stamp metadata → append data using overlay mode.
 
 ## ✅ Example Session
 
-```
+```batch
 === CDP Network Audit ===
 Enter site name (used in Excel filename, max 50 chars): HQ-Campus
 Enter one or more seed device IPs or hostnames (comma-separated, max 500): 192.0.2.11, core-sw-1
@@ -901,7 +903,7 @@ credentials:
 
 The prompt would show:
 
-```
+```batch
 Enter 'localadmin' password (fallback user from config.yaml): ********
 ```
 
