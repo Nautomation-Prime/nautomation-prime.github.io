@@ -25,6 +25,23 @@ The scripts and tools featured here represent:
 
 ## Projects in Development
 
+### [Cisco IOS-XE Zero Touch Provisioning](Cisco%20IOS-XE%20Zero%20Touch%20Provisioning.md)
+
+A production-ready Python script for automating Day 0 provisioning of Cisco Catalyst switches running IOS-XE. This comprehensive solution enables hands-free deployment at scale with enterprise-grade reliability.
+
+- Serial-based configuration lookup with automatic device identification
+- Retry logic with exponential backoff for network resilience
+- Structured JSON logging to Graylog/Syslog for centralized monitoring
+- Automatic SSH key generation and secure file cleanup
+- Rotating flash logs and optional JSON device reports
+- Platform-specific guidance for StackWise, dual SUP, and multi-platform deployments
+
+**Unique Features:** Built-in retry mechanisms handle real-world network transients (Spanning Tree convergence, DHCP timing), structured logging enables searchable device tracking without knowing IP addresses, and secure credential handling with automatic cleanup.
+
+**Status:** :test_tube: Testing & Validation Phase
+
+---
+
 ### [IOS-XE Software Upgrade Orchestrator](IOS-XE%20Software%20Upgrade%20Orchestrator.md)
 
 A comprehensive Python-based orchestration framework for automating Cisco IOS-XE software upgrades across diverse platforms. This design document covers:
