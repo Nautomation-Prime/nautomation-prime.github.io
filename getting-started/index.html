@@ -80,7 +80,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#getting-started-with-nautomation-prime" class="md-skip">
+        <a href="#what-is-nautomation-prime" class="md-skip">
           Skip to content
         </a>
       
@@ -478,8 +478,6 @@
       <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
       
       
-        
-      
       
         <label class="md-nav__link md-nav__link--active" for="__toc">
           
@@ -521,8 +519,6 @@
 <nav class="md-nav md-nav--secondary" aria-label="Table of contents">
   
   
-  
-    
   
   
     <label class="md-nav__title" for="__toc">
@@ -1298,7 +1294,8 @@
   
 
 
-<h1 id="getting-started-with-nautomation-prime">Getting Started with Nautomation Prime<a class="headerlink" href="#getting-started-with-nautomation-prime" title="Anchor link to this section">&para;</a></h1>
+  <h1>Getting Started</h1>
+
 <p>Welcome! This guide will help you understand what Nautomation Prime offers and how to get started.</p>
 <hr />
 <h2 id="what-is-nautomation-prime">What is Nautomation Prime?<a class="headerlink" href="#what-is-nautomation-prime" title="Anchor link to this section">&para;</a></h2>
@@ -1314,30 +1311,40 @@
 <h2 id="quick-start-paths">🚀 Quick Start Paths<a class="headerlink" href="#quick-start-paths" title="Anchor link to this section">&para;</a></h2>
 <h3 id="i-want-to-learn-network-automation">I want to learn network automation<a class="headerlink" href="#i-want-to-learn-network-automation" title="Anchor link to this section">&para;</a></h3>
 <p>Start with our <strong><a href="../deep-dives/">Technical Deep Dives</a></strong>. We provide comprehensive guides that explain Python automation concepts alongside real Cisco use cases.</p>
-<p><strong>Recommended Reading Order:</strong>
-1. <a href="../deep-dives/cdp-audit/">CDP Network Audit Deep Dive</a> - Learn about threading, security, and production-grade design</p>
+<p><strong>Recommended Reading Order:</strong></p>
+<ol>
+<li><a href="../deep-dives/cdp-audit/">CDP Network Audit Deep Dive</a> - Learn about threading, security, and production-grade design</li>
+</ol>
 <h3 id="i-want-to-use-pre-built-scripts">I want to use pre-built scripts<a class="headerlink" href="#i-want-to-use-pre-built-scripts" title="Anchor link to this section">&para;</a></h3>
 <p>Check out our <strong><a href="../scripts/">Script Library</a></strong>. Each script comes with documentation and GitHub repositories for easy deployment.</p>
-<p><strong>Popular Scripts:</strong>
-- <a href="../scripts/">CDP Network Audit Tool</a> - Discover your Cisco topology with line-by-line transparency</p>
+<p><strong>Popular Scripts:</strong></p>
+<ul>
+<li><a href="../scripts/">CDP Network Audit Tool</a> - Discover your Cisco topology with line-by-line transparency</li>
+</ul>
 <h3 id="i-need-custom-automation-for-my-environment">I need custom automation for my environment<a class="headerlink" href="#i-need-custom-automation-for-my-environment" title="Anchor link to this section">&para;</a></h3>
-<p>Explore our <strong><a href="../services/">Services</a></strong> page. We offer:
-- Custom Python scripting tailored to your topology
-- Portable bundles for restricted environments
-- Docker containers for continuous automation
-- ISE and Zero Trust automation</p>
+<p>Explore our <strong><a href="../services/">Services</a></strong> page. We offer:</p>
+<ul>
+<li>Custom Python scripting tailored to your topology</li>
+<li>Portable bundles for restricted environments</li>
+<li>Docker containers for continuous automation</li>
+<li>ISE and Zero Trust automation</li>
+</ul>
 <hr />
 <h2 id="prerequisites">📋 Prerequisites<a class="headerlink" href="#prerequisites" title="Anchor link to this section">&para;</a></h2>
-<p><strong>Python Knowledge (Important!):</strong>
-- <strong>This site assumes you already know Python.</strong> We teach you how to apply Python to network automation, not how to learn Python itself.
-- If you're new to Python, we recommend completing a Python fundamentals course first (Codecademy, Real Python, W3Schools, or similar).
-- You should understand: variables, functions, loops, conditionals, exceptions, and basic file I/O.
-- Our code is written for clarity (not brevity), so intermediate Python developers will follow along easily.</p>
-<p><strong>Technical Requirements:</strong>
-- <strong>Python 3.8+</strong> (or use our <a href="../services/#zero-install-deployment-portable-bundles">portable bundles</a> if Python isn't available)
-- <strong>Network access</strong> to your Cisco devices
-- <strong>Credentials</strong> for device authentication
-- <strong>SSH enabled</strong> on target Cisco devices</p>
+<p><strong>Python Knowledge (Important!):</strong></p>
+<ul>
+<li><strong>This site assumes you already know Python.</strong> We teach you how to apply Python to network automation, not how to learn Python itself.</li>
+<li>If you're new to Python, we recommend completing a Python fundamentals course first (Codecademy, Real Python, W3Schools, or similar).</li>
+<li>You should understand: variables, functions, loops, conditionals, exceptions, and basic file I/O.</li>
+<li>Our code is written for clarity (not brevity), so intermediate Python developers will follow along easily.</li>
+</ul>
+<p><strong>Technical Requirements:</strong></p>
+<ul>
+<li><strong>Python 3.8+</strong> (or use our <a href="../services/#zero-install-deployment-portable-bundles">portable bundles</a> if Python isn't available)</li>
+<li><strong>Network access</strong> to your Cisco devices</li>
+<li><strong>Credentials</strong> for device authentication</li>
+<li><strong>SSH enabled</strong> on target Cisco devices</li>
+</ul>
 <hr />
 <h2 id="security-credentials">🔐 Security &amp; Credentials<a class="headerlink" href="#security-credentials" title="Anchor link to this section">&para;</a></h2>
 <p>Nautomation Prime follows enterprise security best practices:</p>
@@ -1439,7 +1446,7 @@ A: All tools are maintained on GitHub with active development. Issues and featur
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="February 5, 2026 17:52:02 UTC">February 5, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="February 6, 2026 16:49:08 UTC">February 6, 2026</span>
   </span>
 
     
