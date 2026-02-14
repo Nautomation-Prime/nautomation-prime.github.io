@@ -1,0 +1,2490 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Comprehensive guide to a modular, production-ready CDP network discovery tool with YAML configuration, jump server support, DNS enrichment, and professional Excel reporting.">
+      
+      
+        <meta name="author" content="Christopher Davies">
+      
+      
+        <link rel="canonical" href="https://www.nautomationprime.io/deep-dives/cdp-audit-old/">
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/favicon.ico">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+    
+    
+      
+        <title>CDP Network Audit Tool - Deep Dive - Nautomation Prime</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="blue">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#deep-dive-cdp-network-audit-tool" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Nautomation Prime" class="md-header__button md-logo" aria-label="Nautomation Prime" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Nautomation Prime
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              CDP Network Audit Tool - Deep Dive
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="blue"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="blue" data-md-color-accent="blue"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/Nautomation-Prime/Nautomation-Prime.github.io" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../getting-started/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Getting Started
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../services/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Services
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Technical Resources
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../scripts/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Script Library
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../coming-soon/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Coming Soon
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../legal/privacy-policy/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Legal
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../about/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  About
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Nautomation Prime" class="md-nav__button md-logo" aria-label="Nautomation Prime" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Nautomation Prime
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/Nautomation-Prime/Nautomation-Prime.github.io" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Getting Started
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../services/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Services
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Technical Resources
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Technical Resources
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cdp-audit/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CDP Network Audit
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../access-switch-audit/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Access Switch Audit
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../scripts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Script Library
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../coming-soon/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Coming Soon
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_6" id="__nav_6_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Coming Soon
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../coming-soon/Cisco%20IOS-XE%20Zero%20Touch%20Provisioning/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cisco IOS-XE Zero Touch Provisioning
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../coming-soon/IOS-XE%20Software%20Upgrade%20Orchestrator/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    IOS-XE Upgrade Orchestrator
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Legal
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Legal
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../legal/privacy-policy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Privacy Policy
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../legal/terms-of-use/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Terms of Use
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../legal/licensing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Licensing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../legal/disclaimer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Disclaimer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../legal/brand/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Brand & Logo Usage
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    About
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  <nav class="md-tags" >
+    
+      
+      
+      
+      
+        <span class="md-tag">CDP</span>
+      
+    
+      
+      
+      
+      
+        <span class="md-tag">Deep Dive</span>
+      
+    
+      
+      
+      
+      
+        <span class="md-tag">Excel</span>
+      
+    
+      
+      
+      
+      
+        <span class="md-tag">Jump Server</span>
+      
+    
+      
+      
+      
+      
+        <span class="md-tag">Modular Design</span>
+      
+    
+      
+      
+      
+      
+        <span class="md-tag">Network Discovery</span>
+      
+    
+      
+      
+      
+      
+        <span class="md-tag">TextFSM</span>
+      
+    
+      
+      
+      
+      
+        <span class="md-tag">Threading</span>
+      
+    
+      
+      
+      
+      
+        <span class="md-tag">YAML Configuration</span>
+      
+    
+  </nav>
+
+
+  
+  
+
+
+<h1 id="deep-dive-cdp-network-audit-tool">Deep Dive: CDP Network Audit Tool<a class="headerlink" href="#deep-dive-cdp-network-audit-tool" title="Anchor link to this section">&para;</a></h1>
+<h2 id="production-ready-python-automation-built-for-scale">"Production-Ready Python Automation, Built for Scale."<a class="headerlink" href="#production-ready-python-automation-built-for-scale" title="Anchor link to this section">&para;</a></h2>
+<p>A <strong>modular, enterprise-grade</strong> network discovery utility that crawls Cisco network topologies via <strong>Cisco Discovery Protocol (CDP)</strong>. It connects (optionally through an SSH jump/bastion host), collects <code>show cdp neighbors detail</code> and <code>show version</code>, parses outputs with <strong>TextFSM</strong>, enriches with <strong>DNS resolution</strong>, and writes structured <strong>Excel reports</strong> from pre-formatted templates. </p>
+<p><strong>What's New:</strong> The tool has undergone a <strong>complete architectural restructure</strong> — migrated from a monolithic script to a <strong>modular Python package</strong> with YAML-based configuration, dedicated modules for each concern, and enhanced maintainability for enterprise deployments.</p>
+<p><a class="md-button md-button--primary" href="https://github.com/Nautomation-Prime/Cisco_CDP_Network_Audit"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33s1.71.11 2.5.33c1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2"/></svg></span> View Source Code on GitHub</a></p>
+<hr />
+<h2 id="highlights">✨ Highlights<a class="headerlink" href="#highlights" title="Anchor link to this section">&para;</a></h2>
+<ul>
+<li><strong>Modular architecture</strong> — Separation of concerns with dedicated modules for credentials, discovery, reporting, and validation</li>
+<li><strong>YAML configuration</strong> — Human-readable <code>config.yaml</code> for easy customization without touching code</li>
+<li><strong>Parallel discovery</strong> with a worker pool (configurable via environment variables or YAML config)</li>
+<li><strong>Two-tier authentication</strong> — Primary user first, then customizable fallback user if primary fails</li>
+<li><strong>Jump server / bastion support</strong> — Paramiko channel + Netmiko sock for secure proxy connections</li>
+<li><strong>DNS enrichment</strong> — Parallel DNS resolution for discovered hostnames</li>
+<li><strong>Professional Excel reporting</strong> — Template-driven reports with multiple sheets and metadata stamping</li>
+<li><strong>Comprehensive validation</strong> — Pre-flight checks for templates, Excel files, and configuration</li>
+<li><strong>Package-based execution</strong> — Run as <code>python -m cdp_audit</code> or use the included launcher script</li>
+</ul>
+<hr />
+<h2 id="the-nautomation-prime-philosophy-in-action">🎯 The Nautomation Prime Philosophy in Action<a class="headerlink" href="#the-nautomation-prime-philosophy-in-action" title="Anchor link to this section">&para;</a></h2>
+<p>Before diving into the code, understand how every design decision reflects our three core principles:</p>
+<h3 id="principle-1-modular-maintainable-architecture"><strong>Principle 1: Modular, Maintainable Architecture</strong><a class="headerlink" href="#principle-1-modular-maintainable-architecture" title="Anchor link to this section">&para;</a></h3>
+<p>Every component has a <strong>single, clear responsibility</strong>. Credentials are handled by <code>credentials.py</code>, discovery by <code>discovery.py</code>, validation by <code>validators.py</code>. This isn't just good practice — it's <strong>essential for team collaboration and long-term maintenance</strong>. When a bug appears in credential handling, you know exactly where to look.</p>
+<h3 id="principle-2-configuration-as-code-the-right-way"><strong>Principle 2: Configuration as Code (the Right Way)</strong><a class="headerlink" href="#principle-2-configuration-as-code-the-right-way" title="Anchor link to this section">&para;</a></h3>
+<p>Configuration migrated from hardcoded Python to <strong>human-readable YAML</strong>. Network engineers can customize worker threads, timeouts, and credential targets <strong>without touching Python code</strong>. Version control tracks configuration changes. Rollbacks are simple: <code>git revert</code>.</p>
+<h3 id="principle-3-production-hardened-design"><strong>Principle 3: Production-Hardened Design</strong><a class="headerlink" href="#principle-3-production-hardened-design" title="Anchor link to this section">&para;</a></h3>
+<p>You'll notice patterns like thread locks, exception handling, retry logic, comprehensive validation, and graceful cleanup. These aren't "nice to have" — they're <strong>essential for running automation on critical infrastructure</strong> without surprises at 3 AM.</p>
+<h3 id="principle-4-vendor-neutral-foundation"><strong>Principle 4: Vendor-Neutral Foundation</strong><a class="headerlink" href="#principle-4-vendor-neutral-foundation" title="Anchor link to this section">&para;</a></h3>
+<p>Built on industry-standard libraries: <strong>Netmiko</strong> (SSH connection handling), <strong>Paramiko</strong> (SSH tunnelling), <strong>Pandas &amp; OpenPyXL</strong> (Excel reporting), <strong>TextFSM</strong> (parsing), <strong>PyYAML</strong> (configuration). Your skills remain portable.</p>
+<hr />
+<h2 id="repository-architecture-modular-structure">🧱 Repository Architecture (Modular Structure)<a class="headerlink" href="#repository-architecture-modular-structure" title="Anchor link to this section">&para;</a></h2>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-0-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-0-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-0-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-0-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-0-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-0-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-0-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-0-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-0-10">10</a></span>
+<span class="normal"><a href="#__codelineno-0-11">11</a></span>
+<span class="normal"><a href="#__codelineno-0-12">12</a></span>
+<span class="normal"><a href="#__codelineno-0-13">13</a></span>
+<span class="normal"><a href="#__codelineno-0-14">14</a></span>
+<span class="normal"><a href="#__codelineno-0-15">15</a></span>
+<span class="normal"><a href="#__codelineno-0-16">16</a></span>
+<span class="normal"><a href="#__codelineno-0-17">17</a></span>
+<span class="normal"><a href="#__codelineno-0-18">18</a></span>
+<span class="normal"><a href="#__codelineno-0-19">19</a></span>
+<span class="normal"><a href="#__codelineno-0-20">20</a></span>
+<span class="normal"><a href="#__codelineno-0-21">21</a></span>
+<span class="normal"><a href="#__codelineno-0-22">22</a></span>
+<span class="normal"><a href="#__codelineno-0-23">23</a></span>
+<span class="normal"><a href="#__codelineno-0-24">24</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1"></a>.
+<a id="__codelineno-0-2" name="__codelineno-0-2"></a>├── cdp_audit/                   # Main Python package (NEW!)
+<a id="__codelineno-0-3" name="__codelineno-0-3"></a>│   ├── __init__.py              # Package initialization
+<a id="__codelineno-0-4" name="__codelineno-0-4"></a>│   ├── __main__.py              # Package entry point
+<a id="__codelineno-0-5" name="__codelineno-0-5"></a>│   ├── app_config.py            # Centralized config access
+<a id="__codelineno-0-6" name="__codelineno-0-6"></a>│   ├── cli.py                   # Command-line interface
+<a id="__codelineno-0-7" name="__codelineno-0-7"></a>│   ├── credentials.py           # Credential management
+<a id="__codelineno-0-8" name="__codelineno-0-8"></a>│   ├── discovery.py             # Network discovery engine
+<a id="__codelineno-0-9" name="__codelineno-0-9"></a>│   ├── excel_reporter.py        # Excel report generation
+<a id="__codelineno-0-10" name="__codelineno-0-10"></a>│   ├── logging_setup.py         # Logging configuration
+<a id="__codelineno-0-11" name="__codelineno-0-11"></a>│   └── validators.py            # Pre-flight validations
+<a id="__codelineno-0-12" name="__codelineno-0-12"></a>├── ProgramFiles/
+<a id="__codelineno-0-13" name="__codelineno-0-13"></a>│   ├── textfsm/
+<a id="__codelineno-0-14" name="__codelineno-0-14"></a>│   │   ├── cisco_ios_show_cdp_neighbors_detail.textfsm
+<a id="__codelineno-0-15" name="__codelineno-0-15"></a>│   │   └── cisco_ios_show_version.textfsm
+<a id="__codelineno-0-16" name="__codelineno-0-16"></a>│   └── config_files/
+<a id="__codelineno-0-17" name="__codelineno-0-17"></a>│       ├── config_loader.py     # YAML config loader class
+<a id="__codelineno-0-18" name="__codelineno-0-18"></a>│       ├── config.py            # Backward compatibility wrapper
+<a id="__codelineno-0-19" name="__codelineno-0-19"></a>│       ├── 1 - CDP Network Audit _ Template.xlsx
+<a id="__codelineno-0-20" name="__codelineno-0-20"></a>│       └── logging.conf         # Optional logging config
+<a id="__codelineno-0-21" name="__codelineno-0-21"></a>├── config.yaml                  # Main configuration file
+<a id="__codelineno-0-22" name="__codelineno-0-22"></a>├── requirements.txt             # Python dependencies
+<a id="__codelineno-0-23" name="__codelineno-0-23"></a>├── run.bat                      # Windows launcher script
+<a id="__codelineno-0-24" name="__codelineno-0-24"></a>└── portable_env/                # Portable Python environment (optional)
+</code></pre></div></td></tr></table></div>
+<blockquote>
+<p><strong>Key Architectural Change:</strong> Migrated from monolithic <code>main.py</code> to a <strong>modular package structure</strong> (<code>cdp_audit/</code>) with separation of concerns, enabling easier testing, maintenance, and team collaboration.</p>
+<p><strong>Paths are case-sensitive</strong> on Linux/macOS; keep names exactly as shown.</p>
+</blockquote>
+<hr />
+<h2 id="requirements">📦 Requirements<a class="headerlink" href="#requirements" title="Anchor link to this section">&para;</a></h2>
+<ul>
+<li><strong>Python:</strong> 3.8+</li>
+<li><strong>Python packages:</strong> <code>pandas</code>, <code>openpyxl</code>, <code>textfsm</code>, <code>paramiko</code>, <code>netmiko</code></li>
+<li><strong>(Windows only, optional)</strong> <code>pywin32</code> for Windows Credential Manager integration</li>
+</ul>
+<p>Install in one go:</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-1-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1"></a>pip<span class="w"> </span>install<span class="w"> </span>pandas<span class="w"> </span>openpyxl<span class="w"> </span>textfsm<span class="w"> </span>paramiko<span class="w"> </span>netmiko<span class="w"> </span>pywin32
+</code></pre></div></td></tr></table></div>
+<h3 id="tested-devices">Tested Devices<a class="headerlink" href="#tested-devices" title="Anchor link to this section">&para;</a></h3>
+<p>This tool has been tested and verified on the following Cisco IOS and IOS-XE platforms:</p>
+<ul>
+<li><strong>Catalyst 9200 Series</strong></li>
+<li><strong>Catalyst 3650 Series</strong></li>
+<li><strong>Catalyst 3650C</strong></li>
+<li><strong>Catalyst 3650CG</strong></li>
+<li><strong>Catalyst 3650CX</strong></li>
+<li><strong>Catalyst 2960X Series</strong></li>
+<li><strong>Catalyst 2960 Series</strong></li>
+</ul>
+<blockquote>
+<p><strong>Note:</strong> The tool should work with any Cisco IOS/IOS-XE device that supports CDP and the required show commands. The devices listed above have been explicitly tested and validated.</p>
+</blockquote>
+<h3 id="required-support-files">Required Support Files<a class="headerlink" href="#required-support-files" title="Anchor link to this section">&para;</a></h3>
+<ul>
+<li><strong>TextFSM templates:</strong></li>
+<li><code>ProgramFiles/textfsm/cisco_ios_show_cdp_neighbors_detail.textfsm</code></li>
+<li><code>ProgramFiles/textfsm/cisco_ios_show_version.textfsm</code></li>
+<li><strong>Excel template:</strong></li>
+<li><code>ProgramFiles/config_files/1 - CDP Network Audit _ Template.xlsx</code></li>
+</ul>
+<p>The script validates presence of these files at startup and exits if any are missing.</p>
+<hr />
+<h2 id="configuration-system">⚙️ Configuration System<a class="headerlink" href="#configuration-system" title="Anchor link to this section">&para;</a></h2>
+<p>The tool uses a <strong>modern, layered configuration system</strong> with three configuration sources (in priority order):</p>
+<h3 id="layer-1-configyaml-primary-configuration">Layer 1: config.yaml (Primary Configuration)<a class="headerlink" href="#layer-1-configyaml-primary-configuration" title="Anchor link to this section">&para;</a></h3>
+<p><strong>All default settings are defined in a human-readable YAML file</strong> at the project root.</p>
+<p>The <code>config.yaml</code> file provides version-control-friendly configuration that <strong>non-programmers can edit</strong>. Settings are loaded by <code>ProgramFiles/config_files/config_loader.py</code>, which provides the <code>Config</code> class with type-safe property accessors and validation.</p>
+<p><strong>Network Connection Settings:</strong></p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-2-1">1</a></span>
+<span class="normal"><a href="#__codelineno-2-2">2</a></span>
+<span class="normal"><a href="#__codelineno-2-3">3</a></span>
+<span class="normal"><a href="#__codelineno-2-4">4</a></span>
+<span class="normal"><a href="#__codelineno-2-5">5</a></span>
+<span class="normal"><a href="#__codelineno-2-6">6</a></span>
+<span class="normal"><a href="#__codelineno-2-7">7</a></span>
+<span class="normal"><a href="#__codelineno-2-8">8</a></span>
+<span class="normal"><a href="#__codelineno-2-9">9</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1"></a><span class="nt">network</span><span class="p">:</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2"></a><span class="w">  </span><span class="nt">jump_host</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;192.0.2.10&quot;</span><span class="w">     </span><span class="c1"># Default jump/bastion server (empty = direct)</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3"></a><span class="w">  </span><span class="nt">device_type</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;cisco_ios&quot;</span><span class="w">    </span><span class="c1"># Netmiko device type</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4"></a><span class="w">  </span><span class="nt">ssh_port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">22</span><span class="w">                </span><span class="c1"># SSH port for connections</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5"></a><span class="w">  </span><span class="nt">default_limit</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10</span><span class="w">           </span><span class="c1"># Max concurrent worker threads</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6"></a><span class="w">  </span><span class="nt">default_timeout</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10</span><span class="w">         </span><span class="c1"># SSH/auth/read timeouts (seconds)</span>
+<a id="__codelineno-2-7" name="__codelineno-2-7"></a><span class="w">  </span><span class="nt">max_retry_attempts</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3</span><span class="w">       </span><span class="c1"># Connection retries per device</span>
+<a id="__codelineno-2-8" name="__codelineno-2-8"></a><span class="w">  </span><span class="nt">dns_max_workers</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">32</span><span class="w">         </span><span class="c1"># Max DNS resolution threads</span>
+<a id="__codelineno-2-9" name="__codelineno-2-9"></a><span class="w">  </span><span class="nt">dns_min_workers</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">4</span><span class="w">          </span><span class="c1"># Min DNS resolution threads</span>
+</code></pre></div></td></tr></table></div>
+<p><strong>Credential Settings:</strong></p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-3-1">1</a></span>
+<span class="normal"><a href="#__codelineno-3-2">2</a></span>
+<span class="normal"><a href="#__codelineno-3-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1"></a><span class="nt">credentials</span><span class="p">:</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2"></a><span class="w">  </span><span class="nt">cred_target</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;MyApp/ADM&quot;</span><span class="w">         </span><span class="c1"># Primary credential target (Windows Credential Manager)</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3"></a><span class="w">  </span><span class="nt">alt_creds</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;MyApp/Answer&quot;</span><span class="w">        </span><span class="c1"># Fallback credential target</span>
+</code></pre></div></td></tr></table></div>
+<p><strong>File Paths (Auto-Resolved from Project Root):</strong></p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-4-1">1</a></span>
+<span class="normal"><a href="#__codelineno-4-2">2</a></span>
+<span class="normal"><a href="#__codelineno-4-3">3</a></span>
+<span class="normal"><a href="#__codelineno-4-4">4</a></span>
+<span class="normal"><a href="#__codelineno-4-5">5</a></span>
+<span class="normal"><a href="#__codelineno-4-6">6</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1"></a><span class="nt">file_paths</span><span class="p">:</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2"></a><span class="w">  </span><span class="nt">base_dir</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;.&quot;</span><span class="w">  </span><span class="c1"># Project root</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3"></a><span class="w">  </span><span class="nt">cdp_template</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;ProgramFiles/textfsm/cisco_ios_show_cdp_neighbors_detail.textfsm&quot;</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4"></a><span class="w">  </span><span class="nt">ver_template</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;ProgramFiles/textfsm/cisco_ios_show_version.textfsm&quot;</span>
+<a id="__codelineno-4-5" name="__codelineno-4-5"></a><span class="w">  </span><span class="nt">excel_template</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;ProgramFiles/config_files/1</span><span class="nv"> </span><span class="s">-</span><span class="nv"> </span><span class="s">CDP</span><span class="nv"> </span><span class="s">Network</span><span class="nv"> </span><span class="s">Audit</span><span class="nv"> </span><span class="s">_</span><span class="nv"> </span><span class="s">Template.xlsx&quot;</span>
+<a id="__codelineno-4-6" name="__codelineno-4-6"></a><span class="w">  </span><span class="nt">logging_config</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;ProgramFiles/config_files/logging.conf&quot;</span>
+</code></pre></div></td></tr></table></div>
+<p><strong>Excel Report Customization:</strong></p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-5-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-5-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-5-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-5-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-5-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-5-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-5-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-5-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-5-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-5-10">10</a></span>
+<span class="normal"><a href="#__codelineno-5-11">11</a></span>
+<span class="normal"><a href="#__codelineno-5-12">12</a></span>
+<span class="normal"><a href="#__codelineno-5-13">13</a></span>
+<span class="normal"><a href="#__codelineno-5-14">14</a></span>
+<span class="normal"><a href="#__codelineno-5-15">15</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1"></a><span class="nt">excel</span><span class="p">:</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2"></a><span class="w">  </span><span class="nt">sheets</span><span class="p">:</span>
+<a id="__codelineno-5-3" name="__codelineno-5-3"></a><span class="w">    </span><span class="nt">audit</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Audit&quot;</span>
+<a id="__codelineno-5-4" name="__codelineno-5-4"></a><span class="w">    </span><span class="nt">dns</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;DNS</span><span class="nv"> </span><span class="s">Resolved&quot;</span>
+<a id="__codelineno-5-5" name="__codelineno-5-5"></a><span class="w">    </span><span class="nt">auth_errors</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Authentication</span><span class="nv"> </span><span class="s">Errors&quot;</span>
+<a id="__codelineno-5-6" name="__codelineno-5-6"></a><span class="w">    </span><span class="nt">conn_errors</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Connection</span><span class="nv"> </span><span class="s">Errors&quot;</span>
+<a id="__codelineno-5-7" name="__codelineno-5-7"></a><span class="w">  </span><span class="nt">metadata_cells</span><span class="p">:</span>
+<a id="__codelineno-5-8" name="__codelineno-5-8"></a><span class="w">    </span><span class="nt">site_name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;B4&quot;</span>
+<a id="__codelineno-5-9" name="__codelineno-5-9"></a><span class="w">    </span><span class="nt">date</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;B5&quot;</span>
+<a id="__codelineno-5-10" name="__codelineno-5-10"></a><span class="w">    </span><span class="nt">time</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;B6&quot;</span>
+<a id="__codelineno-5-11" name="__codelineno-5-11"></a><span class="w">    </span><span class="nt">primary_seed</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;B7&quot;</span>
+<a id="__codelineno-5-12" name="__codelineno-5-12"></a><span class="w">    </span><span class="nt">secondary_seed</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;B8&quot;</span>
+<a id="__codelineno-5-13" name="__codelineno-5-13"></a><span class="w">  </span><span class="nt">data_start_rows</span><span class="p">:</span>
+<a id="__codelineno-5-14" name="__codelineno-5-14"></a><span class="w">    </span><span class="nt">audit</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">12</span><span class="w">        </span><span class="c1"># Data appends starting at row 12</span>
+<a id="__codelineno-5-15" name="__codelineno-5-15"></a><span class="w">    </span><span class="nt">other</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2</span><span class="w">         </span><span class="c1"># DNS/errors start at row 2</span>
+</code></pre></div></td></tr></table></div>
+<p><strong>Why YAML Configuration?</strong></p>
+<div class="admonition success">
+<p class="admonition-title">YAML Benefits</p>
+<ul>
+<li><strong>Human-Readable</strong>: Edit settings without Python knowledge</li>
+<li><strong>Version Control Friendly</strong>: Plain text, works seamlessly with Git</li>
+<li><strong>Hierarchical Structure</strong>: Logical grouping (network/credentials/paths)</li>
+<li><strong>Comment Support</strong>: Inline documentation stays with config</li>
+<li><strong>Type Safety</strong>: Config loader validates and provides defaults</li>
+<li><strong>Data-Only</strong>: No code execution (safer than Python config files)</li>
+<li><strong>Team Collaboration</strong>: Network engineers can customize without developer involvement</li>
+</ul>
+</div>
+<h3 id="layer-2-environment-variables-runtime-overrides">Layer 2: Environment Variables (Runtime Overrides)<a class="headerlink" href="#layer-2-environment-variables-runtime-overrides" title="Anchor link to this section">&para;</a></h3>
+<p>Environment variables <strong>override</strong> config.yaml settings at runtime:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Variable</th>
+<th style="text-align: left;">Description</th>
+<th style="text-align: left;">config.yaml Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>CDP_LIMIT</code></td>
+<td style="text-align: left;">Max concurrent worker threads</td>
+<td style="text-align: left;">10</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>CDP_TIMEOUT</code></td>
+<td style="text-align: left;">SSH/auth/read timeouts (seconds)</td>
+<td style="text-align: left;">10</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>CDP_JUMP_SERVER</code></td>
+<td style="text-align: left;">Jump host (IP/hostname). Empty = direct</td>
+<td style="text-align: left;"><code>""</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>CDP_PRIMARY_CRED_TARGET</code></td>
+<td style="text-align: left;">CredMan target for primary creds</td>
+<td style="text-align: left;"><code>MyApp/ADM</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>CDP_ANSWER_CRED_TARGET</code></td>
+<td style="text-align: left;">CredMan target for fallback creds</td>
+<td style="text-align: left;"><code>MyApp/Answer</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>LOGGING_CONFIG</code></td>
+<td style="text-align: left;">Path to INI logging config</td>
+<td style="text-align: left;"><code>ProgramFiles/config_files/logging.conf</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Example (Windows PowerShell):</strong></p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-6-1">1</a></span>
+<span class="normal"><a href="#__codelineno-6-2">2</a></span>
+<span class="normal"><a href="#__codelineno-6-3">3</a></span>
+<span class="normal"><a href="#__codelineno-6-4">4</a></span>
+<span class="normal"><a href="#__codelineno-6-5">5</a></span>
+<span class="normal"><a href="#__codelineno-6-6">6</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1"></a><span class="c"># Override YAML defaults for this session</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2"></a><span class="nv">$env:CDP_LIMIT</span> <span class="p">=</span> <span class="s2">&quot;20&quot;</span>                   <span class="c"># Use 20 concurrent workers</span>
+<a id="__codelineno-6-3" name="__codelineno-6-3"></a><span class="nv">$env:CDP_TIMEOUT</span> <span class="p">=</span> <span class="s2">&quot;15&quot;</span>                 <span class="c"># 15-second timeouts</span>
+<a id="__codelineno-6-4" name="__codelineno-6-4"></a><span class="nv">$env:CDP_JUMP_SERVER</span> <span class="p">=</span> <span class="s2">&quot;bastion.corp.local&quot;</span>  <span class="c"># Use this jump server</span>
+<a id="__codelineno-6-5" name="__codelineno-6-5"></a><span class="nv">$env:CDP_PRIMARY_CRED_TARGET</span> <span class="p">=</span> <span class="s2">&quot;MyApp/NetworkAdmin&quot;</span>
+<a id="__codelineno-6-6" name="__codelineno-6-6"></a><span class="nv">$env:CDP_ANSWER_CRED_TARGET</span> <span class="p">=</span> <span class="s2">&quot;MyApp/LocalAdmin&quot;</span>
+</code></pre></div></td></tr></table></div>
+<p><strong>When to Use Environment Variables:</strong></p>
+<ul>
+<li><strong>Testing</strong>: Temporary overrides without modifying config.yaml</li>
+<li><strong>Multi-Environment Deployments</strong>: Different settings for dev/staging/prod</li>
+<li><strong>CI/CD Pipelines</strong>: Dynamic configuration from build systems</li>
+<li><strong>Per-Instance Customization</strong>: Running multiple instances with different settings</li>
+</ul>
+<h3 id="layer-3-config-loader-config_loaderpy">Layer 3: Config Loader (<code>config_loader.py</code>)<a class="headerlink" href="#layer-3-config-loader-config_loaderpy" title="Anchor link to this section">&para;</a></h3>
+<p>The <code>Config</code> class handles all configuration access with validation:</p>
+<p><strong>Key Features:</strong></p>
+<ul>
+<li><strong>Automatic Search</strong>: Looks for <code>config.yaml</code> in project root, module directory, and current directory</li>
+<li><strong>Environment Variable Priority</strong>: Env vars override YAML settings</li>
+<li><strong>Type Conversion</strong>: Automatically converts strings to int/bool/Path</li>
+<li><strong>Default Values</strong>: Provides sensible defaults if YAML keys missing</li>
+<li><strong>Validation</strong>: Fails fast if config file is malformed or missing required files</li>
+<li><strong>Property-Based Access</strong>: Use <code>config.JUMP_HOST</code> instead of dict lookups</li>
+</ul>
+<p><strong>Example Usage in Code:</strong></p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-7-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-7-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-7-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-7-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-7-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-7-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-7-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-7-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-7-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-7-10">10</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">cdp_audit.app_config</span><span class="w"> </span><span class="kn">import</span> <span class="n">config</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2"></a>
+<a id="__codelineno-7-3" name="__codelineno-7-3"></a><span class="c1"># Access configuration values</span>
+<a id="__codelineno-7-4" name="__codelineno-7-4"></a><span class="n">jump_host</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">JUMP_HOST</span>           <span class="c1"># &quot;192.0.2.10&quot; or env override</span>
+<a id="__codelineno-7-5" name="__codelineno-7-5"></a><span class="n">timeout</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">DEFAULT_TIMEOUT</span>        <span class="c1"># 10 or env override</span>
+<a id="__codelineno-7-6" name="__codelineno-7-6"></a><span class="n">cdp_template</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">CDP_TEMPLATE</span>      <span class="c1"># Path object, validated</span>
+<a id="__codelineno-7-7" name="__codelineno-7-7"></a>
+<a id="__codelineno-7-8" name="__codelineno-7-8"></a><span class="c1"># Config loader has already validated these exist</span>
+<a id="__codelineno-7-9" name="__codelineno-7-9"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Using jump host: </span><span class="si">{</span><span class="n">jump_host</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-7-10" name="__codelineno-7-10"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Timeout: </span><span class="si">{</span><span class="n">timeout</span><span class="si">}</span><span class="s2"> seconds&quot;</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<div class="admonition tip">
+<p class="admonition-title">Best Practice: Configuration Priority</p>
+<p>Use <strong>config.yaml</strong> for persistent organizational defaults that should be version-controlled. Use <strong>environment variables</strong> for runtime-specific overrides (testing, different environments) or secrets that shouldn't be committed to Git.</p>
+</div>
+<hr />
+<h2 id="technical-architecture">🏗️ Technical Architecture<a class="headerlink" href="#technical-architecture" title="Anchor link to this section">&para;</a></h2>
+<p>The tool operates as a <strong>modular Python package</strong> with eight primary modules, each with clear responsibilities:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Module</th>
+<th style="text-align: left;">Responsibility</th>
+<th style="text-align: left;">Why It Matters</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong><code>cli.py</code></strong></td>
+<td style="text-align: left;">Command-line interface and program entry point</td>
+<td style="text-align: left;">Clean separation of CLI logic from business logic</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong><code>credentials.py</code></strong></td>
+<td style="text-align: left;">Secure credential collection and OS integration</td>
+<td style="text-align: left;">Passwords stay out of code and config files</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong><code>discovery.py</code></strong></td>
+<td style="text-align: left;">Multi-threaded topology crawling via CDP</td>
+<td style="text-align: left;">Discovers 50+ devices in seconds, not minutes</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong><code>excel_reporter.py</code></strong></td>
+<td style="text-align: left;">Professional, templated report generation</td>
+<td style="text-align: left;">Maintains business branding and formatting</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong><code>validators.py</code></strong></td>
+<td style="text-align: left;">Pre-flight checks for templates and configuration</td>
+<td style="text-align: left;">Catches problems early; prevents mid-run failures</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong><code>logging_setup.py</code></strong></td>
+<td style="text-align: left;">Logging configuration bootstrap</td>
+<td style="text-align: left;">Consistent logging across all modules</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong><code>app_config.py</code></strong></td>
+<td style="text-align: left;">Centralized configuration access point</td>
+<td style="text-align: left;">Single source of truth for config values</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong><code>config_loader.py</code></strong></td>
+<td style="text-align: left;">YAML configuration loading and validation</td>
+<td style="text-align: left;">Type-safe config with defaults and env overrides</td>
+</tr>
+</tbody>
+</table>
+<h3 id="architectural-principles">Architectural Principles<a class="headerlink" href="#architectural-principles" title="Anchor link to this section">&para;</a></h3>
+<div class="admonition quote">
+<p class="admonition-title">Design Philosophy</p>
+<p><strong>Separation of Concerns</strong>: Each module has a single, well-defined responsibility. Changes to Excel formatting don't affect discovery logic.</p>
+<p><strong>Dependency Injection</strong>: Modules receive configuration objects rather than reading global state. Easier to test and reason about.</p>
+<p><strong>Fail-Fast Validation</strong>: The <code>validators.py</code> module checks all prerequisites <strong>before</strong> discovery starts. No more failures after 10 minutes of crawling.</p>
+<p><strong>Testability</strong>: Each module can be imported and tested independently. Mock the config, test credential logic in isolation.</p>
+</div>
+<h3 id="module-interaction-flow">Module Interaction Flow<a class="headerlink" href="#module-interaction-flow" title="Anchor link to this section">&para;</a></h3>
+<pre class="mermaid"><code>graph LR
+    CLI[cli.py] --&gt; Config[app_config.py]
+    CLI --&gt; Validators[validators.py]
+    CLI --&gt; Credentials[credentials.py]
+    CLI --&gt; Discovery[discovery.py]
+    CLI --&gt; Reporter[excel_reporter.py]
+
+    Config --&gt; Loader[config_loader.py]
+    Loader --&gt; YAML[config.yaml]
+    Loader --&gt; ENV[Environment Variables]
+
+    Validators --&gt; Config
+    Credentials --&gt; Config
+    Discovery --&gt; Config
+    Reporter --&gt; Config
+
+    Discovery --&gt; Netmiko[Netmiko/Paramiko]
+    Reporter --&gt; Excel[openpyxl/pandas]
+
+    style CLI fill:#e1f5ff
+    style Config fill:#fff4e6
+    style Discovery fill:#c8e6c9
+    style Reporter fill:#f3e5f5</code></pre>
+<p><strong>Execution Flow:</strong></p>
+<ol>
+<li><strong><code>cli.py</code></strong> loads configuration via <strong><code>app_config.py</code></strong></li>
+<li><strong><code>validators.py</code></strong> performs pre-flight checks (templates exist, Excel valid)</li>
+<li><strong><code>credentials.py</code></strong> collects and validates authentication credentials</li>
+<li><strong><code>discovery.py</code></strong> executes threaded network crawling</li>
+<li><strong><code>excel_reporter.py</code></strong> generates professional report from template</li>
+<li><strong><code>cli.py</code></strong> displays summary and exit status</li>
+</ol>
+<h3 id="package-entry-points">Package Entry Points<a class="headerlink" href="#package-entry-points" title="Anchor link to this section">&para;</a></h3>
+<p>The tool can be executed in <strong>three ways</strong>:</p>
+<p><strong>1. As a Python Package (Recommended):</strong></p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-8-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1"></a>python<span class="w"> </span>-m<span class="w"> </span>cdp_audit
+</code></pre></div></td></tr></table></div>
+<p>Uses <code>cdp_audit/__main__.py</code> as the entry point, which calls <code>cli.main()</code>.</p>
+<p><strong>2. Via Windows Launcher (Easiest for Non-Developers):</strong></p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-9-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1"></a>run.bat
+</code></pre></div></td></tr></table></div>
+<p>Validates environment, activates portable venv, runs the package.</p>
+<p><strong>3. Direct Module Execution (Development):</strong></p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-10-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1"></a>python<span class="w"> </span>-m<span class="w"> </span>cdp_audit.cli
+</code></pre></div></td></tr></table></div>
+<p>Directly calls the CLI module (useful for debugging).</p>
+<hr />
+<h2 id="credentials-model">🔐 Credentials Model<a class="headerlink" href="#credentials-model" title="Anchor link to this section">&para;</a></h2>
+<p>This tool supports a <strong>primary credential</strong> and a <strong>fully customizable fallback credential</strong>:</p>
+<ul>
+<li><strong>Primary credentials</strong> (used for the jump and the device): read from Windows Credential Manager if present (default target <code>MyApp/ADM</code>), else prompted. You can optionally save what you type back to Credential Manager.</li>
+<li><strong>Fallback credentials</strong> (device hop only, jump still uses primary): <strong>username is fully customizable via config.yaml</strong> (default: <code>answer</code>). Password is read from Credential Manager (default target <code>MyApp/Answer</code>) or prompted; you may choose to save it.</li>
+</ul>
+<blockquote>
+<p><strong>Note:</strong> On non-Windows platforms, prompts are used (no Credential Manager).</p>
+<p><strong>Customization:</strong> Change the fallback username in <code>config.yaml</code> by setting <code>cdp_fallback_username</code> under the <code>credentials</code> section to match your environment (e.g., <code>localadmin</code>, <code>backup</code>, <code>netops</code>, <code>svc_network</code>).</p>
+</blockquote>
+<h3 id="why-credential-management-matters">Why Credential Management Matters<a class="headerlink" href="#why-credential-management-matters" title="Anchor link to this section">&para;</a></h3>
+<p><strong>The Problem:</strong> Network automation requires credentials. Storing them in plaintext files or hardcoding them in scripts is a security nightmare. Even prompting users every time is error-prone and doesn't scale to 10+ discovery jobs daily.</p>
+<p><strong>The Solution:</strong> Leverage native OS credential stores. Windows has Credential Manager, macOS has Keychain, Linux has pass. These are designed for exactly this use case and integrate with enterprise SSO/password managers.</p>
+<p><strong>User Experience:</strong> When you run CDP Network Audit for the first time, the script checks Windows Credential Manager for stored credentials. If none are found, it prompts you to enter your username and password. Once you provide them, the script saves them to Windows Credential Manager and uses them for the discovery process. On subsequent runs, the script retrieves the stored credentials automatically without prompting you again.</p>
+<h3 id="credentialmanager__init__"><code>CredentialManager.__init__()</code><a class="headerlink" href="#credentialmanager__init__" title="Anchor link to this section">&para;</a></h3>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-11-1">1</a></span>
+<span class="normal"><a href="#__codelineno-11-2">2</a></span>
+<span class="normal"><a href="#__codelineno-11-3">3</a></span>
+<span class="normal"><a href="#__codelineno-11-4">4</a></span>
+<span class="normal"><a href="#__codelineno-11-5">5</a></span>
+<span class="normal"><a href="#__codelineno-11-6">6</a></span>
+<span class="normal"><a href="#__codelineno-11-7">7</a></span>
+<span class="normal"><a href="#__codelineno-11-8">8</a></span>
+<span class="normal"><a href="#__codelineno-11-9">9</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1"></a><span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<a id="__codelineno-11-2" name="__codelineno-11-2"></a>    <span class="c1"># Load YAML config via config_loader module</span>
+<a id="__codelineno-11-3" name="__codelineno-11-3"></a>    <span class="kn">from</span><span class="w"> </span><span class="nn">ProgramFiles.config_files.config_loader</span><span class="w"> </span><span class="kn">import</span> <span class="n">Config</span>
+<a id="__codelineno-11-4" name="__codelineno-11-4"></a>    <span class="n">config</span> <span class="o">=</span> <span class="n">Config</span><span class="p">()</span>
+<a id="__codelineno-11-5" name="__codelineno-11-5"></a>
+<a id="__codelineno-11-6" name="__codelineno-11-6"></a>    <span class="c1"># Read from environment variables (override) or config.yaml (default)</span>
+<a id="__codelineno-11-7" name="__codelineno-11-7"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">primary_target</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">&quot;CDP_PRIMARY_CRED_TARGET&quot;</span><span class="p">,</span> <span class="n">config</span><span class="o">.</span><span class="n">CRED_TARGET</span><span class="p">)</span>
+<a id="__codelineno-11-8" name="__codelineno-11-8"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">fallback_target</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">&quot;CDP_FALLBACK_CRED_TARGET&quot;</span><span class="p">,</span> <span class="n">config</span><span class="o">.</span><span class="n">ALT_CREDS</span><span class="p">)</span>
+<a id="__codelineno-11-9" name="__codelineno-11-9"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">fallback_username</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">&quot;CDP_FALLBACK_USERNAME&quot;</span><span class="p">,</span> <span class="n">config</span><span class="o">.</span><span class="n">CDP_FALLBACK_USERNAME</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<p><strong>Line-by-Line:</strong></p>
+<ul>
+<li>Import the Config class from <code>config_loader.py</code> which parses <code>config.yaml</code></li>
+<li>Instantiate Config to load YAML settings with validation and type safety</li>
+<li>Environment variables override YAML config if set (for runtime flexibility)</li>
+<li>Three configurable values: primary target, fallback target, and fallback username</li>
+<li>The config loader validates YAML syntax and provides defaults for missing values</li>
+</ul>
+<p><strong>Why This Matters:</strong></p>
+<ul>
+<li><strong>config.yaml</strong>: Human-readable, persistent, version-controlled settings that match your organization's standards</li>
+<li><strong>Environment variables</strong>: Runtime overrides for different environments (dev/prod) or testing</li>
+<li><strong>Config loader</strong>: Provides type-safe property accessors and validation</li>
+<li><strong>Fallback username</strong>: No longer hardcoded—customize in config.yaml to match your local accounts (e.g., <code>localadmin</code>, <code>netops</code>, <code>backup</code>)</li>
+<li><strong>Separation of concerns</strong>: Configuration data (YAML) is separate from configuration logic (Python class)</li>
+<li>Credentials themselves are still stored securely in Credential Manager (Windows) or prompted on other platforms</li>
+</ul>
+<h3 id="_read_win_credtarget_name-str"><code>_read_win_cred(target_name: str)</code><a class="headerlink" href="#_read_win_credtarget_name-str" title="Anchor link to this section">&para;</a></h3>
+<p>Reads encrypted credentials from Windows Credential Manager. Returns <code>(username, password)</code> tuple or <code>(None, None)</code> if not found.</p>
+<p><strong>Key Points:</strong></p>
+<ul>
+<li>Only imports <code>win32cred</code> if available (Windows only)</li>
+<li>Handles both bytes and string returns for compatibility</li>
+<li>Decodes password from UTF-16LE (Windows internal format)</li>
+<li>Gracefully fails and returns None instead of crashing</li>
+</ul>
+<p><strong>Why This Approach:</strong></p>
+<ul>
+<li><strong>No plaintext storage:</strong> Credentials are encrypted by Windows</li>
+<li><strong>Cross-platform:</strong> Non-Windows systems skip this and use prompts</li>
+<li><strong>Version-agnostic:</strong> Works with multiple pywin32 versions</li>
+</ul>
+<h3 id="_write_win_credtarget-str-username-str-password-str-bool"><code>_write_win_cred(target: str, username: str, password: str) -&gt; bool</code><a class="headerlink" href="#_write_win_credtarget-str-username-str-password-str-bool" title="Anchor link to this section">&para;</a></h3>
+<p>Writes credentials to Windows Credential Manager for future reuse. Users can optionally save credentials after first prompt.</p>
+<p><strong>Key Points:</strong></p>
+<ul>
+<li>Password is encoded to UTF-16LE before storage (Windows requirement)</li>
+<li><code>CRED_PERSIST_LOCAL_MACHINE</code> means credentials persist across sessions</li>
+<li>Failures are logged at DEBUG level (not alarming)</li>
+<li>Returns <code>True</code> on success, <code>False</code> on failure</li>
+</ul>
+<p><strong>Why This Matters:</strong></p>
+<ul>
+<li>Users can avoid re-prompting on subsequent runs</li>
+<li>Credentials are encrypted and protected by Windows</li>
+<li>Optional save means users control persistence</li>
+</ul>
+<h3 id="get_secret_with_fallback-tuplestr-str"><code>get_secret_with_fallback(...) -&gt; Tuple[str, str]</code><a class="headerlink" href="#get_secret_with_fallback-tuplestr-str" title="Anchor link to this section">&para;</a></h3>
+<p>The credential retrieval orchestrator with multi-step fallback:</p>
+<ol>
+<li><strong>Try Credential Manager first</strong> (if Windows)</li>
+<li><strong>Fall back to interactive prompt</strong></li>
+<li><strong>Optionally save to Credential Manager</strong></li>
+</ol>
+<p><strong>Two-Credential Model:</strong></p>
+<ul>
+<li><strong>Primary:</strong> Your main automation account (flexible username, likely AD-backed)</li>
+<li><strong>Fallback:</strong> A secondary user on each device (username customisable in <code>config.py</code>, typically a local account)</li>
+</ul>
+<p><strong>Why This Design:</strong></p>
+<ul>
+<li>Zero installation friction - first run prompts, subsequent runs use saved credentials</li>
+<li>Two credentials maximise success: primary fails → retry with fallback</li>
+<li>Jump host always uses primary (tighter control)</li>
+<li>Device can fall back to secondary user (local account)</li>
+<li>Fully customisable to match your organisation's account naming standards</li>
+</ul>
+<hr />
+<h2 id="jump-server-behaviour">🌐 Jump Server Behaviour<a class="headerlink" href="#jump-server-behaviour" title="Anchor link to this section">&para;</a></h2>
+<ul>
+<li>Set <code>jump_host</code> in the <code>network</code> section of <code>config.yaml</code> to specify a default jump host.</li>
+<li>Alternatively, use the <code>CDP_JUMP_SERVER</code> environment variable to override at runtime.</li>
+<li>If empty, you will be prompted during runtime; leaving it blank uses direct device connections.</li>
+<li>The jump is created with Paramiko and a <code>direct-tcpip</code> channel; Netmiko is then bound to that channel (no local listener required).</li>
+</ul>
+<blockquote>
+<p><strong>Note:</strong> Host key policy defaults to a warning (accepts unknown keys but logs a warning). For production environments, prefer strict host key checking via <code>known_hosts</code> management.</p>
+<p><strong>Tip:</strong> Configure your jump server in <code>config.yaml</code> (<code>jump_host: "192.0.2.10"</code>) for permanent use, or leave it empty to be prompted each time for flexibility.</p>
+</blockquote>
+<hr />
+<h2 id="quick-start-using-the-launcher-recommended">🚀 Quick Start: Using the Launcher (Recommended)<a class="headerlink" href="#quick-start-using-the-launcher-recommended" title="Anchor link to this section">&para;</a></h2>
+<p>The repository now includes a <strong>professional Windows batch launcher</strong> (<code>run.bat</code>) that provides the easiest way to run the tool with default settings.</p>
+<h3 id="why-use-the-launcher">Why Use the Launcher?<a class="headerlink" href="#why-use-the-launcher" title="Anchor link to this section">&para;</a></h3>
+<ul>
+<li><strong>Zero configuration required</strong> - Just double-click or run from command line</li>
+<li><strong>Automatic validation</strong> - Checks for Python environment and required files before execution</li>
+<li><strong>Helpful diagnostics</strong> - Clear error messages if something is missing</li>
+<li><strong>Professional interface</strong> - Clean output with status indicators and progress messages</li>
+<li><strong>Safe execution</strong> - Validates environment before running the script</li>
+</ul>
+<h3 id="using-runbat">Using run.bat<a class="headerlink" href="#using-runbat" title="Anchor link to this section">&para;</a></h3>
+<h2 id="option-1-double-click"><strong>Option 1: Double-click</strong><a class="headerlink" href="#option-1-double-click" title="Anchor link to this section">&para;</a></h2>
+<p>Simply double-click <code>run.bat</code> in Windows Explorer to launch the tool with default behavior.</p>
+<h2 id="option-2-command-line-default-behavior"><strong>Option 2: Command Line (Default Behavior)</strong><a class="headerlink" href="#option-2-command-line-default-behavior" title="Anchor link to this section">&para;</a></h2>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-12-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1"></a>run.bat
+</code></pre></div></td></tr></table></div>
+<p>This runs the CDP Network Audit with all default settings from <code>config.yaml</code>.</p>
+<h3 id="what-the-launcher-does">What the Launcher Does<a class="headerlink" href="#what-the-launcher-does" title="Anchor link to this section">&para;</a></h3>
+<ol>
+<li><strong>Validates the environment:</strong></li>
+<li>Checks that the <code>portable_env</code> virtual environment exists</li>
+<li>Verifies Python executable is present</li>
+<li>Confirms <code>main.py</code> exists</li>
+<li>Validates required TextFSM templates are present</li>
+<li>
+<p>Validates Excel template exists</p>
+</li>
+<li>
+<p><strong>Provides clear feedback:</strong></p>
+</li>
+<li>Shows [OK] for successful checks</li>
+<li>Shows [WARNING] for missing optional files</li>
+<li>Shows [ERROR] for critical missing components</li>
+<li>
+<p>Displays helpful troubleshooting tips on failure</p>
+</li>
+<li>
+<p><strong>Runs the tool:</strong></p>
+</li>
+<li>Activates the virtual environment</li>
+<li>Executes the main script</li>
+<li>Captures and displays the exit code</li>
+<li>Provides common troubleshooting tips if errors occur</li>
+</ol>
+<h3 id="example-output">Example Output<a class="headerlink" href="#example-output" title="Anchor link to this section">&para;</a></h3>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-13-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-13-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-13-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-13-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-13-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-13-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-13-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-13-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-13-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-13-10">10</a></span>
+<span class="normal"><a href="#__codelineno-13-11">11</a></span>
+<span class="normal"><a href="#__codelineno-13-12">12</a></span>
+<span class="normal"><a href="#__codelineno-13-13">13</a></span>
+<span class="normal"><a href="#__codelineno-13-14">14</a></span>
+<span class="normal"><a href="#__codelineno-13-15">15</a></span>
+<span class="normal"><a href="#__codelineno-13-16">16</a></span>
+<span class="normal"><a href="#__codelineno-13-17">17</a></span>
+<span class="normal"><a href="#__codelineno-13-18">18</a></span>
+<span class="normal"><a href="#__codelineno-13-19">19</a></span>
+<span class="normal"><a href="#__codelineno-13-20">20</a></span>
+<span class="normal"><a href="#__codelineno-13-21">21</a></span>
+<span class="normal"><a href="#__codelineno-13-22">22</a></span>
+<span class="normal"><a href="#__codelineno-13-23">23</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1"></a>================================================================================
+<a id="__codelineno-13-2" name="__codelineno-13-2"></a>                    CDP NETWORK AUDIT TOOL
+<a id="__codelineno-13-3" name="__codelineno-13-3"></a>================================================================================
+<a id="__codelineno-13-4" name="__codelineno-13-4"></a>
+<a id="__codelineno-13-5" name="__codelineno-13-5"></a>Starting validation checks...
+<a id="__codelineno-13-6" name="__codelineno-13-6"></a>
+<a id="__codelineno-13-7" name="__codelineno-13-7"></a>[OK] Python Environment: Found at portable_env\Scripts\python.exe
+<a id="__codelineno-13-8" name="__codelineno-13-8"></a>[OK] Required support files found
+<a id="__codelineno-13-9" name="__codelineno-13-9"></a>[OK] All validation checks passed
+<a id="__codelineno-13-10" name="__codelineno-13-10"></a>
+<a id="__codelineno-13-11" name="__codelineno-13-11"></a>================================================================================
+<a id="__codelineno-13-12" name="__codelineno-13-12"></a>
+<a id="__codelineno-13-13" name="__codelineno-13-13"></a>Running CDP Network Audit...
+<a id="__codelineno-13-14" name="__codelineno-13-14"></a>
+<a id="__codelineno-13-15" name="__codelineno-13-15"></a>================================================================================
+<a id="__codelineno-13-16" name="__codelineno-13-16"></a>
+<a id="__codelineno-13-17" name="__codelineno-13-17"></a>[Script output appears here]
+<a id="__codelineno-13-18" name="__codelineno-13-18"></a>
+<a id="__codelineno-13-19" name="__codelineno-13-19"></a>================================================================================
+<a id="__codelineno-13-20" name="__codelineno-13-20"></a>
+<a id="__codelineno-13-21" name="__codelineno-13-21"></a>[SUCCESS] Script completed successfully
+<a id="__codelineno-13-22" name="__codelineno-13-22"></a>
+<a id="__codelineno-13-23" name="__codelineno-13-23"></a>================================================================================
+</code></pre></div></td></tr></table></div>
+<hr />
+<h2 id="advanced-command-line-with-arguments">🚀 Advanced: Command Line with Arguments<a class="headerlink" href="#advanced-command-line-with-arguments" title="Anchor link to this section">&para;</a></h2>
+<p>For advanced users who need to <strong>customize behavior beyond the defaults</strong>, you can still run the tool directly with Python and command-line arguments.</p>
+<h3 id="when-to-use-command-line-arguments">When to Use Command Line Arguments<a class="headerlink" href="#when-to-use-command-line-arguments" title="Anchor link to this section">&para;</a></h3>
+<p>Use <code>python main.py</code> with arguments when you need to:</p>
+<ul>
+<li>Override default settings from <code>config.yaml</code></li>
+<li>Run with different parameters for testing</li>
+<li>Integrate with automation scripts</li>
+<li>Pass runtime-specific configuration</li>
+</ul>
+<h3 id="method-1-using-the-launcher-with-arguments">Method 1: Using the Launcher with Arguments<a class="headerlink" href="#method-1-using-the-launcher-with-arguments" title="Anchor link to this section">&para;</a></h3>
+<p>You can pass arguments to <code>run.bat</code> and they will be forwarded to the Python script:</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-14-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1"></a>run.bat --timeout 20 --workers 15
+</code></pre></div></td></tr></table></div>
+<h3 id="method-2-direct-python-execution">Method 2: Direct Python Execution<a class="headerlink" href="#method-2-direct-python-execution" title="Anchor link to this section">&para;</a></h3>
+<h2 id="how-to-run-interactive-flow">🚀 How to Run (Interactive Flow)<a class="headerlink" href="#how-to-run-interactive-flow" title="Anchor link to this section">&para;</a></h2>
+<ol>
+<li>Ensure templates and Excel file exist under <code>ProgramFiles/...</code> (see above).</li>
+<li>(Optional) Customize <code>config.yaml</code> with your organization's defaults.</li>
+<li>(Optional) Set environment variables as needed for runtime overrides.</li>
+<li>Run:</li>
+</ol>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-15-1">1</a></span>
+<span class="normal"><a href="#__codelineno-15-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1"></a>python<span class="w"> </span>-m<span class="w"> </span>main
+<a id="__codelineno-15-2" name="__codelineno-15-2"></a><span class="c1"># or: python main.py</span>
+</code></pre></div></td></tr></table></div>
+<ol>
+<li>Follow prompts:</li>
+<li>Site name (used in the output filename)</li>
+<li>Seed devices (comma-separated IPv4 / resolvable hostnames)</li>
+<li>Primary credentials (reads from CredMan if present; else prompts; optional save)</li>
+<li>Fallback password (username from <code>config.yaml</code>; reads from CredMan if present; else prompts; optional save)</li>
+<li>Jump server (from <code>config.yaml</code>, env var, or prompt; blank = direct)</li>
+</ol>
+<p>The tool validates/normalises seeds to IP addresses, de-duplicates them, then starts the threaded discovery.</p>
+<hr />
+<h2 id="what-gets-collected">🧪 What Gets Collected<a class="headerlink" href="#what-gets-collected" title="Anchor link to this section">&para;</a></h2>
+<p>For each visited device the tool attempts to collect:</p>
+<ul>
+<li><code>show version</code> (hostname, serials, uptime) — for local context.</li>
+<li><code>show cdp neighbors detail</code> — parsed into structured rows.</li>
+<li>DNS resolution for all discovered hostnames (best-effort), in parallel.</li>
+</ul>
+<h3 id="discovery-heuristics">Discovery Heuristics<a class="headerlink" href="#discovery-heuristics" title="Anchor link to this section">&para;</a></h3>
+<ul>
+<li>Only Switch-capable CDP entries (and not hosts) with a management IP are queued as crawl candidates.</li>
+<li>Deduplication is performed by hostname and IP to reduce churn.</li>
+<li>Each target is retried up to 3 times for transient connectivity issues.</li>
+</ul>
+<hr />
+<h3 id="prompt_for_inputs"><code>prompt_for_inputs()</code><a class="headerlink" href="#prompt_for_inputs" title="Anchor link to this section">&para;</a></h3>
+<p>Orchestrates all interactive input collection in one flow:</p>
+<ol>
+<li><strong>Site name</strong> - Used in Excel filename (max 50 chars)</li>
+<li><strong>Seed devices</strong> - Comma-separated IPs or hostnames</li>
+<li><strong>Primary credentials</strong> - Main automation account</li>
+<li><strong>Fallback credentials</strong> - Fallback device account (username from <code>config.py</code>, default: <code>answer</code>)</li>
+</ol>
+<hr />
+<h2 id="networkdiscoverer-the-threaded-discovery-engine">🔌 NetworkDiscoverer: The Threaded Discovery Engine<a class="headerlink" href="#networkdiscoverer-the-threaded-discovery-engine" title="Anchor link to this section">&para;</a></h2>
+<h3 id="why-parallel-discovery-is-essential">Why Parallel Discovery is Essential<a class="headerlink" href="#why-parallel-discovery-is-essential" title="Anchor link to this section">&para;</a></h3>
+<p><strong>The Problem:</strong> Discovering 50+ switches serially takes 10+ minutes. Each SSH connection is a round-trip: connect, execute, disconnect.</p>
+<p><strong>The Solution:</strong> Thread pool with 10 concurrent workers = 5x faster. 10 simultaneous connections instead of waiting for each one.</p>
+<h3 id="thread-safe-data-accumulators">Thread-Safe Data Accumulators<a class="headerlink" href="#thread-safe-data-accumulators" title="Anchor link to this section">&para;</a></h3>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-16-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-16-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-16-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-16-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-16-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-16-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-16-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-16-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-16-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-16-10">10</a></span>
+<span class="normal"><a href="#__codelineno-16-11">11</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1"></a><span class="c1"># What we track (all thread-safe)</span>
+<a id="__codelineno-16-2" name="__codelineno-16-2"></a><span class="bp">self</span><span class="o">.</span><span class="n">cdp_neighbor_details</span> <span class="o">=</span> <span class="p">[]</span>  <span class="c1"># Parsed CDP entries</span>
+<a id="__codelineno-16-3" name="__codelineno-16-3"></a><span class="bp">self</span><span class="o">.</span><span class="n">hostnames</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>           <span class="c1"># Discovered hostnames for DNS</span>
+<a id="__codelineno-16-4" name="__codelineno-16-4"></a><span class="bp">self</span><span class="o">.</span><span class="n">visited</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>             <span class="c1"># IPs we&#39;ve already audited</span>
+<a id="__codelineno-16-5" name="__codelineno-16-5"></a><span class="bp">self</span><span class="o">.</span><span class="n">authentication_errors</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span> <span class="c1"># Auth failures</span>
+<a id="__codelineno-16-6" name="__codelineno-16-6"></a><span class="bp">self</span><span class="o">.</span><span class="n">connection_errors</span> <span class="o">=</span> <span class="p">{}</span>      <span class="c1"># {IP: error_message}</span>
+<a id="__codelineno-16-7" name="__codelineno-16-7"></a><span class="bp">self</span><span class="o">.</span><span class="n">dns_ip</span> <span class="o">=</span> <span class="p">{}</span>                 <span class="c1"># {hostname: resolved_ip}</span>
+<a id="__codelineno-16-8" name="__codelineno-16-8"></a>
+<a id="__codelineno-16-9" name="__codelineno-16-9"></a><span class="c1"># Protection mechanisms</span>
+<a id="__codelineno-16-10" name="__codelineno-16-10"></a><span class="bp">self</span><span class="o">.</span><span class="n">visited_lock</span> <span class="o">=</span> <span class="n">threading</span><span class="o">.</span><span class="n">Lock</span><span class="p">()</span>  <span class="c1"># Protects queue management</span>
+<a id="__codelineno-16-11" name="__codelineno-16-11"></a><span class="bp">self</span><span class="o">.</span><span class="n">data_lock</span> <span class="o">=</span> <span class="n">threading</span><span class="o">.</span><span class="n">Lock</span><span class="p">()</span>     <span class="c1"># Protects result accumulators</span>
+</code></pre></div></td></tr></table></div>
+<p><strong>Why Two Locks?</strong></p>
+<ul>
+<li>If we used one lock for everything, threads would block each other constantly</li>
+<li>Granular locks allow more independent work</li>
+<li><code>visited_lock</code> for quick "is this already being processed?" checks</li>
+<li><code>data_lock</code> for appending results</li>
+</ul>
+<h3 id="parse_outputs_and_enqueue_neighbors"><code>parse_outputs_and_enqueue_neighbors(...)</code><a class="headerlink" href="#parse_outputs_and_enqueue_neighbors" title="Anchor link to this section">&para;</a></h3>
+<p>This is the <strong>intelligence</strong> of the discovery engine. It decides which devices to audit next.</p>
+<p><strong>Three-Step Process:</strong></p>
+<h3 id="step-1-parse-device-context"><strong>Step 1: Parse Device Context</strong><a class="headerlink" href="#step-1-parse-device-context" title="Anchor link to this section">&para;</a></h3>
+<ul>
+<li>Extract hostname, serial, uptime from <code>show version</code></li>
+<li>Fall back to IP if parsing fails</li>
+</ul>
+<h3 id="step-2-parse-cdp-neighbors"><strong>Step 2: Parse CDP Neighbors</strong><a class="headerlink" href="#step-2-parse-cdp-neighbors" title="Anchor link to this section">&para;</a></h3>
+<ul>
+<li>Extract each neighbor's details (ports, capabilities, management IP)</li>
+<li>Store in thread-safe list</li>
+</ul>
+<h3 id="step-3-apply-queueing-heuristic"><strong>Step 3: Apply Queueing Heuristic</strong><a class="headerlink" href="#step-3-apply-queueing-heuristic" title="Anchor link to this section">&para;</a></h3>
+<p>Only enqueue if ALL three conditions are true:</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-17-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1"></a><span class="k">if</span> <span class="s2">&quot;Switch&quot;</span> <span class="ow">in</span> <span class="n">caps</span> <span class="ow">and</span> <span class="s2">&quot;Host&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">caps</span> <span class="ow">and</span> <span class="n">mgmt_ip</span><span class="p">:</span>
+</code></pre></div></td></tr></table></div>
+<p><strong>Why "Switch" in caps?</strong></p>
+<ul>
+<li>CDP capability strings like "Switch Router" identify infrastructure</li>
+<li>We only want to audit infrastructure nodes, not endpoints</li>
+</ul>
+<p><strong>Why "Host" not in caps?</strong></p>
+<ul>
+<li>IP phones, printers, cameras also show up in CDP</li>
+<li>Their capability includes "Host" but we can't/shouldn't manage them</li>
+</ul>
+<p><strong>Why mgmt_ip?</strong></p>
+<ul>
+<li>If a device doesn't advertise a management IP, we have no way to SSH to it</li>
+<li>Queueing it would just cause failures</li>
+</ul>
+<p><strong>Example:</strong></p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-18-1">1</a></span>
+<span class="normal"><a href="#__codelineno-18-2">2</a></span>
+<span class="normal"><a href="#__codelineno-18-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1"></a>Router (Switch, Router) + 192.0.2.5  → Queue it
+<a id="__codelineno-18-2" name="__codelineno-18-2"></a>IP Phone (Host) + 192.0.2.50         → Skip (endpoint)
+<a id="__codelineno-18-3" name="__codelineno-18-3"></a>Access Point (Host) + no Mgmt IP     → Skip (non-addressable)
+</code></pre></div></td></tr></table></div>
+<h3 id="_paramiko_jump_client-paramikosshclient"><code>_paramiko_jump_client(...) -&gt; paramiko.SSHClient</code><a class="headerlink" href="#_paramiko_jump_client-paramikosshclient" title="Anchor link to this section">&para;</a></h3>
+<p>Creates a secure SSH connection to a jump/bastion host.</p>
+<p><strong>Key Design Choices:</strong></p>
+<ul>
+<li><code>WarningPolicy()</code> - Log warnings for unknown hosts (safer than AutoAddPolicy)</li>
+<li>Explicit password auth only - No SSH keys or agent (easier to audit)</li>
+<li>Consistent timeouts - All operations respect <code>CDP_TIMEOUT</code> setting</li>
+<li>Re-raise auth failures - Let caller handle credential issues</li>
+</ul>
+<p><strong>Why WarningPolicy?</strong></p>
+<ul>
+<li>Accepts unknown hosts but logs warnings</li>
+<li>Catches potential man-in-the-middle attacks without crashing</li>
+<li>Production-ready security posture</li>
+</ul>
+<h3 id="_netmiko_via_jump-connecthandler"><code>_netmiko_via_jump(...)  -&gt; ConnectHandler</code><a class="headerlink" href="#_netmiko_via_jump-connecthandler" title="Anchor link to this section">&para;</a></h3>
+<p>The <strong>core connection function</strong>. Handles both direct and jump-host connections.</p>
+<p><strong>Credential Logic:</strong></p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-19-1">1</a></span>
+<span class="normal"><a href="#__codelineno-19-2">2</a></span>
+<span class="normal"><a href="#__codelineno-19-3">3</a></span>
+<span class="normal"><a href="#__codelineno-19-4">4</a></span>
+<span class="normal"><a href="#__codelineno-19-5">5</a></span>
+<span class="normal"><a href="#__codelineno-19-6">6</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1"></a><span class="k">if</span> <span class="n">primary</span><span class="p">:</span>
+<a id="__codelineno-19-2" name="__codelineno-19-2"></a>    <span class="n">jump_user</span><span class="p">,</span> <span class="n">jump_pass</span> <span class="o">=</span> <span class="n">primary_user</span><span class="p">,</span> <span class="n">primary_pass</span>
+<a id="__codelineno-19-3" name="__codelineno-19-3"></a>    <span class="n">device_user</span><span class="p">,</span> <span class="n">device_pass</span> <span class="o">=</span> <span class="n">primary_user</span><span class="p">,</span> <span class="n">primary_pass</span>
+<a id="__codelineno-19-4" name="__codelineno-19-4"></a><span class="k">else</span><span class="p">:</span>
+<a id="__codelineno-19-5" name="__codelineno-19-5"></a>    <span class="n">jump_user</span><span class="p">,</span> <span class="n">jump_pass</span> <span class="o">=</span> <span class="n">primary_user</span><span class="p">,</span> <span class="n">primary_pass</span>  <span class="c1"># Jump always uses primary</span>
+<a id="__codelineno-19-6" name="__codelineno-19-6"></a>    <span class="n">device_user</span><span class="p">,</span> <span class="n">device_pass</span> <span class="o">=</span> <span class="n">fallback_user</span><span class="p">,</span> <span class="n">fallback_pass</span>  <span class="c1"># Device uses fallback</span>
+</code></pre></div></td></tr></table></div>
+<p><strong>Why This Two-Credential Model:</strong></p>
+<ul>
+<li>Jump host always uses primary (tightest control)</li>
+<li>Device can use fallback if primary fails (username customisable in <code>config.py</code>)</li>
+<li>Resilience: if your primary account is locked, fallback account can still work</li>
+<li>Flexibility: adapt to your organisation's local account naming conventions</li>
+</ul>
+<p><strong>Direct Connection:</strong>
+Simply pass device IP to Netmiko.</p>
+<p><strong>Jump-Mediated Connection:</strong></p>
+<ol>
+<li>Open Paramiko SSH to jump host</li>
+<li>Create <code>direct-tcpip</code> channel (SSH tunnel) through jump to target</li>
+<li>Wrap channel as socket</li>
+<li>Pass socket to Netmiko for SSH auth</li>
+</ol>
+<p><strong>Why direct-tcpip?</strong></p>
+<ul>
+<li>No need to open a listener on the jump host</li>
+<li>No port forwarding configuration required</li>
+<li>All traffic is inside the already-authenticated SSH session</li>
+<li>Secure and clean</li>
+</ul>
+<h3 id="run_device_commands-tuplestr-str"><code>run_device_commands(...) -&gt; Tuple[str, str]</code><a class="headerlink" href="#run_device_commands-tuplestr-str" title="Anchor link to this section">&para;</a></h3>
+<p>Executes CDP and version commands on target device with fallback credentials.</p>
+<p><strong>Strategy:</strong></p>
+<ol>
+<li>Try with primary credentials</li>
+<li>On auth failure, catch and retry with fallback (customisable fallback user on device)</li>
+<li>Don't retry auth failures (credentials won't change between attempts)</li>
+<li>Do retry transient errors (timeouts, SSH glitches) up to 3 times</li>
+<li>Always disconnect in finally block (prevent socket leaks)</li>
+</ol>
+<p><strong>Why This Approach:</strong></p>
+<ul>
+<li>Maximizes success rate with two-credential strategy</li>
+<li>Transient timeouts are retried (network glitches happen)</li>
+<li>Auth failures fail-fast (no point retrying)</li>
+<li>Finally block ensures resource cleanup</li>
+</ul>
+<h3 id="discover_worker-none"><code>discover_worker(...) -&gt; None</code><a class="headerlink" href="#discover_worker-none" title="Anchor link to this section">&para;</a></h3>
+<p>The worker thread function. Multiple instances run concurrently.</p>
+<p><strong>Loop:</strong></p>
+<ol>
+<li>Get next host from queue (timeout=1.0 prevents hangs)</li>
+<li>Recognize sentinel (None = shutdown signal)</li>
+<li>Check if already visited (prevent duplicate work)</li>
+<li>Execute discovery with up to 3 retries</li>
+<li>Parse outputs and enqueue new neighbors</li>
+<li>Always call <code>task_done()</code> or queue.join() will hang</li>
+</ol>
+<p><strong>Why Sentinel Pattern?</strong></p>
+<ul>
+<li>None signals worker to exit gracefully</li>
+<li>Main thread sends one sentinel per worker</li>
+<li>Coordinated shutdown without races</li>
+</ul>
+<p><strong>Why Check If Already Visited?</strong></p>
+<ul>
+<li>Concurrent workers might both process same IP</li>
+<li>Prevent duplicate discovery work</li>
+<li>Track with hostname and IP</li>
+</ul>
+<p><strong>Why task_done() Is Critical:</strong>
+Without <code>task_done()</code>, <code>queue.join()</code> waits forever on main thread. This is a common source of hangs in multi-threaded code!</p>
+<h3 id="resolve_dns_parallel-none"><code>resolve_dns_parallel() -&gt; None</code><a class="headerlink" href="#resolve_dns_parallel-none" title="Anchor link to this section">&para;</a></h3>
+<p>After discovery, resolve all discovered hostnames to IPs in parallel.</p>
+<p><strong>Design:</strong></p>
+<ul>
+<li>ThreadPoolExecutor with 4-32 workers (based on CDP_LIMIT)</li>
+<li>Submit all resolutions concurrently</li>
+<li>Collect results as they complete (don't wait for slowest)</li>
+<li>Best-effort - failures are logged but don't block</li>
+</ul>
+<p><strong>Why Separate from Discovery?</strong></p>
+<ul>
+<li>DNS lookups are independent</li>
+<li>Can run in smaller thread pool (4-32 vs. 10)</li>
+<li>Doesn't block discovery if DNS is slow</li>
+</ul>
+<hr />
+<h2 id="excelreporter-professional-reporting">📊 ExcelReporter: Professional Reporting<a class="headerlink" href="#excelreporter-professional-reporting" title="Anchor link to this section">&para;</a></h2>
+<h3 id="why-professional-reporting-matters">Why Professional Reporting Matters<a class="headerlink" href="#why-professional-reporting-matters" title="Anchor link to this section">&para;</a></h3>
+<p><strong>The Problem:</strong> Raw CSV or unformatted Excel is not useful for business. Reports need context, formatting, branding.</p>
+<p><strong>The Solution:</strong> Use a pre-formatted Excel template. Write data into it while preserving all formatting, charts, filters, and branding.</p>
+<h3 id="template-driven-approach">Template-Driven Approach<a class="headerlink" href="#template-driven-approach" title="Anchor link to this section">&para;</a></h3>
+<h3 id="step-1-copy-template"><strong>Step 1: Copy Template</strong><a class="headerlink" href="#step-1-copy-template" title="Anchor link to this section">&para;</a></h3>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-20-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1"></a><span class="n">shutil</span><span class="o">.</span><span class="n">copy2</span><span class="p">(</span><span class="n">template</span><span class="p">,</span> <span class="n">output_filename</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<p>Preserve metadata (timestamps, permissions).</p>
+<h3 id="step-2-stamp-metadata"><strong>Step 2: Stamp Metadata</strong><a class="headerlink" href="#step-2-stamp-metadata" title="Anchor link to this section">&para;</a></h3>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-21-1">1</a></span>
+<span class="normal"><a href="#__codelineno-21-2">2</a></span>
+<span class="normal"><a href="#__codelineno-21-3">3</a></span>
+<span class="normal"><a href="#__codelineno-21-4">4</a></span>
+<span class="normal"><a href="#__codelineno-21-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1"></a><span class="n">ws</span><span class="p">[</span><span class="s2">&quot;B4&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">site_name</span>
+<a id="__codelineno-21-2" name="__codelineno-21-2"></a><span class="n">ws</span><span class="p">[</span><span class="s2">&quot;B5&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">date</span>
+<a id="__codelineno-21-3" name="__codelineno-21-3"></a><span class="n">ws</span><span class="p">[</span><span class="s2">&quot;B6&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">time</span>
+<a id="__codelineno-21-4" name="__codelineno-21-4"></a><span class="n">ws</span><span class="p">[</span><span class="s2">&quot;B7&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">seed1</span>
+<a id="__codelineno-21-5" name="__codelineno-21-5"></a><span class="n">ws</span><span class="p">[</span><span class="s2">&quot;B8&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">seed2</span>
+</code></pre></div></td></tr></table></div>
+<p>Fill cells B4-B8 with audit metadata.</p>
+<h3 id="step-3-append-data"><strong>Step 3: Append Data</strong><a class="headerlink" href="#step-3-append-data" title="Anchor link to this section">&para;</a></h3>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-22-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1"></a><span class="n">df</span><span class="o">.</span><span class="n">to_excel</span><span class="p">(</span><span class="n">writer</span><span class="p">,</span> <span class="n">sheet_name</span><span class="o">=</span><span class="s2">&quot;Audit&quot;</span><span class="p">,</span> <span class="n">startrow</span><span class="o">=</span><span class="mi">11</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<p>Use <code>if_sheet_exists="overlay"</code> mode to append without destroying template.</p>
+<p>Data starts at row 12 (after headers and metadata).</p>
+<p><strong>Why This Approach:</strong></p>
+<ul>
+<li><strong>Template-driven:</strong> Business controls formatting without touching code</li>
+<li><strong>Non-destructive:</strong> Data is appended, template is preserved</li>
+<li><strong>Professional:</strong> Charts, filters, styling all maintained</li>
+<li><strong>Automated:</strong> No manual Excel editing required</li>
+</ul>
+<h3 id="output-file-details">Output File Details<a class="headerlink" href="#output-file-details" title="Anchor link to this section">&para;</a></h3>
+<p>An output file named <code>&lt;site_name&gt;_CDP_Network_Audit.xlsx</code> is created by copying the template.</p>
+<h3 id="sheets">Sheets<a class="headerlink" href="#sheets" title="Anchor link to this section">&para;</a></h3>
+<ul>
+<li><strong>Audit</strong> — Main CDP dataset. Also stamped with metadata:</li>
+<li><code>B4</code>: Site name</li>
+<li><code>B5</code>: Date</li>
+<li><code>B6</code>: Time</li>
+<li><code>B7</code>: Primary seed</li>
+<li><code>B8</code>: Secondary seed (or "Secondary Seed device not given")</li>
+<li><strong>DNS Resolved</strong> — Two columns: <code>Hostname</code>, <code>IP Address</code></li>
+<li><strong>Authentication Errors</strong> — One column: <code>Authentication Errors</code> (IP list)</li>
+<li><strong>Connection Errors</strong> — Two columns: <code>IP Address</code>, <code>Error</code></li>
+</ul>
+<h3 id="columns-in-audit-data-rows">Columns in Audit (Data Rows)<a class="headerlink" href="#columns-in-audit-data-rows" title="Anchor link to this section">&para;</a></h3>
+<p><code>LOCAL_HOST</code>, <code>LOCAL_IP</code>, <code>LOCAL_PORT</code>, <code>LOCAL_SERIAL</code>, <code>LOCAL_UPTIME</code>, <code>DESTINATION_HOST</code>, <code>REMOTE_PORT</code>, <code>MANAGEMENT_IP</code>, <code>PLATFORM</code>.</p>
+<blockquote>
+<p><strong>Note:</strong> The template governs formatting/filters/charts (if any). The writer appends data starting at the appropriate row offsets to preserve the layout.</p>
+</blockquote>
+<hr />
+<h2 id="key-design-patterns">🔑 Key Design Patterns<a class="headerlink" href="#key-design-patterns" title="Anchor link to this section">&para;</a></h2>
+<h3 id="pattern-1-thread-safe-data-accumulation">Pattern 1: Thread-Safe Data Accumulation<a class="headerlink" href="#pattern-1-thread-safe-data-accumulation" title="Anchor link to this section">&para;</a></h3>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-23-1">1</a></span>
+<span class="normal"><a href="#__codelineno-23-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1"></a><span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_lock</span><span class="p">:</span>
+<a id="__codelineno-23-2" name="__codelineno-23-2"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">results</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">new_data</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<p>Only one thread updates shared data at a time.</p>
+<h3 id="pattern-2-graceful-worker-shutdown">Pattern 2: Graceful Worker Shutdown<a class="headerlink" href="#pattern-2-graceful-worker-shutdown" title="Anchor link to this section">&para;</a></h3>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-24-1">1</a></span>
+<span class="normal"><a href="#__codelineno-24-2">2</a></span>
+<span class="normal"><a href="#__codelineno-24-3">3</a></span>
+<span class="normal"><a href="#__codelineno-24-4">4</a></span>
+<span class="normal"><a href="#__codelineno-24-5">5</a></span>
+<span class="normal"><a href="#__codelineno-24-6">6</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1"></a><span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_workers</span><span class="p">):</span>
+<a id="__codelineno-24-2" name="__codelineno-24-2"></a>    <span class="n">queue</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="kc">None</span><span class="p">)</span>  <span class="c1"># Sentinel</span>
+<a id="__codelineno-24-3" name="__codelineno-24-3"></a>
+<a id="__codelineno-24-4" name="__codelineno-24-4"></a><span class="c1"># In worker</span>
+<a id="__codelineno-24-5" name="__codelineno-24-5"></a><span class="k">if</span> <span class="n">item</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+<a id="__codelineno-24-6" name="__codelineno-24-6"></a>    <span class="k">return</span>  <span class="c1"># Exit gracefully</span>
+</code></pre></div></td></tr></table></div>
+<h3 id="pattern-3-retry-with-fallback-credentials">Pattern 3: Retry with Fallback Credentials<a class="headerlink" href="#pattern-3-retry-with-fallback-credentials" title="Anchor link to this section">&para;</a></h3>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-25-1">1</a></span>
+<span class="normal"><a href="#__codelineno-25-2">2</a></span>
+<span class="normal"><a href="#__codelineno-25-3">3</a></span>
+<span class="normal"><a href="#__codelineno-25-4">4</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1"></a><span class="k">try</span><span class="p">:</span>
+<a id="__codelineno-25-2" name="__codelineno-25-2"></a>    <span class="n">conn</span> <span class="o">=</span> <span class="n">connect</span><span class="p">(</span><span class="n">primary_user</span><span class="p">,</span> <span class="n">primary_pass</span><span class="p">)</span>
+<a id="__codelineno-25-3" name="__codelineno-25-3"></a><span class="k">except</span> <span class="n">AuthenticationException</span><span class="p">:</span>
+<a id="__codelineno-25-4" name="__codelineno-25-4"></a>    <span class="n">conn</span> <span class="o">=</span> <span class="n">connect</span><span class="p">(</span><span class="n">answer_user</span><span class="p">,</span> <span class="n">answer_pass</span><span class="p">)</span>  <span class="c1"># Fallback</span>
+</code></pre></div></td></tr></table></div>
+<h3 id="pattern-4-resource-cleanup-in-finally">Pattern 4: Resource Cleanup in Finally<a class="headerlink" href="#pattern-4-resource-cleanup-in-finally" title="Anchor link to this section">&para;</a></h3>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-26-1">1</a></span>
+<span class="normal"><a href="#__codelineno-26-2">2</a></span>
+<span class="normal"><a href="#__codelineno-26-3">3</a></span>
+<span class="normal"><a href="#__codelineno-26-4">4</a></span>
+<span class="normal"><a href="#__codelineno-26-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-26-1" name="__codelineno-26-1"></a><span class="k">try</span><span class="p">:</span>
+<a id="__codelineno-26-2" name="__codelineno-26-2"></a>    <span class="n">conn</span> <span class="o">=</span> <span class="n">connect</span><span class="p">()</span>
+<a id="__codelineno-26-3" name="__codelineno-26-3"></a><span class="k">finally</span><span class="p">:</span>
+<a id="__codelineno-26-4" name="__codelineno-26-4"></a>    <span class="k">if</span> <span class="n">conn</span><span class="p">:</span>
+<a id="__codelineno-26-5" name="__codelineno-26-5"></a>        <span class="n">conn</span><span class="o">.</span><span class="n">disconnect</span><span class="p">()</span>  <span class="c1"># ALWAYS happens</span>
+</code></pre></div></td></tr></table></div>
+<h3 id="pattern-5-template-driven-reporting">Pattern 5: Template-Driven Reporting<a class="headerlink" href="#pattern-5-template-driven-reporting" title="Anchor link to this section">&para;</a></h3>
+<p>Copy → stamp metadata → append data using overlay mode.</p>
+<hr />
+<h2 id="logging">🧰 Logging<a class="headerlink" href="#logging" title="Anchor link to this section">&para;</a></h2>
+<ul>
+<li>If a config file is present, logging is configured via <code>logging.config.fileConfig()</code>.</li>
+<li>Otherwise, a basic console logger is configured at INFO with timestamps.</li>
+<li>You can set <code>LOGGING_CONFIG</code> to point to an INI file anywhere; if not set, the tool looks for <code>ProgramFiles/Config_Files/logging.conf</code>.</li>
+</ul>
+<hr />
+<h2 id="errors-retry-behaviour">🧯 Errors &amp; Retry Behaviour<a class="headerlink" href="#errors-retry-behaviour" title="Anchor link to this section">&para;</a></h2>
+<ul>
+<li><strong>Authentication failures</strong>: the host is recorded under Authentication Errors.</li>
+<li><strong>Connectivity/timeouts</strong>: the host is recorded under Connection Errors with the last error tag (e.g., <code>NetmikoTimeoutException</code>, <code>SSHException</code>, <code>socket.timeout</code>).</li>
+<li><strong>Retries</strong>: up to 3 attempts for each device before recording a connection error.</li>
+<li><strong>Graceful exit</strong>: workers always <code>task_done()</code> to avoid queue hangs.</li>
+</ul>
+<hr />
+<h2 id="performance">📈 Performance<a class="headerlink" href="#performance" title="Anchor link to this section">&para;</a></h2>
+<ul>
+<li>Worker threads = <code>CDP_LIMIT</code> (default 10).</li>
+<li>DNS resolution runs in a small parallel pool after discovery.</li>
+<li>Use a conservative limit on older/CPU-bound platforms; increase on fast links.</li>
+</ul>
+<hr />
+<h2 id="security-considerations">🔒 Security Considerations<a class="headerlink" href="#security-considerations" title="Anchor link to this section">&para;</a></h2>
+<ul>
+<li>Prefer Credential Manager (Windows) or other secret stores instead of plaintext.</li>
+<li>Ensure jump host is hardened; consider strict host key verification.</li>
+<li>Output workbooks can contain sensitive topology data — share on a need-to-know basis.</li>
+</ul>
+<hr />
+<h2 id="exit-codes">❌ Exit Codes<a class="headerlink" href="#exit-codes" title="Anchor link to this section">&para;</a></h2>
+<ul>
+<li><strong>0</strong> — Success</li>
+<li><strong>1</strong> — Required TextFSM or Excel template missing / invalid</li>
+<li><strong>130</strong> — Interrupted by user (Ctrl+C)</li>
+</ul>
+<hr />
+<h2 id="example-session">✅ Example Session<a class="headerlink" href="#example-session" title="Anchor link to this section">&para;</a></h2>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-27-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-27-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-27-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-27-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-27-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-27-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-27-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-27-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-27-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-27-10">10</a></span>
+<span class="normal"><a href="#__codelineno-27-11">11</a></span>
+<span class="normal"><a href="#__codelineno-27-12">12</a></span>
+<span class="normal"><a href="#__codelineno-27-13">13</a></span>
+<span class="normal"><a href="#__codelineno-27-14">14</a></span>
+<span class="normal"><a href="#__codelineno-27-15">15</a></span>
+<span class="normal"><a href="#__codelineno-27-16">16</a></span>
+<span class="normal"><a href="#__codelineno-27-17">17</a></span>
+<span class="normal"><a href="#__codelineno-27-18">18</a></span>
+<span class="normal"><a href="#__codelineno-27-19">19</a></span>
+<span class="normal"><a href="#__codelineno-27-20">20</a></span>
+<span class="normal"><a href="#__codelineno-27-21">21</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-27-1" name="__codelineno-27-1"></a>=== CDP Network Audit ===
+<a id="__codelineno-27-2" name="__codelineno-27-2"></a>Enter site name (used in Excel filename, max 50 chars): HQ-Campus
+<a id="__codelineno-27-3" name="__codelineno-27-3"></a>Enter one or more seed device IPs or hostnames (comma-separated, max 500): 192.0.2.11, core-sw-1
+<a id="__codelineno-27-4" name="__codelineno-27-4"></a>...
+<a id="__codelineno-27-5" name="__codelineno-27-5"></a>Press Enter to accept, or type a different username: netadmin
+<a id="__codelineno-27-6" name="__codelineno-27-6"></a>Enter switch/jump password (Primary): ********
+<a id="__codelineno-27-7" name="__codelineno-27-7"></a>Store Primary creds in Credential Manager as &#39;MyApp/ADM&#39;? [y/N]
+<a id="__codelineno-27-8" name="__codelineno-27-8"></a>Enter &#39;answer&#39; password (fallback user from config.yaml): ********
+<a id="__codelineno-27-9" name="__codelineno-27-9"></a>Store &#39;answer&#39; password in Credential Manager as &#39;MyApp/Answer&#39;? [y/N]
+<a id="__codelineno-27-10" name="__codelineno-27-10"></a>
+<a id="__codelineno-27-11" name="__codelineno-27-11"></a>Use jump host &#39;192.0.2.10&#39;? [Y/n]
+<a id="__codelineno-27-12" name="__codelineno-27-12"></a>Press Enter to accept the default shown.
+<a id="__codelineno-27-13" name="__codelineno-27-13"></a>
+<a id="__codelineno-27-14" name="__codelineno-27-14"></a>INFO Validated 2 seed device(s) for discovery
+<a id="__codelineno-27-15" name="__codelineno-27-15"></a>INFO Using jump server: 192.0.2.10
+<a id="__codelineno-27-16" name="__codelineno-27-16"></a>... (threaded discovery logs) ...
+<a id="__codelineno-27-17" name="__codelineno-27-17"></a>Done!
+<a id="__codelineno-27-18" name="__codelineno-27-18"></a> Discovered devices: 42
+<a id="__codelineno-27-19" name="__codelineno-27-19"></a> CDP entries: 314
+<a id="__codelineno-27-20" name="__codelineno-27-20"></a> Auth errors: 1
+<a id="__codelineno-27-21" name="__codelineno-27-21"></a> Conn errors: 3
+</code></pre></div></td></tr></table></div>
+<blockquote>
+<p><strong>Note:</strong> The fallback username shown in the prompt reflects your <code>config.yaml</code> setting. Default is 'answer', but you can customise it to 'localadmin', 'backup', etc. by editing the <code>credentials</code> section of <code>config.yaml</code>.</p>
+</blockquote>
+<p><strong>If you had customized your config.yaml:</strong></p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-28-1">1</a></span>
+<span class="normal"><a href="#__codelineno-28-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-28-1" name="__codelineno-28-1"></a><span class="nt">credentials</span><span class="p">:</span>
+<a id="__codelineno-28-2" name="__codelineno-28-2"></a><span class="w">  </span><span class="nt">cdp_fallback_username</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;localadmin&quot;</span>
+</code></pre></div></td></tr></table></div>
+<p>The prompt would show:</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-29-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-29-1" name="__codelineno-29-1"></a>Enter &#39;localadmin&#39; password (fallback user from config.yaml): ********
+</code></pre></div></td></tr></table></div>
+<hr />
+<h2 id="customisation-points">🛠️ Customisation Points<a class="headerlink" href="#customisation-points" title="Anchor link to this section">&para;</a></h2>
+<ul>
+<li><strong>User settings</strong>: Edit <code>config.yaml</code> to customise worker threads, timeouts, jump server, credential targets, and fallback username.</li>
+<li><strong>Template paths</strong>: Adjust in <code>config.yaml</code> under the <code>paths</code> section.</li>
+<li><strong>Queueing heuristics</strong> (which neighbors to crawl): Modify <code>parse_outputs_and_enqueue_neighbors()</code> in <code>main.py</code>.</li>
+<li><strong>Retry counts / timeouts</strong>: Configure in <code>config.yaml</code> under <code>performance</code> or override via environment variables.</li>
+<li><strong>Logging</strong>: Provide a <code>logging.conf</code> that matches your standards (path configurable in <code>config.yaml</code>).</li>
+<li><strong>Fallback account</strong>: Set <code>cdp_fallback_username</code> in <code>config.yaml</code> (under <code>credentials</code>) to match your local admin account naming.</li>
+<li><strong>Excel formatting</strong>: Customize cell locations and sheet names in <code>config.yaml</code> under <code>excel</code>.</li>
+</ul>
+<p><strong>Example config.yaml Customization:</strong></p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-30-1">1</a></span>
+<span class="normal"><a href="#__codelineno-30-2">2</a></span>
+<span class="normal"><a href="#__codelineno-30-3">3</a></span>
+<span class="normal"><a href="#__codelineno-30-4">4</a></span>
+<span class="normal"><a href="#__codelineno-30-5">5</a></span>
+<span class="normal"><a href="#__codelineno-30-6">6</a></span>
+<span class="normal"><a href="#__codelineno-30-7">7</a></span>
+<span class="normal"><a href="#__codelineno-30-8">8</a></span>
+<span class="normal"><a href="#__codelineno-30-9">9</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-30-1" name="__codelineno-30-1"></a><span class="nt">credentials</span><span class="p">:</span>
+<a id="__codelineno-30-2" name="__codelineno-30-2"></a><span class="w">  </span><span class="nt">cdp_fallback_username</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;localadmin&quot;</span><span class="w">  </span><span class="c1"># Change from default &#39;answer&#39;</span>
+<a id="__codelineno-30-3" name="__codelineno-30-3"></a>
+<a id="__codelineno-30-4" name="__codelineno-30-4"></a><span class="nt">network</span><span class="p">:</span>
+<a id="__codelineno-30-5" name="__codelineno-30-5"></a><span class="w">  </span><span class="nt">jump_host</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;bastion.corp.local&quot;</span><span class="w">  </span><span class="c1"># Set your default jump host</span>
+<a id="__codelineno-30-6" name="__codelineno-30-6"></a>
+<a id="__codelineno-30-7" name="__codelineno-30-7"></a><span class="nt">performance</span><span class="p">:</span>
+<a id="__codelineno-30-8" name="__codelineno-30-8"></a><span class="w">  </span><span class="nt">default_limit</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">15</span><span class="w">  </span><span class="c1"># Increase concurrent workers for faster discovery</span>
+<a id="__codelineno-30-9" name="__codelineno-30-9"></a><span class="w">  </span><span class="nt">default_timeout</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">15</span><span class="w">  </span><span class="c1"># Increase timeout for slower networks</span>
+</code></pre></div></td></tr></table></div>
+<hr />
+<h2 id="learning-outcomes">🎓 Learning Outcomes<a class="headerlink" href="#learning-outcomes" title="Anchor link to this section">&para;</a></h2>
+<p>After studying this code, you should understand:</p>
+<p>✅ <strong>Concurrent programming</strong> — How thread pools and locks prevent race conditions<br />
+✅ <strong>SSH tunnelling</strong> — How direct-tcpip channels work and why they're safer<br />
+✅ <strong>Credential management</strong> — OS-level credential stores vs. plaintext files<br />
+✅ <strong>TextFSM parsing</strong> — How to extract structured data from CLI output<br />
+✅ <strong>Error handling</strong> — Retry strategies and graceful degradation<br />
+✅ <strong>Excel automation</strong> — Template-driven reporting with data overlay<br />
+✅ <strong>Network discovery</strong> — CDP heuristics and neighbor crawling logic  </p>
+<hr />
+<h2 id="distribution-execution">🚀 Distribution &amp; Execution<a class="headerlink" href="#distribution-execution" title="Anchor link to this section">&para;</a></h2>
+<p>Consistent with the <strong>Nautomation Prime</strong> delivery model, this tool is available in multiple formats:</p>
+<ul>
+<li>
+<p><strong>Zero-Install Portable Bundle:</strong> A self-contained package including the Python interpreter and all libraries (Netmiko, Pandas, TextFSM) for use on restricted Windows jump boxes.</p>
+</li>
+<li>
+<p><strong>Scheduled Docker Appliance:</strong> A pre-built container designed for autonomous execution and periodic auditing.</p>
+</li>
+</ul>
+<hr />
+<h2 id="repository-downloads">📁 Repository &amp; Downloads<a class="headerlink" href="#repository-downloads" title="Anchor link to this section">&para;</a></h2>
+<p>Ready to audit your own network? Access the hardened source code and pre-configured templates below.</p>
+<ul>
+<li><strong><a href="https://github.com/Nautomation-Prime/Cisco_CDP_Network_Audit"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33s1.71.11 2.5.33c1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2"/></svg></span> View Full Repository</a></strong>: Access the code, TextFSM templates, and Excel master.</li>
+<li><strong><a href="https://github.com/Nautomation-Prime/Cisco_CDP_Network_Audit/archive/refs/heads/main.zip"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M5 20h14v-2H5m14-9h-4V3H9v6H5l7 7z"/></svg></span> Download Latest Release</a></strong>: Get a clean ZIP of the production-ready files.</li>
+</ul>
+<hr />
+<h2 id="performance-tuning">📈 Performance Tuning<a class="headerlink" href="#performance-tuning" title="Anchor link to this section">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Scenario</th>
+<th style="text-align: left;">Configuration</th>
+<th style="text-align: left;">Rationale</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Fast LAN, many devices</td>
+<td style="text-align: left;"><code>CDP_LIMIT=20</code>, <code>CDP_TIMEOUT=5</code></td>
+<td style="text-align: left;">High concurrency, short timeouts work</td>
+</tr>
+<tr>
+<td style="text-align: left;">Slow WAN link</td>
+<td style="text-align: left;"><code>CDP_LIMIT=5</code>, <code>CDP_TIMEOUT=30</code></td>
+<td style="text-align: left;">Fewer threads prevent overwhelming network; higher timeout for round-trip delay</td>
+</tr>
+<tr>
+<td style="text-align: left;">Mixed (some LAN, some WAN)</td>
+<td style="text-align: left;"><code>CDP_LIMIT=10</code>, <code>CDP_TIMEOUT=10</code></td>
+<td style="text-align: left;">Balanced defaults</td>
+</tr>
+<tr>
+<td style="text-align: left;">Device with high CPU</td>
+<td style="text-align: left;"><code>CDP_LIMIT=3-5</code></td>
+<td style="text-align: left;">Fewer threads prevent overwhelming device</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="next-steps">🎬 Next Steps<a class="headerlink" href="#next-steps" title="Anchor link to this section">&para;</a></h2>
+<ol>
+<li><strong>Clone the repository:</strong> <code>git clone https://github.com/Nautomation-Prime/Cisco_CDP_Network_Audit</code></li>
+<li><strong>Customise config.yaml</strong> to match your environment:</li>
+<li>Set <code>jump_host</code> under <code>network</code> section</li>
+<li>Customize <code>cdp_fallback_username</code> under <code>credentials</code> section</li>
+<li>Adjust <code>default_limit</code> and <code>default_timeout</code> under <code>performance</code> section</li>
+<li>Configure credential targets if different from defaults</li>
+<li><strong>Read the README</strong> for installation and configuration details</li>
+<li><strong>Set up credentials</strong> in Windows Credential Manager (or let the script prompt you on first run)</li>
+<li><strong>Run your first discovery</strong> against a test device</li>
+<li><strong>Review the Excel output</strong> to understand the report format</li>
+</ol>
+<p>Once comfortable, customise the discovery heuristics and template for your specific topology.</p>
+<p><strong>Example config.yaml for Enterprise Use:</strong></p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-31-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-31-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-31-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-31-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-31-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-31-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-31-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-31-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-31-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-31-10">10</a></span>
+<span class="normal"><a href="#__codelineno-31-11">11</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-31-1" name="__codelineno-31-1"></a><span class="nt">network</span><span class="p">:</span>
+<a id="__codelineno-31-2" name="__codelineno-31-2"></a><span class="w">  </span><span class="nt">jump_host</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;bastion.corp.example.com&quot;</span>
+<a id="__codelineno-31-3" name="__codelineno-31-3"></a>
+<a id="__codelineno-31-4" name="__codelineno-31-4"></a><span class="nt">credentials</span><span class="p">:</span>
+<a id="__codelineno-31-5" name="__codelineno-31-5"></a><span class="w">  </span><span class="nt">cdp_fallback_username</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;svc_network&quot;</span><span class="w">  </span><span class="c1"># Enterprise service account</span>
+<a id="__codelineno-31-6" name="__codelineno-31-6"></a><span class="w">  </span><span class="nt">cred_target</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;NetworkAudit/Primary&quot;</span>
+<a id="__codelineno-31-7" name="__codelineno-31-7"></a><span class="w">  </span><span class="nt">alt_creds</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;NetworkAudit/Fallback&quot;</span>
+<a id="__codelineno-31-8" name="__codelineno-31-8"></a>
+<a id="__codelineno-31-9" name="__codelineno-31-9"></a><span class="nt">performance</span><span class="p">:</span>
+<a id="__codelineno-31-10" name="__codelineno-31-10"></a><span class="w">  </span><span class="nt">default_limit</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">20</span><span class="w">  </span><span class="c1"># Faster discovery for large environments</span>
+<a id="__codelineno-31-11" name="__codelineno-31-11"></a><span class="w">  </span><span class="nt">default_timeout</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">15</span><span class="w">  </span><span class="c1"># Accommodate slower WAN links</span>
+</code></pre></div></td></tr></table></div>
+<hr />
+<h2 id="licence">📋 Licence<a class="headerlink" href="#licence" title="Anchor link to this section">&para;</a></h2>
+<p>GNU General Public Licence v3.0</p>
+<h2 id="author">👤 Author<a class="headerlink" href="#author" title="Anchor link to this section">&para;</a></h2>
+<p>Christopher Davies</p>
+<hr />
+<blockquote>
+<p><strong>Mission Statement:</strong> To empower engineers through Python-driven transparency and provide enterprises with hardened automation that eliminates error and accelerates growth.</p>
+</blockquote>
+
+
+
+
+
+
+
+  
+    
+  
+  
+
+
+  <aside class="md-source-file">
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="Last update">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="February 14, 2026 08:59:40 UTC">February 14, 2026</span>
+  </span>
+
+    
+    
+    
+    
+  </aside>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      © 2026 Christopher Davies T/A Nautomation Prime — Not affiliated with Cisco Systems, Inc.<br> Empowering Network Automation Professionals · Built with Material for MkDocs
+
+    </div>
+  
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+    <a href="https://www.linkedin.com/company/nautomationprime" target="_blank" rel="noopener" title="LinkedIn" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3M135.4 416H69V202.2h66.5V416zM102.2 96a38.5 38.5 0 1 1 0 77 38.5 38.5 0 1 1 0-77m282.1 320h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+    <a href="https://github.com/Nautomation-Prime" target="_blank" rel="noopener" title="GitHub" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+    
+    
+    
+    
+    <a href="mailto:nautomationprime.f3wfe@simplelogin.com" target="_blank" rel="noopener" title="Contact Nautomation Prime" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m20 8-8 5-8-5V6l8 5 8-5m0-2H4c-1.11 0-2 .89-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+      <div class="md-consent" data-md-component="consent" id="__consent" hidden>
+        <div class="md-consent__overlay"></div>
+        <aside class="md-consent__inner">
+          <form class="md-consent__form md-grid md-typeset" name="consent">
+            
+
+
+  
+
+
+<h4>Cookie consent</h4>
+<p>We use cookies to recognize your repeated visits and preferences, as well as to measure the effectiveness of our documentation and whether users find what they're searching for. With your consent, you're helping us to make our documentation better.</p>
+<input class="md-toggle" type="checkbox" id="__settings" >
+<div class="md-consent__settings">
+  <ul class="task-list">
+    
+    
+      
+    
+    
+      
+        
+  
+  
+    
+    
+  
+  <li class="task-list-item">
+    <label class="task-list-control">
+      <input type="checkbox" name="github" checked>
+      <span class="task-list-indicator"></span>
+      GitHub
+    </label>
+  </li>
+
+      
+    
+    
+  </ul>
+</div>
+<div class="md-consent__controls">
+  
+    
+      <button class="md-button md-button--primary">Accept</button>
+    
+    
+    
+  
+    
+    
+    
+      <label class="md-button" for="__settings">Manage settings</label>
+    
+  
+</div>
+          </form>
+        </aside>
+      </div>
+      <script>var consent=__md_get("__consent");if(consent)for(var input of document.forms.consent.elements)input.name&&(input.checked=consent[input.name]||!1);else"file:"!==location.protocol&&setTimeout((function(){document.querySelector("[data-md-component=consent]").hidden=!1}),250);var form=document.forms.consent;for(var action of["submit","reset"])form.addEventListener(action,(function(e){if(e.preventDefault(),"reset"===e.type)for(var n of document.forms.consent.elements)n.name&&(n.checked=!1);__md_set("__consent",Object.fromEntries(Array.from(new FormData(form).keys()).map((function(e){return[e,!0]})))),location.hash="",location.reload()}))</script>
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.tracking", "navigation.indexes", "toc.integrate", "content.code.copy", "content.code.annotate", "content.tooltips", "search.share", "search.suggest", "search.highlight", "search.stemmer", "announce.dismiss"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="https://unpkg.com/mermaid@10.6.1/dist/mermaid.min.js"></script>
+      
+    
+  </body>
+</html>

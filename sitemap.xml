@@ -2,66 +2,70 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://www.nautomationprime.io/</loc>
-         <lastmod>2026-02-07</lastmod>
+         <lastmod>2026-02-14</lastmod>
     </url>
     <url>
          <loc>https://www.nautomationprime.io/about/</loc>
-         <lastmod>2026-02-07</lastmod>
+         <lastmod>2026-02-14</lastmod>
     </url>
     <url>
          <loc>https://www.nautomationprime.io/getting-started/</loc>
-         <lastmod>2026-02-07</lastmod>
+         <lastmod>2026-02-14</lastmod>
     </url>
     <url>
          <loc>https://www.nautomationprime.io/services/</loc>
-         <lastmod>2026-02-07</lastmod>
+         <lastmod>2026-02-14</lastmod>
     </url>
     <url>
          <loc>https://www.nautomationprime.io/coming-soon/</loc>
-         <lastmod>2026-02-07</lastmod>
+         <lastmod>2026-02-14</lastmod>
     </url>
     <url>
          <loc>https://www.nautomationprime.io/coming-soon/Cisco%20IOS-XE%20Zero%20Touch%20Provisioning/</loc>
-         <lastmod>2026-02-07</lastmod>
+         <lastmod>2026-02-14</lastmod>
     </url>
     <url>
          <loc>https://www.nautomationprime.io/coming-soon/IOS-XE%20Software%20Upgrade%20Orchestrator/</loc>
-         <lastmod>2026-02-07</lastmod>
+         <lastmod>2026-02-14</lastmod>
     </url>
     <url>
          <loc>https://www.nautomationprime.io/deep-dives/</loc>
-         <lastmod>2026-02-07</lastmod>
+         <lastmod>2026-02-14</lastmod>
     </url>
     <url>
          <loc>https://www.nautomationprime.io/deep-dives/access-switch-audit/</loc>
-         <lastmod>2026-02-07</lastmod>
+         <lastmod>2026-02-14</lastmod>
+    </url>
+    <url>
+         <loc>https://www.nautomationprime.io/deep-dives/cdp-audit-old/</loc>
+         <lastmod>2026-02-14</lastmod>
     </url>
     <url>
          <loc>https://www.nautomationprime.io/deep-dives/cdp-audit/</loc>
-         <lastmod>2026-02-07</lastmod>
+         <lastmod>2026-02-14</lastmod>
     </url>
     <url>
          <loc>https://www.nautomationprime.io/legal/brand/</loc>
-         <lastmod>2026-02-07</lastmod>
+         <lastmod>2026-02-14</lastmod>
     </url>
     <url>
          <loc>https://www.nautomationprime.io/legal/disclaimer/</loc>
-         <lastmod>2026-02-07</lastmod>
+         <lastmod>2026-02-14</lastmod>
     </url>
     <url>
          <loc>https://www.nautomationprime.io/legal/licensing/</loc>
-         <lastmod>2026-02-07</lastmod>
+         <lastmod>2026-02-14</lastmod>
     </url>
     <url>
          <loc>https://www.nautomationprime.io/legal/privacy-policy/</loc>
-         <lastmod>2026-02-07</lastmod>
+         <lastmod>2026-02-14</lastmod>
     </url>
     <url>
          <loc>https://www.nautomationprime.io/legal/terms-of-use/</loc>
-         <lastmod>2026-02-07</lastmod>
+         <lastmod>2026-02-14</lastmod>
     </url>
     <url>
          <loc>https://www.nautomationprime.io/scripts/</loc>
-         <lastmod>2026-02-07</lastmod>
+         <lastmod>2026-02-14</lastmod>
     </url>
 </urlset>
