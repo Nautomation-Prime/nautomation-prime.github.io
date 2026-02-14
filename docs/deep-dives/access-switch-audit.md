@@ -13,9 +13,31 @@ tags:
 # Deep Dive: Access Switch Port Audit Tool
 ### "Enterprise Port Intelligence, Distilled to Pure Python."
 
+> **Version 2.0 Update:** This tool has been restructured into a professional Python package with modular architecture. All functionality remains identical, but the code is now organized following enterprise best practices. See the [Migration Guide](#-migration-guide-v10--v20) below for details.
+
 A modular Python utility that connects to Cisco switches (optionally through an SSH jump host), collects comprehensive interface details, PoE information, and neighbor presence, then exports a professional, filters-only Excel workbook with a SUMMARY sheet and one sheet per device. Built for production reliability with **YAML-based configuration**, **intelligent fallback parsing**, and **customizable credential management**.
 
 [:material-github: View Source Code on GitHub](https://github.com/Nautomation-Prime/Access_Switch_Audit){ .md-button .md-button--primary }
+
+---
+
+!!! success "What's New in Version 2.0"
+    **The Access Switch Audit tool has been restructured into a professional Python package!**
+    
+    ✨ **Key Improvements:**
+    
+    - **Modular Architecture:** Code separated into focused modules (`cli.py`, `device_auditor.py`, `excel_reporter.py`, etc.)
+    - **Professional Package Structure:** Follows enterprise Python best practices with proper package organization
+    - **Better Maintainability:** Each module has a single, well-defined responsibility
+    - **Enhanced Extensibility:** Easy to add new features, output formats, or device types
+    - **Improved Testing:** Isolated components can be unit tested independently
+    - **New Entry Point:** Use `python -m switch_audit` instead of `python main.py`
+    
+    **For End Users:** Everything works the same! All CLI arguments, configuration options, and output formats are identical.
+    
+    **For Developers:** See the [Migration Guide](#-migration-guide-v10--v20) for updated import paths and structure details.
+    
+    📖 Full details in [MIGRATION.md](https://github.com/Nautomation-Prime/Access_Switch_Audit/blob/main/MIGRATION.md)
 
 ---
 
@@ -52,23 +74,62 @@ This tool is built on industry-standard Python libraries: **Netmiko** (multi-dev
 
 ## 🧱 Project Layout
 
+The tool has been restructured into a **professional modular package** (v2.0), separating concerns and following enterprise Python best practices:
+
 ```
 .
-├── main.py                 # CLI entry point
-├── devices.txt             # Example device list
-├── config.yaml             # YAML configuration file (NEW!)
-├── README.md
-└── Modules/
-    ├── __init__.py
-    ├── config_loader.py    # YAML config parser with type-safe properties
-    ├── credentials.py      # Secure credential retrieval + fallbacks
-    ├── jump_manager.py     # SSH jump host (bastion) support
-    └── netmiko_utils.py    # Netmiko connection wrapper(s)
+├── switch_audit/           # Main package (modular design)
+│   ├── __init__.py
+│   ├── __main__.py        # Entry point for python -m switch_audit
+│   ├── cli.py             # Command-line interface and orchestration
+│   ├── device_auditor.py  # Device connection and data collection
+│   ├── excel_reporter.py  # Excel workbook generation
+│   ├── credentials.py     # Secure credential management
+│   ├── jump_manager.py    # SSH jump host (bastion) support
+│   ├── netmiko_utils.py   # Network device connection utilities
+│   ├── formatters.py      # Excel formatting and interface name normalization
+│   ├── validators.py      # Input validation functions
+│   └── app_config.py      # Configuration access wrapper
+├── ProgramFiles/
+│   └── config_files/
+│       ├── __init__.py
+│       └── config_loader.py  # YAML configuration loader
+├── config.yaml            # User-editable configuration
+├── devices.txt            # Device list (one IP/hostname per line)
+├── main_new.py            # Backward compatibility entry point
+├── main.py                # Legacy entry point (deprecated)
+├── run.bat                # Windows launcher script
+├── requirements.txt       # Python dependencies
+├── MIGRATION.md           # Migration guide for v2.0
+└── README.md
 ```
 
-> **Note:** The `Modules/*.py` files encapsulate most environment-specific behaviour. The new `config_loader.py` provides a clean interface to YAML-based configuration with validation and type safety.
+> **V2.0 Architecture:** The restructure separates the monolithic `main.py` (1,300+ lines) into focused modules with single responsibilities. This improves maintainability, testability, and extensibility.
 >
-> **Key Improvement:** Configuration is now in human-readable YAML format instead of Python code, making it safer and more accessible to non-developers.
+> **Backward Compatibility:** The old `main.py` remains for reference, and `main_new.py` provides a compatibility shim. New users should use `python -m switch_audit`.
+
+### Module Responsibilities (v2.0)
+
+Each module in the `switch_audit/` package has a specific, well-defined role:
+
+| Module | Purpose | Key Functions |
+| :--- | :--- | :--- |
+| **`__main__.py`** | Package entry point | Enable `python -m switch_audit` execution |
+| **`cli.py`** | Command-line interface | Argument parsing, orchestration, progress tracking |
+| **`device_auditor.py`** | Device connection & data collection | SSH connections, command execution, retry logic, data enrichment |
+| **`excel_reporter.py`** | Excel report generation | Workbook creation, sheet formatting, conditional formatting |
+| **`credentials.py`** | Credential management | Windows Credential Manager integration, interactive prompts |
+| **`jump_manager.py`** | SSH bastion support | Persistent jump host connections, channel management |
+| **`netmiko_utils.py`** | Network device utilities | Netmiko connection wrappers, timeout handling |
+| **`formatters.py`** | Data formatting utilities | Interface name normalization, CLI parsing, Excel formatting |
+| **`validators.py`** | Input validation | File existence checks, argument validation |
+| **`app_config.py`** | Configuration singleton | Global config access wrapper |
+
+**Configuration Package:**
+
+| Module | Purpose |
+| :--- | :--- |
+| **`ProgramFiles/config_files/config_loader.py`** | YAML configuration loader with type-safe property accessors and validation |
 
 ---
 
@@ -97,11 +158,11 @@ pip install netmiko paramiko pandas openpyxl pywin32
 
 ## ⚙️ Configuration System
 
-The tool uses a **modern YAML-based configuration system** introduced in recent updates.
+The tool uses a **modern YAML-based configuration system** with centralized management in v2.0.
 
 ### YAML Configuration File (config.yaml)
 
-All configurable settings are centralized in `config.yaml` at the project root. The configuration is loaded via `Modules/config_loader.py` which provides type-safe property accessors.
+All configurable settings are centralized in `config.yaml` at the project root. The configuration is loaded via `ProgramFiles/config_files/config_loader.py` and accessed throughout the application via the `app_config.py` singleton wrapper.
 
 **Key Configuration Categories:**
 
@@ -171,7 +232,7 @@ $env:JUMP_HOST = "temp-bastion.example.com"
 
 ## 🚀 Quick Start: Using the Launcher (Recommended)
 
-The repository now includes a **professional Windows batch launcher** (`run.bat`) that provides the easiest way to run the tool with default settings.
+The repository includes a **professional Windows batch launcher** (`run.bat`) that provides the easiest way to run the tool with default settings.
 
 ### Why Use the Launcher?
 
@@ -180,6 +241,7 @@ The repository now includes a **professional Windows batch launcher** (`run.bat`
 - **Helpful diagnostics** - Clear error messages if something is missing
 - **Professional interface** - Clean output with status indicators and progress messages
 - **Safe execution** - Validates environment before running the script
+- **Updated for v2.0** - Uses the new modular package structure automatically
 
 ### Using run.bat
 
@@ -193,7 +255,7 @@ Simply double-click `run.bat` in Windows Explorer to launch the tool with defaul
 run.bat
 ```
 
-This runs the Access Switch Audit with all default settings from `config.yaml`.
+This runs the Access Switch Audit using `python -m switch_audit` with all default settings from `config.yaml`.
 
 ### What the Launcher Does
 
@@ -251,7 +313,7 @@ For advanced users who need to **customize behavior beyond the defaults**, you c
 
 ### When to Use Command Line Arguments
 
-Use `python main.py` with arguments when you need to:
+Use `python -m switch_audit` with arguments when you need to:
 
 - Override default settings from `config.yaml`
 - Specify a different devices file
@@ -268,18 +330,21 @@ You can pass arguments to `run.bat` and they will be forwarded to the Python scr
 run.bat --devices my-switches.txt --output custom-audit.xlsx --workers 5
 ```
 
-### Method 2: Direct Python Execution
+### Method 2: Direct Python Execution (New in v2.0)
 
-Activate the virtual environment and run Python directly:
+Activate the virtual environment and run the package as a module:
 
 ```bash
-# Windows
+# Windows (recommended)
 portable_env\Scripts\activate
-python main.py --devices my-switches.txt --output audit-report.xlsx
+python -m switch_audit --devices my-switches.txt --output audit-report.xlsx
 
 # Linux/macOS  
 source portable_env/bin/activate
-python main.py --devices my-switches.txt --output audit-report.xlsx
+python -m switch_audit --devices my-switches.txt --output audit-report.xlsx
+
+# Backward compatibility (still works)
+python main_new.py --devices my-switches.txt --output audit-report.xlsx
 ```
 
 ### Available Command-Line Arguments
@@ -296,49 +361,114 @@ python main.py --devices my-switches.txt --output audit-report.xlsx
 **Example: Custom audit with direct connections:**
 
 ```bash
-python main.py --devices critical-switches.txt --output critical-audit.xlsx --direct --debug
+python -m switch_audit --devices critical-switches.txt --output critical-audit.xlsx --direct --debug
 ```
 
 ---
 
 ## 🏗️ Technical Architecture
 
-The tool operates as a modular Python application with six primary components:
+The v2.0 restructure transformed the tool from a monolithic script into a **professional Python package** with clear separation of concerns:
 
-| Component | Responsibility | Why It Matters |
+| Module | Responsibility | Why It Matters |
 | :--- | :--- | :--- |
-| **Config Loader** | YAML parsing and validation with type-safe properties | Settings are centralized, validated, and safe from code injection |
-| **CredentialManager** | Secure credential retrieval from OS stores | Passwords never touch plaintext or config files |
-| **JumpManager** | Persistent SSH tunnelling through a bastion host | Centralises network access control; supports air-gapped environments |
-| **PortAuditor (Netmiko)** | Parallel device SSH connections and command collection | Audits 20+ switches in minutes, not hours |
-| **PortIntelligence** | Multi-source port classification and risk flagging | Detects stale, misconfigured, or problematic ports automatically |
-| **ExcelReporter** | Professional, templated workbook generation | Operations teams get insights immediately, not raw data dumps |
+| **cli.py** | Command-line interface and orchestration | Entry point handling, argument parsing, progress tracking |
+| **device_auditor.py** | Device connection and data collection | Parallel SSH connections, command execution, retry logic |
+| **excel_reporter.py** | Excel workbook generation and formatting | Professional reports with conditional formatting and filters |
+| **credentials.py** | Secure credential retrieval from OS stores | Passwords never touch plaintext or config files |
+| **jump_manager.py** | Persistent SSH tunnelling through bastion | Centralises network access control; supports air-gapped environments |
+| **netmiko_utils.py** | Network device connection utilities | Connection wrapper with timeout and error handling |
+| **formatters.py** | Interface name normalization and Excel formatting | Cross-command data correlation and professional output |
+| **validators.py** | Input validation functions | Pre-flight checks for files and arguments |
+| **app_config.py** | Configuration access wrapper | Singleton pattern for config access across modules |
+| **config_loader.py** | YAML parsing and validation | Type-safe settings with environment overrides |
 
-### Key Design Patterns
+### Key Design Patterns (v2.0)
 
-**1. Modular Configuration:**
-- Settings separated from code (YAML vs Python)
-- Config loader provides validation and type safety
-- Environment-specific overrides supported
+**1. Package-Based Architecture:**
+- Each module has single, well-defined responsibility
+- Clear dependency hierarchy (cli → device_auditor → excel_reporter)
+- Easy to test, extend, and maintain
+- Follows Python packaging best practices
 
-**2. Intelligent Fallback Parsing:**
+**2. Separation of Concerns:**
+- **Presentation layer** (cli.py): User interaction and progress display
+- **Business logic layer** (device_auditor.py): Data collection and processing
+- **Data layer** (excel_reporter.py, formatters.py): Output generation
+- **Infrastructure layer** (credentials.py, jump_manager.py, netmiko_utils.py): Supporting services
+
+**3. Configuration Centralization:**
+- All config in `ProgramFiles/config_files/config_loader.py`
+- Accessed via singleton pattern in `app_config.py`
+- Environment variables override YAML settings
+- Type-safe property accessors
+
+**4. Intelligent Fallback Parsing:**
 - Primary: TextFSM templates (when available)
-- Fallback: Custom fixed-width parsers
+- Fallback: Custom fixed-width parsers in formatters.py
 - Ensures reliability even without external dependencies
 
-**3. Multi-Threaded Execution:**
+**5. Multi-Threaded Execution:**
 - ThreadPoolExecutor with configurable worker count
 - Thread-safe data accumulation with locks
 - Per-device failure isolation
+- Event-driven progress bar
 
-**4. Graceful Error Handling:**
+**6. Graceful Error Handling:**
 - Exponential backoff retry logic
 - Per-device error capture (doesn't stop entire audit)
 - Comprehensive logging for troubleshooting
 
 ---
 
+## 🔄 Migration Guide (v1.0 → v2.0)
+
+If you're upgrading from the older monolithic version, see the **MIGRATION.md** file in the repository for detailed migration instructions.
+
+### What Changed in v2.0?
+
+**1. Modular Package Design**
+- Code separated into focused modules (cli.py, device_auditor.py, excel_reporter.py, etc.)
+- `Modules/` directory components moved to `switch_audit/` package
+- Config loader relocated to `ProgramFiles/config_files/`
+
+**2. New Entry Point**
+- **Old**: `python main.py --devices devices.txt`
+- **New**: `python -m switch_audit --devices devices.txt` (recommended)
+- **Backward Compatible**: `python main_new.py --devices devices.txt`
+
+**3. Updated Imports (for developers)**
+```python
+# Old imports:
+from Modules.config_loader import Config
+from Modules.credentials import get_secret_with_fallback
+
+# New imports:
+from ProgramFiles.config_files.config_loader import Config
+from switch_audit.credentials import get_secret_with_fallback
+from switch_audit.app_config import config  # Singleton wrapper
+```
+
+### Benefits of v2.0 Restructure
+
+| Benefit | Description |
+| :--- | :--- |
+| **Better Organization** | Each module has a single, clear responsibility |
+| **Easier Testing** | Isolated components can be unit tested |
+| **Professional Architecture** | Follows enterprise Python package standards |
+| **Improved Maintainability** | Changes to one module don't cascade |
+| **Enhanced Extensibility** | Easy to add new features or output formats |
+| **Onboarding** | New contributors can understand structure quickly |
+
+### No User Impact
+
+For end users, the tool works identically. All CLI arguments, configuration options, and output formats remain the same. The `run.bat` launcher has been automatically updated to use the new structure.
+
+---
+
 ## 📊 Intelligent Parsing: The Heart of the Tool
+
+> **Note:** In v2.0, parsing logic has been modularized into `switch_audit/formatters.py` for better maintainability and reusability.
 
 ### Why Intelligent Parsing Matters
 
@@ -665,11 +795,11 @@ def _parse_last_input_seconds(s: str) -> float | None:
 
 ## 🔐 Credentials & Security
 
-The script retrieves device credentials using `Modules/credentials.py`:
+The script retrieves device credentials using `switch_audit/credentials.py`:
 
 - **Primary:** Windows Credential Manager (target name from `config.yaml`: default `MyApp/ADM`)
 - **Fallback:** Interactive prompt for username and password (secure, not echoed)
-- **Enable secret:** Retrieved by `get_enable_secret()` if configured in `config.yaml`, otherwise not required
+- **Enable secret:** Retrieved by `get_enable_secret()` if `USE_ENABLE` environment variable is set, otherwise not required
 
 > **Note:** If you are running on Linux/macOS, ensure `credentials.py` prompts for credentials or implements your preferred secure store. On Windows, `pywin32` enables Credential Manager access.
 >
@@ -697,7 +827,7 @@ network:
   jump_host: "jump-gateway.example.com"  # or "" to disable by default
 ```
 
-The `JumpManager` maintains a persistent SSH session to the bastion and proxies device connections through it.
+The `JumpManager` (now in `switch_audit/jump_manager.py`) maintains a persistent SSH session to the bastion and proxies device connections through it.
 
 **How JumpManager Works:**
 
@@ -757,25 +887,25 @@ access-sw-22
 
 1. Install dependencies (see Requirements).
 2. Create `devices.txt` with your targets (see Device list file).
-3. (Optional) Configure `Modules/config.py` with your `JUMP_HOST`.
+3. (Optional) Configure `config.yaml` with your `jump_host` and other settings.
 4. Run the audit:
 
 ```bash
 # Using jump host from config.yaml
-python -m main --devices devices.txt --output access_port_audit.xlsx
+python -m switch_audit --devices devices.txt --output access_port_audit.xlsx
 
 # Direct connections (no bastion), 5 workers, different stale threshold
-python -m main --direct -w 5 --stale-days 60 -d devices.txt -o results.xlsx
+python -m switch_audit --direct -w 5 --stale-days 60 -d devices.txt -o results.xlsx
 
 # Verbose debugging
-python -m main --debug -d devices.txt
+python -m switch_audit --debug -d devices.txt
 ```
 
 ---
 
 ## 🧭 CLI Reference
 
-`main.py` exposes the following command-line options:
+`switch_audit` exposes the following command-line options:
 
 ```
 --devices, -d    (required)  Path to the devices file (one IP/hostname per line; '#' comments allowed)
@@ -790,6 +920,22 @@ python -m main --debug -d devices.txt
 
 - **Required:** `--devices`
 - **Optional:** everything else
+
+**Usage Examples:**
+
+```bash
+# Standard audit with jump host
+python -m switch_audit --devices devices.txt --output report.xlsx
+
+# Direct connections, custom workers
+python -m switch_audit --devices devices.txt --direct --workers 20
+
+# Debug mode with custom stale threshold
+python -m switch_audit --devices devices.txt --stale-days 60 --debug
+
+# Using the launcher
+run.bat --devices devices.txt --output audit.xlsx
+```
 
 ---
 
@@ -962,18 +1108,18 @@ On completion, the Excel workbook is written to the filename you specify (defaul
 
 ## 🔧 Extending and Customizing
 
-- **Credentials:** Adapt `Modules/credentials.py` to your environment (Linux keyring, Azure Key Vault, etc.)
-- **Jump host:** Tune `Modules/jump_manager.py` (keep-alive, ciphers, auth methods) as needed
-- **Connection behaviour:** Modify `Modules/netmiko_utils.py` for device types, timeouts, or SSH options
+- **Credentials:** Adapt `switch_audit/credentials.py` to your environment (Linux keyring, Azure Key Vault, etc.)
+- **Jump host:** Tune `switch_audit/jump_manager.py` (keep-alive, ciphers, auth methods) as needed
+- **Connection behaviour:** Modify `switch_audit/netmiko_utils.py` for device types, timeouts, or SSH options
 - **Configuration:** Edit `config.yaml` to set organizational defaults:
   - `network.jump_host`: Default bastion server
   - `concurrency.default_workers`: Concurrent device sessions
   - `stale_detection.default_stale_days`: Stale port threshold
   - `credentials.cred_target`: Credential Manager target name
   - `output.default_filename`: Default Excel output filename
-- **Output columns:** Adjust record construction in `main.py` (search for `detailed.append({...})`)
-- **Conditional formatting:** Tweak `_format_worksheet()` in `main.py`
-- **Parsers:** Modify `parse_show_interfaces_status()` or `parse_show_power_inline()` for custom parsing logic
+- **Output columns:** Adjust record construction in `switch_audit/device_auditor.py` (search for data collection logic)
+- **Conditional formatting:** Tweak formatting in `switch_audit/excel_reporter.py` or `switch_audit/formatters.py`
+- **Parsers:** Modify parsing logic in `switch_audit/formatters.py` for custom CLI output handling
 
 **Example config.yaml for Enterprise:**
 
@@ -1013,7 +1159,7 @@ excel_formatting:
 ## 🧩 Compatibility
 
 - **Target devices:** Cisco IOS/IOS-XE access and distribution switches reachable via SSH
-- The tool relies on Netmiko; specify the right device type(s) inside `netmiko_utils.py`
+- The tool relies on Netmiko; specify the right device type(s) inside `switch_audit/netmiko_utils.py`
 - TextFSM/NTC templates significantly improve interface parsing fidelity but are not strictly required
 
 ### Tested Devices
@@ -1035,14 +1181,17 @@ This tool has been tested and verified on the following Cisco IOS and IOS-XE pla
 ## ✅ Examples
 
 ```bash
-# Basic, with jump host
-python -m main -d devices.txt -o audit.xlsx
+# Basic, with jump host (new modular entry point)
+python -m switch_audit -d devices.txt -o audit.xlsx
 
 # Direct (no bastion), 20 workers, stale disabled
-python -m main --direct -w 20 --stale-days 0 -d devices.txt -o audit.xlsx
+python -m switch_audit --direct -w 20 --stale-days 0 -d devices.txt -o audit.xlsx
 
 # Conservative concurrency, higher stale threshold, verbose
-python -m main -w 4 --stale-days 90 --debug -d devices.txt -o siteA.xlsx
+python -m switch_audit -w 4 --stale-days 90 --debug -d devices.txt -o siteA.xlsx
+
+# Backward compatibility (still works)
+python main_new.py --devices devices.txt --output audit.xlsx
 ```
 
 ---
@@ -1053,13 +1202,16 @@ python -m main -w 4 --stale-days 90 --debug -d devices.txt -o siteA.xlsx
 A: They are recommended for better `show interfaces` parsing. Without them, the script still works and uses its internal parser for `show interfaces status` and best-effort logic elsewhere.
 
 **Q: Where do credentials come from?**  
-A: On Windows, from Credential Manager (default target `MyApp/ADM`). Otherwise, you are prompted interactively or you can adapt `credentials.py` to your secret store.
+A: On Windows, from Credential Manager (default target `MyApp/ADM`). Otherwise, you are prompted interactively or you can adapt `switch_audit/credentials.py` to your secret store.
 
 **Q: How is `Mode` determined?**  
 A: From `show interfaces status`: if VLAN column is `trunk`/`rspan` → `trunk`; if `routed` → `routed`; otherwise `access`.
 
 **Q: How is a port considered stale?**  
 A: Only for access ports and when `--stale-days > 0`. Connected ports are flagged stale only if `Last input ≥ N days`. Disconnected ports require both no PoE draw and no LLDP/CDP neighbour to be flagged stale.
+
+**Q: What changed in v2.0?**  
+A: The monolithic `main.py` was restructured into a professional Python package (`switch_audit/`) with modular components. The functionality is identical, but the code is now organized following enterprise best practices. See MIGRATION.md for details.
 
 ---
 
@@ -1070,6 +1222,8 @@ A: Only for access ports and when `--stale-days > 0`. Connected ports are flagge
 After studying this code, you should understand:
 
 ✅ **YAML Configuration Management** — How to separate configuration from code using YAML with Python  
+✅ **Python Package Design** — Structuring modular packages with clear entry points and separation of concerns  
+✅ **Singleton Pattern** — Using configuration singletons for application-wide settings access  
 ✅ **Fixed-Width Parsing** — Reliable CLI output parsing without external dependencies  
 ✅ **Multi-Source Data Fusion** — Correlating data across different commands using interface name aliasing  
 ✅ **Conservative Risk Assessment** — Stale port detection logic that minimizes false positives  
@@ -1079,10 +1233,39 @@ After studying this code, you should understand:
 ✅ **Excel Automation** — Professional workbook generation with conditional formatting  
 ✅ **Exponential Backoff** — Retry logic for transient network failures  
 ✅ **Credential Management** — Secure OS-level credential storage integration  
+✅ **Modular Architecture** — Separating CLI, business logic, and presentation layers  
 
 ### Key Code Patterns Demonstrated
 
-**Pattern 1: Graceful Degradation**
+**Pattern 1: Modular Package Structure**
+```python
+# Entry point (__main__.py)
+from .cli import main
+if __name__ == "__main__":
+    main()
+
+# CLI layer delegates to business logic
+from .device_auditor import audit_device
+results = audit_device(ip, username, password, ...)
+
+# Business logic delegates to reporting
+from .excel_reporter import ExcelReporter
+reporter = ExcelReporter()
+reporter.generate(results)
+```
+
+**Pattern 2: Configuration Singleton**
+```python
+# app_config.py - Single source of truth
+from ProgramFiles.config_files.config_loader import Config
+config = Config()
+
+# Used throughout application
+from .app_config import config
+workers = config.default_workers
+```
+
+**Pattern 3: Graceful Degradation**
 ```python
 try:
     data = parse_with_textfsm(output)  # Preferred method
@@ -1090,7 +1273,7 @@ except:
     data = parse_with_custom_logic(output)  # Fallback
 ```
 
-**Pattern 2: Multi-Key Lookup**
+**Pattern 4: Multi-Key Lookup**
 ```python
 for alias in all_aliases(interface_name):
     if alias in poe_map:
@@ -1098,13 +1281,13 @@ for alias in all_aliases(interface_name):
         break
 ```
 
-**Pattern 3: Thread-Safe Accumulation**
+**Pattern 5: Thread-Safe Accumulation**
 ```python
 with lock:
     results.append(new_data)  # Atomic operation
 ```
 
-**Pattern 4: Conservative Classification**
+**Pattern 6: Conservative Classification**
 ```python
 if condition_A and condition_B:  # Both must be true
     mark_as_risky()
@@ -1112,7 +1295,7 @@ else:
     mark_as_safe()  # Default to safe
 ```
 
-**Pattern 5: Type-Safe Configuration**
+**Pattern 7: Type-Safe Configuration**
 ```python
 @property
 def default_workers(self) -> int:
