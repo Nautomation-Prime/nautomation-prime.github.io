@@ -659,6 +659,7 @@ df.to_excel(writer, sheet_name=sheet_name, index=False)
 **What it does**: Writes this device's DataFrame to its own sheet.
 
 **Why**: 
+
 - `writer` is the Excel file we opened above
 - `sheet_name=sheet_name` names the sheet after the device
 - `index=False` prevents pandas from adding row numbers
