@@ -52,9 +52,21 @@ Learn how to:
 
 ---
 
-### 2. Coming Soon: Multi-Device Show Command Collection
+### 2. [Multi-Device Show Command Collection](./multi-device-show-command.md)
 
-Extend the first tutorial to collect data from multiple devices using a CSV inventory.
+**Build on Tutorial #1 to handle multiple devices from a CSV inventory.**
+
+Learn how to:
+
+- Manage device inventory using CSV files
+- Loop through multiple devices efficiently
+- Handle per-device errors gracefully (one failure doesn't stop the job)
+- Export results to a single Excel file with multiple sheets
+- Provide user feedback during long operations
+
+**What You'll Build**: Evolve your single-device script into a multi-device automation tool.
+
+**Prerequisites**: Complete Tutorial #1 first.
 
 ---
 
@@ -110,11 +122,12 @@ We recommend working through these tutorials in order:
 
 ```mermaid
 graph LR
-    A[Show Command to Excel] --> B[Multi-Device Collection]
-    B --> C[Configuration Backup]
+    A[1. Show Command to Excel] --> B[2. Multi-Device Collection]
+    B --> C[3. Configuration Backup]
     C --> D[Ready for Intermediate!]
     
     style A fill:#90EE90
+    style B fill:#90EE90
     style D fill:#FFD700
 ```
 

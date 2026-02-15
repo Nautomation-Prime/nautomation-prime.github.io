@@ -143,6 +143,7 @@ nav:
       - Beginner:
           - tutorials/beginner/index.md
           - Show Command to Excel: tutorials/beginner/netmiko-show-command-to-excel.md
+          - Multi-Device Collection: tutorials/beginner/multi-device-show-command.md
       - Intermediate: tutorials/intermediate/index.md
       - Expert: tutorials/expert/index.md
   - Deep Dives:
