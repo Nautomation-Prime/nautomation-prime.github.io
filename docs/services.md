@@ -130,6 +130,7 @@ If you already have automation plans or internal capability, we offer individual
 **Perfect for:** Organizations with existing automation needing ROI proof
 
 **Deliverables:**
+
 - Baseline metrics reconstruction
 - Instrumentation added to existing scripts
 - 3 months of performance tracking
@@ -147,6 +148,7 @@ If you already have automation plans or internal capability, we offer individual
 **Perfect for:** Organizations with existing automation needing team capability building
 
 **Deliverables:**
+
 - 4 knowledge transfer sessions (architecture, code walkthrough, operations, modification)
 - Complete documentation package (user guide, technical reference, runbook)
 - 8 weeks of transition support
@@ -368,7 +370,6 @@ Continuous improvement recommendations
 Knowledge transfer sessions (4 workshops)  
 Complete documentation package (user guide, technical reference, runbook)  
 8 weeks of transition support  
-Optional: Python fundamentals training
 
 **Additional Guarantees:**
 
