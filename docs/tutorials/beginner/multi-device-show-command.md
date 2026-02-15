@@ -321,7 +321,8 @@ try:
 
 **What it does**: Opens the CSV file for reading using a context manager (`with`).
 
-**Why**: 
+**Why**:
+
 - The `try` block catches errors if the file doesn't exist
 - The `with` statement automatically closes the file when done, even if an error occurs
 - `'r'` means "read mode"
@@ -377,9 +378,10 @@ device = {
 
 **Why**: This dictionary structure is identical to Tutorial #1, but now we're building it from CSV data instead of hardcoding it.
 
-**Important detail:**  
-- `row['device_type']` gets the value from the CSV  
-- `device_password` uses the password we captured at the start  
+**Important detail:**
+
+- `row['device_type']` gets the value from the CSV
+- `device_password` uses the password we captured at the start
 - `row.get('secret', '')` safely gets the secret, defaulting to empty string if the column is missing
 
 ---
@@ -471,6 +473,7 @@ try:
 **What it does**: Attempts to connect to the device, wrapped in error handling.
 
 **Why**: The `try` block is CRITICAL for multi-device operations. If this device fails, we want to:
+
 1. Log the error
 2. Continue to the next device
 
@@ -518,11 +521,13 @@ except Exception as e:
 **What it does**: Catches ANY error during connection or command execution.
 
 **Why**: This is the "continue-on-error" pattern. Instead of crashing, we:
+
 1. Log which device failed and why
 2. Return `None` to indicate failure
 3. Let the script continue to the next device
 
 Common errors this catches:
+
 - Authentication failures
 - Timeouts
 - Device unreachable
@@ -580,7 +585,8 @@ for device in devices:
 
 **What it does**: Loops through all devices and stores successful results in a dictionary.
 
-**Why**: 
+**Why**:
+
 - `results = {}` creates an empty dictionary
 - For each device, we call `collect_from_device()` which returns `(hostname, dataframe)`
 - We use Python's tuple unpacking: `hostname, df = collect_from_device(device)`

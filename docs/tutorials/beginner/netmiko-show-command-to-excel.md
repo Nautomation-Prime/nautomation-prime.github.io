@@ -247,6 +247,7 @@ connection = ConnectHandler(**device)
 **What it does**: Creates an SSH connection to the device and stores it in the variable `connection`.
 
 **Why**: This is where the magic happens! `ConnectHandler` receives our device dictionary and:
+
 1. Establishes an SSH connection to the device
 2. Logs in with the provided credentials
 3. Detects the device prompt
@@ -343,11 +344,13 @@ df = pd.DataFrame(output)
 **What it does**: Converts the list of dictionaries into a pandas DataFrame.
 
 **Why**: A DataFrame is like a spreadsheet in Python. Pandas makes it incredibly easy to:
+
 - Export to Excel, CSV, JSON, etc.
 - Filter and manipulate data
 - Combine data from multiple devices
 
 When you pass a list of dictionaries to `pd.DataFrame()`, pandas automatically:
+
 - Uses dictionary keys as column headers
 - Creates rows from each dictionary's values
 
@@ -431,6 +434,7 @@ except Exception as e:
 **What it does**: If any error occurs in the `try` block, this catches it and prints a friendly error message.
 
 **Why**: Instead of seeing a confusing Python traceback, you'll see a clear error message. Common errors:
+
 - `Authentication failed` — Wrong username or password
 - `TCP connection to device failed` — Device unreachable or SSH not enabled
 - `Connection timeout` — Network connectivity issue
@@ -447,6 +451,7 @@ if __name__ == "__main__":
 **What it does**: Runs the `main()` function when the script is executed directly.
 
 **Why**: This is a Python best practice. The condition `if __name__ == "__main__"` is only true when you run the script directly (not when importing it as a module). This pattern allows your code to be:
+
 - Run as a script: `python script.py`
 - Imported by other scripts without automatically executing
 
