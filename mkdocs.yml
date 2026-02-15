@@ -138,20 +138,27 @@ plugins:
 nav:
   - Home: index.md
   - Getting Started: getting-started.md
-  - Services: services.md
-  - Technical Resources:
-      - Deep Dives: deep-dives/index.md
+  - Tutorials:
+      - tutorials/index.md
+      - Beginner:
+          - tutorials/beginner/index.md
+          - Show Command to Excel: tutorials/beginner/netmiko-show-command-to-excel.md
+      - Intermediate: tutorials/intermediate/index.md
+      - Expert: tutorials/expert/index.md
+  - Deep Dives:
+      - deep-dives/index.md
       - CDP Network Audit: deep-dives/cdp-audit.md
       - Access Switch Audit: deep-dives/access-switch-audit.md
-  - Script Library: scripts/index.md
+  - Scripts: scripts/index.md
+  - Services: services.md
   - Coming Soon:
-      - Overview: coming-soon/index.md
-      - Cisco IOS-XE Zero Touch Provisioning: coming-soon/Cisco IOS-XE Zero Touch Provisioning.md
-      - IOS-XE Upgrade Orchestrator: coming-soon/IOS-XE Software Upgrade Orchestrator.md
+      - coming-soon/index.md
+      - Cisco IOS-XE ZTP: coming-soon/cisco-ios-xe-ztp.md
+      - IOS-XE Upgrade Orchestrator: coming-soon/ios-xe-upgrade-orchestrator.md
+  - About: about.md
   - Legal:
       - Privacy Policy: legal/privacy-policy.md
       - Terms of Use: legal/terms-of-use.md
-      - Licensing: legal/licensing.md
       - Disclaimer: legal/disclaimer.md
-      - Brand & Logo Usage: legal/brand.md
-  - About: about.md
+      - Licensing: legal/licensing.md
+      - Brand Usage: legal/brand.md

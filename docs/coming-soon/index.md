@@ -25,7 +25,7 @@ The scripts and tools featured here represent:
 
 ## Projects in Development
 
-### [Cisco IOS-XE Zero Touch Provisioning](Cisco%20IOS-XE%20Zero%20Touch%20Provisioning.md)
+### [Cisco IOS-XE Zero Touch Provisioning](cisco-ios-xe-ztp.md)
 
 A production-ready Python script for automating Day 0 provisioning of Cisco Catalyst switches running IOS-XE. This comprehensive solution enables hands-free deployment at scale with enterprise-grade reliability.
 
@@ -42,7 +42,7 @@ A production-ready Python script for automating Day 0 provisioning of Cisco Cata
 
 ---
 
-### [IOS-XE Software Upgrade Orchestrator](IOS-XE%20Software%20Upgrade%20Orchestrator.md)
+### [IOS-XE Software Upgrade Orchestrator](ios-xe-upgrade-orchestrator.md)
 
 A comprehensive Python-based orchestration framework for automating Cisco IOS-XE software upgrades across diverse platforms. This design document covers:
 

@@ -28,6 +28,11 @@ We believe network code should never be a "black box." Here, we solve the world'
 
     Learn what Nautomation Prime offers and which path is right for you.
 
+=== "Learn Step-by-Step"
+    **[Tutorials](./tutorials/index.md)** teach practical automation skills.
+
+    Start with [Show Command to Excel](./tutorials/beginner/netmiko-show-command-to-excel.md)—your first network automation script.
+
 === "Learn Python Automation"
     **[Technical Deep Dives](./deep-dives/index.md)** teach you the "why" behind production automation.
 
@@ -48,6 +53,12 @@ We believe network code should never be a "black box." Here, we solve the world'
 ## What We Offer
 
 > **Note:** This site assumes you already know Python. We don't teach Python itself — we teach you how to understand, adapt, and extend our production‑grade automation scripts. If you're new to Python, complete a fundamentals course first, then return to explore the internals of our tooling.
+
+### 🎓 [Tutorials](./tutorials/index.md)
+
+Step-by-step practical scripts with line-by-line explanations. Learn by building real automation tools.
+
+**Start Here:** [Show Command to Excel](./tutorials/beginner/netmiko-show-command-to-excel.md) — Your first Netmiko script
 
 ### 📖 [Deep Dives](./deep-dives/index.md)
 
@@ -91,7 +102,8 @@ Every tool and guide adheres to three core principles:
 ## Ready to Get Started?
 
 - **New to Nautomation Prime?** → [Getting Started Guide](./getting-started.md) for philosophy and pathways
-- **Want to Learn?** → [Technical Deep Dives](./deep-dives/index.md) for production-grade walkthroughs
+- **Want to Learn Automation?** → [Tutorials](./tutorials/index.md) for hands-on, step-by-step learning
+- **Study Production Code?** → [Technical Deep Dives](./deep-dives/index.md) for production-grade walkthroughs
 - **Ready to Deploy?** → [Script Library](./scripts/index.md) or explore [Services](./services.md)
 - **Have Questions?** → Check [Getting Started FAQ](./getting-started.md#frequently-asked-questions) or contact us via [email](mailto:nautomationprime.f3wfe@simplelogin.com) or [LinkedIn](https://www.linkedin.com/company/nautomationprime)
 
