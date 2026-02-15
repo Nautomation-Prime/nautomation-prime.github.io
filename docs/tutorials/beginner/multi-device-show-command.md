@@ -377,9 +377,9 @@ device = {
 
 **Why**: This dictionary structure is identical to Tutorial #1, but now we're building it from CSV data instead of hardcoding it.
 
-**Important detail:**
-- `row['device_type']` gets the value from the CSV
-- `device_password` uses the password we captured at the start
+**Important detail:**  
+- `row['device_type']` gets the value from the CSV  
+- `device_password` uses the password we captured at the start  
 - `row.get('secret', '')` safely gets the secret, defaulting to empty string if the column is missing
 
 ---
