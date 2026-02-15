@@ -195,7 +195,7 @@ The PRIME Framework has delivered measurable improvements across enterprise netw
     - **65% average time savings** on repetitive tasks (VLAN provisioning, config audits)
     - **90% error reduction** in configuration changes
     - **6-12 month payback period** on automation investments
-    - **100% knowledge transfer success** — all teams self-sufficient post-engagement
+    - **Proven knowledge transfer success** — teams become self-sufficient and extend automation independently
 
 ---
 
@@ -303,7 +303,7 @@ These aren't just buzzwords—they represent specific approaches that differenti
 - **Pinpoint:** Identified 200+ VLAN changes/year = 50 hours wasted
 - **Re-engineer:** Designed **Prime Workflows** with templated provisioning + approval gates
 - **Implement:** **Prime Agent** using Jinja2 templates with pre/post-flight validation
-- **Measure:** **Prime Overwatch** tracked 2 mins/change average, zero errors in 6 months
+- **Measure:** **Prime Overwatch** tracked 2 mins/change average, error-free operations over 6 months
 - **Empower:** Team achieved **Prime Capability**—now extends scripts for SVI creation
 
 **ROI:** £12,500/year savings, 6-month payback
@@ -383,7 +383,7 @@ graph TD
 - **Measure:** **Prime Overwatch** tracked success rate (192/200 successful, 8 skipped due to hardware constraints)
 - **Empower:** Network team achieved **Prime Capability**—now handles firmware updates independently
 
-**ROI:** £22,000 saved (160 hours + travel elimination), 96% success rate, zero network downtime
+**ROI:** £22,000 saved (160 hours + travel elimination), 96% success rate, no network downtime incidents
 
 ---
 
