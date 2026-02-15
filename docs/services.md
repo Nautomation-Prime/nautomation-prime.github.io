@@ -1,17 +1,32 @@
 ---
-title: Bespoke Automation Services
-description: Custom Python automation solutions for Cisco infrastructure. Portable bundles, Docker containers, ISE automation, and zero-install deployment for enterprise networks.
+title: Automation Services - PRIME Framework
+description: Proven 5-stage methodology for network automation success. From opportunity discovery to team empowerment, delivering measurable ROI and sustainable capability.
 tags:
   - Services
+  - PRIME Framework
   - Consulting
   - Custom Automation
-  - ISE
-  - Docker
 ---
 
-## Precision Python Solutions for Cisco Infrastructure
+## Network Automation That Delivers Results
 
-At Nautomation Prime, we bridge the gap between complex infrastructure and streamlined **Python-driven automation**. We provide hardened, production-ready logic designed to eliminate manual error and scale your network operations.
+At Nautomation Prime, we deliver network automation through the **[PRIME Framework](./prime-framework/index.md)**—a proven 5-stage methodology that ensures measurable value, production-grade quality, and long-term team capability.
+
+**Most automation projects fail because they:**
+
+- ❌ Automate the wrong things (low-value, high-effort tasks)
+- ❌ Build brittle, unmaintainable solutions
+- ❌ Create vendor lock-in (nobody can modify the code later)
+
+**The PRIME Framework solves this:**
+
+✅ **[Pinpoint](./prime-framework/pinpoint.md)** opportunities with proven ROI  
+✅ **[Re-engineer](./prime-framework/re-engineer.md)** workflows for scalability before coding  
+✅ **[Implement](./prime-framework/implement.md)** production-ready solutions built on [Prime Philosophy](./about.md#prime-philosophy)  
+✅ **[Measure](./prime-framework/measure.md)** performance and demonstrate business value  
+✅ **[Empower](./prime-framework/empower.md)** your team for sustainable long-term success
+
+**[Learn about the PRIME Framework →](./prime-framework/index.md)**
 
 ---
 
@@ -22,186 +37,394 @@ At Nautomation Prime, we bridge the gap between complex infrastructure and strea
 
 ---
 
+## Service Offerings
+
+### 🎯 Full PRIME Framework Engagement (Recommended)
+
+**Complete end-to-end delivery from opportunity identification to team capability building.**
+
+**What's Included:**
+
+- **[Pinpoint Stage](./prime-framework/pinpoint.md):** Discovery workshop, ROI analysis, automation roadmap
+- **[Re-engineer Stage](./prime-framework/re-engineer.md):** Workflow optimization, technical architecture design
+- **[Implement Stage](./prime-framework/implement.md):** Production-ready Python automation with comprehensive testing
+- **[Measure Stage](./prime-framework/measure.md):** Performance tracking, ROI calculation, executive reporting
+- **[Empower Stage](./prime-framework/empower.md):** Knowledge transfer, documentation, team training, ongoing support
+
+**Timeline:** 6-12 weeks (typical for medium complexity automation)
+
+**Investment:** £12,000 - £28,000 (depending on scope)
+
+**ROI:** Clients typically see payback in 6-12 months, then pure savings thereafter
+
+**[Request Discovery Call](mailto:nautomationprime.f3wfe@simplelogin.com)** to discuss your automation needs.
+
+---
+
+### 🛠️ Individual Services (À La Carte)
+
+If you already have automation plans or internal capability, we offer individual PRIME stages:
+
+#### Pinpoint (Discovery & Roadmap)
+
+**Perfect for:** Organizations exploring automation maturity or building internal business cases
+
+**Deliverables:**
+- Discovery workshop with network operations team
+- Time-motion study of operational workflows
+- Prioritized automation roadmap with ROI calculations
+- Executive summary and technical feasibility notes
+
+**Timeline:** 1-2 weeks  
+**Investment:** £2,500 - £4,000
+
+**[Learn more about Pinpoint →](./prime-framework/pinpoint.md)**
+
+---
+
+#### Re-engineer (Workflow Design)
+
+**Perfect for:** Teams with identified automations but need architecture guidance
+
+**Deliverables:**
+- Current state vs. future state workflow analysis
+- Technical architecture documents
+- Safety & validation plans
+- Implementation blueprints for development team
+
+**Timeline:** 1-2 weeks per automation  
+**Investment:** £3,000 - £6,000
+
+**[Learn more about Re-engineer →](./prime-framework/re-engineer.md)**
+
+---
+
+#### Implement (Custom Development)
+
+**Perfect for:** Organizations needing production-ready automation built by experts
+
+**What We Build:**
+- **Automated Provisioning:** Bulk VLAN, SVI, and Interface configurations
+- **Fleet Upgrades:** Intelligent IOS/IOS-XE software management with Nornir parallelization
+- **Compliance Auditing:** "Golden Config" verification against enterprise standards
+- **API & Security Automation:** Identity Services Engine (ISE) SGT assignments, endpoint profiling
+- **Network Visibility:** Topology discovery, inventory collection, automated reporting
+- **Framework Integration:** Python orchestration with Cisco Catalyst Center, Ansible, Nornir
+
+**Deliverables:**
+- Production-hardened Python code following [Prime Philosophy](./about.md#prime-philosophy)
+- Comprehensive testing (lab validation + pilot deployment)
+- Line-by-line documentation
+- README with installation, usage, troubleshooting
+
+**Timeline:** 2-6 weeks (depending on complexity)  
+**Investment:** £6,000 - £18,000
+
+**[Learn more about Implement →](./prime-framework/implement.md)**
+
+---
+
+#### Measure (ROI Tracking)
+
+**Perfect for:** Organizations with existing automation needing ROI proof
+
+**Deliverables:**
+- Baseline metrics reconstruction
+- Instrumentation added to existing scripts
+- 3 months of performance tracking
+- Executive summary report with ROI calculation
+
+**Timeline:** 3 months (ongoing tracking)  
+**Investment:** £2,000 - £3,500
+
+**[Learn more about Measure →](./prime-framework/measure.md)**
+
+---
+
+#### Empower (Knowledge Transfer)
+
+**Perfect for:** Organizations with existing automation needing team capability building
+
+**Deliverables:**
+- 4 knowledge transfer sessions (architecture, code walkthrough, operations, modification)
+- Complete documentation package (user guide, technical reference, runbook)
+- 8 weeks of transition support
+- Optional: Python fundamentals training (4-session workshop)
+
+**Timeline:** 2-4 weeks over 3 months  
+**Investment:** £3,000 - £5,000 (+£2,800 for Python training add-on)
+
+**[Learn more about Empower →](./prime-framework/empower.md)**
+
+---
+
+### 🐳 Deployment Options
+
+We deliver automation in formats that match your operational constraints:
+
+#### Standard Python Scripts
+
+Traditional Python code that runs directly on workstations or servers. Full source code, documented and modifiable.
+
+#### Zero-Install Portable Bundles
+
+**For restricted enterprise workstations:**
+
+- Run automation directly from a folder or USB drive
+- No Python installation required
+- All libraries (Netmiko, Nornir, etc.) pre-packaged
+- Full source code remains visible and auditable
+
+#### Scheduled Docker Containers
+
+**For continuous autonomous execution:**
+
+- Pre-configured containers with Python environment and logic
+- Scheduled auditing (daily/weekly "Golden Config" checks)
+- Health monitoring (periodic ISE/IOS-XE polling with alerting)
+- Zero-touch maintenance once deployed
+
+---
+
 ## What We Solve
 
-### 🛠️ Custom Python Scripting
+### Common Automation Scenarios
 
-We build bespoke tools tailored to your specific topology. We don't just provide code; we provide transparency.
+Through the PRIME Framework, we've delivered automation for:
 
-**Every custom project is developed exclusively for you—never published or reused.**
+**Operational Efficiency:**
 
-* **Automated Provisioning:** Scripts for bulk VLAN, SVI, and Interface configurations.  
-* **Fleet Upgrades:** Intelligent Python workflows for IOS and IOS-XE software management, with expertise in Nornir-based parallelization and Ansible integration.  
-* **Compliance Auditing:** Automated "Golden Config" verification against your enterprise standards.  
-* **Framework Integration:** Expert guidance on integrating Python orchestration with Cisco Catalyst Center, Ansible, and Nornir for hybrid automation strategies.
+- VLAN provisioning (reduce 15-min manual task to 30-second execution)
+- Interface configuration (bulk port changes with validation)
+- Compliance auditing (daily "Golden Config" checks vs. quarterly manual reviews)
 
-### 🚀 Zero-Install Deployment (Portable Bundles)
+**Fleet Management:**
 
-We understand that enterprise workstations are often restricted. Our custom solutions can be delivered as **Portable Python Bundles**.
+- IOS/IOS-XE software upgrades (staged rollouts with automatic rollback)
+- Configuration backups (scheduled collection with version control)
+- Inventory collection (automatic discovery of device counts, platforms, versions)
 
-* **No Installation Required:** Run our automation tools directly from a folder or USB drive without needing to install Python on the local machine.  
-* **Full Transparency:** Unlike compiled binaries, our bundles keep the source code visible and auditable, maintaining our commitment to "Line-by-Line" clarity.  
-* **Self-Contained:** All required libraries (Netmiko, Nornir, etc.) are pre-packaged within the bundle for a "plug-and-play" experience.
+**Security & Compliance:**
 
-### 🔐 API & Security Automation (ISE)
+- Identity Services Engine (ISE) automation (SGT assignments, profiling)
+- ACL generation and deployment (logic-based policy enforcement)
+- Audit trail generation (change tracking for regulatory compliance)
 
-Streamline your Zero Trust architecture through programmatic control.
+**Visibility & Reporting:**
 
-* **Identity Services Engine (ISE):** Automation of SGT assignments and endpoint profiling via the ERS/OpenAPI.  
-* **Automated Policy Enforcement:** Logic-based ACL generation and deployment.
-
-### 📊 Network Visibility
-
-Turn CLI data into actionable insights with custom Python parsers.
-
-* **Automated Reporting:** Generate real-time audits for inventory and compliance.  
-* **Topology Intelligence:** Discovery scripts that map your physical and logical layers.
-
-### 🐳 Scheduled "Appliance" Containers (Docker) {:#scheduled-automation}
-
-For enterprises looking for continuous oversight, we provide pre-built Docker containers designed for autonomous execution.
-
-* **Scheduled Auditing:** Automate "Golden Config" checks or security scans to run daily or weekly without human intervention.  
-* **Health Monitoring:** Containers that periodically poll Cisco ISE or IOS-XE devices to alert you to anomalies before they become outages.  
-* **Zero-Touch Maintenance:** Our containers come pre-configured with the necessary Python environments and logic—just pull, run, and let the automation work for you.
+- Topology mapping (CDP/LLDP network discovery)
+- Health monitoring (periodic polling with anomaly alerting)
+- Executive dashboards (Grafana/Prometheus integration)
 
 ---
 
 ## Why Choose Nautomation Prime?
 
-Our engagement model is built on four core commitments:
+### The PRIME Framework Difference
+
+**Most consultants sell scripts. We deliver capability.**
+
+| What Others Do | What PRIME Delivers |
+| :--- | :--- |
+| Build automation for the obvious tasks | **Pinpoint** the highest-ROI opportunities through data-driven analysis |
+| Directly automate existing (inefficient) workflows | **Re-engineer** processes for scalability before coding begins |
+| Deliver code with minimal documentation | **Implement** with [Prime Philosophy](./about.md#prime-philosophy)—transparent, reliable, pragmatic |
+| No proof of value | **Measure** ROI with concrete metrics and executive reporting |
+| "Here's the code, good luck" | **Empower** your team to maintain, modify, and extend independently |
+
+---
+
+### Our Core Commitments
 
 | Commitment | What This Means |
 | :--- | :--- |
-| **Line-by-Line Transparency** | Every script includes detailed explanations. You understand your automation, not just run it. |
-| **Hardened for Enterprise** | Production-grade error handling, pre-flight validation, and security best practices—not shortcuts. |
-| **Framework Agnostic** | Expertise across Netmiko, Nornir, Ansible, NAPALM, and PyATS. We integrate with your existing tools (Catalyst Center, AWX/Tower) rather than forcing replacements. |
-| **Client Confidentiality** | Your bespoke projects remain exclusively yours—never published, reused, or shared. NDAs standard. |
+| **🔍 Transparency Over Obscurity** | Every script includes line-by-line explanations. You understand your automation, not just run it. |
+| **🛡️ Reliability Over Speed** | Production-grade error handling, pre-flight validation, post-flight verification, automatic rollback. No shortcuts. |
+| **🎯 Pragmatic Over Perfect** | Ship solutions that work today, not theoretical perfection that never ships. Complexity must justify existence. |
+| **🔒 Client Confidentiality** | Your bespoke projects remain exclusively yours—never published, reused, or shared. NDAs standard. Full IP ownership. |
+
+**These are the values of the [Prime Philosophy](./about.md#prime-philosophy) that guide every PRIME Framework engagement.**
 
 ---
 
-## Investment & Engagement Model
+## Investment & ROI
 
-### How We Price Bespoke Automation
+### Why Fixed-Fee Pricing
 
-Nautomation Prime operates on a **fixed-fee project basis**—you receive a detailed scope, deliverables list, and total cost estimate upfront. No hourly billing, no surprise invoices, no scope creep.
+Nautomation Prime operates on a **fixed-fee project basis** for PRIME Framework engagements—you receive a detailed scope, deliverables list, and total cost estimate upfront.
 
-This model protects both parties: you gain budget certainty, and we're incentivised to deliver efficient, well-architected solutions rather than dragging out billable hours.
+**No hourly billing. No surprise invoices. No scope creep.**
 
-#### What Influences Project Cost?
+This model protects both parties: you gain budget certainty, and we're incentivized to deliver efficient, well-architected solutions rather than dragging out billable hours.
 
-Every engagement is scoped individually, but pricing is typically determined by:
+---
+
+### What Influences Project Cost?
+
+Every engagement is scoped individually during the [Pinpoint](./prime-framework/pinpoint.md) stage, with pricing typically determined by:
 
 | Factor | Impact on Scope |
 | :--- | :--- |
-| **Device Count** | A 50-device access layer audit has different complexity than a 500-device campus. |
-| **Infrastructure Complexity** | Legacy IOS vs. modern IOS-XE, and distributed topologies require additional validation logic. |
-| **Deliverable Type** | A standalone Python script is a different engagement than a Dockerised container with Grafana dashboards. |
-| **Integration Requirements** | Connecting to ISE, ServiceNow, or your CMDB adds development and testing overhead. |
-| **Documentation Depth** | Line-by-line code explanations (our standard) vs. operational runbooks vs. full knowledge transfer workshops. |
+| **Device Count** | 50-device access layer vs. 500-device campus |
+| **Infrastructure Complexity** | Legacy IOS vs. modern IOS-XE, distributed topologies |
+| **Deliverable Type** | Standalone script vs. Dockerized container with dashboards |
+| **Integration Requirements** | ISE, ServiceNow, CMDB, Netbox connections |
+| **Knowledge Transfer Depth** | Code-only vs. full team training workshops |
 
-#### Typical Project Ranges
+---
+
+### Typical Investment Ranges
 
 To give you a sense of scale (all prices exclude VAT):
 
-* **Simple Automation Script** (e.g., single-device configuration audit, basic VLAN provisioning): £1,200–£2,500
-* **Medium Complexity Tool** (e.g., multi-threaded inventory collection with Excel reporting for 50+ devices): £3,000–£5,500
-* **Enterprise-Grade Solution** (e.g., multi-threaded CDP topology mapper, ISE SGT automation, portable Docker containers with full documentation): £6,000–£12,000+
+**Full PRIME Framework Engagement:**
 
-These are **indicative ranges**—actual quotes depend on your specific requirements. A detailed scope call is always free.
+- **Simple Automation:** £12,000 - £18,000 (e.g., VLAN provisioning with full methodology)
+- **Medium Complexity:** £18,000 - £28,000 (e.g., compliance auditing, inventory collection)
+- **Enterprise-Grade:** £28,000 - £45,000+ (e.g., IOS-XE upgrade orchestrator, ISE integration)
+
+**Individual Stages (À La Carte):**
+
+- **Pinpoint (Discovery):** £2,500 - £4,000
+- **Re-engineer (Design):** £3,000 - £6,000 per automation
+- **Implement (Development):** £6,000 -£18,000
+- **Measure (ROI Tracking):** £2,000 - £3,500
+- **Empower (Knowledge Transfer):** £3,000 - £5,000
+
+These are **indicative ranges**—actual quotes provided after discovery call.
 
 ---
 
-### Why Fixed-Fee Pricing Works for Network Automation
+### Why PRIME Framework Delivers ROI
 
 **For You:**
 
-* **Predictable budgets** for finance and procurement teams
-* **No incentive for inefficiency**—we're motivated to deliver clean, maintainable code
-* **Single invoice** per project phase—simpler accounting
+* **Measurable value** from Pinpoint stage—you know the ROI before committing
+* **Optimized workflows** from Re-engineer—not just faster bad processes
+* **Production-grade reliability** from Implement—no "prototype" code
+* **Proven results** from Measure—concrete metrics and executive reports
+* **Long-term capability** from Empower—team independence, not vendor lock-in
 
-**For Us:**
+**For Your Organization:**
 
-* **Rewards engineering excellence**—the better our architecture, the more efficient our delivery
-* **Encourages reusable components**—we build smarter over time
-* **Aligns with our philosophy**—"Line-by-Line Transparency" means we document once, properly
+* **Sustainable automation** that evolves with your needs
+* **Team empowerment** to build additional automations
+* **Compounding returns**—first automation pays for itself, subsequent ones are pure savings
 
 ---
 
-### The ROI Case for Python Automation
+### The PRIME Framework Process
 
-Industry research consistently shows Python-driven network automation delivers measurable returns:
+Our 5-stage methodology ensures maximum value and sustainable success:
 
-> **Cisco & ACG Study (2023):** Mature automation deployments achieve **55% OPEX reduction** in network operations.
+**Stage 1: [Pinpoint](./prime-framework/pinpoint.md)** (Week 1)  
+Discovery workshop → ROI analysis → Automation roadmap
 
-#### What Does This Mean for Your Team?
+**Stage 2: [Re-engineer](./prime-framework/re-engineer.md)** (Weeks 2-3)  
+Workflow optimization → Technical architecture → Safety planning
 
-Consider a mid-sized UK enterprise with 200 Cisco devices:
+**Stage 3: [Implement](./prime-framework/implement.md)** (Weeks 4-8)  
+Production-ready development → Lab testing → Pilot deployment
 
-* **Manual provisioning time:** ~15 minutes per device for VLAN/SVI changes × 50 changes/year = **125 hours**
-* **Compliance audits:** Manual "golden config" checks across 200 devices quarterly = **80 hours/year**
-* **Incident response:** CLI data gathering during outages = **40 hours/year** (conservative)
+**Stage 4: [Measure](./prime-framework/measure.md)** (Weeks 9-12+)  
+Metrics collection → ROI calculation → Executive reporting
 
-**Total:** 245 hours of repetitive engineering work annually.
+**Stage 5: [Empower](./prime-framework/empower.md)** (Weeks 10-16)  
+Knowledge transfer → Documentation → Team capability building
 
-At an average senior engineer cost of **£50/hour** (internal cost, not salary), that's **£12,250/year** in manual effort. A £6,000 automation investment pays for itself in **6 months**, then delivers savings every year thereafter.
+**Timeline:** 6-12 weeks typical for medium-complexity automation
 
-Beyond cost, you gain:
-
-* **Elimination of human error** in production changes
-* **Audit trails** for compliance and security teams
-* **Instant runbooks** embedded in the code itself
-* **Faster incident response**—data gathering in seconds, not hours
+**[Learn more about the PRIME Framework →](./prime-framework/index.md)**
 
 ---
 
 ### What You Receive in Every Engagement
 
-Regardless of project size, all deliverables include:
+**Full PRIME Framework engagements include:**
 
-✅ **Production-hardened Python code** with enterprise-grade error handling  
-✅ **Line-by-line documentation** explaining every design decision  
-✅ **Pre-flight validation logic** to prevent misconfigurations before deployment  
-✅ **Comprehensive README** with installation, usage, and troubleshooting guides  
-✅ **Example inventory files** tailored to your environment  
+✅ **Pinpoint Stage:**  
+Prioritized automation roadmap with ROI calculations  
+Executive summary and technical feasibility notes
+
+✅ **Re-engineer Stage:**  
+Workflow design documents  
+Technical architecture blueprints  
+Safety & validation specifications
+
+✅ **Implement Stage:**  
+Production-hardened Python code with [Prime Philosophy](./about.md#prime-philosophy) principles  
+Comprehensive testing (lab + staging + pilot)  
+LINE-by-line code documentation  
+README with installation, usage, troubleshooting
+
+✅ **Measure Stage:**  
+Performance tracking instrumentation  
+3-6 months of metrics collection  
+ROI calculation and executive reporting  
+Continuous improvement recommendations
+
+✅ **Empower Stage:**  
+Knowledge transfer sessions (4 workshops)  
+Complete documentation package (user guide, technical reference, runbook)  
+8 weeks of transition support  
+Optional: Python fundamentals training
+
+**Additional Guarantees:**
+
 ✅ **Full intellectual property ownership** or exclusive licence (your choice)  
 ✅ **Confidentiality guarantee**—your scripts are never published or reused  
-✅ **Post-delivery support window** (typically 30 days for bug fixes and adjustments)
-
-Optional add-ons available:
-
-* **Knowledge transfer workshops** (remote or on-site)
-* **CI/CD pipeline integration** (GitHub Actions, GitLab CI, Jenkins)
-* **Custom Grafana/Prometheus dashboards** for scheduled automation containers
-* **Extended support contracts** for ongoing maintenance
+✅ **30-day post-delivery support** for bug fixes and adjustments  
+✅ **Direct access to principal engineer**—no outsourcing, no junior developers
 
 ---
 
-### The Engagement Process
+## Get Started with PRIME Framework
 
-1. **Discovery Call** (30–60 minutes, free)  
-   We discuss your pain points, topology, and automation goals. No obligation. NDA available upon request.
+Ready to transform your network operations with proven automation methodology?
 
-2. **Scope & Proposal** (delivered within 5 business days)  
-   Detailed project plan with deliverables, timeline, and fixed-fee quote.
+### Step 1: Discovery Call (Free, 30-60 minutes)
 
-3. **Agreement & Kickoff**  
-   Once approved, we schedule a technical deep-dive to gather inventory, credentials (securely), and validation criteria. NDA and service agreement signed.
+**[Request a Discovery Call](mailto:nautomationprime.f3wfe@simplelogin.com)**
 
-4. **Development & Testing** (typical turnaround: 2–4 weeks for medium projects)  
-   You receive progress updates and can request checkpoint reviews.
+We'll discuss:
 
-5. **Delivery & Handover**  
-   Final code, documentation, and a walkthrough session. Your team gains full ownership and understanding.
+- Your operational pain points and automation goals
+- Current infrastructure (device counts, platforms, topologies)
+- Desired outcomes and success criteria
+- Questions about the PRIME Framework
 
-6. **Support Window** (30 days post-delivery)  
-   Bug fixes and minor adjustments included. Feature additions quoted separately.
+**No obligation. NDA available upon request.**
+
+**Typical response time:** 24-48 hours (UK business days)
+
+---
+
+### Step 2: Proposal & Pinpoint (Week 1)
+
+If we're a good fit, we'll deliver:
+
+- Detailed project scope based on PRIME Framework
+- Timeline and deliverables for all 5 stages
+- Fixed-fee quote
+- Pinpoint stage (Discovery workshop, ROI analysis, automation roadmap)
+
+**Deliverable:** You receive a prioritized automation roadmap with concrete ROI projections—even if you choose not to proceed with full implementation.
+
+---
+
+### Step 3: Full PRIME Engagement or À La Carte
+
+Choose your path:
+
+**Full Framework:** Complete Pinpoint → Re-engineer → Implement → Measure → Empower
+
+**Individual Stages:** Pick specific services (Discovery only, Implementation only, Knowledge Transfer, etc.)
 
 ---
 
 ### About Nautomation Prime
 
-We are a **UK-based, specialist network automation consultancy** focused exclusively on Cisco infrastructure and Python-driven solutions.
+We are a **UK-based, specialist network automation consultancy** focused exclusively on Cisco infrastructure and Python-driven solutions delivered through the **PRIME Framework**.
 
 As a boutique practice, you work directly with the principal engineer on every engagement—no junior developers, no outsourcing, no knowledge loss between "sales" and "delivery." You get senior-level expertise from discovery through to production deployment.
 
@@ -212,18 +435,31 @@ As a boutique practice, you work directly with the principal engineer on every e
 * GDPR-compliant data handling (see [Privacy Policy](legal/privacy-policy.md))
 * Non-disclosure agreements (NDAs) standard for all bespoke projects
 * Client code ownership: full rights transfer or exclusive licence (your choice)
-* Open-source contributions licenced under MIT or Apache 2.0
+* Open-source contributions licensed under MIT or Apache 2.0
+
+**Technical Expertise:**
+
+* Python automation: Netmiko, Nornir, NAPALM, PyATS
+* Cisco platforms: IOS, IOS-XE, NX-OS
+* Integration: Ansible, Catalyst Center, ISE, Netbox, ServiceNow
+* Deployment: Docker containers, portable bundles, CI/CD pipelines
 
 ---
 
-## Get Started Today
+## Learn More
 
-Ready to eliminate manual error and accelerate your network operations?
+**[PRIME Framework Overview](./prime-framework/index.md)** — Complete methodology documentation
 
-**[Request a Free Scope Call](mailto:nautomationprime.f3wfe@simplelogin.com)** to discuss your automation needs.
+**Individual Stages:**
 
-Typical response time: **within 24 to 48 hours** (UK business days).
+- [Pinpoint](./prime-framework/pinpoint.md) — Opportunity discovery & ROI analysis
+- [Re-engineer](./prime-framework/re-engineer.md) — Workflow optimization & architecture
+- [Implement](./prime-framework/implement.md) — Production-ready development
+- [Measure](./prime-framework/measure.md) — Performance tracking & ROI proof
+- [Empower](./prime-framework/empower.md) — Knowledge transfer & team capability
+
+**[Request Discovery Call](mailto:nautomationprime.f3wfe@simplelogin.com)** — Start your PRIME Framework journey
 
 ---
 
-> **Mission:** To empower engineers through Python-driven transparency and provide enterprises with hardened automation that eliminates error and accelerates growth.
+> **Mission:** To empower network engineers through the **[PRIME Framework](./prime-framework/index.md)**—delivering automation with measurable ROI, production-grade quality, and sustainable team capability built on the **[Prime Philosophy](./about.md#prime-philosophy)** of transparency, reliability, and pragmatism.

@@ -19,9 +19,26 @@ Nautomation Prime bridges the gap between **complex Cisco infrastructure** and *
 
 We believe network code should never be a "black box." Here, we solve the world's most common network pain points with **hardened, production-ready code**—explained line-by-line so you can deploy with total confidence.
 
+### 🎯 The PRIME Framework
+
+We deliver automation projects through a **proven 5-stage methodology** that ensures value, sustainability, and team empowerment:
+
+**[Pinpoint](./prime-framework/pinpoint.md)** → **[Re-engineer](./prime-framework/re-engineer.md)** → **[Implement](./prime-framework/implement.md)** → **[Measure](./prime-framework/measure.md)** → **[Empower](./prime-framework/empower.md)**
+
+**Why it matters:** Most automation fails because teams automate the wrong things, build brittle solutions, or create vendor lock-in. The PRIME Framework delivers **measurable ROI**, **production-grade code**, and **team capability**—not just scripts.
+
+**[Learn about the PRIME Framework →](./prime-framework/index.md)**
+
 ---
 
 ## 🚀 Quick Navigation
+
+=== "Need Automation Services?"
+    **[PRIME Framework](./prime-framework/index.md)** — Our proven 5-stage methodology.
+
+    **Pinpoint** opportunities → **Re-engineer** workflows → **Implement** solutions → **Measure** ROI → **Empower** your team
+
+    [View Services](./services.md) | [Request Discovery Call](mailto:nautomationprime.f3wfe@simplelogin.com)
 
 === "New Here?"
     **[Get Started](./getting-started.md)** with our onboarding guide.
@@ -33,7 +50,7 @@ We believe network code should never be a "black box." Here, we solve the world'
 
     Start with [Show Command to Excel](./tutorials/beginner/netmiko-show-command-to-excel.md)—your first network automation script.
 
-=== "Learn Python Automation"
+=== "Study Production Code"
     **[Technical Deep Dives](./deep-dives/index.md)** teach you the "why" behind production automation.
 
     Start with [CDP Network Audit](./deep-dives/cdp-audit.md)—learn threading, security, and enterprise patterns.
@@ -43,8 +60,8 @@ We believe network code should never be a "black box." Here, we solve the world'
 
     Tools are documented, hardened, and explained line-by-line.
 
-=== "Need Custom Solutions?"
-    **[Services](./services.md)** covers bespoke automation, portable bundles, and Docker containers.
+=== "Bespoke Solutions"
+    **[Services](./services.md)** covers custom automation, portable bundles, and Docker containers.
 
     We build automation tailored to your specific topology.
 
@@ -80,15 +97,17 @@ Pre-built containers for continuous network oversight. Daily config audits, heal
 ### 🚀 [Zero-Install Bundles](./services.md#zero-install-deployment-portable-bundles)
 
 No Python installed? No problem. Portable, "plug-and-play" bundles run on Windows and Linux without installation or admin rights. Full source code included.
+Prime Philosophy
 
-### 🛠️ [Bespoke Services](./services.md#custom-python-scripting)
+Every tool and guide adheres to three core principles:
 
-Custom solutions tailored to your topology. Expert consultancy for Zero Trust deployment, bulk provisioning, ISE automation, and more.
+| Principle | What It Means |
+| :--- | :--- |
+| **🎯 Pragmatic Over Perfect** | Ship solutions that work today, not theoretical perfection that never ships. Complexity must justify its existence. |
+| **🔍 Transparency Over Obscurity** | We explain the *why* behind every line of code. Verbose logging, human-readable outputs, zero "black box" magic. |
+| **🛡️ Reliability Over Speed** | Pre-flight validation, post-flight verification, automatic rollback. Production networks deserve bulletproof automation. |
 
----
-
-## The "Prime" Philosophy
-
+**These values inform the [PRIME Framework](./prime-framework/index.md)** — our structured methodology for automation projects.
 Every tool and guide adheres to three core principles:
 
 | Principle | What It Means |
@@ -99,8 +118,7 @@ Every tool and guide adheres to three core principles:
 
 ---
 
-## Ready to Get Started?
-
+## Reaed Automation Services?** → [PRIME Framework](./prime-framework/index.md) for proven methodology | [Request Discovery Call](mailto:nautomationprime.f3wfe@simplelogin.com)
 - **New to Nautomation Prime?** → [Getting Started Guide](./getting-started.md) for philosophy and pathways
 - **Want to Learn Automation?** → [Tutorials](./tutorials/index.md) for hands-on, step-by-step learning
 - **Study Production Code?** → [Technical Deep Dives](./deep-dives/index.md) for production-grade walkthroughs
@@ -108,5 +126,7 @@ Every tool and guide adheres to three core principles:
 - **Have Questions?** → Check [Getting Started FAQ](./getting-started.md#frequently-asked-questions) or contact us via [email](mailto:nautomationprime.f3wfe@simplelogin.com) or [LinkedIn](https://www.linkedin.com/company/nautomationprime)
 
 ---
+
+> **Mission:** To empower network engineers through Python-driven transparency and provide enterprises with hardened automation—built through the [PRIME Framework](./prime-framework/index.md)—that delivers measurable ROI, team capability, and sustainable long-term value
 
 > **Mission:** To empower engineers through Python-driven transparency and provide enterprises with hardened automation that eliminates error and accelerates growth.

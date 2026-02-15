@@ -16,10 +16,11 @@ Welcome! This guide will help you understand what Nautomation Prime offers and h
 
 **Nautomation Prime** bridges the gap between complex Cisco infrastructure and streamlined Python-driven automation. We provide:
 
-- **Production-ready automation scripts** explained line-by-line
-- **Deep-dive technical guides** that teach you the "why" behind the code
-- **Enterprise solutions** including Docker containers and portable bundles
-- **Bespoke services** for custom automation needs
+- **[Tutorials](tutorials/index.md)** — Step-by-step practical guides for learning automation skills
+- **[Deep Dives](deep-dives/index.md)** — Production-ready scripts explained line-by-line
+- **[Script Library](scripts/index.md)** — Open-source automation tools for common tasks
+- **[PRIME Framework Services](prime-framework/index.md)** — Proven 5-stage methodology for automation projects
+- **[Professional Services](services.md)** — Custom automation tailored to your topology
 
 **Important:** This site is **not a Python tutorial.** We assume you already know Python basics (variables, functions, loops, exceptions, file I/O). Our goal is to teach you how to apply Python to network automation and provide a foundation you can transfer into your own scripts or learning journey.
 
@@ -29,11 +30,20 @@ Welcome! This guide will help you understand what Nautomation Prime offers and h
 
 ### I want to learn network automation
 
-Start with our **[Technical Deep Dives](deep-dives/index.md)**. We provide comprehensive guides that explain Python automation concepts alongside real Cisco use cases.
+Start with our **[Tutorials](tutorials/index.md)**. We provide hands-on, step-by-step guides for beginner, intermediate, and expert levels.
 
-**Recommended Reading Order:**
+**Recommended Learning Path:**
 
-1. [CDP Network Audit Deep Dive](deep-dives/cdp-audit.md) - Learn about threading, security, and production-grade design
+1. **[Beginner Tutorials](tutorials/beginner/index.md)** — Your first Netmiko scripts
+   - [Show Command to Excel](tutorials/beginner/netmiko-show-command-to-excel.md) — Start here
+   - [Multi-Device Automation](tutorials/beginner/multi-device-show-command.md) — Scale to multiple devices
+
+2. **[Intermediate Topics](tutorials/intermediate/index.md)** — Configuration management, validation, templating
+
+3. **[Expert Topics](tutorials/expert/index.md)** — Nornir, AsyncIO, advanced patterns
+
+4. **[Deep Dives](deep-dives/index.md)** — Production-grade code walkthroughs
+   - [CDP Network Audit](deep-dives/cdp-audit.md) — Threading, security, enterprise design
 
 ### I want to use pre-built scripts
 
@@ -41,16 +51,23 @@ Check out our **[Script Library](scripts/index.md)**. Each script comes with doc
 
 **Popular Scripts:**
 
-- [CDP Network Audit Tool](scripts/index.md) - Discover your Cisco topology with line-by-line transparency
+- [CDP Network Audit Tool](scripts/index.md) — Discover your Cisco topology with line-by-line transparency
+- [Access Switch Audit](deep-dives/access-switch-audit.md) — Port health and compliance checking
 
-### I need custom automation for my environment
+### I need custom automation for my environment (Services)
 
-Explore our **[Services](services.md)** page. We offer:
+We deliver automation projects through the **[PRIME Framework](prime-framework/index.md)**—a proven 5-stage methodology:
 
-- Custom Python scripting tailored to your topology
-- Portable bundles for restricted environments
-- Docker containers for continuous automation
-- ISE and Zero Trust automation
+**[Pinpoint](prime-framework/pinpoint.md)** → **[Re-engineer](prime-framework/re-engineer.md)** → **[Implement](prime-framework/implement.md)** → **[Measure](prime-framework/measure.md)** → **[Empower](prime-framework/empower.md)**
+
+**Services include:**
+
+- Full PRIME Framework engagements (discovery to team capability)
+- Individual stages (à la carte services)
+- Custom Python automation (VLAN provisioning, fleet upgrades, ISE integration)
+- Deployment options (standard scripts, portable bundles, Docker containers)
+
+**[View Services](services.md)** | **[Request Discovery Call](mailto:nautomationprime.f3wfe@simplelogin.com)**
 
 ---
 
@@ -69,25 +86,28 @@ Explore our **[Services](services.md)** page. We offer:
 - **Network access** to your Cisco devices
 - **Credentials** for device authentication
 - **SSH enabled** on target Cisco devices
+Prime Philosophy {:#prime-philosophy}
 
----
+Every tool, script, and guide adheres to three core engineering principles:
 
-## 🔐 Security & Credentials
+1. **🎯 Pragmatic Over Perfect**
+   - Ship solutions that work today, not theoretical perfection that never ships
+   - Complexity must earn its place by delivering measurable value
+   - Simple, direct solutions over abstract architectures
 
-Nautomation Prime follows enterprise security best practices:
+2. **🔍 Transparency Over Obscurity**
+   - We explain the *why* behind every line of code, not just the *what*
+   - Verbose logging, human-readable outputs, zero "black box" magic
+   - Every design decision is documented
 
-✅ **Credentials stored in OS credential managers** (not plaintext files)  
-✅ **No hardcoded secrets** in scripts  
-✅ **Secure jump-host support** for isolated networks  
-✅ **Full source code transparency** (no compiled binaries)
+3. **🛡️ Reliability Over Speed**
+   - Pre-flight validation, post-flight verification, automatic rollback
+   - Production-grade error handling—graceful degradation, never crash-and-burn
+   - Thread-safe concurrent operations
 
----
+**These values guide the [PRIME Framework](prime-framework/index.md)** — our structured methodology for automation projects.
 
-## 📚 Core Concepts
-
-### The "Prime" Philosophy
-
-Every tool, script, and guide adheres to three principles:
+**[Learn more about Prime Philosophy](about.md#prime-philosophy)**e principles:
 
 1. **Line-by-Line Transparency**
    - We explain the *why* behind the code, not just the *what*
@@ -113,12 +133,16 @@ Every tool, script, and guide adheres to three principles:
 
 1. Visit the [CDP Audit GitHub repository](https://github.com/Nautomation-Prime/Cisco_CDP_Network_Audit)
 2. Read the [Deep Dive guide](deep-dives/cdp-audit.md) for understanding the architecture
-3. Follow the README for installation and configuration
-4. Run your first discovery against a test device
+3. Follow the README for inst (PRIME Framework)
 
-### Request Custom Automation
+For structured automation projects with proven ROI:
 
-1. Document your use case and network topology
+1. **[Request Discovery Call](mailto:nautomationprime.f3wfe@simplelogin.com)**—free 30-60 minute discussion
+2. Receive [Pinpoint stage](prime-framework/pinpoint.md) roadmap with ROI calculations
+3. Choose full [PRIME Framework](prime-framework/index.md) or individual stages (à la carte)
+4. Deliverables: Production code, documentation, ROI metrics, team capability
+
+**[Learn about PRIME Framework](prime-framework/index.md)** | **[View Services](services.md)**ogy
 2. Contact us via [email](mailto:nautomationprime.f3wfe@simplelogin.com) or [LinkedIn](https://www.linkedin.com/company/nautomationprime)
 3. Describe any constraints (e.g., restricted environments, specific platforms)
 4. Receive a detailed proposal and timeline
@@ -134,7 +158,10 @@ Every tool, script, and guide adheres to three principles:
 
 ## ❓ Frequently Asked Questions
 
-**Q: Do I need Python installed to use Nautomation Prime tools?**  
+**Q: Do I need Python installed to use Nautomation Prime tools?**  , **Nornir**, and **NAPALM**. While designed for Cisco, the patterns and concepts apply across other vendors (Juniper, Arista, Palo Alto, etc.).
+
+**Q: What's the difference between tutorials, deep dives, and services?**  
+A: **[Tutorials](tutorials/index.md)** teach you to build automation yourself with step-by-step guides. **[Deep Dives](deep-dives/index.md)** explain production-grade scripts line-by-line. **[Services](services.md)** deliver complete automation projects through the **[PRIME Framework](prime-framework/index.md)** with ROI proof and team empowerment
 A: Not necessarily! We offer portable bundles that run without Python installation. Ideal for restricted enterprise environments where Python may not be permitted.
 
 **Q: Can you automate my specific network topology?**  
@@ -146,14 +173,15 @@ A: Our tools are built on vendor-neutral libraries like **Netmiko** and **Nornir
 **Q: How do I secure my credentials?**  
 A: We leverage native OS credential managers (Windows Credential Manager, Keychain on macOS, pass on Linux). Passwords are never stored in plaintext files or hardcoded in scripts. When you run a script like CDP Network Audit for the first time, it will prompt you to save your credentials to Windows Credential Manager—just enter your username and password, and the script will store them securely. Future runs will use the stored credentials automatically.
 
-**Q: What about support and updates?**  
-A: All tools are maintained on GitHub with active development. Issues and feature requests can be filed directly on repositories. For enterprise support, [contact us](services.md).
+**Q: What Automation:** Start with [Tutorials](tutorials/index.md) or study [Deep Dives](deep-dives/index.md)
+- **Deploy Tools:** Browse the [Script Library](scripts/index.md)
+- **Professional Services:** Explore [PRIME Framework](prime-framework/index.md) for structured automation delivery
+- **Custom Solutions:** View [Services](services.md) for bespoke automation options
+- **Connect:** Contact us via [email](mailto:nautomationprime.f3wfe@simplelogin.com) or [LinkedIn](https://www.linkedin.com/company/nautomationprime)
 
 ---
 
-## 📖 Next Steps
-
-- **Learn:** Dive into a [Deep Dive](deep-dives/index.md)
+> **Our Mission:** To empower network engineers through the **[PRIME Framework](prime-framework/index.md)**—delivering automation with measurable ROI, production-grade quality, and sustainable team capability built on the **[Prime Philosophy](about.md#prime-philosophy)** of transparency, reliability, and pragmatism
 - **Deploy:** Browse the [Script Library](scripts/index.md)
 - **Build:** Explore [Services](services.md) for custom solutions
 - **Connect:** Contact us via [email](mailto:nautomationprime.f3wfe@simplelogin.com) or [LinkedIn](https://www.linkedin.com/company/nautomationprime)
