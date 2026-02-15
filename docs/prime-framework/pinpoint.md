@@ -29,18 +29,21 @@ Identify and prioritize automation opportunities that deliver maximum value with
 We conduct a structured interview with your network operations team to understand:
 
 **Operational Pain Points:**
+
 - Which tasks consume the most time?
 - Where do errors occur most frequently?
 - What processes require "heroic efforts"?
 - Which workflows block other work?
 
 **Technical Landscape:**
+
 - Device inventory (counts, platforms, OS versions)
 - Existing automation (if any)
 - Integration points (monitoring, CMDB, ticketing)
 - Change management processes
 
 **Constraint Mapping:**
+
 - Regulatory requirements (PCI-DSS, HIPAA, etc.)
 - Security policies and approval workflows
 - Available lab/dev environments
@@ -270,6 +273,7 @@ Included as Stage 1 when you engage for the complete framework. Typically 1 week
 **Fixed Fee:** £2,500 - £4,000 (depending on network size)
 
 **Includes:**
+
 - Discovery workshop
 - Prioritized automation roadmap
 - ROI analysis

@@ -62,6 +62,7 @@ For each prioritized automation from the [Pinpoint](./pinpoint.md) stage, we map
 ```
 
 **Identified Issues:**
+
 - ❌ No validation before applying config
 - ❌ No rollback mechanism if VLAN ID conflicts
 - ❌ Manual typing introduces errors
@@ -97,6 +98,7 @@ We design an optimized process that addresses identified issues:
 ```
 
 **Improvements:**
+
 - ✅ Template-based (zero typing errors)
 - ✅ Pre-flight validation (catch conflicts before change)
 - ✅ Parallel execution (10x faster)
@@ -115,18 +117,21 @@ Production networks require bulletproof safety:
 Before making any changes, automation should verify:
 
 **Connectivity:**
+
 - Device reachable via ICMP
 - SSH port accessible
 - Authentication successful
 - Sufficient privilege level
 
 **State Validation:**
+
 - Device not in maintenance mode
 - No active config sessions (prevent collision)
 - Sufficient CPU/memory headroom
 - Required feature sets enabled
 
 **Change Validation:**
+
 - Configuration doesn't conflict with existing state
 - Required parameters present and valid
 - Change scope matches authorization
@@ -181,6 +186,7 @@ For each automation, we design the technical architecture:
 **24-Month Scale:** 300+ devices
 
 **Design Decisions:**
+
 - Threading sufficient now, document async migration path
 - CSV inventory works now, plan Netbox integration at 100+ devices
 - Local execution acceptable now, consider container deployment at scale
@@ -194,17 +200,20 @@ Automation rarely exists in isolation. We design integrations with:
 #### External Systems
 
 **Network Management:**
+
 - **DNS** — Validate hostnames, update records if automation creates interfaces
 - **IPAM** — Reserve IPs, prevent conflicts
 - **Monitoring** — Trigger config refresh after changes
 - **Netbox/CMDB** — Source of truth for inventory
 
 **Business Systems:**
+
 - **Ticketing** — Auto-update status, attach reports
 - **Workflow Systems** — Approval gates for high-risk changes
 - **Notification** — Email, Slack, Teams alerts
 
 **Security Systems:**
+
 - **Credential Vaults** — HashiCorp Vault, CyberArk
 - **Logging** — Syslog, SIEM integration
 - **Audit Systems** — Compliance reporting
@@ -348,6 +357,7 @@ Sometimes clients have identified their automations but need design help:
 **Fixed Fee:** £3,000 - £6,000 per automation (depending on complexity)
 
 **Includes:**
+
 - Current state workflow analysis
 - Future state process design
 - Technical architecture documents

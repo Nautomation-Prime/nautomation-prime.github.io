@@ -51,6 +51,7 @@ graph LR
 **Objective:** Identify high-impact automation opportunities
 
 **What Happens:**
+
 - Workflow analysis and time-motion studies
 - Identification of repetitive manual tasks
 - Risk assessment of error-prone processes
@@ -65,6 +66,7 @@ graph LR
 **Objective:** Design optimized processes before automating
 
 **What Happens:**
+
 - Process redesign (don't automate bad workflows!)
 - Architecture planning for scalability
 - Safety mechanism design (pre-flight checks, rollback capability)
@@ -79,6 +81,7 @@ graph LR
 **Objective:** Build production-ready automation following the [Prime Philosophy](../index.md#the-prime-philosophy)
 
 **What Happens:**
+
 - Development of hardened Python scripts
 - Line-by-line documentation for transparency
 - Comprehensive error handling and validation
@@ -93,6 +96,7 @@ graph LR
 **Objective:** Prove value and continuously improve
 
 **What Happens:**
+
 - Metrics collection (time saved, errors eliminated)
 - Performance monitoring and optimization
 - User feedback gathering
@@ -107,6 +111,7 @@ graph LR
 **Objective:** Ensure long-term success and self-sufficiency
 
 **What Happens:**
+
 - Knowledge transfer and training
 - Documentation and runbooks
 - Ongoing support window

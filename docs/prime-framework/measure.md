@@ -155,6 +155,7 @@ After automation goes live, we track:
 #### Daily Task Execution
 
 **Metrics Captured:**
+
 - Execution count
 - Success/failure rate
 - Duration (total and per-device)
@@ -369,11 +370,13 @@ At the end of the Measure stage, you receive:
 ### Proves Business Value
 
 Without measurement:
+
 - ❌ "Automation saves time" (vague claim)
 - ❌ Leadership questions investment
 - ❌ Future projects harder to justify
 
 With measurement:
+
 - ✅ "VLAN automation saved 115 hours and £7,910 in Q1" (concrete proof)
 - ✅ Leadership sees ROI
 - ✅ Easier to secure budget for next automation
@@ -381,6 +384,7 @@ With measurement:
 ### Drives Improvement
 
 Metrics reveal:
+
 - Which automations deliver most value (prioritize similar projects)
 - Where optimization is worthwhile (focus effort)
 - What's working well (replicate success patterns)
@@ -421,6 +425,7 @@ For organizations with existing automation needing ROI proof:
 **Fixed Fee:** £2,000 - £3,500
 
 **Includes:**
+
 - Baseline metrics reconstruction
 - Instrumentation added to existing scripts
 - 3 months of performance tracking

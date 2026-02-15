@@ -70,6 +70,7 @@ If you already have automation plans or internal capability, we offer individual
 **Perfect for:** Organizations exploring automation maturity or building internal business cases
 
 **Deliverables:**
+
 - Discovery workshop with network operations team
 - Time-motion study of operational workflows
 - Prioritized automation roadmap with ROI calculations
@@ -87,6 +88,7 @@ If you already have automation plans or internal capability, we offer individual
 **Perfect for:** Teams with identified automations but need architecture guidance
 
 **Deliverables:**
+
 - Current state vs. future state workflow analysis
 - Technical architecture documents
 - Safety & validation plans
@@ -113,6 +115,7 @@ If you already have automation plans or internal capability, we offer individual
 - **Framework Integration:** Python orchestration with Cisco Catalyst Center, Ansible, Nornir
 
 **Deliverables:**
+
 - Production-hardened Python code following [Prime Philosophy](./about.md#prime-philosophy)
 - Comprehensive testing (lab validation + pilot deployment)
 - Line-by-line documentation

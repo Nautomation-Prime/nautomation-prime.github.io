@@ -145,6 +145,7 @@ Comprehensive written materials for long-term reference:
 
 ## Detailed Usage
 ### Command-Line Arguments
+
 - `--vlan` : VLAN ID to create (required)
 - `--name` : VLAN name (required)
 - `--inventory` : Path to device CSV (default: inventory.csv)
@@ -164,6 +165,7 @@ python provision_vlan.py --vlan 150 --name "Guest_WiFi" --inventory devices_dc1.
 
 ## Understanding the Output
 ### Log Files
+
 - `vlan_provisioning.log` : Detailed execution log
   - **INFO**: Normal operations
   - **WARNING**: Devices skipped (with reason)
@@ -173,6 +175,7 @@ python provision_vlan.py --vlan 150 --name "Guest_WiFi" --inventory devices_dc1.
 Generated in `outputs/vlan_provisioning_TIMESTAMP.xlsx`
 
 Columns:
+
 - Device: Switch hostname
 - IP: Management IP
 - Status: success/failed
@@ -299,23 +302,27 @@ Structured handoff from full support to self-sufficiency:
 #### Support Tiers
 
 **Months 1-2: Full Support**
+
 - Unlimited email/Slack support
 - 4-hour response time for issues
 - Troubleshooting assistance
 - Code modification help
 
 **Months 3-4: Guided Support**
+
 - Email support (next business day)
 - Weekly office hours (30-min video call)
 - Review of team modifications
 - Guidance on extension projects
 
 **Months 5-6: Advisory Support**
+
 - Ad-hoc consultation (scheduled)
 - Code review on request
 - Architecture guidance for major extensions
 
 **Post-6 Months: Self-Sufficient + Retainer (Optional)**
+
 - Team operates independently
 - Optional retainer for complex enhancements
 - Priority support if needed
@@ -331,6 +338,7 @@ We help establish internal momentum:
 For organizations with multiple network engineers:
 
 **Structure:**
+
 - Monthly 1-hour meeting
 - Demo recent automations
 - Share lessons learned
@@ -338,6 +346,7 @@ For organizations with multiple network engineers:
 - Review code together
 
 **Benefits:**
+
 - Cross-pollination of ideas
 - Peer learning
 - Consistent code standards
@@ -413,11 +422,13 @@ At the end of the Empower stage, your team has:
 ### Sustainability
 
 Without empowerment:
+
 - ❌ Vendor lock-in (can't change code without consultant)
 - ❌ Fragility (breaks when engineer leaves)
 - ❌ Stagnation (automation doesn't evolve with needs)
 
 With empowerment:
+
 - ✅ Team autonomy (independent capability)
 - ✅ Resilience (knowledge distributed across team)
 - ✅ Evolution (automation grows with organization)
@@ -452,11 +463,13 @@ After completing all five stages:
 ### Scaling Automation
 
 **Next Automations:**
+
 - Refer back to Pinpoint roadmap (#2, #3 priorities)
 - Team can now implement independently or with advisory support
 - Reuse patterns from first automation
 
 **Building Automation Portfolio:**
+
 - Consistent code standards (established)
 - Shared libraries (extract common functions)
 - Git repository organization
@@ -493,6 +506,7 @@ For organizations with existing automation needing knowledge transfer:
 **Fixed Fee:** £3,000 - £5,000 (depending on complexity)
 
 **Includes:**
+
 - 4 knowledge transfer sessions
 - Complete documentation package
 - 8 weeks of transition support

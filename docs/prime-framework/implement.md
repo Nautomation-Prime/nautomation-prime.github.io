@@ -101,11 +101,13 @@ connection = ConnectHandler(device_type=device_type, **device)
 ```
 
 **When to Choose Pragmatic:**
+
 - You're solving a single use case (don't abstract prematurely)
 - The "perfect" solution adds 40% complexity for 5% benefit
 - The simpler approach will work for 12-24 months
 
 **When to Add Complexity:**
+
 - You're solving the same problem the 3rd time (DRY principle)
 - Complexity reduction elsewhere outweighs local increase
 - Scalability requirements are certain, not speculative
@@ -362,6 +364,7 @@ All automation is tested before production deployment:
 Minimum 3 lab devices matching production platforms
 
 **Test Cases:**
+
 - ✅ Normal operation (happy path)
 - ✅ Device unreachable
 - ✅ Invalid credentials
@@ -392,6 +395,7 @@ Every script includes:
 Provisions VLANs to access switches with pre-flight validation.
 
 ## Prerequisites
+
 - Python 3.9+
 - Network connectivity to devices
 - Credentials in `.env` file
@@ -410,6 +414,7 @@ python provision_vlan.py --vlan 150 --name "Guest_WiFi"
 Edit `inventory.csv` with target devices.
 
 ## Troubleshooting
+
 - **"Device unreachable"** — Verify ICMP/SSH connectivity
 - **"Authentication failed"** — Check credentials in `.env`
 ```
@@ -516,6 +521,7 @@ For organizations with designs but need development help:
 **Pricing:** £120-£150/hour or fixed-fee based on Re-engineer specs
 
 **Includes:**
+
 - Production-ready Python scripts
 - Comprehensive testing
 - Full documentation
