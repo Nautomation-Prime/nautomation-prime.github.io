@@ -946,30 +946,74 @@ You've now mastered multi-device automation! Ready for the next challenge?
 
 ### Continue Learning:
 
-1. **[Intermediate Tutorials](../intermediate/index.md)** — Learn threading for even faster multi-device operations
-2. **[Deep Dives](../../deep-dives/index.md)** — Study production-grade tools with advanced error handling
-3. **Enhance This Script** — Try adding:
+1. **[Intermediate Tutorials](../intermediate/index.md)** (Coming Soon)
+   - Multi-threaded device operations (10x speed improvement)
+   - Advanced TextFSM parsing and custom templates
+   - Configuration templating with Jinja2
+   - Structured logging and error handling patterns
+   - Command-line argument parsing with argparse
+   - Progress bars and user experience improvements
+
+2. **[Expert Tutorials](../expert/index.md)** (Coming Soon)
+   - **Nornir framework** for enterprise-scale automation
+   - Async operations with asyncio for maximum performance
+   - Database integration for historical trending and reporting
+   - Credential vaulting with HashiCorp Vault
+   - Event-driven automation and webhooks
+   - GitOps workflows and CI/CD integration
+   - Container deployment and orchestration
+
+3. **[Deep Dives](../../deep-dives/index.md)** — Study production-grade tools:
+   - [CDP Network Audit](../../deep-dives/cdp-audit.md) — Multi-threaded topology discovery
+   - [Access Switch Audit](../../deep-dives/access-switch-audit.md) — Parallel port health collection
+
+4. **Enhance This Script** — Practice by adding:
    - Progress bars (using the `tqdm` library)
-   - Logging to file instead of just printing
-   - Email notifications when complete
+   - Logging to file with the `logging` module
+   - Retry logic for failed devices
    - Different commands for different device types
+   - Export to CSV in addition to Excel
 
 ---
 
 ## 💡 Production Readiness Checklist
 
-Want to use this script in production? Consider adding:
+Want to use this script in production? Consider these enhancements:
 
-- [ ] **Logging**: Write results to a log file, not just console
-- [ ] **Input Validation**: Verify CSV format before processing
-- [ ] **Parallel Execution**: Use threading for faster collection (Intermediate Tutorial)
-- [ ] **Credential Management**: Use environment variables or a vault
-- [ ] **Retry Logic**: Retry failed devices before giving up
-- [ ] **Email Notifications**: Alert when complete
-- [ ] **Command-Line Arguments**: Specify CSV file and command via CLI
-- [ ] **Error Summary**: Report at the end which devices failed and why
+### 🟡 Intermediate Level (Coming Soon in Tutorials)
 
-These topics are covered in our Intermediate and Expert tutorials!
+- [ ] **Threading & Concurrency**: Use threading for parallel device connections (10x faster!)
+- [ ] **Advanced TextFSM**: Create custom parsing templates for unsupported commands
+- [ ] **Configuration Templating**: Use Jinja2 for dynamic configuration generation
+- [ ] **Structured Logging**: Implement Python's `logging` module with rotating file handlers
+- [ ] **Progress Indicators**: Add `tqdm` progress bars for long-running operations
+- [ ] **Command-Line Arguments**: Use `argparse` to specify CSV file, commands, output format
+- [ ] **Configuration Files**: Store settings in YAML/JSON instead of hardcoding
+- [ ] **Input Validation**: Verify CSV format, IP addresses, and device types before processing
+- [ ] **Retry Logic**: Implement exponential backoff for transient failures
+- [ ] **Data Validation**: Sanitize and validate collected data before export
+- [ ] **Exception Handling**: Granular error handling for different failure types
+- [ ] **Dry-Run Mode**: Preview operations without executing changes
+
+### 🔴 Expert Level (Coming Soon in Tutorials)
+
+- [ ] **Nornir Framework**: Scale to hundreds of devices with Nornir's task-based architecture
+- [ ] **Async Operations**: Use `asyncio` for true concurrent I/O operations
+- [ ] **Database Integration**: Store results in PostgreSQL/SQLite for historical trending
+- [ ] **Credential Vaulting**: Integrate HashiCorp Vault or AWS Secrets Manager
+- [ ] **API Integration**: Trigger automation via REST API endpoints or webhooks
+- [ ] **Message Queuing**: Use RabbitMQ or Kafka for distributed task processing
+- [ ] **Observability**: Structured logging to ELK stack, metrics to Prometheus/Grafana
+- [ ] **CI/CD Integration**: GitHub Actions, GitLab CI for automated testing and deployment
+- [ ] **GitOps Workflows**: Store device configs in Git with version control and rollback
+- [ ] **Event-Driven Automation**: React to network events (syslog, SNMP traps, streaming telemetry)
+- [ ] **Ansible Integration**: Combine Python scripts with Ansible playbooks
+- [ ] **Tool Integration**: Netbox for inventory, ServiceNow for CMDB, DNA Center APIs
+- [ ] **Container Deployment**: Package as Docker containers with scheduled execution
+- [ ] **Testing & Validation**: Unit tests, integration tests, mock device testing
+- [ ] **Multi-Vendor Support**: Extend to Arista, Juniper, Palo Alto with NAPALM
+
+These topics are covered in our **Intermediate** and **Expert** tutorials!
 
 ---
 

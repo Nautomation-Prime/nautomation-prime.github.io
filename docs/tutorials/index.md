@@ -37,11 +37,11 @@ Perfect if you're new to network automation or want to master the fundamentals.
 
 Ready to handle more complex scenarios and multi-device operations.
 
-- **Focus**: Multi-threading, advanced parsing, data aggregation, configuration management
+- **Focus**: Multi-threading, advanced parsing, data aggregation, professional development practices
 - **Prerequisites**: Comfortable with beginner concepts, understand functions and data structures
-- **Topics**: Threading, exception handling patterns, inventory management, configuration templates
+- **Topics**: Threading & concurrency, custom TextFSM templates, Jinja2 templating, structured logging, argparse CLIs, retry logic, code organization
 
-**Coming Soon**: Multi-device configuration backup, parallel command execution, data validation
+**Coming Soon**: Multi-threaded device collection, configuration templating, advanced error handling, professional CLI tools
 
 ---
 
@@ -49,11 +49,11 @@ Ready to handle more complex scenarios and multi-device operations.
 
 Production-grade automation with enterprise patterns and advanced techniques.
 
-- **Focus**: Scalability, fault tolerance, security, integration with external systems
+- **Focus**: Scalability, fault tolerance, security, enterprise framework integration
 - **Prerequisites**: Strong Python skills, experience with intermediate tutorials
-- **Topics**: Async operations, database integration, API orchestration, security hardening, observability
+- **Topics**: **Nornir framework**, asyncio, NAPALM, PyATS, database integration, credential vaulting, API development, GitOps, CI/CD, containerization, observability
 
-**Coming Soon**: Event-driven automation, GitOps workflows, integration with monitoring systems
+**Coming Soon**: Nornir automation, HashiCorp Vault integration, event-driven automation, GitOps workflows, Netbox integration, streaming telemetry
 
 ---
 
