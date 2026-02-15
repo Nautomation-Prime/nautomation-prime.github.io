@@ -143,16 +143,15 @@ We estimate the implementation effort for each automation:
 
 We plot each opportunity on an impact/effort matrix:
 
-```
-High Impact │ ⬛⬛⬛│⬛⬛⬛│
-            │ Quick │Major│
-            │ Wins  │Proj │
-────────────┼───────┼─────┤
-Low Impact  │ Avoid │Hard │
-            │       │Pass │
-            └───────┴─────┘
-            Low    High
-              Effort
+```mermaid
+quadrantChart
+    title Automation Prioritization Matrix
+    x-axis Low Effort --> High Effort
+    y-axis Low Impact --> High Impact
+    quadrant-1 Major Projects
+    quadrant-2 Quick Wins
+    quadrant-3 Avoid
+    quadrant-4 Hard Pass
 ```
 
 **Prioritization Criteria:**
