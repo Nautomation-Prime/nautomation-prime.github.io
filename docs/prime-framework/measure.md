@@ -14,6 +14,23 @@ tags:
 
 > **"What gets measured gets improved. The Measure stage proves automation value and identifies opportunities for optimization."**
 
+```mermaid
+graph TD
+    A[📊 Baseline] --> B[🔍 Monitor]
+    B --> C[📊 Track KPIs]
+    C --> D[💰 Calculate ROI]
+    D --> E[📈 Report]
+    E -->|Continuous| B
+    
+    style A fill:#FFB347
+    style B fill:#FFBD57
+    style C fill:#FFC767
+    style D fill:#FFD177
+    style E fill:#FFDB87
+```
+
+**Prime Terminology Used:** Prime Overwatch™ monitoring, Prime Automation™ metrics
+
 ---
 
 ## 🎯 Objective

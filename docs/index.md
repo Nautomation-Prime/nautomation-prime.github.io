@@ -97,28 +97,46 @@ Pre-built containers for continuous network oversight. Daily config audits, heal
 ### 🚀 [Zero-Install Bundles](./services.md#zero-install-deployment-portable-bundles)
 
 No Python installed? No problem. Portable, "plug-and-play" bundles run on Windows and Linux without installation or admin rights. Full source code included.
-Prime Philosophy
 
-Every tool and guide adheres to three core principles:
+### 🛠️ [Bespoke Services](./services.md#custom-python-scripting)
 
-| Principle | What It Means |
-| :--- | :--- |
-| **🎯 Pragmatic Over Perfect** | Ship solutions that work today, not theoretical perfection that never ships. Complexity must justify its existence. |
-| **🔍 Transparency Over Obscurity** | We explain the *why* behind every line of code. Verbose logging, human-readable outputs, zero "black box" magic. |
-| **🛡️ Reliability Over Speed** | Pre-flight validation, post-flight verification, automatic rollback. Production networks deserve bulletproof automation. |
-
-**These values inform the [PRIME Framework](./prime-framework/index.md)** — our structured methodology for automation projects.
-Every tool and guide adheres to three core principles:
-
-| Principle | What It Means |
-| :--- | :--- |
-| **Line-by-Line Transparency** | We explain the *why* behind the code, not just the *what*. Every design decision is documented. |
-| **Hardened for Production** | Robust error handling, pre-flight safety checks, enterprise credential management, and thread-safe operations. |
-| **Vendor-Neutral** | Built on industry-standard libraries (Netmiko, Nornir, NAPALM, PyATS). Works alongside Ansible and Cisco Catalyst Center. |
+Custom solutions tailored to your topology. Expert consultancy for Zero Trust deployment, bulk provisioning, ISE automation, and more.
 
 ---
 
-## Reaed Automation Services?** → [PRIME Framework](./prime-framework/index.md) for proven methodology | [Request Discovery Call](mailto:nautomationprime.f3wfe@simplelogin.com)
+## 🛠️ The Prime Philosophy
+
+Every tool and guide adheres to three core engineering principles:
+
+| Principle | What It Means |
+| :--- | :--- |
+| **Line-by-Line Transparency** | We explain the *why* behind the code, not just the *what*. Every design decision is documented so you understand your automation completely. |
+| **Hardened for Production** | Robust error handling, pre-flight safety checks, enterprise credential management, and thread-safe operations. Not "nice to have"—essential for critical infrastructure. |
+| **Vendor-Neutral** | Built on industry-standard libraries (Netmiko, Nornir, NAPALM, PyATS). Your skills remain portable across vendors and platforms. |
+
+---
+
+## 🎯 How Philosophy + Framework Work Together
+
+**The Prime Philosophy** defines **HOW** we build automation (our engineering values).
+
+**The PRIME Framework** defines **WHAT** we deliver (our service methodology).
+
+| Philosophy → Framework | Connection |
+| :--- | :--- |
+| **Line-by-Line Transparency** | Informs the **[Empower](./prime-framework/empower.md)** stage—comprehensive documentation and knowledge transfer |
+| **Hardened for Production** | Drives the **[Re-engineer](./prime-framework/re-engineer.md)** and **[Implement](./prime-framework/implement.md)** stages—safety mechanisms and validation |
+| **Vendor-Neutral** | Ensures **[Measure](./prime-framework/measure.md)** metrics remain portable and **[Pinpoint](./prime-framework/pinpoint.md)** opportunities aren't tool-locked |
+
+**In practice:** The Philosophy ensures every line of code in the Framework is transparent, reliable, and pragmatic. The Framework ensures every automation project delivers measurable ROI, team capability, and sustainable value.
+
+**[Learn more about the PRIME Framework →](./prime-framework/index.md)**
+
+---
+
+## Ready to Get Started?
+
+- **Need Automation Services?** → [PRIME Framework](./prime-framework/index.md) for proven methodology | [Request Discovery Call](mailto:nautomationprime.f3wfe@simplelogin.com)
 - **New to Nautomation Prime?** → [Getting Started Guide](./getting-started.md) for philosophy and pathways
 - **Want to Learn Automation?** → [Tutorials](./tutorials/index.md) for hands-on, step-by-step learning
 - **Study Production Code?** → [Technical Deep Dives](./deep-dives/index.md) for production-grade walkthroughs
@@ -127,6 +145,4 @@ Every tool and guide adheres to three core principles:
 
 ---
 
-> **Mission:** To empower network engineers through Python-driven transparency and provide enterprises with hardened automation—built through the [PRIME Framework](./prime-framework/index.md)—that delivers measurable ROI, team capability, and sustainable long-term value
-
-> **Mission:** To empower engineers through Python-driven transparency and provide enterprises with hardened automation that eliminates error and accelerates growth.
+> **Mission:** To empower network engineers through the **Prime Philosophy** and **[PRIME Framework](./prime-framework/index.md)**—delivering automation with measurable ROI, production-grade quality, and sustainable team capability.

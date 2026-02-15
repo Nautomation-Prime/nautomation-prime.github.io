@@ -14,6 +14,22 @@ tags:
 
 > **"Don't automate broken processes. The Re-engineer stage ensures we're building the *right* automation, not just making bad workflows faster."**
 
+```mermaid
+graph TD
+    A[Current Workflow] -->|Analyze| B[Identify Issues]
+    B -->|Redesign| C[Prime Workflows]
+    C -->|Architect| D[Technical Design]
+    D -->|Validate| E[Safety Mechanisms]
+    
+    style A fill:#999
+    style B fill:#7B68EE
+    style C fill:#8A7AEE
+    style D fill:#998CEE
+    style E fill:#A89EEE
+```
+
+**Prime Terminology Used:** Prime Workflows design, Prime Agents architecture planning
+
 ---
 
 ## 🎯 Objective

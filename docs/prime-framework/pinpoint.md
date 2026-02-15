@@ -14,6 +14,20 @@ tags:
 
 > **"You can't improve what you don't measure. The Pinpoint stage ensures we're automating the right things, not just the easy things."**
 
+```mermaid
+graph LR
+    A[🔍 Discovery] --> B[📊 Analysis]
+    B --> C[🎯 Prioritization]
+    C --> D[📝 Roadmap]
+    
+    style A fill:#4A90E2
+    style B fill:#5BA3E8
+    style C fill:#6CB5EE
+    style D fill:#7DC8F4
+```
+
+**Prime Terminology Used:** Prime Workflows identification, Prime Efficiency Stack opportunities
+
 ---
 
 ## 🎯 Objective

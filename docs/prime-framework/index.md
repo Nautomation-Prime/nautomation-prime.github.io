@@ -257,37 +257,133 @@ The "Measure" stage includes failure analysis and remediation. If automation doe
 
 ---
 
-## 📖 Case Study Examples
+## 🆚 PRIME Framework vs. Traditional Automation
 
-### Case Study: Access Layer VLAN Provisioning
+How does the PRIME Framework compare to typical automation approaches?
+
+| Aspect | Traditional Approach | PRIME Framework |
+|:---|:---|:---|
+| **Discovery** | "What do you want automated?" | **Pinpoint:** Data-driven ROI analysis, prioritization matrix |
+| **Planning** | Jump straight to coding | **Re-engineer:** Workflow optimization, architecture design, safety planning |
+| **Development** | Quick scripts, minimal testing | **Implement:** Production-hardened with Prime Philosophy principles |
+| **Validation** | "It works on my laptop" | **Measure:** Metrics collection, ROI proof, continuous improvement |
+| **Sustainability** | Vendor lock-in, no documentation | **Empower:** Knowledge transfer, team capability building |
+| **Typical Outcome** | Script that works once, breaks later | **Prime Automation™** — sustainable, measurable, team-owned |
+| **Business Value** | Unknown/untracked | Proven ROI (typically 6-12 month payback) |
+
+**The difference:** Traditional automation delivers code. PRIME Framework delivers **capability**.
+
+---
+
+## 🎨 Prime Terminology
+
+Throughout our framework and services, you'll encounter these unique terms:
+
+| Term | Definition |
+|:---|:---|
+| **Prime Automation™** | Automation built following the PRIME Framework—characterized by measurable ROI, production safety, and team empowerment |
+| **Prime Workflows** | Re-engineered operational processes optimized for automation (not just automated existing workflows) |
+| **Prime Agents** | Python scripts developed with autonomous decision-making capability (pre-flight checks, validation, rollback) |
+| **Prime Efficiency Stack** | The technology foundation (Netmiko, Nornir, TextFSM, Jinja2) used across all implementations |
+| **Prime Overwatch™** | Continuous monitoring and metrics collection (Measure stage) for automation performance |
+| **Prime Capability** | The end goal of the Empower stage—teams that can maintain, modify, and extend automation independently |
+
+These aren't just buzzwords—they represent specific approaches that differentiate our methodology.
+
+---
+
+## 📊 Case Study Examples
+
+### Case Study 1: Access Layer VLAN Provisioning → Prime Automation™
 
 **Client:** UK financial services firm, 300+ access switches  
 **Challenge:** Manual VLAN adds taking 15 mins/switch, high error rate  
 **PRIME Stages:**
 
 - **Pinpoint:** Identified 200+ VLAN changes/year = 50 hours wasted
-- **Re-engineer:** Designed templated workflow with approval gates
-- **Implement:** Python script with Jinja2 templates + validation
-- **Measure:** Reduced to 2 mins/change, zero errors in 6 months
-- **Empower:** Team now extends scripts for SVI creation
+- **Re-engineer:** Designed **Prime Workflows** with templated provisioning + approval gates
+- **Implement:** **Prime Agent** using Jinja2 templates with pre/post-flight validation
+- **Measure:** **Prime Overwatch** tracked 2 mins/change average, zero errors in 6 months
+- **Empower:** Team achieved **Prime Capability**—now extends scripts for SVI creation
 
 **ROI:** £12,500/year savings, 6-month payback
 
 ---
 
-### Case Study: Compliance Audit Automation
+### Case Study 2: Compliance Audit Automation → Prime Efficiency Stack
 
 **Client:** Healthcare provider, 150 Cisco devices, quarterly PCI-DSS audits  
 **Challenge:** Manual config review taking 40 hours per quarter  
 **PRIME Stages:**
 
-- **Pinpoint:** Compliance checking most time-intensive operational task
-- **Re-engineer:** Defined "golden config" standards in YAML
-- **Implement:** Automated audit with exception reporting
-- **Measure:** Reduced audit time to 1 hour, increased coverage 3x
-- **Empower:** Security team now maintains golden configs
+- **Pinpoint:** Compliance checking identified as most time-intensive task
+- **Re-engineer:** Defined "golden config" standards in YAML, created **Prime Workflows**
+- **Implement:** **Prime Agent** built on **Prime Efficiency Stack** (Netmiko + TextFSM + pandas)
+- **Measure:** **Prime Overwatch** showed 97% reduction in audit time (40h → 1h)
+- **Empower:** Security team gained **Prime Capability** to maintain golden configs
 
-**ROI:** £8,000/year savings, compliance confidence increased
+**ROI:** £8,000/year savings, increased compliance confidence, 3x coverage
+
+---
+
+## 🎬 Experience the PRIME Framework
+
+### Visual Overview
+
+```mermaid
+graph TD
+    A[Your Network Operations] -->|Inefficient Manual Work| B{PRIME Framework}
+    B -->|Stage 1| C[Pinpoint: Discover ROI Opportunities]
+    B -->|Stage 2| D[Re-engineer: Optimize Workflows]
+    B -->|Stage 3| E[Implement: Build Prime Agents]
+    B -->|Stage 4| F[Measure: Prime Overwatch]
+    B -->|Stage 5| G[Empower: Prime Capability]
+    
+    C --> H[Prime Automation™]
+    D --> H
+    E --> H
+    F --> H
+    G --> H
+    
+    H --> I[Measurable ROI]
+    H --> J[Team Independence]
+    H --> K[Sustainable Growth]
+    
+    style B fill:#4A90E2
+    style H fill:#50C878
+    style I fill:#FFB347
+    style J fill:#FFB347
+    style K fill:#FFB347
+```
+
+### 🎥 Framework Explainer (Coming Soon)
+
+**"PRIME Framework in 3 Minutes"** — Video walkthrough showing:
+
+- The automation challenges most network teams face
+- How each PRIME stage addresses specific pain points
+- Real client transformations using Prime Automation™
+- ROI examples and typical engagement timelines
+
+**[Request early access](mailto:nautomationprime.f3wfe@simplelogin.com)** to our video library
+
+---
+
+## 📖 Additional Case Studies
+
+### Case Study 3: IOS-XE Upgrade Orchestration → Prime Agents Intelligence
+
+**Client:** Retail chain, 200+ branch routers requiring IOS-XE 17.x upgrade  
+**Challenge:** Manual upgrades took 1 hour/device, required site visits, unpredictable failures  
+**PRIME Stages:**
+
+- **Pinpoint:** 200 devices × 1 hour = 200 hours effort, travel costs £15k, compliance deadline
+- **Re-engineer:** Designed **Prime Workflows** with staged rollouts (10% → 25% → 50% → 100%)
+- **Implement:** **Prime Agent** with autonomous pre-flight checks (CPU, memory, disk space, MD5 verification)
+- **Measure:** **Prime Overwatch** tracked success rate (192/200 successful, 8 skipped due to hardware constraints)
+- **Empower:** Network team achieved **Prime Capability**—now handles firmware updates independently
+
+**ROI:** £22,000 saved (160 hours + travel elimination), 96% success rate, zero network downtime
 
 ---
 
