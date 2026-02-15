@@ -15,11 +15,20 @@ At Nautomation Prime, we bridge the gap between complex infrastructure and strea
 
 ---
 
+!!! success "Confidentiality & Ownership Guarantee"
+    **All bespoke automation projects are developed exclusively for the commissioning client.**
+    
+    Custom scripts are never published, reused, or shared with third parties. Clients receive full ownership rights or an exclusive licence as defined in the project agreement. Non-disclosure agreements (NDAs) are standard for all engagements.
+
+---
+
 ## What We Solve
 
 ### 🛠️ Custom Python Scripting
 
 We build bespoke tools tailored to your specific topology. We don't just provide code; we provide transparency.
+
+**Every custom project is developed exclusively for you—never published or reused.**
 
 * **Automated Provisioning:** Scripts for bulk VLAN, SVI, and Interface configurations.  
 * **Fleet Upgrades:** Intelligent Python workflows for IOS and IOS-XE software management, with expertise in Nornir-based parallelization and Ansible integration.  
@@ -60,13 +69,14 @@ For enterprises looking for continuous oversight, we provide pre-built Docker co
 
 ## Why Choose Nautomation Prime?
 
-Our engagement model is built on three core commitments:
+Our engagement model is built on four core commitments:
 
 | Commitment | What This Means |
 | :--- | :--- |
 | **Line-by-Line Transparency** | Every script includes detailed explanations. You understand your automation, not just run it. |
 | **Hardened for Enterprise** | Production-grade error handling, pre-flight validation, and security best practices—not shortcuts. |
 | **Framework Agnostic** | Expertise across Netmiko, Nornir, Ansible, NAPALM, and PyATS. We integrate with your existing tools (Catalyst Center, AWX/Tower) rather than forcing replacements. |
+| **Client Confidentiality** | Your bespoke projects remain exclusively yours—never published, reused, or shared. NDAs standard. |
 
 ---
 
@@ -154,6 +164,8 @@ Regardless of project size, all deliverables include:
 ✅ **Pre-flight validation logic** to prevent misconfigurations before deployment  
 ✅ **Comprehensive README** with installation, usage, and troubleshooting guides  
 ✅ **Example inventory files** tailored to your environment  
+✅ **Full intellectual property ownership** or exclusive licence (your choice)  
+✅ **Confidentiality guarantee**—your scripts are never published or reused  
 ✅ **Post-delivery support window** (typically 30 days for bug fixes and adjustments)
 
 Optional add-ons available:
@@ -168,13 +180,13 @@ Optional add-ons available:
 ### The Engagement Process
 
 1. **Discovery Call** (30–60 minutes, free)  
-   We discuss your pain points, topology, and automation goals. No obligation.
+   We discuss your pain points, topology, and automation goals. No obligation. NDA available upon request.
 
 2. **Scope & Proposal** (delivered within 5 business days)  
    Detailed project plan with deliverables, timeline, and fixed-fee quote.
 
 3. **Agreement & Kickoff**  
-   Once approved, we schedule a technical deep-dive to gather inventory, credentials (securely), and validation criteria.
+   Once approved, we schedule a technical deep-dive to gather inventory, credentials (securely), and validation criteria. NDA and service agreement signed.
 
 4. **Development & Testing** (typical turnaround: 2–4 weeks for medium projects)  
    You receive progress updates and can request checkpoint reviews.
@@ -198,7 +210,9 @@ As a boutique practice, you work directly with the principal engineer on every e
 * VAT-registered UK business (VAT number provided on invoices)
 * Professional Indemnity & Public Liability Insurance
 * GDPR-compliant data handling (see [Privacy Policy](legal/privacy-policy.md))
-* All client code licenced under MIT or Apache 2.0 (your choice)
+* Non-disclosure agreements (NDAs) standard for all bespoke projects
+* Client code ownership: full rights transfer or exclusive licence (your choice)
+* Open-source contributions licenced under MIT or Apache 2.0
 
 ---
 
