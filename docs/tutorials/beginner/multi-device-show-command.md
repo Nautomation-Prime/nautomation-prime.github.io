@@ -624,7 +624,8 @@ with pd.ExcelWriter(excel_file, engine='openpyxl') as writer:
 
 **What it does**: Creates an Excel writer object using a context manager.
 
-**Why**: 
+**Why**:
+
 - `ExcelWriter` allows us to write multiple sheets to one Excel file
 - `engine='openpyxl'` specifies which library to use (same one Tutorial #1 uses)
 - The `with` statement ensures the file is properly saved when done
