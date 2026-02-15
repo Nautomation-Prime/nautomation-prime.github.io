@@ -1326,4 +1326,4 @@ Christopher Davies
 
 ---
 
-> **Mission:** To empower network engineers with transparent, hardened Python tools that eliminate manual audits and expose infrastructure health at a glance.
+> **Mission:** To empower network engineers through the **[PRIME Framework](../prime-framework/index.md)**—delivering automation with measurable ROI, production-grade quality, and sustainable team capability built on the **[Prime Philosophy](../about.md#prime-philosophy)** of transparency, reliability, and pragmatism.

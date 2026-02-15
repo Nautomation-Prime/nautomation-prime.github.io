@@ -553,4 +553,8 @@ For organizations with designs but need development help:
 
 ---
 
+> **Mission:** To empower network engineers through the **[PRIME Framework](./index.md)**—delivering automation with measurable ROI, production-grade quality, and sustainable team capability built on the **[Prime Philosophy](../about.md#prime-philosophy)** of transparency, reliability, and pragmatism.
+
+---
+
 [← Previous: Re-engineer](./re-engineer.md) | [Back to PRIME Framework](./index.md) | [Next: Measure →](./measure.md)

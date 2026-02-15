@@ -309,4 +309,8 @@ Included as Stage 1 when you engage for the complete framework. Typically 1 week
 
 ---
 
+> **Mission:** To empower network engineers through the **[PRIME Framework](./index.md)**—delivering automation with measurable ROI, production-grade quality, and sustainable team capability built on the **[Prime Philosophy](../about.md#prime-philosophy)** of transparency, reliability, and pragmatism.
+
+---
+
 [← Back to PRIME Framework](./index.md) | [Next Stage: Re-engineer →](./re-engineer.md)

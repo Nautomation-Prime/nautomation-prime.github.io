@@ -460,4 +460,8 @@ For organizations with existing automation needing ROI proof:
 
 ---
 
+> **Mission:** To empower network engineers through the **[PRIME Framework](./index.md)**—delivering automation with measurable ROI, production-grade quality, and sustainable team capability built on the **[Prime Philosophy](../about.md#prime-philosophy)** of transparency, reliability, and pragmatism.
+
+---
+
 [← Previous: Implement](./implement.md) | [Back to PRIME Framework](./index.md) | [Next: Empower →](./empower.md)

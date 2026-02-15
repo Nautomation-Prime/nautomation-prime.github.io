@@ -153,4 +153,4 @@ All scripts in this library adhere to three core principles:
 2. **Hardened for Production** - Robust error handling, security best practices, pre-flight checks  
 3. **Vendor-Neutral** - Built on industry-standard libraries like Netmiko, Nornir, and TextFSM  
 
-> **Mission:** To empower engineers through Python-driven transparency and provide enterprises with hardened automation that eliminates error and accelerates growth.
+> **Mission:** To empower network engineers through the **[PRIME Framework](../prime-framework/index.md)**—delivering automation with measurable ROI, production-grade quality, and sustainable team capability built on the **[Prime Philosophy](../about.md#prime-philosophy)** of transparency, reliability, and pragmatism.
