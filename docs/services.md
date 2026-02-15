@@ -346,21 +346,25 @@ Knowledge transfer → Documentation → Team capability building
 **Full PRIME Framework engagements include:**
 
 ✅ **Pinpoint Stage:**  
+
 Prioritized automation roadmap with ROI calculations  
 Executive summary and technical feasibility notes
 
 ✅ **Re-engineer Stage:**  
+
 Workflow design documents  
 Technical architecture blueprints  
 Safety & validation specifications
 
 ✅ **Implement Stage:**  
+
 Production-hardened Python code with [Prime Philosophy](./about.md#prime-philosophy) principles  
 Comprehensive testing (lab + staging + pilot)  
 LINE-by-line code documentation  
 README with installation, usage, troubleshooting
 
 ✅ **Measure Stage:**  
+
 Performance tracking instrumentation  
 3-6 months of metrics collection  
 ROI calculation and executive reporting  
