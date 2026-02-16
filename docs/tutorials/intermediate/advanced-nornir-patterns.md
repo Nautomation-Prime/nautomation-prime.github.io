@@ -196,6 +196,7 @@ inventory:
 ```
 
 **Benefits:**
+
 - Inventory always matches Netbox (single source of truth)
 - Automatic device discovery
 - No manual YAML maintenance
@@ -530,6 +531,7 @@ def save_to_database(device_name, result):
 ```
 
 **Benefits:**
+
 - Process unlimited devices
 - Memory usage stays constant
 - Results streamed to storage

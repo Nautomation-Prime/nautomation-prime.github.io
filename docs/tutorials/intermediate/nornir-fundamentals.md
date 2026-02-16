@@ -39,6 +39,7 @@ By the end of this tutorial, you'll understand:
 ## 📋 Prerequisites
 
 ### Required Knowledge
+
 - ✅ **Completed [Tutorial #1: Why Nornir](./why-nornir.md)** — Understand the problem we're solving
 - ✅ **Completed [Beginner Tutorial #3](../../beginner/multi-device-config-backup.md)** — Familiar with Netmiko and device connections
 - ✅ Understanding of Python functions, dictionaries
@@ -55,6 +56,7 @@ pip install nornir nornir-netmiko nornir-utils netmiko pandas pyyaml
 ```
 
 ### Required Access
+
 - **5+ Cisco devices** with:
   - SSH enabled
   - Same credentials

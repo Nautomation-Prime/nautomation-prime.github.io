@@ -43,6 +43,7 @@ By the end of this tutorial, you'll understand:
 ## 📋 Prerequisites
 
 ### Required Knowledge
+
 - ✅ **Completed [Tutorial #2: Nornir Fundamentals](./nornir-fundamentals.md)** — Understand tasks, inventory, and parallel execution
 - ✅ Basic SQL (SELECT, CREATE TABLE)
 - ✅ Understanding of Python dictionaries and JSON
