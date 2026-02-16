@@ -837,6 +837,7 @@ Combining several operations (connect, command, file write, validation) into a c
 **Cause**: You don't have write permissions in the directory where the script runs.
 
 **Solution**:
+
 - Try running from a different directory
 - Use an absolute path: `base_backup_dir = 'C:/Backups'` (Windows) or `/tmp/backups` (Linux)
 - Check file permissions on the current directory
@@ -846,11 +847,13 @@ Combining several operations (connect, command, file write, validation) into a c
 ### Backup files are empty or very small
 
 **Causes**:
+
 - Device user doesn't have privilege level 15 (can't read full config)
 - Device running-config is actually small (possible but unlikely)
 - Command executed but returned no data
 
 **Solution**:
+
 - Verify your account has `privilege level 15` or equivalent
 - Check manually with SSH: `show running-config | wc -l` to see line count
 - Verify `show running-config` works manually on the device
@@ -1117,7 +1120,7 @@ You've now built a complete backup system! Ready for the next challenge?
 
 ### Continue Learning:
 
-1. **[Intermediate Tutorials](../intermediate/index.md)** (Coming Soon)
+1. **[Intermediate Tutorials](../intermediate/index.md)**
    - Backup comparison and diff reporting
    - Configuration drift detection
    - Automated remediation (push configs back)
