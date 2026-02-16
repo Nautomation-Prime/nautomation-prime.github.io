@@ -192,6 +192,7 @@ def backup_with_threading(devices):
 ```
 
 **Problems:**
+
 1. **Python's GIL (Global Interpreter Lock)** — Threads don't actually run in parallel; they take turns
 2. **Result aggregation** — Where does output go? How do you collect all results?
 3. **Result aggregation** — No unified error handling
@@ -242,6 +243,7 @@ device2:
 ```
 
 #### 3. **Runner** (not manual iteration)
+
 Nornir's runner automatically:
 - Loads all devices from inventory
 - Executes tasks in parallel
@@ -280,6 +282,7 @@ main()
 ```
 
 **Characteristics:**
+
 - Linear control flow
 - One device at a time
 - Results scattered (some in variables, some in files)
@@ -303,6 +306,7 @@ Nornir Instance
 ```
 
 **Characteristics:**
+
 - Task-based (functional programming)
 - Parallel by default
 - Unified result object
@@ -471,15 +475,18 @@ When you're ready, [Tutorial #2 →](./nornir-fundamentals.md) will teach you to
 ## 🆘 Questions Before Moving On?
 
 **"Do I really need Nornir?"**  
+
 - If you have <20 devices and never will: Probably not
 - If you have >50 devices or think you will: Absolutely yes
 - If you're in between: Learn it anyway; it's not that hard and you'll be prepared
 
 **"Will I still use the Tutorial #3 approach?"**  
+
 - Yes, for quick/one-off scripts
 - But for anything you'll run more than once or scale: Nornir
 
 **"Is Nornir hard to learn?"**  
+
 - Moderate difficulty (Tutorial #2 makes it accessible)
 - But the concepts are universal (async I/O, task-based automation)
 - Worth the investment
