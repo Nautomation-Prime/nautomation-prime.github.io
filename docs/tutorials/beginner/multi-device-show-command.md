@@ -1032,4 +1032,4 @@ This foundation prepares you for enterprise automation scenarios where resilienc
 
 ---
 
-[← Back to Beginner Tutorials](./index.md) | [Continue to Intermediate →](../intermediate/index.md)
+[← Back to Beginner Tutorials](./index.md) | [Continue to Tutorial #3 →](./multi-device-config-backup.md)
