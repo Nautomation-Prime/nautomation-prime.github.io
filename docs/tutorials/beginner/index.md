@@ -27,9 +27,11 @@ By completing these beginner tutorials, you'll be able to:
 - ✅ Send show commands and retrieve structured data
 - ✅ Parse command output using **TextFSM**
 - ✅ Export data to Excel spreadsheets
+- ✅ Retrieve and archive running configurations
+- ✅ Create timestamped backups with organized directory structures
 - ✅ Handle basic errors and exceptions
 - ✅ Manage credentials securely (without hardcoding passwords)
-- ✅ Work with multiple devices using loops
+- ✅ Work with multiple devices using loops and CSV inventory
 
 ---
 
@@ -70,9 +72,22 @@ Learn how to:
 
 ---
 
-### 3. Coming Soon: Basic Configuration Backup
+### 3. [Multi-Device Configuration Backup](./multi-device-config-backup.md)
 
-Create a simple script to back up device configurations with timestamps.
+**Build on Tutorial #2 to create a production-grade backup system.**
+
+Learn how to:
+
+- Retrieve running configurations from network devices
+- Save configs to timestamped backup files
+- Organize backups by device and create directory structures
+- Generate a backup manifest (Excel report of what was backed up)
+- Handle backup validation and error recovery
+- Implement file I/O and directory management in Python
+
+**What You'll Build**: An automated configuration backup tool that saves configs to organized directories with metadata tracking.
+
+**Prerequisites**: Complete Tutorial #2 first.
 
 ---
 
