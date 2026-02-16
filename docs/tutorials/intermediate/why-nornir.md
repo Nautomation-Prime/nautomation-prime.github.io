@@ -134,6 +134,7 @@ Where:
 ```
 
 **For network operations** (which are ~95% parallel):
+
 - 10 parallel connections: 8.3x speedup
 - 20 parallel connections: 13.3x speedup
 - 50 parallel connections: 26x speedup
