@@ -211,6 +211,7 @@ graph LR
 These tutorials align with the **[Implement](../../prime-framework/implement.md)** stage of the PRIME Framework:
 
 **Philosophy Principles:**
+
 - **🎯 Pragmatic:** Nornir solves real problems (scale) with minimal overhead
 - **🔍 Transparent:** Extensive logging and result processing for complete visibility
 - **🛡️ Reliable:** Built-in error handling, result aggregation, and validation patterns
@@ -243,15 +244,18 @@ After completing all 4 intermediate tutorials, you'll be able to:
 ## 🆘 Troubleshooting
 
 **"I'm not sure if I'm ready for these tutorials"**
+
 - Complete all [Beginner Tutorials](../beginner/index.md) first
 - These tutorials assume you're comfortable with Python functions, loops, and basic OOP
 
 **"I don't have 5+ devices to practice with"**
+
 - Use Cisco Devnet Always-On labs (free, no lab equipment needed)
 - Use GNS3 or EVE-NG with CSR1000v images
 - Virtual labs work perfectly for learning
 
 **"Nornir seems complex"**
+
 - Yes, it's more complex than Beginner scripts—but the complexity is worth it
 - Tutorial #1 explains WHY complexity is justified
 - Each tutorial builds gradually; don't skip ahead
