@@ -145,7 +145,12 @@ nav:
           - Show Command to Excel: tutorials/beginner/netmiko-show-command-to-excel.md
           - Multi-Device Collection: tutorials/beginner/multi-device-show-command.md
           - Configuration Backup: tutorials/beginner/multi-device-config-backup.md
-      - Intermediate: tutorials/intermediate/index.md
+      - Intermediate:
+          - tutorials/intermediate/index.md
+          - Nornir Fundamentals: tutorials/intermediate/nornir-fundamentals.md
+          - Why Nornir?: tutorials/intermediate/why-nornir.md
+          - Enterprise Config Backup: tutorials/intermediate/enterprise-config-backup-nornir.md
+          - Advanced Nornir Patterns: tutorials/intermediate/advanced-nornir-patterns.md
       - Expert: tutorials/expert/index.md
   - Deep Dives:
       - deep-dives/index.md
