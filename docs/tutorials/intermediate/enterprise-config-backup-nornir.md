@@ -1024,14 +1024,32 @@ This tutorial demonstrates the **Implement** stage:
 
 ## 🎓 Next Steps
 
-[Tutorial #4: Advanced Nornir Patterns](./advanced-nornir-patterns.md) covers:
+You've built an enterprise-grade automation system! Here's what's next:
 
-- Custom inventory plugins (Netbox integration)
-- Middleware for cross-task logic
-- Advanced error handling
-- Memory optimisation for 10,000+ devices
-- Multi-vendor support
+**Continue with Advanced Patterns:**
+
+1. **[Advanced Nornir Patterns](./advanced-nornir-patterns.md)** (Strongly Recommended)
+   - Custom inventory plugins (Netbox integration)
+   - Middleware for cross-task logic
+   - Advanced error handling and logging
+   - Memory optimization for 10,000+ devices
+   - Multi-vendor support
+   - Testing and debugging workflows
+
+2. **[Why Nornir?](./why-nornir.md)** — Understand architectural decisions and alternatives
+
+**Study Production Code:**
+
+3. **[Deep Dives](../../deep-dives/index.md)** — See how production tools implement similar patterns
+   - [CDP Network Audit](../../deep-dives/cdp-audit.md) — Enterprise discovery at scale
+   - [Access Switch Audit](../../deep-dives/access-switch-audit.md) — Parallel collection and intelligent handling
+
+**Scale & Deploy:**
+
+4. **[PRIME Framework](../../prime-framework/index.md)** — Structure your automation for sustainable ROI
+5. **[Services](../../services.md)** — Consulting for enterprise automation systems
+6. **[Contact Us](../../about.md#contact)** — Let's discuss your automation challenges
 
 ---
 
-[← Back to Intermediate Tutorials](./index.md) | [Continue to Tutorial #4 →](./advanced-nornir-patterns.md)
+[← Back to Intermediate Tutorials](./index.md)

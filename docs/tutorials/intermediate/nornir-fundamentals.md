@@ -850,13 +850,36 @@ Congratulations! You've learned:
 
 ## 🎯 Next Steps
 
-Ready for more? [Tutorial #3: Enterprise Config Backup Deep Dive](./enterprise-config-backup-nornir.md) adds:
+You've mastered Nornir fundamentals! Here's your path forward:
 
-- Database storage for backup metadata
-- Change detection between backups
-- Compliance checking
-- Advanced workflow composition
-- Real production patterns
+**Continue with Intermediate Tutorials:**
+
+1. **[Enterprise Config Backup with Nornir](./enterprise-config-backup-nornir.md)** (Recommended Next)
+   - See this same pattern at production scale
+   - Database storage for backup metadata
+   - Change detection between backups
+   - Compliance checking
+
+2. **[Advanced Nornir Patterns](./advanced-nornir-patterns.md)**
+   - Custom inventory sources
+   - Advanced filtering and task chaining
+   - Integration with external systems
+   - Performance optimization techniques
+
+**Learn More About Network Automation Frameworks:**
+
+3. **[Why Nornir?](./why-nornir.md)** — Understand when to use Nornir vs alternatives
+
+**Study Production Code:**
+
+4. **[Deep Dives](../../deep-dives/index.md)** — See how production tools apply these patterns
+   - [Access Switch Audit](../../deep-dives/access-switch-audit.md) — Parallel device collection at scale
+   - [CDP Network Audit](../../deep-dives/cdp-audit.md) — Multi-threaded network discovery
+
+**Ready to Deploy?**
+
+5. **[Script Library](../../scripts/index.md)** — Deploy production-ready tools built with Nornir
+6. **[PRIME Framework](../../prime-framework/index.md)** — Structure your automation projects for success
 
 ---
 

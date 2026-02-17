@@ -1316,7 +1316,22 @@ Consistent with the **Nautomation Prime** delivery model, this tool is available
 
 ---
 
-## 📋 Licence
+## � Related Resources
+
+**Get Started Now:**
+- [📖 Script Library](../scripts/index.md) — Find the Access Switch Audit tool and other automation scripts
+- [:material-github: GitHub Repository](https://github.com/Nautomation-Prime/Access_Switch_Audit) — Source code, issues, and contributions
+
+**Learn More:**
+- [🛠️ Nornir Fundamentals](../tutorials/intermediate/nornir-fundamentals.md) — Understanding parallel automation patterns like those in this tool
+- [🚀 PRIME Framework](../prime-framework/index.md) — Understand the methodology behind this tool
+
+**Explore Similar Topics:**
+- [CDP Network Audit Deep Dive](./cdp-audit.md) — Another production tool focusing on network topology discovery
+
+---
+
+## �📋 Licence
 
 GNU General Public Licence v3.0
 

@@ -625,11 +625,23 @@ Congratulations! You've built your first network automation script. You now unde
 
 ## 🚀 Next Steps
 
-Ready to build on this foundation?
+Ready to build on this foundation? Here's your learning path:
 
-1. **[Multi-Device Collection](./multi-device-show-command.md)** (Coming Soon) — Extend this script to collect data from multiple devices
-2. **[Intermediate Tutorials](../intermediate/index.md)** — Learn threading and advanced techniques
-3. **[Deep Dives](../../deep-dives/index.md)** — Study production-grade automation with comprehensive explanations
+**Continue with Beginner Concepts:**
+1. [**Multi-Device Collection**](./multi-device-show-command.md) — Extend this script to work with multiple devices at once
+2. [**Configuration Backup**](./multi-device-config-backup.md) — Learn to save and manage device configurations
+
+**Move to Intermediate Skills:**
+3. [**Nornir Fundamentals**](../intermediate/nornir-fundamentals.md) — Understand frameworks that scale automation to thousands of devices
+4. [**Enterprise Config Backup with Nornir**](../intermediate/enterprise-config-backup-nornir.md) — See how patterns scale to production
+
+**Study Production Code:**
+5. [**Deep Dives Section**](../../deep-dives/index.md) — Review complete production scripts with line-by-line explanations
+   - Start with [CDP Network Audit](../../deep-dives/cdp-audit.md) to see threading, error handling, and enterprise patterns
+   - Then explore [Access Switch Audit](../../deep-dives/access-switch-audit.md) for parallel device collection
+
+**Ready to Deploy?**
+6. [**Script Library**](../../scripts/index.md) — Use production-ready tools built on these same concepts
 
 ---
 

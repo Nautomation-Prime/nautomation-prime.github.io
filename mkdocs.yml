@@ -17,7 +17,6 @@ theme:
     - navigation.top
     - navigation.tracking  # Track visited pages
     - navigation.indexes  # Enable index pages for sections
-    - toc.integrate
     - content.code.copy
     - content.code.annotate  # Enable code annotations
     - content.tooltips

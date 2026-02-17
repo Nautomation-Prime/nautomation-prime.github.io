@@ -880,14 +880,32 @@ You're now equipped to:
 
 ---
 
-## 📚 Next: Expert Level
+## 📚 Next Steps: From Learning to Building
 
-Ready for the next challenge? The **Expert Tutorials** (coming soon) will cover:
+You've mastered advanced Nornir patterns used in enterprise deployments worldwide. Here's your path forward:
 
-- **Nornir at Scale** — Distributed orchestration across multiple locations
-- **GitOps Workflows** — Version control + automation
-- **Advanced Integrations** — API-first automation platforms
-- **AI/ML for Automation** — Predictive analysis and anomaly detection
+**Study Real Production Tools:**
+
+1. **[Deep Dives](../../deep-dives/index.md)** — Review production automation built with these patterns
+   - [CDP Network Audit](../../deep-dives/cdp-audit.md) — Threading, configuration, and scalable discovery
+   - [Access Switch Audit](../../deep-dives/access-switch-audit.md) — Parallel device collection and intelligent parsing
+   - See how experts implement the patterns you've just learned
+
+2. **[Script Library](../../scripts/index.md)** — Deploy production-ready tools using these patterns
+
+**Build and Scale:**
+
+3. **[PRIME Framework](../../prime-framework/index.md)** — Structure your automation projects for sustainable ROI
+   - Pinpoint opportunities with measurable impact
+   - Re-engineer workflows for maximum value
+   - Implement with confidence using proven patterns
+   - Measure results and empower your team
+
+4. **[Services](../../services.md)** — Consulting for enterprise automation at scale
+   - Custom implementations
+   - Team training and mentoring
+   - Architecture reviews
+   - Contact: [email](../../about.md#contact)
 
 ---
 
@@ -901,11 +919,11 @@ Use what works. Ignore what doesn't. Build systematically.
 
 ---
 
-## 🤝 Contribute Back
+## 🤝 Got Questions or Insights?
 
 Found a better pattern? Have a real-world use case?
 
-Email us: [Contact Information](../../about.md#contact)
+We'd love to hear about it: [Contact Information](../../about.md#contact)
 
 ---
 

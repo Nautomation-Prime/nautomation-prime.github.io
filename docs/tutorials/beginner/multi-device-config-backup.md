@@ -1118,26 +1118,36 @@ cleanup_old_backups(base_backup_dir, days_to_keep=30)
 
 You've now built a complete backup system! Ready for the next challenge?
 
-### Continue Learning:
+**Continue Learning with These Tutorials:**
 
-1. **[Intermediate Tutorials](../intermediate/index.md)**
+1. **Complete the Learning Path:**
+   - You've completed the Beginner tutorials! You now understand Netmiko, multi-device connections, and data management.
+
+2. **[Nornir Fundamentals](../intermediate/nornir-fundamentals.md)** (Intermediate)
+   - Learn a powerful framework used in enterprise automation
+   - Understand how to scale to thousands of devices
+   - Master structured task execution
+
+3. **[Enterprise Config Backup with Nornir](../intermediate/enterprise-config-backup-nornir.md)** (Intermediate)
+   - See this same backup pattern scaled to production
    - Backup comparison and diff reporting
-   - Configuration drift detection
-   - Automated remediation (push configs back)
-   - Encrypted backup storage
-   - Database-backed config versioning
-   - Custom parsing for device-specific configs
+   - Configuration drift detection and automated remediation
+   - Encrypted backup storage and database-backed versioning
 
-2. **[Expert Tutorials](../expert/index.md)** (Coming Soon)
-   - GitOps integration (sync configs to Git repository)
-   - Configuration compliance auditing
-   - Netbox integration (source of truth backup)
-   - Change event tracking and notifications
-   - Automated rollback workflows
-   - Multi-datacenter backup orchestration
+4. **[Advanced Nornir Patterns](../intermediate/advanced-nornir-patterns.md)** (Intermediate)
+   - Advanced filtering and task chaining
+   - Custom inventory sources
+   - Integration with external systems
 
-3. **[Deep Dives](../../deep-dives/index.md)** — Study production tools:
-   - CDP Audit for topology backup
+**Study Production Code:**
+
+5. **[Deep Dives](../../deep-dives/index.md)** — Review how production tools handle similar challenges
+   - [CDP Network Audit](../../deep-dives/cdp-audit.md) — Threading, security, and credential management
+   - [Access Switch Audit](../../deep-dives/access-switch-audit.md) — Parallel device collection and intelligent parsing
+
+**Ready to Deploy?**
+
+6. **[Script Library](../../scripts/index.md)** — Deploy pre-built tools
    - Access Switch Audit for port configurations
 
 4. **Enhance This Script** — Practice by adding:

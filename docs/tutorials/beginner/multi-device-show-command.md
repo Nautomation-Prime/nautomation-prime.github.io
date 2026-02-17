@@ -944,20 +944,32 @@ print(f"Filtered to {len(devices)} IOS device(s)")
 
 You've now mastered multi-device automation! Ready for the next challenge?
 
-### Continue Learning:
+**Continue Learning with These Tutorials:**
 
-1. **[Intermediate Tutorials](../intermediate/index.md)** (Coming Soon)
+1. **[Configuration Backup](./multi-device-config-backup.md)** (Complete the Beginner Path)
+   - Save device configurations to disk
+   - Build timestamped archives for version control
+   - Understand data persistence patterns
+
+2. **[Nornir Fundamentals](../intermediate/nornir-fundamentals.md)** (Intermediate)
+   - Learn a powerful framework for scaling automation
+   - Understand how industries run automation at scale
    - Multi-threaded device operations (10x speed improvement)
-   - Advanced TextFSM parsing and custom templates
-   - Configuration templating with Jinja2
-   - Structured logging and error handling patterns
-   - Command-line argument parsing with argparse
-   - Progress bars and user experience improvements
 
-2. **[Expert Tutorials](../expert/index.md)** (Coming Soon)
-   - **Nornir framework** for enterprise-scale automation
-   - Async operations with asyncio for maximum performance
-   - Database integration for historical trending and reporting
+3. **[Enterprise Config Backup with Nornir](../intermediate/enterprise-config-backup-nornir.md)** (Intermediate)
+   - See the backup pattern scaled to production
+   - Integration with structured logging and error handling
+   - Real-world patterns used in enterprise deployments
+
+**Study Production Code:**
+
+4. **[Deep Dives](../../deep-dives/index.md)** — Review complete production tools
+   - [Access Switch Audit](../../deep-dives/access-switch-audit.md) — Learn parallel device collection and PoE intelligence
+   - [CDP Network Audit](../../deep-dives/cdp-audit.md) — Study threading, configuration, and jump host support
+
+**Ready to Deploy?**
+
+5. **[Script Library](../../scripts/index.md)** — Deploy pre-built tools based on these patterns
    - Credential vaulting with HashiCorp Vault
    - Event-driven automation and webhooks
    - GitOps workflows and CI/CD integration

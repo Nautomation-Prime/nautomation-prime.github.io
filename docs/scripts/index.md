@@ -55,6 +55,33 @@ Welcome to the **Nautomation Prime Script Library**. Here you'll find open-sourc
 
 ---
 
+## 🧭 Learning Paths
+
+**Unsure where to start?** These learning paths connect scripts to tutorials and deep dives based on your experience level:
+
+### 📖 Beginner Path
+Start here if you're new to network automation:
+1. Learn Python fundamentals (external resources)
+2. Read [Multi-Device Show Command Collection](../tutorials/beginner/multi-device-show-command.md) — learn Netmiko basics
+3. Try [Configuration Backup Tutorial](../tutorials/beginner/multi-device-config-backup.md) — understand backup patterns
+4. Explore [CDP Network Audit Deep Dive](../deep-dives/cdp-audit.md) — see how threading and configuration work at scale
+
+### 🛠️ Intermediate Path
+Ready to understand production patterns:
+1. Read [Nornir Fundamentals](../tutorials/intermediate/nornir-fundamentals.md) — multi-device automation framework
+2. Read [Enterprise Config Backup with Nornir](../tutorials/intermediate/enterprise-config-backup-nornir.md) — scalable patterns
+3. Study [Access Switch Audit Deep Dive](../deep-dives/access-switch-audit.md) — parallel collection and intelligent parsing
+4. Study [CDP Network Audit Deep Dive](../deep-dives/cdp-audit.md) — threading, configuration, and jump hosts
+
+### 🚀 Advanced Path
+Ready to build custom solutions:
+1. Review both [Deep Dives](../deep-dives/index.md) for architectural patterns
+2. Customize scripts for your environment (GitHub repositories include full source)
+3. Integrate with [PRIME Framework](../prime-framework/index.md) methodology
+4. Contact us for [consulting services](../services.md) on bespoke automation
+
+---
+
 ## 🔄 Coming Soon
 
 ### Zero Touch Provisioning (ZTP) Tool
@@ -145,7 +172,22 @@ For issues, feature requests, or questions about any script:
 
 ---
 
-## 📖 The "Prime" Philosophy
+## � Resources by Topic
+
+**Quick access to find what you need:**
+
+| Topic | Resources |
+|:---|:---|
+| **Network Discovery** | [📖 CDP Network Audit Deep Dive](../deep-dives/cdp-audit.md) • [💾 Script](https://github.com/Nautomation-Prime/Cisco_CDP_Network_Audit) |
+| **Port & Interface Health** | [📖 Access Switch Audit Deep Dive](../deep-dives/access-switch-audit.md) • [💾 Script](https://github.com/Nautomation-Prime/Access_Switch_Audit) |
+| **Configuration Management** | [🎓 Configuration Backup (Beginner)](../tutorials/beginner/multi-device-config-backup.md) • [🎓 Enterprise Backup with Nornir (Intermediate)](../tutorials/intermediate/enterprise-config-backup-nornir.md) |
+| **Data Collection & Reporting** | [🎓 Show Commands to Excel (Beginner)](../tutorials/beginner/netmiko-show-command-to-excel.md) • [🎓 Multi-Device Collection (Beginner)](../tutorials/beginner/multi-device-show-command.md) |
+| **Automation Frameworks** | [🎓 Nornir Fundamentals](../tutorials/intermediate/nornir-fundamentals.md) • [📖 Advanced Patterns](../tutorials/intermediate/advanced-nornir-patterns.md) |
+| **Automation Methodology** | [🚀 PRIME Framework](../prime-framework/index.md) • [ℹ️ Philosophy & Approach](../about.md#prime-philosophy) |
+
+---
+
+## �📖 The "Prime" Philosophy
 
 All scripts in this library adhere to three core principles:
 

@@ -31,12 +31,46 @@ We deliver automation projects through a **proven 5-stage methodology** that ens
 
 ---
 
+## 🧭 Choose Your Path
+
+**First time here?** Select the path that best matches your experience and goals:
+
+=== "🎯 Looking for Solutions"
+    I have a specific network problem to solve or want production-ready tools.
+    
+    - **[📚 Script Library](./scripts/index.md)** — Browse available automation tools
+    - **[🐳 Services](./services.md)** — Custom automation, portable bundles, Docker containers
+    - **[📞 Contact Us](mailto:nautomationprime.f3wfe@simplelogin.com)** — Let's chat about your needs
+
+=== "📖 Learning Code & Patterns"
+    I want to understand how production network automation works.
+    
+    1. Read [**Getting Started**](./getting-started.md) (2 min overview)
+    2. Pick a tutorial: [**Beginner**](./tutorials/beginner/index.md) or [**Intermediate**](./tutorials/intermediate/index.md)
+    3. Deep dive into [**CDP Network Audit**](./deep-dives/cdp-audit.md) — see real production code
+
+=== "🚀 Enterprise Automation"
+    I need a structured approach to network automation for my organization.
+    
+    - **[PRIME Framework](./prime-framework/index.md)** — Our proven 5-stage methodology
+    - **[Empower Phase](./prime-framework/empower.md)** — Building sustainable automation teams
+    - **[Services](./services.md)** — Consulting and implementation
+
+=== "👨‍💻 Improving My Python Skills"
+    I know Python and want to apply it to network automation.
+    
+    1. Start with [**Show Command to Excel**](./tutorials/beginner/netmiko-show-command-to-excel.md) & [**Netmiko basics**](./tutorials/beginner/multi-device-show-command.md)
+    2. Learn [**Nornir fundamentals**](./tutorials/intermediate/nornir-fundamentals.md) — frameworks for scale
+    3. Study [**Deep Dives**](./deep-dives/index.md) for patterns (threading, configuration, error handling)
+
+---
+
 ## 🚀 Quick Navigation
 
 === "Need Automation Services?"
     **[PRIME Framework](./prime-framework/index.md)** — Our proven 5-stage methodology.
 
-    **Pinpoint** opportunities → **Re-engineer** workflows → **Implement** solutions → **Measure** ROI → **Empower** your team
+    Pinpoint → Re-engineer → Implement → Measure → Empower
 
     [View Services](./services.md) | [Request Discovery Call](mailto:nautomationprime.f3wfe@simplelogin.com)
 

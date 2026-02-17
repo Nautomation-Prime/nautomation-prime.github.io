@@ -2501,7 +2501,22 @@ excel:
 
 ---
 
-## 📋 License
+## � Related Resources
+
+**Get Started Now:**
+- [📖 Script Library](../scripts/index.md) — Find the CDP Network Audit tool and other automation scripts
+- [:material-github: GitHub Repository](https://github.com/Nautomation-Prime/Cisco_CDP_Network_Audit) — Source code, issues, and contributions
+
+**Learn More:**
+- [🛠️ Nornir Fundamentals](../tutorials/intermediate/nornir-fundamentals.md) — Multi-device automation patterns complementary to threading
+- [🚀 PRIME Framework](../prime-framework/index.md) — Understand the methodology behind this tool
+
+**Explore Similar Topics:**
+- [Access Switch Port Audit Deep Dive](./access-switch-audit.md) — Another production tool focused on interface health and PoE
+
+---
+
+## �📋 License
 
 GNU General Public License v3.0
 
