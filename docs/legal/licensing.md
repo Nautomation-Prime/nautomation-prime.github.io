@@ -1,45 +1,91 @@
 # Licensing
-_Last updated: 30 January 2026_
+_Last updated: February 2026_
 
-This page explains how licensing works for code and content produced by **Nautomation Prime**.
+This page explains how licensing works for content and code produced by **Nautomation Prime**.
 
-## 1. Public GitHub Repositories
+## 1. Proprietary Content (All Rights Reserved)
 
-All public repositories published under the Nautomation Prime GitHub organisation are licenced under:
+The following are **proprietary to Christopher Davies, Trading as Nautomation Prime** and protected under copyright law:
 
-### **GNU General Public Licence v3.0 (GPL‑3.0)**
+### Protected Intellectual Property:
+- **The PRIME Framework** (Pinpoint → Re-Engineer → Implement → Measure → Empower)
+- **The Prime Philosophy** (transparency, reliability, pragmatism)
+- **Nautomation Prime branding** (logos, visual design, brand assets)
+- **Website content** on nautomationprime.io (except code examples in public repositories)
+- **Consulting methodologies** and proprietary business processes
 
-This includes (but is not limited to):
+### Usage Rights:
+You may **view and read** this content for personal, educational purposes only.
 
-- Network automation utilities  
-- Python tools  
-- Documentation examples tied to those repos  
+You may **NOT**:
+- Reproduce, copy, or distribute
+- Modify or create derivative works
+- Use commercially without written permission
+- Claim ownership or authorship
 
-GPL‑3.0 requires:
+**For licensing inquiries or commercial use:** Contact [christopher@nautomationprime.io](mailto:nautomationprime.f3wfe@simplelogin.com)
 
-- Source code availability  
-- Preservation of original licence terms  
-- Copyleft distribution of derivative works  
+---
 
-## 2. Code Examples on This Website
+## 2. Public GitHub Repositories (MIT License)
 
-Unless otherwise stated, any code snippets or examples on this website are licenced under the **same licence as the repository they relate to**, typically GPL‑3.0.
+Code published in public Nautomation Prime GitHub repositories is licensed under:
 
-If a snippet stands alone with no linked repository, GPL‑3.0 applies by default.
+### **MIT License**
 
-## 3. Bespoke Client Code
+This includes:
+- Network automation scripts and utilities
+- Python tools and libraries
+- Code examples tied to those repositories
+- Documentation examples
 
-For paid or commissioned work, Nautomation Prime provides code under one of the following:
+### MIT Permissions:
+✅ Use, copy, modify, and distribute  
+✅ Commercial and private use  
+✅ Sublicense  
 
-- **MIT Licence** (permissive)  
-- **Apache Licence 2.0** (permissive, includes patent protection)  
+### MIT Conditions:
+⚠️ Include license and copyright notice  
+⚠️ No warranty provided  
 
-The licence is chosen with the client during the project.
+---
 
-## 4. Brand Assets
+## 3. Code Examples on This Website
 
-All logos, branding, imagery, and visual design elements are:
+Code snippets and examples on **nautomationprime.io** are licensed under the **same license as the repository they relate to**, typically **MIT License**.
 
-**Copyright © Nautomation Prime**
+If a snippet stands alone with no linked repository, **MIT License applies by default**.
 
-They are **not** licenced under GPL, MIT, or Apache licences and may not be reused without written permission.
+---
+
+## 4. Bespoke / Consulting Work
+
+For paid or commissioned automation projects, code is provided under a **custom agreement** tailored to the client, typically:
+
+- **MIT License** (permissive)
+- **Apache License 2.0** (permissive + patent protection)
+- **Proprietary License** (exclusive to client)
+
+The specific license is negotiated during the project engagement.
+
+---
+
+## 5. Summary Table
+
+| Content | License | Use Rights |
+|:---|:---|:---|
+| Prime Framework, Philosophy | All Rights Reserved | View/read only |
+| Brand Assets & Logos | All Rights Reserved | View only |
+| Website Content | All Rights Reserved | View only |
+| Public GitHub Code | MIT License | Use, modify, distribute (with attribution) |
+| Code Examples on Site | MIT License | Use, modify, distribute (with attribution) |
+| Consulting Deliverables | Custom | Per agreement |
+
+---
+
+## 6. Questions?
+
+For licensing questions, permissions requests, or commercial inquiries:
+
+📧 **Email:** [nautomationprime.f3wfe@simplelogin.com](mailto:nautomationprime.f3wfe@simplelogin.com)  
+🔗 **Contact Page:** [About Us](../about.md#contact)
