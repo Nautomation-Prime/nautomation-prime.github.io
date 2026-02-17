@@ -137,18 +137,6 @@ The **Prime Philosophy** (values) guides the **PRIME Framework** (methodology):
 
 **[Learn about the PRIME Framework →](./prime-framework/index.md)**
 
-### 1. Line-by-Line Transparency
-
-We explain the *why* behind the code, not just the *what*. Every design decision is documented so you understand your automation completely.
-
-### 2. Hardened for Production
-
-Robust error handling, pre-flight safety checks, enterprise credential management, and thread-safe operations. These aren't "nice to have"—they're essential for critical infrastructure.
-
-### 3. Vendor-Neutral
-
-Built on industry-standard libraries (Netmiko, Nornir, PyATS). Your skills remain portable across vendors and platforms.
-
 ---
 
 ## The Team
