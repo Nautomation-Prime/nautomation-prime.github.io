@@ -61,6 +61,7 @@ Instead of YAML files, source inventory from **Netbox** (your network CMDB):
 ### Problem Being Solved
 
 Hardcoded inventory doesn't scale:
+
 - Manual updates
 - Inconsistent with source of truth
 - No integration with change management
@@ -207,6 +208,7 @@ inventory:
 ## 🔄 Pattern 2: Middleware for Cross-Cutting Concerns
 
 Middleware runs before and after each task. Perfect for:
+
 - Logging
 - Metrics collection
 - Pre-flight validation
