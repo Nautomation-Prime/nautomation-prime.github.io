@@ -169,7 +169,7 @@ A: Our tools are built on vendor-neutral libraries like **Netmiko**, **Nornir**,
 A: We leverage native OS credential managers (Windows Credential Manager, Keychain on macOS, pass on Linux). Passwords are never stored in plaintext files or hardcoded in scripts. When you run a script like CDP Network Audit for the first time, it will prompt you to save your credentials to Windows Credential Manager—just enter your username and password, and the script will store them securely. Future runs will use the stored credentials automatically.
 
 **Q: What if I don't have Python experience?**  
-A: This site assumes you already know Python basics (variables, functions, loops, exceptions). If you're new to Python, we recommend completing a Python fundamentals course first (Codecademy, Real Python, or similar), then return to apply those skills to network automation. Our code is written for clarity, so intermediate Python developers will follow along easily.
+A: This site assumes you already know Python basics (variables, functions, loops, exceptions). If you're new to Python, we recommend completing a Python fundamentals course first (Codecademy, Real Python, or similar), then return to apply those skills to network automation. Our code is written for clarity, so even beginners with solid fundamentals will be able to follow along.
 
 **Q: Do your scripts work in production environments?**  
 A: Yes! All our scripts are production-grade with robust error handling, pre-flight safety checks, thread-safe concurrent operations, and comprehensive logging. We follow the Prime Philosophy principles to ensure reliability over speed. Many organizations use our scripts in live production environments.
