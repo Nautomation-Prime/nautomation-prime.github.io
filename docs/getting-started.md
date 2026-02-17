@@ -86,7 +86,10 @@ We deliver automation projects through the **[PRIME Framework](prime-framework/i
 - **Network access** to your Cisco devices
 - **Credentials** for device authentication
 - **SSH enabled** on target Cisco devices
-Prime Philosophy {:#prime-philosophy}
+
+---
+
+## Prime Philosophy {:#prime-philosophy}
 
 Every tool, script, and guide adheres to three core engineering principles:
 
@@ -107,23 +110,7 @@ Every tool, script, and guide adheres to three core engineering principles:
 
 **These values guide the [PRIME Framework](prime-framework/index.md)** — our structured methodology for automation projects.
 
-**[Learn more about Prime Philosophy](about.md#prime-philosophy)**e principles:
-
-1. **Line-by-Line Transparency**
-   - We explain the *why* behind the code, not just the *what*
-   - Every design decision is documented
-   - You'll understand your automation, not just run it
-
-2. **Hardened for Production**
-   - Robust error handling
-   - Pre-flight safety checks
-   - Enterprise-grade credential management
-   - Thread-safe concurrent operations
-
-3. **Vendor-Neutral**
-   - Built on industry-standard libraries (Netmiko, Nornir, PyATS)
-   - Your skills remain portable
-   - Scripts can scale beyond Cisco if needed
+**[Learn more about Prime Philosophy](about.md#prime-philosophy)**
 
 ---
 
@@ -133,7 +120,9 @@ Every tool, script, and guide adheres to three core engineering principles:
 
 1. Visit the [CDP Audit GitHub repository](https://github.com/Nautomation-Prime/Cisco_CDP_Network_Audit)
 2. Read the [Deep Dive guide](deep-dives/cdp-audit.md) for understanding the architecture
-3. Follow the README for inst (PRIME Framework)
+3. Follow the README for installation and usage
+
+### Request Custom Automation (PRIME Framework)
 
 For structured automation projects with proven ROI:
 
@@ -142,9 +131,15 @@ For structured automation projects with proven ROI:
 3. Choose full [PRIME Framework](prime-framework/index.md) or individual stages (à la carte)
 4. Deliverables: Production code, documentation, ROI metrics, team capability
 
-**[Learn about PRIME Framework](prime-framework/index.md)** | **[View Services](services.md)**ogy
+**[Learn about PRIME Framework](prime-framework/index.md)** | **[View Services](services.md)**
+
+### Request Bespoke Automation
+
+For custom automation tailored to your specific topology:
+
+1. Review available [services and deployment options](services.md)
 2. Contact us via [email](mailto:nautomationprime.f3wfe@simplelogin.com) or [LinkedIn](https://www.linkedin.com/company/nautomationprime)
-3. Describe any constraints (e.g., restricted environments, specific platforms)
+3. Describe your requirements and any constraints (e.g., restricted environments, specific platforms)
 4. Receive a detailed proposal and timeline
 
 ### Use Portable Bundles (No Python Installation)
@@ -158,22 +153,41 @@ For structured automation projects with proven ROI:
 
 ## ❓ Frequently Asked Questions
 
-**Q: Do I need Python installed to use Nautomation Prime tools?**  , **Nornir**, and **NAPALM**. While designed for Cisco, the patterns and concepts apply across other vendors (Juniper, Arista, Palo Alto, etc.).
+**Q: Do I need Python installed to use Nautomation Prime tools?**  
+A: Not necessarily! We offer [portable bundles](services.md#zero-install-portable-bundles) that run without Python installation. These are ideal for restricted enterprise environments where Python may not be permitted. However, if you want to modify or extend our scripts, you'll need Python 3.8 or higher.
 
 **Q: What's the difference between tutorials, deep dives, and services?**  
-A: **[Tutorials](tutorials/index.md)** teach you to build automation yourself with step-by-step guides. **[Deep Dives](deep-dives/index.md)** explain production-grade scripts line-by-line. **[Services](services.md)** deliver complete automation projects through the **[PRIME Framework](prime-framework/index.md)** with ROI proof and team empowerment
-A: Not necessarily! We offer portable bundles that run without Python installation. Ideal for restricted enterprise environments where Python may not be permitted.
+A: **[Tutorials](tutorials/index.md)** teach you to build automation yourself with step-by-step guides. **[Deep Dives](deep-dives/index.md)** explain production-grade scripts line-by-line so you understand how they work. **[Services](services.md)** deliver complete automation projects through the **[PRIME Framework](prime-framework/index.md)** with ROI proof and team empowerment.
 
 **Q: Can you automate my specific network topology?**  
 A: Absolutely! Our bespoke services cover custom scripting for any topology. Contact us via [email](mailto:nautomationprime.f3wfe@simplelogin.com) or [LinkedIn](https://www.linkedin.com/company/nautomationprime) to discuss your specific requirements.
 
 **Q: Are these tools vendor-locked to Cisco?**  
-A: Our tools are built on vendor-neutral libraries like **Netmiko** and **Nornir**. While designed for Cisco, the patterns and concepts apply across other vendors (Juniper, Arista, etc.).
+A: Our tools are built on vendor-neutral libraries like **Netmiko**, **Nornir**, and **NAPALM**. While designed for Cisco, the patterns and concepts apply across other vendors (Juniper, Arista, Palo Alto, etc.). Your skills remain portable across platforms.
 
 **Q: How do I secure my credentials?**  
 A: We leverage native OS credential managers (Windows Credential Manager, Keychain on macOS, pass on Linux). Passwords are never stored in plaintext files or hardcoded in scripts. When you run a script like CDP Network Audit for the first time, it will prompt you to save your credentials to Windows Credential Manager—just enter your username and password, and the script will store them securely. Future runs will use the stored credentials automatically.
 
-**Q: What Automation:** Start with [Tutorials](tutorials/index.md) or study [Deep Dives](deep-dives/index.md)
+**Q: What if I don't have Python experience?**  
+A: This site assumes you already know Python basics (variables, functions, loops, exceptions). If you're new to Python, we recommend completing a Python fundamentals course first (Codecademy, Real Python, or similar), then return to apply those skills to network automation. Our code is written for clarity, so intermediate Python developers will follow along easily.
+
+**Q: Do your scripts work in production environments?**  
+A: Yes! All our scripts are production-grade with robust error handling, pre-flight safety checks, thread-safe concurrent operations, and comprehensive logging. We follow the Prime Philosophy principles to ensure reliability over speed. Many organizations use our scripts in live production environments.
+
+**Q: What network devices do your scripts support?**  
+A: Our scripts primarily target Cisco devices (IOS, IOS-XE, NX-OS, IOS-XR) but the underlying libraries (Netmiko, Nornir, NAPALM) support many vendors including Juniper, Arista, Palo Alto Networks, F5, and more. The patterns and techniques we teach are transferable across vendors.
+
+**Q: Can I use your code in my own projects?**  
+A: Yes! Our open-source scripts are available under permissive licenses. Check each repository for specific licensing terms. We encourage you to learn from, modify, and build upon our code for your own automation projects.
+
+**Q: What's included in the PRIME Framework?**  
+A: The [PRIME Framework](prime-framework/index.md) is our proven 5-stage methodology: **Pinpoint** (identify opportunities), **Re-engineer** (design solutions), **Implement** (build automation), **Measure** (prove ROI), and **Empower** (transfer knowledge). Each stage delivers specific outcomes with measurable value. You can engage for the full framework or individual stages à la carte.
+
+---
+
+## 🚀 Next Steps
+
+- **Learn Network Automation:** Start with [Tutorials](tutorials/index.md) or study [Deep Dives](deep-dives/index.md)
 - **Deploy Tools:** Browse the [Script Library](scripts/index.md)
 - **Professional Services:** Explore [PRIME Framework](prime-framework/index.md) for structured automation delivery
 - **Custom Solutions:** View [Services](services.md) for bespoke automation options
