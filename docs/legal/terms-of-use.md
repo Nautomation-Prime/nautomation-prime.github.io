@@ -24,7 +24,8 @@ See the Licensing page for full details.
 
 ## 3. No Affiliation With Third Parties (Including Cisco)
 
-This website and its content are **not affiliated, endorsed, associated, or sponsored by Cisco Systems, Inc.**  
+This website and its content are **not affiliated, endorsed, associated, or sponsored by Cisco Systems, Inc.**
+
 All references to Cisco devices, commands, and terminology exist solely for interoperability, documentation, and educational purposes.
 
 Cisco®, IOS®, IOS‑XE®, NX‑OS®, and other Cisco terms are trademarks of Cisco Systems, Inc.
@@ -51,7 +52,7 @@ To the maximum extent permitted by law, Christopher Davies trading as Nautomatio
 - Relying on information, advice, or materials from this site  
 - Network downtime, device failures, or security vulnerabilities  
 
-You acknowledge and agree that you are solely responsible for testing and validating any automation in your own lab environment before deploying to production.  
+You acknowledge and agree that you are solely responsible for testing and validating any automation in your own lab environment before deploying to production.
 
 ## 6. Acceptable Use
 

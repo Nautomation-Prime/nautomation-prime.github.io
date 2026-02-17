@@ -15,7 +15,8 @@ They are not official vendor documentation and should not be treated as professi
 
 ## 3. No Guarantees or Warranties
 
-All content, scripts, tools, and code examples are provided **"AS IS"** and **"AS AVAILABLE"** without any warranty of any kind, express or implied.  
+All content, scripts, tools, and code examples are provided **"AS IS"** and **"AS AVAILABLE"** without any warranty of any kind, express or implied.
+
 This includes — but is not limited to — warranties of:
 
 - Fitness for purpose  
@@ -26,7 +27,8 @@ This includes — but is not limited to — warranties of:
 
 ## 4. Use at Your Own Risk
 
-Network automation can be inherently risky.  
+Network automation can be inherently risky.
+
 Running scripts or commands may cause:
 
 - Configuration loss  

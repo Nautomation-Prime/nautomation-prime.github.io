@@ -3,10 +3,12 @@ _Last updated: 31 January 2026_
 
 ## Operator Details
 
-This website is operated by:  
-**Christopher Davies** trading as **Nautomation Prime** ("we", "us", "our")  
+This website is operated by:
 
-**Geographic Address:**  
+**Christopher Davies** trading as **Nautomation Prime** ("we", "us", "our")
+
+**Geographic Address:**
+
 Christopher Davies T/A Nautomation Prime  
 9 The Sleeve  
 Leek, ST138 HR  
@@ -27,13 +29,14 @@ This website itself does **not**:
 - Use analytics or tracking  
 - Store logs for profiling or marketing purposes  
 
-When you contact us via email, we receive only the information you choose to include in your message.  
+When you contact us via email, we receive only the information you choose to include in your message.
 
 ## 2. How Your Data Is Processed
 
-Email communications are processed through our email provider **SimpleLogin**, which provides privacy-focused email forwarding.  
+Email communications are processed through our email provider **SimpleLogin**, which provides privacy-focused email forwarding.
 
-SimpleLogin's privacy policy can be found here:  
+SimpleLogin's privacy policy can be found here:
+
 https://simplelogin.io/privacy/
 
 ## 3. Purpose of Processing
@@ -73,7 +76,8 @@ SimpleLogin is a privacy-focused service that may process email data in regions 
 
 ## 8. Children’s Privacy
 
-This website is not intended for individuals under 18.  
+This website is not intended for individuals under 18.
+
 We do not knowingly collect information from minors.
 
 ## 9. Contact

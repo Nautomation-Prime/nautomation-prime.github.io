@@ -8,6 +8,7 @@ This page explains how licensing works for content and code produced by **Nautom
 The following are **proprietary to Christopher Davies, Trading as Nautomation Prime** and protected under copyright law:
 
 ### Protected Intellectual Property:
+
 - **The PRIME Framework** (Pinpoint → Re-Engineer → Implement → Measure → Empower)
 - **The Prime Philosophy** (transparency, reliability, pragmatism)
 - **Nautomation Prime branding** (logos, visual design, brand assets)
@@ -15,9 +16,11 @@ The following are **proprietary to Christopher Davies, Trading as Nautomation Pr
 - **Consulting methodologies** and proprietary business processes
 
 ### Usage Rights:
+
 You may **view and read** this content for personal, educational purposes only.
 
 You may **NOT**:
+
 - Reproduce, copy, or distribute
 - Modify or create derivative works
 - Use commercially without written permission
@@ -34,17 +37,20 @@ Code published in public Nautomation Prime GitHub repositories is licensed under
 ### **MIT License**
 
 This includes:
+
 - Network automation scripts and utilities
 - Python tools and libraries
 - Code examples tied to those repositories
 - Documentation examples
 
 ### MIT Permissions:
+
 ✅ Use, copy, modify, and distribute  
 ✅ Commercial and private use  
 ✅ Sublicense  
 
 ### MIT Conditions:
+
 ⚠️ Include license and copyright notice  
 ⚠️ No warranty provided  
 
