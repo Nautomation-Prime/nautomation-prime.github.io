@@ -155,10 +155,9 @@ If you already have automation plans or internal capability, we offer individual
 - 4 knowledge transfer sessions (architecture, code walkthrough, operations, modification)
 - Complete documentation package (user guide, technical reference, runbook)
 - 8 weeks of transition support
-- Optional: Python fundamentals training (4-session workshop)
 
 **Timeline:** 2-4 weeks over 3 months  
-**Investment:** £3,000 - £5,000 (+£2,800 for Python training add-on)
+**Investment:** £3,000 - £5,000
 
 **[Learn more about Empower →](./prime-framework/empower.md)**
 

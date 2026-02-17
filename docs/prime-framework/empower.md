@@ -253,45 +253,7 @@ Columns:
 
 ---
 
-### 3. Capability Building
-
-Beyond transferring specific automation knowledge, we build general Python skills:
-
-#### Python Fundamentals Training (Optional)
-
-For teams new to Python:
-
-**4-Session Workshop Series:**
-
-1. **Python Basics** (3 hours)
-   - Variables, data types, loops, conditionals
-   - Functions and modules
-   - Reading/writing files
-   - Hands-on: Simple CSV processing script
-
-2. **Network Automation Libraries** (3 hours)
-   - Netmiko for SSH connections
-   - TextFSM for parsing show commands
-   - Jinja2 for config templating
-   - Hands-on: Collect "show version" from lab devices
-
-3. **Error Handling & Logging** (3 hours)
-   - Try/except patterns
-   - Logging best practices
-   - Pre/post-flight validation
-   - Hands-on: Add error handling to previous scripts
-
-4. **Building Production Scripts** (3 hours)
-   - Code structure standards
-   - Configuration management
-   - Reporting (pandas/Excel)
-   - Hands-on: Build complete end-to-end automation
-
-**All workshops use YOUR network devices and scenarios (in lab environment).**
-
----
-
-#### Self-Service Resources
+### 3. Self-Service Resources
 
 We provide pathways for continued learning:
 
@@ -417,14 +379,7 @@ At the end of the Empower stage, your team has:
 - ✅ Runbook (how to troubleshoot)
 - ✅ Modification guide (how to extend)
 
-### 3. Python Skills (If Training Included)
-
-- ✅ Python fundamentals
-- ✅ Network automation libraries
-- ✅ Production code patterns
-- ✅ Hands-on practice with real scenarios
-
-### 4. Self-Sufficiency
+### 3. Self-Sufficiency
 
 - ✅ Team operating automation independently
 - ✅ Troubleshooting issues without escalation
@@ -527,8 +482,6 @@ For organizations with existing automation needing knowledge transfer:
 - Complete documentation package
 - 8 weeks of transition support
 - 90-day success tracking
-
-**Python Training Add-On:** +£2,800 (4-session workshop series)
 
 ---
 
