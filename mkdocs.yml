@@ -17,6 +17,7 @@ theme:
     - navigation.top
     - navigation.tracking  # Track visited pages
     - navigation.indexes  # Enable index pages for sections
+    - navigation.breadcrumbs  # Show breadcrumb navigation
     - content.code.copy
     - content.code.annotate  # Enable code annotations
     - content.tooltips
@@ -136,7 +137,7 @@ plugins:
 
 nav:
   - Home: index.md
-  - Getting Started: getting-started.md
+  - Start Here: getting-started.md
   - Tutorials:
       - tutorials/index.md
       - Beginner:
