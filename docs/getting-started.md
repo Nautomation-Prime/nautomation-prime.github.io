@@ -94,16 +94,19 @@ We deliver automation projects through the **[PRIME Framework](prime-framework/i
 Every tool, script, and guide adheres to three core engineering principles:
 
 1. **🎯 Pragmatic Over Perfect**
+
    - Ship solutions that work today, not theoretical perfection that never ships
    - Complexity must earn its place by delivering measurable value
    - Simple, direct solutions over abstract architectures
 
 2. **🔍 Transparency Over Obscurity**
+
    - We explain the *why* behind every line of code, not just the *what*
    - Verbose logging, human-readable outputs, zero "black box" magic
    - Every design decision is documented
 
 3. **🛡️ Reliability Over Speed**
+
    - Pre-flight validation, post-flight verification, automatic rollback
    - Production-grade error handling—graceful degradation, never crash-and-burn
    - Thread-safe concurrent operations
