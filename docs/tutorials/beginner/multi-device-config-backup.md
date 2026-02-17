@@ -1,6 +1,6 @@
 ---
 title: Multi-Device Configuration Backup
-description: Build on Tutorial #2 to automatically backup running configurations from multiple Cisco devices with timestamped filenames, organized by device type.
+description: Build on Tutorial #2 to automatically backup running configurations from multiple Cisco devices with timestamped filenames, organised by device type.
 tags:
   - Beginner
   - Netmiko
@@ -20,7 +20,7 @@ In this tutorial, we'll **build on your multi-device foundation** and create a p
 
 1. Collect **running configurations** from multiple devices (not just show commands)
 2. Save each config to a **timestamped backup file**
-3. Organize configs by **device type and hostname**
+3. Organise configs by **device type and hostname**
 4. Handle errors gracefully **(one failed backup doesn't stop others)**
 5. Provide a **backup inventory** showing what was and wasn't captured
 
@@ -34,7 +34,7 @@ By the end of this tutorial, you'll understand:
 
 - ✅ How to retrieve full running configurations from network devices
 - ✅ Why timestamped backups are critical for change tracking
-- ✅ How to organize backups in a logical directory structure
+- ✅ How to organise backups in a logical directory structure
 - ✅ The difference between running and startup configurations
 - ✅ How to create a backup manifest (what was backed up, when, and from where)
 - ✅ Per-device backup validation and error handling
@@ -77,7 +77,7 @@ Here's what we're changing:
 | Executes show commands | Executes `show run` (running config) |
 | Parses output with TextFSM | No parsing—raw config text |
 | Exports to Excel sheets | Saves to timestamped `.txt` files |
-| One Excel file with data | Organized folder structure with manifest |
+| One Excel file with data | Organised folder structure with manifest |
 | Shows data table | Shows backup file locations and sizes |
 
 Key insight: **Configurations are too large and complex for Excel**. We save them as files and create a manifest for tracking.
@@ -810,8 +810,8 @@ Congratulations! You've built a production-grade backup system. You now understa
 ### 1. **File I/O Operations**
 Reading configurations from devices and reliably writing them to disk with proper error handling.
 
-### 2. **Directory Structure and Organization**
-Using timestamps to organize backups chronologically and creating logical directory hierarchies.
+### 2. **Directory Structure and Organisation**
+Using timestamps to organise backups chronologically and creating logical directory hierarchies.
 
 ### 3. **Backup Validation**
 Confirming that data was successfully written to disk by checking file sizes.
@@ -948,7 +948,7 @@ Then compare hashes in your manifest to detect changes!
 
 ---
 
-### Organize by Device Type
+### Organise by Device Type
 
 Save IOS configs separately from NX-OS:
 
@@ -1184,7 +1184,7 @@ Want to use this script in production? Consider these enhancements:
 - [ ] **Multi-Vendor Support**: Backup Cisco, Arista, Juniper, Palo Alto configs
 - [ ] **Container Deployment**: Docker-based scheduled backup service
 - [ ] **Testing & Validation**: Automated tests verify backup integrity
-- [ ] **Cost Optimization**: Deduplication and incremental backups
+- [ ] **Cost Optimisation**: Deduplication and incremental backups
 
 These topics are covered in our **Intermediate** and **Expert** tutorials!
 
@@ -1196,7 +1196,7 @@ These topics are covered in our **Intermediate** and **Expert** tutorials!
 
 ✅ File I/O and directory management  
 ✅ Configuration retrieval and archival  
-✅ Timestamped backup organization  
+✅ Timestamped backup organisation  
 ✅ Backup manifest creation  
 ✅ Error handling and recovery  
 ✅ Multi-device orchestration  

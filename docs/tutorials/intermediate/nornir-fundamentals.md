@@ -67,7 +67,7 @@ pip install nornir nornir-netmiko nornir-utils netmiko pandas pyyaml
 
 ## 🏗️ Nornir Project Structure
 
-Create a directory for your Nornir project and organize it like this:
+Create a directory for your Nornir project and organise it like this:
 
 ```
 my-nornir-automation/
@@ -673,6 +673,7 @@ for host_name, result in backup_results.items():
 ```
 
 **Structure:** `backup_results[device_name][0].result`
+
 - Device name from inventory
 - Index [0] because each device might have multiple task runs
 - `.result` is your returned data
@@ -702,7 +703,7 @@ Let's measure the difference:
 
 ### Changing Device Groups
 
-Inventory groups organize devices by type:
+Inventory groups organise devices by type:
 
 ```yaml
 # inventory/groups.yaml
@@ -837,7 +838,7 @@ def my_task(task: Task) -> Result:  # ← Must match this
 
 Congratulations! You've learned:
 
-✅ **Inventory Management** — Organize devices in YAML  
+✅ **Inventory Management** — Organise devices in YAML  
 ✅ **Task Functions** — Write once, Nornir runs on all devices  
 ✅ **Parallel Execution** — Automatic parallelization, no threading headaches  
 ✅ **Result Aggregation** — Unified results from all devices  

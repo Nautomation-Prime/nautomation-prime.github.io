@@ -30,7 +30,7 @@ By completing these intermediate tutorials, you'll understand:
 - ✅ Nornir's inventory system and device grouping
 - ✅ Multi-device result aggregation and processing
 - ✅ Error handling and resilience at enterprise scale
-- ✅ Performance optimization and benchmarking
+- ✅ Performance optimisation and benchmarking
 - ✅ Credential management and security best practices
 - ✅ How to architect systems for production deployment
 
@@ -106,7 +106,7 @@ Learn:
 - Database integration for backup metadata
 - Change detection and compliance checking
 - Complete production architecture
-- Performance optimization
+- Performance optimisation
 
 **What You'll Build:** A complete enterprise backup system with timestamped backups, change detection, database logging, and compliance scoring.
 
@@ -123,7 +123,7 @@ Learn:
 - Middleware and execution pipelines
 - Advanced error handling and retry strategies
 - State management across tasks
-- Memory optimization for large networks (10k+ devices)
+- Memory optimisation for large networks (10k+ devices)
 - Multi-vendor support and platform abstraction
 - Integrating with external systems (APIs, databases, message queues)
 - Testing and debugging Nornir tasks

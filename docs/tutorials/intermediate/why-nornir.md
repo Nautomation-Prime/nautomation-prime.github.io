@@ -14,7 +14,7 @@ tags:
 
 ## "From 30 Minutes to 3 Minutes — Why Enterprise Networks Need Parallel Automation"
 
-You've completed the [Beginner Tutorials](../beginner/index.md) and successfully built a multi-device config backup script. It works great for 10 devices, even 50 devices. But what if your organization has 500 devices? Or 5,000?
+You've completed the [Beginner Tutorials](../beginner/index.md) and successfully built a multi-device config backup script. It works great for 10 devices, even 50 devices. But what if your organisation has 500 devices? Or 5,000?
 
 In this tutorial, we'll uncover the critical scalability problem with your current approach, demonstrate how it manifests in real networks, and introduce **Nornir**—the solution designed for enterprise automation.
 
@@ -79,7 +79,7 @@ Let's do some math:
 ```
 6 seconds × 10 concurrent connections = 0.6 seconds per "round"
 300 ÷ 10 = 30 rounds
-30 × 0.6 = 18 seconds (worst case, can be faster with optimization)
+30 × 0.6 = 18 seconds (worst case, can be faster with optimisation)
 ```
 
 **Real-world result:** The same job takes 30 minutes with your current script but only 2-3 minutes with Nornir.
@@ -337,7 +337,7 @@ Nornir Instance
 
 ## 🎯 The Production Reality
 
-In real organizations, here's what happens:
+In real organisations, here's what happens:
 
 **Month 1:** *"Let's automate config backups!"*  
 → Build Tutorial #3 script  

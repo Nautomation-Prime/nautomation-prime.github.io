@@ -1029,7 +1029,7 @@ This tutorial demonstrates the **Implement** stage:
 - Custom inventory plugins (Netbox integration)
 - Middleware for cross-task logic
 - Advanced error handling
-- Memory optimization for 10,000+ devices
+- Memory optimisation for 10,000+ devices
 - Multi-vendor support
 
 ---

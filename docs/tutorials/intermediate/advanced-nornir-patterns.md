@@ -1,6 +1,6 @@
 ---
 title: Advanced Nornir Patterns - Production-Grade Architecture
-description: Master advanced Nornir patterns for enterprise deployment - custom plugins, middleware, multi-vendor support, memory optimization, and testing.
+description: Master advanced Nornir patterns for enterprise deployment - custom plugins, middleware, multi-vendor support, memory optimisation, and testing.
 tags:
   - Intermediate
   - Nornir
@@ -28,7 +28,7 @@ By the end of this tutorial, you'll understand:
 - ✅ Middleware and execution pipelines
 - ✅ Advanced error handling, retry logic, and circuit breakers
 - ✅ State management across tasks
-- ✅ Memory optimization for 10,000+ devices
+- ✅ Memory optimisation for 10,000+ devices
 - ✅ Multi-vendor device support
 - ✅ Testing and mocking Nornir tasks
 - ✅ Debugging complex workflows
@@ -483,7 +483,7 @@ def backup_multivendor(task: Task) -> Result:
 
 ---
 
-## 📈 Pattern 6: Memory Optimization for 10k+ Devices
+## 📈 Pattern 6: Memory Optimisation for 10k+ Devices
 
 When managing thousands of devices, memory becomes critical:
 
@@ -793,7 +793,7 @@ def main():
         nornir = InitNornir(config_file="nornir_config.yaml")
         results = nornir.run(task=backup_config)
     
-    # Output shows slowest operations -> optimize those first
+    # Output shows slowest operations -> optimise those first
 ```
 
 ---
@@ -807,7 +807,7 @@ def main():
 | Retry Logic | Unreliable networks | Automatic recovery |
 | State Management | Multi-step workflows | Data coordination |
 | Multi-vendor | Heterogeneous networks | One system for all vendors |
-| Memory Optimization | 10k+ devices | Unlimited scale |
+| Memory Optimisation | 10k+ devices | Unlimited scale |
 | Testing | Quality assurance | Prevent regressions |
 | Debugging | Troubleshooting | Fast issue resolution |
 | Integrations | External systems | Workflow automation |
@@ -823,7 +823,7 @@ These advanced patterns are what enable the **Implement** stage of the PRIME Fra
 - **Transparent:** Logging, profiling, and metrics built-in
 - **Reliable:** Error handling, retry logic, and testing ensure production readiness
 
-**This is where consulting engagements live** — organizations pay for someone who knows these patterns and can architect systems correctly from the start.
+**This is where consulting engagements live** — organisations pay for someone who knows these patterns and can architect systems correctly from the start.
 
 ---
 
@@ -867,12 +867,12 @@ After completing all 4 intermediate tutorials:
 ✅ **Core Concepts** — Tasks, inventory, parallel execution  
 ✅ **Production Systems** — Database integration, compliance, change detection  
 ✅ **Advanced Patterns** — Plugins, middleware, multi-vendor, testing  
-✅ **Enterprise Scale** — Memory optimization, integrations, profiling  
+✅ **Enterprise Scale** — Memory optimisation, integrations, profiling  
 
 You're now equipped to:
 - Build systems from scratch
 - Debug complex automation
-- Optimize for performance
+- Optimise for performance
 - Scale to enterprise size
 - Lead automation initiatives
 
