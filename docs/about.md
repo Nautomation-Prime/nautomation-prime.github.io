@@ -78,7 +78,8 @@ All tools are available on GitHub under GPL-3.0 license.
 Structured automation delivery through a proven 5-stage methodology:
 
 **[Pinpoint](./prime-framework/pinpoint.md)** → **[Re-engineer](./prime-framework/re-engineer.md)** → **[Implement](./prime-framework/implement.md)** → **[Measure](./prime-framework/measure.md)** → **[Empower](./prime-framework/empower.md)**
-The Prime Philosophy {:#prime-philosophy}
+
+## The Prime Philosophy {:#prime-philosophy}
 
 Every tool, guide, and service adheres to three core engineering principles:
 

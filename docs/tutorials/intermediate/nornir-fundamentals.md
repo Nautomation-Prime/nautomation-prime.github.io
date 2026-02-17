@@ -16,7 +16,7 @@ tags:
 
 Now that you understand **why** Nornir matters ([Tutorial #1](./why-nornir.md)), let's learn **how** to use it.
 
-In this tutorial, we'll build your first Nornir automation. You'll take the same logic from [Beginner Tutorial #3](../../beginner/multi-device-config-backup.md) and transform it into a parallel system that runs 10x faster.
+In this tutorial, we'll build your first Nornir automation. You'll take the same logic from [Beginner Tutorial #3](../beginner/multi-device-config-backup.md) and transform it into a parallel system that runs 10x faster.
 
 **Best part:** The business logic (how to connect to devices and retrieve configs) is almost identical. Nornir just handles the parallelization automatically.
 
@@ -41,7 +41,7 @@ By the end of this tutorial, you'll understand:
 ### Required Knowledge
 
 - ✅ **Completed [Tutorial #1: Why Nornir](./why-nornir.md)** — Understand the problem we're solving
-- ✅ **Completed [Beginner Tutorial #3](../../beginner/multi-device-config-backup.md)** — Familiar with Netmiko and device connections
+- ✅ **Completed [Beginner Tutorial #3](../beginner/multi-device-config-backup.md)** — Familiar with Netmiko and device connections
 - ✅ Understanding of Python functions, dictionaries
 - ✅ Basic YAML format understanding
 

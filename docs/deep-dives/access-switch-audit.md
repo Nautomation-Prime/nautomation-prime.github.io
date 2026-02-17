@@ -13,7 +13,7 @@ tags:
 # Deep Dive: Access Switch Port Audit Tool
 ### "Enterprise Port Intelligence, Distilled to Pure Python."
 
-> **Version 2.0 Update:** This tool has been restructured into a professional Python package with modular architecture. All functionality remains identical, but the code is now organized following enterprise best practices. See the [Migration Guide](#-migration-guide-v10--v20) below for details.
+> **Version 2.0 Update:** This tool has been restructured into a professional Python package with modular architecture. All functionality remains identical, but the code is now organized following enterprise best practices. See the [Migration Guide](#migration-guide-v10-v20) below for details.
 
 A modular Python utility that connects to Cisco switches (optionally through an SSH jump host), collects comprehensive interface details, PoE information, and neighbor presence, then exports a professional, filters-only Excel workbook with a SUMMARY sheet and one sheet per device. Built for production reliability with **YAML-based configuration**, **intelligent fallback parsing**, and **customizable credential management**.
 
@@ -35,7 +35,7 @@ A modular Python utility that connects to Cisco switches (optionally through an 
     
     **For End Users:** Everything works the same! All CLI arguments, configuration options, and output formats are identical.
     
-    **For Developers:** See the [Migration Guide](#-migration-guide-v10--v20) for updated import paths and structure details.
+    **For Developers:** See the [Migration Guide](#migration-guide-v10-v20) for updated import paths and structure details.
     
     📖 Full details in [MIGRATION.md](https://github.com/Nautomation-Prime/Access_Switch_Audit/blob/main/MIGRATION.md)
 

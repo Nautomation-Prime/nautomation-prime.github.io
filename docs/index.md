@@ -124,15 +124,15 @@ Open-source, production-ready automation tools for Cisco infrastructure.
 **Available:** CDP Network Audit, Access Switch Audit  
 **Coming Soon:** IOS-XE Upgrade Orchestrator, Zero Touch Provisioning (ZTP)
 
-### 🐳 [Scheduled Automation (Docker)](./services.md#scheduled-automation)
+### 🐳 [Scheduled Automation (Docker)](./services.md#scheduled-docker-containers)
 
 Pre-built containers for continuous network oversight. Daily config audits, health checks, and automated reporting—no human intervention needed.
 
-### 🚀 [Zero-Install Bundles](./services.md#zero-install-deployment-portable-bundles)
+### 🚀 [Zero-Install Bundles](./services.md#zero-install-portable-bundles)
 
 No Python installed? No problem. Portable, "plug-and-play" bundles run on Windows and Linux without installation or admin rights. Full source code included.
 
-### 🛠️ [Bespoke Services](./services.md#custom-python-scripting)
+### 🛠️ [Bespoke Services](./services.md#standard-python-scripts)
 
 Custom solutions tailored to your topology. Expert consultancy for Zero Trust deployment, bulk provisioning, ISE automation, and more.
 

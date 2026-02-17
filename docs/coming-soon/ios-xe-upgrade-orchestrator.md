@@ -22,7 +22,7 @@ tags:
 - [High-Level Architecture](#high-level-architecture) - System components and design philosophy
 - [Workflow Stages](#workflow-stages-end-to-end-upgrade-process) - End-to-end upgrade process breakdown
 - [Platform-Specific Handling](#edge-case-handling) - ISSU, dual SUPs, StackWise considerations
-- [Rollback Mechanisms](#7-rollback-and-recovery) - Recovery strategies and procedures
+- [Rollback Mechanisms](#rollback-and-recovery) - Recovery strategies and procedures
 - [Security Considerations](#security-considerations) - Credential management and access controls
 - [Module Breakdown](#modular-breakdown-key-components) - Detailed component architecture
 

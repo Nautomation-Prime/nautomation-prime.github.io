@@ -37,7 +37,7 @@ By the end of this tutorial, you'll understand:
 
 ## 🔴 The Problem: Sequential Bottleneck
 
-Let's revisit your [Beginner Tutorial #3](../../beginner/multi-device-config-backup.md):
+Let's revisit your [Beginner Tutorial #3](../beginner/multi-device-config-backup.md):
 
 ```python
 # From Tutorial #3 — The Serial Approach

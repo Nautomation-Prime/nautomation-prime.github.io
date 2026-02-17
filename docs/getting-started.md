@@ -82,7 +82,7 @@ We deliver automation projects through the **[PRIME Framework](prime-framework/i
 
 **Technical Requirements:**
 
-- **Python 3.8+** (or use our [portable bundles](services.md#zero-install-deployment-portable-bundles) if Python isn't available)
+- **Python 3.8+** (or use our [portable bundles](services.md#zero-install-portable-bundles) if Python isn't available)
 - **Network access** to your Cisco devices
 - **Credentials** for device authentication
 - **SSH enabled** on target Cisco devices
@@ -149,7 +149,7 @@ For structured automation projects with proven ROI:
 
 ### Use Portable Bundles (No Python Installation)
 
-1. Request a custom bundle through our [services page](services.md#zero-install-deployment-portable-bundles)
+1. Request a custom bundle through our [services page](services.md#zero-install-portable-bundles)
 2. Download the bundle to your workstation or USB drive
 3. Extract and run directly—no installation needed
 4. Full source code is included for auditing
