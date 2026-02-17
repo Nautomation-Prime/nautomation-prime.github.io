@@ -195,7 +195,7 @@ Bespoke client code is licenced under **MIT** or **Apache 2.0** as agreed during
 
 ### Use Our Tools
 
-Browse the [Script Librarynetwork engineers through the **[PRIME Framework](./prime-framework/index.md)**—delivering automation with measurable ROI, production-grade quality, and sustainable team capability built on the **Prime Philosophy** of transparency, reliability, and pragmatism
+Browse the [Script Library](scripts/index.md) for ready-to-use automation tools and production-grade code samples.
 
 ### Learn Network Automation
 
