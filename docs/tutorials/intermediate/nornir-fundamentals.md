@@ -49,7 +49,9 @@ By the end of this tutorial, you'll understand:
 ```bash
 # Create a virtual environment
 python -m venv nornir_venv
-source nornir_venv/bin/activate  # On Windows: nornir_venv\Scripts\activate
+source nornir_venv/bin/activate
+# Windows PowerShell: .\nornir_venv\Scripts\Activate.ps1
+# Windows CMD: nornir_venv\Scripts\activate.bat
 
 # Install required packages
 pip install nornir nornir-netmiko nornir-utils netmiko pandas pyyaml
@@ -181,7 +183,7 @@ python minimal_example.py
 ✓ switch2: SUCCESS
 ```
 
-**What just happened:** All 3 devices ran in parallel. You can feel the difference if you time it (`time python minimal_example.py`). With a sequential script, it would take 3x longer.
+**What just happened:** All 3 devices ran in parallel. You can feel the difference if you time it (`time python minimal_example.py` on Linux/Mac, `Measure-Command { python minimal_example.py }` in PowerShell). With a sequential script, it would take 3x longer.
 
 **Key insight:** The `@task` decorator with `num_workers: 3` handled all the parallelization automatically. You focused on the logic, Nornir handled the concurrency.
 
@@ -638,7 +640,9 @@ mkdir configs
 
 # Create virtual environment
 python -m venv venv
-source venv/bin/activate  # Windows: venv\Scripts\activate
+source venv/bin/activate
+# Windows PowerShell: .\venv\Scripts\Activate.ps1
+# Windows CMD: venv\Scripts\activate.bat
 
 # Install dependencies
 pip install nornir nornir-netmiko nornir-utils netmiko getpass pyyaml
@@ -1039,6 +1043,7 @@ ssh -v admin@192.168.1.1
 ```
 
 The verbose output (-v) shows exactly where it's hanging.
+Windows PowerShell uses the same command if OpenSSH client is installed.
 
 ### Issue 3: "YAML parsing error" in inventory
 
@@ -1071,6 +1076,7 @@ ulimit -n
 
 # Typical defaults range from ~256-1024
 # If ulimit -n is 1024, keep num_workers <= 100
+# Windows: no ulimit equivalent, start with 10-20 workers and increase slowly
 ```
 
 **Solution:** Reduce `num_workers` in `nornir_config.yaml`:
@@ -1461,11 +1467,15 @@ Thumbs.db
 ```bash
 # One-time setup
 python -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
+source venv/bin/activate
+# Windows PowerShell: .\venv\Scripts\Activate.ps1
+# Windows CMD: venv\Scripts\activate.bat
 pip install -r requirements.txt
 
 # Load your .env file
-cp .env.example .env
+cp .env.example .env  # Linux/Mac
+# Windows PowerShell: Copy-Item .env.example .env
+# Windows CMD: copy .env.example .env
 # Edit .env with your credentials
 
 # Verify setup

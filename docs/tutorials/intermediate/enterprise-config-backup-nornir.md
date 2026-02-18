@@ -1646,6 +1646,8 @@ chmod +x backup.py
 ./backup.py --help
 ```
 
+**Windows:** No chmod needed. Run `python backup.py --help`.
+
 ### Improvement: Configuration File for Defaults
 
 ```yaml
@@ -1872,6 +1874,11 @@ finally:
 0 2 * * * /path/to/backup.py >> /var/log/nornir_backup.log 2>&1
 ```
 
+**Windows Task Scheduler action (example):**
+```powershell
+python C:\nornir\backup.py --group ios_devices >> C:\Logs\nornir_backup.log 2>&1
+```
+
 ✅ **Alert on failure** — Send email/Slack when backup fails
 ```python
 import subprocess
@@ -1915,6 +1922,15 @@ tail -f /var/log/syslog | grep nornir
 
 # View cron history
 grep nornir /var/log/syslog
+```
+
+**Check Task Scheduler logs (Windows):**
+```powershell
+# Task run history
+Get-ScheduledTaskInfo -TaskName "NornirBackup"
+
+# Event log entries
+Get-WinEvent -LogName Microsoft-Windows-TaskScheduler/Operational -MaxEvents 20
 ```
 
 **Check systemd timer (Linux):**
@@ -2316,6 +2332,8 @@ logging.getLogger('paramiko').setLevel(logging.DEBUG)
 
 # Or on bastion side, monitor SSH:
 # tail -f /var/log/auth.log | grep "Accepted publickey"
+# Windows OpenSSH Server logs (Event Viewer or PowerShell):
+# Get-WinEvent -LogName OpenSSH/Operational -MaxEvents 20
 ```
 
 ### Production Architecture
@@ -2324,7 +2342,7 @@ logging.getLogger('paramiko').setLevel(logging.DEBUG)
 
 ```mermaid
 flowchart TB
-    AutoServer["Automation Server<br/>(Linux)"]
+    AutoServer["Automation Server<br/>(Windows/Linux)"]
     
     AutoServer -->|SSH| Bastion1["Bastion1<br/>(Primary)"]
     AutoServer -->|SSH| Bastion2["Bastion2<br/>(Failover)"]

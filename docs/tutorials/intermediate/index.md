@@ -143,7 +143,9 @@ Before starting these tutorials:
 ```bash
 # Create a virtual environment
 python -m venv nornir_env
-source nornir_env/bin/activate  # On Windows: nornir_env\Scripts\activate
+source nornir_env/bin/activate
+# Windows PowerShell: .\nornir_env\Scripts\Activate.ps1
+# Windows CMD: nornir_env\Scripts\activate.bat
 
 # Install required packages
 pip install nornir nornir-netmiko nornir-utils netmiko pandas openpyxl pyyaml
