@@ -87,6 +87,131 @@ Nornir Task Flow:
 
 **Key difference from Tutorial #2:** Each device's data flows through a 5-step pipeline.
 
+### Complete System Diagram
+
+```mermaid
+flowchart TD
+    Start([Enterprise Backup Job]) --> Init["Initialize Nornir<br/>Load inventory"]
+    
+    Init --> PoolIn["Connection Pool<br/>(parallel workers)"]
+    
+    PoolIn --> T1["Task 1: backup_config<br/>for each device"]
+    
+    T1 --> T2["Task 2: save_config<br/>Write to DB & filesystem"]
+    
+    T2 --> Compare["Task 3: detect_changes<br/>Compare with previous"]
+    
+    Compare --> Compliance["Task 4: compliance_check<br/>Security scoring"]
+    
+    Compliance --> Report["Task 5: generate_report<br/>Summary output"]
+    
+    Report --> Aggregate["Aggregate Results"]
+    
+    Aggregate --> DBLog["Log to Database<br/>backups, compliance, changes"]
+    
+    DBLog --> FileOut["Save Configs<br/>to Filesystem"]
+    
+    FileOut --> Output["Generate Report<br/>Console + File"]
+    
+    Output --> End(["Job Complete<br/>All devices processed"])
+    
+    style Init fill:#ccffcc
+    style PoolIn fill:#ccffcc
+    style T1 fill:#ffffcc
+    style T2 fill:#ffffcc
+    style Compare fill:#ffffcc
+    style Compliance fill:#ffffcc
+    style Report fill:#ffffcc
+    style Aggregate fill:#ccffcc
+    style DBLog fill:#ffcccc
+    style FileOut fill:#ffcccc
+```
+
+---
+
+## ⚡ Start Simple: Minimal Enterprise Example
+
+Before building the full system above, let's start with just the filesystem version (no database). This shows the core pattern.
+
+### Step 1: Basic Multi-Step Task Pipeline
+
+Create `simple_backup.py`:
+
+```python
+#!/usr/bin/env python3
+"""
+Simple backup (no database, just files)
+Shows task composition pattern
+"""
+
+from nornir import InitNornir
+from nornir.core.task import Task, Result
+from nornir_netmiko.tasks import netmiko_send_command
+from datetime import datetime
+import os
+
+@task
+def get_config(task: Task) -> Result:
+    """Step 1: Get the config"""
+    result = task.run(
+        netmiko_send_command,
+        command_string="show running-config"
+    )
+    
+    config = result[0].result
+    return Result(
+        host=task.host,
+        result={'config': config, 'timestamp': datetime.now()}
+    )
+
+@task
+def save_to_file(task: Task, config_data: dict) -> Result:
+    """Step 2: Save it to disk"""
+    device_name = task.host.name
+    
+    os.makedirs("configs", exist_ok=True)
+    filename = f"configs/{device_name}_backup.txt"
+    
+    with open(filename, 'w') as f:
+        f.write(config_data['config'])
+    
+    return Result(
+        host=task.host,
+        result={'filepath': filename, 'size': len(config_data['config'])}
+    )
+
+# Initialize and run
+nr = InitNornir(config_file="nornir_config.yaml")
+
+# Get password
+import getpass
+pwd = getpass.getpass("Password: ")
+for host in nr.inventory.hosts.values():
+    host.password = pwd
+
+# Run pipelines
+print("\n✓ Step 1: Getting configs from all devices...")
+results1 = nr.run(task=get_config)
+
+print("✓ Step 2: Saving to filesystem...")
+# For each device, save its config
+for device_name, result_obj in results1.items():
+    if not result_obj.failed:
+        config_data = result_obj[device_name].result
+        # Save this device's config
+        save_task = nr.filter(name=device_name)
+        save_task.run(task=save_to_file, config_data=config_data)
+
+print("\n✓ Done! Check ./configs/ directory")
+```
+
+**Why this matters:** By breaking it into separate steps, we can:
+1. Add change detection between saves
+2. Add compliance checking
+3. Add database logging
+4. Each step can have different error handling
+5. Each step can run on different devices
+
 ---
 
 ## 🗄️ Database Schema
@@ -993,6 +1118,559 @@ def cleanup_old_backups(days_to_keep=30):
 
 ---
 
+## ⚠️ Real-World Gotchas & Edge Cases
+
+### Gotcha 1: Device Throws Connection Error Mid-Pipeline
+
+**Scenario:** Device connects fine for `backup_config`, then drops during `compliance_check`.
+
+**What happens without handling:**
+```python
+# ✗ BAD: Entire pipeline fails
+result1 = nr.run(backup_config)      # Device connects ✓
+result2 = nr.run(compliance_check)   # Device drops ✗ Pipeline aborts
+```
+
+**Solution:** Add error recovery in each task:
+```python
+@task
+def compliance_check(task: Task, config: str) -> Result:
+    try:
+        # Your checks
+        return Result(host=task.host, result={...})
+    except Exception as e:
+        # Return failed result, don't crash
+        logger.warning(f"[{task.host.name}] Compliance check failed: {e}")
+        return Result(
+            host=task.host,
+            result={'score': 0, 'issues': [str(e)]},
+            failed=True  # ← Mark as failed but pipeline continues
+        )
+```
+
+**Key:** `failed=True` tells Nornir "this device failed but keep going"
+
+### Gotcha 2: Database Locked (SQLite Limitation)
+
+**Scenario:** Multiple Python processes running backups simultaneously.
+
+**What happens:** `sqlite3.OperationalError: database is locked`
+
+**Root cause:** SQLite only allows one writer at a time.
+
+**Solutions:**
+
+1. **Use connection timeout (simplest fix):**
+   ```python
+   conn = sqlite3.connect("backup.db", timeout=30.0)  # Wait 30 seconds if locked
+   ```
+
+2. **Use PostgreSQL for multi-process writes (best for scale):**
+   ```python
+   import psycopg2
+   conn = psycopg2.connect("dbname=backup user=admin password=secret host=localhost")
+   ```
+
+3. **Single writer approach (middle ground):**
+
+   - Main process does backups
+   - Separate process writes to database
+   - Use message queue (Redis) to pass results between
+
+### Gotcha 3: Config File Size Explosion
+
+**Scenario:** You backup 1,000 devices daily. After 1 year: 365,000 configs × average 50KB = 18GB storage.
+
+**Solution:** Compress configs and use retention policies:
+
+```python
+import gzip
+
+def save_config(task: Task, config: str) -> Result:
+    filename = f"configs/{task.host.name}.txt.gz"
+    
+    # Compress before saving
+    with gzip.open(filename, 'wt') as f:
+        f.write(config)
+    
+    return Result(host=task.host, result={'filepath': filename})
+
+# Cleanup script
+def cleanup_old_backups(days_to_keep=30):
+    cutoff = datetime.datetime.now() - datetime.timedelta(days=days_to_keep)
+    
+    for filepath in glob.glob("configs/*.gz"):
+        if os.path.getmtime(filepath) < cutoff.timestamp():
+            os.remove(filepath)
+```
+
+### Gotcha 4: Comparing Configs Incorrectly
+
+**Scenario:** Config comparison shows "changed" but only whitespace/timestamps differ.
+
+```
+# Actual diff:
+- Last config saved: Tuesday 3:00 AM
++ Last config saved: Wednesday 3:00 AM
+```
+
+**Solution:** Normalize configs before comparison:
+
+```python
+def normalize_config(config):
+    # Remove timestamps and automation markers
+    lines = []
+    for line in config.split('\n'):
+        # Skip timestamp lines
+        if 'last config' in line.lower():
+            continue
+        if 'by v' in line.lower():  # Skip "generated by version X"
+            continue
+        lines.append(line)
+    
+    return '\n'.join(lines)
+
+# In compare function:
+previous_normalized = normalize_config(previous_config)
+current_normalized = normalize_config(current_config)
+
+changed = (previous_normalized != current_normalized)
+```
+
+### Gotcha 5: Compliance Checks That Are Too Strict
+
+**Scenario:** You set compliance to check for features that not all device types support.
+
+```python
+# ✗ BAD: Router doesn't have "spanning-tree"
+security_checks = {
+    'spanning-tree': ('STP required', 10),  # Wrong for routers!
+}
+```
+
+**Solution:** Group-based compliance policies:
+
+```python
+COMPLIANCE_CHECKS = {
+    'ios_switch': {
+        'spanning-tree': ('STP required', 10),
+        'vlan': ('VLANs required', 15),
+    },
+    'ios_router': {
+        'nat': ('NAT required', 10),
+        'route-map': ('Route policies required', 15),
+    }
+}
+
+def compliance_check(task: Task, config: str) -> Result:
+    device_type = task.host.group[0]  # Get device type
+    checks = COMPLIANCE_CHECKS.get(device_type, {})
+    
+    # Apply only relevant checks
+    for check_key, (issue, penalty) in checks.items():
+        # ... rest of logic
+```
+
+### Gotcha 6: Running Out of Memory with Large Configs
+
+**Scenario:** 100 devices × 2MB configs = 200MB in memory at once.
+
+**With 10,000 devices:** 20GB+ in memory = crash
+
+**Solution:** Process results in batches:
+
+```python
+# Instead of:
+all_results = nr.run(backup_config)
+process_all(all_results)  # ← Load everything at once
+
+# Use:
+for batch_of_devices in chunked(nr.inventory.hosts, chunk_size=100):
+    filtered = nr.filter(name__in=batch_of_devices)
+    results = filtered.run(backup_config)
+    
+    # Process batch immediately, then free memory
+    process_batch(results)
+```
+
+---
+
+## 🐛 Advanced Troubleshooting
+
+### Debugging a Specific Device
+
+```bash
+# Test connection to one device
+python -c "
+from nornir import InitNornir
+nr = InitNornir(config_file='nornir_config.yaml')
+device = nr.filter(name='router1')
+device.run(my_task)
+"
+```
+
+### Logging to File for Post-Analysis
+
+```python
+import logging
+
+# Setup file logging
+fh = logging.FileHandler('backup.log')
+fh.setLevel(logging.DEBUG)
+
+logger = logging.getLogger()
+logger.addHandler(fh)
+
+# Now all logs go to backup.log
+nr.run(backup_config)
+
+print("Logs saved to backup.log")
+```
+
+### Printing Full Tracebacks for Errors
+
+```python
+import traceback
+
+try:
+    nr.run(backup_config)
+except Exception:
+    traceback.print_exc()  # ← Shows full stack trace
+```
+
+---
+
+## 🔐 Secret Management Best Practices
+
+**NEVER hardcode credentials in code or YAML files!**
+
+### Secure Pattern 1: Environment Variables
+
+Best for: Small teams, dev/test environments, CI/CD
+
+```python
+import os
+from dotenv import load_dotenv
+
+# Load from .env file (never commit this!)
+load_dotenv()
+
+device_password = os.environ.get('DEVICE_PASSWORD')
+device_username = os.environ.get('DEVICE_USERNAME')
+
+if not device_password:
+    raise ValueError("DEVICE_PASSWORD not set in environment")
+
+# Update Nornir inventory
+nr = InitNornir(config_file="nornir_config.yaml")
+for host in nr.inventory.hosts.values():
+    host.username = device_username
+    host.password = device_password
+```
+
+**Create `.env` file** (gitignored):
+```bash
+DEVICE_USERNAME=admin
+DEVICE_PASSWORD=your_real_password
+```
+
+### Secure Pattern 2: Interactive Prompt
+
+Best for: Ad-hoc scripts, avoiding env var exposure
+
+```python
+import getpass
+
+device_password = getpass.getpass("Enter device password: ")
+
+nr = InitNornir(config_file="nornir_config.yaml")
+for host in nr.inventory.hosts.values():
+    host.password = device_password
+```
+
+### Secure Pattern 3: HashiCorp Vault Integration
+
+Best for: Enterprise, centralized secret management
+
+```python
+import hvac
+
+# Connect to Vault
+vault_client = hvac.Client(url='https://vault.example.com:8200')
+
+# Authenticate (use token, AppRole, or other auth method)
+vault_client.auth.approle.login(role_id='your_role_id', secret_id='your_secret_id')
+
+# Fetch secret
+secrets = vault_client.secrets.kv.read_secret_version(path='network/credentials')
+device_password = secrets['data']['data']['password']
+
+# Use in Nornir
+for host in nr.inventory.hosts.values():
+    host.password = device_password
+```
+
+**Install Vault client:**
+```bash
+pip install hvault
+```
+
+### Secure Pattern 4: AWS Secrets Manager
+
+Best for: AWS environments
+
+```python
+import boto3
+import json
+
+# Connect to AWS Secrets Manager
+client = boto3.client('secretsmanager', region_name='us-east-1')
+
+# Fetch secret
+response = client.get_secret_value(SecretId='network/device-credentials')
+secret = json.loads(response['SecretString'])
+
+device_password = secret['password']
+device_username = secret['username']
+```
+
+### Secure Pattern 5: Per-Device Credentials (Advanced)
+
+Best for: Multi-tenant networks with different credentials per device
+
+```yaml
+# inventory/hosts.yaml
+router1:
+  hostname: 10.1.1.1
+  groups:
+    - ios_devices
+  data:
+    vault_path: "network/credentials/router1"
+
+router2:
+  hostname: 10.1.1.2
+  groups:
+    - ios_devices
+  data:
+    vault_path: "network/credentials/router2"
+```
+
+Then in code:
+```python
+def fetch_credentials_for_host(host):
+    """Fetch host-specific credentials from Vault"""
+    vault_path = host.data.get('vault_path')
+    # ... fetch from Vault using vault_path ...
+    return username, password
+```
+
+### Security Checklist
+
+✅ **Never commit `.env` files** — add to `.gitignore`  
+✅ **Rotate credentials regularly** — especially if exposed  
+✅ **Use HTTPS for credential transport** — Vault, AWS, or internal APIs  
+✅ **Log access to secrets** — audit who fetched what, when  
+✅ **Limit secret scope** — give each process only what it needs  
+✅ **Use service accounts** — not personal credentials  
+✅ **Encrypt at rest** — database, filesystem, backups  
+
+---
+
+## 🎛️ Building CLI Tools with Nornir
+
+Turn your Nornir script into a professional CLI tool:
+
+### Basic CLI with `argparse`
+
+```python
+#!/usr/bin/env python3
+"""
+Enterprise Config Backup CLI
+Usage: python backup.py --help
+"""
+
+import argparse
+import sys
+from nornir import InitNornir
+from tasks.enterprise_backup import backup_config
+
+def main():
+    parser = argparse.ArgumentParser(
+        description="Enterprise Configuration Backup System",
+        epilog="Examples:\n  python backup.py --group ios_devices\n  python backup.py --filter 'router' --dry-run"
+    )
+    
+    # Positional arguments (required)
+    # (none in this example)
+    
+    # Optional arguments
+    parser.add_argument(
+        '--host',
+        help='Backup specific device by name (e.g., "router1")'
+    )
+    
+    parser.add_argument(
+        '--group',
+        help='Backup entire device group (e.g., "ios_devices")'
+    )
+    
+    parser.add_argument(
+        '--filter',
+        help='Filter devices by substring in name (e.g., "router" matches "router1", "router2")'
+    )
+    
+    parser.add_argument(
+        '--dry-run',
+        action='store_true',
+        help='Show what would be backed up without actually backing up'
+    )
+    
+    parser.add_argument(
+        '--verbose', '-v',
+        action='count',
+        default=0,
+        help='Increase verbosity (-v, -vv, -vvv)'
+    )
+    
+    parser.add_argument(
+        '--workers',
+        type=int,
+        default=10,
+        help='Number of parallel workers (default: 10)'
+    )
+    
+    parser.add_argument(
+        '--timeout',
+        type=int,
+        default=30,
+        help='Connection timeout in seconds (default: 30)'
+    )
+    
+    args = parser.parse_args()
+    
+    try:
+        # Initialize Nornir
+        nr = InitNornir(config_file="nornir_config.yaml")
+        
+        # Apply filters
+        if args.host:
+            nr = nr.filter(name=args.host)
+        elif args.group:
+            nr = nr.filter(group=args.group)
+        elif args.filter:
+            nr = nr.filter(func=lambda h: args.filter.lower() in h.name.lower())
+        
+        # Show what will run
+        if args.dry_run:
+            print(f"DRY RUN: Would backup {len(nr.inventory.hosts)} devices:")
+            for host in nr.inventory.hosts.values():
+                print(f"  - {host.name} ({host.hostname})")
+            return 0
+        
+        # Confirm with user
+        if len(nr.inventory.hosts) == 0:
+            print("❌ No devices matched criteria")
+            return 1
+        
+        print(f"✓ Backing up {len(nr.inventory.hosts)} devices...")
+        
+        # Get password
+        import getpass
+        password = getpass.getpass("Device password: ")
+        
+        for host in nr.inventory.hosts.values():
+            host.password = password
+        
+        # Run backup
+        results = nr.run(task=backup_config)
+        
+        # Print summary
+        failed = sum(1 for r in results.values() if r.failed)
+        succeeded = len(results) - failed
+        
+        print(f"\n✓ Succeeded: {succeeded}/{len(results)}")
+        if failed > 0:
+            print(f"✗ Failed: {failed}/{len(results)}")
+            for host, result in results.items():
+                if result.failed:
+                    print(f"  - {host}: {result[host].exception}")
+        
+        return 0 if failed == 0 else 1
+        
+    except Exception as e:
+        print(f"❌ Error: {str(e)}")
+        if args.verbose >= 2:
+            import traceback
+            traceback.print_exc()
+        return 1
+
+if __name__ == "__main__":
+    sys.exit(main())
+```
+
+### Using the CLI
+
+```bash
+# Show all options
+python backup.py --help
+
+# Backup a single device
+python backup.py --host router1
+
+# Backup all routers
+python backup.py --group ios_routers
+
+# Backup devices with "core" in the name
+python backup.py --filter core
+
+# Dry run to see what would run
+python backup.py --group ios_devices --dry-run
+
+# Verbose output for debugging
+python backup.py --group ios_devices -vv
+
+# Custom worker count
+python backup.py --group ios_devices --workers 20
+
+# Longer timeout for slow devices
+python backup.py --group slow_devices --timeout 60
+```
+
+### Make It Executable (Linux/Mac)
+
+```bash
+chmod +x backup.py
+
+# Now you can run it without 'python'
+./backup.py --help
+```
+
+### Improvement: Configuration File for Defaults
+
+```yaml
+# cli_config.yaml
+defaults:
+  workers: 10
+  timeout: 30
+  verbose: false
+
+prompts:
+  confirm_before_backup: true
+  show_device_list: true
+```
+
+Then in Python:
+```python
+import yaml
+
+with open('cli_config.yaml') as f:
+    config = yaml.safe_load(f)
+
+parser.set_defaults(**config['defaults'])
+```
+
+---
+
 ## 🧪 Testing Your System
 
 ### Test with Limited Devices
@@ -1008,6 +1686,680 @@ filtered.run(backup_config, ...)
 ```python
 # Use in-memory SQLite for testing
 conn = sqlite3.connect(":memory:")  # ← In-memory database
+```
+
+---
+
+## ⏰ Scheduling in Production
+
+Your script works great manually, but real automation runs on a schedule. Here's how to set it up:
+
+### Option 1: Cron (Linux/Mac)
+
+Best for: Small to medium deployments
+
+```bash
+# Edit crontab
+crontab -e
+
+# Add backup job
+# Runs daily at 2:00 AM
+0 2 * * * cd /home/netadmin/nornir-backup && python backup.py --group ios_devices >> /var/log/nornir_backup.log 2>&1
+
+# Runs every 6 hours
+0 */6 * * * cd /home/netadmin/nornir-backup && python backup.py --group ios_devices >> /var/log/nornir_backup.log 2>&1
+
+# Runs every Monday at 3:00 AM
+0 3 * * 1 cd /home/netadmin/nornir-backup && python backup.py >> /var/log/nornir_backup_full.log 2>&1
+```
+
+**Common cron schedules:**
+```
+0 2 * * *      Daily at 2:00 AM
+0 */6 * * *    Every 6 hours
+0 0 * * 0      Weekly on Sunday
+0 0 1 * *      Monthly on the 1st
+```
+
+### Option 2: systemd Timer (Modern Linux)
+
+Best for: Modern Linux distributions (Ubuntu 20.04+, RHEL 8+)
+
+Create service file `/etc/systemd/system/nornir-backup.service`:
+```ini
+[Unit]
+Description=Enterprise Nornir Config Backup
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+User=netadmin
+WorkingDirectory=/home/netadmin/nornir-backup
+ExecStart=/usr/bin/python3 /home/netadmin/nornir-backup/backup.py
+ExecOnSuccess=/usr/bin/mail -s "Backup succeeded" admin@example.com < /dev/null
+ExecOnFailure=/usr/bin/mail -s "Backup failed" admin@example.com < /dev/null
+StandardOutput=journal
+StandardError=journal
+```
+
+Create timer file `/etc/systemd/system/nornir-backup.timer`:
+```ini
+[Unit]
+Description=Run Nornir Backup Daily
+
+[Timer]
+OnCalendar=daily
+OnCalendar=*-*-* 02:00:00
+Persistent=true
+
+[Install]
+WantedBy=timers.target
+```
+
+Enable and start:
+```bash
+sudo systemctl daemon-reload
+sudo systemctl enable nornir-backup.timer
+sudo systemctl start nornir-backup.timer
+
+# Check status
+sudo systemctl status nornir-backup.timer
+sudo journalctl -u nornir-backup.service -f
+```
+
+### Option 3: Windows Task Scheduler
+
+Best for: Windows networks
+
+**Via GUI:**
+1. Open Task Scheduler
+2. Create Basic Task → "Enterprise Nornir Backup"
+3. Trigger: Daily at 2:00 AM
+4. Action: 
+   - Program: `C:\Python\python.exe`
+   - Arguments: `C:\nornir\backup.py --group ios_devices`
+   - Start in: `C:\nornir`
+
+**Via PowerShell:**
+```powershell
+$action = New-ScheduledTaskAction -Execute "C:\Python\python.exe" -Argument "C:\nornir\backup.py"
+$trigger = New-ScheduledTaskTrigger -Daily -At 2:00AM
+Register-ScheduledTask -TaskName "NornirBackup" -Action $action -Trigger $trigger
+```
+
+### Option 4: Container Orchestration (Docker/Kubernetes)
+
+Best for: Cloud-native deployments
+
+**Docker Compose with scheduler:**
+```yaml
+version: '3.8'
+
+services:
+  nornir-backup:
+    build: .
+    container_name: nornir-backup
+    environment:
+      DEVICE_USERNAME: ${DEVICE_USERNAME}
+      DEVICE_PASSWORD: ${DEVICE_PASSWORD}
+    volumes:
+      - ./inventory:/app/inventory
+      - ./configs:/app/configs
+      - ./logs:/app/logs
+```
+
+**Kubernetes CronJob:**
+```yaml
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: nornir-backup
+spec:
+  schedule: "0 2 * * *"  # Daily at 2:00 AM UTC
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: nornir-backup
+            image: nornir-backup:latest
+            env:
+            - name: DEVICE_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: network-creds
+                  key: password
+            command: ["python", "backup.py", "--group", "ios_devices"]
+          restartPolicy: OnFailure
+```
+
+### Production Best Practices
+
+✅ **Avoid peak hours** — Don't backup during business hours
+```
+# Good: Early morning
+0 2 * * *
+
+# Bad: 9 AM
+0 9 * * *
+```
+
+✅ **Avoid overlapping runs** — Ensure backup #1 finishes before #2 starts
+```python
+# Use lockfile to prevent concurrent runs
+import os
+
+LOCK_FILE = '/tmp/nornir_backup.lock'
+
+if os.path.exists(LOCK_FILE):
+    print("Backup already running")
+    sys.exit(1)
+
+# Create lock
+open(LOCK_FILE, 'w').close()
+
+try:
+    # ... run backup ...
+finally:
+    os.remove(LOCK_FILE)
+```
+
+✅ **Log everything** — You'll need logs when something fails
+```bash
+# In crontab, redirect output to file
+0 2 * * * /path/to/backup.py >> /var/log/nornir_backup.log 2>&1
+```
+
+✅ **Alert on failure** — Send email/Slack when backup fails
+```python
+import subprocess
+
+# After backup_results
+if sum(1 for r in backup_results.values() if r.failed) > 0:
+    # Send alert
+    subprocess.run([
+        'mail', '-s', 'Nornir backup failed',
+        'admin@example.com'
+    ])
+```
+
+✅ **Stagger backups by site** — Don't backup all 5000 devices simultaneously
+```yaml
+# Create groups by location
+location_ny:
+  groups:
+    - ios_devices
+location_la:
+  groups:
+    - ios_devices
+location_london:
+  groups:
+    - ios_devices
+```
+
+Then schedule 30 minutes apart:
+```
+0 2 * * * backup.py --group location_ny
+30 2 * * * backup.py --group location_la
+0 3 * * * backup.py --group location_london
+```
+
+### Monitoring Your Schedule
+
+**Check cron logs (Linux):**
+```bash
+# Tail cron logs
+tail -f /var/log/syslog | grep nornir
+
+# View cron history
+grep nornir /var/log/syslog
+```
+
+**Check systemd timer (Linux):**
+```bash
+# List timers
+systemctl list-timers
+
+# Detailed status
+systemctl status nornir-backup.timer
+
+# View last run
+journalctl -u nornir-backup.service -n 50 --no-pager
+```
+
+**Database monitoring:**
+```python
+# Check when last backup ran
+import sqlite3
+from datetime import datetime
+
+conn = sqlite3.connect("backup.db")
+cursor = conn.cursor()
+
+cursor.execute('''
+    SELECT device_name, MAX(backup_timestamp) as last_backup
+    FROM backups
+    GROUP BY device_name
+    ORDER BY last_backup DESC
+    LIMIT 20
+''')
+
+for device, last_backup in cursor.fetchall():
+    timestamp = datetime.fromisoformat(last_backup)
+    age_hours = (datetime.now() - timestamp).total_seconds() / 3600
+    status = "✓ Current" if age_hours < 25 else "⚠ Overdue"
+    print(f"{device:<20} {timestamp} {status}")
+```
+
+---
+
+## 🔗 Jump/Bastion Host Support
+
+Not all network devices are directly accessible from your automation server. Many enterprises use jump hosts (bastions) for security. Good news: **Nornir + Netmiko fully support this pattern.**
+
+### Why Jump Hosts?
+
+**Enterprise network security model:**
+
+```mermaid
+flowchart LR
+    AutoServer["Automation<br/>Server"] -->|SSH| Bastion["Bastion Host<br/>(Jump Host)"]
+    Bastion -->|SSH| Router["Router<br/>10.1.1.1"]
+    Bastion -->|SSH| Switch["Switch<br/>10.1.1.2"]
+    
+    style AutoServer fill:#ccffcc
+    style Bastion fill:#ffff99
+    style Router fill:#ccccff
+    style Switch fill:#ccccff
+```
+
+**Benefits:**
+
+- ✅ Devices on internal-only networks
+- ✅ Single point of access control and logging
+- ✅ No direct internet exposure of devices
+- ✅ Centralized credential management
+
+### Pattern 1: SSH Config File (Simplest)
+
+SSH supports proxy configuration natively. Create `~/.ssh/config`:
+
+```ssh
+# Bastion host definition
+Host bastion
+    HostName bastion.example.com
+    User netadmin
+    IdentityFile ~/.ssh/bastion_key
+
+# Devices via bastion
+Host 10.1.1.*
+    ProxyJump bastion
+    User admin
+    IdentityFile ~/.ssh/device_key
+```
+
+**Tell Netmiko to use it:**
+
+```python
+from nornir import InitNornir
+from nornir.core.task import Task, Result
+from nornir_netmiko.tasks import netmiko_send_command
+
+@task
+def backup_via_bastion(task: Task) -> Result:
+    """Backup config through bastion host"""
+    
+    # Netmiko will use ~/.ssh/config automatically
+    result = task.run(
+        netmiko_send_command,
+        command_string="show running-config"
+    )
+    
+    return Result(host=task.host, result=result[task.host.name].result)
+
+# In inventory/hosts.yaml
+# No special config needed - SSH just uses the proxy!
+```
+
+**Test it works:**
+```bash
+# Verify SSH config
+ssh -G 10.1.1.1  # Shows what SSH will use
+
+# Test connection through bastion
+ssh admin@10.1.1.1
+```
+
+### Pattern 2: Netmiko Native Proxy (More Control)
+
+For finer control, use Netmiko's built-in proxy configuration:
+
+```python
+# inventory/hosts.yaml
+router1:
+  hostname: 10.1.1.1
+  groups:
+    - ios_devices
+  data:
+    device_type: cisco_ios
+    proxy_jump: bastion.example.com  # ← Bastion address
+    proxy_user: netadmin              # ← Bastion username
+    proxy_key_file: ~/.ssh/bastion_key
+
+switch1:
+  hostname: 10.1.1.2
+  groups:
+    - ios_devices
+  data:
+    device_type: cisco_ios
+    proxy_jump: bastion.example.com
+    proxy_user: netadmin
+    proxy_key_file: ~/.ssh/bastion_key
+```
+
+**Use in tasks:**
+
+```python
+from nornir.core.task import Task, Result
+
+@task
+def backup_with_proxy(task: Task) -> Result:
+    """Backup through proxy/bastion"""
+    
+    proxy_jump = task.host.data.get('proxy_jump')
+    proxy_user = task.host.data.get('proxy_user')
+    proxy_key = task.host.data.get('proxy_key_file')
+    
+    # Pass proxy info to Netmiko
+    result = task.run(
+        netmiko_send_command,
+        command_string="show running-config",
+        ssh_config_file=None,  # We're handling it manually
+        # Netmiko handles proxy via paramiko
+    )
+    
+    return Result(host=task.host, result=result[task.host.name].result)
+```
+
+### Pattern 3: SSH Tunneling (Maximum Flexibility)
+
+For complex topologies, set up SSH tunnels programmatically:
+
+```python
+import subprocess
+import time
+import socket
+from contextlib import contextmanager
+
+@contextmanager
+def ssh_tunnel(bastion_host, bastion_user, target_host, target_port=22, local_port=None):
+    """
+    Create SSH tunnel: localhost:local_port -> bastion -> target_host:target_port
+    """
+    
+    if local_port is None:
+        # Find a free local port
+        sock = socket.socket()
+        sock.bind(('', 0))
+        local_port = sock.getsockname()[1]
+        sock.close()
+    
+    # Start SSH tunnel
+    tunnel_cmd = [
+        'ssh',
+        '-L', f'{local_port}:{target_host}:{target_port}',
+        f'{bastion_user}@{bastion_host}',
+        'sleep 3600'  # Keep tunnel open for 1 hour
+    ]
+    
+    print(f"Opening tunnel: localhost:{local_port} -> {bastion_host} -> {target_host}:{target_port}")
+    
+    tunnel_process = subprocess.Popen(
+        tunnel_cmd,
+        stdin=subprocess.DEVNULL,
+        stdout=subprocess.DEVNULL,
+        stderr=subprocess.PIPE
+    )
+    
+    # Give tunnel time to establish
+    time.sleep(2)
+    
+    try:
+        yield local_port
+    finally:
+        # Close tunnel
+        tunnel_process.terminate()
+        tunnel_process.wait(timeout=5)
+        print(f"Closed tunnel: localhost:{local_port}")
+
+# Usage in tasks:
+@task
+def backup_via_tunnel(task: Task) -> Result:
+    """Backup device via SSH tunnel through bastion"""
+    
+    bastion = "bastion.example.com"
+    bastion_user = "netadmin"
+    target_device = task.host.hostname  # 10.1.1.1
+    
+    with ssh_tunnel(bastion, bastion_user, target_device) as local_port:
+        # Connect to device through tunnel (localhost:local_port)
+        from netmiko import ConnectHandler
+        
+        device = {
+            'device_type': 'cisco_ios',
+            'host': '127.0.0.1',
+            'port': local_port,
+            'username': task.host.username,
+            'password': task.host.password,
+        }
+        
+        with ConnectHandler(**device) as net_connect:
+            config = net_connect.send_command('show running-config')
+        
+        return Result(
+            host=task.host,
+            result={'config': config}
+        )
+```
+
+### Pattern 4: Multiple Bastion Hops (Complex Networks)
+
+Some networks require chaining through multiple bastions:
+
+```
+Automation Server → Bastion1 → Bastion2 → Device
+```
+
+**SSH config (native support):**
+
+```ssh
+Host bastion1
+    HostName bastion1.example.com
+    User netadmin
+
+Host bastion2
+    HostName bastion2.example.com
+    User netadmin
+    ProxyJump bastion1  # ← Chain through bastion1
+
+Host 10.1.1.*
+    ProxyJump bastion2  # ← Chain through bastion2
+    User admin
+```
+
+**SSH handles the chaining automatically!**
+
+```bash
+# This will go: local → bastion1 → bastion2 → 10.1.1.1
+ssh admin@10.1.1.1
+```
+
+### Key Management for Jump Hosts
+
+**Best practice: Separate keys for each tier**
+
+```bash
+# Generate keys
+ssh-keygen -t ed25519 -f ~/.ssh/bastion_key -N ""      # Bastion key
+ssh-keygen -t ed25519 -f ~/.ssh/device_key -N ""        # Device key
+
+# SSH config
+Host bastion
+    HostName bastion.example.com
+    IdentityFile ~/.ssh/bastion_key
+
+Host 10.1.1.*
+    ProxyJump bastion
+    IdentityFile ~/.ssh/device_key
+```
+
+**Or: SSH agent forwarding (less secure but simpler)**
+
+```ssh
+Host bastion
+    HostName bastion.example.com
+    User netadmin
+    ForwardAgent yes  # ← Enable agent forwarding
+
+Host 10.1.1.*
+    ProxyJump bastion
+    User admin
+    # Bastion forwards your local SSH keys automatically
+```
+
+**⚠️ Security Note:** Only enable `ForwardAgent` if you trust the bastion host. Someone with bastion access can use your SSH agent to connect to your devices.
+
+### Testing Bastion Connectivity
+
+**Before running full backups, verify the path works:**
+
+```python
+from nornir import InitNornir
+from nornir.core.task import Task, Result
+import paramiko
+
+@task
+def test_bastion_path(task: Task) -> Result:
+    """Verify connectivity through bastion"""
+    
+    device_name = task.host.name
+    hostname = task.host.hostname
+    
+    try:
+        # Try to connect
+        ssh = paramiko.SSHClient()
+        ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+        
+        # Uses ~/.ssh/config automatically
+        ssh.connect(hostname)
+        ssh.close()
+        
+        return Result(
+            host=task.host,
+            result={'status': 'reachable', 'message': f'Connected through bastion'}
+        )
+        
+    except Exception as e:
+        return Result(
+            host=task.host,
+            result={'status': 'unreachable', 'error': str(e)},
+            failed=True
+        )
+
+# Usage
+nr = InitNornir(config_file="nornir_config.yaml")
+results = nr.run(task=test_bastion_path)
+
+for device, result in results.items():
+    status = "✓" if not result.failed else "✗"
+    print(f"{device}: {status} {result[device].result['status']}")
+```
+
+### Gotchas & Solutions
+
+**Gotcha 1: "Permission denied (publickey)"**
+
+- **Problem:** SSH key not authorized on bastion
+- **Solution:** Add your public key to bastion's `~/.ssh/authorized_keys`
+
+**Gotcha 2: "Connection timeout" through bastion**
+
+- **Problem:** Bastion can't reach internal device IP
+- **Solution:** Verify device IP is reachable from bastion: `ssh -J bastion admin@10.1.1.1`
+
+**Gotcha 3: Slow connections via bastion**
+
+- **Problem:** Extra network hop = latency
+- **Solution:** Increase Nornir timeout: set `connection_timeout: 30` in inventory
+
+**Gotcha 4: SSH tunnel ports conflict**
+
+- **Problem:** Multiple devices use same local tunnel port
+- **Solution:** Let system assign random ports (code above does this automatically)
+
+**Gotcha 5: Bastion host becomes bottleneck**
+
+- **Problem:** 100 devices × connection through same bastion = slow
+- **Solution:** Use multiple bastions or connection pooling
+
+### Bastion Monitoring & Logging
+
+**Track bastion usage:**
+
+```python
+import logging
+
+# Log all SSH operations
+logging.getLogger('paramiko').setLevel(logging.DEBUG)
+
+# Or on bastion side, monitor SSH:
+# tail -f /var/log/auth.log | grep "Accepted publickey"
+```
+
+### Production Architecture
+
+**Recommended setup:**
+
+```mermaid
+flowchart TB
+    AutoServer["Automation Server<br/>(Linux)"]
+    
+    AutoServer -->|SSH| Bastion1["Bastion1<br/>(Primary)"]
+    AutoServer -->|SSH| Bastion2["Bastion2<br/>(Failover)"]
+    
+    Bastion1 --> NYDevices["New York<br/>Devices"]
+    Bastion2 --> LADevices["LA Devices"]
+    
+    style AutoServer fill:#ccffcc
+    style Bastion1 fill:#ffff99
+    style Bastion2 fill:#ffff99
+    style NYDevices fill:#ccccff
+    style LADevices fill:#ccccff
+```
+
+**Inventory structure:**
+
+```yaml
+# inventory/groups.yaml
+ny_devices:
+  data:
+    bastion: "bastion1.example.com"
+
+la_devices:
+  data:
+    bastion: "bastion2.example.com"
+
+# inventory/hosts.yaml
+router_ny:
+  hostname: 10.1.1.1
+  groups:
+    - ny_devices
+
+router_la:
+  hostname: 10.2.1.1
+  groups:
+    - la_devices
 ```
 
 ---

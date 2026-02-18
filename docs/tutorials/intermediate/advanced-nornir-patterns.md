@@ -54,6 +54,20 @@ pip install requests pytest pytest-mock netbox-api
 
 ---
 
+## 📚 Quick Reference: Which Pattern Do I Need?
+
+| Challenge | Pattern | Benefit |
+|:---|:---|:---|
+| Inventory always out-of-sync | Pattern 1 | Single source of truth |
+| Repetitive logging/validation | Pattern 2 | DRY, automatic preprocessing |
+| Devices timeout or fail | Pattern 3 | Automatic recovery |
+| Supporting multiple vendors | Pattern 5 | One system for all devices |
+| Managing 10,000+ devices | Pattern 6 | Unlimited scale |
+| Quality assurance | Pattern 7 | Prevent regressions |
+| Identifying bottlenecks | Pattern 10 | Know what to optimize |
+
+---
+
 ## 🏗️ Pattern 1: Custom Inventory Plugin
 
 Instead of YAML files, source inventory from **Netbox** (your network CMDB):
@@ -202,6 +216,23 @@ inventory:
 - Automatic device discovery
 - No manual YAML maintenance
 - Filter options (by site, role, status, etc.)
+
+### Gotchas & Solutions for Pattern 1
+
+**Gotcha 1A: "Token Expired" error during backup**
+
+- **Root cause:** Netbox token rotated while Nornir was running
+- **Solution:** Reload inventory on each run instead of caching
+
+**Gotcha 1B: Missing "primary_ip" in Netbox**
+
+- **Root cause:** Device added to Netbox but IP not assigned
+- **Solution:** Add fallback: `ip = device.get('primary_ip', {}).get('address', device['name'])`
+
+**Gotcha 1C: Device types don't map correctly**
+
+- **Root cause:** Netbox device type names don't match vendor expectations
+- **Solution:** Build mapping table or use device role instead of type
 
 ---
 
@@ -371,6 +402,23 @@ def resilient_backup(task: Task) -> Result:
     pass
 ```
 
+### Gotchas & Solutions for Pattern 3
+
+**Gotcha 3A: Retrying idempotent tasks**
+
+- **Problem:** If a task partially succeeds (config saved but validation failed), retry saves duplicate
+- **Solution:** Make tasks idempotent (safe to run twice) OR track state (is this already done?)
+
+**Gotcha 3B: Exponential backoff is too aggressive**
+
+- **Problem:** Waiting 2^5=32 seconds between retries = slow job
+- **Solution:** Use `backoff_factor=1.2` (12% increase) instead of 2.0 (100% increase)
+
+**Gotcha 3C: Retrying won't help if issue is permanent**
+
+- **Problem:** Device password expired = will never work, just wastes time
+- **Solution:** Add circuit breaker pattern (stop retrying if error is permanent)
+
 ---
 
 ## 💾 Pattern 4: Managing State Across Tasks
@@ -483,6 +531,23 @@ def backup_multivendor(task: Task) -> Result:
         )
 ```
 
+### Gotchas & Solutions for Pattern 5
+
+**Gotcha 5A: Device type string doesn't match**
+
+- **Problem:** Netbox says "catalyst", Netmiko expects "cisco_ios"
+- **Solution:** Build normalization map: `DeviceTypeMap = {'catalyst': 'cisco_ios', ...}`
+
+**Gotcha 5B: Command outputs differently between vendors**
+
+- **Problem:** `show running-config` vs `show configuration` = different format
+- **Solution:** Normalize output parser (strip vendor-specific headers)
+
+**Gotcha 5C: Not all vendors support all features**
+
+- **Problem:** You check for `spanning-tree` on a Junos router (doesn't use STP)
+- **Solution:** Make compliance checks vendor-aware
+
 ---
 
 ## 📈 Pattern 6: Memory Optimisation for 10k+ Devices
@@ -538,6 +603,23 @@ def save_to_database(device_name, result):
 - Memory usage stays constant
 - Results streamed to storage
 - Progress saved in real-time
+
+### Gotchas & Solutions for Pattern 6
+
+**Gotcha 6A: Batch size is wrong**
+
+- **Problem:** Batch size of 1000 = memory spike again
+- **Solution:** Start with 100, monitor memory. Formula: `batch_size = available_ram_mb / (config_size_mb * 2)`
+
+**Gotcha 6B: Losing progress on failure**
+
+- **Problem:** Batch 50 of 100 fails, entire batch lost
+- **Solution:** Save `backup_id` to database immediately, mark status as "saved" even if later steps fail
+
+**Gotcha 6C: Database writes become the bottleneck**
+
+- **Problem:** Fast backups, slow database writes = queue backs up
+- **Solution:** Use connection pooling, batch database inserts (50 at a time), or use async DB driver
 
 ---
 
@@ -796,6 +878,259 @@ def main():
         results = nornir.run(task=backup_config)
     
     # Output shows slowest operations -> optimise those first
+```
+
+---
+
+## 📈 Performance Benchmarking for Your Network
+
+Pattern 10 shows you how to profile code. But you also need to measure **actual performance** against your real devices:
+
+### Benchmark Your Current System
+
+Create `benchmark.py`:
+
+```python
+#!/usr/bin/env python3
+"""
+Benchmark your Nornir automation
+Measure speed, resource usage, and identify bottlenecks
+"""
+
+import time
+import psutil
+import os
+from nornir import InitNornir
+from tasks.enterprise_backup import backup_config
+
+class BenchmarkRunner:
+    """Run and measure Nornir performance"""
+    
+    def __init__(self):
+        self.metrics = {}
+    
+    def memory_usage(self):
+        """Get current process memory in MB"""
+        process = psutil.Process(os.getpid())
+        return process.memory_info().rss / 1024 / 1024
+    
+    def run_benchmark(self, task_name, task, workers=None):
+        """Run task and measure performance"""
+        
+        # Initialize Nornir
+        nr = InitNornir(config_file="nornir_config.yaml")
+        
+        if workers:
+            nr.config.core.num_workers = workers
+        
+        # Baseline memory
+        mem_start = self.memory_usage()
+        time_start = time.time()
+        
+        # Run task
+        results = nr.run(task=task)
+        
+        # Measurements
+        time_end = time.time()
+        mem_end = self.memory_usage()
+        
+        failed = sum(1 for r in results.values() if r.failed)
+        succeeded = len(results) - failed
+        
+        # Record metrics
+        self.metrics[task_name] = {
+            'total_devices': len(results),
+            'succeeded': succeeded,
+            'failed': failed,
+            'duration_seconds': time_end - time_start,
+            'memory_used_mb': mem_end - mem_start,
+            'memory_peak_mb': mem_end,
+            'devices_per_second': len(results) / (time_end - time_start),
+            'workers': nr.config.core.num_workers,
+        }
+        
+        return self.metrics[task_name]
+    
+    def print_report(self):
+        """Print benchmark results"""
+        
+        print("\n" + "="*70)
+        print("BENCHMARK REPORT")
+        print("="*70)
+        
+        for test_name, metrics in self.metrics.items():
+            print(f"\n{test_name}:")
+            print(f"  Devices: {metrics['total_devices']} ({metrics['succeeded']} succeeded, {metrics['failed']} failed)")
+            print(f"  Duration: {metrics['duration_seconds']:.2f} seconds")
+            print(f"  Throughput: {metrics['devices_per_second']:.1f} devices/second")
+            print(f"  Memory used: {metrics['memory_used_mb']:.1f} MB")
+            print(f"  Peak memory: {metrics['memory_peak_mb']:.1f} MB")
+            print(f"  Workers: {metrics['workers']}")
+
+# Usage
+if __name__ == "__main__":
+    import argparse
+    
+    parser = argparse.ArgumentParser(description="Benchmark Nornir configuration")
+    parser.add_argument('--workers', type=int, nargs='+', default=[5, 10, 20],
+                        help='Worker counts to test (default: 5 10 20)')
+    parser.add_argument('--task', default='backup_config',
+                        help='Task to benchmark (default: backup_config)')
+    args = parser.parse_args()
+    
+    runner = BenchmarkRunner()
+    
+    # Test with different worker counts
+    for worker_count in args.workers:
+        print(f"Testing with {worker_count} workers...")
+        runner.run_benchmark(
+            f"backup_config ({worker_count} workers)",
+            task=backup_config,
+            workers=worker_count
+        )
+    
+    runner.print_report()
+```
+
+**Run it:**
+```bash
+python benchmark.py --workers 5 10 20 50
+```
+
+**Expected output:**
+```
+======================================================================
+BENCHMARK REPORT
+======================================================================
+
+backup_config (5 workers):
+  Devices: 100 (100 succeeded, 0 failed)
+  Duration: 24.35 seconds
+  Throughput: 4.1 devices/second
+  Memory used: 145.2 MB
+  Peak memory: 287.3 MB
+  Workers: 5
+
+backup_config (10 workers):
+  Devices: 100 (100 succeeded, 0 failed)
+  Duration: 12.18 seconds
+  Throughput: 8.2 devices/second
+  Memory used: 148.1 MB
+  Peak memory: 295.4 MB
+  Workers: 10
+
+backup_config (20 workers):
+  Devices: 100 (100 succeeded, 0 failed)
+  Duration: 6.45 seconds
+  Throughput: 15.5 devices/second
+  Memory used: 151.3 MB
+  Peak memory: 312.1 MB
+  Workers: 20
+
+backup_config (50 workers):
+  Devices: 100 (100 succeeded, 0 failed)
+  Duration: 5.82 seconds
+  Throughput: 17.2 devices/second
+  Memory used: 148.9 MB
+  Peak memory: 398.2 MB
+  Workers: 50
+```
+
+### Analyzing Results
+
+**What this tells you:**
+
+1. **Throughput plateau** — In example above, 20→50 workers only 1.7x faster (diminishing returns)
+
+   - Optimal: 20 workers
+   - More workers = more overhead, less benefit
+
+2. **Memory scaling** — Memory increases with worker count
+
+   - 5 workers = 287 MB peak
+   - 50 workers = 398 MB peak
+   - Formula: `peak_memory = baseline + (workers × per_worker_overhead)`
+
+3. **Device latency** — Devices/second tells you network latency
+
+   - 4.1 dev/sec with 5 workers = ~244ms per device
+   - Suggests 244ms SSH+command time (normal for Cisco devices)
+
+### Finding Your Sweet Spot
+
+```python
+# Optimal calculation
+optimal_workers = device_count / devices_per_second_single_threaded
+max_memory_available_mb = 2048
+
+if peak_memory > max_memory_available_mb:
+    optimal_workers = max_memory_available_mb // (peak_memory // workers)
+
+print(f"Recommended workers: {optimal_workers}")
+```
+
+### Continuous Benchmarking
+
+Track performance over time:
+
+```python
+import json
+from datetime import datetime
+
+def save_benchmark_history(metrics, filename='benchmark_history.json'):
+    """Save benchmark results for historical comparison"""
+    
+    try:
+        with open(filename, 'r') as f:
+            history = json.load(f)
+    except FileNotFoundError:
+        history = []
+    
+    metrics['timestamp'] = datetime.now().isoformat()
+    history.append(metrics)
+    
+    with open(filename, 'w') as f:
+        json.dump(history, f, indent=2)
+
+# In main:
+benchmark_results = runner.metrics['backup_config (10 workers)']
+save_benchmark_history(benchmark_results)
+
+# Later, compare:
+# Was performance 2 weeks ago 5 devices/sec? Is it now 4 devices/sec?
+# Something changed - investigate!
+```
+
+### Real-World Benchmarking Scenarios
+
+**Scenario 1: Adding 100 new devices**
+```python
+# Before addition
+devices: 500, duration: 50s, throughput: 10 dev/sec
+
+# After addition
+devices: 600, duration: 55s, throughput: 10.9 dev/sec
+
+# Analysis: Throughput stayed same → network is bottleneck, not code
+```
+
+**Scenario 2: Database writes getting slower**
+```python
+# Week 1: save_config task = 2s
+# Week 4: save_config task = 8s
+
+# Database has 30,000 backups → query scan is slower
+# Solution: Add database index on device_name, backup_timestamp
+```
+
+**Scenario 3: Memory leak detection**
+```python
+# First run: peak memory = 300 MB
+# Second run: peak memory = 400 MB
+# Third run: peak memory = 520 MB
+
+# Memory not being freed between tasks
+# Solution: Explicit garbage collection, check for circular references
 ```
 
 ---
