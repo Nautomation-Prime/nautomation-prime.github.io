@@ -301,6 +301,7 @@ device2:
 #### 3. **Runner** (not manual iteration)
 
 Nornir's runner automatically:
+
 - Loads all devices from inventory
 - Executes tasks in parallel
 - Collects results
