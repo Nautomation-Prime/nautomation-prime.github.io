@@ -185,6 +185,46 @@ python minimal_example.py
 
 **Key insight:** The `@task` decorator with `num_workers: 3` handled all the parallelization automatically. You focused on the logic, Nornir handled the concurrency.
 
+## 📊 Understanding Task Execution Flow in Nornir
+
+The diagram below shows how your tasks execute in parallel:
+
+```mermaid
+flowchart TD
+  Start([Nornir.run<br/>backup_config]) --> Pool["Connection Pool<br/>(up to 10 workers)"]
+    
+  Pool --> T1["Task Instance 1<br/>Device: router1"]
+  Pool --> T2["Task Instance 2<br/>Device: switch1"]
+  Pool --> T3["Task Instance 3<br/>Device: switch2"]
+    
+  T1 --> Con1["Connect to Device"]
+  T2 --> Con2["Connect to Device"]
+  T3 --> Con3["Connect to Device"]
+    
+  Con1 --> Cmd1["Send Command"]
+  Con2 --> Cmd2["Send Command"]
+  Con3 --> Cmd3["Send Command"]
+    
+  Cmd1 --> Result1["Return Result<br/>for router1"]
+  Cmd2 --> Result2["Return Result<br/>for switch1"]
+  Cmd3 --> Result3["Return Result<br/>for switch2"]
+    
+  Result1 --> Aggregate["Aggregate All Results"]
+  Result2 --> Aggregate
+  Result3 --> Aggregate
+    
+  Aggregate --> End(["Return Combined<br/>Result Object"])
+    
+  style Pool fill:#ccffcc
+  style T1 fill:#ffffcc
+  style T2 fill:#ffffcc
+  style T3 fill:#ffffcc
+  style Aggregate fill:#ccffcc
+  style End fill:#ccffcc
+```
+
+**Key insight:** Each task instance (T1, T2, T3) runs independently. While T1 waits for SSH, T2 and T3 are processing simultaneously.
+
 ---
 
 ## 🏗️ Nornir Project Structure
@@ -955,48 +995,6 @@ def my_task(task: Task) -> Result:  # ← Must match this
 ```
 
 ---
-
----
-
-## 📊 Understanding Task Execution Flow in Nornir
-
-The diagram below shows how your tasks execute in parallel:
-
-```mermaid
-flowchart TD
-    Start([Nornir.run<br/>backup_config]) --> Pool["Connection Pool<br/>(up to 10 workers)"]
-    
-    Pool --> T1["Task Instance 1<br/>Device: router1"]
-    Pool --> T2["Task Instance 2<br/>Device: switch1"]
-    Pool --> T3["Task Instance 3<br/>Device: switch2"]
-    
-    T1 --> Con1["Connect to Device"]
-    T2 --> Con2["Connect to Device"]
-    T3 --> Con3["Connect to Device"]
-    
-    Con1 --> Cmd1["Send Command"]
-    Con2 --> Cmd2["Send Command"]
-    Con3 --> Cmd3["Send Command"]
-    
-    Cmd1 --> Result1["Return Result<br/>for router1"]
-    Cmd2 --> Result2["Return Result<br/>for switch1"]
-    Cmd3 --> Result3["Return Result<br/>for switch2"]
-    
-    Result1 --> Aggregate["Aggregate All Results"]
-    Result2 --> Aggregate
-    Result3 --> Aggregate
-    
-    Aggregate --> End(["Return Combined<br/>Result Object"])
-    
-    style Pool fill:#ccffcc
-    style T1 fill:#ffffcc
-    style T2 fill:#ffffcc
-    style T3 fill:#ffffcc
-    style Aggregate fill:#ccffcc
-    style End fill:#ccffcc
-```
-
-**Key insight:** Each task instance (T1, T2, T3) runs independently. While T1 waits for SSH, T2 and T3 are processing simultaneously.
 
 ---
 
