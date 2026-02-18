@@ -837,7 +837,7 @@ for host_name, result in backup_results.items():
 **Structure:** `backup_results[device_name][0].result`
 
 - Device name from inventory
-- Index [0] because each device might have multiple task runs
+- Index [0] is the first task result; if you run multiple tasks per host, use [1], [2], etc.
 - `.result` is your returned data
 
 ---
@@ -1030,7 +1030,7 @@ pip install nornir-netmiko
     - Fix: Troubleshoot network connectivity first
 
 5. **Firewall blocking SSH**
-    - Check: `telnet 192.168.1.1 22` (should connect, not timeout)
+    - Check: `telnet 192.168.1.1 22` (any open TCP session or blank screen means the port is reachable)
     - Fix: Adjust firewall rules
 
 **Debug technique:** Before running Nornir, test SSH manually:
@@ -1069,16 +1069,15 @@ ios_devices:
 # Check max open files (Linux/Mac)
 ulimit -n
 
-# You can usually open ~1000 files
-# So safe: num_workers: 100
-# Dangerous: num_workers: 1000
+# Typical defaults range from ~256-1024
+# If ulimit -n is 1024, keep num_workers <= 100
 ```
 
 **Solution:** Reduce `num_workers` in `nornir_config.yaml`:
 
 ```yaml
 core:
-  num_workers: 10  # ← Start conservative, increase if needed
+  num_workers: 10  # ← Start conservative, increase in small steps
 ```
 
 ### Issue 5: "Failed to acquire lock on device" or similar errors
@@ -1089,7 +1088,7 @@ core:
 
 - Reduce `num_workers`
 - OR check device documentation for session limits
-- Some devices allow only 5-10 concurrent SSH sessions
+- Some devices allow only 5-10 concurrent SSH sessions per device
 
 ---
 
@@ -1236,7 +1235,13 @@ core:
   num_workers: 20  # Conservative, increase if needed
 ```
 
-**Rule of thumb:** Start with 10, increase if tasks complete faster than your network can handle.
+**Rule of thumb:** Start with 10, then increase in small steps while watching runtime and failures. If runtime keeps dropping without more timeouts, you can add workers. If timeouts or failures rise, you have exceeded what the network/devices can handle—back off.
+
+**Example:**
+- 10 workers: 8 min, 0 failures
+- 20 workers: 4 min, 0 failures
+- 30 workers: 3.5 min, 5 timeouts
+**Result:** Use 20 workers. The speedup from 30 is small and reliability drops.
 
 ### Gotcha 3: Failing Device Breaks the Entire Job
 
@@ -1543,7 +1548,7 @@ Before deploying this in production:
 
 - [ ] Test with your actual device inventory
 - [ ] Verify all devices are reachable
-- [ ] Check credential storage (should use env vars or vault, not plain text)
+- [ ] Check credential storage (use env vars or a vault, avoid plain text)
 - [ ] Add error notification (email on failure)
 - [ ] Set up job scheduling (cron or scheduler)
 - [ ] Validate backup integrity

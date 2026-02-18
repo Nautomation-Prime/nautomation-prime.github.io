@@ -675,9 +675,9 @@ When you're ready, [Tutorial #2 →](./nornir-fundamentals.md) will teach you to
 
 **"Do I really need Nornir?"**  
 
-- If you have <20 devices and never will: Probably not
-- If you have >50 devices or think you will: Absolutely yes
-- If you're in between: Learn it anyway; it's not that hard and you'll be prepared
+- If you have <20 devices and no growth expected: Probably not — Tutorial #3 is enough
+- If you have >50 devices or growth expected: Absolutely yes
+- If you're in between: Consider learning it so you're prepared as you scale
 
 **"Will I still use the Tutorial #3 approach?"**  
 

@@ -713,11 +713,12 @@ def test_compliance_check():
         mock_task = Mock()
         mock_task.host.name = "test"
         
-        # Mock the result object
-        result = Mock()
+        # Example assertions (call the real function in your test suite)
+        result_good = compliance_check(mock_task, compliant_config)
+        result_bad = compliance_check(mock_task, non_compliant_config)
         
-        # Score should be lower for non-compliant
-        # (This is pseudocode; actual test would call the real function)
+        assert result_good.result['score'] > result_bad.result['score']
+        assert result_bad.result['score'] < 70
 
 if __name__ == "__main__":
     pytest.main([__file__, "-v"])

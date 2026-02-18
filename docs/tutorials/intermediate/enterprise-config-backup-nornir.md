@@ -51,11 +51,12 @@ By the end of this tutorial, you'll understand:
 
 ### Required Software
 ```bash
-# Add to your existing Tutorial #2 environment
-pip install sqlite3  # Usually built-in
+# SQLite3 ships with Python; no install needed in most environments
+# If `import sqlite3` fails, install the fallback package:
+pip install pysqlite3-binary
 ```
 
-SQLite3 is included in Python by default, so you should be good!
+SQLite3 is included in Python by default. If `import sqlite3` fails, install `pysqlite3-binary`.
 
 ---
 
