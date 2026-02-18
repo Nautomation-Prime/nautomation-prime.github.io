@@ -107,10 +107,10 @@ Understand the philosophy and methodology behind Nautomation Prime.
 
 - **[PRIME Framework Overview](prime-framework/index.md)** — 5-phase enterprise automation approach
 - **[Pinpoint](prime-framework/pinpoint.md)** — Identify automation opportunities
-- **[Empower](prime-framework/empower.md)** — Build your team's capabilities
+- **[Re-Engineer](prime-framework/re-engineer.md)** — Continuous improvement cycles
 - **[Implement](prime-framework/implement.md)** — Deploy production solutions
 - **[Measure](prime-framework/measure.md)** — Track results and ROI
-- **[Re-Engineer](prime-framework/re-engineer.md)** — Continuous improvement cycles
+- **[Empower](prime-framework/empower.md)** — Build your team's capabilities
 
 ---
 
