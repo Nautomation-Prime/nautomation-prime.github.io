@@ -46,6 +46,7 @@ for device in devices:
 ```
 
 **What this does:**
+
 1. Connect to Device #1
 2. Retrieve config (5 seconds of network I/O)
 3. Save to file (1 second)
