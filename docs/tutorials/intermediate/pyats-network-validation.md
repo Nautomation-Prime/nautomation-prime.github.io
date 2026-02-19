@@ -31,19 +31,27 @@ When you call `device.parse('show vlan')`, you don't get text. You get structure
 ```python
 from pyats.topology import loader
 
+# Load testbed — reads device definitions and credentials
 testbed = loader.load('testbed.yaml')
+
+# Get specific device from testbed dictionary
 device = testbed.devices['switch-01']
+
+# Connect to device — initiates SSH session using testbed credentials
 device.connect()
 
-# Parse VLAN output
+# Parse VLAN output into structured data
+# device.parse() sends 'show vlan' command to device
+# Genie parser (specific to device OS) converts text output to dict
 vlan_output = device.parse('show vlan')
 
-# What does it look like?
+# Visualize the structure by printing as JSON
 import json
 print(json.dumps(vlan_output, indent=2))
+# This shows exact structure so you know how to access data
 ```
 
-**Output:**
+**Output structure** — Let's break down what you get:
 
 ```json
 {
@@ -68,6 +76,7 @@ print(json.dumps(vlan_output, indent=2))
           "interface_mode": "static_access"
         },
         "Ethernet1/4": {
+```
           "interface_mode": "static_access"
         }
       }
@@ -83,48 +92,178 @@ print(json.dumps(vlan_output, indent=2))
 #### Show VLAN
 
 ```python
+# Parse show vlan command and get dictionary
 vlans = device.parse('show vlan')
-# Access specific VLAN
+
+# Navigate to specific VLAN
+# vlans is dict with 'vlans' key
+# vlans['vlans'] gives us dict of VLAN IDs
+# vlans['vlans']['10'] gives us VLAN 10's data
+
 vlan_10 = vlans['vlans']['10']
-print(vlan_10['name'])  # "DATA"
-print(vlan_10['status'])  # "active"
-print(list(vlan_10['interfaces'].keys()))  # ['Ethernet1/3', 'Ethernet1/4']
+# vlan_10 now contains: {'name': 'DATA', 'status': 'active', 'interfaces': {...}}
+
+# Access VLAN 10 properties
+print(vlan_10['name'])  
+# Returns: "DATA" — the VLAN name
+
+print(vlan_10['status'])
+# Returns: "active" — whether VLAN is active or suspended
+
+print(list(vlan_10['interfaces'].keys()))
+# Returns: ['Ethernet1/3', 'Ethernet1/4'] — list of interface names in this VLAN
 ```
+
+**How to use this in validation:**
+
+```python
+# Check if VLAN exists
+if '20' in vlans['vlans']:
+    print("✅ VLAN 20 found")
+else:
+    print("❌ VLAN 20 NOT found")
+
+# Check VLAN name
+assert vlans['vlans']['10']['name'] == 'DATA', "VLAN 10 name is wrong!"
+
+# Check interfaces in VLAN
+vlan_10_ports = vlans['vlans']['10']['interfaces']
+assert 'Ethernet1/3' in vlan_10_ports, "Ethernet1/3 not in VLAN 10!"
+```
+
+---
 
 #### Show IP Route
 
 ```python
+# Parse show ip route command
 routes = device.parse('show ip route')
-# Structure varies by OS, but generally:
-# routes['route'] contains the routing table
+
+# Dictionary structure varies by OS, but generally:
+# routes['route'] contains the routing table (dict of prefixes)
+# Each prefix maps to route information (next hops, metrics, protocols)
+
+# Navigate routing table
+# routes['route'] is dict where keys are IP prefixes (like "10.0.0.0/24")
+
 for prefix, route_data in routes['route'].items():
+    # prefix examples: "10.0.0.0/24", "192.168.1.0/24"
+    # route_data is dict with next hop, metric, and protocol info
+    
     print(f"{prefix}: {route_data}")
-# Output:
-# 10.0.0.0/24: {'': [{'metric': '0', 'next_hop': {...}}]}
+    # Output example:
+    # 10.0.0.0/24: {'': [{'metric': '0', 'next_hop': {'192.168.1.1': {...}}}]}
 ```
+
+**How to use in validation:**
+
+```python
+# Check if specific route exists
+if '10.0.0.0/24' in routes['route']:
+    print("✅ Route to 10.0.0.0/24 exists")
+else:
+    print("❌ Route to 10.0.0.0/24 missing!")
+
+# Check route metric (hop count)
+route_data = routes['route']['10.0.0.0/24']
+metric = route_data['']['[0]']['metric']  # Navigate nested structure
+assert metric == '0', f"Expected metric 0, got {metric}"
+```
+
+---
 
 #### Show Interfaces
 
 ```python
+# Parse show interfaces command
 interfaces = device.parse('show interfaces')
-# interfaces contains all interface data
+
+# Dictionary where keys are interface names
+# interfaces['Ethernet1/1'] has all data for that interface
+
+# Check which interfaces are operationally up
 interfaces_up = [
-    name for name, data in interfaces.items() 
+    name for name, data in interfaces.items()
+    # Iterate through all interfaces
     if data.get('oper_status') == 'up'
+    # Filter only those with oper_status='up'
 ]
+
 print(f"Interfaces up: {len(interfaces_up)}")
+# Output example: Interfaces up: 48
+
+# Detailed interface status
+for iface_name, iface_data in interfaces.items():
+    status = iface_data.get('oper_status')  # 'up' or 'down'
+    mtu = iface_data.get('mtu')  # Interface MTU
+    mac = iface_data.get('mac_address')  # MAC address
+    errors = iface_data.get('counters', {}).get('in_errors', 0)
+    # Safely access nested dict with .get() to avoid KeyError
+    
+    print(f"{iface_name}: {status} (MTU:{mtu}, MAC:{mac}, Errors:{errors})")
 ```
+
+**How to use in validation:**
+
+```python
+# Check that minimum number of interfaces are up
+min_expected_up = 48
+assert len(interfaces_up) >= min_expected_up, \
+    f"Expected {min_expected_up} up, got {len(interfaces_up)}"
+
+# Check for error counters (indicates hardware problems)
+eth1_data = interfaces['Ethernet1/1']
+input_errors = eth1_data.get('counters', {}).get('in_errors', 0)
+output_errors = eth1_data.get('counters', {}).get('out_errors', 0)
+
+assert input_errors == 0, f"Ethernet1/1 has input errors: {input_errors}"
+assert output_errors == 0, f"Ethernet1/1 has output errors: {output_errors}"
+```
+
+---
 
 #### Show IP BGP Summary
 
 ```python
+# Parse show ip bgp summary command
 bgp = device.parse('show ip bgp summary')
-# BGP neighbor data
+
+# Navigate nested structure: device → bgp_id → neighbors
+# bgp['device']['bgp_id'] gives dict of BGP instances
+# bgp['device']['bgp_id']['65000']['neighbors'] has neighbor info
+
 neighbors = bgp['device']['bgp_id']['65000']['neighbors']
+# '65000' is the BGP AS number (your network's AS)
+
+# Iterate through BGP neighbors
 for neighbor_ip, neighbor_data in neighbors.items():
+    # neighbor_ip examples: "10.0.0.1", "192.168.1.1"
+    # neighbor_data contains: state, received/sent prefixes, uptime
+    
     state = neighbor_data['state']
+    # State values: 'up', 'down', 'idle', 'active', 'opensent', 'openconfirm'
+    
     print(f"Neighbor {neighbor_ip}: {state}")
-    # Output: "Neighbor 10.0.0.1: Established"
+    # Output examples:
+    # Neighbor 10.0.0.1: up
+    # Neighbor 10.0.0.2: up
+```
+
+**How to use in validation:**
+
+```python
+# Check that all BGP neighbors are established
+required_neighbors = ['10.0.0.1', '10.0.0.2']
+
+for neighbor_ip in required_neighbors:
+    # Check neighbor exists in BGP summary
+    assert neighbor_ip in neighbors, \
+        f"BGP neighbor {neighbor_ip} not in summary!"
+    
+    # Check neighbor is in 'up' state (established)
+    state = neighbors[neighbor_ip]['state']
+    assert state == 'up', \
+        f"BGP neighbor {neighbor_ip} not up! State: {state}"
 ```
 
 ### Finding Available Parsers
@@ -166,28 +305,61 @@ def test_access_port_compliance(device):
     """
     Validate: All access ports must be in VLAN 10 (DATA)
     Except: Port Et1/48 which should be in VLAN 20 (MGMT)
+    
+    This pattern proves that your VLAN configuration matches requirements
     """
     
+    # Parse VLAN data — returns structured dict of all VLANs and their ports
     vlan_data = device.parse('show vlan')
     
+    # Define REQUIRED configuration: which ports MUST be in which VLANs
     required_config = {
         '10': ['Ethernet1/1', 'Ethernet1/2', 'Ethernet1/3', 'Ethernet1/4'],
+        # VLAN 10 must have these 4 ports (DATA VLAN)
+        
         '20': ['Ethernet1/48'],
+        # VLAN 20 must have this 1 port (MGMT VLAN)
     }
     
+    # For each VLAN in required config, validate all ports are there
     for vlan_id, required_ports in required_config.items():
+        # Get actual ports in this VLAN from device parsing
         actual_ports = list(vlan_data['vlans'][vlan_id]['interfaces'].keys())
+        # vlan_data['vlans'][vlan_id] gets VLAN's dict
+        # ['interfaces'] gets the interfaces dict for this VLAN
+        # .keys() gets interface names
+        # list() converts to list
         
+        # Validate: all required ports are actually there
         for port in required_ports:
-            assert port in actual_ports, f"{port} missing from VLAN {vlan_id}!"
+            # Check each required port
+            assert port in actual_ports, \
+                f"{port} missing from VLAN {vlan_id}!"
+            # If port not found, assertion fails with error message
         
-        # Also warn about unexpected ports
+        # Also warn about UNEXPECTED ports (ports that shouldn't be there)
         unexpected = set(actual_ports) - set(required_ports)
+        # set() creates set of port names
+        # actual_ports - required_ports gives ports in actual but not required
+        
         if unexpected:
+            # Print warning about extra ports (not required, but not harmful)
             print(f"⚠️  Warning: Unexpected ports in VLAN {vlan_id}: {unexpected}")
+            # This warns ops team but doesn't fail test
     
     print("✅ VLAN compliance check passed")
+    # All assertions passed = all ports are correctly assigned
 ```
+
+**How this works step-by-step:**
+1. Parse show vlan (get current port-to-VLAN mapping)
+2. Define required mapping (what ports SHOULD be in each VLAN)
+3. For each VLAN: extract actual ports from parsing
+4. Compare: actual ports must include all required ports
+5. Warn: if extra ports found that shouldn't be there
+6. Result: pass if all requirements met
+
+---
 
 ### Pattern 2: Interface Health Check
 
@@ -197,46 +369,88 @@ def test_access_port_compliance(device):
 def test_interface_health(device, expected_up_count=48):
     """
     Validate: Expected number of interfaces are operational
-    Check: No disabled ports, no down ports, no errors
+    Also Check: No disabled ports, no down ports, no errors
+    
+    This pattern proves infrastructure is healthy after deployment
     """
     
+    # Parse show interfaces — get detailed data for every interface
     interfaces = device.parse('show interfaces')
     
+    # Initialize counters to track interface status
     interfaces_up = 0
-    interfaces_errors = 0
-    interfaces_down = []
+    # Count how many interfaces are operationally up
     
+    interfaces_errors = 0
+    # Count interfaces with errors (input or output errors)
+    
+    interfaces_down = []
+    # List of interface names that are down
+    
+    # Iterate through all interfaces on device
     for iface_name, iface_data in interfaces.items():
-        # Skip loopbacks and management interfaces for this check
+        # iface_name examples: 'Ethernet1/1', 'Ethernet1/2'
+        # iface_data is dict with all interface properties
+        
+        # Skip loopbacks and management interfaces (not data ports)
         if 'Loopback' in iface_name or 'Management' in iface_name:
             continue
+            # Skip these interface types — we're only checking data ports
         
-        # Count up interfaces
+        # Count how many are operationally up
         if iface_data.get('oper_status') == 'up':
+            # .get() safely accesses dict key (returns None if missing)
             interfaces_up += 1
+            # Increment counter if interface is up
         else:
+            # Interface is NOT up (down, testing, etc.)
             interfaces_down.append(iface_name)
+            # Add to list of down interfaces for reporting
         
-        # Check for errors
+        # Check for error counters (indicates hardware or line problems)
         input_errors = iface_data.get('counters', {}).get('in_errors', 0)
-        output_errors = iface_data.get('counters', {}).get('out_errors', 0)
+        # Get input error count from counters dict (default 0 if missing)
         
+        output_errors = iface_data.get('counters', {}).get('out_errors', 0)
+        # Get output error count (default 0 if missing)
+        
+        # Warn if either error counter is non-zero
         if input_errors > 0 or output_errors > 0:
             interfaces_errors += 1
+            # Increment error counter
+            
             print(f"⚠️  {iface_name}: errors detected (in:{input_errors}, out:{output_errors})")
+            # Print warning with error details
     
-    # Assertions
+    # Run assertions — fail test if any condition not met
+    
+    # Assertion 1: Minimum number of interfaces must be up
     assert interfaces_up >= expected_up_count, \
         f"Expected {expected_up_count} interfaces up, got {interfaces_up}"
+        # Shows expected vs actual in error message
     
+    # Assertion 2: No interfaces should have errors
     assert interfaces_errors == 0, \
         f"Found {interfaces_errors} interfaces with errors"
     
+    # Assertion 3: All expected interfaces should be up (none down)
     assert len(interfaces_down) == 0, \
         f"Expected all interfaces up, but these are down: {interfaces_down}"
+        # List the down interfaces in error message
     
     print(f"✅ Interface health check passed ({interfaces_up} interfaces up)")
+    # All assertions passed = infrastructure is healthy
 ```
+
+**How this works step-by-step:**
+1. Parse show interfaces (get status of every interface)
+2. Skip management/loopback interfaces (not data ports)
+3. Count up interfaces
+4. Check for error counters (indicates hardware problems)
+5. Assert: minimum number up, no errors, no unexpected downs
+6. Result: pass if all conditions met
+
+---
 
 ### Pattern 3: Routing Validation
 
@@ -246,6 +460,8 @@ def test_interface_health(device, expected_up_count=48):
 def test_critical_routes(device):
     """
     Validate: Critical routes exist and are reachable
+    
+    This pattern proves your network topology changes worked
     """
     
     routes = device.parse('show ip route')
