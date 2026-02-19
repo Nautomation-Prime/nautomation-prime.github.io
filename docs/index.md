@@ -15,9 +15,13 @@ tags:
 
 ## Welcome
 
-Nautomation Prime bridges the gap between **complex Cisco infrastructure** and **streamlined Python-driven automation**.
+### 🚀 Enterprise-Grade Cisco Automation — Delivered Transparently, Explained Line-by-Line, Built to Last
 
-We believe network code should never be a "black box." Here, we solve the world's most common network pain points with **hardened, production-ready code**—explained line-by-line so you can deploy with total confidence.
+Most network automation projects fail within 6 months. Not because the code breaks—but because nobody understands it, leadership can't prove ROI, and when requirements change, the whole thing collapses.
+
+**Nautomation Prime is different.**
+
+We deliver **hardened, production-ready Cisco automation** with **zero black-box code**. Every line explained. Every design decision documented. Every project structured for sustainable, measurable ROI and team empowerment.
 
 ### 🎯 The PRIME Framework
 
@@ -25,9 +29,17 @@ We deliver automation projects through a **proven 5-stage methodology** that ens
 
 **[Pinpoint](./prime-framework/pinpoint.md)** → **[Re-engineer](./prime-framework/re-engineer.md)** → **[Implement](./prime-framework/implement.md)** → **[Measure](./prime-framework/measure.md)** → **[Empower](./prime-framework/empower.md)**
 
-**Why it matters:** Most automation fails because teams automate the wrong things, build brittle solutions, or create vendor lock-in. The PRIME Framework delivers **measurable ROI**, **production-grade code**, and **team capability**—not just scripts.
+**Why it works:**
 
-**[Learn about the PRIME Framework →](./prime-framework/index.md)**
+- ✅ **[Pinpoint](./prime-framework/pinpoint.md)** high-impact opportunities (not guesswork)
+- ✅ **[Re-engineer](./prime-framework/re-engineer.md)** workflows for scalability before coding
+- ✅ **[Implement](./prime-framework/implement.md)** production-grade solutions with safety and testing
+- ✅ **[Measure](./prime-framework/measure.md)** ROI with concrete metrics (not "it works")
+- ✅ **[Empower](./prime-framework/empower.md)** your team for long-term ownership
+
+**Typical ROI: Payback in 6–12 months, then pure savings thereafter.**
+
+**[Learn about the PRIME Framework →](./prime-framework/index.md)** | **[Request Discovery Call](mailto:nautomationprime.f3wfe@simplelogin.com)**
 
 ---
 
@@ -62,6 +74,20 @@ We deliver automation projects through a **proven 5-stage methodology** that ens
     1. Start with [**Show Command to Excel**](./tutorials/beginner/netmiko-show-command-to-excel.md) & [**Netmiko basics**](./tutorials/beginner/multi-device-show-command.md)
     2. Learn [**Nornir fundamentals**](./tutorials/intermediate/nornir-fundamentals.md) — frameworks for scale
     3. Study [**Deep Dives**](./deep-dives/index.md) for patterns (threading, configuration, error handling)
+
+---
+
+## 💰 Typical Investment
+
+**Full PRIME Framework Engagement: £12,000 – £28,000**
+
+Covers complete end-to-end delivery from opportunity discovery to team empowerment (6–12 weeks, typical).
+
+**À La Carte Services:** Pinpoint (£2,500–£4,000) • Re-engineer (£3,000–£6,000) • Implement (£6,000–£18,000) • Measure (£2,000–£3,500) • Empower (custom)
+
+**Timeline to ROI Payback: 6–12 months** (then pure savings thereafter)
+
+[Get detailed pricing and options →](./services.md) | [Request Discovery Call](mailto:nautomationprime.f3wfe@simplelogin.com)
 
 ---
 
@@ -164,7 +190,39 @@ Every tool and guide adheres to three core engineering principles:
 
 **In practice:** The Philosophy ensures every line of code in the Framework is transparent, reliable, and pragmatic. The Framework ensures every automation project delivers measurable ROI, team capability, and sustainable value.
 
-**[Learn more about the PRIME Framework →](./prime-framework/index.md)**
+**[Learn about the PRIME Framework →](./prime-framework/index.md)** | **[Request Discovery Call](mailto:nautomationprime.f3wfe@simplelogin.com)**
+
+---
+
+## 💡 Why Nautomation Prime?
+
+Nautomation Prime was founded by a **CCNP-certified Senior Network Engineer** with **10+ years** in enterprise network infrastructure, Cisco technologies, and large-scale automation projects—including network upgrades across 200+ devices, NHS systems integration, and critical infrastructure hardening.
+
+Built from **real-world experience**, not theory.
+
+### What Makes Us Different
+
+**❌ Most automation shops:**
+- Build for one client, move on
+- Leave you with code you don't understand
+- Can't prove ROI
+- Disappear when the project ends
+
+**✅ Nautomation Prime:**
+- **Transparent Code** — Every line explained. No black boxes. You own and understand your automation completely.
+- **Proven Methodology** — The PRIME Framework is built on 10+ years of enterprise network deployments. It works because it's been battle-tested at scale.
+- **Team Empowerment** — We don't just deliver code—we build your team's capability. After engagement, you own the solution and can extend it.
+- **Measurable ROI** — We quantify the value: time saved, operational risk reduced, capital freed up. You get concrete metrics, not just "it's faster."
+- **Production Grade** — Hardened error handling, security-focused credential management, enterprise-scale parallelization. Not hobbyist scripts.
+
+### Real-World Outcomes We've Delivered
+
+- **Reduced VLAN provisioning time** from 15 minutes to 30 seconds (per VLAN)
+- **Automated IOS-XE upgrades** across 200+ devices with automatic rollback safety
+- **Eliminated 90% of manual compliance checks** through continuous auditing
+- **Removed vendor lock-in** by rebuilding legacy proprietary automation in portable Python
+
+**[Get more details about what we've built →](./about.md)**
 
 ---
 

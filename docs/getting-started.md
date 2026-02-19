@@ -185,7 +185,22 @@ A: The [PRIME Framework](prime-framework/index.md) is our proven 5-stage methodo
 
 ---
 
-## 🚀 Next Steps
+## � Ready to Get Started?
+
+Whether you're learning automation, deploying tools, or need bespoke services—we're here to help.
+
+### For Custom Automation & Services
+
+**[Book a Discovery Call](mailto:nautomationprime.f3wfe@simplelogin.com)** (Free, 30-60 minutes)
+
+No obligation. We'll discuss your goals, timeline, and answer any questions about the PRIME Framework.
+
+### For Questions or Discussions
+
+- **Email:** [nautomationprime.f3wfe@simplelogin.com](mailto:nautomationprime.f3wfe@simplelogin.com)
+- **LinkedIn:** [Nautomation Prime](https://www.linkedin.com/company/nautomationprime)
+
+---
 
 - **Learn Network Automation:** Start with [Tutorials](tutorials/index.md) or study [Deep Dives](deep-dives/index.md)
 - **Deploy Tools:** Browse the [Script Library](scripts/index.md)

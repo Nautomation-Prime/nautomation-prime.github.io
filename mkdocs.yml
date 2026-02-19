@@ -164,12 +164,15 @@ nav:
       - Implement: prime-framework/implement.md
       - Measure: prime-framework/measure.md
       - Empower: prime-framework/empower.md
+  - How We Work: how-we-work.md
   - Services: services.md
+  - Why Automation Fails: why-automation-fails.md
   - Coming Soon:
       - coming-soon/index.md
       - Cisco IOS-XE ZTP: coming-soon/cisco-ios-xe-ztp.md
       - IOS-XE Upgrade Orchestrator: coming-soon/ios-xe-upgrade-orchestrator.md
   - About: about.md
+  - Founder: founder.md
   - Legal:
       - Privacy Policy: legal/privacy-policy.md
       - Terms of Use: legal/terms-of-use.md

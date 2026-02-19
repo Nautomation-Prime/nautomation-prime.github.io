@@ -151,6 +151,15 @@ Christopher specialises in enterprise Cisco automation, with deep expertise in P
 
 ---
 
+## Ready to Transform Your Network Automation?
+
+Whether you want to learn, deploy tools, or build bespoke solutions, let's talk.
+
+**[Book a Discovery Call](mailto:nautomationprime.f3wfe@simplelogin.com)** — 30-60 minutes, free, no obligation  
+[Explore Services](./services.md) — PRIME Framework, à la carte options, pricing
+
+---
+
 ## Technology Stack
 
 Our tools and guides leverage industry-standard Python libraries:
