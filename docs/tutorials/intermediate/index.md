@@ -1,30 +1,75 @@
 ---
-title: Intermediate Tutorials - Nornir
-description: Master Nornir for enterprise-scale network automation. Learn parallel task execution, inventory management, and production-grade patterns.
+title: Intermediate Tutorials - PyATS & Nornir
+description: Master PyATS for network validation and Nornir for enterprise-scale automation. Learn parallel execution, production-grade testing, and deployment patterns.
 tags:
   - Intermediate
+  - PyATS
   - Nornir
+  - Validation
   - Parallelization
   - Enterprise
   - Tutorials
 ---
 
-# Intermediate Tutorials: Nornir for Enterprise Scale
+# Intermediate Tutorials: PyATS & Nornir
 
-## "From Scripts to Systems — Scale Your Automation to Hundreds of Devices"
+## "From Guessing to Proving — Validate Your Automation at Enterprise Scale"
 
-In the [Beginner Tutorials](../beginner/index.md), you built single-device and multi-device automation using loops. That's great for small networks, but **what happens when you have 500 devices? 5,000 devices?**
+In the [Beginner Tutorials](../beginner/index.md), you built single-device and multi-device automation using loops. That works for small changes, but **how do you know your automation actually worked? How do you prove ROI? How do you scale to hundreds or thousands of devices?**
 
-The answer is **Nornir** — a framework designed from the ground up for enterprise-scale network automation.
+The answer is a two-part approach:
 
-In these intermediate tutorials, we'll evolve your automation from sequential scripts to parallel, production-grade systems that complete in minutes instead of hours.
+1. **PyATS** — Master network device validation and testing (Cisco's enterprise test framework used internally with millions of tests monthly)
+2. **Nornir** — Master parallel execution and orchestration at scale
+
+In these intermediate tutorials, we'll evolve your automation from sequential scripts to **validated, parallel, production-grade systems** that complete in minutes instead of hours, with built-in confidence.
 
 ---
 
-## 🎯 What You'll Learn
+## 🎯 Two Paths to Enterprise Automation
+
+### Path 1: PyATS Mastery (Network Validation)
+
+Learn Cisco's production test framework used internally to validate infrastructure changes before they reach production.
+
+**Why it matters:**
+- ✅ **Prove automation works** — Don't guess if your change succeeded; validate with structured device parsing
+- ✅ **Detect configuration drift** — Automated compliance checking across hundreds of devices
+- ✅ **Production safety** — Pre-flight validation before changes, post-flight verification after
+- ✅ **Built on Genie parsers** — Cisco's structured parsing library (same as DNAC uses internally)
+
+### Path 2: Nornir Mastery (Enterprise Scale)
+
+Learn the framework designed from the ground up for parallel network operations.
+
+**Why it matters:**
+- ✅ **Performance at scale** — Execute tasks in parallel across 100s/1000s of devices (not sequential loops)
+- ✅ **Enterprise patterns** — Device grouping, credential management, result aggregation
+- ✅ **Real-world architecture** — Multi-step workflows, database integration, change detection
+- ✅ **Proven in production** — Used by network teams managing thousands of devices globally
+
+### Together: PyATS + Nornir (The Complete System)
+
+The **final tutorial** shows how to combine both:
+- Deploy with Nornir (parallel execution)
+- Validate with PyATS (structured testing)
+- Use PRIME Framework integration for repeatable, safe deployments
+
+---
+
+## 📚 What You'll Learn
 
 By completing these intermediate tutorials, you'll understand:
 
+**PyATS Path:**
+- ✅ How Cisco tests network devices internally
+- ✅ Device parsing and structured data extraction
+- ✅ Building validation tests (compliance, configuration, health checks)
+- ✅ Pre-flight and post-flight validation patterns
+- ✅ Integrating PyATS into deployment workflows
+- ✅ Handling failures and automatic rollback
+
+**Nornir Path:**
 - ✅ Why parallelization matters and how Nornir delivers it
 - ✅ Task-based architecture and reusable automation components
 - ✅ Nornir's inventory system and device grouping
@@ -33,6 +78,11 @@ By completing these intermediate tutorials, you'll understand:
 - ✅ Performance optimisation and benchmarking
 - ✅ Credential management and security best practices
 - ✅ How to architect systems for production deployment
+
+**Combined:**
+- ✅ Deploy → Validate → Measure workflows
+- ✅ Automatic rollback on validation failure
+- ✅ PRIME Framework integration for sustainable automation
 
 ---
 
@@ -43,10 +93,22 @@ By completing these intermediate tutorials, you'll understand:
 - ✅ Comfortable with Python classes and object-oriented programming
 - ✅ Familiar with Python dictionaries and list comprehensions
 - ✅ Understanding of YAML file format (basic)
+- ✅ Familiar with structured data (dictionaries, nested structures)
 
 ### Required Software
+
+**For the full series (PyATS + Nornir):**
 ```bash
-# Install Nornir and required plugins
+pip install pyats genie netmiko nornir nornir-netmiko nornir-utils pandas openpyxl pyyaml
+```
+
+**For PyATS tutorials only:**
+```bash
+pip install pyats genie netmiko pandas openpyxl
+```
+
+**For Nornir tutorials only:**
+```bash
 pip install nornir nornir-netmiko nornir-utils netmiko pandas openpyxl pyyaml
 ```
 
@@ -57,11 +119,72 @@ pip install nornir nornir-netmiko nornir-utils netmiko pandas openpyxl pyyaml
   - Reachable from your workstation
   - Privilege level 15 (to read running configs)
 
+### Optional: Choose Your Path
+- **PyATS focused?** Start with Tutorial #1 (PyATS Fundamentals)
+- **Nornir focused?** Start with Tutorial #4 (Why Nornir?)
+- **Want the complete system?** Follow tutorials 1-7 in order
+
 ---
 
 ## 📚 Tutorial Series
 
-### 1. [Why Nornir? — Understanding the Problem and Solution](./why-nornir.md)
+### PyATS: Master Network Validation
+
+#### 1. [PyATS Fundamentals — Why Cisco Trusts It](./pyats-fundamentals.md)
+
+**Understand PyATS and why Cisco runs millions of tests monthly with it.**
+
+Learn:
+- Why PyATS matters (Cisco's internal test framework)
+- Device connections and testbed configuration
+- Structured parsing with Genie
+- Writing simple validation tests
+- Integrating with the PRIME Framework
+
+**What You'll Build:** A first validation test that parses device state and confirms changes succeeded.
+
+**Prerequisite:** Complete Beginner tutorials
+
+---
+
+#### 2. [PyATS Network Validation — Real-World Testing Patterns](./pyats-network-validation.md)
+
+**Master production validation patterns that catch real problems.**
+
+Learn:
+- Real device parsing (VLAN, interfaces, routing, BGP)
+- Compliance checking (required configurations, health checks)
+- Handling failures gracefully
+- Multi-device validation at scale
+- Timeout handling and error strategies
+
+**What You'll Build:** A complete validation suite for VLAN compliance, interface health, and BGP neighbor checks.
+
+**Prerequisite:** Complete Tutorial #1 above
+
+---
+
+#### 3. [Building Reliable Automation with PyATS — Deploy, Validate, Rollback](./building-reliable-automation-with-pyats.md)
+
+**Integrate PyATS into real deployment workflows.**
+
+Learn:
+- Netmiko + PyATS (configuration + validation)
+- Nornir + PyATS (parallel deployment + parallel validation)
+- Automatic rollback on validation failure
+- Pre-flight and post-flight patterns
+- PRIME Framework integration
+- Production deployment strategies
+
+**What You'll Build:** A complete deployment workflow that safely rolls back if validation fails.
+
+**Prerequisite:** Complete Tutorial #2 above
+
+---
+
+### Nornir: Master Enterprise Scale
+
+#### 4. [Why Nornir? — Understanding the Problem and Solution](./why-nornir.md)
 
 **Before we build, understand WHY Nornir matters.**
 
@@ -78,7 +201,7 @@ Learn:
 
 ---
 
-### 2. [Nornir Fundamentals — Write Your First Production Task](./nornir-fundamentals.md)
+#### 5. [Nornir Fundamentals — Write Your First Production Task](./nornir-fundamentals.md)
 
 **Master the core concepts before tackling complex scenarios.**
 
@@ -92,11 +215,11 @@ Learn:
 
 **What You'll Build:** A parallel config backup script in ~60 lines of code that's 20x faster than Beginner Tutorial #3.
 
-**Prerequisite:** Complete Tutorial #1 above
+**Prerequisite:** Complete Tutorial #4 above
 
 ---
 
-### 3. [Enterprise Config Backup Deep Dive — Building a Real System](./enterprise-config-backup-nornir.md)
+#### 6. [Enterprise Config Backup Deep Dive — Building a Real System](./enterprise-config-backup-nornir.md)
 
 **Apply Nornir to the problem you already know: config backups.**
 
@@ -110,11 +233,11 @@ Learn:
 
 **What You'll Build:** A complete enterprise backup system with timestamped backups, change detection, database logging, and compliance scoring.
 
-**Prerequisite:** Complete Tutorial #2 above
+**Prerequisite:** Complete Tutorial #5 above
 
 ---
 
-### 4. [Advanced Nornir Patterns — Production-Grade Architecture](./advanced-nornir-patterns.md)
+#### 7. [Advanced Nornir Patterns — Production-Grade Architecture](./advanced-nornir-patterns.md)
 
 **Master the patterns used in real enterprise deployments.**
 
@@ -130,7 +253,7 @@ Learn:
 
 **What You'll Build:** Reusable patterns and architectures you can apply to any enterprise automation problem.
 
-**Prerequisite:** Complete Tutorial #3 above
+**Prerequisite:** Complete Tutorial #6 above
 
 ---
 
@@ -142,13 +265,13 @@ Before starting these tutorials:
 
 ```bash
 # Create a virtual environment
-python -m venv nornir_env
-source nornir_env/bin/activate
-# Windows PowerShell: .\nornir_env\Scripts\Activate.ps1
-# Windows CMD: nornir_env\Scripts\activate.bat
+python -m venv intermediate_env
+source intermediate_env/bin/activate
+# Windows PowerShell: .\intermediate_env\Scripts\Activate.ps1
+# Windows CMD: intermediate_env\Scripts\activate.bat
 
-# Install required packages
-pip install nornir nornir-netmiko nornir-utils netmiko pandas openpyxl pyyaml
+# Install all required packages (PyATS + Nornir)
+pip install pyats genie netmiko nornir nornir-netmiko nornir-utils pandas openpyxl pyyaml
 ```
 
 ### 2. Test Devices
@@ -158,7 +281,15 @@ You'll need at least 5 Cisco devices accessible via SSH. If you don't have a lab
 - Use Cisco modeling labs (CSR1000v virtual routers)
 - Use GNS3 or EVE-NG for local simulation
 
-### 3. Project Structure
+### 3. Verify Installation
+
+```bash
+python -c "from pyats.topology import loader; print('PyATS OK')"
+python -c "from nornir import InitNornir; print('Nornir OK')"
+python -c "import netmiko; print('Netmiko OK')"
+```
+
+### 4. Project Structure
 
 Create a directory for your Nornir projects:
 
