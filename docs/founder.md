@@ -48,7 +48,7 @@ I cut my teeth in **hands-on network operations** at diverse organizations:
     - Delivered NHS integration enabling video conferencing across health systems (Cisco networking, Dell Hyper-V, Pexip VoIP)
     - Ensured 99.9% uptime for mission-critical collaboration infrastructure
 
-- **Autonet Insurance** — Network & Collaboration Engineer
+- **Insurance Broker** — Network & Collaboration Engineer
     - Led migration from on-premises Mitel telephony to cloud-based Cisco Catalyst platforms
     - Designed and deployed multi-site SD-WAN/MPLS hybrid connectivity architecture
     - Managed complex network upgrades across rapid-expansion deployments
