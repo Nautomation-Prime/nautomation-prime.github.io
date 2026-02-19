@@ -168,11 +168,45 @@ Custom solutions tailored to your topology. Expert consultancy for Zero Trust de
 
 Every tool and guide adheres to three core engineering principles:
 
-| Principle | What It Means |
-| :--- | :--- |
-| **Line-by-Line Transparency** | We explain the *why* behind the code, not just the *what*. Every design decision is documented so you understand your automation completely. |
-| **Hardened for Production** | Robust error handling, pre-flight safety checks, enterprise credential management, and thread-safe operations. Not "nice to have"—essential for critical infrastructure. |
-| **Vendor-Neutral** | Built on industry-standard libraries (Netmiko, Nornir, NAPALM, PyATS). Your skills remain portable across vendors and platforms. |
+### 🎯 1. Pragmatic Over Perfect
+
+**Ship solutions that work today, not theoretical perfection that never ships.**
+
+We favor:
+
+- ✅ Simple, direct solutions over abstract architectures
+- ✅ Working code with clear TODOs over delayed perfection
+- ✅ Solving today's problem efficiently over future-proofing speculatively
+
+Complexity must earn its place by delivering measurable value.
+
+**In Practice:** A 150-line script that solves the problem beats a 2,000-line "framework" that handles hypothetical edge cases.
+
+### 🔍 2. Transparency Over Obscurity
+
+**Verbose logging, human-readable outputs, zero "black box" magic.**
+
+We explain:
+
+- ✅ **The "why"** behind every design decision, not just the "what"
+- ✅ **Every line of code** with detailed inline comments
+- ✅ **Execution progress** with comprehensive logging (INFO, WARNING, ERROR)
+- ✅ **Results** with Excel reports and executive summaries
+
+**In Practice:** When automation fails at 2 AM, logs show exactly what happened and where. No mystery debugging.
+
+### 🛡️ 3. Reliability Over Speed
+
+**Pre-flight validation, post-flight verification, automatic rollback.**
+
+Production networks deserve bulletproof automation:
+
+- ✅ **Pre-flight checks:** Validate devices are reachable, configs won't conflict
+- ✅ **Post-flight validation:** Verify changes were actually applied as intended
+- ✅ **Automatic rollback:** Undo changes if validation fails
+- ✅ **Comprehensive error handling:** Graceful degradation, never crash-and-burn
+
+**In Practice:** Automation that works 98% of the time causes 2% catastrophic failures. Reliability means handling the 2% without human intervention.
 
 ---
 
@@ -182,13 +216,13 @@ Every tool and guide adheres to three core engineering principles:
 
 **The PRIME Framework** defines **WHAT** we deliver (our service methodology).
 
-| Philosophy → Framework | Connection |
+| Philosophy Principle | Framework Application |
 | :--- | :--- |
-| **Line-by-Line Transparency** | Informs the **[Empower](./prime-framework/empower.md)** stage—comprehensive documentation and knowledge transfer |
-| **Hardened for Production** | Drives the **[Re-engineer](./prime-framework/re-engineer.md)** and **[Implement](./prime-framework/implement.md)** stages—safety mechanisms and validation |
-| **Vendor-Neutral** | Ensures **[Measure](./prime-framework/measure.md)** metrics remain portable and **[Pinpoint](./prime-framework/pinpoint.md)** opportunities aren't tool-locked |
+| **🎯 Pragmatic Over Perfect** | Pinpoint opportunities based on data—don't automate everything, only high-ROI tasks |
+| **🔍 Transparency Over Obscurity** | Empower teams with detailed documentation and knowledge transfer so they understand and own the automation |
+| **🛡️ Reliability Over Speed** | Re-engineer and Implement with safety mechanisms, validation, and error handling built in from the start |
 
-**In practice:** The Philosophy ensures every line of code in the Framework is transparent, reliable, and pragmatic. The Framework ensures every automation project delivers measurable ROI, team capability, and sustainable value.
+**In practice:** The Philosophy ensures every line of code in the Framework is pragmatic, transparent, and reliable. The Framework ensures every automation project delivers measurable ROI, team capability, and sustainable value.
 
 **[Learn about the PRIME Framework →](./prime-framework/index.md)** | **[Request Discovery Call](mailto:nautomationprime.f3wfe@simplelogin.com)**
 
