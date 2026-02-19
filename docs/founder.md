@@ -39,22 +39,22 @@ I cut my teeth in **hands-on network operations** at diverse organizations:
 
 - **Muller UK & Ireland** — Current role as Network Operations Senior Analyst
 
-  - Proactive monitoring of enterprise networks across multiple UK dairy sites using SolarWinds Orion, Cisco DNAC and Netbox
-  - Ground-up implementation of Cisco DNAC for network visibility and automation
-  - Designed and executed site-wide wireless upgrades using Ekahau AI Pro
-  - Managed tens of thousands of network devices across multiple data centers
+   - Proactive monitoring of enterprise networks across multiple UK dairy sites using SolarWinds Orion, Cisco DNAC and Netbox
+   - Ground-up implementation of Cisco DNAC for network visibility and automation
+   - Designed and executed site-wide wireless upgrades using Ekahau AI Pro
+   - Managed tens of thousands of network devices across multiple data centers
 
 - **Involve Visual Collaboration** — System Infrastructure Specialist 
 
-  - Collaborated with engineers to deploy Python scripts for automatic configuration of 200+ switches during network upgrades across UK courts, prisons, and probation offices
-  - Delivered NHS integration enabling video conferencing across health systems (Cisco networking, Dell Hyper-V, Pexip VoIP)
-  - Ensured 99.9% uptime for mission-critical collaboration infrastructure
+   - Collaborated with engineers to deploy Python scripts for automatic configuration of 200+ switches during network upgrades across UK courts, prisons, and probation offices
+   - Delivered NHS integration enabling video conferencing across health systems (Cisco networking, Dell Hyper-V, Pexip VoIP)
+   - Ensured 99.9% uptime for mission-critical collaboration infrastructure
 
 - **Autonet Insurance** — Network & Collaboration Engineer  
 
-  - Led migration from on-premises Mitel telephony to cloud-based Cisco Catalyst platforms
-  - Designed and deployed multi-site SD-WAN/MPLS hybrid connectivity architecture
-  - Managed complex network upgrades across rapid-expansion deployments
+   - Led migration from on-premises Mitel telephony to cloud-based Cisco Catalyst platforms
+   - Designed and deployed multi-site SD-WAN/MPLS hybrid connectivity architecture
+   - Managed complex network upgrades across rapid-expansion deployments
 
 - **Vendor Support & Troubleshooting** — Root cause analysis across Cisco routing, switching, wireless, voice, and security platforms
 
@@ -66,8 +66,6 @@ Real networks are ugly. Legacy, hybrid, edge-case-ridden. The solutions that wor
 - **CCNP Enterprise** — Professional-level routing and switching design
 - **CCNP Automation** — Network automation and orchestration
 - **CCNP Collaboration** — Advanced unified communications architecture
-- **CCNA Voice** — VoIP and telephony systems
-- **CCNA Routing & Switching** — Core networking fundamentals
 - **CCDA** — Cisco design methodology
 
 **What these taught me:**  
