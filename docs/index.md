@@ -203,12 +203,14 @@ Built from **real-world experience**, not theory.
 ### What Makes Us Different
 
 **❌ Most automation shops:**
+
 - Build for one client, move on
 - Leave you with code you don't understand
 - Can't prove ROI
 - Disappear when the project ends
 
 **✅ Nautomation Prime:**
+
 - **Transparent Code** — Every line explained. No black boxes. You own and understand your automation completely.
 - **Proven Methodology** — The PRIME Framework is built on 10+ years of enterprise network deployments. It works because it's been battle-tested at scale.
 - **Team Empowerment** — We don't just deliver code—we build your team's capability. After engagement, you own the solution and can extend it.
