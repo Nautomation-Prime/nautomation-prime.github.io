@@ -400,4 +400,4 @@ The PRIME Framework takes the guesswork out of network automation. Whether you'r
 
 ---
 
-> **Mission:** To empower network engineers through the **PRIME Framework**—delivering automation with measurable ROI, production-grade quality, and sustainable team capability built on the **[Prime Philosophy](../about.md#prime-philosophy)** of transparency, reliability, and pragmatism.
+> **Mission:** To empower network engineers through the **[PRIME Framework](./index.md)**—delivering automation with measurable ROI, production-grade quality, and sustainable team capability built on the **[Prime Philosophy](../about.md#prime-philosophy)** of transparency, reliability, and pragmatism.
