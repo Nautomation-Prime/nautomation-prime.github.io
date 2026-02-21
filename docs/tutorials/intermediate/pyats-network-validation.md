@@ -351,6 +351,7 @@ def test_access_port_compliance(device):
 ```
 
 **How this works step-by-step:**
+
 1. Parse show vlan (get current port-to-VLAN mapping)
 2. Define required mapping (what ports SHOULD be in each VLAN)
 3. For each VLAN: extract actual ports from parsing
@@ -442,6 +443,7 @@ def test_interface_health(device, expected_up_count=48):
 ```
 
 **How this works step-by-step:**
+
 1. Parse show interfaces (get status of every interface)
 2. Skip management/loopback interfaces (not data ports)
 3. Count up interfaces
@@ -645,7 +647,7 @@ from pyats.topology import loader
 def testbed():
     return loader.load('testbed.yaml')
 
-@pytest.mark.parametrize('device_name', ['switch-01', 'switch-02', 'switch-03'])
+@pytest.mark.parameterise('device_name', ['switch-01', 'switch-02', 'switch-03'])
 def test_vlan_on_all_switches(testbed, device_name):
     """
     Run the same test on all switches
@@ -792,7 +794,7 @@ def test_vlan_automation_with_validation(device):
 - ✅ **Capture baseline before automation** — You can't validate change without knowing the starting state
 - ✅ **Test in non-critical environments first** — Lab or staging before production
 - ✅ **Use fixtures for device connections** — PyTest fixtures handle setup/teardown automatically
-- ✅ **Parameterize multi-device tests** — Run the same test on different devices
+- ✅ **Parameterise multi-device tests** — Run the same test on different devices
 - ✅ **Document what you're validating** — Clear test names explain intent
 - ✅ **Log results verbosely** — Future you will appreciate the detail
 
