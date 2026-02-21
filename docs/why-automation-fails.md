@@ -16,6 +16,9 @@ Not because the code is broken. Not because the idea is bad. But because somethi
 
 I've seen it happen. I've done the post-mortems. Here's why automation fails.
 
+!!! tip "The Alternative Approach"
+    These failure patterns are why we developed the **[PRIME Philosophy](./prime-framework/philosophy.md)** and **[PRIME Framework](./prime-framework/index.md)**—principles and processes designed specifically to prevent these failures.
+
 ---
 
 ## Failure Pattern #1: Automating the Wrong Thing

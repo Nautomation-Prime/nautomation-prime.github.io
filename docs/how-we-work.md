@@ -12,6 +12,8 @@ tags:
 
 We deliver network automation through a **proven 5-stage methodology** called the **PRIME Framework**. Each stage builds on the previous one, ensuring measurable value, sustainable capability, and zero black-box code.
 
+Every engagement is guided by our **[PRIME Philosophy](./prime-framework/philosophy.md)**—core principles of transparency, measurability, ownership, safety, and empowerment.
+
 This is how it works.
 
 ---

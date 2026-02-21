@@ -14,6 +14,9 @@ tags:
 
 The **PRIME Framework** is Nautomation Prime's systematic approach to transforming network operations through intelligent Python automation. This five-stage methodology ensures every automation project delivers measurable value while maintaining production safety and transparency.
 
+!!! info "Start with Philosophy"
+    Before diving into the framework stages, understand the **[PRIME Philosophy](./philosophy.md)**—the core principles that drive every decision we make. Transparency, measurability, ownership, safety, and empowerment over vendor lock-in.
+
 ---
 
 ## 🎯 Why a Framework?
@@ -78,7 +81,7 @@ graph LR
 
 ### [**I** — Implement](./implement.md) Targeted Automations
 
-**Objective:** Build production-ready automation following the [Prime Philosophy](../index.md#the-prime-philosophy)
+**Objective:** Build production-ready automation following the [PRIME Philosophy](./philosophy.md)
 
 **What Happens:**
 

@@ -120,6 +120,7 @@ Upcoming solutions in design and development.
 Understand the philosophy and methodology behind Nautomation Prime.
 
 - **[PRIME Framework Overview](prime-framework/index.md)** — 5-phase enterprise automation approach
+- **[PRIME Philosophy](prime-framework/philosophy.md)** — Core principles: transparency, measurability, ownership, safety, empowerment
 - **[Pinpoint](prime-framework/pinpoint.md)** — Identify automation opportunities
 - **[Re-Engineer](prime-framework/re-engineer.md)** — Continuous improvement cycles
 - **[Implement](prime-framework/implement.md)** — Deploy production solutions
@@ -142,6 +143,8 @@ Understand the philosophy and methodology behind Nautomation Prime.
 
 **Validate changes with PyATS** → [PyATS Fundamentals](tutorials/intermediate/pyats-fundamentals.md) → [PyATS for Network Validation](tutorials/intermediate/pyats-network-validation.md) → [Building Reliable Automation with PyATS](tutorials/intermediate/building-reliable-automation-with-pyats.md)
 
+**Understand our philosophy** → [PRIME Philosophy](prime-framework/philosophy.md)
+
 **Understand the PRIME approach** → [PRIME Framework](prime-framework/index.md)
 
 **Start from scratch** → [Start Here](getting-started.md)
@@ -157,7 +160,8 @@ Understand the philosophy and methodology behind Nautomation Prime.
     - **Why Nornir won't work for me?** → It will—see [Why Nornir?](tutorials/intermediate/why-nornir.md)
     - **Building enterprise solutions?** → [Advanced Nornir Patterns](tutorials/intermediate/advanced-nornir-patterns.md)
     - **Need validation after changes?** → [PyATS Fundamentals](tutorials/intermediate/pyats-fundamentals.md)
-    - **Want philosophical context?** → [PRIME Framework](prime-framework/index.md)
+    - **Want our core principles?** → [PRIME Philosophy](prime-framework/philosophy.md)
+    - **Want the methodology?** → [PRIME Framework](prime-framework/index.md)
 
 ---
 
@@ -197,8 +201,9 @@ You need repeatable, enterprise-grade validation for automation changes.
 ### Path 4: Methodology Deep Dive (2 hours)
 Understand the strategic framework behind automation decisions.
 
-1. [PRIME Framework Overview](prime-framework/index.md) — The 5-phase model
-2. Review each phase: [Pinpoint](prime-framework/pinpoint.md) → [Empower](prime-framework/empower.md) → [Implement](prime-framework/implement.md) → [Measure](prime-framework/measure.md) → [Re-Engineer](prime-framework/re-engineer.md)
+1. [PRIME Philosophy](prime-framework/philosophy.md) — Core principles and values that drive decisions
+2. [PRIME Framework Overview](prime-framework/index.md) — The 5-phase model
+3. Review each phase: [Pinpoint](prime-framework/pinpoint.md) → [Re-Engineer](prime-framework/re-engineer.md) → [Implement](prime-framework/implement.md) → [Measure](prime-framework/measure.md) → [Empower](prime-framework/empower.md)
 
 **Next:** Apply PRIME thinking to your automation initiatives
 
@@ -239,6 +244,7 @@ Each resource is tagged to help you find content that matches your style:
 - [Building Reliable Automation with PyATS](tutorials/intermediate/building-reliable-automation-with-pyats.md) — Proves changes worked in production
 
 **Best for Executives**
+- [PRIME Philosophy](prime-framework/philosophy.md) — Core principles: transparency, measurability, ownership, safety
 - [PRIME Framework](prime-framework/index.md) — Strategic, ROI-focused automation methodology
 - [Measure](prime-framework/measure.md) — Track and communicate automation impact
 
