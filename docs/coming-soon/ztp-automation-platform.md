@@ -11,6 +11,15 @@ tags:
 
 # ZTP Automation Platform
 
+!!! abstract "Project Status"
+    **Current Phase:** :fontawesome-solid-hammer: **Build Phase**
+
+    This platform is actively under development. Core architecture and workflows are being implemented, including the Excel-driven config builder, Jinja2 templating engine, Day 0/Day N provisioning logic, and device inventory database.
+
+---
+
+## Executive Summary
+
 An end-to-end production-grade Cisco ZTP solution built in Python for enterprise rollouts. This is the fully managed, paid platform version of our upcoming free ZTP script, with a configuration builder, data validation, and lifecycle tracking.
 
 ---
@@ -85,4 +94,4 @@ We document exactly what the platform consumes, what it produces, and who owns e
 
 ---
 
-**Status:** :fontawesome-solid-drafting-compass: Design & Planning Phase
+**Status:** :fontawesome-solid-hammer: Build Phase

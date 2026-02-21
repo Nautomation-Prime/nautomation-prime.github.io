@@ -56,7 +56,7 @@ An end-to-end enterprise-grade Cisco ZTP solution built in Python. This managed 
 
 **PRIME Alignment:** [Pinpoint](../prime-framework/pinpoint.md) → [Re-Engineer](../prime-framework/re-engineer.md) → [Implement](../prime-framework/implement.md) → [Measure](../prime-framework/measure.md) → [Empower](../prime-framework/empower.md)
 
-**Status:** :fontawesome-solid-drafting-compass: Design & Planning Phase
+**Status:** :fontawesome-solid-hammer: Build Phase
 
 ---
 
