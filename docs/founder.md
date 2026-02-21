@@ -30,7 +30,7 @@ I'm also quite introverted, which surprises some people in consulting. But intro
 
 **Nature and the outdoors** recharge me. The less man-made, the better. Give me forests, hills, and open countryside over cities any day. There's something about being surrounded by natural complexity that puts human-created systems into perspective. I take my DSLR camera along to capture those moments—there's a satisfaction in framing a shot properly, getting the light right, preserving something beautiful.
 
-**Tea.** Proper tea. I import varieties from China and India because I'm particular about quality. There's a ritual to a good cup of tea—choosing the right leaves, the right temperature, the right timing. It's a small thing, but it matters. (You might notice a pattern here: I care about doing things *properly*.)
+**Tea.** Proper tea. I import varieties from China and India as directly from the tea farms as possible because I'm particular about quality. There's a ritual to a good cup of tea—choosing the right leaves, the right temperature, the right timing. It's a small thing, but it matters. (You might notice a pattern here: I care about doing things *properly*.)
 
 ### Why This Work Matters to Me
 
