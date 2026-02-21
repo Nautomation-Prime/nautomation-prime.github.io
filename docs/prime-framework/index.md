@@ -150,9 +150,19 @@ The "Empower" stage ensures clients aren't dependent on external consultants—t
 
 ## 🎓 Framework + Philosophy
 
-The PRIME Framework is how we **deliver** automation projects. The [Prime Philosophy](../index.md#the-prime-philosophy) defines **how we build**:
+The PRIME Framework is how we **deliver** automation projects. The **[PRIME Philosophy](./philosophy.md)** defines **how we think and build**:
 
-| PRIME Stage | Prime Philosophy Application |
+**Core Principles:**
+
+- **Transparency Over Obscurity** — Every line of code explained, no black boxes
+- **Measurability Over Assumptions** — Data-driven decisions, proven ROI
+- **Ownership Over Dependency** — Your team owns the automation, not us
+- **Safety Over Speed** — Production-grade reliability, not quick hacks
+- **Empowerment Over Magic Buttons** — Understanding, not mysterious automation
+
+**[Read the full Philosophy →](./philosophy.md)**
+
+| PRIME Stage | Philosophy Application |
 |:---|:---|
 | **Pinpoint** | Vendor-neutral analysis (no tool lock-in) |
 | **Re-engineer** | Production-hardened design from the start |
@@ -396,6 +406,7 @@ The PRIME Framework takes the guesswork out of network automation. Whether you'r
 
 **Next Steps:**
 
+- **[Understand our principles](./philosophy.md)** — Read the PRIME Philosophy
 - **[Request a free discovery call](mailto:nautomationprime.f3wfe@simplelogin.com)** to discuss your needs
 - **[Explore our services](../services.md)** to see engagement options and pricing
 - **[Learn the foundations](../tutorials/index.md)** with free tutorials
@@ -403,4 +414,4 @@ The PRIME Framework takes the guesswork out of network automation. Whether you'r
 
 ---
 
-> **Mission:** To empower network engineers through the **[PRIME Framework](./index.md)**—delivering automation with measurable ROI, production-grade quality, and sustainable team capability built on the **[Prime Philosophy](../about.md#prime-philosophy)** of transparency, reliability, and pragmatism.
+> **Mission:** To empower network engineers through the **[PRIME Framework](./index.md)**—delivering automation with measurable ROI, production-grade quality, and sustainable team capability built on the **[PRIME Philosophy](./philosophy.md)** of transparency, measurability, ownership, safety, and empowerment.
