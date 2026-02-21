@@ -1,6 +1,6 @@
 ---
-title: Enterprise ZTP Config Builder
-description: Paid, enterprise-grade Cisco ZTP platform with an Excel-driven config builder, Jinja2 templating, and Day 0/Day N workflows.
+title: ZTP Automation Platform
+description: End-to-end enterprise Cisco ZTP solution with Excel-driven config builder, Jinja2 templating, and Day 0/Day N workflows.
 tags:
   - Coming Soon
   - ZTP
@@ -9,9 +9,9 @@ tags:
   - Enterprise
 ---
 
-# Enterprise ZTP Config Builder
+# ZTP Automation Platform
 
-A production-grade Cisco ZTP solution built in Python for enterprise rollouts. This is the fully managed, paid platform version of our upcoming free ZTP script, with a configuration builder, data validation, and lifecycle tracking.
+An end-to-end production-grade Cisco ZTP solution built in Python for enterprise rollouts. This is the fully managed, paid platform version of our upcoming free ZTP script, with a configuration builder, data validation, and lifecycle tracking.
 
 ---
 

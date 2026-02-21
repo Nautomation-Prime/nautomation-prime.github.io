@@ -175,6 +175,7 @@ nav:
   - Coming Soon:
       - coming-soon/index.md
       - Cisco IOS-XE ZTP: coming-soon/cisco-ios-xe-ztp.md
+      - ZTP Automation Platform: coming-soon/ztp-automation-platform.md
       - IOS-XE Upgrade Orchestrator: coming-soon/ios-xe-upgrade-orchestrator.md
   - About: about.md
   - Founder: founder.md
