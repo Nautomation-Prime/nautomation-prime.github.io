@@ -1,0 +1,6 @@
+title: Beginner
+nav:
+  - index.md
+  - netmiko-show-command-to-excel.md
+  - multi-device-show-command.md
+  - multi-device-config-backup.md

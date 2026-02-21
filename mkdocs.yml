@@ -127,6 +127,7 @@ plugins:
       separator: '[\s\-,:!=\[\]()"/]+|(?!\b)(?=[A-Z][a-z])|\.(?!\d)|&[lg]t;'
       lang: en
   - tags  # Enable tags for content categorization
+  - awesome-pages  # Use .pages files for section ordering
   - git-revision-date-localized:  # Show last updated dates
       enable_creation_date: false  # Only show "last updated", not creation date
       type: date
@@ -134,58 +135,3 @@ plugins:
       enable_git_follow: false  # Disable to avoid quirks with new files
       strict: false  # Don't show warnings for files without git logs
 
-nav:
-  - Home: index.md
-  - Start Here: getting-started.md
-  - Resources: resources.md
-  - Learning:
-      - Tutorials:
-          - tutorials/index.md
-          - Beginner:
-              - tutorials/beginner/index.md
-              - Show Command to Excel: tutorials/beginner/netmiko-show-command-to-excel.md
-              - Multi-Device Collection: tutorials/beginner/multi-device-show-command.md
-              - Configuration Backup: tutorials/beginner/multi-device-config-backup.md
-          - Intermediate:
-              - tutorials/intermediate/index.md
-              - PyATS Series:
-                  - PyATS Fundamentals: tutorials/intermediate/pyats-fundamentals.md
-                  - PyATS Network Validation: tutorials/intermediate/pyats-network-validation.md
-                  - Building Reliable Automation with PyATS: tutorials/intermediate/building-reliable-automation-with-pyats.md
-              - Nornir Series:
-                  - Why Nornir?: tutorials/intermediate/why-nornir.md
-                  - Nornir Fundamentals: tutorials/intermediate/nornir-fundamentals.md
-                  - Enterprise Config Backup: tutorials/intermediate/enterprise-config-backup-nornir.md
-                  - Advanced Nornir Patterns: tutorials/intermediate/advanced-nornir-patterns.md
-          - Expert: tutorials/expert/index.md
-      - Deep Dives:
-          - deep-dives/index.md
-          - CDP Network Audit: deep-dives/cdp-audit.md
-          - Access Switch Audit: deep-dives/access-switch-audit.md
-      - Scripts: scripts/index.md
-  - Coming Soon:
-      - coming-soon/index.md
-      - Cisco IOS-XE ZTP: coming-soon/cisco-ios-xe-ztp.md
-      - ZTP Automation Platform: coming-soon/ztp-automation-platform.md
-      - IOS-XE Upgrade Orchestrator: coming-soon/ios-xe-upgrade-orchestrator.md
-  - Services:
-      - Our Services: services.md
-      - How We Work: how-we-work.md
-      - Why Automation Fails: why-automation-fails.md
-  - PRIME Framework:
-      - prime-framework/index.md
-      - Philosophy: prime-framework/philosophy.md
-      - Pinpoint: prime-framework/pinpoint.md
-      - Re-engineer: prime-framework/re-engineer.md
-      - Implement: prime-framework/implement.md
-      - Measure: prime-framework/measure.md
-      - Empower: prime-framework/empower.md
-  - About:
-      - About Us: about.md
-      - Founder: founder.md
-      - Legal:
-          - Privacy Policy: legal/privacy-policy.md
-          - Terms of Use: legal/terms-of-use.md
-          - Disclaimer: legal/disclaimer.md
-          - Licensing: legal/licensing.md
-          - Brand Usage: legal/brand.md

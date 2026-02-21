@@ -1,0 +1,19 @@
+title: Nautomation Prime
+nav:
+  - index.md
+  - getting-started.md
+  - resources.md
+  - Learning:
+      - tutorials
+      - deep-dives
+      - scripts
+  - Coming Soon: coming-soon
+  - Services:
+      - services.md
+      - how-we-work.md
+      - why-automation-fails.md
+  - PRIME Framework: prime-framework
+  - About:
+      - about.md
+      - founder.md
+      - Legal: legal
