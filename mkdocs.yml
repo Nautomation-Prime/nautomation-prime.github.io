@@ -81,7 +81,7 @@ extra:
       name: Contact Nautomation Prime
 
 extra_javascript:
-  - https://unpkg.com/mermaid@10.6.1/dist/mermaid.min.js
+  - assets/js/mermaid.min.js
 
 markdown_extensions:
   - abbr  # Enable abbreviations/glossary
@@ -133,6 +133,7 @@ plugins:
       fallback_to_build_date: true
       enable_git_follow: false  # Disable to avoid quirks with new files
       strict: false  # Don't show warnings for files without git logs
+  - sitemap
 
 nav:
   - Home: index.md
