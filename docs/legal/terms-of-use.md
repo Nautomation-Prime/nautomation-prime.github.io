@@ -3,24 +3,39 @@ _Last updated: 30 January 2026_
 
 By using this website, you agree to the following Terms of Use.
 
-## 1. Ownership of Website Content
+## 1. Website Content & Licensing
 
-All content on this website — including text, diagrams, documentation, branding, and design — is the property of **Nautomation Prime**, unless otherwise stated.
+Website content is licensed differently depending on type:
 
-Website content may not be copied, republished, or redistributed without permission.
+### Proprietary Content (All Rights Reserved)
+- PRIME Framework and PRIME Philosophy
+- Branding, logos, and visual design
+- Consulting methodologies
+- Business processes
+
+These may not be reproduced, republished, or redistributed without permission.
+
+### Educational Content (Creative Commons Attribution - CC-BY 4.0)
+- Tutorials and how-to guides
+- Technical deep dives
+- Learning resources and examples
+
+These may be freely shared, adapted, and republished—with attribution to Nautomation Prime.
 
 ## 2. Code Licensing
 
-Code available in public repositories under the Nautomation Prime GitHub organisation is licenced under the **GNU GPL‑3.0 licence**, unless stated otherwise.
+Code available in public repositories under the Nautomation Prime GitHub organisation is licenced under the **Apache License 2.0**, unless stated otherwise.
+
+Code snippets and examples on this website follow the **same license as the repository they relate to** (typically **Apache License 2.0**).
 
 Bespoke code delivered to clients is licenced under either:
 
-- **MIT Licence**, or  
-- **Apache Licence 2.0**  
+- **Apache License 2.0**, or  
+- **MIT Licence**  
 
 as agreed upon during engagement.
 
-See the Licensing page for full details.
+See the [Licensing page](licensing.md) for full details.
 
 ## 3. No Affiliation With Third Parties (Including Cisco)
 

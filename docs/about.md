@@ -71,7 +71,7 @@ Production-hardened Python scripts for common network automation tasks:
 - [Zero Touch Provisioning (ZTP)](./coming-soon/cisco-ios-xe-ztp.md) — Coming Soon
 - [IOS-XE Upgrade Orchestrator](./coming-soon/ios-xe-upgrade-orchestrator.md) — Coming Soon
 
-All tools are available on GitHub under GPL-3.0 license.
+All tools are available on GitHub under MIT license.
 
 ### 💼 Professional Services via PRIME Framework
 
@@ -127,14 +127,24 @@ Our tools and guides leverage industry-standard Python libraries:
 
 ## Open Source Commitment
 
-All public repositories are licenced under **GNU GPL-3.0**, ensuring:
+We balance **proprietary methodology protection** with **community-driven education**:
+
+### 🔒 PRIME Framework & Philosophy (All Rights Reserved)
+Our methodology is proprietary. The PRIME Framework and Philosophy represent our core IP and competitive differentiation.
+
+### 📚 Educational Content (CC-BY 4.0)
+Tutorials, guides, and technical deep dives are licensed under Creative Commons Attribution. Share them freely in courses, blogs, and educational settings—just credit Nautomation Prime.
+
+### 💻 Code & Scripts (Apache License 2.0)
+All public repositories are licensed under **Apache License 2.0**, ensuring:
 
 - Source code transparency
+- Explicit patent rights protection
 - Community contributions welcome
 - Free for educational and commercial use
-- Copyleft protection
+- Permissive redistribution and modification rights
 
-Bespoke client code is licenced under **MIT** or **Apache 2.0** as agreed during engagement.
+Bespoke client code is licenced under **Apache 2.0** or **MIT** as agreed during engagement.
 
 [View Licensing Details](legal/licensing.md)
 
