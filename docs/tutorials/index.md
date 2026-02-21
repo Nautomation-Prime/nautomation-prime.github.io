@@ -1,5 +1,5 @@
 ---
-title: Tutorials - Practical Python Scripts
+title: Tutorials
 description: Step-by-step tutorials for network automation with Python, organized by skill level from beginner to expert.
 tags:
   - Tutorials
@@ -9,7 +9,7 @@ tags:
   - Hands-On
 ---
 
-# Tutorials: Practical Python Scripts
+# Tutorials
 
 ## "Learn by Doing — Build Production Skills One Script at a Time"
 

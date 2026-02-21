@@ -1,5 +1,5 @@
 ---
-title: Advanced Nornir Patterns - Production-Grade Architecture
+title: Advanced Nornir Patterns
 description: Master advanced Nornir patterns for enterprise deployment - custom plugins, middleware, multi-vendor support, memory optimisation, and testing.
 tags:
   - Intermediate

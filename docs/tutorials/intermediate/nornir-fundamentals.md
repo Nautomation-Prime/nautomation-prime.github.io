@@ -1,5 +1,5 @@
 ---
-title: Nornir Fundamentals - Write Your First Production Task
+title: Nornir Fundamentals
 description: Master Nornir's core concepts - inventory management, task creation, parallel execution, and result processing with complete working examples.
 tags:
   - Intermediate
@@ -10,7 +10,7 @@ tags:
   - Tutorial
 ---
 
-# Nornir Fundamentals: Write Your First Production Task
+# Nornir Fundamentals
 
 ## "From Sequential Scripts to Parallel Tasks — The Foundation of Enterprise Automation"
 

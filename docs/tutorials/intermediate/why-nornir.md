@@ -1,5 +1,5 @@
 ---
-title: Why Nornir? Understanding the Problem and Solution
+title: Why Nornir
 description: Discover why parallel execution matters, the limitations of sequential scripts, and how Nornir solves enterprise-scale automation challenges.
 tags:
   - Intermediate

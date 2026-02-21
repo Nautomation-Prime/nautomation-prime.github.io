@@ -1,5 +1,5 @@
 ---
-title: Intermediate Tutorials - PyATS & Nornir
+title: Intermediate Tutorials
 description: Master PyATS for network validation and Nornir for enterprise-scale automation. Learn parallel execution, production-grade testing, and deployment patterns.
 tags:
   - Intermediate
@@ -11,7 +11,7 @@ tags:
   - Tutorials
 ---
 
-# Intermediate Tutorials: PyATS & Nornir
+# Intermediate Tutorials
 
 ## "From Guessing to Proving — Validate Your Automation at Enterprise Scale"
 

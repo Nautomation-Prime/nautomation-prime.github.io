@@ -1,5 +1,5 @@
 ---
-title: PyATS Fundamentals - Network Test Automation
+title: PyATS Fundamentals
 description: Learn PyATS (Python API for Test Automation System), Cisco's enterprise-grade framework used for millions of automated tests monthly. Build reliable network validation.
 tags:
   - PyATS

@@ -1,5 +1,5 @@
 ---
-title: Cisco IOS-XE Zero Touch Provisioning (ZTP)
+title: Cisco IOS-XE ZTP
 description: Production-ready Python script for automated Day 0 provisioning of Cisco Catalyst switches with serial-based configuration, structured logging, and enterprise-grade reliability.
 tags:
   - ZTP

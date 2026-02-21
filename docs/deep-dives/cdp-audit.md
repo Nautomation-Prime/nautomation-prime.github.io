@@ -1,5 +1,5 @@
 ---
-title: CDP Network Audit Tool - Deep Dive
+title: CDP Network Audit
 description: Comprehensive guide to a modular, production-ready CDP network discovery tool with YAML configuration, jump server support, DNS enrichment, and professional Excel reporting.
 tags:
   - Deep Dive

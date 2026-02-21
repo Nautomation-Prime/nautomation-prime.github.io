@@ -1,5 +1,5 @@
 ---
-title: Cisco IOS-XE Software Upgrade Orchestrator
+title: IOS-XE Upgrade Orchestrator
 description: Comprehensive design and planning blueprint for automating IOS-XE software upgrades across Cisco platforms with Python, including ISSU, rollback mechanisms, and platform-specific workflows.
 tags:
   - Coming Soon

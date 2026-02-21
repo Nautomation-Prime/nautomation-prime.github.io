@@ -1,5 +1,5 @@
 ---
-title: Enterprise Config Backup Deep Dive - Building a Real System
+title: Enterprise Config Backup
 description: Build a production-grade config backup system with Nornir including database integration, change detection, compliance checking, and reporting.
 tags:
   - Intermediate
@@ -10,7 +10,7 @@ tags:
   - Tutorial
 ---
 
-# Enterprise Config Backup Deep Dive: Building a Real System
+# Enterprise Config Backup Deep Dive: Real System Build
 
 ## "From Simple Backup to Automated Compliance — Real Enterprise Architecture"
 
