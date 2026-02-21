@@ -1,5 +1,5 @@
 ---
-title: Measure Performance
+title: Measure
 description: Stage 4 of the PRIME Framework - Quantifying automation value through metrics, ROI tracking, and continuous improvement.
 tags:
   - PRIME Framework

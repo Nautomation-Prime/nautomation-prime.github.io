@@ -1,5 +1,5 @@
 ---
-title: Implement Solutions
+title: Implement
 description: Stage 3 of the PRIME Framework - Building production-ready, maintainable automation guided by Prime Philosophy principles.
 tags:
   - PRIME Framework

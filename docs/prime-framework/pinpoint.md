@@ -1,5 +1,5 @@
 ---
-title: Pinpoint Inefficiencies
+title: Pinpoint
 description: Stage 1 of the PRIME Framework - Identifying high-impact automation opportunities through workflow analysis and ROI estimation.
 tags:
   - PRIME Framework

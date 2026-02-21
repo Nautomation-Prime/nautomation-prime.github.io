@@ -1,5 +1,5 @@
 ---
-title: Re-engineer Workflows
+title: Re-engineer
 description: Stage 2 of the PRIME Framework - optimising processes and designing scalable architecture before automation begins.
 tags:
   - PRIME Framework

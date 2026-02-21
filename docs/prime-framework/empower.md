@@ -1,5 +1,5 @@
 ---
-title: Empower Your Team
+title: Empower
 description: Stage 5 of the PRIME Framework - Building internal capability through knowledge transfer, training, and sustainable automation practices.
 tags:
   - PRIME Framework
