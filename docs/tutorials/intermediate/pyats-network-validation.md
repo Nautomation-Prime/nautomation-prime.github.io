@@ -76,7 +76,6 @@ print(json.dumps(vlan_output, indent=2))
           "interface_mode": "static_access"
         },
         "Ethernet1/4": {
-```
           "interface_mode": "static_access"
         }
       }
