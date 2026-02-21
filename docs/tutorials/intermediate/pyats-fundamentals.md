@@ -167,6 +167,7 @@ devices:
 **How PyATS Uses This:**
 
 When you call `loader.load('testbed.yaml')`, PyATS:
+
 1. Reads the YAML file and parses the structure
 2. Creates a Testbed object containing all devices
 3. Each device becomes a Device object with connection settings
@@ -174,12 +175,14 @@ When you call `loader.load('testbed.yaml')`, PyATS:
 5. Credentials are automatically decrypted (if using Ansible Vault)
 
 **Key Concept — Why Define Once, Use Everywhere:**
+
 - Define connectivity once in testbed.yaml (IPs, credentials, protocols)
 - Reference in multiple test files: `testbed.devices['switch-01']`
 - If device IP changes, update testbed.yaml once—all tests automatically use new IP
 - Credentials encrypted at rest, decrypted on-demand by PyATS
 
 **Credential Security:**
+
 - ❌ **Bad:** `password: admin123` in plaintext (visible to anyone with file access)
 - ✅ **Good:** `password: !vault |...` (encrypted, can only decrypt with vault password)
 
@@ -244,10 +247,12 @@ assert '10' in output['vlans'], "VLAN 10 missing!"
 - `'10' in output['vlans']` — Check if VLAN ID exists. Uses dictionary keys, not string searching.
 
 **Why This Matters:** 
+
 - ❌ **Without parsing:** Regex patterns that break when output format changes, fragile text processing
 - ✅ **With PyATS:** Structured data, consistent dictionary access, parser handles all OS variations
 
 **Key Insight:** Genie parsers are Python modules that understand Cisco CLI output format. When you call `device.parse('show vlan')`, PyATS:
+
 1. Sends `show vlan` to device
 2. Gets raw text output
 3. Runs the Genie parser for "show vlan" (specific to device OS)
@@ -365,13 +370,14 @@ pytest test_vlan_validation.py -v
 1. **pytest discovers** `test_*.py` files
 2. **Fixtures run first** — `testbed` fixture loads testbed.yaml once
 3. **For each test:**
-   - `device` fixture connects to switch-01
-   - Test function runs with device parameter
-   - Assertions check conditions
-   - Fixture cleanup disconnects
+    - `device` fixture connects to switch-01
+    - Test function runs with device parameter
+    - Assertions check conditions
+    - Fixture cleanup disconnects
 4. **Results reported** — PASSED, FAILED, or ERROR
 
 **Key Concept — Fixtures:**
+
 - Fixtures are setup functions (database, connections, test data)
 - Mark with `@pytest.fixture` decorator
 - Referenced by test function parameter names
@@ -433,11 +439,13 @@ def count_up_interfaces(device):
 ```
 
 **What capture_baseline() does:**
+
 - Takes snapshot of network state before automation
 - Stores measurements: VLAN count, routes, interface states, BGP neighbors
 - Returns dict that we'll compare against after automation
 
 **Why each measurement matters:**
+
 - `vlan_count` — Proves we created the right number of VLANs
 - `routes` — Proves routing table wasn't accidentally modified
 - `interfaces_up` — Proves no interfaces went down unexpectedly
@@ -486,6 +494,7 @@ def run_automation(device):
 ```
 
 **Why separate Netmiko from PyATS:**
+
 - **Netmiko:** Best for pushing configs (send_command, send_config_set)
 - **PyATS:** Best for parsing device state (parse, structured data)
 - Use each for what it's designed for
@@ -539,6 +548,7 @@ def validate_automation(device, baseline):
 ```
 
 **Why each assertion matters:**
+
 1. **vlan_count mismatch** — Catches if fewer VLANs created than expected
 2. **VLAN doesn't exist** — Catches if VLAN created but already deleted
 3. **Interfaces down** — Catches unexpected side effects from configuration
@@ -581,6 +591,7 @@ def test_vlan_provisioning_with_validation(testbed):
 ```
 
 **What happens here:**
+
 1. Connect to device
 2. Capture baseline (VLAN count, interfaces up, routes, etc.)
 3. Run automation (create VLANs)
@@ -666,6 +677,7 @@ ansible-vault encrypt_string
 ```
 
 **Why encrypt credentials?**
+
 - ❌ **Bad:** `password: admin123` visible to anyone with file access
 - ✅ **Good:** `password: !vault |...` encrypted, only decryptable with vault password
 - PyATS automatically handles decryption at runtime
@@ -703,6 +715,7 @@ device.disconnect()
 ```
 
 **What happens during device.connect():**
+
 1. PyATS reads connection settings from testbed.yaml
 2. Gets device IP, username, password
 3. Automatically decrypts vault password
