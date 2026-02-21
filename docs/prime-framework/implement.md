@@ -32,7 +32,7 @@ graph LR
 
 ## 🎯 Objective
 
-Transform designs from the [Re-engineer](./re-engineer.md) stage into production-ready automation that aligns with the [Prime Philosophy](../about.md#prime-philosophy).
+Transform designs from the [Re-engineer](./re-engineer.md) stage into production-ready automation that aligns with the [PRIME Philosophy](./philosophy.md).
 
 ---
 
@@ -87,11 +87,11 @@ automation-project/
 
 ---
 
-### 2. Implementation Guided by Prime Philosophy
+### 2. Implementation Guided by PRIME Philosophy
 
-Every line of code reflects our three core principles:
+Every line of code reflects our five core principles. Here are key implementation patterns:
 
-#### 🎯 Principle 1: Pragmatic Over Perfect
+#### 🔍 Principle 1: Transparency Over Obscurity
 
 **What This Means in Practice:**
 
@@ -128,7 +128,7 @@ connection = ConnectHandler(device_type=device_type, **device)
 
 ---
 
-#### 🔍 Principle 2: Transparency Over Obscurity
+#### �️ Principle 2: Safety Over Speed
 
 **What This Means in Practice:**
 
@@ -194,7 +194,7 @@ summary = {
 
 ---
 
-#### 🛡️ Principle 3: Reliability Over Speed
+#### � Principle 3: Empowerment Through Documentation
 
 **What This Means in Practice:**
 
@@ -553,7 +553,7 @@ For Organisations with designs but need development help:
 
 ---
 
-> **Mission:** To empower network engineers through the **[PRIME Framework](./index.md)**—delivering automation with measurable ROI, production-grade quality, and sustainable team capability built on the **[Prime Philosophy](../about.md#prime-philosophy)** of transparency, reliability, and pragmatism.
+> **Mission:** To empower network engineers through the **[PRIME Framework](./index.md)**—delivering automation with measurable ROI, production-grade quality, and sustainable team capability built on the **[PRIME Philosophy](./philosophy.md)** of transparency, measurability, ownership, safety, and empowerment.
 
 ---
 

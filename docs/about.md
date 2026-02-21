@@ -42,7 +42,7 @@ The name "PRIME" reflects our commitment to **excellence** over mediocrity:
 - **M**easure Performance
 - **E**mpower Your Team
 
-The framework is built on the **Prime Philosophy** (our three core engineering principles), ensuring every line of code is transparent, reliable, and pragmatic.
+The framework is built on the **[PRIME Philosophy](./prime-framework/philosophy.md)** (our five core engineering principles), ensuring every line of code is transparent, measurable, owned, safe, and empowering.
 
 **[Learn about the PRIME Framework →](./prime-framework/index.md)**
 
@@ -79,63 +79,13 @@ Structured automation delivery through a proven 5-stage methodology:
 
 **[Pinpoint](./prime-framework/pinpoint.md)** → **[Re-engineer](./prime-framework/re-engineer.md)** → **[Implement](./prime-framework/implement.md)** → **[Measure](./prime-framework/measure.md)** → **[Empower](./prime-framework/empower.md)**
 
-## The Prime Philosophy {:#prime-philosophy}
+## Our Engineering Philosophy
 
-Every tool, guide, and service adheres to three core engineering principles:
+Every project we deliver is guided by the **[PRIME Philosophy](./prime-framework/philosophy.md)**—five core principles that ensure transparency, measurability, ownership, safety, and empowerment.
 
-### 🎯 1. Pragmatic Over Perfect
+These principles define **how** we build automation (pragmatic, transparent, reliable), while the PRIME Framework defines **what** we deliver (structured methodology from discovery to team capability).
 
-**Ship solutions that work today, not theoretical perfection that never ships.**
-
-We favor:
-
-- ✅ Simple, direct solutions over abstract architectures
-- ✅ Working code with clear TODOs over delayed perfection
-- ✅ Solving today's problem efficiently over future-proofing speculatively
-
-Complexity must earn its place by delivering measurable value.
-
-**In Practice:** A 150-line script that solves the problem beats a 2,000-line "framework" that handles hypothetical edge cases.
-
-### 🔍 2. Transparency Over Obscurity
-
-**Verbose logging, human-readable outputs, zero "black box" magic.**
-
-We explain:
-
-- ✅ **The "why"** behind every design decision, not just the "what"
-- ✅ **Every line of code** with detailed inline comments
-- ✅ **Execution progress** with comprehensive logging (INFO, WARNING, ERROR)
-- ✅ **Results** with Excel reports and executive summaries
-
-**In Practice:** When automation fails at 2 AM, logs show exactly what happened and where. No mystery debugging.
-
-### 🛡️ 3. Reliability Over Speed
-
-**Pre-flight validation, post-flight verification, automatic rollback.**
-
-Production networks deserve bulletproof automation:
-
-- ✅ **Pre-flight checks:** Validate devices are reachable, configs won't conflict
-- ✅ **Post-flight validation:** Verify changes were actually applied as intended
-- ✅ **Automatic rollback:** Undo changes if validation fails
-- ✅ **Comprehensive error handling:** Graceful degradation, never crash-and-burn
-
-**In Practice:** Automation that works 98% of the time causes 2% catastrophic failures. Reliability means handling the 2% without human intervention.
-
----
-
-### How Philosophy Informs Framework
-
-The **Prime Philosophy** (values) guides the **PRIME Framework** (methodology):
-
-| Philosophy Principle | Framework Application |
-| :--- | :--- |
-| **🎯 Pragmatic** | Pinpoint ROI-positive automations (not every task deserves automation) |
-| **🔍 Transparent** | Measure with concrete metrics; Empower teams with detailed documentation |
-| **🛡️ Reliable** | Re-engineer workflows with safety mechanisms; Implement with validation |
-
-**[Learn about the PRIME Framework →](./prime-framework/index.md)**
+**[Read the complete PRIME Philosophy →](./prime-framework/philosophy.md)**
 
 ---
 
@@ -144,6 +94,8 @@ The **Prime Philosophy** (values) guides the **PRIME Framework** (methodology):
 **Christopher Davies** - Founder & Principal Automation Engineer
 
 Christopher specialises in enterprise Cisco automation, with deep expertise in Python, ISE, and Zero Trust architectures. His mission is to democratise network automation through transparency and education.
+
+**[Read more about Christopher's background and story →](./founder.md)**
 
 **Trading Status:** Christopher Davies trading as (T/A) Nautomation Prime
 
@@ -213,7 +165,7 @@ Found a bug or have a feature request? Open an issue on our [GitHub organisation
 **Geographic Address (UK):**  
 Christopher Davies T/A Nautomation Prime  
 9 The Sleeve  
-Leek, ST138 HR  
+Leek, ST13 8HR  
 Staffordshire  
 England  
 United Kingdom
@@ -234,4 +186,4 @@ United Kingdom
 
 ---
 
-> **Mission:** To empower network engineers through the **[PRIME Framework](./prime-framework/index.md)**—delivering automation with measurable ROI, production-grade quality, and sustainable team capability built on the **[Prime Philosophy](./about.md#prime-philosophy)** of transparency, reliability, and pragmatism.
+> **Mission:** To empower network engineers through the **[PRIME Framework](./prime-framework/index.md)**—delivering automation with measurable ROI, production-grade quality, and sustainable team capability built on the **[PRIME Philosophy](./prime-framework/philosophy.md)** of transparency, measurability, ownership, safety, and empowerment.

@@ -183,7 +183,7 @@ For issues, feature requests, or questions about any script:
 | **Configuration Management** | [🎓 Configuration Backup (Beginner)](../tutorials/beginner/multi-device-config-backup.md) • [🎓 Enterprise Backup with Nornir (Intermediate)](../tutorials/intermediate/enterprise-config-backup-nornir.md) |
 | **Data Collection & Reporting** | [🎓 Show Commands to Excel (Beginner)](../tutorials/beginner/netmiko-show-command-to-excel.md) • [🎓 Multi-Device Collection (Beginner)](../tutorials/beginner/multi-device-show-command.md) |
 | **Automation Frameworks** | [🎓 Nornir Fundamentals](../tutorials/intermediate/nornir-fundamentals.md) • [📖 Advanced Patterns](../tutorials/intermediate/advanced-nornir-patterns.md) |
-| **Automation Methodology** | [🚀 PRIME Framework](../prime-framework/index.md) • [ℹ️ Philosophy & Approach](../about.md#prime-philosophy) |
+| **Automation Methodology** | [🚀 PRIME Framework](../prime-framework/index.md) • [ℹ️ Philosophy & Approach](../prime-framework/philosophy.md) |
 
 ---
 
@@ -195,4 +195,4 @@ All scripts in this library adhere to three core principles:
 2. **Hardened for Production** - Robust error handling, security best practices, pre-flight checks  
 3. **Vendor-Neutral** - Built on industry-standard libraries like Netmiko, Nornir, and TextFSM  
 
-> **Mission:** To empower network engineers through the **[PRIME Framework](../prime-framework/index.md)**—delivering automation with measurable ROI, production-grade quality, and sustainable team capability built on the **[Prime Philosophy](../about.md#prime-philosophy)** of transparency, reliability, and pragmatism.
+> **Mission:** To empower network engineers through the **[PRIME Framework](../prime-framework/index.md)**—delivering automation with measurable ROI, production-grade quality, and sustainable team capability built on the **[PRIME Philosophy](../prime-framework/philosophy.md)** of transparency, measurability, ownership, safety, and empowerment.

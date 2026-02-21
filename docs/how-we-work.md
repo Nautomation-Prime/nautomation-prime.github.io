@@ -192,7 +192,7 @@ Now we build the automation—with transparency, safety, and maintainability as 
 
 You receive:
 
-✅ **Production-ready Python code** with [Prime Philosophy](./about.md#prime-philosophy) principles  
+✅ **Production-ready Python code** with [PRIME Philosophy](./prime-framework/philosophy.md) principles  
 ✅ **Comprehensive documentation** (README, technical reference, runbooks)  
 ✅ **Full source code** (you own it, can modify it, understand every line)  
 ✅ **Line-by-line code comments** explaining the *why* behind each decision  

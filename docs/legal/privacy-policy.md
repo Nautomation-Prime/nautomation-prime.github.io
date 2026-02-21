@@ -11,7 +11,7 @@ This website is operated by:
 
 Christopher Davies T/A Nautomation Prime  
 9 The Sleeve  
-Leek, ST138 HR  
+Leek, ST13 8HR  
 Staffordshire  
 England  
 United Kingdom

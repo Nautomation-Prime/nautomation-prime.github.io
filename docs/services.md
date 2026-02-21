@@ -373,8 +373,10 @@ Through the PRIME Framework, we've delivered automation for:
 | Commitment | What This Means |
 | :--- | :--- |
 | **🔍 Transparency Over Obscurity** | Every script includes line-by-line explanations. You understand your automation, not just run it. |
-| **🛡️ Reliability Over Speed** | Production-grade error handling, pre-flight validation, post-flight verification, automatic rollback. No shortcuts. |
-| **🎯 Pragmatic Over Perfect** | Ship solutions that work today, not theoretical perfection that never ships. Complexity must justify existence. |
+| **� Measurability Over Assumptions** | Data-driven opportunity identification and ROI metrics that prove value to leadership. |
+| **👤 Ownership Over Dependency** | Your team owns the code and can modify it. No vendor lock-in. |
+| **🛡️ Safety Over Speed** | Production-grade error handling, pre-flight validation, post-flight verification, automatic rollback. No shortcuts. |
+| **💪 Empowerment Over "Magic Buttons"** | Your team understands and controls the automation—not black-box tools they can't troubleshoot. |
 | **🔒 Client Confidentiality** | Your bespoke projects remain exclusively yours—never published, reused, or shared. NDAs standard. Full IP ownership. |
 
 **These are the values of the [PRIME Philosophy](./prime-framework/philosophy.md) that guide every PRIME Framework engagement.**

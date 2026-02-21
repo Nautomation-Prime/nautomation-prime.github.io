@@ -204,15 +204,15 @@ The code is "elegant" but impossible for normal engineers to understand.
 
 ### How PRIME Solves It
 
-**Prime Philosophy** principle: **Pragmatic Over Perfect**
+**PRIME Philosophy** principle: **Measurability Over Assumptions**
 
-> Ship solutions that work today, not theoretical perfection that never ships. Complexity must earn its place by delivering measurable value.
+> Every automation decision must be backed by data, and every outcome must be measurable. If complexity doesn't deliver measurable value, it's waste.
 
 Our approach:
 
 - **Build the minimum that solves the problem** — Then add complexity *only if data justifies it*
 - **Favor simple over abstract** — Direct code over clever patterns
-- **Prefer working code with TODOs** over delayed perfection
+- **Measure before adding** — Does the added complexity deliver ROI?
 - **Focus on outcomes** — "Does this save time?" not "Is this architecturally pristine?"
 
 **Result:** Code that's simple, understandable, maintainable, and actually solves your problem.
@@ -324,9 +324,9 @@ Every failure above boils down to:
 | Brittle, unmaintainable code | **[Re-engineer](./prime-framework/re-engineer.md)** + **[Implement](./prime-framework/implement.md)** — Transparency & quality-first design |
 | No proof of value | **[Measure](./prime-framework/measure.md)** — Concrete ROI metrics |
 | Nobody can extend it | **[Empower](./prime-framework/empower.md)** — Full knowledge transfer & documentation |
-| Over-engineered solutions | **Prime Philosophy** — Pragmatic over perfect |
+| Over-engineered solutions | **[PRIME Philosophy](./prime-framework/philosophy.md)** — Measurability over assumptions |
 | Silent failures | **[Implement](./prime-framework/implement.md)** — Hardened error handling & validation |
-| Vendor lock-in | **Prime Philosophy** — Vendor-neutral libraries & patterns |
+| Vendor lock-in | **[PRIME Philosophy](./prime-framework/philosophy.md)** — Ownership over dependency |
 
 ---
 

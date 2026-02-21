@@ -89,28 +89,14 @@ We deliver automation projects through the **[PRIME Framework](prime-framework/i
 
 ---
 
-## Prime Philosophy {:#prime-philosophy}
+## Our Engineering Philosophy
 
-Every tool, script, and guide adheres to three core engineering principles:
-
-1. **🎯 Pragmatic Over Perfect**
-    - Ship solutions that work today, not theoretical perfection that never ships
-    - Complexity must earn its place by delivering measurable value
-    - Simple, direct solutions over abstract architectures
-
-2. **🔍 Transparency Over Obscurity**
-    - We explain the *why* behind every line of code, not just the *what*
-    - Verbose logging, human-readable outputs, zero "black box" magic
-    - Every design decision is documented
-
-3. **🛡️ Reliability Over Speed**
-    - Pre-flight validation, post-flight verification, automatic rollback
-    - Production-grade error handling—graceful degradation, never crash-and-burn
-    - Thread-safe concurrent operations
-
-**These values guide the [PRIME Framework](prime-framework/index.md)** — our structured methodology for automation projects.
-
-**[Learn more about Prime Philosophy](about.md#prime-philosophy)**
+!!! tip "The Foundation Behind Everything We Build"
+    Every tool, script, and service at Nautomation Prime is guided by the **[PRIME Philosophy](prime-framework/philosophy.md)**—five core principles that ensure transparency, measurability, ownership, safety, and empowerment.
+    
+    These values define **how** we build (pragmatic, transparent, reliable), while the **[PRIME Framework](prime-framework/index.md)** defines **what** we deliver (structured methodology).
+    
+    **[Read the complete PRIME Philosophy →](prime-framework/philosophy.md)**
 
 ---
 
@@ -172,7 +158,7 @@ A: We leverage native OS credential managers (Windows Credential Manager, Keycha
 A: This site assumes you already know Python basics (variables, functions, loops, exceptions). If you're new to Python, we recommend completing a Python fundamentals course first (Codecademy, Real Python, or similar), then return to apply those skills to network automation. Our code is written for clarity, so even beginners with solid fundamentals will be able to follow along.
 
 **Q: Do your scripts work in production environments?**  
-A: Yes! All our scripts are production-grade with robust error handling, pre-flight safety checks, thread-safe concurrent operations, and comprehensive logging. We follow the Prime Philosophy principles to ensure reliability over speed. Many organizations use our scripts in live production environments.
+A: Yes! All our scripts are production-grade with robust error handling, pre-flight safety checks, thread-safe concurrent operations, and comprehensive logging. We follow the [PRIME Philosophy](prime-framework/philosophy.md) principles—transparency, measurability, ownership, safety, and empowerment. Many organisations use our scripts in live production environments.
 
 **Q: What network devices do your scripts support?**  
 A: Our scripts primarily target Cisco devices (IOS, IOS-XE, NX-OS, IOS-XR) but the underlying libraries (Netmiko, Nornir, NAPALM) support many vendors including Juniper, Arista, Palo Alto Networks, F5, and more. The patterns and techniques we teach are transferable across vendors.
@@ -210,4 +196,4 @@ No obligation. We'll discuss your goals, timeline, and answer any questions abou
 
 ---
 
-> **Mission:** To empower network engineers through the **[PRIME Framework](prime-framework/index.md)**—delivering automation with measurable ROI, production-grade quality, and sustainable team capability built on the **[Prime Philosophy](about.md#prime-philosophy)** of transparency, reliability, and pragmatism.
+> **Mission:** To empower network engineers through the **[PRIME Framework](prime-framework/index.md)**—delivering automation with measurable ROI, production-grade quality, and sustainable team capability built on the **[PRIME Philosophy](prime-framework/philosophy.md)** of transparency, measurability, ownership, safety, and empowerment.
