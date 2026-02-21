@@ -1,5 +1,5 @@
 ---
-title: How We Work - The PRIME Framework
+title: How We Work
 description: Step-by-step guide to how Nautomation Prime delivers automation. From discovery to team empowerment, here's what your engagement looks like.
 tags:
   - PRIME Framework

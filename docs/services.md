@@ -1,5 +1,5 @@
 ---
-title: Automation Services - PRIME Framework
+title: Automation Services
 description: Proven 5-stage methodology for network automation success. From opportunity discovery to team empowerment, delivering measurable ROI and sustainable capability.
 tags:
   - Services

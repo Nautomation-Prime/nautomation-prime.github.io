@@ -1,5 +1,5 @@
 ---
-title: Founder - Christopher Davies
+title: Founder
 description: Learn about Christopher Davies, founder of Nautomation Prime. 10+ years in enterprise Cisco automation, CCNP-certified, driven by transparency and pragmatism.
 tags:
   - Founder
