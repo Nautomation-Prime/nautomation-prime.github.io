@@ -163,11 +163,11 @@ nav:
           - CDP Network Audit: deep-dives/cdp-audit.md
           - Access Switch Audit: deep-dives/access-switch-audit.md
       - Scripts: scripts/index.md
-      - Coming Soon:
-          - coming-soon/index.md
-          - Cisco IOS-XE ZTP: coming-soon/cisco-ios-xe-ztp.md
-          - ZTP Automation Platform: coming-soon/ztp-automation-platform.md
-          - IOS-XE Upgrade Orchestrator: coming-soon/ios-xe-upgrade-orchestrator.md
+  - Coming Soon:
+      - coming-soon/index.md
+      - Cisco IOS-XE ZTP: coming-soon/cisco-ios-xe-ztp.md
+      - ZTP Automation Platform: coming-soon/ztp-automation-platform.md
+      - IOS-XE Upgrade Orchestrator: coming-soon/ios-xe-upgrade-orchestrator.md
   - Services:
       - Our Services: services.md
       - How We Work: how-we-work.md
