@@ -42,6 +42,24 @@ A production-ready Python script for automating Day 0 provisioning of Cisco Cata
 
 ---
 
+### [Enterprise ZTP Config Builder](enterprise-ztp-config-builder.md)
+
+An enterprise-grade Cisco ZTP platform built in Python, centered on a branded Excel-driven configuration builder. This managed solution covers Day 0 provisioning and Day N configuration at scale, with persistent device inventory tracking.
+
+- Branded Excel intake for site and device variables
+- Config Builder uploads feed Jinja2 templates
+- Day 0 bootstrap to make devices reachable on the network
+- Day N configuration generation and push
+- Device inventory database built during provisioning
+
+**Service Model:** Paid service with optional bespoke add-ons by request
+
+**PRIME Alignment:** [Pinpoint](../prime-framework/pinpoint.md) → [Re-Engineer](../prime-framework/re-engineer.md) → [Implement](../prime-framework/implement.md) → [Measure](../prime-framework/measure.md) → [Empower](../prime-framework/empower.md)
+
+**Status:** :fontawesome-solid-drafting-compass: Design & Planning Phase
+
+---
+
 ### [IOS-XE Software Upgrade Orchestrator](ios-xe-upgrade-orchestrator.md)
 
 A comprehensive Python-based orchestration framework for automating Cisco IOS-XE software upgrades across diverse platforms. This design document covers:

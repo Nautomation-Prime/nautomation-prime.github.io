@@ -31,6 +31,9 @@ Your complete guide to network automation tools, tutorials, and deep dives. Whet
     2. **[Nornir Fundamentals](tutorials/intermediate/nornir-fundamentals.md)** — Build your first production task
     3. **[Enterprise Config Backup with Nornir](tutorials/intermediate/enterprise-config-backup-nornir.md)** — Scale to thousands of devices
     4. **[Advanced Nornir Patterns](tutorials/intermediate/advanced-nornir-patterns.md)** — Error handling, custom plugins, state management
+    5. **[PyATS Fundamentals](tutorials/intermediate/pyats-fundamentals.md)** — Learn Cisco's network test automation framework
+    6. **[PyATS for Network Validation](tutorials/intermediate/pyats-network-validation.md)** — Parse device data and design validation checkpoints
+    7. **[Building Reliable Automation with PyATS](tutorials/intermediate/building-reliable-automation-with-pyats.md)** — Integrate validation into production workflows
     
     **Time to completion:** 4-6 hours | **Prerequisites:** Complete all Beginner tutorials or equivalent experience
 
@@ -101,6 +104,17 @@ Ready-to-use automation tools for common network tasks.
 
 ---
 
+## Coming Soon
+
+Upcoming solutions in design and development.
+
+- [Enterprise ZTP Config Builder](coming-soon/enterprise-ztp-config-builder.md) — Paid, enterprise-grade ZTP platform with Excel-driven config builder, Jinja2 templates, and Day 0/Day N workflows
+- [Cisco IOS-XE Zero Touch Provisioning](coming-soon/cisco-ios-xe-ztp.md) — Free ZTP script for Day 0 provisioning at scale
+- [IOS-XE Software Upgrade Orchestrator](coming-soon/ios-xe-upgrade-orchestrator.md) — End-to-end upgrade orchestration and validation
+- [Coming Soon Roadmap](coming-soon/index.md) — Full list of projects in development
+
+---
+
 ## PRIME Framework
 
 Understand the philosophy and methodology behind Nautomation Prime.
@@ -126,6 +140,8 @@ Understand the philosophy and methodology behind Nautomation Prime.
 
 **Learn Nornir** → [Why Nornir?](tutorials/intermediate/why-nornir.md) → [Nornir Fundamentals](tutorials/intermediate/nornir-fundamentals.md) → [Advanced Patterns](tutorials/intermediate/advanced-nornir-patterns.md)
 
+**Validate changes with PyATS** → [PyATS Fundamentals](tutorials/intermediate/pyats-fundamentals.md) → [PyATS for Network Validation](tutorials/intermediate/pyats-network-validation.md) → [Building Reliable Automation with PyATS](tutorials/intermediate/building-reliable-automation-with-pyats.md)
+
 **Understand the PRIME approach** → [PRIME Framework](prime-framework/index.md)
 
 **Start from scratch** → [Start Here](getting-started.md)
@@ -140,6 +156,7 @@ Understand the philosophy and methodology behind Nautomation Prime.
     - **Know Python, new to networking automation?** → Beginner tutorials
     - **Why Nornir won't work for me?** → It will—see [Why Nornir?](tutorials/intermediate/why-nornir.md)
     - **Building enterprise solutions?** → [Advanced Nornir Patterns](tutorials/intermediate/advanced-nornir-patterns.md)
+    - **Need validation after changes?** → [PyATS Fundamentals](tutorials/intermediate/pyats-fundamentals.md)
     - **Want philosophical context?** → [PRIME Framework](prime-framework/index.md)
 
 ---
@@ -162,10 +179,22 @@ You know Python and basic network automation. Need to handle 100+ devices.
 2. [Nornir Fundamentals](tutorials/intermediate/nornir-fundamentals.md) — Write production tasks
 3. [Enterprise Config Backup with Nornir](tutorials/intermediate/enterprise-config-backup-nornir.md) — Real enterprise pattern
 4. [Advanced Nornir Patterns](tutorials/intermediate/advanced-nornir-patterns.md) — Handle edge cases
+5. [PyATS Fundamentals](tutorials/intermediate/pyats-fundamentals.md) — Add validation checkpoints
+6. [PyATS for Network Validation](tutorials/intermediate/pyats-network-validation.md) — Parse data and validate outcomes
+7. [Building Reliable Automation with PyATS](tutorials/intermediate/building-reliable-automation-with-pyats.md) — Integrate validation into workflows
 
 **Next:** Explore Deep Dives for implementation patterns
 
-### Path 3: Methodology Deep Dive (2 hours)
+### Path 3: Validation Specialist (3 hours)
+You need repeatable, enterprise-grade validation for automation changes.
+
+1. [PyATS Fundamentals](tutorials/intermediate/pyats-fundamentals.md) — Core concepts and testbed setup
+2. [PyATS for Network Validation](tutorials/intermediate/pyats-network-validation.md) — Device parsing and validation patterns
+3. [Building Reliable Automation with PyATS](tutorials/intermediate/building-reliable-automation-with-pyats.md) — Production integration patterns
+
+**Next:** Pair with [Nornir Fundamentals](tutorials/intermediate/nornir-fundamentals.md) for large-scale execution
+
+### Path 4: Methodology Deep Dive (2 hours)
 Understand the strategic framework behind automation decisions.
 
 1. [PRIME Framework Overview](prime-framework/index.md) — The 5-phase model
@@ -173,7 +202,7 @@ Understand the strategic framework behind automation decisions.
 
 **Next:** Apply PRIME thinking to your automation initiatives
 
-### Path 4: Deep Dive Study (2 hours)
+### Path 5: Deep Dive Study (2 hours)
 Learn by examining production-grade implementations.
 
 1. [CDP Network Audit Deep Dive](deep-dives/cdp-audit.md) — Real network intelligence  
@@ -201,11 +230,13 @@ Each resource is tagged to help you find content that matches your style:
 - [Why Nornir?](tutorials/intermediate/why-nornir.md) — The clearest explanation of parallel automation
 - [Nornir Fundamentals](tutorials/intermediate/nornir-fundamentals.md) — Your first production task  
 - [Multi-Device Config Backup](tutorials/beginner/multi-device-config-backup.md) — The most practical beginner tutorial
+- [PyATS Fundamentals](tutorials/intermediate/pyats-fundamentals.md) — The validation framework used at enterprise scale
 
 **Highest ROI**
 
 - [Enterprise Config Backup with Nornir](tutorials/intermediate/enterprise-config-backup-nornir.md) — Applies immediately to time-consuming manual work
 - [Advanced Nornir Patterns](tutorials/intermediate/advanced-nornir-patterns.md) — Turns working code into production-ready code
+- [Building Reliable Automation with PyATS](tutorials/intermediate/building-reliable-automation-with-pyats.md) — Proves changes worked in production
 
 **Best for Executives**
 - [PRIME Framework](prime-framework/index.md) — Strategic, ROI-focused automation methodology
