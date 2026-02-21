@@ -156,7 +156,7 @@ Understand the philosophy and methodology behind Nautomation Prime.
 !!! question "Unsure where to begin?"
 
     - **New to Python?** → [Start Here](getting-started.md) for environment setup
-    - **Know Python, new to networking automation?** → Beginner tutorials
+    - **Know Python, new to networking automation?** → [Beginner tutorials](tutorials/beginner/index.md)
     - **Why Nornir won't work for me?** → It will—see [Why Nornir?](tutorials/intermediate/why-nornir.md)
     - **Building enterprise solutions?** → [Advanced Nornir Patterns](tutorials/intermediate/advanced-nornir-patterns.md)
     - **Need validation after changes?** → [PyATS Fundamentals](tutorials/intermediate/pyats-fundamentals.md)
