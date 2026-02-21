@@ -17,7 +17,7 @@ tags:
 ```mermaid
 graph LR
     A[🔍 Discovery] --> B[📊 Analysis]
-    B --> C[🎯 Prioritization]
+    B --> C[🎯 Prioritisation]
     C --> D[📝 Roadmap]
     
     style A fill:#4A90E2
@@ -32,7 +32,7 @@ graph LR
 
 ## 🎯 Objective
 
-Identify and prioritize automation opportunities that deliver maximum value with acceptable risk and effort.
+Identify and prioritise automation opportunities that deliver maximum value with acceptable risk and effort.
 
 ---
 
@@ -109,7 +109,7 @@ Not all tasks are good automation candidates. We evaluate each opportunity again
 - **Rarely performed** — One-off migrations, infrequent changes
 - **Highly variable** — Every instance is completely different
 - **Requires judgment** — Troubleshooting, design decisions
-- **Political/organizational** — Automation won't solve process problems
+- **Political/organisational** — Automation won't solve process problems
 - **Already solved** — Don't reinvent vendor tools
 
 ---
@@ -156,13 +156,13 @@ We estimate the implementation effort for each automation:
 
 ---
 
-### 6. Prioritization Matrix
+### 6. Prioritisation Matrix
 
 We plot each opportunity on an impact/effort matrix:
 
 ```mermaid
 quadrantChart
-    title Automation Prioritization Matrix
+    title Automation Prioritisation Matrix
     x-axis Low Effort --> High Effort
     y-axis Low Impact --> High Impact
     quadrant-1 Major Projects
@@ -171,7 +171,7 @@ quadrantChart
     quadrant-4 Hard Pass
 ```
 
-**Prioritization Criteria:**
+**Prioritisation Criteria:**
 
 1. **Quick Wins** (High Impact, Low Effort) — **Start here**
 2. **Major Projects** (High Impact, High Effort) — Schedule after quick wins
@@ -184,7 +184,7 @@ quadrantChart
 
 At the end of the Pinpoint stage, you receive:
 
-### 1. Prioritized Automation Backlog
+### 1. prioritised Automation Backlog
 
 A ranked list of automation opportunities with:
 
@@ -250,7 +250,7 @@ After the Pinpoint stage, you can:
 
 ### Option 1: Proceed to Re-engineer
 
-Move to [Stage 2: Re-engineer Workflows](./re-engineer.md) for your top-priority automations. Design optimized processes before coding begins.
+Move to [Stage 2: Re-engineer Workflows](./re-engineer.md) for your top-priority automations. Design optimised processes before coding begins.
 
 ### Option 2: Internal Implementation
 
@@ -289,21 +289,21 @@ Included as Stage 1 when you engage for the complete framework. Typically 1 week
 **Includes:**
 
 - Discovery workshop
-- Prioritized automation roadmap
+- prioritised automation roadmap
 - ROI analysis
 - Executive summary
 - Technical feasibility notes
 
 **Timeline:** 1-2 weeks from kickoff to delivery
 
-**Perfect for:** Organizations exploring automation maturity or building internal business cases
+**Perfect for:** Organisations exploring automation maturity or building internal business cases
 
 ---
 
 ## 🎓 Learn More
 
 - **[PRIME Framework Overview](./index.md)** — See how all five stages work together
-- **[Next Stage: Re-engineer](./re-engineer.md)** — Process optimization before automation
+- **[Next Stage: Re-engineer](./re-engineer.md)** — Process optimisation before automation
 - **[View Services](../services.md)** — Engagement models and pricing
 - **[Request Discovery Call](mailto:nautomationprime.f3wfe@simplelogin.com)** — Discuss your automation needs
 

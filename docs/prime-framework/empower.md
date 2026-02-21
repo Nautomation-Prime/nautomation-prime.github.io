@@ -313,7 +313,7 @@ We help establish internal momentum:
 
 #### Automation Guild (Optional)
 
-For organizations with multiple network engineers:
+For Organisations with multiple network engineers:
 
 **Structure:**
 
@@ -402,14 +402,14 @@ With empowerment:
 
 - ✅ Team autonomy (independent capability)
 - ✅ Resilience (knowledge distributed across team)
-- ✅ Evolution (automation grows with organization)
+- ✅ Evolution (automation grows with Organisation)
 
 ### ROI Multiplication
 
 Empowered teams:
 
 - **Build additional automations** using patterns learned (5x ROI)
-- **Optimize existing automations** continuously (ongoing value)
+- **optimise existing automations** continuously (ongoing value)
 - **Respond faster to changes** (no waiting for external help)
 - **Transfer knowledge** to new team members (sustainable)
 
@@ -425,7 +425,7 @@ After completing all five stages:
 **Level 2: Repeatable** — PRIME Framework, documented processes  
 **Level 3: Defined** — Automation portfolio, governance established  
 **Level 4: Managed** — Metrics-driven, continuous improvement  
-**Level 5: Optimizing** — Innovation, AI-assisted, strategic enabler
+**Level 5: optimising** — Innovation, AI-assisted, strategic enabler
 
 **Post-PRIME, you're at Level 2-3.**
 
@@ -443,7 +443,7 @@ After completing all five stages:
 
 - Consistent code standards (established)
 - Shared libraries (extract common functions)
-- Git repository organization
+- Git repository Organisation
 - CI/CD for testing (advanced)
 
 ---
@@ -472,7 +472,7 @@ Included as Stage 5 when you engage for the complete framework. Typically 2-4 we
 
 ### Standalone Empowerment Service
 
-For organizations with existing automation needing knowledge transfer:
+For Organisations with existing automation needing knowledge transfer:
 
 **Fixed Fee:** £3,000 - £5,000 (depending on complexity)
 
@@ -497,10 +497,10 @@ For organizations with existing automation needing knowledge transfer:
 
 ## 🎉 Congratulations!
 
-By completing the PRIME Framework—**Pinpoint, Re-engineer, Implement, Measure, Empower**—your organization has:
+By completing the PRIME Framework—**Pinpoint, Re-engineer, Implement, Measure, Empower**—your Organisation has:
 
 ✅ **Identified high-value automation opportunities** (Pinpoint)  
-✅ **Designed optimized, scalable workflows** (Re-engineer)  
+✅ **Designed optimised, scalable workflows** (Re-engineer)  
 ✅ **Built production-ready, maintainable automation** (Implement)  
 ✅ **Proven ROI and demonstrated value** (Measure)  
 ✅ **Built internal capability for sustained success** (Empower)

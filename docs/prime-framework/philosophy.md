@@ -30,9 +30,9 @@ If you understand our philosophy, you'll understand why the [PRIME Framework](./
 
 **Why It Matters:**
 
-Most automation vendors optimize for **vendor lock-in**. Obscure code keeps you dependent. Complex architectures require their consultants. Proprietary frameworks mean you can't modify anything without calling them back.
+Most automation vendors optimise for **vendor lock-in**. Obscure code keeps you dependent. Complex architectures require their consultants. Proprietary frameworks mean you can't modify anything without calling them back.
 
-We optimize for **operational independence**.
+We optimise for **operational independence**.
 
 **In Practice:**
 
@@ -105,9 +105,9 @@ Six months after we leave, can your team modify the automation without calling u
 
 Network automation touches critical infrastructure. One bad script can take down your entire network.
 
-Most vendors optimize for **speed to delivery**. "Ship code fast, iterate later."
+Most vendors optimise for **speed to delivery**. "Ship code fast, iterate later."
 
-We optimize for **production safety**. Speed matters, but not at the expense of reliability.
+We optimise for **production safety**. Speed matters, but not at the expense of reliability.
 
 **In Practice:**
 
@@ -154,7 +154,7 @@ The [PRIME Framework](./index.md) is our philosophy in action:
 
 | **Framework Stage** | **Philosophy in Practice** |
 |---------------------|----------------------------|
-| **[Pinpoint](./pinpoint.md)** | **Measurability** — Data-driven ROI analysis, not gut-feel prioritization |
+| **[Pinpoint](./pinpoint.md)** | **Measurability** — Data-driven ROI analysis, not gut-feel prioritisation |
 | **[Re-Engineer](./re-engineer.md)** | **Safety** — Fix workflows before automating; design rollback from the start |
 | **[Implement](./implement.md)** | **Transparency** — Line-by-line documentation, human-readable logs |
 | **[Measure](./measure.md)** | **Measurability** — Track actual results vs. projections, prove ROI |

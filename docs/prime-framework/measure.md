@@ -12,7 +12,7 @@ tags:
 
 ## Stage 4 of the PRIME Framework
 
-> **"What gets measured gets improved. The Measure stage proves automation value and identifies opportunities for optimization."**
+> **"What gets measured gets improved. The Measure stage proves automation value and identifies opportunities for optimisation."**
 
 ```mermaid
 graph TD
@@ -252,7 +252,7 @@ Year 2 ROI:          132% (pure savings, no new cost)
 
 ### 5. Continuous Improvement Analysis
 
-Metrics reveal optimization opportunities:
+Metrics reveal optimisation opportunities:
 
 #### Performance Bottlenecks
 
@@ -336,7 +336,7 @@ Portfolio ROI:         56% (Year 1)
 - Success rate by time of day
 - Performance vs. SLA targets
 - Failure root cause analysis
-- Optimization recommendations
+- optimisation recommendations
 
 #### Operations Report (NetOps Team)
 
@@ -377,7 +377,7 @@ At the end of the Measure stage, you receive:
 ### 4. Continuous Improvement Plan
 
 - Identified bottlenecks
-- Optimization roadmap
+- optimisation roadmap
 - Enhancement backlog
 
 ---
@@ -402,8 +402,8 @@ With measurement:
 
 Metrics reveal:
 
-- Which automations deliver most value (prioritize similar projects)
-- Where optimization is worthwhile (focus effort)
+- Which automations deliver most value (prioritise similar projects)
+- Where optimisation is worthwhile (focus effort)
 - What's working well (replicate success patterns)
 
 ---
@@ -437,7 +437,7 @@ Included as Stage 4 when you engage for the complete framework. Typically ongoin
 
 ### Standalone Measurement Service
 
-For organizations with existing automation needing ROI proof:
+For Organisations with existing automation needing ROI proof:
 
 **Fixed Fee:** £2,000 - £3,500
 

@@ -60,13 +60,13 @@ graph LR
 - Risk assessment of error-prone processes
 - ROI estimation for potential automations
 
-**Deliverable:** Prioritized automation roadmap with estimated savings
+**Deliverable:** prioritised automation roadmap with estimated savings
 
 ---
 
 ### [**R** — Re-engineer](./re-engineer.md) Workflows
 
-**Objective:** Design optimized processes before automating
+**Objective:** Design optimised processes before automating
 
 **What Happens:**
 
@@ -101,11 +101,11 @@ graph LR
 **What Happens:**
 
 - Metrics collection (time saved, errors eliminated)
-- Performance monitoring and optimization
+- Performance monitoring and optimisation
 - User feedback gathering
 - Iterative refinement based on real-world usage
 
-**Deliverable:** ROI reports and optimized automation
+**Deliverable:** ROI reports and optimised automation
 
 ---
 
@@ -132,9 +132,9 @@ The "Pinpoint" stage ensures we're solving real problems, not automating for aut
 
 ### 2. **Emphasizes Design Over Quick Fixes**
 
-The "Re-engineer" stage prevents the common mistake of automating broken workflows. We optimize first, then automate.
+The "Re-engineer" stage prevents the common mistake of automating broken workflows. We optimise first, then automate.
 
-### 3. **Prioritizes Production Safety**
+### 3. **prioritises Production Safety**
 
 The "Implement" stage isn't just coding—it's building with enterprise-grade error handling, validation, and transparency.
 
@@ -235,7 +235,7 @@ Structured project following all five stages of the PRIME Framework.
 Explore each stage in detail:
 
 1. **[Pinpoint Inefficiencies](./pinpoint.md)** — How we identify the right automation targets
-2. **[Re-engineer Workflows](./re-engineer.md)** — Optimizing processes before coding
+2. **[Re-engineer Workflows](./re-engineer.md)** — optimising processes before coding
 3. **[Implement Automations](./implement.md)** — Building production-ready solutions
 4. **[Measure & Refine](./measure.md)** — Proving value and continuous improvement
 5. **[Empower Teams](./empower.md)** — Knowledge transfer and long-term success
@@ -276,8 +276,8 @@ How does the PRIME Framework compare to typical automation approaches?
 
 | Aspect | Traditional Approach | PRIME Framework |
 |:---|:---|:---|
-| **Discovery** | "What do you want automated?" | **Pinpoint:** Data-driven ROI analysis, prioritization matrix |
-| **Planning** | Jump straight to coding | **Re-engineer:** Workflow optimization, architecture design, safety planning |
+| **Discovery** | "What do you want automated?" | **Pinpoint:** Data-driven ROI analysis, prioritisation matrix |
+| **Planning** | Jump straight to coding | **Re-engineer:** Workflow optimisation, architecture design, safety planning |
 | **Development** | Quick scripts, minimal testing | **Implement:** Production-hardened with Prime Philosophy principles |
 | **Validation** | "It works on my laptop" | **Measure:** Metrics collection, ROI proof, continuous improvement |
 | **Sustainability** | Vendor lock-in, no documentation | **Empower:** Knowledge transfer, team capability building |
@@ -295,7 +295,7 @@ Throughout our framework and services, you'll encounter these unique terms:
 | Term | Definition |
 |:---|:---|
 | **Prime Automation™** | Automation built following the PRIME Framework—characterized by measurable ROI, production safety, and team empowerment |
-| **Prime Workflows** | Re-engineered operational processes optimized for automation (not just automated existing workflows) |
+| **Prime Workflows** | Re-engineered operational processes optimised for automation (not just automated existing workflows) |
 | **Prime Agents** | Python scripts developed with autonomous decision-making capability (pre-flight checks, validation, rollback) |
 | **Prime Efficiency Stack** | The technology foundation (Netmiko, Nornir, TextFSM, Jinja2) used across all implementations |
 | **Prime Overwatch™** | Continuous monitoring and metrics collection (Measure stage) for automation performance |
@@ -347,7 +347,7 @@ These aren't just buzzwords—they represent specific approaches that differenti
 graph TD
     A[Your Network Operations] -->|Inefficient Manual Work| B{PRIME Framework}
     B -->|Stage 1| C[Pinpoint: Discover ROI Opportunities]
-    B -->|Stage 2| D[Re-engineer: Optimize Workflows]
+    B -->|Stage 2| D[Re-engineer: optimise Workflows]
     B -->|Stage 3| E[Implement: Build Prime Agents]
     B -->|Stage 4| F[Measure: Prime Overwatch]
     B -->|Stage 5| G[Empower: Prime Capability]

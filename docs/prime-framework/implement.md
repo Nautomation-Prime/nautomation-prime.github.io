@@ -530,7 +530,7 @@ Included as Stage 3 when you engage for the complete framework. Typically 2-6 we
 
 ### Standalone Implementation Service
 
-For organizations with designs but need development help:
+For Organisations with designs but need development help:
 
 **Pricing:** £120-£150/hour or fixed-fee based on Re-engineer specs
 

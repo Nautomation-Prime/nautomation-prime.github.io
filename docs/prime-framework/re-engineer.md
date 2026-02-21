@@ -1,6 +1,6 @@
 ---
 title: Re-engineer Workflows
-description: Stage 2 of the PRIME Framework - Optimizing processes and designing scalable architecture before automation begins.
+description: Stage 2 of the PRIME Framework - optimising processes and designing scalable architecture before automation begins.
 tags:
   - PRIME Framework
   - Re-engineer
@@ -16,7 +16,7 @@ tags:
 
 ```mermaid
 graph TD
-    A[Current Workflow] -->|Analyze| B[Identify Issues]
+    A[Current Workflow] -->|Analyse| B[Identify Issues]
     B -->|Redesign| C[Prime Workflows]
     C -->|Architect| D[Technical Design]
     D -->|Validate| E[Safety Mechanisms]
@@ -34,7 +34,7 @@ graph TD
 
 ## 🎯 Objective
 
-Design optimized, scalable workflows and architecture **before** writing code. This stage prevents the costly mistake of automating inefficient processes.
+Design optimised, scalable workflows and architecture **before** writing code. This stage prevents the costly mistake of automating inefficient processes.
 
 ---
 
@@ -59,7 +59,7 @@ Manually adding VLANs requires logging into 5 switches individually, copying con
 
 ### 1. Process Analysis
 
-For each prioritized automation from the [Pinpoint](./pinpoint.md) stage, we map the current workflow:
+For each prioritised automation from the [Pinpoint](./pinpoint.md) stage, we map the current workflow:
 
 #### Current State Mapping
 
@@ -90,7 +90,7 @@ For each prioritized automation from the [Pinpoint](./pinpoint.md) stage, we map
 
 ### 2. Workflow Redesign
 
-We design an optimized process that addresses identified issues:
+We design an optimised process that addresses identified issues:
 
 #### Future State Design
 
@@ -265,7 +265,7 @@ At the end of the Re-engineer stage, you receive:
 
 ### 1. Process Flow Diagrams
 
-Visual representation of optimized workflows with:
+Visual representation of optimised workflows with:
 
 - Current state vs. future state comparison
 - Decision points and conditional logic
