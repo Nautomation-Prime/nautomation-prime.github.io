@@ -125,8 +125,42 @@ Whether you're:
 
 ## Beyond Work
 
+### Life in Staffordshire
+
+I'm based in Leek, Staffordshire, where I live with my wife and son. Family is everything to me—they're the reason I work the way I do and the support system that keeps me grounded when things get challenging.
+
+I have Ménière's disease and coeliac disease, which brings its own set of daily challenges. But I've learned that limitations don't have to define you—they just require better planning, clearer systems, and support from people who matter. My family makes all the difference.
+
+### What Drives Me
+
+If you've taken the 16personalities test, I'm an **INFJ-A** (Advocate). After reading their analysis, it's eerily accurate: I'm driven by purpose, I value authenticity over surface-level interactions, and I genuinely want to help people succeed—not just sell them something.
+
+That's probably why I'm obsessed with transparency in automation. I can't stand the idea of someone running a script they don't understand on their production network. It feels wrong. If you're going to trust automation, you should **understand** it.
+
+I'm also quite introverted, which surprises some people in consulting. But introversion doesn't mean I don't care about people—it means I care deeply about meaningful work and genuine connections over small talk and sales pitches.
+
+### When I'm Not Automating Networks
+
+**Music** is a constant in my life. My taste is eclectic—spanning decades and genres—but I'm very particular about what I love. If it resonates, it stays on repeat. If it doesn't, it's skipped immediately.
+
+**Nature and the outdoors** recharge me. The less man-made, the better. Give me forests, hills, and open countryside over cities any day. There's something about being surrounded by natural complexity that puts human-created systems into perspective. I take my DSLR camera along to capture those moments—there's a satisfaction in framing a shot properly, getting the light right, preserving something beautiful.
+
+**Tea.** Proper tea. I import varieties from China and India because I'm particular about quality. There's a ritual to a good cup of tea—choosing the right leaves, the right temperature, the right timing. It's a small thing, but it matters. (You might notice a pattern here: I care about doing things *properly*.)
+
+### Why This Work Matters to Me
+
+Network automation isn't just a career—it's something I genuinely enjoy. It gives my life purpose.
+
+I've always believed that if you're going to spend a third of your life working, it should be in something you love. And I love solving problems. I love teaching people. I love seeing teams go from "we can't do this" to "we built that ourselves."
+
+That's why I built Nautomation Prime. It's not about selling scripts—it's about empowering engineers to solve their own problems. If I can help someone feel the same satisfaction I get from automation, then the work has meaning beyond the invoice.
+
+---
+
+### Connect
+
 - **Location:** Leek, Staffordshire, UK
-- **Connect:** [LinkedIn](https://www.linkedin.com/in/christopher-davies-6b345026/)
+- **LinkedIn:** [Christopher Davies](https://www.linkedin.com/in/christopher-davies-6b345026/)
 - **GitHub:** [Nautomation-Prime](https://github.com/Nautomation-Prime)
 - **Email:** [nautomationprime.f3wfe@simplelogin.com](mailto:nautomationprime.f3wfe@simplelogin.com)
 

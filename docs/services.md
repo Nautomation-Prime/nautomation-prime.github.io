@@ -22,11 +22,20 @@ At Nautomation Prime, we deliver network automation through the **[PRIME Framewo
 
 ✅ **[Pinpoint](./prime-framework/pinpoint.md)** opportunities with proven ROI  
 ✅ **[Re-engineer](./prime-framework/re-engineer.md)** workflows for scalability before coding  
-✅ **[Implement](./prime-framework/implement.md)** production-ready solutions built on [Prime Philosophy](./about.md#prime-philosophy)  
+✅ **[Implement](./prime-framework/implement.md)** production-ready solutions built on [PRIME Philosophy](./prime-framework/philosophy.md)  
 ✅ **[Measure](./prime-framework/measure.md)** performance and demonstrate business value  
 ✅ **[Empower](./prime-framework/empower.md)** your team for sustainable long-term success
 
 **[Learn about the PRIME Framework →](./prime-framework/index.md)**
+
+!!! question "Does my team need Python knowledge?"
+    **No.** We offer three [engagement tracks](#engagement-tracks-by-technical-capability) tailored to your team's skill level:
+    
+    - **Operational Ownership** — No Python required, automation delivered as operational tools
+    - **Code-Level Ownership** — Python-capable teams gain full modification autonomy
+    - **Hybrid Approach** — Gradual skill building from operations to code mastery
+    
+    [See engagement tracks →](#engagement-tracks-by-technical-capability)
 
 ---
 
@@ -116,7 +125,7 @@ If you already have automation plans or internal capability, we offer individual
 
 **Deliverables:**
 
-- Production-hardened Python code following [Prime Philosophy](./about.md#prime-philosophy)
+- Production-hardened Python code following [PRIME Philosophy](./prime-framework/philosophy.md)
 - Comprehensive testing (lab validation + pilot deployment)
 - Line-by-line documentation
 - README with installation, usage, troubleshooting
@@ -160,6 +169,126 @@ If you already have automation plans or internal capability, we offer individual
 **Investment:** £3,000 - £5,000
 
 **[Learn more about Empower →](./prime-framework/empower.md)**
+
+---
+
+## Engagement Tracks by Technical Capability
+
+The PRIME Framework adapts to your team's Python knowledge. Choose the track that matches your current capability and goals:
+
+### Track 1: Operational Ownership (No Python Required)
+
+**Perfect for:** Teams focused on operational outcomes, not code development
+
+**What You Get:**
+
+- Production-ready automation delivered as documented tools
+- User guides focused on **running** automation, interpreting outputs, troubleshooting common issues
+- Empower stage trains your team to **operate** automation confidently (not modify code)
+- Ongoing support for operational questions
+
+**What Ownership Means:**
+
+- You own the **outcomes**—automation reduces manual work and delivers measurable ROI
+- You control **when and how** automation runs
+- You understand **what** the automation does (human-readable logs, documentation)
+- Code remains transparent and auditable, but modification requires external help or upskilling
+
+**Long-Term Value:**
+
+- Immediate operational efficiency gains
+- Reduced dependency on manual processes
+- Foundation for future code-level capability if team upskills
+
+**Investment:** Standard PRIME pricing (Empower stage focuses on operational training)
+
+---
+
+### Track 2: Code-Level Ownership (Python Knowledge Helpful)
+
+**Perfect for:** Teams with Python skills wanting full autonomy
+
+**What You Get:**
+
+- Production-ready code with line-by-line technical commentary
+- Developer-focused documentation (architecture decisions, extension points, testing approaches)
+- Empower stage includes code walkthroughs, modification workshops, debugging training
+- Team learns to write **new** automation using delivered code as templates
+
+**What Ownership Means:**
+
+- You own the **code**—modify, extend, and create new automation independently
+- No vendor dependency for future changes
+- Your team becomes automation authors, not just operators
+
+**Long-Term Value:**
+
+- Maximum ROI—internal team builds follow-on automation without external costs
+- Continuous improvement—team iterates and optimises based on feedback
+- Skill development—engineers gain marketable Python automation expertise
+
+**Investment:** Standard PRIME pricing (Empower stage focuses on code-level training)
+
+**Recommended Preparation:** Complete [Beginner Tutorials](../tutorials/beginner/index.md) before engagement for maximum value
+
+---
+
+### Track 3: Hybrid Approach (Recommended for Growing Teams)
+
+**Perfect for:** Teams wanting immediate operational value while building long-term code capability
+
+**What You Get:**
+
+- Phase 1: Operational ownership (automation deployed, team trained to **operate**)
+- Phase 2: Code literacy (team learns to **read and understand** code over 3-6 months)
+- Phase 3: Modification capability (team learns to **modify and extend** with guided support)
+- Gradual skill transfer prevents overwhelming engineers while maintaining productivity
+
+**What Ownership Means:**
+
+- Immediate: Operational ownership (run automation, interpret results)
+- 3 months: Code literacy (understand how it works, suggest improvements)
+- 6 months: Modification capability (make changes with confidence)
+- 12 months: Full autonomy (write new automation independently)
+
+**Long-Term Value:**
+
+- No operational disruption—automation delivers value from day one
+- Progressive learning—team builds skills without pressure
+- Risk mitigation—fallback to operational ownership if code training stalls
+
+**Investment:** Standard PRIME pricing + optional extended Empower phase (£2,000-£4,000 for 6-month guided transition)
+
+**Recommended Path:**
+
+1. Complete PRIME engagement (all 5 stages with operational focus)
+2. Team members complete [Intermediate Tutorials](../tutorials/intermediate/index.md) at own pace
+3. Quarterly "office hours" sessions for code questions and modification guidance
+4. After 6-12 months, team operates independently
+
+---
+
+### Which Track Should I Choose?
+
+**Choose Track 1 (Operational Ownership) if:**
+
+- Your team has limited development time or interest
+- You want immediate operational efficiency without internal skill development
+- External support for future modifications is acceptable
+
+**Choose Track 2 (Code-Level Ownership) if:**
+
+- Your team has Python experience or strong development interest
+- You want full autonomy and zero vendor dependency long-term
+- Engineers are allocated time for automation development
+
+**Choose Track 3 (Hybrid) if:**
+
+- You want the best of both worlds—immediate value + future autonomy
+- Team skill levels vary (some Python-capable, others not)
+- You prefer gradual capability building over immediate deep-dive training
+
+**Still unsure?** [Request a discovery call](mailto:nautomationprime.f3wfe@simplelogin.com) to discuss which track fits your organisation.
 
 ---
 
@@ -233,7 +362,7 @@ Through the PRIME Framework, we've delivered automation for:
 | :--- | :--- |
 | Build automation for the obvious tasks | **Pinpoint** the highest-ROI opportunities through data-driven analysis |
 | Directly automate existing (inefficient) workflows | **Re-engineer** processes for scalability before coding begins |
-| Deliver code with minimal documentation | **Implement** with [Prime Philosophy](./about.md#prime-philosophy)—transparent, reliable, pragmatic |
+| Deliver code with minimal documentation | **Implement** with [PRIME Philosophy](./prime-framework/philosophy.md)—transparent, reliable, pragmatic |
 | No proof of value | **Measure** ROI with concrete metrics and executive reporting |
 | "Here's the code, good luck" | **Empower** your team to maintain, modify, and extend independently |
 
@@ -248,7 +377,7 @@ Through the PRIME Framework, we've delivered automation for:
 | **🎯 Pragmatic Over Perfect** | Ship solutions that work today, not theoretical perfection that never ships. Complexity must justify existence. |
 | **🔒 Client Confidentiality** | Your bespoke projects remain exclusively yours—never published, reused, or shared. NDAs standard. Full IP ownership. |
 
-**These are the values of the [Prime Philosophy](./about.md#prime-philosophy) that guide every PRIME Framework engagement.**
+**These are the values of the [PRIME Philosophy](./prime-framework/philosophy.md) that guide every PRIME Framework engagement.**
 
 ---
 
@@ -360,7 +489,7 @@ Safety & validation specifications
 
 ✅ **Implement Stage:**  
 
-Production-hardened Python code with [Prime Philosophy](./about.md#prime-philosophy) principles  
+Production-hardened Python code with [PRIME Philosophy](./prime-framework/philosophy.md) principles  
 Comprehensive testing (lab + staging + pilot)  
 LINE-by-line code documentation  
 README with installation, usage, troubleshooting
@@ -470,4 +599,4 @@ As a boutique practice, you work directly with the principal engineer on every e
 
 ---
 
-> **Mission:** To empower network engineers through the **[PRIME Framework](./prime-framework/index.md)**—delivering automation with measurable ROI, production-grade quality, and sustainable team capability built on the **[Prime Philosophy](./about.md#prime-philosophy)** of transparency, reliability, and pragmatism.
+> **Mission:** To empower network engineers through the **[PRIME Framework](./prime-framework/index.md)**—delivering automation with measurable ROI, production-grade quality, and sustainable team capability built on the **[PRIME Philosophy](./prime-framework/philosophy.md)** of transparency, reliability, and pragmatism.

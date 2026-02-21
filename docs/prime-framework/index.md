@@ -262,7 +262,32 @@ Absolutely! The framework isn't proprietary—it's a best-practice methodology. 
 
 ### What if my team is new to Python?
 
-The "Empower" stage includes training tailored to your team's skill level. We also offer [educational resources](../tutorials/index.md) and can adjust the "Implement" stage to be more educational.
+**You can still use the PRIME Framework.** We offer different engagement tracks:
+
+**Track 1: Operational Ownership (No Python Required)**
+
+- We deliver production-ready automation with comprehensive user documentation
+- Focus: Your team learns to **operate** the automation effectively
+- Empowerment: Understanding what automation does, when to run it, how to interpret results
+- Outcome: Reliable automation that reduces manual work, owned operationally by your team
+
+**Track 2: Code-Level Ownership (Python Knowledge Helpful)**
+
+- We deliver code with line-by-line technical documentation
+- Focus: Your team learns to **modify and extend** automation
+- Empowerment: Training includes Python fundamentals, code walkthroughs, modification workshops
+- Outcome: Full autonomy—your team writes new automation independently
+
+**Track 3: Hybrid (Recommended for Growing Teams)**
+
+- Operational ownership initially, with gradual code-level capability building
+- Focus: Start using automation immediately, build Python skills over time
+- Empowerment: Phased training—operations first, code literacy second, modification third
+- Outcome: Progressive independence as team skills develop
+
+See [Services: Engagement Tracks](../services.md#engagement-tracks-by-technical-capability) for detailed breakdowns.
+
+We also offer [beginner tutorials](../tutorials/beginner/index.md) to help your team build Python foundational skills.
 
 ### How do you handle failed automations?
 

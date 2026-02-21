@@ -199,6 +199,35 @@ The [PRIME Framework](./index.md) is our philosophy in action:
 
 ---
 
+## Who This Philosophy Serves
+
+### Do I Need Python Knowledge?
+
+**Short answer: Not necessarily.**
+
+The PRIME Philosophy and Framework work for organisations at different technical maturity levels:
+
+**If your team doesn't know Python:**
+
+- ✅ You still benefit from all five PRIME stages
+- ✅ Philosophy principles (transparency, measurability, ownership, safety, empowerment) apply regardless of technical skill
+- ✅ Ownership means **operational ownership**—you own the outcomes and can use the automation effectively
+- ✅ Empowerment focuses on **understanding what the automation does** (not necessarily writing new code)
+- ✅ We deliver comprehensive documentation so your team can **operate** the automation confidently
+
+**If your team knows Python:**
+
+- ✅ Full framework value—you gain **code-level ownership**
+- ✅ Empowerment includes training to **modify and extend** automation independently
+- ✅ Higher long-term ROI as your team builds new automations without external help
+- ✅ Faster ramp-up during knowledge transfer
+
+**The Philosophy doesn't require Python expertise**—it requires a commitment to transparent processes, measurable outcomes, and continuous improvement.
+
+See [Services: Engagement Tracks](../services.md#engagement-tracks-by-technical-capability) for tailored approaches based on your team's skill level.
+
+---
+
 ## Why We're Transparent About This
 
 Most consultants hide their philosophy. They sell process, not principles.

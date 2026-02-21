@@ -162,6 +162,7 @@ Understand the philosophy and methodology behind Nautomation Prime.
     - **Need validation after changes?** → [PyATS Fundamentals](tutorials/intermediate/pyats-fundamentals.md)
     - **Want our core principles?** → [PRIME Philosophy](prime-framework/philosophy.md)
     - **Want the methodology?** → [PRIME Framework](prime-framework/index.md)
+    - **Team lacks Python skills?** → [Engagement Tracks](services.md#engagement-tracks-by-technical-capability) explain how we tailor to your capability
 
 ---
 
