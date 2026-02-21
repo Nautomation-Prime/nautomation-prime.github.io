@@ -229,7 +229,7 @@ The PRIME Framework adapts to your team's Python knowledge. Choose the track tha
 
 **Investment:** Standard PRIME pricing (Empower stage focuses on code-level training)
 
-**Recommended Preparation:** Complete [Beginner Tutorials](../tutorials/beginner/index.md) before engagement for maximum value
+**Recommended Preparation:** Complete [Beginner Tutorials](tutorials/beginner/index.md) before engagement for maximum value
 
 ---
 
@@ -262,7 +262,7 @@ The PRIME Framework adapts to your team's Python knowledge. Choose the track tha
 **Recommended Path:**
 
 1. Complete PRIME engagement (all 5 stages with operational focus)
-2. Team members complete [Intermediate Tutorials](../tutorials/intermediate/index.md) at own pace
+2. Team members complete [Intermediate Tutorials](tutorials/intermediate/index.md) at own pace
 3. Quarterly "office hours" sessions for code questions and modification guidance
 4. After 6-12 months, team operates independently
 
