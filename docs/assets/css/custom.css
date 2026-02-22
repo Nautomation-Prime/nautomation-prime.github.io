@@ -1,4 +1,4 @@
-/* Hide page title on home page */
-.md-content h1:first-of-type {
+/* Hide page title on home page only */
+article:has(.homepage) h1:first-of-type {
     display: none;
 }

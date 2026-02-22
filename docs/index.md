@@ -11,6 +11,8 @@ tags:
   - Netmiko
 ---
 
+<div class="homepage" markdown="1">
+
 ![Nautomation Prime Logo](assets/main_logo.jpg)
 
 ---
@@ -246,3 +248,5 @@ Built from **real-world experience**, not theory.
 ---
 
 > **Mission:** To empower network engineers through the **[PRIME Framework](./prime-framework/index.md)**—delivering automation with measurable ROI, production-grade quality, and sustainable team capability built on the **[Prime Philosophy](./prime-framework/philosophy.md)** of transparency, reliability, and pragmatism.
+
+</div>
