@@ -4,5 +4,7 @@
 User-agent: *
 Allow: /
 
+Sitemap: https://www.nautomationprime.io/sitemap.xml
+
 # Optional: Crawl delay for polite crawlers
 Crawl-delay: 1

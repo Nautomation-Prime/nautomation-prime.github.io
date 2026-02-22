@@ -38,6 +38,9 @@ jobs:
       - name: Build (strict)
         run: mkdocs build --strict
 
+      - name: Generate sitemap.xml
+        run: python scripts/generate_sitemap.py --site-dir site --site-url "https://www.nautomationprime.io/"
+
       # Ensure CNAME is always present in the published site (gh-pages root).
       # This makes the custom domain setup robust even if repo settings are changed/reset.
       - name: Add CNAME to site output
