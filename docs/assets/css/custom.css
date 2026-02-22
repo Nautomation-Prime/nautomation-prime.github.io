@@ -1,0 +1,4 @@
+/* Hide page title on home page */
+.md-content h1:first-of-type {
+    display: none;
+}

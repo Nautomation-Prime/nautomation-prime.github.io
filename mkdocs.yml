@@ -74,6 +74,9 @@ extra:
 extra_javascript:
   - assets/js/mermaid.min.js
 
+extra_css:
+  - assets/css/custom.css
+
 markdown_extensions:
   - abbr  # Enable abbreviations/glossary
   - admonition  # Call-out boxes (notes, warnings, tips)
