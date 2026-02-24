@@ -1,23 +1,22 @@
 title: Blog
 nav:
-
   - index.md
-  - threading-in-network-automation.md: Threading in Network Automation: When to Use It and When to Avoid It
-  - why-automation-fails.md: Why Automation Fails: The PRIME Framework Solution
-  - choosing-network-automation-framework.md: How to Choose the Right Network Automation Framework
-  - credential-management-network-automation.md: Credential Management in Network Automation
-  - source-of-truth-network-automation.md: Building a Source of Truth for Network Automation
-  - testing-strategies-network-automation.md: Testing Strategies for Network Automation
-  - automation-failure-stories-prime.md: Automation Failure Stories: How PRIME Would Have Prevented Disaster
-  - itsm-change-management-network-automation.md: Integrating Network Automation with ITSM and Change Management
-  - async-vs-threading-vs-multiprocessing.md: Async vs. Threading vs. Multiprocessing in Network Automation
-  - observability-network-automation.md: Observability for Network Automation
-  - enterprise-automation-pipeline-blueprint.md: Blueprint for Enterprise-Ready Network Automation Pipelines
-  - vendor-neutral-automation.md: Vendor-Neutral Automation: Avoiding Lock-In
-  - case-study-full-automation-journey.md: Case Study: A Full Network Automation Journey
-  - community-spotlight-how-to-contribute.md: Community Spotlight & How to Contribute
-  - emerging-tech-streaming-telemetry.md: Streaming Telemetry in Network Automation
-  - emerging-tech-model-driven-apis.md: Model-Driven APIs in Network Automation
-  - emerging-tech-ai-ml-network-automation.md: AI and Machine Learning in Network Automation
-  - emerging-tech-event-driven-automation.md: Event-Driven Automation in the Network
-  - migrating-legacy-network-automation.md: Migrating Legacy Network Automation to Modern Frameworks
+  - threading-in-network-automation.md: "Threading in Network Automation: When to Use It and When to Avoid It"
+  - why-automation-fails.md: "Why Automation Fails: The PRIME Framework Solution"
+  - choosing-network-automation-framework.md: "How to Choose the Right Network Automation Framework"
+  - credential-management-network-automation.md: "Credential Management in Network Automation"
+  - source-of-truth-network-automation.md: "Building a Source of Truth for Network Automation"
+  - testing-strategies-network-automation.md: "Testing Strategies for Network Automation"
+  - automation-failure-stories-prime.md: "Automation Failure Stories: How PRIME Would Have Prevented Disaster"
+  - itsm-change-management-network-automation.md: "Integrating Network Automation with ITSM and Change Management"
+  - async-vs-threading-vs-multiprocessing.md: "Async vs. Threading vs. Multiprocessing in Network Automation"
+  - observability-network-automation.md: "Observability for Network Automation"
+  - enterprise-automation-pipeline-blueprint.md: "Blueprint for Enterprise-Ready Network Automation Pipelines"
+  - vendor-neutral-automation.md: "Vendor-Neutral Automation: Avoiding Lock-In"
+  - case-study-full-automation-journey.md: "Case Study: A Full Network Automation Journey"
+  - community-spotlight-how-to-contribute.md: "Community Spotlight & How to Contribute"
+  - emerging-tech-streaming-telemetry.md: "Streaming Telemetry in Network Automation"
+  - emerging-tech-model-driven-apis.md: "Model-Driven APIs in Network Automation"
+  - emerging-tech-ai-ml-network-automation.md: "AI and Machine Learning in Network Automation"
+  - emerging-tech-event-driven-automation.md: "Event-Driven Automation in the Network"
+  - migrating-legacy-network-automation.md: "Migrating Legacy Network Automation to Modern Frameworks"
