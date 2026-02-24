@@ -5,6 +5,8 @@ description: Practical, transparent insights on network automation, AWX, CI/CD, 
 
 ***Blog***
 
+***COMING SOON***
+
 ***Pragmatic, Transparent Network Automation Insights***
 
 At Nautomation Prime, everything we teach and build is grounded in the PRIME Philosophy:  
@@ -30,7 +32,7 @@ This blog is where we share real-world lessons, architecture patterns, deep dive
 
 ## 🆕 Latest Posts
 
-Below are placeholder entries — replace them with real blog posts as you add them.
+Below are placeholder entries.
 
 ### **Why Most Network Automation Pipelines Fail (And How to Fix Them)**  
 
@@ -104,5 +106,3 @@ Your 5-stage methodology for durable, safe automation projects.
 Consider linking to a future newsletter or GitHub Discussions section.
 
 ---
-
-``
