@@ -230,7 +230,7 @@ This is **sequential iteration**. It's simple, it's clear, it's great for learni
 
 You might think: *"Why learn Nornir? Can't I just add `threading` to Tutorial #3?"*
 
-You **could**, but here's why that's a bad idea:
+You **could**, but here's why that's a bad idea. (And if you want the full story on why threading is so risky for network automation, check out our deep-dive: [Threading in Network Automation: When to Use It and When to Avoid It](../../blog/threading-in-network-automation.md))
 
 ```python
 import threading
@@ -410,7 +410,7 @@ The table below breaks down how different approaches compare across real-world c
 | **Production-ready** | No | Rarely | Yes | Yes |
 | **Maintenance burden** | Low initially, high later | Very high | Moderate | Moderate |
 
-*Threading performance varies wildly due to GIL contention
+* Threading performance varies wildly due to GIL contention
 
 ---
 
@@ -507,7 +507,7 @@ Do you have network devices to manage with scripts?
 **Honest truth:** There's no "best" tool. There's the right tool for your *current* situation.
 
 - **Tutorial #3** is your "learn automation" tool
-- **Threading** is your "never use this" tool (seriously, don't)
+- **Threading** is your "never use this" tool (seriously, don't — and if you want to know why, see our deep-dive: [Threading in Network Automation: When to Use It and When to Avoid It](../../blog/threading-in-network-automation.md))
 - **Nornir** is your "production ready" tool
 - **Ansible** is your "infrastructure as code" tool
 

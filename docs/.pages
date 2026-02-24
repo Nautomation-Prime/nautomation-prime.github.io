@@ -8,7 +8,7 @@ nav:
       - deep-dives
       - scripts
   - Coming Soon: coming-soon
-  # - blog: blog
+  - blog: blog
   - Services:
       - services.md
       - how-we-work.md

@@ -1,108 +1,51 @@
 ---
-title: Blog
-description: Practical, transparent insights on network automation, AWX, CI/CD, and production-ready Cisco engineering.
+title: Nautomation Prime Blog
+description: Real-world, transparent insights on network automation, the PRIME Framework, and building production-ready solutions.
 ---
 
-***Blog***
+# 🚀 Nautomation Prime Blog
 
-***COMING SOON***
+Welcome to the Nautomation Prime blog—where network automation meets transparency, measurability, and real-world results.
 
-***Pragmatic, Transparent Network Automation Insights***
-
-At Nautomation Prime, everything we teach and build is grounded in the PRIME Philosophy:  
+At the heart of everything we share is the [PRIME Philosophy](../prime-framework/philosophy.md):
 **Transparency, Measurability, Ownership, Safety, and Empowerment.**
 
-This blog is where we share real-world lessons, architecture patterns, deep dives, and field-tested strategies for sustainable network automation.
+Here, you'll find:
 
----
-
-## 📚 Browse by Category
-
-- [All Posts](./)
-- [Automation Strategy](./categories/automation-strategy/)
-- [Cisco Automation](./categories/cisco-automation/)
-- [AWX & CI/CD](./categories/awx-cicd/)
-- [Python Patterns](./categories/python-patterns/)
-- [Case Studies](./categories/case-studies/)
-- [PRIME Framework](./categories/prime-framework/)
-
-> These categories align with your existing content structure such as Tutorials, Deep Dives, and Script Library, as visible in your Resources section. [2](https://www.nautomationprime.io/resources/)
+- Deep dives into automation patterns that work (and those that don't)
+- Honest lessons from the field—failures, fixes, and frameworks
+- Practical guides for building automation you can trust and own
+- Stories that show how the [PRIME Framework](../prime-framework/index.md) delivers value
 
 ---
 
 ## 🆕 Latest Posts
 
-Below are placeholder entries.
+- [Threading in Network Automation: When to Use It and When to Avoid It](threading-in-network-automation.md)  
+*Why threading is almost never the right tool for network automation, and how the PRIME Framework guides safer, scalable concurrency.*
 
-### **Why Most Network Automation Pipelines Fail (And How to Fix Them)**  
-
-**Category:** Automation Strategy  
-**Read Time:** ~7 minutes  
-
-A breakdown of the five predictable failure modes in enterprise automation and how the PRIME Framework prevents every one of them.
+- [Why Most Network Automation Pipelines Fail (And How to Fix Them)](why-automation-fails.md)  
+*The five predictable failure modes in enterprise automation—and how the PRIME Framework prevents every one of them.*
 
 ---
 
-### **Deploying AWX in Enterprise Networks: Architecture, Pitfalls & Proven Patterns**  
+## ⭐ What Makes This Blog Different?
 
-**Category:** AWX & CI/CD  
-**Read Time:** ~9 minutes  
-
-A field-tested guide to AWX deployments, including topology design, integrations, and safety‑first CI/CD practices.
-
----
-
-### **Secure Cisco ZTP with Azure Key Vault & Private Endpoints**  
-
-**Category:** Cisco Automation  
-**Read Time:** ~10 minutes  
-
-A practical workflow for secure device onboarding using Python, private endpoints, and enterprise credential isolation.
+- **Every post is grounded in the PRIME Philosophy.**
+- **No black boxes:** We show our work, our code, and our thinking.
+- **No hype:** Just field-tested, production-ready patterns and honest lessons.
+- **You own the outcome:** Our goal is to empower you, not lock you in.
 
 ---
 
-## ⭐ Featured Insights
+## 📚 Explore More
 
-Use this area to highlight articles that showcase your strongest expertise.
-
-- **The PRIME Framework in Real Automation Projects**  
-- **Line‑By‑Line Deep Dive: Production‑Ready Python Script Architecture**  
-- **Automating at Scale: Nornir, Parallelism, and Enterprise Patterns**
-
-These relate directly to the educational themes and deep dives present across your site. [1](https://www.nautomationprime.io/)
+- [PRIME Framework Overview](../prime-framework/index.md)
+- [The PRIME Philosophy](../prime-framework/philosophy.md)
+- [Tutorials](../tutorials/index.md)
+- [Deep Dives](../deep-dives/index.md)
+- [Script Library](../scripts/index.md)
 
 ---
 
-## 📂 Posts by Topic
-
-### **Automation Strategy**
-
-Long-term thinking, ROI measurement, team enablement.
-
-### **Cisco Automation**
-
-ZTP, templating, IOS‑XE workflows, Python orchestration.
-
-### **AWX / CI/CD**
-
-Pipelines, job templates, secure architectures, enterprise rollouts.
-
-### **Python Patterns**
-
-Pragmatic design, error handling, transparency-driven code structure.
-
-### **Case Studies**
-
-Real-world examples (with sensitive details removed).
-
-### **PRIME Framework**
-
-Your 5-stage methodology for durable, safe automation projects.
-
----
-
-## 💡 Want updates?
-
-Consider linking to a future newsletter or GitHub Discussions section.
-
----
+*Want to see a topic covered? Reach out via our contact page or suggest a post!*

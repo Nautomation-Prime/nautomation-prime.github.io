@@ -1,3 +1,6 @@
 title: Blog
 nav:
+
   - index.md
+  - threading-in-network-automation.md: Threading in Network Automation: When to Use It and When to Avoid It
+  - why-automation-fails.md: Why Automation Fails: The PRIME Framework Solution
