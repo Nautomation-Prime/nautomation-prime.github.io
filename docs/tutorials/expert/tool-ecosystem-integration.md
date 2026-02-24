@@ -1,3 +1,4 @@
+
 ---
 title: Tool Ecosystem Integration for Network Automation: Netbox, ServiceNow, DNA Center, and More
 description: Integrate your automation with industry tools for inventory, ITSM, and intent-based networking.
@@ -16,8 +17,10 @@ tags:
 > *Published: February 24, 2026  \
 Author: Nautomation Prime Team*
 
----
+> *Published: February 24, 2026  \
+Author: Nautomation Prime Team*
 
+---
 ## Why This Tutorial Exists
 
 Modern automation is not an island. This tutorial shows how to integrate with Netbox, ServiceNow, Cisco DNA Center, and other tools for inventory, ITSM, and intent-based networking.
