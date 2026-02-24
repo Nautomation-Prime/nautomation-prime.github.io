@@ -10,9 +10,9 @@ nav:
   - Coming Soon: coming-soon
   - blog: blog
   - Services:
-      - services.md
-      - how-we-work.md
-      - why-automation-fails.md
+     - services.md
+     - how-we-work.md
+     - blog/why-automation-fails.md
   - PRIME Framework: prime-framework
   - About:
       - about.md
