@@ -12,7 +12,6 @@ nav:
   - Services:
      - services.md
      - how-we-work.md
-     - blog/why-automation-fails.md
   - PRIME Framework: prime-framework
   - About:
       - about.md
