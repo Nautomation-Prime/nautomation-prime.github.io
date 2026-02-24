@@ -200,5 +200,6 @@ plugins:
       fallback_to_build_date: true
       enable_git_follow: false  # Disable to avoid quirks with new files
       strict: false  # Don't show warnings for files without git logs
-  - blog
+  - blog:
+      archive: false
 
