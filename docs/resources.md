@@ -245,6 +245,7 @@ Each resource is tagged to help you find content that matches your style:
 - [Building Reliable Automation with PyATS](tutorials/intermediate/building-reliable-automation-with-pyats.md) — Proves changes worked in production
 
 **Best for Executives**
+
 - [PRIME Philosophy](prime-framework/philosophy.md) — Core principles: transparency, measurability, ownership, safety
 - [PRIME Framework](prime-framework/index.md) — Strategic, ROI-focused automation methodology
 - [Measure](prime-framework/measure.md) — Track and communicate automation impact

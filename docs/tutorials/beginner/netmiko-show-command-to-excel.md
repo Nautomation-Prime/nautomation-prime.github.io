@@ -557,11 +557,13 @@ pip install netmiko pandas openpyxl
 ### "Authentication failed"
 
 **Causes**:
+
 - Wrong username or password
 - Account locked
 - SSH authentication method not supported
 
 **Solution**: 
+
 - Verify credentials by manually SSH'ing to the device
 - Check if the device requires key-based authentication
 - Ensure your account has appropriate privileges
@@ -571,12 +573,14 @@ pip install netmiko pandas openpyxl
 ### "Connection timeout" or "TCP connection failed"
 
 **Causes**:
+
 - Device is unreachable
 - SSH is not enabled on the device
 - Firewall blocking connection
 - Wrong IP address
 
 **Solution**:
+
 - Ping the device to verify reachability
 - Verify SSH is enabled: `show ip ssh` on the device
 - Check firewall rules
@@ -587,10 +591,12 @@ pip install netmiko pandas openpyxl
 ### "TextFSM parsing failed"
 
 **Causes**:
+
 - No TextFSM template exists for your command + device type combination
 - Device output format is non-standard
 
 **Solution**:
+
 - Use `use_textfsm=False` to get raw text output
 - Check if your command is supported at [ntc-templates](https://github.com/networktocode/ntc-templates)
 - Manually parse the raw text using string methods or regular expressions
@@ -628,19 +634,23 @@ Congratulations! You've built your first network automation script. You now unde
 Ready to build on this foundation? Here's your learning path:
 
 **Continue with Beginner Concepts:**
+
 1. [**Multi-Device Collection**](./multi-device-show-command.md) — Extend this script to work with multiple devices at once
 2. [**Configuration Backup**](./multi-device-config-backup.md) — Learn to save and manage device configurations
 
 **Move to Intermediate Skills:**
+
 3. [**Nornir Fundamentals**](../intermediate/nornir-fundamentals.md) — Understand frameworks that scale automation to thousands of devices
 4. [**Enterprise Config Backup with Nornir**](../intermediate/enterprise-config-backup-nornir.md) — See how patterns scale to production
 
 **Study Production Code:**
+
 5. [**Deep Dives Section**](../../deep-dives/index.md) — Review complete production scripts with line-by-line explanations
    - Start with [CDP Network Audit](../../deep-dives/cdp-audit.md) to see threading, error handling, and enterprise patterns
    - Then explore [Access Switch Audit](../../deep-dives/access-switch-audit.md) for parallel device collection
 
 **Ready to Deploy?**
+
 6. [**Script Library**](../../scripts/index.md) — Use production-ready tools built on these same concepts
 
 ---

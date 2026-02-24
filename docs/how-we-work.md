@@ -20,7 +20,7 @@ This is how it works.
 
 ## The 5 Stages at a Glance
 
-```
+```text
 Stage 1       Stage 2          Stage 3          Stage 4       Stage 5
 Pinpoint  →   Re-engineer  →   Implement   →    Measure   →  Empower
 (Week 1)      (Weeks 2-3)      (Weeks 4-8)      (Weeks 9-12)  (Weeks 10-16)
@@ -359,7 +359,7 @@ Your team walks away with:
 
 ## The Full Timeline
 
-```
+```text
 Week 1      Weeks 2-3        Weeks 4-8       Weeks 9-12+     Weeks 10-16
 Pinpoint    Re-engineer      Implement       Measure         Empower
 (1 week)    (2 weeks)        (4 weeks)       (4+ weeks)      (6 weeks workshops)

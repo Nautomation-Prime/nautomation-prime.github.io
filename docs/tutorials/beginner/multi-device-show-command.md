@@ -797,30 +797,35 @@ Congratulations! You've learned critical production automation patterns:
 
 ### 1. **External Inventory Management**
 Instead of hardcoding devices, you now use CSV files. This means:
+
 - Non-programmers can update the device list
 - Easy to maintain as your network grows
 - Can generate the CSV from other systems (CMDB, monitoring tools, etc.)
 
 ### 2. **Continue-on-Error Pattern**
 One device failing doesn't stop the entire job. This is essential for production automation where you might have:
+
 - Devices undergoing maintenance
 - Occasional network blips
 - Devices with different credential requirements
 
 ### 3. **Per-Device Error Handling**
 Each device operation is isolated in a try/except block, providing:
+
 - Clear logging of which device failed and why
 - Ability to collect partial results
 - Easier troubleshooting
 
 ### 4. **Data Aggregation**
 Multiple device results combined into one Excel file with multiple sheets. This is much better than:
+
 - Dozens of separate files
 - Having to manually combine data
 - Losing track of which device is which
 
 ### 5. **User Feedback**
 Progress indicators during long operations keep users informed:
+
 - CSV load confirmation
 - Per-device connection status
 - Export progress
@@ -835,6 +840,7 @@ Progress indicators during long operations keep users informed:
 **Cause**: The CSV file isn't in the same directory as the script.
 
 **Solution**: 
+
 - Check the CSV file exists
 - Make sure it's in the same folder as your Python script
 - Or use an absolute path: `inventory_file = 'C:/path/to/devices.csv'`
@@ -854,6 +860,7 @@ Progress indicators during long operations keep users informed:
 **Cause**: Hostname longer than 31 characters (Excel limit).
 
 **Solution**: This is expected behavior. The script automatically truncates to 31 characters. If you need full hostnames, you could:
+
 - Add a column in the sheet with the full hostname
 - Create a mapping file
 - Use shorter hostnames in your CSV
@@ -863,6 +870,7 @@ Progress indicators during long operations keep users informed:
 ### No Data Collected (All Devices Failed)
 
 **Troubleshooting steps**:
+
 1. Verify you can manually SSH to at least one device
 2. Check the error messages—common issues:
    - Wrong password

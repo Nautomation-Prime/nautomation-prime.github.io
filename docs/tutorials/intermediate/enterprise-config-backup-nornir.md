@@ -207,6 +207,7 @@ print("\n✓ Done! Check ./configs/ directory")
 ```
 
 **Why this matters:** By breaking it into separate steps, we can:
+
 1. Add change detection between saves
 2. Add compliance checking
 3. Add database logging
@@ -1776,6 +1777,7 @@ sudo journalctl -u nornir-backup.service -f
 Best for: Windows networks
 
 **Via GUI:**
+
 1. Open Task Scheduler
 2. Create Basic Task → "Enterprise Nornir Backup"
 3. Trigger: Daily at 2:00 AM

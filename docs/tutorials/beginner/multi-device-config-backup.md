@@ -346,6 +346,7 @@ from datetime import datetime
 ```
 
 **What they do**:
+
 - `os`: Provides functions to interact with the operating system (create directories, work with file paths)
 - `datetime`: Allows us to generate timestamps for backup directories
 
@@ -395,6 +396,7 @@ backup_dir = os.path.join(base_directory, timestamp)
 **Why**: `os.path.join()` handles Windows vs. Unix path separators automatically. It's much better than manually concatenating strings with `/` or `\`.
 
 Example output:
+
 - Linux: `backups/20260215_143022`
 - Windows: `backups\20260215_143022`
 
@@ -467,6 +469,7 @@ config = connection.send_command('show running-config')
 **What it does**: Sends the `show running-config` command and gets the raw output.
 
 **Why**: Key difference from earlier tutorials:
+
 - **No `use_textfsm=True`**: Running configs are text-based and don't need parsing
 - **Raw text output**: We keep it exactly as-is for archiving
 
@@ -521,6 +524,7 @@ file_size = os.path.getsize(config_filepath)
 **What it does**: Gets the file size in bytes.
 
 **Why**: File size is useful for sanity checks:
+
 - If a large router backed up only 100 bytes, something's wrong
 - Users can see at a glance which devices have large configs
 
@@ -535,6 +539,7 @@ return (hostname, config_filename, file_size, 'success')
 **What it does**: Closes connection and returns success information.
 
 **Why**: Returns a tuple with:
+
 - `hostname`: Which device
 - `config_filename`: Filename (for reference)
 - `file_size`: How much data
@@ -608,6 +613,7 @@ df.to_excel(manifest_filepath, index=False, sheet_name='Backup Manifest')
 **What it does**: Saves the manifest to an Excel file in the backup directory.
 
 **Why**: The manifest lives alongside the backups, providing metadata. Users can open it to see:
+
 - Which devices succeeded/failed
 - How large each device's config is
 - When the backup ran
@@ -780,6 +786,7 @@ backups/
 ```
 
 This structure makes it trivial to:
+
 - Find the latest backup
 - Compare configs across backup runs
 - Identify when changes occurred

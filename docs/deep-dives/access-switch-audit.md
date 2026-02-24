@@ -386,35 +386,41 @@ The v2.0 restructure transformed the tool from a monolithic script into a **prof
 ### Key Design Patterns (v2.0)
 
 **1. Package-Based Architecture:**
+
 - Each module has single, well-defined responsibility
 - Clear dependency hierarchy (cli → device_auditor → excel_reporter)
 - Easy to test, extend, and maintain
 - Follows Python packaging best practices
 
 **2. Separation of Concerns:**
+
 - **Presentation layer** (cli.py): User interaction and progress display
 - **Business logic layer** (device_auditor.py): Data collection and processing
 - **Data layer** (excel_reporter.py, formatters.py): Output generation
 - **Infrastructure layer** (credentials.py, jump_manager.py, netmiko_utils.py): Supporting services
 
 **3. Configuration Centralization:**
+
 - All config in `ProgramFiles/config_files/config_loader.py`
 - Accessed via singleton pattern in `app_config.py`
 - Environment variables override YAML settings
 - Type-safe property accessors
 
 **4. Intelligent Fallback Parsing:**
+
 - Primary: TextFSM templates (when available)
 - Fallback: Custom fixed-width parsers in formatters.py
 - Ensures reliability even without external dependencies
 
 **5. Multi-Threaded Execution:**
+
 - ThreadPoolExecutor with configurable worker count
 - Thread-safe data accumulation with locks
 - Per-device failure isolation
 - Event-driven progress bar
 
 **6. Graceful Error Handling:**
+
 - Exponential backoff retry logic
 - Per-device error capture (doesn't stop entire audit)
 - Comprehensive logging for troubleshooting
@@ -428,11 +434,13 @@ If you're upgrading from the older monolithic version, see the **MIGRATION.md** 
 ### What Changed in v2.0?
 
 **1. Modular Package Design**
+
 - Code separated into focused modules (cli.py, device_auditor.py, excel_reporter.py, etc.)
 - `Modules/` directory components moved to `switch_audit/` package
 - Config loader relocated to `ProgramFiles/config_files/`
 
 **2. New Entry Point**
+
 - **Old**: `python main.py --devices devices.txt`
 - **New**: `python -m switch_audit --devices devices.txt` (recommended)
 - **Backward Compatible**: `python main_new.py --devices devices.txt`
@@ -494,6 +502,7 @@ def get_interfaces_via_show_interfaces(conn) -> List[Dict[str, Any]]:
 ```
 
 **Why This Approach:**
+
 - TextFSM provides structured parsing when templates exist
 - Returns empty list (not exception) if parsing fails
 - Main logic continues with custom parsers
@@ -540,6 +549,7 @@ def _find_columns(header_line: str) -> Dict[str, slice]:
 ```
 
 **Why This Matters:**
+
 - Fixed-width parsing is more reliable than regex for tabular CLI output
 - Dynamically calculated positions adapt to slight formatting variations
 - Slice objects provide clean substring extraction
@@ -568,6 +578,7 @@ for line in lines:
 ```
 
 **Why Status Normalization:**
+
 - Different IOS versions use slight variations ("connected" vs "connect")
 - Normalized values enable reliable conditional formatting in Excel
 - Consistent categorization across device types
@@ -587,6 +598,7 @@ else:
 ```
 
 **Why This Logic:**
+
 - VLAN column is the most reliable indicator of port mode
 - Trunk ports show "trunk" or "rspan" in VLAN field
 - Routed ports show "routed"
@@ -599,6 +611,7 @@ else:
 ### The PoE Challenge
 
 **Problem:** PoE data (`show power inline`) uses different interface naming than `show interfaces status`. Example:
+
 - Status command: `Gi1/0/1`
 - PoE command: `GigabitEthernet1/0/1`
 
@@ -636,6 +649,7 @@ def normalize_ifname(ifname: str) -> Tuple[str, str]:
 ```
 
 **Why This Matters:**
+
 - Enables reliable cross-command matching
 - Handles all common Cisco interface types
 - Works across different IOS versions and platforms
@@ -659,6 +673,7 @@ for alias in all_aliases(port_name):
 ```
 
 **Why Multiple Aliases:**
+
 - Different commands use different naming conventions
 - Maximizes successful PoE data correlation
 - Prevents data loss due to naming mismatches
@@ -672,11 +687,13 @@ for alias in all_aliases(port_name):
 **Scenario:** You have 1,000 switch ports. How do you identify which ones are truly unused vs. temporarily disconnected vs. connected to equipment that's powered off?
 
 **False Positives Are Expensive:**
+
 - Marking an active port as "stale" disrupts operations
 - Users lose network access
 - Help desk tickets spike
 
 **False Negatives Waste Resources:**
+
 - Unused ports consume switch capacity
 - Security risk (unauthorized devices can plug in)
 
@@ -712,6 +729,7 @@ if status == 'connected':
 ```
 
 **Why:**
+
 - Port is physically connected
 - But hasn't passed traffic in N days
 - Likely a powered-off device or misconfigured endpoint
@@ -788,6 +806,7 @@ def _parse_last_input_seconds(s: str) -> float | None:
 ```
 
 **Why Multiple Format Support:**
+
 - Different IOS versions use different time formats
 - Ensures accurate stale detection across all platforms
 
@@ -860,6 +879,7 @@ class JumpManager:
 ```
 
 **Why direct-tcpip Channel:**
+
 - No port forwarding needed on bastion
 - All traffic stays within authenticated SSH session
 - Cleaner than local port forwarding
@@ -958,6 +978,7 @@ self.progress_lock = threading.Lock()  # Protects shared state
 ```
 
 **Why Thread Locks Matter:**
+
 - Without locks, multiple threads writing to the same list causes data corruption
 - The lock ensures atomic append operations
 - Minimal lock contention because we hold locks for microseconds, not seconds
@@ -975,6 +996,7 @@ For each device, the tool collects five commands in sequence:
 | `show cdp/lldp neighbors detail` | Detect peer devices on each port | Boolean flag (true if neighbour present) |
 
 **Why This Command Set?**
+
 - Comprehensive but minimal: each command provides data no other command offers
 - Covers the three dimensions of port health: *configuration* (mode/VLAN), *activity* (errors, last input), *attachment* (PoE, neighbours)
 
@@ -999,6 +1021,7 @@ From `show interfaces status`, inspect the VLAN column:
 - Otherwise → **Access**
 
 **Why This Matters:**
+
 - Different port types require different stale-detection rules
 - Access ports should be connected to hosts; trunk ports connect infrastructure
 - This classification enables intelligent filtering and reporting
@@ -1319,14 +1342,17 @@ Consistent with the **Nautomation Prime** delivery model, this tool is available
 ## � Related Resources
 
 **Get Started Now:**
+
 - [📖 Script Library](../scripts/index.md) — Find the Access Switch Audit tool and other automation scripts
 - [:material-github: GitHub Repository](https://github.com/Nautomation-Prime/Access_Switch_Audit) — Source code, issues, and contributions
 
 **Learn More:**
+
 - [🛠️ Nornir Fundamentals](../tutorials/intermediate/nornir-fundamentals.md) — Understanding parallel automation patterns like those in this tool
 - [🚀 PRIME Framework](../prime-framework/index.md) — Understand the methodology behind this tool
 
 **Explore Similar Topics:**
+
 - [CDP Network Audit Deep Dive](./cdp-audit.md) — Another production tool focusing on network topology discovery
 
 ---

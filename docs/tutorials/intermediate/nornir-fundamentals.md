@@ -1244,6 +1244,7 @@ core:
 **Rule of thumb:** Start with 10, then increase in small steps while watching runtime and failures. If runtime keeps dropping without more timeouts, you can add workers. If timeouts or failures rise, you have exceeded what the network/devices can handle—back off.
 
 **Example:**
+
 - 10 workers: 8 min, 0 failures
 - 20 workers: 4 min, 0 failures
 - 30 workers: 3.5 min, 5 timeouts
