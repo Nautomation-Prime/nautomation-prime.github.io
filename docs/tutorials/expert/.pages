@@ -1,6 +1,5 @@
 title: Expert
 nav:
-
   - index.md
   - nornir-pyats-integration.md: Nornir + PyATS Integration
   - asyncio-network-automation.md: Asyncio for Network Automation
