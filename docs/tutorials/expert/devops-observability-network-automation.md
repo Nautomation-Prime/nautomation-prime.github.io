@@ -1,4 +1,3 @@
-
 ---
 title: DevOps and Observability for Network Automation: CI/CD, GitOps, and Monitoring
 description: Build production-grade pipelines and observability for safe, scalable network automation.
@@ -13,9 +12,6 @@ tags:
 ---
 
 # DevOps and Observability for Network Automation: CI/CD, GitOps, and Monitoring
-
-> *Published: February 24, 2026  \
-Author: Nautomation Prime Team*
 
 > *Published: February 24, 2026  \
 Author: Nautomation Prime Team*

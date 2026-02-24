@@ -2,12 +2,12 @@
 title: Migrating Legacy Network Automation to Modern Frameworks: A Step-by-Step Guide
 description: How to refactor old scripts, avoid technical debt, and adopt PRIME-aligned best practices for sustainable automation.
 tags:
-  - Blog
-  - Migration
-  - Refactoring
-  - Modernization
-  - PRIME Framework
-  - Best Practices
+   - Blog
+   - Migration
+   - Refactoring
+   - Modernization
+   - PRIME Framework
+   - Best Practices
 ---
 
 # Migrating Legacy Network Automation to Modern Frameworks: A Step-by-Step Guide

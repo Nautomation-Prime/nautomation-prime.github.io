@@ -17,7 +17,6 @@ tags:
 Author: Nautomation Prime Team*
 
 ---
-
 > **This post is part of our ongoing series on network automation best practices, grounded in the [PRIME Framework](../prime-framework/index.md) and [PRIME Philosophy](../prime-framework/philosophy.md).**
 
 ## Why This Blog Exists
