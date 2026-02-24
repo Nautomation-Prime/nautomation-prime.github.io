@@ -1,3 +1,4 @@
+---
 title: Why Automation Fails: The PRIME Framework Solution
 description: Understand why 70% of network automation projects fail within 6 months—and how the PRIME Framework prevents catastrophic failure.
 tags:
@@ -7,7 +8,7 @@ tags:
     - PRIME Framework
     - Best Practices
     - Lessons Learned
-
+---
 
 # Why Automation Fails: The PRIME Framework Solution
 
