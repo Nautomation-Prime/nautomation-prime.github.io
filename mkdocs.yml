@@ -147,17 +147,18 @@ nav:
     - founder.md
     - Legal: legal/index.md
 
+
 plugins:
   - search:
-    separator: '[\s\-,:!=\[\]()"/]+|(?!\b)(?=[A-Z][a-z])|\.(?!\d)|&[lg]t;'
-    lang: en
+      separator: '[\s\-,:!=\[\]()"/]+|(?!\b)(?=[A-Z][a-z])|\.(?!\d)|&[lg]t;'
+      lang: en
   - tags  # Enable tags for content categorization
   - awesome-pages  # Use .pages files for section ordering
-  - git-revision-date-localized:  # Show last updated dates
-    enable_creation_date: false  # Only show "last updated", not creation date
-    type: date
-    fallback_to_build_date: true
-    enable_git_follow: false  # Disable to avoid quirks with new files
-    strict: false  # Don't show warnings for files without git logs
+  - git-revision-date-localized:
+      enable_creation_date: false  # Only show "last updated", not creation date
+      type: date
+      fallback_to_build_date: true
+      enable_git_follow: false  # Disable to avoid quirks with new files
+      strict: false  # Don't show warnings for files without git logs
   - blog
 
