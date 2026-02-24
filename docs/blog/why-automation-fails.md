@@ -364,13 +364,13 @@ The [PRIME Framework](../prime-framework/index.md) is designed to prevent exactl
 
 | Failure Pattern | PRIME Solution |
 | :--- | :--- |
-| Automate the wrong thing | **[Pinpoint](./prime-framework/pinpoint.md)** — Data-driven ROI analysis |
-| Brittle, unmaintainable code | **[Re-engineer](./prime-framework/re-engineer.md)** + **[Implement](./prime-framework/implement.md)** — Transparency & quality-first design |
-| No proof of value | **[Measure](./prime-framework/measure.md)** — Concrete ROI metrics |
-| Nobody can extend it | **[Empower](./prime-framework/empower.md)** — Full knowledge transfer & documentation |
-| Over-engineered solutions | **[PRIME Philosophy](./prime-framework/philosophy.md)** — Measurability over assumptions |
-| Silent failures | **[Implement](./prime-framework/implement.md)** — Hardened error handling & validation |
-| Vendor lock-in | **[PRIME Philosophy](./prime-framework/philosophy.md)** — Ownership over dependency |
+| Automate the wrong thing | **[Pinpoint](../prime-framework/pinpoint.md)** — Data-driven ROI analysis |
+| Brittle, unmaintainable code | **[Re-engineer](../prime-framework/re-engineer.md)** + **[Implement](../prime-framework/implement.md)** — Transparency & quality-first design |
+| No proof of value | **[Measure](../prime-framework/measure.md)** — Concrete ROI metrics |
+| Nobody can extend it | **[Empower](../prime-framework/empower.md)** — Full knowledge transfer & documentation |
+| Over-engineered solutions | **[PRIME Philosophy](../prime-framework/philosophy.md)** — Measurability over assumptions |
+| Silent failures | **[Implement](../prime-framework/implement.md)** — Hardened error handling & validation |
+| Vendor lock-in | **[PRIME Philosophy](../prime-framework/philosophy.md)** — Ownership over dependency |
 
 ---
 
@@ -386,7 +386,7 @@ We'll discuss:
 - What you want to automate (and why)
 - How the PRIME Framework specifically solves your challenges
 
-**[Learn about the PRIME Framework](./prime-framework/index.md)** for detailed methodology documentation
+**[Learn about the PRIME Framework](../prime-framework/index.md)** for detailed methodology documentation
 
 ---
 
