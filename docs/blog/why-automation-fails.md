@@ -1,7 +1,6 @@
 title: Why Automation Fails: The PRIME Framework Solution
 description: Understand why 70% of network automation projects fail within 6 months—and how the PRIME Framework prevents catastrophic failure.
 tags:
-
     - Blog
     - Failure Patterns
     - Network Automation
@@ -61,7 +60,7 @@ Meanwhile, compliance audits still require two network engineers manually walkin
 
 ### How PRIME Solves It
 
-**[Pinpoint Stage](./prime-framework/pinpoint.md)** uses structured discovery:
+**[Pinpoint Stage](../prime-framework/pinpoint.md)** uses structured discovery:
 
 1. Interview network operations teams about their actual workflows
 2. Measure time spent on each task (data, not guesswork)
@@ -99,7 +98,7 @@ You're locked in. Worse—the automation is fragile. Change one thing and it bre
 
 ### How PRIME Solves It
 
-**[Implement Stage](./prime-framework/implement.md)** + **Prime Philosophy** ensure every line is transparent:
+**[Implement Stage](../prime-framework/implement.md)** + **Prime Philosophy** ensure every line is transparent:
 
 1. **Inline documentation** — Every function, loop, and decision explained
 2. **Verbose logging** — When things run, logs explain what's happening in human language
@@ -140,7 +139,7 @@ Without metrics, the project looks like an expensive experiment instead of a bus
 
 ### How PRIME Solves It
 
-**[Measure Stage](./prime-framework/measure.md)** builds ROI proof:
+**[Measure Stage](../prime-framework/measure.md)** builds ROI proof:
 
 1. **Baseline reconstruction** — We analyze historical ticket logs, crew timesheets, and operational records to establish baseline metrics (how long procedures took before automation)
 2. **Instrumentation** — We add lightweight tracking to your automation to log execution time, tasks completed, errors handled
@@ -181,7 +180,7 @@ The automation becomes "untouchable"—it works, so you leave it alone. But it a
 
 ### How PRIME Solves It
 
-**[Empower Stage](./prime-framework/empower.md)** transfers ownership to your team:
+**[Empower Stage](../prime-framework/empower.md)** transfers ownership to your team:
 
 1. **Knowledge transfer workshops** (4 sessions):
     - Architecture walkthrough — How the code is structured
@@ -259,7 +258,7 @@ You don't know until someone manually checks weeks later—and you're now non-co
 
 ### How PRIME Solves It
 
-**[Re-engineer](./prime-framework/re-engineer.md)** and **[Implement](./prime-framework/implement.md)** stages include:
+**[Re-engineer](../prime-framework/re-engineer.md)** and **[Implement](../prime-framework/implement.md)** stages include:
 
 1. **Pre-flight validation** — Before running anything, verify preconditions are met
 2. **Comprehensive error handling** — Detect *when something goes wrong*, don't hide it
