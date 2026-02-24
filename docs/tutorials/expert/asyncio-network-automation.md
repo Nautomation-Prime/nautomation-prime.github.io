@@ -16,20 +16,19 @@ Author: Nautomation Prime Team*
 
 ## Why This Tutorial Exists
 
----
-
-## Why This Tutorial Exists
 Traditional threading and multiprocessing have limits. Asyncio enables high-performance, non-blocking automation for telemetry, APIs, and large-scale device operations.
 
 ---
 
 ## Prerequisites
+
 - Advanced Python
 - Familiarity with coroutines, event loops, and async/await
 
 ---
 
 ## When to Use Asyncio
+
 - High-volume telemetry collection
 - API polling and event-driven workflows
 - Lightweight, non-blocking device operations
@@ -37,6 +36,7 @@ Traditional threading and multiprocessing have limits. Asyncio enables high-perf
 ---
 
 ## Asyncio Basics Refresher
+
 ```python
 import asyncio
 async def main():
@@ -47,6 +47,7 @@ asyncio.run(main())
 ---
 
 ## Example: Async SSH with scrapli
+
 ```python
 from scrapli.async_driver import AsyncScrapli
 async def collect(device):
@@ -58,6 +59,7 @@ async def collect(device):
 ---
 
 ## Example: Gathering Data from Many Devices
+
 ```python
 async def main(devices):
     await asyncio.gather(*(collect(d) for d in devices))
@@ -66,25 +68,28 @@ async def main(devices):
 ---
 
 ## Error Handling and Timeouts
+
 - Use asyncio.wait_for for timeouts
 - Handle exceptions per task
 
 ---
 
 ## PRIME in Action: Safety and Transparency
+
 - Document async patterns and error handling
 - Monitor performance and failures
 
 ---
 
 ## Summary: Tutorial Takeaways
+
 - Asyncio enables scalable, high-performance automation
 - PRIME principles ensure safe, transparent adoption
 
 ---
 
-
 ## 📣 Want More?
+
 - [Nornir + PyATS Integration](nornir-pyats-integration.md)
 - [Secure Credential Vaulting](secure-credential-vaulting.md)
 - [DevOps & Observability](devops-observability-network-automation.md)

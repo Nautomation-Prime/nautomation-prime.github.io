@@ -15,8 +15,6 @@ tags:
 
 > *Published: February 24, 2026  \
 Author: Nautomation Prime Team*
-
----
 ## Why This Tutorial Exists
 
 Enterprise automation is more than scripts—it’s pipelines, version control, and safe rollouts. This tutorial covers CI/CD, GitOps, and observability for network automation, aligned with the PRIME Framework.

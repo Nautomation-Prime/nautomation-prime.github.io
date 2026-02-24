@@ -15,8 +15,6 @@ tags:
 
 > *Published: February 24, 2026  \
 Author: Nautomation Prime Team*
-
----
 ## Why This Tutorial Exists
 
 Hardcoded credentials are a top security risk. This tutorial shows how to use enterprise secrets managers with Python automation, aligned with the PRIME Framework.
