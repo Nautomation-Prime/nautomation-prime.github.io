@@ -116,12 +116,71 @@ markdown_extensions:
   - tables
   - md_in_html
 
+nav:
+  - Home: index.md
+  - Getting Started: getting-started.md
+  - Resources: resources.md
+  - Learning:
+      - Tutorials: tutorials/index.md
+      - Beginner Tutorials: tutorials/beginner/index.md
+      - Intermediate Tutorials: tutorials/intermediate/index.md
+      - Expert Tutorials:
+          - tutorials/expert/index.md
+          - Nornir + PyATS Integration: tutorials/expert/nornir-pyats-integration.md
+          - Asyncio for Network Automation: tutorials/expert/asyncio-network-automation.md
+          - Secure Credential Vaulting: tutorials/expert/secure-credential-vaulting.md
+          - DevOps & Observability: tutorials/expert/devops-observability-network-automation.md
+          - Tool Ecosystem Integration: tutorials/expert/tool-ecosystem-integration.md
+      - Deep Dives: deep-dives/index.md
+      - Scripts: scripts/index.md
+  - Blog:
+      - blog/index.md
+      - Threading in Network Automation: blog/threading-in-network-automation.md
+      - Why Automation Fails: blog/why-automation-fails.md
+      - How to Choose the Right Network Automation Framework: blog/choosing-network-automation-framework.md
+      - Credential Management in Network Automation: blog/credential-management-network-automation.md
+      - Building a Source of Truth for Network Automation: blog/source-of-truth-network-automation.md
+      - Testing Strategies for Network Automation: blog/testing-strategies-network-automation.md
+      - Automation Failure Stories: blog/automation-failure-stories-prime.md
+      - Integrating Network Automation with ITSM and Change Management: blog/itsm-change-management-network-automation.md
+      - Async vs. Threading vs. Multiprocessing: blog/async-vs-threading-vs-multiprocessing.md
+      - Observability for Network Automation: blog/observability-network-automation.md
+      - Blueprint for Enterprise-Ready Network Automation Pipelines: blog/enterprise-automation-pipeline-blueprint.md
+      - Vendor-Neutral Automation: blog/vendor-neutral-automation.md
+      - "Case Study: Full Network Automation Journey": blog/case-study-full-automation-journey.md
+      - Community Spotlight & How to Contribute: blog/community-spotlight-how-to-contribute.md
+      - Streaming Telemetry in Network Automation: blog/emerging-tech-streaming-telemetry.md
+      - Model-Driven APIs in Network Automation: blog/emerging-tech-model-driven-apis.md
+      - AI and Machine Learning in Network Automation: blog/emerging-tech-ai-ml-network-automation.md
+      - Event-Driven Automation in the Network: blog/emerging-tech-event-driven-automation.md
+      - Migrating Legacy Network Automation: blog/migrating-legacy-network-automation.md
+  - Coming Soon: coming-soon/index.md
+  - Services:
+      - services.md
+      - how-we-work.md
+  - PRIME Framework:
+      - prime-framework/index.md
+      - Pinpoint: prime-framework/pinpoint.md
+      - Implement: prime-framework/implement.md
+      - Measure: prime-framework/measure.md
+      - Empower: prime-framework/empower.md
+      - Re-Engineer: prime-framework/re-engineer.md
+      - Philosophy: prime-framework/philosophy.md
+  - About:
+      - about.md
+      - founder.md
+      - Legal:
+          - legal/brand.md
+          - legal/disclaimer.md
+          - legal/licensing.md
+          - legal/privacy-policy.md
+          - legal/terms-of-use.md
+
 plugins:
   - search:
       separator: '[\s\-,:!=\[\]()"/]+|(?!\b)(?=[A-Z][a-z])|\.(?!\d)|&[lg]t;'
       lang: en
   - tags  # Enable tags for content categorization
-  - awesome-pages  # Use .pages files for section ordering
   - git-revision-date-localized:
       enable_creation_date: false  # Only show "last updated", not creation date
       type: date

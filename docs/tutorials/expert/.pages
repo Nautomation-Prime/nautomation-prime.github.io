@@ -1,8 +1,0 @@
-title: Expert
-nav:
-  - index.md
-  - nornir-pyats-integration.md
-  - asyncio-network-automation.md
-  - secure-credential-vaulting.md
-  - devops-observability-network-automation.md
-  - tool-ecosystem-integration.md
