@@ -1,5 +1,5 @@
 ---
-title: Integrating Network Automation with ITSM and Change Management
+title: "Integrating Network Automation with ITSM and Change Management"
 description: How to connect your automation to ServiceNow, Jira, and ITSM workflows for auditability, compliance, and measurable outcomes.
 tags:
   - Blog

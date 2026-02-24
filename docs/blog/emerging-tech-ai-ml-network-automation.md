@@ -1,5 +1,5 @@
 ---
-title: AI and Machine Learning in Network Automation: Hype, Reality, and Practical Use Cases
+title: "AI and Machine Learning in Network Automation: Hype, Reality, and Practical Use Cases"
 description: What AI/ML can (and can’t) do for network automation, with real-world examples and PRIME-aligned guidance.
 tags:
   - Blog

@@ -1,5 +1,5 @@
 ---
-title: Streaming Telemetry in Network Automation: Real-Time Data for Modern Operations
+title: "Streaming Telemetry in Network Automation: Real-Time Data for Modern Operations"
 description: An introduction to streaming telemetry, why it matters, and how to use it in your automation workflows.
 tags:
   - Blog

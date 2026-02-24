@@ -1,5 +1,5 @@
 ---
-title: Community Spotlight & How to Contribute
+title: "Community Spotlight & How to Contribute"
 description: How to get involved, share your story, and contribute to the Nautomation Prime community.
 tags:
   - Blog

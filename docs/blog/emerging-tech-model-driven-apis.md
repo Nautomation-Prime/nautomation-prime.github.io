@@ -1,5 +1,5 @@
 ---
-title: Model-Driven APIs in Network Automation: gNMI, RESTCONF, and the Future of Device Management
+title: "Model-Driven APIs in Network Automation: gNMI, RESTCONF, and the Future of Device Management"
 description: How model-driven APIs are changing network automation, with practical examples and PRIME-aligned best practices.
 tags:
   - Blog

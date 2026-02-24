@@ -91,18 +91,12 @@ markdown_extensions:
   - pymdownx.critic  # Track changes
   - pymdownx.keys  # Keyboard keys (++ctrl+alt+del++)
   - pymdownx.smartsymbols  # Smart symbols (copyright, arrows, etc.)
-  - pymdownx.emoji:
-      emoji_index: !!python/name:material.extensions.emoji.twemoji
-      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - pymdownx.emoji  # Enable emoji support
   - pymdownx.highlight:
       use_pygments: true      
       linenums: true
       anchor_linenums: true
-  - pymdownx.superfences:
-      custom_fences:
-        - name: mermaid
-          class: mermaid
-          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.superfences  # Enable custom fences
   - pymdownx.inlinehilite
   - pymdownx.snippets  # Include content from other files
   - pymdownx.tasklist:  # Task lists with checkboxes
@@ -122,8 +116,20 @@ nav:
   - Resources: resources.md
   - Learning:
       - Tutorials: tutorials/index.md
-      - Beginner Tutorials: tutorials/beginner/index.md
-      - Intermediate Tutorials: tutorials/intermediate/index.md
+      - Beginner Tutorials:
+          - tutorials/beginner/index.md
+          - Multi-Device Config Backup: tutorials/beginner/multi-device-config-backup.md
+          - Multi-Device Show Command: tutorials/beginner/multi-device-show-command.md
+          - Netmiko Show Command to Excel: tutorials/beginner/netmiko-show-command-to-excel.md
+      - Intermediate Tutorials:
+          - tutorials/intermediate/index.md
+          - Advanced Nornir Patterns: tutorials/intermediate/advanced-nornir-patterns.md
+          - Building Reliable Automation with PyATS: tutorials/intermediate/building-reliable-automation-with-pyats.md
+          - Enterprise Config Backup Nornir: tutorials/intermediate/enterprise-config-backup-nornir.md
+          - Nornir Fundamentals: tutorials/intermediate/nornir-fundamentals.md
+          - PyATS Fundamentals: tutorials/intermediate/pyats-fundamentals.md
+          - PyATS Network Validation: tutorials/intermediate/pyats-network-validation.md
+          - Why Nornir: tutorials/intermediate/why-nornir.md
       - Expert Tutorials:
           - tutorials/expert/index.md
           - Nornir + PyATS Integration: tutorials/expert/nornir-pyats-integration.md
@@ -131,7 +137,10 @@ nav:
           - Secure Credential Vaulting: tutorials/expert/secure-credential-vaulting.md
           - DevOps & Observability: tutorials/expert/devops-observability-network-automation.md
           - Tool Ecosystem Integration: tutorials/expert/tool-ecosystem-integration.md
-      - Deep Dives: deep-dives/index.md
+      - Deep Dives:
+          - deep-dives/index.md
+          - Access Switch Audit: deep-dives/access-switch-audit.md
+          - CDP Audit: deep-dives/cdp-audit.md
       - Scripts: scripts/index.md
   - Blog:
       - blog/index.md
@@ -154,7 +163,11 @@ nav:
       - AI and Machine Learning in Network Automation: blog/emerging-tech-ai-ml-network-automation.md
       - Event-Driven Automation in the Network: blog/emerging-tech-event-driven-automation.md
       - Migrating Legacy Network Automation: blog/migrating-legacy-network-automation.md
-  - Coming Soon: coming-soon/index.md
+  - Coming Soon:
+      - coming-soon/index.md
+      - Cisco IOS XE ZTP: coming-soon/cisco-ios-xe-ztp.md
+      - IOS XE Upgrade Orchestrator: coming-soon/ios-xe-upgrade-orchestrator.md
+      - ZTP Automation Platform: coming-soon/ztp-automation-platform.md
   - Services:
       - services.md
       - how-we-work.md

@@ -1,5 +1,5 @@
 ---
-title: Event-Driven Automation in the Network: Webhooks, Message Queues, and Real-Time Response
+title: "Event-Driven Automation in the Network: Webhooks, Message Queues, and Real-Time Response"
 description: How to build event-driven automation with webhooks, message queues, and the PRIME Framework.
 tags:
   - Blog

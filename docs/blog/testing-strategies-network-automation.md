@@ -1,5 +1,5 @@
 ---
-title: Testing Strategies for Network Automation: From Unit Tests to Mock Devices
+title: "Testing Strategies for Network Automation: From Unit Tests to Mock Devices"
 description: How to test your network automation for reliability, safety, and measurable outcomes—unit, integration, and mock device testing explained.
 tags:
   - Blog

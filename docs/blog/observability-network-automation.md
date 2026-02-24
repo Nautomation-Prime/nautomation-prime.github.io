@@ -1,5 +1,5 @@
 ---
-title: Observability for Network Automation: Logging, Metrics, and Alerting Patterns
+title: "Observability for Network Automation: Logging, Metrics, and Alerting Patterns"
 description: How to make your automation visible, measurable, and safe—logging, metrics, dashboards, and alerting for production-grade operations.
 tags:
   - Blog

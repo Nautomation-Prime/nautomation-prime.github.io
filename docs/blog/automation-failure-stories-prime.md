@@ -1,5 +1,5 @@
 ---
-title: Automation Failure Stories: How PRIME Would Have Prevented Disaster
+title: "Automation Failure Stories: How PRIME Would Have Prevented Disaster"
 description: Real-world network automation failures, what went wrong, and how the PRIME Framework could have saved the day.
 tags:
   - Blog

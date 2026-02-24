@@ -1,5 +1,5 @@
 ---
-title: Credential Management in Network Automation: Best Practices for Safety and Scale
+title: "Credential Management in Network Automation: Best Practices for Safety and Scale"
 description: How to manage credentials securely in network automation, avoid common pitfalls, and align with the PRIME Framework for production safety.
 tags:
   - Blog

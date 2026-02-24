@@ -1,5 +1,5 @@
 ---
-title: Vendor-Neutral Automation: Avoiding Lock-In and Building for Portability
+title: "Vendor-Neutral Automation: Avoiding Lock-In and Building for Portability"
 description: How to design automation that outlasts vendors, avoids lock-in, and aligns with the PRIME Framework for ownership and transparency.
 tags:
   - Blog

@@ -1,5 +1,5 @@
 ---
-title: Threading in Network Automation: When to Use It and When to Avoid It
+title: "Threading in Network Automation: When to Use It and When to Avoid It"
 description: Why threading is almost never the right tool for network automation, and how the PRIME Framework guides safer, scalable concurrency.
 tags:
   - Blog

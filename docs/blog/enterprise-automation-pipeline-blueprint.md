@@ -1,5 +1,5 @@
 ---
-title: Blueprint for Enterprise-Ready Network Automation Pipelines
+title: "Blueprint for Enterprise-Ready Network Automation Pipelines"
 description: How to build CI/CD, GitOps, and containerized pipelines for safe, scalable, and PRIME-aligned network automation.
 tags:
   - Blog

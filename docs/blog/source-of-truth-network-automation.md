@@ -1,5 +1,5 @@
 ---
-title: Building a Source of Truth for Network Automation: Netbox, CMDB, and Inventory Strategies
+title: "Building a Source of Truth for Network Automation: Netbox, CMDB, and Inventory Strategies"
 description: Why a source of truth is essential for scalable automation, how to build one, and how the PRIME Framework ensures transparency and ownership.
 tags:
     - Blog

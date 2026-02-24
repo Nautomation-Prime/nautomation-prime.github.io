@@ -1,5 +1,5 @@
 ---
-title: Case Study: A Full Network Automation Journey (From Problem to Business Outcome)
+title: "Case Study: A Full Network Automation Journey (From Problem to Business Outcome)"
 description: A real-world, step-by-step case study showing how the PRIME Framework delivers measurable results in network automation.
 tags:
   - Blog
