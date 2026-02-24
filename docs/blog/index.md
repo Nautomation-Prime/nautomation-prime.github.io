@@ -3,7 +3,7 @@ title: Blog
 description: Practical, transparent insights on network automation, AWX, CI/CD, and production-ready Cisco engineering.
 ---
 
-# Blog  
+***Blog***
 
 ***Pragmatic, Transparent Network Automation Insights***
 
