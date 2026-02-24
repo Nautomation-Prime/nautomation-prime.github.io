@@ -975,6 +975,7 @@ core:
 ### "Connection failed: hostname not reachable"
 
 **Check:** 
+
 - Device IP is correct in `hosts.yaml`
 - Device is reachable: `ping 10.1.1.1`
 - SSH is enabled: `show ip ssh`
@@ -984,6 +985,7 @@ core:
 ### "No module named nornir_netmiko"
 
 **Fix:** Install the plugin
+
 ```bash
 pip install nornir-netmiko
 ```
@@ -993,6 +995,7 @@ pip install nornir-netmiko
 ### "TypeError: task function must have signature task(Task)"
 
 **Check:** Your task function signature:
+
 ```python
 @task
 def my_task(task: Task) -> Result:  # ← Must match this

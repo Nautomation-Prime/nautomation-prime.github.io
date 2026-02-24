@@ -1,3 +1,9 @@
 title: Expert
 nav:
+
   - index.md
+  - nornir-pyats-integration.md: Nornir + PyATS Integration
+  - asyncio-network-automation.md: Asyncio for Network Automation
+  - secure-credential-vaulting.md: Secure Credential Vaulting
+  - devops-observability-network-automation.md: DevOps & Observability
+  - tool-ecosystem-integration.md: Tool Ecosystem Integration
