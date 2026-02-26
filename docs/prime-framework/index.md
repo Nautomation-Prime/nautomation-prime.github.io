@@ -1,5 +1,4 @@
 ---
-title: The PRIME Framework
 description: A proven methodology for transforming network operations through intelligent Python automation. Five stages from identifying inefficiencies to empowering teams.
 tags:
   - PRIME Framework
@@ -167,7 +166,7 @@ The PRIME Framework is how we **deliver** automation projects. The **[PRIME Phil
 **[Read the full Philosophy →](./philosophy.md)**
 
 | PRIME Stage | Philosophy Application |
-|:---|:---|
+| :--- | :--- |
 | **Pinpoint** | Vendor-neutral analysis (no tool lock-in) |
 | **Re-engineer** | Production-hardened design from the start |
 | **Implement** | Line-by-line transparency in all code |
@@ -183,7 +182,7 @@ Together, they ensure **value, quality, and sustainability**.
 ### Typical Timeline (Medium Complexity Project)
 
 | Stage | Duration | Key Milestone |
-|:---|:---:|:---|
+| :--- | :---: | :--- |
 | Pinpoint | 1 week | Automation roadmap approved |
 | Re-engineer | 1-2 weeks | Technical design signed off |
 | Implement | 2-4 weeks | Code delivered & tested |
@@ -250,13 +249,13 @@ Explore each stage in detail:
 
 ### Do I need all five stages?
 
-**For best results, yes.** The stages are sequential and build on each other. However, if you have existing design documentation, we can start at the "Implement" stage. 
+**For best results, yes.** The stages are sequential and build on each other. However, if you have existing design documentation, we can start at the "Implement" stage.
 
 If you're unsure about ROI, start with just the "Pinpoint" stage as a standalone assessment.
 
 ### How is this different from other consultancies?
 
-Most consultancies jump straight to implementation without understanding workflows ("Implement-first"). Others provide strategy without execution ("PowerPoint automation"). 
+Most consultancies jump straight to implementation without understanding workflows ("Implement-first"). Others provide strategy without execution ("PowerPoint automation").
 
 PRIME Framework combines **both strategy and execution** with a proven structure.
 
@@ -268,21 +267,21 @@ Absolutely! The framework isn't proprietary—it's a best-practice methodology. 
 
 **You can still use the PRIME Framework.** We offer different engagement tracks:
 
-**Track 1: Operational Ownership (No Python Required)**
+## Track 1: Operational Ownership (No Python Required)
 
 - We deliver production-ready automation with comprehensive user documentation
 - Focus: Your team learns to **operate** the automation effectively
 - Empowerment: Understanding what automation does, when to run it, how to interpret results
 - Outcome: Reliable automation that reduces manual work, owned operationally by your team
 
-**Track 2: Code-Level Ownership (Python Knowledge Helpful)**
+## Track 2: Code-Level Ownership (Python Knowledge Helpful)
 
 - We deliver code with line-by-line technical documentation
 - Focus: Your team learns to **modify and extend** automation
 - Empowerment: Training includes Python fundamentals, code walkthroughs, modification workshops
 - Outcome: Full autonomy—your team writes new automation independently
 
-**Track 3: Hybrid (Recommended for Growing Teams)**
+## Track 3: Hybrid (Recommended for Growing Teams)
 
 - Operational ownership initially, with gradual code-level capability building
 - Focus: Start using automation immediately, build Python skills over time
@@ -304,7 +303,7 @@ The "Measure" stage includes failure analysis and remediation. If automation doe
 How does the PRIME Framework compare to typical automation approaches?
 
 | Aspect | Traditional Approach | PRIME Framework |
-|:---|:---|:---|
+| :--- | :--- | :--- |
 | **Discovery** | "What do you want automated?" | **Pinpoint:** Data-driven ROI analysis, prioritisation matrix |
 | **Planning** | Jump straight to coding | **Re-engineer:** Workflow optimisation, architecture design, safety planning |
 | **Development** | Quick scripts, minimal testing | **Implement:** Production-hardened with Prime Philosophy principles |
@@ -322,7 +321,7 @@ How does the PRIME Framework compare to typical automation approaches?
 Throughout our framework and services, you'll encounter these unique terms:
 
 | Term | Definition |
-|:---|:---|
+| :--- | :--- |
 | **Prime Automation™** | Automation built following the PRIME Framework—characterized by measurable ROI, production safety, and team empowerment |
 | **Prime Workflows** | Re-engineered operational processes optimised for automation (not just automated existing workflows) |
 | **Prime Agents** | Python scripts developed with autonomous decision-making capability (pre-flight checks, validation, rollback) |
