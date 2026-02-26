@@ -1,4 +1,5 @@
 # Privacy Policy
+
 _Last updated: 31 January 2026_
 
 ## Operator Details

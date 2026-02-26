@@ -180,6 +180,7 @@ python provision_vlan.py --vlan 150 --name "Guest_WiFi" --inventory devices_dc1.
 ```
 
 ## Understanding the Output
+
 ### Log Files
 
 - `vlan_provisioning.log` : Detailed execution log
@@ -188,6 +189,7 @@ python provision_vlan.py --vlan 150 --name "Guest_WiFi" --inventory devices_dc1.
   - **ERROR**: Failures requiring attention
 
 ### Excel Reports
+
 Generated in `outputs/vlan_provisioning_TIMESTAMP.xlsx`
 
 Columns:
@@ -197,7 +199,6 @@ Columns:
 - Status: success/failed
 - Duration: Seconds to process
 - Error: Reason if failed
-```
 
 ---
 
@@ -339,7 +340,7 @@ We measure knowledge transfer effectiveness:
 #### Capability Milestones
 
 | Milestone | Target Timeline | How We Measure |
-|:---|:---:|:---|
+| :--- | :---: | :--- |
 | **Team can run automation independently** | Week 2 | Executed without assistance |
 | **Team can troubleshoot common issues** | Week 4 | Resolved issue from logs without escalation |
 | **Team can modify existing automation** | Week 6 | Changed template/config successfully |
@@ -495,7 +496,7 @@ For Organisations with existing automation needing knowledge transfer:
 
 ---
 
-## 🎉 Congratulations!
+## 🎉 Congratulations
 
 By completing the PRIME Framework—**Pinpoint, Re-engineer, Implement, Measure, Empower**—your Organisation has:
 

@@ -1,4 +1,5 @@
 # Disclaimer
+
 _Last updated: 30 January 2026_
 
 ## 1. No Affiliation With Cisco
@@ -48,4 +49,4 @@ Christopher Davies trading as Nautomation Prime assumes **no liability whatsoeve
 - Network downtime, device failures, or service disruption  
 - Any reliance placed on the accuracy or completeness of materials provided  
 
-You acknowledge that network automation carries inherent risks and that you are solely responsible for testing, validating, and deploying any code or configuration in your environment.  
+You acknowledge that network automation carries inherent risks and that you are solely responsible for testing, validating, and deploying any code or configuration in your environment.

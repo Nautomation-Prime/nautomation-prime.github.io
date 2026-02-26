@@ -1,4 +1,5 @@
 # Terms of Use
+
 _Last updated: 30 January 2026_
 
 By using this website, you agree to the following Terms of Use.
@@ -8,6 +9,7 @@ By using this website, you agree to the following Terms of Use.
 Website content is licensed differently depending on type:
 
 ### Proprietary Content (All Rights Reserved)
+
 - PRIME Framework and PRIME Philosophy
 - Branding, logos, and visual design
 - Consulting methodologies
@@ -16,6 +18,7 @@ Website content is licensed differently depending on type:
 These may not be reproduced, republished, or redistributed without permission.
 
 ### Educational Content (Creative Commons Attribution - CC-BY 4.0)
+
 - Tutorials and how-to guides
 - Technical deep dives
 - Learning resources and examples

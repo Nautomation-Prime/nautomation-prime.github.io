@@ -1,4 +1,5 @@
 # Licensing
+
 _Last updated: February 2026_
 
 This page explains how licensing works for content and code produced by **Nautomation Prime**.
@@ -7,14 +8,14 @@ This page explains how licensing works for content and code produced by **Nautom
 
 The following are **proprietary to Christopher Davies, Trading as Nautomation Prime** and protected under copyright law:
 
-### Protected Intellectual Property:
+### Protected Intellectual Property
 
 - **The PRIME Framework** (Pinpoint → Re-Engineer → Implement → Measure → Empower)
 - **The PRIME Philosophy** (five core principles: transparency, measurability, ownership, safety, empowerment)
 - **Nautomation Prime branding** (logos, visual design, brand assets)
 - **Consulting methodologies** and proprietary business processes
 
-### Usage Rights:
+### Usage Rights
 
 You may **view and read** this content for personal, educational purposes only.
 
@@ -43,22 +44,23 @@ This includes:
 - How-to guides and walkthroughs
 - Learning resources and educational examples
 
-### CC-BY Permissions:
+### CC-BY Permissions
 
 ✅ Copy, share, and distribute  
 ✅ Adapt, modify, and create derivative works  
 ✅ Use for personal, educational, and commercial purposes  
 ✅ Remix with other content  
 
-### CC-BY Conditions:
+### CC-BY Conditions
 
 ⚠️ **Must provide attribution** to Nautomation Prime  
 ⚠️ Must link to the license  
 ⚠️ Indicate if changes were made  
 
-### Why We Share These Openly:
+### Why We Share These Openly
 
 Our educational mission is to empower network engineers. Sharing tutorials under CC-BY means:
+
 - Educators can use these in courses
 - Bloggers can cite and build on our content
 - Companies can share guides internally
@@ -81,14 +83,14 @@ This includes:
 - Code examples tied to those repositories
 - Code snippets on nautomationprime.io
 
-### Apache 2.0 Permissions:
+### Apache 2.0 Permissions
 
 ✅ Use, copy, modify, and distribute  
 ✅ Commercial and private use  
 ✅ Sublicense  
 ✅ Patent rights explicitly granted  
 
-### Apache 2.0 Conditions:
+### Apache 2.0 Conditions
 
 ⚠️ Include license and copyright notice  
 ⚠️ Document significant changes to the code  
@@ -112,7 +114,7 @@ The specific license is negotiated during the project engagement.
 ## 5. Summary Table
 
 | Content | License | Use Rights |
-|:---|:---|:---|
+| :--- | :--- | :--- |
 | PRIME Framework & Methodology | All Rights Reserved | View/read only; no reproduction |
 | PRIME Philosophy | All Rights Reserved | View/read only; no reproduction |
 | Brand Assets & Logos | All Rights Reserved | View only; no use without permission |
@@ -129,6 +131,7 @@ The specific license is negotiated during the project engagement.
 ### The Tutorial Says "Show Command to Excel" — Can I use it in my course?
 
 **Yes!** Tutorials are CC-BY licensed. You can:
+
 - Share the guide with your students
 - Include it in course materials
 - Adapt it to your teaching style
@@ -139,6 +142,7 @@ Just credit Nautomation Prime and link back if possible.
 ### The CDP Network Audit Script — Can I modify it for our environment?
 
 **Yes!** Code is MIT licensed. You can:
+
 - Install and run it as-is
 - Modify it to fit your network
 - Distribute your version
@@ -149,6 +153,7 @@ Just include the MIT license and credit Nautomation Prime.
 ### The PRIME Framework — Can I use it in my consulting practice?
 
 **No.** The PRIME Framework is proprietary. However:
+
 - You can read it to understand our approach
 - You can apply similar principles to your own work
 - You cannot republish or rebrand it

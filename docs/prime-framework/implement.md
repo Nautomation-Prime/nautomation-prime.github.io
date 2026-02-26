@@ -45,13 +45,15 @@ Before writing code, we establish consistent tooling:
 #### Local Development Standards
 
 **Python Environment:**
-```
+
+```text
 Python 3.9+ (avoid cutting edge, prefer stability)
 Virtual environment (venv or conda)
 requirements.txt with pinned versions
 ```
 
 **Essential Libraries:**
+
 ```python
 netmiko==4.1.2      # SSH connections
 textfsm==1.1.3      # Output parsing
@@ -63,7 +65,8 @@ python-dotenv==1.0.0 # Environment variables
 ```
 
 **Code Quality Tools:**
-```
+
+```text
 black                # Code formatting
 pylint               # Linting
 pytest               # Testing
@@ -73,7 +76,7 @@ pytest               # Testing
 
 All automation projects use Git from day one:
 
-```
+```text
 automation-project/
 ├── .gitignore       # Exclude credentials, outputs
 ├── README.md        # Project documentation
@@ -96,6 +99,7 @@ Every line of code reflects our five core principles. Here are key implementatio
 **What This Means in Practice:**
 
 ❌ **Avoid:** Over-engineering  
+
 ```python
 # DON'T: Abstract factory pattern for 2 device types
 class DeviceFactory:
@@ -108,6 +112,7 @@ class DeviceFactory:
 ```
 
 ✅ **Prefer:** Simple, direct solutions  
+
 ```python
 # DO: Simple conditional logic
 device_type = "cisco_ios" if "IOS" in version else "cisco_nxos"
@@ -165,7 +170,8 @@ logger.info(f"Completed: {len(devices) - len(failed_devices)}/{len(devices)} suc
 ```
 
 **Output Example:**
-```
+
+```text
 2024-01-15 10:30:22 INFO Starting VLAN provisioning for 12 devices
 2024-01-15 10:30:23 INFO Connecting to SW-ACCESS-01 (192.168.1.10)
 2024-01-15 10:30:24 INFO ✓ Connected to SW-ACCESS-01
@@ -420,18 +426,19 @@ pip install -r requirements.txt
 ```
 
 ## Usage
+
 ```bash
 python provision_vlan.py --vlan 150 --name "Guest_WiFi"
 ```
 
 ## Configuration
+
 Edit `inventory.csv` with target devices.
 
 ## Troubleshooting
 
 - **"Device unreachable"** — Verify ICMP/SSH connectivity
 - **"Authentication failed"** — Check credentials in `.env`
-```
 
 #### Inline Comments
 
