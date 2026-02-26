@@ -1,5 +1,7 @@
 ---
 title: "Why Automation Fails: The PRIME Framework Solution"
+date: 2026-02-26T12:00:00
+draft: false
 description: Understand why 70% of network automation projects fail within 6 months—and how the PRIME Framework prevents catastrophic failure.
 tags:
     - Blog
@@ -17,7 +19,7 @@ Author: Nautomation Prime Team*
 
 ---
 
-> **This post is part of our ongoing series on network automation best practices, grounded in the [PRIME Framework](../prime-framework/index.md) and [PRIME Philosophy](../prime-framework/philosophy.md).**
+> **This post is part of our ongoing series on network automation best practices, grounded in the [PRIME Framework](../../prime-framework/index.md) and [PRIME Philosophy](../../prime-framework/philosophy.md).**
 
 ## Why This Blog Exists
 
@@ -37,7 +39,7 @@ At Nautomation Prime, every automation decision is guided by five core principle
 - **Safety** — Production-grade reliability comes before speed.
 - **Empowerment** — Your team understands and controls the automation.
 
-> Learn more: [The PRIME Philosophy](../prime-framework/philosophy.md)
+> Learn more: [The PRIME Philosophy](../../prime-framework/philosophy.md)
 
 ---
 
@@ -61,7 +63,7 @@ Meanwhile, compliance audits still require two network engineers manually walkin
 
 ### How PRIME Solves It
 
-**[Pinpoint Stage](../prime-framework/pinpoint.md)** uses structured discovery:
+**[Pinpoint Stage](../../prime-framework/pinpoint.md)** uses structured discovery:
 
 1. Interview network operations teams about their actual workflows
 2. Measure time spent on each task (data, not guesswork)
@@ -99,7 +101,7 @@ You're locked in. Worse—the automation is fragile. Change one thing and it bre
 
 ### How PRIME Solves It
 
-**[Implement Stage](../prime-framework/implement.md)** + **Prime Philosophy** ensure every line is transparent:
+**[Implement Stage](../../prime-framework/implement.md)** + **Prime Philosophy** ensure every line is transparent:
 
 1. **Inline documentation** — Every function, loop, and decision explained
 2. **Verbose logging** — When things run, logs explain what's happening in human language
@@ -140,7 +142,7 @@ Without metrics, the project looks like an expensive experiment instead of a bus
 
 ### How PRIME Solves It
 
-**[Measure Stage](../prime-framework/measure.md)** builds ROI proof:
+**[Measure Stage](../../prime-framework/measure.md)** builds ROI proof:
 
 1. **Baseline reconstruction** — We analyze historical ticket logs, crew timesheets, and operational records to establish baseline metrics (how long procedures took before automation)
 2. **Instrumentation** — We add lightweight tracking to your automation to log execution time, tasks completed, errors handled
@@ -181,7 +183,7 @@ The automation becomes "untouchable"—it works, so you leave it alone. But it a
 
 ### How PRIME Solves It
 
-**[Empower Stage](../prime-framework/empower.md)** transfers ownership to your team:
+**[Empower Stage](../../prime-framework/empower.md)** transfers ownership to your team:
 
 1. **Knowledge transfer workshops** (4 sessions):
     - Architecture walkthrough — How the code is structured
@@ -259,7 +261,7 @@ You don't know until someone manually checks weeks later—and you're now non-co
 
 ### How PRIME Solves It
 
-**[Re-engineer](../prime-framework/re-engineer.md)** and **[Implement](../prime-framework/implement.md)** stages include:
+**[Re-engineer](../../prime-framework/re-engineer.md)** and **[Implement](../../prime-framework/implement.md)** stages include:
 
 1. **Pre-flight validation** — Before running anything, verify preconditions are met
 2. **Comprehensive error handling** — Detect *when something goes wrong*, don't hide it
@@ -322,17 +324,17 @@ All our tools use **industry-standard libraries**:
 
 ## PRIME Framework: The Right Way to Prevent Failure
 
-The [PRIME Framework](../prime-framework/index.md) is designed to prevent exactly these failure patterns. Here’s how each stage helps:
+The [PRIME Framework](../../prime-framework/index.md) is designed to prevent exactly these failure patterns. Here’s how each stage helps:
 
 | Failure Pattern | PRIME Solution |
 | :--- | :--- |
-| Automate the wrong thing | **[Pinpoint](../prime-framework/pinpoint.md)** — Data-driven ROI analysis |
-| Brittle, unmaintainable code | **[Re-engineer](../prime-framework/re-engineer.md)** + **[Implement](../prime-framework/implement.md)** — Transparency & quality-first design |
-| No proof of value | **[Measure](../prime-framework/measure.md)** — Concrete ROI metrics |
-| Nobody can extend it | **[Empower](../prime-framework/empower.md)** — Full knowledge transfer & documentation |
-| Over-engineered solutions | **[PRIME Philosophy](../prime-framework/philosophy.md)** — Measurability over assumptions |
-| Silent failures | **[Implement](../prime-framework/implement.md)** — Hardened error handling & validation |
-| Vendor lock-in | **[PRIME Philosophy](../prime-framework/philosophy.md)** — Ownership over dependency |
+| Automate the wrong thing | **[Pinpoint](../../prime-framework/pinpoint.md)** — Data-driven ROI analysis |
+| Brittle, unmaintainable code | **[Re-engineer](../../prime-framework/re-engineer.md)** + **[Implement](../../prime-framework/implement.md)** — Transparency & quality-first design |
+| No proof of value | **[Measure](../../prime-framework/measure.md)** — Concrete ROI metrics |
+| Nobody can extend it | **[Empower](../../prime-framework/empower.md)** — Full knowledge transfer & documentation |
+| Over-engineered solutions | **[PRIME Philosophy](../../prime-framework/philosophy.md)** — Measurability over assumptions |
+| Silent failures | **[Implement](../../prime-framework/implement.md)** — Hardened error handling & validation |
+| Vendor lock-in | **[PRIME Philosophy](../../prime-framework/philosophy.md)** — Ownership over dependency |
 
 ---
 
@@ -341,7 +343,7 @@ The [PRIME Framework](../prime-framework/index.md) is designed to prevent exactl
 - Most automation projects fail for structural—not technical—reasons.
 - The PRIME Framework and Philosophy provide a safer, more sustainable path.
 - If you want automation that’s transparent, measurable, and safe, PRIME is the proven methodology.
-- Want to see the technical deep dive? [Read the full PRIME Philosophy](../prime-framework/philosophy.md)
+- Want to see the technical deep dive? [Read the full PRIME Philosophy](../../prime-framework/philosophy.md)
 
 ---
 
@@ -357,15 +359,15 @@ We'll discuss:
 - What you want to automate (and why)
 - How the PRIME Framework specifically solves your challenges
 
-**[Learn about the PRIME Framework](../prime-framework/index.md)** for detailed methodology documentation
+**[Learn about the PRIME Framework](../../prime-framework/index.md)** for detailed methodology documentation
 
 ---
 
 ## 📣 Want More?
 
 - See how the PRIME Framework prevents automation failures: [Threading in Network Automation: When to Use It and When to Avoid It](threading-in-network-automation.md)
-- Learn about the five stages: [PRIME Framework Overview](../prime-framework/index.md)
-- Curious about the philosophy? [The PRIME Philosophy](../prime-framework/philosophy.md)
+- Learn about the five stages: [PRIME Framework Overview](../../prime-framework/index.md)
+- Curious about the philosophy? [The PRIME Philosophy](../../prime-framework/philosophy.md)
 
 ---
 

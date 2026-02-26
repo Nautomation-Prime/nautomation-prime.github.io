@@ -1,5 +1,7 @@
 ---
 title: "Building a Source of Truth for Network Automation: Netbox, CMDB, and Inventory Strategies"
+date: 2026-02-26T12:00:00
+draft: false
 description: Why a source of truth is essential for scalable automation, how to build one, and how the PRIME Framework ensures transparency and ownership.
 tags:
     - Blog
@@ -17,7 +19,7 @@ Author: Nautomation Prime Team*
 
 ---
 
-> **This post is part of our ongoing series on network automation best practices, grounded in the [PRIME Framework](../prime-framework/index.md) and [PRIME Philosophy](../prime-framework/philosophy.md).**
+> **This post is part of our ongoing series on network automation best practices, grounded in the [PRIME Framework](../../prime-framework/index.md) and [PRIME Philosophy](../../prime-framework/philosophy.md).**
 
 ## Why This Blog Exists
 
@@ -40,9 +42,9 @@ Automation is only as good as its data. A reliable "source of truth" is the foun
 
 ## Related Tutorials & Deep Dives
 
-- [Tool Ecosystem Integration (Expert)](../tutorials/expert/tool-ecosystem-integration.md) — Integrate Netbox and other tools for inventory management.
-- [Advanced Nornir Patterns](../tutorials/intermediate/advanced-nornir-patterns.md) — Learn about custom inventory plugins and Netbox integration.
-- [Deep Dive: CDP Network Audit](../deep-dives/cdp-audit.md) — See inventory-driven automation in practice.
+- [Tool Ecosystem Integration (Expert)](../../tutorials/expert/tool-ecosystem-integration.md) — Integrate Netbox and other tools for inventory management.
+- [Advanced Nornir Patterns](../../tutorials/intermediate/advanced-nornir-patterns.md) — Learn about custom inventory plugins and Netbox integration.
+- [Deep Dive: CDP Network Audit](../../deep-dives/cdp-audit.md) — See inventory-driven automation in practice.
 
 - The authoritative inventory for your network
 - Can be Netbox, a CMDB, YAML/CSV files, or a database
@@ -53,15 +55,18 @@ Automation is only as good as its data. A reliable "source of truth" is the foun
 ## Options for Building a Source of Truth
 
 ### 1. Netbox
+
 - Open-source, API-driven, network-focused
 - Integrates with Nornir, Ansible, custom scripts
 - Supports devices, IPs, racks, circuits, and more
 
 ### 2. CMDB (ServiceNow, custom)
+
 - Enterprise-wide, not just network
 - Often integrates with ITSM and change management
 
 ### 3. YAML/CSV Inventories
+
 - Simple, portable, easy to version control
 - Great for small/medium environments
 
@@ -113,6 +118,6 @@ nr = InitNornir(
 
 - [Credential Management in Network Automation](credential-management-network-automation.md)
 - [Why Most Network Automation Pipelines Fail (And How to Fix Them)](why-automation-fails.md)
-- [PRIME Framework Overview](../prime-framework/index.md)
+- [PRIME Framework Overview](../../prime-framework/index.md)
 
 ---

@@ -84,7 +84,7 @@ logger.info('Starting automation run')
 - [Asyncio for Network Automation](asyncio-network-automation.md)
 - [Secure Credential Vaulting](secure-credential-vaulting.md)
 - [Tool Ecosystem Integration](tool-ecosystem-integration.md)
-- [Blueprint for Enterprise-Ready Network Automation Pipelines](../../blog/enterprise-automation-pipeline-blueprint.md)
+- [Blueprint for Enterprise-Ready Network Automation Pipelines](../../blog/posts/enterprise-automation-pipeline-blueprint.md)
 - [PRIME Framework Overview](../../prime-framework/index.md)
 
 ---

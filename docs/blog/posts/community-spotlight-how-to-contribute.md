@@ -1,5 +1,7 @@
 ---
 title: "Community Spotlight & How to Contribute"
+date: 2026-02-26T12:00:00
+draft: false
 description: How to get involved, share your story, and contribute to the Nautomation Prime community.
 tags:
   - Blog
@@ -16,7 +18,7 @@ Author: Nautomation Prime Team*
 
 ---
 
-> **This post is part of our ongoing series on network automation best practices, grounded in the [PRIME Framework](../prime-framework/index.md) and [PRIME Philosophy](../prime-framework/philosophy.md).**
+> **This post is part of our ongoing series on network automation best practices, grounded in the [PRIME Framework](../../prime-framework/index.md) and [PRIME Philosophy](../../prime-framework/philosophy.md).**
 
 ## Why This Blog Exists
 
@@ -39,8 +41,8 @@ Nautomation Prime is built by and for the community. This post explains how you 
 
 ## Related Tutorials & Deep Dives
 
-- [Deep Dive: CDP Network Audit](../deep-dives/cdp-audit.md) — See how community contributions improve real-world tools.
-- [Deep Dive: Access Switch Audit](../deep-dives/access-switch-audit.md) — Learn how open-source collaboration drives innovation.
+- [Deep Dive: CDP Network Audit](../../deep-dives/cdp-audit.md) — See how community contributions improve real-world tools.
+- [Deep Dive: Access Switch Audit](../../deep-dives/access-switch-audit.md) — Learn how open-source collaboration drives innovation.
 
 1. Fork our GitHub repo and submit a pull request
 2. Email your story or suggestion to our team
@@ -75,6 +77,6 @@ Nautomation Prime is built by and for the community. This post explains how you 
 ## 📣 Want More?
 
 - [Case Study: A Full Network Automation Journey](case-study-full-automation-journey.md)
-- [PRIME Framework Overview](../prime-framework/index.md)
+- [PRIME Framework Overview](../../prime-framework/index.md)
 
 ---

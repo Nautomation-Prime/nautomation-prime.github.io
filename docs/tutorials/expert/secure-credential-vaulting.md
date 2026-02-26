@@ -15,6 +15,7 @@ tags:
 
 > *Published: February 24, 2026  \
 Author: Nautomation Prime Team*
+
 ## Why This Tutorial Exists
 
 Hardcoded credentials are a top security risk. This tutorial shows how to use enterprise secrets managers with Python automation, aligned with the PRIME Framework.
@@ -22,18 +23,21 @@ Hardcoded credentials are a top security risk. This tutorial shows how to use en
 ---
 
 ## Prerequisites
+
 - Advanced Python
 - Familiarity with environment variables and API authentication
 
 ---
 
 ## Why Use a Secrets Manager?
+
 - Centralized, auditable, and automatable
 - Supports rotation, RBAC, and compliance
 
 ---
 
 ## Example: Using HashiCorp Vault with Python
+
 ```python
 import hvac
 client = hvac.Client(url='https://vault.example.com', token='YOUR_TOKEN')
@@ -44,6 +48,7 @@ password = secret['data']['data']['password']
 ---
 
 ## Example: Using AWS Secrets Manager
+
 ```python
 import boto3
 client = boto3.client('secretsmanager')
@@ -54,12 +59,14 @@ password = secret['SecretString']
 ---
 
 ## Integrating with Automation Frameworks
+
 - Pass secrets to Nornir, Netmiko, or Ansible at runtime
 - Never store credentials in code or config files
 
 ---
 
 ## PRIME in Action: Safety and Ownership
+
 - Audit credential usage
 - Automate rotation and expiration checks
 - Document credential sources and access
@@ -67,6 +74,7 @@ password = secret['SecretString']
 ---
 
 ## Summary: Tutorial Takeaways
+
 - Use enterprise secrets managers for production automation
 - PRIME principles ensure safety, ownership, and compliance
 
@@ -74,11 +82,12 @@ password = secret['SecretString']
 
 
 ## 📣 Want More?
+
 - [Nornir + PyATS Integration](nornir-pyats-integration.md)
 - [Asyncio for Network Automation](asyncio-network-automation.md)
 - [DevOps & Observability](devops-observability-network-automation.md)
 - [Tool Ecosystem Integration](tool-ecosystem-integration.md)
-- [Credential Management in Network Automation](../../blog/credential-management-network-automation.md)
+- [Credential Management in Network Automation](../../blog/posts/credential-management-network-automation.md)
 - [PRIME Framework Overview](../../prime-framework/index.md)
 
 ---

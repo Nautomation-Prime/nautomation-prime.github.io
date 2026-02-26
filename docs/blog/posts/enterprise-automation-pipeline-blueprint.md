@@ -1,5 +1,7 @@
 ---
 title: "Blueprint for Enterprise-Ready Network Automation Pipelines"
+date: 2026-02-26T12:00:00
+draft: false
 description: How to build CI/CD, GitOps, and containerized pipelines for safe, scalable, and PRIME-aligned network automation.
 tags:
   - Blog
@@ -17,7 +19,7 @@ Author: Nautomation Prime Team*
 
 ---
 
-> **This post is part of our ongoing series on network automation best practices, grounded in the [PRIME Framework](../prime-framework/index.md) and [PRIME Philosophy](../prime-framework/philosophy.md).**
+> **This post is part of our ongoing series on network automation best practices, grounded in the [PRIME Framework](../../prime-framework/index.md) and [PRIME Philosophy](../../prime-framework/philosophy.md).**
 
 ## Why This Blog Exists
 
@@ -40,9 +42,9 @@ Enterprise automation is more than scripts—it’s pipelines, version control, 
 
 ## Related Tutorials & Deep Dives
 
-- [DevOps & Observability (Expert)](../tutorials/expert/devops-observability-network-automation.md) — Build CI/CD, GitOps, and monitoring for automation.
-- [Tool Ecosystem Integration (Expert)](../tutorials/expert/tool-ecosystem-integration.md) — Integrate with Netbox, ServiceNow, and more.
-- [Advanced Nornir Patterns](../tutorials/intermediate/advanced-nornir-patterns.md) — Learn about production-grade Nornir pipelines.
+- [DevOps & Observability (Expert)](../../tutorials/expert/devops-observability-network-automation.md) — Build CI/CD, GitOps, and monitoring for automation.
+- [Tool Ecosystem Integration (Expert)](../../tutorials/expert/tool-ecosystem-integration.md) — Integrate with Netbox, ServiceNow, and more.
+- [Advanced Nornir Patterns](../../tutorials/intermediate/advanced-nornir-patterns.md) — Learn about production-grade Nornir pipelines.
 
 - **CI/CD:** Automated testing, linting, and deployment (GitHub Actions, GitLab CI, Jenkins)
 - **GitOps:** Configuration as code, version control, and change tracking
@@ -83,6 +85,6 @@ Enterprise automation is more than scripts—it’s pipelines, version control, 
 
 - [Observability for Network Automation](observability-network-automation.md)
 - [Why Most Network Automation Pipelines Fail (And How to Fix Them)](why-automation-fails.md)
-- [PRIME Framework Overview](../prime-framework/index.md)
+- [PRIME Framework Overview](../../prime-framework/index.md)
 
 ---

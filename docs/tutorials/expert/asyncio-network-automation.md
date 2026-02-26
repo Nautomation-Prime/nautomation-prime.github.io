@@ -94,7 +94,7 @@ async def main(devices):
 - [Secure Credential Vaulting](secure-credential-vaulting.md)
 - [DevOps & Observability](devops-observability-network-automation.md)
 - [Tool Ecosystem Integration](tool-ecosystem-integration.md)
-- [Async vs. Threading vs. Multiprocessing in Network Automation](../../blog/async-vs-threading-vs-multiprocessing.md)
+- [Async vs. Threading vs. Multiprocessing in Network Automation](../../blog/posts/async-vs-threading-vs-multiprocessing.md)
 - [PRIME Framework Overview](../../prime-framework/index.md)
 
 ---

@@ -1,5 +1,7 @@
 ---
 title: "Migrating Legacy Network Automation to Modern Frameworks: A Step-by-Step Guide"
+date: 2026-02-26T12:00:00
+draft: false
 description: How to refactor old scripts, avoid technical debt, and adopt PRIME-aligned best practices for sustainable automation.
 tags:
    - Blog
@@ -17,7 +19,7 @@ Author: Nautomation Prime Team*
 
 ---
 
-> **This post is part of our ongoing series on network automation best practices, grounded in the [PRIME Framework](../prime-framework/index.md) and [PRIME Philosophy](../prime-framework/philosophy.md).**
+> **This post is part of our ongoing series on network automation best practices, grounded in the [PRIME Framework](../../prime-framework/index.md) and [PRIME Philosophy](../../prime-framework/philosophy.md).**
 
 ## Why This Blog Exists
 
@@ -40,7 +42,7 @@ Legacy scripts are everywhere—but they’re hard to maintain, scale, and secur
 
 - [Vendor-Neutral Automation](vendor-neutral-automation.md) — Avoid lock-in and build for portability.
 - [Case Study: Full Network Automation Journey](case-study-full-automation-journey.md) — See a real-world migration from legacy to modern frameworks.
-- [Deep Dive: Access Switch Audit](../deep-dives/access-switch-audit.md) — Explore modular, maintainable automation patterns.
+- [Deep Dive: Access Switch Audit](../../deep-dives/access-switch-audit.md) — Explore modular, maintainable automation patterns.
 
 1. **Inventory Existing Scripts**
    - List all automation scripts and their functions
@@ -96,6 +98,6 @@ Legacy scripts are everywhere—but they’re hard to maintain, scale, and secur
 ## 📣 Want More?
 
 - [Vendor-Neutral Automation: Avoiding Lock-In and Building for Portability](vendor-neutral-automation.md)
-- [PRIME Framework Overview](../prime-framework/index.md)
+- [PRIME Framework Overview](../../prime-framework/index.md)
 
 ---

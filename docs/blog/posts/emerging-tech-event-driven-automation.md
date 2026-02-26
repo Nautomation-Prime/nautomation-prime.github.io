@@ -1,5 +1,7 @@
 ---
 title: "Event-Driven Automation in the Network: Webhooks, Message Queues, and Real-Time Response"
+date: 2026-02-26T12:00:00
+draft: false
 description: How to build event-driven automation with webhooks, message queues, and the PRIME Framework.
 tags:
   - Blog
@@ -17,7 +19,7 @@ tags:
 Author: Nautomation Prime Team*
 
 ---
-> **This post is part of our ongoing series on network automation best practices, grounded in the [PRIME Framework](../prime-framework/index.md) and [PRIME Philosophy](../prime-framework/philosophy.md).**
+> **This post is part of our ongoing series on network automation best practices, grounded in the [PRIME Framework](../../prime-framework/index.md) and [PRIME Philosophy](../../prime-framework/philosophy.md).**
 
 ## Why This Blog Exists
 
@@ -89,6 +91,6 @@ def webhook():
 ## 📣 Want More?
 
 - [Model-Driven APIs in Network Automation](emerging-tech-model-driven-apis.md)
-- [PRIME Framework Overview](../prime-framework/index.md)
+- [PRIME Framework Overview](../../prime-framework/index.md)
 
 ---

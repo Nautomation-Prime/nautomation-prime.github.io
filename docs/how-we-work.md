@@ -489,7 +489,7 @@ Choose full PRIME Framework or individual stages. We'll deliver sustainable auto
 
 **[Services & Pricing](./services.md)** — Investment and deliverables
 
-**[Why Automation Fails](./blog/why-automation-fails.md)** — Understand common failure patterns and how PRIME prevents them
+**[Why Automation Fails](./blog/posts/why-automation-fails.md)** — Understand common failure patterns and how PRIME prevents them
 
 ---
 

@@ -22,6 +22,7 @@ Most automation frameworks excel at either execution (Nornir) or validation (PyA
 ---
 
 ## Prerequisites
+
 - Intermediate Python
 - Familiarity with Nornir and PyATS basics
 - Working Nornir and PyATS environments
@@ -29,6 +30,7 @@ Most automation frameworks excel at either execution (Nornir) or validation (PyA
 ---
 
 ## Architecture Overview
+
 - Nornir handles inventory, parallel execution, and task orchestration
 - PyATS provides structured validation and parsing
 - Integration points: run Nornir tasks, then validate with PyATS
@@ -36,12 +38,14 @@ Most automation frameworks excel at either execution (Nornir) or validation (PyA
 ---
 
 ## Step 1: Define Inventory and Testbed
+
 - Use Netbox/YAML for Nornir inventory
 - Use PyATS testbed YAML for device definitions
 
 ---
 
 ## Step 2: Build Nornir Tasks for Config Push
+
 ```python
 from nornir import InitNornir
 from nornir_netmiko.tasks import netmiko_send_config
@@ -54,6 +58,7 @@ result = nr.run(task=push_config)
 ---
 
 ## Step 3: Validate with PyATS After Each Change
+
 ```python
 from pyats.topology import loader
 from genie.libs.parser.utils import get_parser
@@ -64,6 +69,7 @@ from genie.libs.parser.utils import get_parser
 ---
 
 ## Step 4: Orchestrate Workflow
+
 - Run Nornir task
 - Trigger PyATS validation
 - Log and report results
@@ -71,6 +77,7 @@ from genie.libs.parser.utils import get_parser
 ---
 
 ## Example: Full Workflow Script
+
 ```python
 # Pseudocode for orchestration
 for device in inventory:
@@ -82,6 +89,7 @@ for device in inventory:
 ---
 
 ## PRIME in Action: Safety and Measurability
+
 - Pre-flight and post-flight validation
 - Structured logging and reporting
 - Automated rollback on failure
@@ -89,6 +97,7 @@ for device in inventory:
 ---
 
 ## Summary: Tutorial Takeaways
+
 - Combining Nornir and PyATS delivers safe, scalable automation
 - PRIME principles ensure validation, transparency, and empowerment
 
@@ -96,11 +105,12 @@ for device in inventory:
 
 
 ## 📣 Want More?
+
 - [Asyncio for Network Automation](asyncio-network-automation.md)
 - [Secure Credential Vaulting](secure-credential-vaulting.md)
 - [DevOps & Observability](devops-observability-network-automation.md)
 - [Tool Ecosystem Integration](tool-ecosystem-integration.md)
-- [Testing Strategies for Network Automation](../../blog/testing-strategies-network-automation.md)
+- [Testing Strategies for Network Automation](../../blog/posts/testing-strategies-network-automation.md)
 - [PRIME Framework Overview](../../prime-framework/index.md)
 
 ---

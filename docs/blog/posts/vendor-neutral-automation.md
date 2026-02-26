@@ -1,5 +1,7 @@
 ---
 title: "Vendor-Neutral Automation: Avoiding Lock-In and Building for Portability"
+date: 2026-02-26T12:00:00
+draft: false
 description: How to design automation that outlasts vendors, avoids lock-in, and aligns with the PRIME Framework for ownership and transparency.
 tags:
   - Blog
@@ -16,7 +18,7 @@ Author: Nautomation Prime Team*
 
 ---
 
-> **This post is part of our ongoing series on network automation best practices, grounded in the [PRIME Framework](../prime-framework/index.md) and [PRIME Philosophy](../prime-framework/philosophy.md).**
+> **This post is part of our ongoing series on network automation best practices, grounded in the [PRIME Framework](../../prime-framework/index.md) and [PRIME Philosophy](../../prime-framework/philosophy.md).**
 
 ## Why This Blog Exists
 
@@ -40,8 +42,8 @@ Vendor lock-in is a hidden risk in network automation. This post explains why it
 ## Related Tutorials & Deep Dives
 
 - [Migrating Legacy Network Automation](migrating-legacy-network-automation.md) — Learn how to refactor and modernize old scripts for portability.
-- [Tool Ecosystem Integration (Expert)](../tutorials/expert/tool-ecosystem-integration.md) — Integrate with Netbox, ServiceNow, and more for vendor-neutral automation.
-- [Deep Dive: Access Switch Audit](../deep-dives/access-switch-audit.md) — Explore vendor-neutral, modular automation patterns.
+- [Tool Ecosystem Integration (Expert)](../../tutorials/expert/tool-ecosystem-integration.md) — Integrate with Netbox, ServiceNow, and more for vendor-neutral automation.
+- [Deep Dive: Access Switch Audit](../../deep-dives/access-switch-audit.md) — Explore vendor-neutral, modular automation patterns.
 
 - Proprietary tools limit future options
 - Migration is costly and disruptive
@@ -90,6 +92,6 @@ Vendor lock-in is a hidden risk in network automation. This post explains why it
 
 - [Blueprint for Enterprise-Ready Network Automation Pipelines](enterprise-automation-pipeline-blueprint.md)
 - [Why Most Network Automation Pipelines Fail (And How to Fix Them)](why-automation-fails.md)
-- [PRIME Framework Overview](../prime-framework/index.md)
+- [PRIME Framework Overview](../../prime-framework/index.md)
 
 ---

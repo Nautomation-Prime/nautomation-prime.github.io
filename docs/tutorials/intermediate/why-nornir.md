@@ -72,12 +72,14 @@ Let's do some math:
 - **Total per device: ~6 seconds**
 
 **Sequential approach (Tutorial #3):**
-```
+
+```text
 300 devices × 6 seconds = 1,800 seconds = 30 MINUTES
 ```
 
 **Parallel approach (Nornir):**
-```
+
+```text
 6 seconds × 10 concurrent connections = 0.6 seconds per "round"
 300 ÷ 10 = 30 rounds
 30 × 0.6 = 18 seconds (worst case, can be faster with optimisation)
@@ -93,7 +95,7 @@ Let's do some math:
 
 ### Sequential Execution (Tutorial #3 Approach)
 
-```
+```text
 Device 1: [=====...wait for network.....=====] ✓
 Device 2:                                      [=====...wait for network.....=====] ✓
 Device 3:                                                                           [=====...wait for network.....=====] ✓
@@ -122,6 +124,7 @@ CPU:  ████████████ (CPU efficiently scheduling I/O)
 ### Task Execution Flow Comparison
 
 #### Sequential Task Flow
+
 ```mermaid
 flowchart TD
     Start([Start Backup Job]) --> D1[Connect Device 1]
@@ -149,6 +152,7 @@ flowchart TD
 ```
 
 #### Parallel Task Flow (Nornir)
+
 ```mermaid
 flowchart TD
     Start([Start Backup Job]) --> Pool["Connection Pool Initialized<br/>(up to 10 workers)"]
@@ -180,7 +184,8 @@ flowchart TD
 Why doesn't this scale infinitely? There's a mathematical ceiling:
 
 **Amdahl's Law:**
-```
+
+```text
 Speedup = 1 / [(1 - P) + (P / N)]
 
 Where:
@@ -216,7 +221,7 @@ This is **sequential iteration**. It's simple, it's clear, it's great for learni
 ### The Limitations
 
 | Aspect | Tutorial #3 | Enterprise Need |
-|:---|:---|:---|
+| :--- | :--- | :--- |
 | **Max devices** | 50-100 (before slowness) | 500-5000+ |
 | **Expected runtime** | 10+ minutes | 2-3 minutes |
 | **Code complexity** | Simple loops | Framework (Nornir) |
@@ -230,7 +235,7 @@ This is **sequential iteration**. It's simple, it's clear, it's great for learni
 
 You might think: *"Why learn Nornir? Can't I just add `threading` to Tutorial #3?"*
 
-You **could**, but here's why that's a bad idea. (And if you want the full story on why threading is so risky for network automation, check out our deep-dive: [Threading in Network Automation: When to Use It and When to Avoid It](../../blog/threading-in-network-automation.md))
+You **could**, but here's why that's a bad idea. (And if you want the full story on why threading is so risky for network automation, check out our deep-dive: [Threading in Network Automation: When to Use It and When to Avoid It](../../blog/posts/threading-in-network-automation.md))
 
 ```python
 import threading
@@ -266,13 +271,16 @@ Nornir solves this problem by building a **task-based framework** instead of a s
 ### Core Concepts
 
 #### 1. **Tasks** (not loops)
+
 Instead of:
+
 ```python
 for device in devices:
     do_something(device)
 ```
 
 You write:
+
 ```python
 @task
 def backup_config(task):
@@ -282,7 +290,9 @@ def backup_config(task):
 ```
 
 #### 2. **Inventory** (not hardcoded or CSV)
+
 Nornir abstracts device information:
+
 ```yaml
 # inventory/hosts.yaml
 device1:
@@ -308,6 +318,7 @@ Nornir's runner automatically:
 - Handles failures
 
 #### 4. **Result Aggregation** (not scattered output)
+
 ```python
 result = nornir.run(backup_task)
 
@@ -325,7 +336,7 @@ result[device_id].exception  # What went wrong?
 
 ### Tutorial #3 (Sequential Script Architecture)
 
-```
+```text
 main()
   ├── read_inventory()  [CSV]
   ├── for each device:
@@ -347,7 +358,7 @@ main()
 
 ### Nornir (Task-Based Parallel Architecture)
 
-```
+```text
 Nornir Instance
   ├── Inventory Manager
   │   └── Loads devices from YAML/Netbox/API
@@ -373,7 +384,7 @@ Nornir Instance
 
 ## 💡 When to Use Nornir
 
-### Use Nornir When:
+### Use Nornir When
 
 ✅ **Scale matters** (50+ devices)  
 ✅ **Performance matters** (tight backup windows)  
@@ -396,7 +407,7 @@ Nornir Instance
 The table below breaks down how different approaches compare across real-world concerns:
 
 | Aspect | Tutorial #3<br/>(Sequential) | Threading<br/>(DIY) | Nornir<br/>(Framework) | Ansible<br/>(Alternative) |
-|:---|:---|:---|:---|:---|
+| :--- | :--- | :--- | :--- | :--- |
 | **Learning curve** | Easy | Moderate | Moderate | Moderate-Hard |
 | **Max devices** | ~100 | ~50 (GIL limits) | 500-5000+ | 1000+ |
 | **Runtime (100 devices)** | 10 min | 2-3 min* | 1-2 min | 2-3 min |
@@ -427,6 +438,7 @@ The table below breaks down how different approaches compare across real-world c
 ### Gotcha #2: The Failing Device That Kills Everything
 
 **Sequential script (unprotected):**
+
 ```python
 for device in devices:
     backup_device(device)  # If device 47 fails, 48-100 never run
@@ -439,6 +451,7 @@ for device in devices:
 ### Gotcha #3: Credentials Leak Into Logs
 
 **Common mistake:**
+
 ```python
 print(f"Connecting with {username}:{password}")  # # ← NEVER DO THIS!
 ```
@@ -449,7 +462,7 @@ print(f"Connecting with {username}:{password}")  # # ← NEVER DO THIS!
 
 **Real scenario:** Before backing up an access switch, you need to pull its inventory from your IPAM system.
 
-```
+```text
 1. Call IPAM API for device list
 2. Parallel: Back up each device
 3. Parallel: Validate each backup
@@ -478,7 +491,7 @@ print(f"Connecting with {username}:{password}")  # # ← NEVER DO THIS!
 
 Use this to decide which approach is right *now*:
 
-```
+```text
 Do you have network devices to manage with scripts?
 │
 ├─ YES: How many?
@@ -507,7 +520,7 @@ Do you have network devices to manage with scripts?
 **Honest truth:** There's no "best" tool. There's the right tool for your *current* situation.
 
 - **Tutorial #3** is your "learn automation" tool
-- **Threading** is your "never use this" tool (seriously, don't — and if you want to know why, see our deep-dive: [Threading in Network Automation: When to Use It and When to Avoid It](../../blog/threading-in-network-automation.md))
+- **Threading** is your "never use this" tool (seriously, don't — and if you want to know why, see our deep-dive: [Threading in Network Automation: When to Use It and When to Avoid It](../../blog/posts/threading-in-network-automation.md))
 - **Nornir** is your "production ready" tool
 - **Ansible** is your "infrastructure as code" tool
 
@@ -584,14 +597,16 @@ async def backup_all(devices):
 **Telecom company with 2,500 Cisco devices**
 
 **Old approach (Tutorial #3):**
-```
+
+```text
 Backup job scheduled: 2:00 AM
 Expected completion: 4:30 AM (150 minutes)
 Maintenance window: 2:00-6:00 AM ✓ Fits
 ```
 
 **With Nornir:**
-```
+
+```text
 Backup job scheduled: 2:00 AM
 Expected completion: 2:12 AM (12 minutes)
 Maintenance window: 2:00-6:00 AM ✓ Fits comfortably
@@ -608,7 +623,7 @@ Plus: Can now run more audits/checks in same window!
 
 But complexity serves a purpose:
 
-```
+```text
 Difficulty vs. Power
 
 Tutorial Difficulty:  ▄ (low)

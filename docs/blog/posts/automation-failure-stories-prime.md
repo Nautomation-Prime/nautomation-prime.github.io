@@ -1,5 +1,7 @@
 ---
 title: "Automation Failure Stories: How PRIME Would Have Prevented Disaster"
+date: 2026-02-26T12:00:00
+draft: false
 description: Real-world network automation failures, what went wrong, and how the PRIME Framework could have saved the day.
 tags:
   - Blog
@@ -16,7 +18,7 @@ Author: Nautomation Prime Team*
 
 ---
 
-> **This post is part of our ongoing series on network automation best practices, grounded in the [PRIME Framework](../prime-framework/index.md) and [PRIME Philosophy](../prime-framework/philosophy.md).**
+> **This post is part of our ongoing series on network automation best practices, grounded in the [PRIME Framework](../../prime-framework/index.md) and [PRIME Philosophy](../../prime-framework/philosophy.md).**
 
 ## Why This Blog Exists
 
@@ -40,8 +42,8 @@ Everyone loves a good war story—especially when there’s a lesson to be learn
 ## Related Tutorials & Deep Dives
 
 - [Migrating Legacy Network Automation](migrating-legacy-network-automation.md) — Learn how to refactor and modernize old scripts to avoid common failure modes.
-- [Deep Dive: CDP Network Audit](../deep-dives/cdp-audit.md) — See how robust error handling and validation prevent outages.
-- [Deep Dive: Access Switch Audit](../deep-dives/access-switch-audit.md) — Explore production-grade safety checks and rollback patterns.
+- [Deep Dive: CDP Network Audit](../../deep-dives/cdp-audit.md) — See how robust error handling and validation prevent outages.
+- [Deep Dive: Access Switch Audit](../../deep-dives/access-switch-audit.md) — Explore production-grade safety checks and rollback patterns.
 
 **What Happened:**
 A script pushed VLAN changes to 500 switches in parallel—without validation. Half the network lost connectivity.
@@ -118,6 +120,6 @@ A critical automation script was written by a contractor, undocumented and unmai
 
 - [Testing Strategies for Network Automation](testing-strategies-network-automation.md)
 - [Why Most Network Automation Pipelines Fail (And How to Fix Them)](why-automation-fails.md)
-- [PRIME Framework Overview](../prime-framework/index.md)
+- [PRIME Framework Overview](../../prime-framework/index.md)
 
 ---

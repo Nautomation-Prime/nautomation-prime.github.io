@@ -1,5 +1,7 @@
 ---
 title: "Integrating Network Automation with ITSM and Change Management"
+date: 2026-02-26T12:00:00
+draft: false
 description: How to connect your automation to ServiceNow, Jira, and ITSM workflows for auditability, compliance, and measurable outcomes.
 tags:
   - Blog
@@ -16,7 +18,7 @@ Author: Nautomation Prime Team*
 
 ---
 
-> **This post is part of our ongoing series on network automation best practices, grounded in the [PRIME Framework](../prime-framework/index.md) and [PRIME Philosophy](../prime-framework/philosophy.md).**
+> **This post is part of our ongoing series on network automation best practices, grounded in the [PRIME Framework](../../prime-framework/index.md) and [PRIME Philosophy](../../prime-framework/philosophy.md).**
 
 ## Why This Blog Exists
 
@@ -39,8 +41,8 @@ Automation without change management is a compliance risk. This post explains wh
 
 ## Related Tutorials & Deep Dives
 
-- [Tool Ecosystem Integration (Expert)](../tutorials/expert/tool-ecosystem-integration.md) — Integrate with ServiceNow, Netbox, and other ITSM tools.
-- [DevOps & Observability (Expert)](../tutorials/expert/devops-observability-network-automation.md) — Build CI/CD and monitoring for compliance and auditability.
+- [Tool Ecosystem Integration (Expert)](../../tutorials/expert/tool-ecosystem-integration.md) — Integrate with ServiceNow, Netbox, and other ITSM tools.
+- [DevOps & Observability (Expert)](../../tutorials/expert/devops-observability-network-automation.md) — Build CI/CD and monitoring for compliance and auditability.
 
 - Audit trails for every change
 - Approval workflows for risky operations
@@ -52,14 +54,17 @@ Automation without change management is a compliance risk. This post explains wh
 ## Patterns for ITSM Integration
 
 ### 1. ServiceNow API Integration
+
 - Create, update, and close change tickets from automation scripts
 - Example: Python requests to ServiceNow REST API
 
 ### 2. Jira and Custom Workflows
+
 - Log changes as Jira issues
 - Use webhooks for automation triggers
 
 ### 3. Change Logging and Reporting
+
 - Log every change to a central database or SIEM
 - Generate compliance reports automatically
 
@@ -98,6 +103,6 @@ print(response.json())
 
 - [Automation Failure Stories: How PRIME Would Have Prevented Disaster](automation-failure-stories-prime.md)
 - [Why Most Network Automation Pipelines Fail (And How to Fix Them)](why-automation-fails.md)
-- [PRIME Framework Overview](../prime-framework/index.md)
+- [PRIME Framework Overview](../../prime-framework/index.md)
 
 ---

@@ -144,25 +144,25 @@ nav:
       - Scripts: scripts/index.md
   - Blog:
       - blog/index.md
-      - Threading in Network Automation: blog/threading-in-network-automation.md
-      - Why Automation Fails: blog/why-automation-fails.md
-      - How to Choose the Right Network Automation Framework: blog/choosing-network-automation-framework.md
-      - Credential Management in Network Automation: blog/credential-management-network-automation.md
-      - Building a Source of Truth for Network Automation: blog/source-of-truth-network-automation.md
-      - Testing Strategies for Network Automation: blog/testing-strategies-network-automation.md
-      - Automation Failure Stories: blog/automation-failure-stories-prime.md
-      - Integrating Network Automation with ITSM and Change Management: blog/itsm-change-management-network-automation.md
-      - Async vs. Threading vs. Multiprocessing: blog/async-vs-threading-vs-multiprocessing.md
-      - Observability for Network Automation: blog/observability-network-automation.md
-      - Blueprint for Enterprise-Ready Network Automation Pipelines: blog/enterprise-automation-pipeline-blueprint.md
-      - Vendor-Neutral Automation: blog/vendor-neutral-automation.md
-      - "Case Study: Full Network Automation Journey": blog/case-study-full-automation-journey.md
-      - Community Spotlight & How to Contribute: blog/community-spotlight-how-to-contribute.md
-      - Streaming Telemetry in Network Automation: blog/emerging-tech-streaming-telemetry.md
-      - Model-Driven APIs in Network Automation: blog/emerging-tech-model-driven-apis.md
-      - AI and Machine Learning in Network Automation: blog/emerging-tech-ai-ml-network-automation.md
-      - Event-Driven Automation in the Network: blog/emerging-tech-event-driven-automation.md
-      - Migrating Legacy Network Automation: blog/migrating-legacy-network-automation.md
+      - Threading in Network Automation: blog/posts/threading-in-network-automation.md
+      - Why Automation Fails: blog/posts/why-automation-fails.md
+      - How to Choose the Right Network Automation Framework: blog/posts/choosing-network-automation-framework.md
+      - Credential Management in Network Automation: blog/posts/credential-management-network-automation.md
+      - Building a Source of Truth for Network Automation: blog/posts/source-of-truth-network-automation.md
+      - Testing Strategies for Network Automation: blog/posts/testing-strategies-network-automation.md
+      - Automation Failure Stories: blog/posts/automation-failure-stories-prime.md
+      - Integrating Network Automation with ITSM and Change Management: blog/posts/itsm-change-management-network-automation.md
+      - Async vs. Threading vs. Multiprocessing: blog/posts/async-vs-threading-vs-multiprocessing.md
+      - Observability for Network Automation: blog/posts/observability-network-automation.md
+      - Blueprint for Enterprise-Ready Network Automation Pipelines: blog/posts/enterprise-automation-pipeline-blueprint.md
+      - Vendor-Neutral Automation: blog/posts/vendor-neutral-automation.md
+      - "Case Study: Full Network Automation Journey": blog/posts/case-study-full-automation-journey.md
+      - Community Spotlight & How to Contribute: blog/posts/community-spotlight-how-to-contribute.md
+      - Streaming Telemetry in Network Automation: blog/posts/emerging-tech-streaming-telemetry.md
+      - Model-Driven APIs in Network Automation: blog/posts/emerging-tech-model-driven-apis.md
+      - AI and Machine Learning in Network Automation: blog/posts/emerging-tech-ai-ml-network-automation.md
+      - Event-Driven Automation in the Network: blog/posts/emerging-tech-event-driven-automation.md
+      - Migrating Legacy Network Automation: blog/posts/migrating-legacy-network-automation.md
   - Coming Soon:
       - coming-soon/index.md
       - Cisco IOS XE ZTP: coming-soon/cisco-ios-xe-ztp.md

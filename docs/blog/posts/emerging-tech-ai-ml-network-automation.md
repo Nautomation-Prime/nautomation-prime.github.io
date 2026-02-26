@@ -1,5 +1,7 @@
 ---
 title: "AI and Machine Learning in Network Automation: Hype, Reality, and Practical Use Cases"
+date: 2026-02-26T12:00:00
+draft: false
 description: What AI/ML can (and can’t) do for network automation, with real-world examples and PRIME-aligned guidance.
 tags:
   - Blog
@@ -17,7 +19,7 @@ Author: Nautomation Prime Team*
 
 ---
 
-> **This post is part of our ongoing series on network automation best practices, grounded in the [PRIME Framework](../prime-framework/index.md) and [PRIME Philosophy](../prime-framework/philosophy.md).**
+> **This post is part of our ongoing series on network automation best practices, grounded in the [PRIME Framework](../../prime-framework/index.md) and [PRIME Philosophy](../../prime-framework/philosophy.md).**
 
 ## Why This Blog Exists
 
@@ -39,7 +41,7 @@ AI and ML are everywhere—but what do they really mean for network automation? 
 
 - [Model-Driven APIs in Network Automation](emerging-tech-model-driven-apis.md) — Learn about gNMI, RESTCONF, and YANG for structured device management.
 - [Event-Driven Automation in the Network](emerging-tech-event-driven-automation.md) — Build real-time, event-driven workflows.
-- [DevOps & Observability (Expert)](../tutorials/expert/devops-observability-network-automation.md) — Integrate AI/ML insights into monitoring and automation pipelines.
+- [DevOps & Observability (Expert)](../../tutorials/expert/devops-observability-network-automation.md) — Integrate AI/ML insights into monitoring and automation pipelines.
 
 - Anomaly detection in telemetry streams
 - Predictive maintenance for network devices
@@ -87,6 +89,6 @@ anomalies = model.predict(new_data)
 ## 📣 Want More?
 
 - [Streaming Telemetry in Network Automation](emerging-tech-streaming-telemetry.md)
-- [PRIME Framework Overview](../prime-framework/index.md)
+- [PRIME Framework Overview](../../prime-framework/index.md)
 
 ---

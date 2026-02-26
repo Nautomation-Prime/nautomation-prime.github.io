@@ -1,5 +1,7 @@
 ---
 title: "Threading in Network Automation: When to Use It and When to Avoid It"
+date: 2026-02-26T12:00:00
+draft: false
 description: Why threading is almost never the right tool for network automation, and how the PRIME Framework guides safer, scalable concurrency.
 tags:
   - Blog
@@ -17,7 +19,7 @@ Author: Nautomation Prime Team*
 
 ---
 
-> **This post is part of our ongoing series on network automation best practices, grounded in the [PRIME Framework](../prime-framework/index.md) and [PRIME Philosophy](../prime-framework/philosophy.md).**
+> **This post is part of our ongoing series on network automation best practices, grounded in the [PRIME Framework](../../prime-framework/index.md) and [PRIME Philosophy](../../prime-framework/philosophy.md).**
 
 ## Why This Blog Exists
 
@@ -35,7 +37,7 @@ Before we dive into the technicals, let's set the stage. At Nautomation Prime, e
 - **Safety** — Production-grade reliability comes before speed.
 - **Empowerment** — Your team understands and controls the automation.
 
-> Learn more: [The PRIME Philosophy](../prime-framework/philosophy.md)
+> Learn more: [The PRIME Philosophy](../../prime-framework/philosophy.md)
 
 ---
 
@@ -98,6 +100,7 @@ Threading should **not** be used for:
 - Operations requiring transaction‑like behaviour
 
 #### Typical Failure Scenarios
+
 - Two threads send commands faster than the device can process them
 - Output from one thread appears in another thread’s buffer
 - Session locks or rate limits cause unpredictable failures
@@ -107,7 +110,7 @@ Threading should **not** be used for:
 
 ## PRIME Framework: The Right Way to Scale
 
-The [PRIME Framework](../prime-framework/index.md) is designed to prevent exactly the kinds of failures threading introduces. Here’s how each stage helps:
+The [PRIME Framework](../../prime-framework/index.md) is designed to prevent exactly the kinds of failures threading introduces. Here’s how each stage helps:
 
 | PRIME Stage | How It Prevents Threading Pitfalls |
 |-------------|------------------------------------|
@@ -137,6 +140,7 @@ Different automation tasks require different concurrency models. Here’s a quic
 ## Practical Guidance
 
 ### Use Threading When:
+
 - Each task is independent
 - No configuration is being changed
 - The library used is safe to call concurrently
@@ -144,6 +148,7 @@ Different automation tasks require different concurrency models. Here’s a quic
 - You need fast, parallel data collection
 
 ### Avoid Threading When:
+
 - You are modifying device state
 - You rely on multi‑step CLI interactions
 - You need deterministic behaviour
@@ -163,15 +168,15 @@ Different automation tasks require different concurrency models. Here’s a quic
 - Threading is not inherently bad—but it’s the wrong tool for most network automation tasks.
 - The PRIME Framework and Philosophy provide a safer, more sustainable path.
 - If you want automation that’s transparent, measurable, and safe, avoid threading for anything stateful or critical.
-- Want to see the technical deep dive? [Read the full PRIME Philosophy](../prime-framework/philosophy.md)
+- Want to see the technical deep dive? [Read the full PRIME Philosophy](../../prime-framework/philosophy.md)
 
 ---
 
 ## 📣 Want More?
 
 - See how the PRIME Framework prevents automation failures: [Why Most Network Automation Pipelines Fail (And How to Fix Them)](why-automation-fails.md)
-- Learn about the five stages: [PRIME Framework Overview](../prime-framework/index.md)
-- Curious about the philosophy? [The PRIME Philosophy](../prime-framework/philosophy.md)
+- Learn about the five stages: [PRIME Framework Overview](../../prime-framework/index.md)
+- Curious about the philosophy? [The PRIME Philosophy](../../prime-framework/philosophy.md)
 
 ---
 

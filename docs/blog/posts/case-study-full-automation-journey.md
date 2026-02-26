@@ -1,5 +1,7 @@
 ---
 title: "Case Study: A Full Network Automation Journey (From Problem to Business Outcome)"
+date: 2026-02-26T12:00:00
+draft: false
 description: A real-world, step-by-step case study showing how the PRIME Framework delivers measurable results in network automation.
 tags:
   - Blog
@@ -16,7 +18,7 @@ Author: Nautomation Prime Team*
 
 ---
 
-> **This post is part of our ongoing series on network automation best practices, grounded in the [PRIME Framework](../prime-framework/index.md) and [PRIME Philosophy](../prime-framework/philosophy.md).**
+> **This post is part of our ongoing series on network automation best practices, grounded in the [PRIME Framework](../../prime-framework/index.md) and [PRIME Philosophy](../../prime-framework/philosophy.md).**
 
 ## Why This Blog Exists
 
@@ -38,8 +40,8 @@ Most automation stories stop at "the script worked." This case study follows a r
 ## Related Tutorials & Deep Dives
 
 - [Migrating Legacy Network Automation](migrating-legacy-network-automation.md) — See how to modernize and scale automation for business outcomes.
-- [Deep Dive: CDP Network Audit](../deep-dives/cdp-audit.md) — Explore a real-world automation journey from discovery to reporting.
-- [Deep Dive: Access Switch Audit](../deep-dives/access-switch-audit.md) — Learn about modular, production-grade automation for business value.
+- [Deep Dive: CDP Network Audit](../../deep-dives/cdp-audit.md) — Explore a real-world automation journey from discovery to reporting.
+- [Deep Dive: Access Switch Audit](../../deep-dives/access-switch-audit.md) — Learn about modular, production-grade automation for business value.
 
 - Interviewed ops team, measured time spent
 - Identified VLAN provisioning as high-ROI target
@@ -100,6 +102,6 @@ Most automation stories stop at "the script worked." This case study follows a r
 ## 📣 Want More?
 
 - [Why Most Network Automation Pipelines Fail (And How to Fix Them)](why-automation-fails.md)
-- [PRIME Framework Overview](../prime-framework/index.md)
+- [PRIME Framework Overview](../../prime-framework/index.md)
 
 ---

@@ -1,5 +1,6 @@
 ---
-title: "Async vs. Threading vs. Multiprocessing in Network Automation"
+date: 2026-02-26T12:00:00
+draft: false
 description: Understand the differences, use cases, and PRIME-aligned best practices for concurrency in network automation.
 tags:
   - Blog
@@ -17,7 +18,7 @@ tags:
 Author: Nautomation Prime Team*
 
 ---
-> **This post is part of our ongoing series on network automation best practices, grounded in the [PRIME Framework](../prime-framework/index.md) and [PRIME Philosophy](../prime-framework/philosophy.md).**
+> **This post is part of our ongoing series on network automation best practices, grounded in the [PRIME Framework](../../prime-framework/index.md) and [PRIME Philosophy](../../prime-framework/philosophy.md).**
 
 ## Why This Blog Exists
 
@@ -40,9 +41,9 @@ Concurrency is essential for scalable automation—but not all concurrency model
 
 ## Related Tutorials & Deep Dives
 
-- [Asyncio for Network Automation (Expert)](../tutorials/expert/asyncio-network-automation.md) — Master Python's asyncio for scalable, event-driven workflows.
+- [Asyncio for Network Automation (Expert)](../../tutorials/expert/asyncio-network-automation.md) — Master Python's asyncio for scalable, event-driven workflows.
 - [Threading in Network Automation](threading-in-network-automation.md) — When to use threading and when to avoid it.
-- [Deep Dive: CDP Network Audit](../deep-dives/cdp-audit.md) — See real-world threaded discovery and parallel execution.
+- [Deep Dive: CDP Network Audit](../../deep-dives/cdp-audit.md) — See real-world threaded discovery and parallel execution.
 
 - **Threading:** Multiple threads in one process, good for I/O-bound tasks
 - **Multiprocessing:** Multiple processes, good for CPU-bound tasks
@@ -99,6 +100,6 @@ asyncio.run(asyncio.gather(*(collect_data(d) for d in devices)))
 
 - [Threading in Network Automation: When to Use It and When to Avoid It](threading-in-network-automation.md)
 - [Why Most Network Automation Pipelines Fail (And How to Fix Them)](why-automation-fails.md)
-- [PRIME Framework Overview](../prime-framework/index.md)
+- [PRIME Framework Overview](../../prime-framework/index.md)
 
 ---

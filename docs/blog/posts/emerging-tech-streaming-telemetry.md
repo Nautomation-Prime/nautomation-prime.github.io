@@ -1,5 +1,7 @@
 ---
 title: "Streaming Telemetry in Network Automation: Real-Time Data for Modern Operations"
+date: 2026-02-26T12:00:00
+draft: false
 description: An introduction to streaming telemetry, why it matters, and how to use it in your automation workflows.
 tags:
   - Blog
@@ -16,7 +18,7 @@ Author: Nautomation Prime Team*
 
 ---
 
-> **This post is part of our ongoing series on network automation best practices, grounded in the [PRIME Framework](../prime-framework/index.md) and [PRIME Philosophy](../prime-framework/philosophy.md).**
+> **This post is part of our ongoing series on network automation best practices, grounded in the [PRIME Framework](../../prime-framework/index.md) and [PRIME Philosophy](../../prime-framework/philosophy.md).**
 
 ## Why This Blog Exists
 
@@ -39,7 +41,7 @@ SNMP and CLI scraping are no longer enough. Streaming telemetry provides real-ti
 
 - [Model-Driven APIs in Network Automation](emerging-tech-model-driven-apis.md) — Learn about gNMI, RESTCONF, and YANG for structured device management.
 - [Event-Driven Automation in the Network](emerging-tech-event-driven-automation.md) — Build real-time, event-driven workflows with webhooks and message queues.
-- [DevOps & Observability (Expert)](../tutorials/expert/devops-observability-network-automation.md) — Integrate telemetry into CI/CD and monitoring pipelines.
+- [DevOps & Observability (Expert)](../../tutorials/expert/devops-observability-network-automation.md) — Integrate telemetry into CI/CD and monitoring pipelines.
 
 - Enables real-time monitoring and alerting
 - Reduces polling overhead and latency
@@ -84,6 +86,6 @@ import grpc
 ## 📣 Want More?
 
 - [Observability for Network Automation](observability-network-automation.md)
-- [PRIME Framework Overview](../prime-framework/index.md)
+- [PRIME Framework Overview](../../prime-framework/index.md)
 
 ---

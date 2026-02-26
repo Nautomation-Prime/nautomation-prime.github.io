@@ -1,5 +1,7 @@
 ---
 title: "How to Choose the Right Network Automation Framework: Nornir vs. Ansible vs. PyATS"
+date: 2026-02-26T12:00:00
+draft: false
 description: A practical, PRIME-aligned guide to selecting the best automation framework for your network—real-world scenarios, decision checklists, and actionable recommendations.
 tags:
   - Blog
@@ -18,7 +20,7 @@ Author: Nautomation Prime Team*
 
 ---
 
-> **This post is part of our ongoing series on network automation best practices, grounded in the [PRIME Framework](../prime-framework/index.md) and [PRIME Philosophy](../prime-framework/philosophy.md).**
+> **This post is part of our ongoing series on network automation best practices, grounded in the [PRIME Framework](../../prime-framework/index.md) and [PRIME Philosophy](../../prime-framework/philosophy.md).**
 
 ## Why This Blog Exists
 
@@ -43,15 +45,15 @@ Choosing the right automation framework is one of the most important decisions f
 
 ## Related Tutorials & Deep Dives
 
-- [Nornir Fundamentals](../tutorials/intermediate/nornir-fundamentals.md) — Learn the basics of Nornir for parallel automation.
-- [PyATS Fundamentals](../tutorials/intermediate/pyats-fundamentals.md) — Understand Cisco's validation framework.
-- [Why Nornir?](../tutorials/intermediate/why-nornir.md) — When and why to use Nornir for enterprise automation.
-- [Nornir + PyATS Integration (Expert)](../tutorials/expert/nornir-pyats-integration.md) — Combine execution and validation for production-grade workflows.
-- [Deep Dive: CDP Network Audit](../deep-dives/cdp-audit.md) — See a real-world threaded discovery tool in action.
-- [Deep Dive: Access Switch Audit](../deep-dives/access-switch-audit.md) — Explore modular, production-ready automation for access switches.
+- [Nornir Fundamentals](../../tutorials/intermediate/nornir-fundamentals.md) — Learn the basics of Nornir for parallel automation.
+- [PyATS Fundamentals](../../tutorials/intermediate/pyats-fundamentals.md) — Understand Cisco's validation framework.
+- [Why Nornir?](../../tutorials/intermediate/why-nornir.md) — When and why to use Nornir for enterprise automation.
+- [Nornir + PyATS Integration (Expert)](../../tutorials/expert/nornir-pyats-integration.md) — Combine execution and validation for production-grade workflows.
+- [Deep Dive: CDP Network Audit](../../deep-dives/cdp-audit.md) — See a real-world threaded discovery tool in action.
+- [Deep Dive: Access Switch Audit](../../deep-dives/access-switch-audit.md) — Explore modular, production-ready automation for access switches.
 
 | Framework | Best For | Strengths | Weaknesses |
-|-----------|---------|-----------|------------|
+| ----------- | --------- | ----------- | ------------ |
 | **Nornir** | Parallel, Pythonic automation | Native Python, parallelism, extensibility | Smaller ecosystem, less GUI support |
 | **Ansible** | Declarative, config management, multi-vendor | Huge ecosystem, YAML playbooks, idempotence | Slower for large device sets, less Pythonic |
 | **PyATS** | Validation, testing, compliance | Enterprise validation, structured parsing, testbed-driven | Steep learning curve, less config push |
@@ -61,16 +63,19 @@ Choosing the right automation framework is one of the most important decisions f
 ## When to Use Each Framework
 
 ### Nornir
+
 - You want full Python control and parallel execution
 - Your team is comfortable with Python
 - You need to build custom workflows or integrate with other Python tools
 
 ### Ansible
+
 - You want declarative, YAML-based automation
 - You need broad vendor support and a large community
 - You want to leverage existing playbooks and modules
 
 ### PyATS
+
 - You need enterprise-grade validation and compliance
 - You want to test before/after states and prove outcomes
 - You need structured device parsing and reporting
@@ -109,6 +114,6 @@ Choosing the right automation framework is one of the most important decisions f
 
 - [Threading in Network Automation: When to Use It and When to Avoid It](threading-in-network-automation.md)
 - [Why Most Network Automation Pipelines Fail (And How to Fix Them)](why-automation-fails.md)
-- [PRIME Framework Overview](../prime-framework/index.md)
+- [PRIME Framework Overview](../../prime-framework/index.md)
 
 ---

@@ -1,5 +1,7 @@
 ---
 title: "Observability for Network Automation: Logging, Metrics, and Alerting Patterns"
+date: 2026-02-26T12:00:00
+draft: false
 description: How to make your automation visible, measurable, and safe—logging, metrics, dashboards, and alerting for production-grade operations.
 tags:
   - Blog
@@ -17,7 +19,7 @@ tags:
 Author: Nautomation Prime Team*
 
 ---
-> **This post is part of our ongoing series on network automation best practices, grounded in the [PRIME Framework](../prime-framework/index.md) and [PRIME Philosophy](../prime-framework/philosophy.md).**
+> **This post is part of our ongoing series on network automation best practices, grounded in the [PRIME Framework](../../prime-framework/index.md) and [PRIME Philosophy](../../prime-framework/philosophy.md).**
 
 ## Why This Blog Exists
 
@@ -40,9 +42,9 @@ You can’t fix what you can’t see. Observability is the foundation of safe, r
 
 ## Related Tutorials & Deep Dives
 
-- [DevOps & Observability (Expert)](../tutorials/expert/devops-observability-network-automation.md) — Build CI/CD, GitOps, and monitoring for automation.
+- [DevOps & Observability (Expert)](../../tutorials/expert/devops-observability-network-automation.md) — Build CI/CD, GitOps, and monitoring for automation.
 - [Blueprint for Enterprise-Ready Pipelines](enterprise-automation-pipeline-blueprint.md) — Learn about CI/CD and observability patterns.
-- [Deep Dive: Access Switch Audit](../deep-dives/access-switch-audit.md) — Explore logging, metrics, and reporting in a real-world tool.
+- [Deep Dive: Access Switch Audit](../../deep-dives/access-switch-audit.md) — Explore logging, metrics, and reporting in a real-world tool.
 
 - Start/stop of every automation run
 - Device-level actions and results
@@ -93,6 +95,6 @@ logger.info(json.dumps({'event': 'start', 'script': 'backup', 'timestamp': '...'
 
 - [Async vs. Threading vs. Multiprocessing in Network Automation](async-vs-threading-vs-multiprocessing.md)
 - [Why Most Network Automation Pipelines Fail (And How to Fix Them)](why-automation-fails.md)
-- [PRIME Framework Overview](../prime-framework/index.md)
+- [PRIME Framework Overview](../../prime-framework/index.md)
 
 ---

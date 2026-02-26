@@ -19,28 +19,27 @@ Here, you'll find:
 
 ---
 
-
 ## All Blog Posts
 
-- [Threading in Network Automation: When to Use It and When to Avoid It](threading-in-network-automation.md)
-- [Why Automation Fails: The PRIME Framework Solution](why-automation-fails.md)
-- [How to Choose the Right Network Automation Framework](choosing-network-automation-framework.md)
-- [Credential Management in Network Automation](credential-management-network-automation.md)
-- [Building a Source of Truth for Network Automation](source-of-truth-network-automation.md)
-- [Testing Strategies for Network Automation](testing-strategies-network-automation.md)
-- [Automation Failure Stories: How PRIME Would Have Prevented Disaster](automation-failure-stories-prime.md)
-- [Integrating Network Automation with ITSM and Change Management](itsm-change-management-network-automation.md)
-- [Async vs. Threading vs. Multiprocessing in Network Automation](async-vs-threading-vs-multiprocessing.md)
-- [Observability for Network Automation](observability-network-automation.md)
-- [Blueprint for Enterprise-Ready Network Automation Pipelines](enterprise-automation-pipeline-blueprint.md)
-- [Vendor-Neutral Automation: Avoiding Lock-In](vendor-neutral-automation.md)
-- [Case Study: A Full Network Automation Journey](case-study-full-automation-journey.md)
-- [Community Spotlight & How to Contribute](community-spotlight-how-to-contribute.md)
-- [Streaming Telemetry in Network Automation](emerging-tech-streaming-telemetry.md)
-- [Model-Driven APIs in Network Automation](emerging-tech-model-driven-apis.md)
-- [AI and Machine Learning in Network Automation](emerging-tech-ai-ml-network-automation.md)
-- [Event-Driven Automation in the Network](emerging-tech-event-driven-automation.md)
-- [Migrating Legacy Network Automation to Modern Frameworks](migrating-legacy-network-automation.md)
+- [Threading in Network Automation: When to Use It and When to Avoid It](posts/threading-in-network-automation.md)
+- [Why Automation Fails: The PRIME Framework Solution](posts/why-automation-fails.md)
+- [How to Choose the Right Network Automation Framework](posts/choosing-network-automation-framework.md)
+- [Credential Management in Network Automation](posts/credential-management-network-automation.md)
+- [Building a Source of Truth for Network Automation](posts/source-of-truth-network-automation.md)
+- [Testing Strategies for Network Automation](posts/testing-strategies-network-automation.md)
+- [Automation Failure Stories: How PRIME Would Have Prevented Disaster](posts/automation-failure-stories-prime.md)
+- [Integrating Network Automation with ITSM and Change Management](posts/itsm-change-management-network-automation.md)
+- [Async vs. Threading vs. Multiprocessing in Network Automation](posts/async-vs-threading-vs-multiprocessing.md)
+- [Observability for Network Automation](posts/observability-network-automation.md)
+- [Blueprint for Enterprise-Ready Network Automation Pipelines](posts/enterprise-automation-pipeline-blueprint.md)
+- [Vendor-Neutral Automation: Avoiding Lock-In](posts/vendor-neutral-automation.md)
+- [Case Study: A Full Network Automation Journey](posts/case-study-full-automation-journey.md)
+- [Community Spotlight & How to Contribute](posts/community-spotlight-how-to-contribute.md)
+- [Streaming Telemetry in Network Automation](posts/emerging-tech-streaming-telemetry.md)
+- [Model-Driven APIs in Network Automation](posts/emerging-tech-model-driven-apis.md)
+- [AI and Machine Learning in Network Automation](posts/emerging-tech-ai-ml-network-automation.md)
+- [Event-Driven Automation in the Network](posts/emerging-tech-event-driven-automation.md)
+- [Migrating Legacy Network Automation to Modern Frameworks](posts/migrating-legacy-network-automation.md)
 
 ---
 
