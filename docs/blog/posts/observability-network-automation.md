@@ -36,9 +36,6 @@ You can’t fix what you can’t see. Observability is the foundation of safe, r
 
 ---
 
-
----
-
 ## Related Tutorials & Deep Dives
 
 - [DevOps & Observability (Expert)](../../tutorials/expert/devops-observability-network-automation.md) — Build CI/CD, GitOps, and monitoring for automation.
@@ -53,40 +50,70 @@ You can’t fix what you can’t see. Observability is the foundation of safe, r
 
 ---
 
+
 ## Tools and Patterns
 
-- **Logging:** Python logging, JSON logs, ELK/Splunk
-- **Metrics:** Prometheus, Grafana, InfluxDB
-- **Alerting:** Slack, Teams, PagerDuty, email
-- **Dashboards:** Grafana, Kibana
+- **Logging:** Python logging, JSON logs, ELK/Splunk, structured logs for machine parsing
+- **Metrics:** Prometheus, Grafana, InfluxDB, custom exporters for automation metrics
+- **Alerting:** Slack, Teams, PagerDuty, email, automated incident creation (ServiceNow, Opsgenie)
+- **Dashboards:** Grafana, Kibana, custom dashboards for automation health and trends
+- **Tracing:** Correlate logs and metrics with unique run IDs for end-to-end visibility
 
 ---
+
 
 ## Example: Adding Structured Logging
 
 ```python
 import logging
 import json
+import time
 logging.basicConfig(level=logging.INFO, format='%(message)s')
 logger = logging.getLogger('automation')
-logger.info(json.dumps({'event': 'start', 'script': 'backup', 'timestamp': '...'}))
+run_id = 'run-1234'
+logger.info(json.dumps({'event': 'start', 'script': 'backup', 'run_id': run_id, 'timestamp': time.time()}))
+try:
+  # ... automation logic ...
+  logger.info(json.dumps({'event': 'success', 'run_id': run_id, 'duration': 12.3}))
+except Exception as e:
+  logger.error(json.dumps({'event': 'error', 'run_id': run_id, 'error': str(e)}))
+```
+
+**Advanced Pattern: Prometheus Metrics Exporter**
+```python
+from prometheus_client import start_http_server, Counter
+AUTOMATION_RUNS = Counter('automation_runs_total', 'Total automation runs', ['script', 'status'])
+start_http_server(8000)
+def run_backup():
+  try:
+    # ...
+    AUTOMATION_RUNS.labels(script='backup', status='success').inc()
+  except Exception:
+    AUTOMATION_RUNS.labels(script='backup', status='failure').inc()
 ```
 
 ---
 
+
 ## PRIME in Action: Building Dashboards
 
-- Collect logs and metrics centrally
-- Build dashboards for key metrics (success rate, duration, errors)
-- Alert on anomalies and failures
+- Collect logs and metrics centrally (ELK, Loki, Prometheus)
+- Build dashboards for key metrics (success rate, duration, errors, device-level stats)
+- Alert on anomalies and failures (thresholds, anomaly detection, SLOs)
+- Integrate observability with CI/CD for automated rollbacks and incident response
+- Use run IDs and trace context to correlate automation runs across systems
 
 ---
+
 
 ## Summary: Blog Takeaways
 
 - Observability is essential for safe, scalable automation
 - Log everything, collect metrics, and alert on failures
 - PRIME principles make observability sustainable and empowering
+- Use structured logs, metrics, and dashboards for end-to-end visibility
+- Integrate observability with CI/CD and incident response
+- Use unique run IDs and trace context for troubleshooting
 
 ---
 

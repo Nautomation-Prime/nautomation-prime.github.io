@@ -34,9 +34,6 @@ Legacy scripts are everywhere—but they’re hard to maintain, scale, and secur
 
 ---
 
-
----
-
 ## Related Tutorials & Deep Dives
 
 - [Vendor-Neutral Automation](vendor-neutral-automation.md) — Avoid lock-in and build for portability.
@@ -45,52 +42,91 @@ Legacy scripts are everywhere—but they’re hard to maintain, scale, and secur
 
 1. **Inventory Existing Scripts**
    - List all automation scripts and their functions
-   - Identify dependencies and pain points
+   - Identify dependencies, pain points, and security risks
+   - Map out undocumented logic and tribal knowledge
 2. **Define Requirements**
-   - What must the new solution do? (features, scale, compliance)
+   - What must the new solution do? (features, scale, compliance, security, integrations)
+   - Identify gaps in current workflows and desired improvements
 3. **Choose a Modern Framework**
-   - Nornir for Pythonic parallelism
-   - PyATS for validation and testing
-   - Ansible for declarative config management
+   - Nornir for Pythonic parallelism and custom logic
+   - PyATS for validation, testing, and compliance gates
+   - Ansible for declarative config management and onboarding
+   - Consider hybrid approaches for complex environments
 4. **Refactor in Stages**
-   - Start with core logic, then add features
-   - Use version control and CI/CD
+   - Start with core logic, then add features and integrations
+   - Modularize code for reuse and testability
+   - Use version control, code reviews, and CI/CD pipelines
+   - Automate linting, testing, and deployment
 5. **Test and Validate**
    - Unit, integration, and mock device tests
-   - Compare outputs with legacy scripts
+   - Compare outputs with legacy scripts and real devices
+   - Validate error handling, rollbacks, and edge cases
 6. **Document and Train**
-   - Update runbooks and user guides
-   - Train the team on new workflows
+   - Update runbooks, user guides, and architecture diagrams
+   - Train the team on new workflows, tools, and best practices
+   - Hold knowledge transfer sessions and create onboarding materials
 
 ---
+
 
 ## Example: Refactoring a Backup Script
 
 **Before:**
 
-- Monolithic Python script, hardcoded credentials, no error handling
+- Monolithic Python script, hardcoded credentials, no error handling, no logging
+
+```python
+# legacy_backup.py
+import paramiko
+def backup(device):
+   ssh = paramiko.SSHClient()
+   ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+   ssh.connect(device, username='admin', password='cisco')
+   stdin, stdout, stderr = ssh.exec_command('show running-config')
+   with open(f'{device}.cfg', 'w') as f:
+      f.write(stdout.read().decode())
+```
 
 **After:**
 
-- Modular Nornir workflow, environment variables, structured logging, error handling
+- Modular Nornir workflow, environment variables, structured logging, error handling, test coverage
+
+```python
+# modern_backup.py
+from nornir import InitNornir
+from nornir_netmiko.tasks import netmiko_send_command
+import os, logging
+logging.basicConfig(level=logging.INFO)
+nr = InitNornir(config_file="config.yaml")
+def backup(task):
+   result = task.run(task=netmiko_send_command, command_string="show running-config")
+   with open(f"{task.host}.cfg", "w") as f:
+      f.write(result.result)
+   logging.info(f"Backed up {task.host}")
+results = nr.run(task=backup)
+```
 
 ---
+
 
 ## PRIME in Action: Sustainable Modernization
 
-- Transparency: Document every change and decision
-- Measurability: Track migration progress and outcomes
-- Ownership: Empower your team to maintain and extend
-- Safety: Test and validate at every stage
-- Empowerment: Provide training and support
+- **Transparency:** Document every change, decision, and migration step
+- **Measurability:** Track migration progress, test coverage, and outcomes with dashboards
+- **Ownership:** Empower your team to maintain, extend, and refactor as needs evolve
+- **Safety:** Test and validate at every stage, automate rollbacks and error handling
+- **Empowerment:** Provide training, support, and clear onboarding for new team members
 
 ---
+
 
 ## Summary: Blog Takeaways
 
 - Migrating to modern frameworks reduces risk and increases value
 - Follow a structured, PRIME-aligned process
 - Document, test, and empower your team for long-term success
+- Use modular code, CI/CD, and automated testing for sustainable modernization
+- Plan for incremental migration and continuous improvement
 
 ---
 

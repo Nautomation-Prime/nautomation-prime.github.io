@@ -26,12 +26,97 @@ Legacy CLI and SNMP are giving way to model-driven APIs like gNMI and RESTCONF. 
 
 ---
 
+
 ## What are Model-Driven APIs?
 
-- APIs based on YANG data models
-- gNMI (gRPC Network Management Interface)
-- RESTCONF (RESTful API for YANG models)
-- Enable structured, programmatic device management
+- APIs based on YANG data models (standardized, vendor-neutral)
+- gNMI (gRPC Network Management Interface): high-performance, streaming, and config/state access
+- RESTCONF: RESTful API for YANG models, easy to use with HTTP/JSON
+- Enable structured, programmatic device management and automation
+- Replace legacy CLI scraping and SNMP with reliable, scalable interfaces
+
+---
+
+## Why Model-Driven APIs? (Benefits & Use Cases)
+
+- **Consistency:** Same data model and API across vendors (multi-vendor automation)
+- **Reliability:** Fewer parsing errors, less breakage on upgrades
+- **Speed:** Bulk config/state retrieval, streaming telemetry
+- **Intent-based automation:** Express desired state, not just CLI commands
+
+**Common Use Cases:**
+- Automated config deployment and validation
+- Real-time state monitoring and alerting
+- Closed-loop remediation (auto-fix drift)
+- Compliance and audit reporting
+
+---
+
+## YANG Data Models: The Foundation
+
+- YANG defines the structure of config/state data (interfaces, BGP, QoS, etc.)
+- Vendors and standards bodies publish YANG models (OpenConfig, IETF, Cisco)
+- Tools: pyang, yang-explorer for browsing and validating models
+
+---
+
+## Example 1: Using pygnmi for gNMI (Config/State)
+
+```python
+from pygnmi.client import gNMIclient
+with gNMIclient(target=('router', 57400), username='admin', password='pass', insecure=True) as gc:
+  # Get interface state
+  result = gc.get(path=['/interfaces/interface[name=Ethernet1]'])
+  print(result)
+  # Set config example
+  set_result = gc.set(update=[('/interfaces/interface[name=Ethernet1]/config/enabled', False)])
+  print(set_result)
+```
+
+---
+
+## Example 2: Using RESTCONF with Python (requests)
+
+```python
+import requests
+import json
+
+url = 'https://router/restconf/data/ietf-interfaces:interfaces/interface=Ethernet1'
+headers = {
+  'Accept': 'application/yang-data+json',
+  'Content-Type': 'application/yang-data+json',
+}
+auth = ('admin', 'pass')
+response = requests.get(url, headers=headers, auth=auth, verify=False)
+print(json.dumps(response.json(), indent=2))
+```
+
+---
+
+## Advanced Patterns: Abstraction, Error Handling, and Portability
+
+- Build Python classes/functions to abstract API calls (hide protocol details)
+- Handle errors and API version changes gracefully
+- Use environment variables or vaults for credentials
+- Track vendor support and API changes over time
+
+---
+
+## PRIME in Action: Transparency, Ownership, and Measurability
+
+- Document API usage, dependencies, and data models
+- Build abstraction layers for portability and future-proofing
+- Track API changes, vendor support, and automation outcomes
+- Use model-driven APIs for compliance, audit, and reporting
+
+---
+
+## Summary: Blog Takeaways
+
+- Model-driven APIs are the future of scalable, reliable, and vendor-neutral network automation
+- Use gNMI and RESTCONF for structured config, state, and telemetry
+- Build abstractions and track changes for long-term success
+- PRIME principles ensure safe, transparent, and measurable adoption
 
 ---
 
@@ -43,45 +128,6 @@ Legacy CLI and SNMP are giving way to model-driven APIs like gNMI and RESTCONF. 
 - [Streaming Telemetry in Network Automation](emerging-tech-streaming-telemetry.md) — Real-time data for modern automation workflows.
 - [AI and Machine Learning in Network Automation](emerging-tech-ai-ml-network-automation.md) — Explore practical AI/ML use cases for automation.
 - [Event-Driven Automation in the Network](emerging-tech-event-driven-automation.md) — Build real-time, event-driven workflows.
-
-- Consistent, vendor-neutral automation
-- Faster, safer, and more reliable than CLI scraping
-- Enable intent-based and closed-loop automation
-
----
-
-## Getting Started
-
-- Identify devices that support gNMI/RESTCONF
-- Use open-source libraries (pygnmi, requests)
-- Build scripts for config, state, and telemetry
-
----
-
-## Example: Using pygnmi for gNMI
-
-```python
-from pygnmi.client import gNMIclient
-with gNMIclient(target=('router', 57400), username='admin', password='pass') as gc:
-    result = gc.get(path=['/interfaces/interface[name=Ethernet1]'])
-    print(result)
-```
-
----
-
-## PRIME in Action: Transparency and Ownership
-
-- Document API usage and dependencies
-- Build abstraction layers for portability
-- Track API changes and vendor support
-
----
-
-## Summary: Blog Takeaways
-
-- Model-driven APIs are the future of network automation
-- Use gNMI and RESTCONF for scalable, vendor-neutral management
-- PRIME principles ensure safe, transparent adoption
 
 ---
 

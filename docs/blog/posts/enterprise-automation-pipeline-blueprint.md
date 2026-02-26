@@ -52,31 +52,46 @@ Enterprise automation is more than scripts—it’s pipelines, version control, 
 
 ---
 
+
 ## Example: Building a Pipeline for Config Backup
 
 1. **Push code to Git**
-2. **CI runs tests and linting**
-3. **Build Docker image for automation tool**
-4. **Deploy to staging environment**
-5. **Run pre-flight validation**
-6. **Deploy to production (blue-green)**
-7. **Monitor and alert on failures**
+2. **CI runs tests and linting** (pytest, flake8, black)
+3. **Build Docker image for automation tool** (Dockerfile, multi-stage builds)
+4. **Deploy to staging environment** (Kubernetes, Docker Compose, or VM)
+5. **Run pre-flight validation** (dry-run, config diff, device reachability)
+6. **Deploy to production (blue-green or canary)** (automated cutover, rollback on failure)
+7. **Monitor and alert on failures** (Prometheus, Grafana, ELK, Slack/PagerDuty)
+8. **Automate rollback and incident response** (triggered by failed health checks)
+
+**Advanced Patterns:**
+- Use GitOps tools (ArgoCD, Flux) for declarative deployments
+- Integrate ITSM approval gates (ServiceNow, Jira) into pipelines
+- Use secrets managers (Vault, AWS Secrets Manager) for credentials
+- Automate compliance checks and reporting as part of CI/CD
 
 ---
+
 
 ## PRIME in Action: Safe Rollouts
 
-- Automate rollback on failure
-- Require approvals for production changes
-- Track every deployment and outcome
+- Automate rollback on failure (detect errors, revert to last known good state)
+- Require approvals for production changes (integrate with ITSM, code owners)
+- Track every deployment, outcome, and incident (logs, dashboards, runbooks)
+- Use canary and blue-green deployments for zero-downtime rollouts
+- Integrate observability and incident response into every pipeline
 
 ---
+
 
 ## Summary: Blog Takeaways
 
 - Pipelines make automation safe, scalable, and repeatable
 - Use CI/CD, GitOps, and containers for production-grade workflows
 - PRIME principles ensure safety, empowerment, and transparency
+- Integrate validation, observability, and rollback into every pipeline
+- Use advanced rollout patterns (blue-green, canary, staged) for safe production changes
+- Automate compliance, approvals, and incident response for enterprise readiness
 
 ---
 

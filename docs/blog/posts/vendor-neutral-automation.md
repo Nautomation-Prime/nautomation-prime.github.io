@@ -51,39 +51,62 @@ Vendor lock-in is a hidden risk in network automation. This post explains why it
 
 ---
 
+
 ## Patterns for Vendor-Neutral Automation
 
-- Use open-source frameworks (Nornir, Netmiko, PyATS, NAPALM)
-- Abstract device logic from business logic
-- Avoid proprietary data formats and APIs
-- Document all dependencies and interfaces
-- Build for migration from day one
+- Use open-source frameworks (Nornir, Netmiko, PyATS, NAPALM, Scrapli)
+- Abstract device logic from business logic (use adapters, plugins, or drivers)
+- Avoid proprietary data formats and APIs—prefer open standards (YANG, OpenConfig, RESTCONF, gNMI)
+- Document all dependencies, interfaces, and supported platforms
+- Build for migration from day one: modularize code, use config files, and avoid hardcoding
+- Use CI/CD to test automation against multiple vendors and platforms
+- Track portability with regular audits and migration drills
 
 ---
+
 
 ## Example: Migrating from Proprietary to Open-Source
 
-1. Inventory all proprietary dependencies
-2. Replace with open-source equivalents
-3. Refactor scripts for abstraction and modularity
-4. Test for feature parity and performance
-5. Document migration steps and lessons learned
+1. Inventory all proprietary dependencies (APIs, libraries, data formats)
+2. Replace with open-source equivalents (Netmiko for CLI, NAPALM for multi-vendor, Scrapli for async)
+3. Refactor scripts for abstraction and modularity (use classes, interfaces, and dependency injection)
+4. Test for feature parity, performance, and error handling across vendors
+5. Document migration steps, lessons learned, and update runbooks
+6. Automate migration validation with CI/CD and testbeds
+
+**Abstraction Example:**
+```python
+class DeviceDriver:
+  def get_facts(self): ...
+  def push_config(self, config): ...
+
+class CiscoDriver(DeviceDriver):
+  ...
+class JuniperDriver(DeviceDriver):
+  ...
+# Use driver = get_driver(device_type) to abstract vendor logic
+```
 
 ---
+
 
 ## PRIME in Action: Portability Audits
 
-- Regularly review automation for vendor dependencies
-- Track migration effort and outcomes
-- Share lessons learned with the team
+- Regularly review automation for vendor dependencies and proprietary features
+- Track migration effort, test coverage, and outcomes
+- Share lessons learned and migration playbooks with the team
+- Schedule periodic migration drills to ensure readiness
 
 ---
+
 
 ## Summary: Blog Takeaways
 
 - Vendor-neutral automation protects your investment and future
 - Use open-source, abstract logic, and document everything
 - PRIME principles ensure ownership, transparency, and safety
+- Prefer open standards and modular design for long-term flexibility
+- Test portability regularly and plan for migration as a normal part of automation lifecycle
 
 ---
 
