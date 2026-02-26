@@ -176,6 +176,7 @@ nav:
           - legal/terms-of-use.md
 
 plugins:
+  - mermaid2
   - search:
       separator: '[\s\-,:!=\[\]()"/]+|(?!\b)(?=[A-Z][a-z])|\.(?!\d)|&[lg]t;'
       lang: en
