@@ -1,7 +1,7 @@
 ---
-title: "Vendor-Neutral Automation: Avoiding Lock-In and Building for Portability"
 date: 2026-02-26T12:00:00
 draft: false
+author: "Nautomation Prime Team"
 description: How to design automation that outlasts vendors, avoids lock-in, and aligns with the PRIME Framework for ownership and transparency.
 tags:
   - Blog
@@ -13,9 +13,6 @@ tags:
 
 # Vendor-Neutral Automation: Avoiding Lock-In and Building for Portability
 
-> *Published: February 24, 2026  \
-Author: Nautomation Prime Team*
-
 ---
 
 > **This post is part of our ongoing series on network automation best practices, grounded in the [PRIME Framework](../../prime-framework/index.md) and [PRIME Philosophy](../../prime-framework/philosophy.md).**
@@ -23,6 +20,8 @@ Author: Nautomation Prime Team*
 ## Why This Blog Exists
 
 Vendor lock-in is a hidden risk in network automation. This post explains why it matters, how to design for portability, and how the PRIME Framework ensures you own your automation destiny.
+
+<!-- more -->
 
 ---
 

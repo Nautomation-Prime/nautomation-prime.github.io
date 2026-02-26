@@ -144,6 +144,7 @@ nav:
       - Scripts: scripts/index.md
   - Blog:
       - blog/index.md
+
   - Coming Soon:
       - coming-soon/index.md
       - Cisco IOS XE ZTP: coming-soon/cisco-ios-xe-ztp.md

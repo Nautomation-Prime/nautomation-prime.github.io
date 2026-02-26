@@ -1,7 +1,7 @@
 ---
-title: "Why Automation Fails: The PRIME Framework Solution"
 date: 2026-02-26T12:00:00
 draft: false
+author: "Nautomation Prime Team"
 description: Understand why 70% of network automation projects fail within 6 months—and how the PRIME Framework prevents catastrophic failure.
 tags:
     - Blog
@@ -14,9 +14,6 @@ tags:
 
 # Why Automation Fails: The PRIME Framework Solution
 
-> *Published: February 24, 2026  \
-Author: Nautomation Prime Team*
-
 ---
 
 > **This post is part of our ongoing series on network automation best practices, grounded in the [PRIME Framework](../../prime-framework/index.md) and [PRIME Philosophy](../../prime-framework/philosophy.md).**
@@ -26,6 +23,8 @@ Author: Nautomation Prime Team*
 **70% of network automation projects collapse within 6 months.**
 
 Not because the code is broken. Not because the idea is bad. But because something deeper—structural—goes wrong. This post breaks down the most common failure patterns and shows how the PRIME Framework prevents them.
+
+<!-- more -->
 
 ---
 

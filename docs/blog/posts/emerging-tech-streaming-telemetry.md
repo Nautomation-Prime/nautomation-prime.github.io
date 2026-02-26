@@ -1,7 +1,7 @@
 ---
-title: "Streaming Telemetry in Network Automation: Real-Time Data for Modern Operations"
 date: 2026-02-26T12:00:00
 draft: false
+author: "Nautomation Prime Team"
 description: An introduction to streaming telemetry, why it matters, and how to use it in your automation workflows.
 tags:
   - Blog
@@ -13,9 +13,6 @@ tags:
 
 # Streaming Telemetry in Network Automation: Real-Time Data for Modern Operations
 
-> *Published: February 24, 2026  \
-Author: Nautomation Prime Team*
-
 ---
 
 > **This post is part of our ongoing series on network automation best practices, grounded in the [PRIME Framework](../../prime-framework/index.md) and [PRIME Philosophy](../../prime-framework/philosophy.md).**
@@ -23,6 +20,8 @@ Author: Nautomation Prime Team*
 ## Why This Blog Exists
 
 SNMP and CLI scraping are no longer enough. Streaming telemetry provides real-time, structured data for modern network automation. This post introduces the concept, benefits, and practical steps to get started.
+
+<!-- more -->
 
 ---
 

@@ -1,7 +1,7 @@
 ---
-title: "Observability for Network Automation: Logging, Metrics, and Alerting Patterns"
 date: 2026-02-26T12:00:00
 draft: false
+author: "Nautomation Prime Team"
 description: How to make your automation visible, measurable, and safe—logging, metrics, dashboards, and alerting for production-grade operations.
 tags:
   - Blog
@@ -15,15 +15,14 @@ tags:
 
 # Observability for Network Automation: Logging, Metrics, and Alerting Patterns
 
-> *Published: February 24, 2026  \
-Author: Nautomation Prime Team*
-
 ---
 > **This post is part of our ongoing series on network automation best practices, grounded in the [PRIME Framework](../../prime-framework/index.md) and [PRIME Philosophy](../../prime-framework/philosophy.md).**
 
 ## Why This Blog Exists
 
 You can’t fix what you can’t see. Observability is the foundation of safe, reliable automation. This post covers what to log, how to collect metrics, and how to alert on failures—so you can operate automation at scale with confidence.
+
+<!-- more -->
 
 ---
 

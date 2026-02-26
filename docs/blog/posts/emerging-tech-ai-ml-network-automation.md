@@ -1,7 +1,7 @@
 ---
-title: "AI and Machine Learning in Network Automation: Hype, Reality, and Practical Use Cases"
 date: 2026-02-26T12:00:00
 draft: false
+author: "Nautomation Prime Team"
 description: What AI/ML can (and can’t) do for network automation, with real-world examples and PRIME-aligned guidance.
 tags:
   - Blog
@@ -14,9 +14,6 @@ tags:
 
 # AI and Machine Learning in Network Automation: Hype, Reality, and Practical Use Cases
 
-> *Published: February 24, 2026  \
-Author: Nautomation Prime Team*
-
 ---
 
 > **This post is part of our ongoing series on network automation best practices, grounded in the [PRIME Framework](../../prime-framework/index.md) and [PRIME Philosophy](../../prime-framework/philosophy.md).**
@@ -24,6 +21,8 @@ Author: Nautomation Prime Team*
 ## Why This Blog Exists
 
 AI and ML are everywhere—but what do they really mean for network automation? This post separates hype from reality, explores practical use cases, and shows how the PRIME Framework keeps your automation grounded and safe.
+
+<!-- more -->
 
 ---
 

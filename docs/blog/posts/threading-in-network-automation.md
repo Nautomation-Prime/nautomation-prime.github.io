@@ -1,7 +1,7 @@
 ---
-title: "Threading in Network Automation: When to Use It and When to Avoid It"
 date: 2026-02-26T12:00:00
 draft: false
+author: "Nautomation Prime Team"
 description: Why threading is almost never the right tool for network automation, and how the PRIME Framework guides safer, scalable concurrency.
 tags:
   - Blog
@@ -14,9 +14,6 @@ tags:
 
 # Threading in Network Automation: When to Use It and When to Avoid It
 
-> *Published: February 24, 2026  \
-Author: Nautomation Prime Team*
-
 ---
 
 > **This post is part of our ongoing series on network automation best practices, grounded in the [PRIME Framework](../../prime-framework/index.md) and [PRIME Philosophy](../../prime-framework/philosophy.md).**
@@ -24,6 +21,8 @@ Author: Nautomation Prime Team*
 ## Why This Blog Exists
 
 If you've ever been tempted to sprinkle a bit of Python `threading` into your network scripts for "speed"—stop! This post is for you. We'll show you why threading is almost always the wrong tool for network automation, and how the PRIME Framework's principles lead to safer, more scalable solutions.
+
+<!-- more -->
 
 ---
 

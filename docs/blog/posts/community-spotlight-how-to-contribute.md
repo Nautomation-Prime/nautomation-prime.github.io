@@ -1,7 +1,7 @@
 ---
-title: "Community Spotlight & How to Contribute"
 date: 2026-02-26T12:00:00
 draft: false
+author: "Nautomation Prime Team"
 description: How to get involved, share your story, and contribute to the Nautomation Prime community.
 tags:
   - Blog
@@ -13,9 +13,6 @@ tags:
 
 # Community Spotlight & How to Contribute
 
-> *Published: February 24, 2026  \
-Author: Nautomation Prime Team*
-
 ---
 
 > **This post is part of our ongoing series on network automation best practices, grounded in the [PRIME Framework](../../prime-framework/index.md) and [PRIME Philosophy](../../prime-framework/philosophy.md).**
@@ -23,6 +20,8 @@ Author: Nautomation Prime Team*
 ## Why This Blog Exists
 
 Nautomation Prime is built by and for the community. This post explains how you can get involved, share your story, and help others on their automation journey.
+
+<!-- more -->
 
 ---
 

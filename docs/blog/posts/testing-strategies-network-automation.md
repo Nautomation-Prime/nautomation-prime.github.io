@@ -1,7 +1,7 @@
 ---
-title: "Testing Strategies for Network Automation: From Unit Tests to Mock Devices"
 date: 2026-02-26T12:00:00
 draft: false
+author: "Nautomation Prime Team"
 description: How to test your network automation for reliability, safety, and measurable outcomes—unit, integration, and mock device testing explained.
 tags:
   - Blog
@@ -13,9 +13,6 @@ tags:
 
 # Testing Strategies for Network Automation: From Unit Tests to Mock Devices
 
-> *Published: February 24, 2026  \
-Author: Nautomation Prime Team*
-
 ---
 
 > **This post is part of our ongoing series on network automation best practices, grounded in the [PRIME Framework](../../prime-framework/index.md) and [PRIME Philosophy](../../prime-framework/philosophy.md).**
@@ -23,6 +20,8 @@ Author: Nautomation Prime Team*
 ## Why This Blog Exists
 
 Testing is the difference between "it works on my machine" and "it works in production." This post covers why testing matters, the types of tests you need, and how the PRIME Framework makes testing sustainable and measurable.
+
+<!-- more -->
 
 ---
 

@@ -1,7 +1,7 @@
 ---
-title: "Automation Failure Stories: How PRIME Would Have Prevented Disaster"
 date: 2026-02-26T12:00:00
 draft: false
+author: "Nautomation Prime Team"
 description: Real-world network automation failures, what went wrong, and how the PRIME Framework could have saved the day.
 tags:
   - Blog
@@ -13,9 +13,6 @@ tags:
 
 # Automation Failure Stories: How PRIME Would Have Prevented Disaster
 
-> *Published: February 24, 2026  \
-Author: Nautomation Prime Team*
-
 ---
 
 > **This post is part of our ongoing series on network automation best practices, grounded in the [PRIME Framework](../../prime-framework/index.md) and [PRIME Philosophy](../../prime-framework/philosophy.md).**
@@ -23,6 +20,8 @@ Author: Nautomation Prime Team*
 ## Why This Blog Exists
 
 Everyone loves a good war story—especially when there’s a lesson to be learned. Here are real-world automation failures, what went wrong, and how the PRIME Framework would have prevented disaster.
+
+<!-- more -->
 
 ---
 

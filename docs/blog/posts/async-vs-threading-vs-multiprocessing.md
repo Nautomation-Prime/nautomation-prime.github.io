@@ -1,6 +1,7 @@
 ---
 date: 2026-02-26T12:00:00
 draft: false
+author: "Nautomation Prime Team"
 description: Understand the differences, use cases, and PRIME-aligned best practices for concurrency in network automation.
 tags:
   - Blog
@@ -14,15 +15,14 @@ tags:
 
 # Async vs. Threading vs. Multiprocessing in Network Automation
 
-> *Published: February 24, 2026  \
-Author: Nautomation Prime Team*
-
 ---
 > **This post is part of our ongoing series on network automation best practices, grounded in the [PRIME Framework](../../prime-framework/index.md) and [PRIME Philosophy](../../prime-framework/philosophy.md).**
 
 ## Why This Blog Exists
 
 Concurrency is essential for scalable automation—but not all concurrency models are created equal. This post explains the differences between async, threading, and multiprocessing, when to use each, and how the PRIME Framework guides safe, transparent choices.
+
+<!-- more -->
 
 ---
 
@@ -64,6 +64,7 @@ Concurrency is essential for scalable automation—but not all concurrency model
 ## Example: Refactoring for Async
 
 **Before (Threading):**
+
 ```python
 from threading import Thread
 for device in devices:

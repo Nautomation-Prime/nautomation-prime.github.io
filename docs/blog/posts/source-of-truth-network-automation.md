@@ -1,7 +1,7 @@
 ---
-title: "Building a Source of Truth for Network Automation: Netbox, CMDB, and Inventory Strategies"
 date: 2026-02-26T12:00:00
 draft: false
+author: "Nautomation Prime Team"
 description: Why a source of truth is essential for scalable automation, how to build one, and how the PRIME Framework ensures transparency and ownership.
 tags:
     - Blog
@@ -14,9 +14,6 @@ tags:
 
 # Building a Source of Truth for Network Automation: Netbox, CMDB, and Inventory Strategies
 
-> *Published: February 24, 2026  \
-Author: Nautomation Prime Team*
-
 ---
 
 > **This post is part of our ongoing series on network automation best practices, grounded in the [PRIME Framework](../../prime-framework/index.md) and [PRIME Philosophy](../../prime-framework/philosophy.md).**
@@ -24,6 +21,8 @@ Author: Nautomation Prime Team*
 ## Why This Blog Exists
 
 Automation is only as good as its data. A reliable "source of truth" is the foundation for scalable, error-free network automation. This post explains what a source of truth is, why it matters, and how to build one using Netbox, CMDBs, or simple inventories.
+
+<!-- more -->
 
 ---
 

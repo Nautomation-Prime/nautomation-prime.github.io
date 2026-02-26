@@ -1,7 +1,7 @@
 ---
-title: "Credential Management in Network Automation: Best Practices for Safety and Scale"
 date: 2026-02-26T12:00:00
 draft: false
+author: "Nautomation Prime Team"
 description: How to manage credentials securely in network automation, avoid common pitfalls, and align with the PRIME Framework for production safety.
 tags:
   - Blog
@@ -13,9 +13,6 @@ tags:
 
 # Credential Management in Network Automation: Best Practices for Safety and Scale
 
-> *Published: February 24, 2026  \
-Author: Nautomation Prime Team*
-
 ---
 
 > **This post is part of our ongoing series on network automation best practices, grounded in the [PRIME Framework](../../prime-framework/index.md) and [PRIME Philosophy](../../prime-framework/philosophy.md).**
@@ -23,6 +20,8 @@ Author: Nautomation Prime Team*
 ## Why This Blog Exists
 
 Credentials are the keys to your network—and the #1 target for attackers. This post explains why credential management is critical, how to do it safely, and how the PRIME Framework guides best practices for production automation.
+
+<!-- more -->
 
 ---
 

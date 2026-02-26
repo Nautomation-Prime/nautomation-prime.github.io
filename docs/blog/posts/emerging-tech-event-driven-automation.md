@@ -1,7 +1,7 @@
 ---
-title: "Event-Driven Automation in the Network: Webhooks, Message Queues, and Real-Time Response"
 date: 2026-02-26T12:00:00
 draft: false
+author: "Nautomation Prime Team"
 description: How to build event-driven automation with webhooks, message queues, and the PRIME Framework.
 tags:
   - Blog
@@ -15,15 +15,14 @@ tags:
 
 # Event-Driven Automation in the Network: Webhooks, Message Queues, and Real-Time Response
 
-> *Published: February 24, 2026  \
-Author: Nautomation Prime Team*
-
 ---
 > **This post is part of our ongoing series on network automation best practices, grounded in the [PRIME Framework](../../prime-framework/index.md) and [PRIME Philosophy](../../prime-framework/philosophy.md).**
 
 ## Why This Blog Exists
 
 Polling is slow and inefficient. Event-driven automation enables real-time response to network changes. This post covers webhooks, message queues, and how to build event-driven workflows with the PRIME Framework.
+
+<!-- more -->
 
 ---
 

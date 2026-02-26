@@ -1,7 +1,7 @@
 ---
-title: "Integrating Network Automation with ITSM and Change Management"
 date: 2026-02-26T12:00:00
 draft: false
+author: "Nautomation Prime Team"
 description: How to connect your automation to ServiceNow, Jira, and ITSM workflows for auditability, compliance, and measurable outcomes.
 tags:
   - Blog
@@ -13,9 +13,6 @@ tags:
 
 # Integrating Network Automation with ITSM and Change Management
 
-> *Published: February 24, 2026  \
-Author: Nautomation Prime Team*
-
 ---
 
 > **This post is part of our ongoing series on network automation best practices, grounded in the [PRIME Framework](../../prime-framework/index.md) and [PRIME Philosophy](../../prime-framework/philosophy.md).**
@@ -23,6 +20,8 @@ Author: Nautomation Prime Team*
 ## Why This Blog Exists
 
 Automation without change management is a compliance risk. This post explains why ITSM integration matters, how to connect your automation to ServiceNow, Jira, and other workflows, and how the PRIME Framework ensures auditability and ownership.
+
+<!-- more -->
 
 ---
 

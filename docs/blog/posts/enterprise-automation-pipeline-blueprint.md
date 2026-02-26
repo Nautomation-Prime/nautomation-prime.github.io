@@ -1,7 +1,7 @@
 ---
-title: "Blueprint for Enterprise-Ready Network Automation Pipelines"
 date: 2026-02-26T12:00:00
 draft: false
+author: "Nautomation Prime Team"
 description: How to build CI/CD, GitOps, and containerized pipelines for safe, scalable, and PRIME-aligned network automation.
 tags:
   - Blog
@@ -14,9 +14,6 @@ tags:
 
 # Blueprint for Enterprise-Ready Network Automation Pipelines
 
-> *Published: February 24, 2026  \
-Author: Nautomation Prime Team*
-
 ---
 
 > **This post is part of our ongoing series on network automation best practices, grounded in the [PRIME Framework](../../prime-framework/index.md) and [PRIME Philosophy](../../prime-framework/philosophy.md).**
@@ -24,6 +21,8 @@ Author: Nautomation Prime Team*
 ## Why This Blog Exists
 
 Enterprise automation is more than scripts—it’s pipelines, version control, and safe rollouts. This post covers how to build CI/CD, GitOps, and containerized pipelines for network automation, and how the PRIME Framework ensures safety and empowerment.
+
+<!-- more -->
 
 ---
 

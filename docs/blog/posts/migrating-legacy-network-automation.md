@@ -1,7 +1,7 @@
 ---
-title: "Migrating Legacy Network Automation to Modern Frameworks: A Step-by-Step Guide"
 date: 2026-02-26T12:00:00
 draft: false
+author: "Nautomation Prime Team"
 description: How to refactor old scripts, avoid technical debt, and adopt PRIME-aligned best practices for sustainable automation.
 tags:
    - Blog
@@ -14,9 +14,6 @@ tags:
 
 # Migrating Legacy Network Automation to Modern Frameworks: A Step-by-Step Guide
 
-> *Published: February 24, 2026  \
-Author: Nautomation Prime Team*
-
 ---
 
 > **This post is part of our ongoing series on network automation best practices, grounded in the [PRIME Framework](../../prime-framework/index.md) and [PRIME Philosophy](../../prime-framework/philosophy.md).**
@@ -24,6 +21,8 @@ Author: Nautomation Prime Team*
 ## Why This Blog Exists
 
 Legacy scripts are everywhere—but they’re hard to maintain, scale, and secure. This post shows how to migrate to modern frameworks (Nornir, PyATS, Ansible) and adopt PRIME-aligned best practices for sustainable automation.
+
+<!-- more -->
 
 ---
 
