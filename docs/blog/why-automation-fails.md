@@ -348,32 +348,6 @@ The [PRIME Framework](../prime-framework/index.md) is designed to prevent exactl
 
 ---
 
-## 📣 Want More?
-
-- See how the PRIME Framework prevents automation failures: [Threading in Network Automation: When to Use It and When to Avoid It](threading-in-network-automation.md)
-- Learn about the five stages: [PRIME Framework Overview](../prime-framework/index.md)
-- Curious about the philosophy? [The PRIME Philosophy](../prime-framework/philosophy.md)
-
----
-
-*Most teams know automation *can* work—they've just seen it fail too many times. The PRIME Framework is designed so it doesn't fail. It won't.*
-
----
-
-## How the PRIME Framework Prevents Catastrophic Failure
-
-| Failure Pattern | PRIME Solution |
-| :--- | :--- |
-| Automate the wrong thing | **[Pinpoint](../prime-framework/pinpoint.md)** — Data-driven ROI analysis |
-| Brittle, unmaintainable code | **[Re-engineer](../prime-framework/re-engineer.md)** + **[Implement](../prime-framework/implement.md)** — Transparency & quality-first design |
-| No proof of value | **[Measure](../prime-framework/measure.md)** — Concrete ROI metrics |
-| Nobody can extend it | **[Empower](../prime-framework/empower.md)** — Full knowledge transfer & documentation |
-| Over-engineered solutions | **[PRIME Philosophy](../prime-framework/philosophy.md)** — Measurability over assumptions |
-| Silent failures | **[Implement](../prime-framework/implement.md)** — Hardened error handling & validation |
-| Vendor lock-in | **[PRIME Philosophy](../prime-framework/philosophy.md)** — Ownership over dependency |
-
----
-
 ## Next Steps
 
 If you've experienced automation failure—or want to avoid it—let's talk.
@@ -387,6 +361,14 @@ We'll discuss:
 - How the PRIME Framework specifically solves your challenges
 
 **[Learn about the PRIME Framework](../prime-framework/index.md)** for detailed methodology documentation
+
+---
+
+## 📣 Want More?
+
+- See how the PRIME Framework prevents automation failures: [Threading in Network Automation: When to Use It and When to Avoid It](threading-in-network-automation.md)
+- Learn about the five stages: [PRIME Framework Overview](../prime-framework/index.md)
+- Curious about the philosophy? [The PRIME Philosophy](../prime-framework/philosophy.md)
 
 ---
 
