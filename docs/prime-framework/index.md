@@ -137,7 +137,7 @@ The "Pinpoint" stage ensures we're solving real problems, not automating for aut
 
 The "Re-engineer" stage prevents the common mistake of automating broken workflows. We optimise first, then automate.
 
-### 3. **prioritises Production Safety**
+### 3. **Prioritises Production Safety**
 
 The "Implement" stage isn't just coding—it's building with enterprise-grade error handling, validation, and transparency.
 
@@ -396,17 +396,6 @@ graph TD
     style J fill:#FFB347
     style K fill:#FFB347
 ```
-
-### 🎥 Framework Explainer (Coming Soon)
-
-**"PRIME Framework in 3 Minutes"** — Video walkthrough showing:
-
-- The automation challenges most network teams face
-- How each PRIME stage addresses specific pain points
-- Real client transformations using Prime Automation™
-- ROI examples and typical engagement timelines
-
-**[Request early access](mailto:nautomationprime.f3wfe@simplelogin.com)** to our video library
 
 ---
 
