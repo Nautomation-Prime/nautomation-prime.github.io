@@ -22,7 +22,7 @@ Welcome! This guide will help you understand what Nautomation Prime offers and h
 - **[PRIME Framework Services](prime-framework/index.md)** — Proven 5-stage methodology for automation projects
 - **[Professional Services](services.md)** — Custom automation tailored to your topology
 
-**Important:** This site is **not a Python tutorial.** We assume you already know Python basics (variables, functions, loops, exceptions, file I/O). Our goal is to teach you how to apply Python to network automation and provide a foundation you can transfer into your own scripts or learning journey.
+**Important:** This site does **not contain Python tutorials.** We assume you already know Python basics (variables, functions, loops, exceptions, file I/O). Our goal is to teach you how to apply Python to network automation and provide a foundation you can transfer into your own scripts or learning journey.
 
 ---
 
