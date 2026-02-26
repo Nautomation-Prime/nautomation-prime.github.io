@@ -37,7 +37,8 @@ The PRIME Framework addresses all of these challenges with a structured, proven 
 
 ```mermaid
 graph LR
-    P[Pinpoint] --> R[Re-engineer]
+    P --> [Pinpoint]  
+    R --> [Re-engineer]
     R --> I[Implement]
     I --> M[Measure]
     M --> E[Empower]
