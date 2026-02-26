@@ -184,7 +184,7 @@ quadrantChart
 
 At the end of the Pinpoint stage, you receive:
 
-### 1. prioritised Automation Backlog
+### 1. Prioritised Automation Backlog
 
 A ranked list of automation opportunities with:
 
