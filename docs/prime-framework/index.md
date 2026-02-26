@@ -39,9 +39,9 @@ The PRIME Framework addresses all of these challenges with a structured, proven 
 graph LR
     P --> [Pinpoint]  
     R --> [Re-engineer]
-    R --> I[Implement]
-    I --> M[Measure]
-    M --> E[Empower]
+    I --> I[Implement]
+    M --> M[Measure]
+    E --> E[Empower]
     
     style P fill:#4A90E2
     style R fill:#7B68EE

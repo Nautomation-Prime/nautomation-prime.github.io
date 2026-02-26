@@ -96,7 +96,10 @@ markdown_extensions:
       use_pygments: true      
       linenums: true
       anchor_linenums: true
-  - pymdownx.superfences  # Enable custom fences
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
   - pymdownx.inlinehilite
   - pymdownx.snippets  # Include content from other files
   - pymdownx.tasklist:  # Task lists with checkboxes
