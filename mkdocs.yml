@@ -71,8 +71,6 @@ extra:
       link: "mailto:nautomationprime.f3wfe@simplelogin.com"
       name: Contact Nautomation Prime
 
-extra_javascript:
-  - assets/js/mermaid.min.js
 
 extra_css:
   - assets/css/custom.css
