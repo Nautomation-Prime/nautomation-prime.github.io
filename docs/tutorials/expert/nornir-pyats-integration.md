@@ -12,9 +12,6 @@ tags:
 
 # Nornir + PyATS Integration: Enterprise-Grade Automation and Validation
 
-> *Published: February 24, 2026  \
-Author: Nautomation Prime Team*
-
 ## Why This Tutorial Exists
 
 Most automation frameworks excel at either execution (Nornir) or validation (PyATS)—but not both. This tutorial shows how to combine them for safe, scalable, and measurable automation, aligned with the PRIME Framework.
@@ -37,72 +34,127 @@ Most automation frameworks excel at either execution (Nornir) or validation (PyA
 
 ---
 
-## Step 1: Define Inventory and Testbed
 
-- Use Netbox/YAML for Nornir inventory
-- Use PyATS testbed YAML for device definitions
+## Step 1: Define Inventory and Testbed (Source of Truth)
+
+- Use NetBox, Nautobot, or YAML for Nornir inventory (dynamic inventory recommended for large-scale)
+- Use PyATS testbed YAML for device definitions, or generate dynamically from inventory
+
+Example: Dynamic inventory from NetBox
+```python
+from nornir_netbox.plugins.tasks import netbox_inventory
+nr = InitNornir(
+  inventory={
+    'plugin': 'NetBoxInventory2',
+    'options': {'nb_url': 'https://netbox.local', 'nb_token': 'TOKEN'}
+  }
+)
+```
 
 ---
 
-## Step 2: Build Nornir Tasks for Config Push
+## Step 2: Build Nornir Tasks for Config Push with Error Handling
 
 ```python
 from nornir import InitNornir
 from nornir_netmiko.tasks import netmiko_send_config
+from nornir_utils.plugins.functions import print_result
+
+def push_config(task, commands):
+  try:
+    task.run(task=netmiko_send_config, config_commands=commands)
+  except Exception as e:
+    task.host['error'] = str(e)
+
 nr = InitNornir(config_file='config.yaml')
-def push_config(task):
-    task.run(task=netmiko_send_config, config_commands=[...])
-result = nr.run(task=push_config)
+result = nr.run(task=push_config, commands=[...])
+print_result(result)
 ```
 
 ---
 
-## Step 3: Validate with PyATS After Each Change
+## Step 3: Validate with PyATS After Each Change (Automated Parsing)
 
 ```python
 from pyats.topology import loader
 from genie.libs.parser.utils import get_parser
-# Load testbed and connect to device
-# Run validation commands and parse output
+import logging
+
+def validate_with_pyats(device, testbed_file, command, parser_name):
+  testbed = loader.load(testbed_file)
+  dev = testbed.devices[device]
+  dev.connect()
+  output = dev.execute(command)
+  parser = get_parser(command, dev.os, dev.platform, dev.context)
+  parsed = parser(device=dev, output=output)
+  logging.info(f"Validation for {device}: {parsed}")
+  return parsed
 ```
 
 ---
 
-## Step 4: Orchestrate Workflow
-
-- Run Nornir task
-- Trigger PyATS validation
-- Log and report results
-
----
-
-## Example: Full Workflow Script
+## Step 4: Orchestrate Workflow with Rollback and Reporting
 
 ```python
-# Pseudocode for orchestration
-for device in inventory:
-    push_config(device)
-    validate_with_pyats(device)
-    log_results(device)
+def orchestrate(devices, commands, testbed_file, validation_cmd, parser_name):
+  for device in devices:
+    push_result = push_config(device, commands)
+    validation = validate_with_pyats(device, testbed_file, validation_cmd, parser_name)
+    if not validation['expected_state']:
+      rollback_config(device)
+      log_failure(device, push_result, validation)
+    else:
+      log_success(device, push_result, validation)
 ```
 
 ---
 
-## PRIME in Action: Safety and Measurability
+## Advanced Patterns: Parallelism, Pre/Post Checks, and Compliance
 
-- Pre-flight and post-flight validation
-- Structured logging and reporting
-- Automated rollback on failure
+- Use Nornir's parallelism for scale, but throttle for safety (e.g., `num_workers`)
+- Automate pre-flight and post-flight validation with PyATS jobs
+- Integrate compliance checks (e.g., pyATS Genie, Batfish)
+
+---
+
+## Error Handling, Logging, and Reporting
+
+- Capture and log all exceptions per device
+- Use structured logging (e.g., JSON logs) for auditability
+- Generate HTML/Markdown reports for stakeholders
+
+Example: Structured logging
+```python
+import structlog
+logger = structlog.get_logger()
+logger.info("nornir_pyats_run", device=device, result=validation)
+```
+
+---
+
+## Security, Compliance, and Auditability
+
+- Store credentials in vaults (e.g., HashiCorp Vault, Ansible Vault)
+- Enforce RBAC for automation execution
+- Log every change and validation for compliance
+
+---
+
+## PRIME in Action: Safety, Measurability, and Empowerment
+
+- Pre-flight and post-flight validation for every change
+- Automated rollback and structured reporting
+- Empower teams with safe, measurable, and auditable automation
 
 ---
 
 ## Summary: Tutorial Takeaways
 
-- Combining Nornir and PyATS delivers safe, scalable automation
+- Combining Nornir and PyATS delivers safe, scalable, and compliant automation
+- Advanced orchestration, validation, and reporting are key for production
 - PRIME principles ensure validation, transparency, and empowerment
 
 ---
-
 
 ## 📣 Want More?
 

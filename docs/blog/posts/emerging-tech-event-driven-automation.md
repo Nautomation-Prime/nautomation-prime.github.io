@@ -26,11 +26,115 @@ Polling is slow and inefficient. Event-driven automation enables real-time respo
 
 ---
 
+
 ## What is Event-Driven Automation?
 
 - Automation triggered by events (not polling)
-- Uses webhooks, message queues (RabbitMQ, Kafka), or SNMP traps
-- Enables real-time, scalable workflows
+- Uses webhooks, message queues (RabbitMQ, Kafka), SNMP traps, or streaming telemetry
+- Enables real-time, scalable, and decoupled workflows
+- Supports closed-loop automation and self-healing networks
+
+---
+
+## Why Go Event-Driven? (Benefits & Use Cases)
+
+- **Faster response:** Immediate action on incidents, config changes, or security events
+- **Resource efficiency:** No more wasteful polling or constant API calls
+- **Scalability:** Decouple producers (devices, systems) from consumers (automation, monitoring)
+- **Reliability:** Buffer and retry events with queues; avoid missed changes
+
+**Common Use Cases:**
+- Automated ticket creation on device failure
+- Real-time compliance checks on config changes
+- Closed-loop remediation (e.g., auto-remediate BGP flap)
+- Security alerting and quarantine
+
+---
+
+## Event Sources in Network Automation
+
+- **Webhooks:** Direct HTTP callbacks from ITSM, monitoring, or network tools
+- **Message Queues:** RabbitMQ, Kafka, AWS SQS for scalable, decoupled event delivery
+- **SNMP Traps & Syslog:** Legacy but still useful for device events
+- **Streaming Telemetry:** Model-driven, high-frequency data for analytics
+
+---
+
+## Example 1: Consuming a Webhook in Python (Flask)
+
+```python
+from flask import Flask, request
+import logging
+
+app = Flask(__name__)
+logging.basicConfig(level=logging.INFO)
+
+@app.route('/webhook', methods=['POST'])
+def webhook():
+  data = request.json
+  logging.info(f"Received event: {data}")
+  # Trigger automation based on event type
+  if data.get('event_type') == 'interface_down':
+    remediate_interface(data['device'], data['interface'])
+  return '', 200
+
+def remediate_interface(device, interface):
+  # Example: Push config or open ticket
+  logging.info(f"Remediating {device} {interface}")
+```
+
+---
+
+## Example 2: Consuming Events from RabbitMQ (aio_pika)
+
+```python
+import asyncio
+import aio_pika
+
+async def on_message(message: aio_pika.IncomingMessage):
+  async with message.process():
+    event = message.body.decode()
+    print(f"Received event: {event}")
+    # Process event (e.g., trigger automation)
+
+async def main():
+  connection = await aio_pika.connect_robust("amqp://guest:guest@localhost/")
+  queue_name = "network_events"
+  channel = await connection.channel()
+  queue = await channel.declare_queue(queue_name, durable=True)
+  await queue.consume(on_message)
+  print("Waiting for events...")
+  await asyncio.Future()  # Run forever
+
+asyncio.run(main())
+```
+
+---
+
+## Advanced Patterns: Correlation, Deduplication, and Error Handling
+
+- Correlate related events (e.g., interface flaps, device reloads)
+- Deduplicate repeated events to avoid alert storms
+- Use persistent queues and dead-letter queues for failed events
+- Log and monitor all event processing for auditability
+
+---
+
+## PRIME in Action: Safety, Measurability, and Transparency
+
+- Validate and log every event
+- Monitor for missed, duplicate, or failed events
+- Document event sources, workflows, and outcomes
+- Build dashboards for event rates, automation actions, and success/failure metrics
+
+---
+
+## Summary: Blog Takeaways
+
+- Event-driven automation enables real-time, scalable, and reliable network operations
+- Use webhooks, message queues, and telemetry for modern workflows
+- Apply advanced patterns for correlation, error handling, and observability
+- PRIME principles ensure safe, measurable, and transparent adoption
 
 ---
 

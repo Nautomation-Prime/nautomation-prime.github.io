@@ -8,117 +8,59 @@ tags:
   - Enterprise
 ---
 
+
+
 # Expert Tutorials
 
-## "Production Mastery — Build Enterprise-Grade Automation"
-
-**Coming Soon!**
-
-This section will feature expert-level tutorials for production network automation:
-
-### ✅ Production-Ready Solutions
-
-#### 🎯 Nornir + PyATS Integration Series (Coming Soon!)
-
-**Combine enterprise-scale automation with production-grade validation.**
-
-This expert series brings together two frameworks for complete production workflows:
-
-**What You'll Learn:**
-
-- Deploy configurations at scale with Nornir (parallel execution across hundreds of devices)
-- Validate every deployment with PyATS (structured testing and compliance checking)
-- Integrated pre-flight and post-flight validation patterns
-- Automatic rollback on validation failure
-- Complete monitoring and reporting for executive dashboards
-- Multi-site orchestration with coordinated validation
-- Production incident response automation
-
-**What You'll Build:**
-
-- A complete enterprise deployment pipeline (deploy → validate → report)
-- Compliance automation that validates configuration state across the network
-- Failure detection and automatic remediation with PyATS validations
-- Dashboards showing deployment success rates and validation metrics
-- Safe change management with automated testing before production deployment
-
-**Real-World Example Scenarios:**
-
-- Deploy 500 access port configurations and validate 100% success across all switches
-- Upgrade WAN edges with pre-flight BGP validation and post-flight neighbor establishment checks
-- Roll out security policies with automatic compliance verification using PyATS parsers
-- Detect and remediate configuration drift across data centers in minutes
-- Generate executive reports proving every change was validated and successful
-
-**Target Audience:** Teams building production network automation with hundreds or thousands of network devices, requiring measurable proof of successful deployments.
-
-**Prerequisites:** Complete all intermediate tutorials (PyATS series + Nornir series)
+Welcome to the expert-level tutorials for production network automation. Here you'll find in-depth guides for building, validating, and operating enterprise-grade automation solutions.
 
 ---
 
-### 🚀 Enterprise Frameworks
+## 📚 What You'll Learn
 
-- **Nornir automation framework** — Task-based architecture for hundreds of devices
-- **NAPALM multi-vendor abstraction** — Unified interface for Cisco, Arista, Juniper
-- **PyATS & Genie** — Cisco's enterprise automation and testing framework
-- **Ansible integration** — Combining Python with Ansible playbooks
+By working through these expert tutorials, you will:
 
-### ⚡ Performance & Concurrency
+- Design and implement scalable, production-grade network automation workflows
+- Master advanced Python async patterns for high-performance operations
+- Integrate with enterprise tools like NetBox, ServiceNow, and Cisco DNA Center
+- Build robust CI/CD and GitOps pipelines for safe, auditable automation
+- Secure your automation with enterprise-grade secrets management (Vault, AWS Secrets Manager)
+- Validate and test network changes at scale using Nornir and PyATS
+- Orchestrate multi-tool workflows and build abstraction layers for portability
+- Apply best practices for error handling, rollback, compliance, and observability
+- Empower your team with transparent, measurable, and safe automation
 
-- **Asyncio deep dive** — High-performance async network operations
-- **Nornir threading models** — Parallelization strategies at scale
-- **Connection management** — Persistent connections and pooling
-- **Performance optimization** — Profiling and tuning automation scripts
+---
 
-### 🔐 Security & Credentials
+## ✅ Available Expert Tutorials
 
-- **HashiCorp Vault integration** — Enterprise credential management
-- **AWS Secrets Manager** — Cloud-native secret storage
-- **Certificate-based authentication** — PKI for network device access
-- **Role-based access control** — Multi-tenancy in automation tools
+- [Asyncio for Network Automation: High-Performance, Non-Blocking Operations](asyncio-network-automation.md)
+- [DevOps and Observability for Network Automation: CI/CD, GitOps, and Monitoring](devops-observability-network-automation.md)
+- [Nornir + PyATS Integration: Enterprise-Grade Automation and Validation](nornir-pyats-integration.md)
+- [Secure Credential Vaulting for Network Automation: HashiCorp Vault, AWS Secrets Manager, and Beyond](secure-credential-vaulting.md)
+- [Tool Ecosystem Integration for Network Automation: Netbox, ServiceNow, DNA Center, and More](tool-ecosystem-integration.md)
 
-### 💾 Data Persistence & Integration
+---
 
-- **Database integration** — PostgreSQL, MongoDB for device state tracking
-- **Time-series databases** — InfluxDB for metrics and trending
-- **API development** — Building REST APIs for your automation
-- **Webhook listeners** — Event-driven automation triggers
-- **Message queues** — RabbitMQ, Kafka for distributed task processing
+## 🚧 Coming Soon
 
-### 📊 Observability & Operations
+- NAPALM Multi-Vendor Abstraction
+- Certificate-Based Authentication & PKI
+- Role-Based Access Control in Automation
+- Database & Time-Series Integration (PostgreSQL, InfluxDB)
+- API Development for Automation
+- Webhook Listeners & Event-Driven Automation
+- Message Queues (RabbitMQ, Kafka)
+- Distributed Tracing & Observability (OpenTelemetry)
+- Alerting Integration (PagerDuty, Slack, Teams)
+- Containerization & Kubernetes Orchestration
+- Blue-Green Deployments & Change Windows
+- Multi-Site Orchestration
+- Compliance Auditing & CIS Benchmarks
+- Meraki Dashboard API Automation
+- Streaming Telemetry with gRPC
 
-- **Structured logging** — JSON logs to ELK/Splunk
-- **Metrics & monitoring** — Prometheus, Grafana dashboards
-- **Distributed tracing** — OpenTelemetry for complex workflows
-- **Alerting integration** — PagerDuty, Slack, Microsoft Teams
-
-### 🔄 DevOps & Automation Maturity
-
-- **GitOps workflows** — Configuration as code with version control
-- **CI/CD pipelines** — GitHub Actions, GitLab CI, Jenkins
-- **Containerization** — Docker packaging and deployment
-- **Kubernetes orchestration** — Running automation at scale
-- **Testing strategies** — Unit tests, integration tests, mock devices
-- **Blue-green deployments** — Safe configuration rollouts
-
-### 🌐 Network-Specific Patterns
-
-- **Configuration validation** — Pre-flight checks and compliance
-- **Automated rollback** — Safe change management
-- **Network discovery** — Topology mapping and documentation
-- **Change windows** — Scheduled maintenance automation
-- **Compliance auditing** — CIS benchmarks, security standards
-- **Multi-site orchestration** — Coordinated changes across locations
-
-### 🔧 Tool Ecosystem Integration
-
-- **Netbox integration** — Source of truth for network inventory
-- **ServiceNow CMDB** — Enterprise configuration management
-- **Cisco DNA Center APIs** — Intent-based networking automation
-- **Meraki Dashboard API** — Cloud-managed network automation
-- **Streaming telemetry** — Model-driven telemetry with gRPC
-
-Check back soon for detailed tutorials with complete code examples!
+Check back soon for more detailed tutorials and complete code examples!
 
 ---
 
