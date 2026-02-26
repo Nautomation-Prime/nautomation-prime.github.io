@@ -320,9 +320,6 @@ All our tools use **industry-standard libraries**:
 
 ---
 
-
----
-
 ## PRIME Framework: The Right Way to Prevent Failure
 
 The [PRIME Framework](../prime-framework/index.md) is designed to prevent exactly these failure patterns. Here’s how each stage helps:
