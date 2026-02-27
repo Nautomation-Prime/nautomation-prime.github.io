@@ -90,6 +90,7 @@ markdown_extensions:
   - pymdownx.keys  # Keyboard keys (++ctrl+alt+del++)
   - pymdownx.smartsymbols  # Smart symbols (copyright, arrows, etc.)
   - pymdownx.emoji  # Enable emoji support
+  - pymdownx.icon  # Enable Material icon shortcodes
   - pymdownx.highlight:
       use_pygments: true      
       linenums: true
