@@ -1,4 +1,5 @@
 ---
+title: The PRIME Framework
 description: A proven methodology for transforming network operations through intelligent Python automation. Five stages from identifying inefficiencies to empowering teams.
 tags:
   - PRIME Framework
@@ -7,7 +8,7 @@ tags:
   - Consulting
 ---
 
-# The PRIME Framework
+## The PRIME Framework
 
 ## "A Proven Methodology for Network Automation Excellence"
 

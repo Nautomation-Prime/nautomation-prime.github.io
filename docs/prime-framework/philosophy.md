@@ -8,7 +8,7 @@ tags:
   - Methodology
 ---
 
-# The PRIME Philosophy
+## The PRIME Philosophy
 
 ## Why Philosophy Matters Before Process
 
@@ -153,7 +153,7 @@ Can a junior engineer explain what the automation does and why? If the answer is
 The [PRIME Framework](./index.md) is our philosophy in action:
 
 | **Framework Stage** | **Philosophy in Practice** |
-|---------------------|----------------------------|
+| --------------------- | ---------------------------- |
 | **[Pinpoint](./pinpoint.md)** | **Measurability** — Data-driven ROI analysis, not gut-feel prioritisation |
 | **[Re-Engineer](./re-engineer.md)** | **Safety** — Fix workflows before automating; design rollback from the start |
 | **[Implement](./implement.md)** | **Transparency** — Line-by-line documentation, human-readable logs |

@@ -8,7 +8,7 @@ tags:
   - Training
 ---
 
-# Empower Your Team
+## Empower Your Team
 
 ## Stage 5 of the PRIME Framework
 
@@ -280,27 +280,27 @@ Structured handoff from full support to self-sufficiency:
 
 #### Support Tiers
 
-**Months 1-2: Full Support**
+### Months 1-2: Full Support
 
 - Unlimited email/Slack support
 - 4-hour response time for issues
 - Troubleshooting assistance
 - Code modification help
 
-**Months 3-4: Guided Support**
+### Months 3-4: Guided Support**
 
 - Email support (next business day)
 - Weekly office hours (30-min video call)
 - Review of team modifications
 - Guidance on extension projects
 
-**Months 5-6: Advisory Support**
+### Months 5-6: Advisory Support**
 
 - Ad-hoc consultation (scheduled)
 - Code review on request
 - Architecture guidance for major extensions
 
-**Post-6 Months: Self-Sufficient + Retainer (Optional)**
+### *Post-6 Months: Self-Sufficient + Retainer (Optional)**
 
 - Team operates independently
 - Optional retainer for complex enhancements

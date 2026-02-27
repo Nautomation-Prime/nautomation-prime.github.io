@@ -8,7 +8,7 @@ tags:
   - Prime Philosophy
 ---
 
-# Implement Solutions
+## Implement Solutions
 
 ## Stage 3 of the PRIME Framework
 
@@ -440,7 +440,7 @@ Edit `inventory.csv` with target devices.
 - **"Device unreachable"** — Verify ICMP/SSH connectivity
 - **"Authentication failed"** — Check credentials in `.env`
 
-#### Inline Comments
+### Inline Comments
 
 Focus on **why**, not **what**:
 

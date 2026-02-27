@@ -8,7 +8,7 @@ tags:
   - ROI
 ---
 
-# Measure Performance
+## Measure Performance
 
 ## Stage 4 of the PRIME Framework
 
@@ -48,7 +48,7 @@ Before deploying automation, we capture baseline performance:
 #### Time Metrics
 
 | Metric | How to Measure | Example |
-|:---|:---|---:|
+| :--- | :--- | ---: |
 | **Manual Task Duration** | Time study over 10 instances | 15 min/change |
 | **Frequency** | Count from ticket system (90 days) | 40/month |
 | **Total Annual Time** | Duration × Frequency × 12 | 120 hours/year |
@@ -56,7 +56,7 @@ Before deploying automation, we capture baseline performance:
 #### Quality Metrics
 
 | Metric | How to Measure | Example |
-|:---|:---|---:|
+| :--- | :--- | ---: |
 | **Error Rate** | Rollbacks ÷ Total changes | 12% |
 | **Rework Time** | Average time to fix failures | 45 min/failure |
 | **Mean Time to Complete** | Ticket open → close | 4.2 hours |
@@ -64,14 +64,14 @@ Before deploying automation, we capture baseline performance:
 #### Business Impact
 
 | Metric | How to Measure | Example |
-|:---|:---|---:|
+| :--- | :--- | ---: |
 | **Labor Cost** | Time × Blended rate | £6,000/year |
 | **Opportunity Cost** | Blocked work value | Unknown |
 | **User Impact** | Support tickets | 15 tickets/month |
 
 **Baseline Documentation:**
 
-```
+```text
 Task: VLAN Provisioning (Pre-Automation)
 ─────────────────────────────────────────
 Frequency:           40 changes/month
@@ -193,7 +193,7 @@ Date,Task,Devices,Successful,Failed,Duration_Sec,Triggered_By
 
 Generated automatically:
 
-```
+```text
 VLAN Provisioning - Week of 2024-01-15
 ════════════════════════════════════════
 Executions:       18 times
@@ -214,13 +214,15 @@ We prove value with concrete numbers:
 #### Time Savings
 
 **Manual Process (Baseline):**
-```
+
+```text
 40 changes/month × 15 min/change = 600 min/month = 10 hours/month
 Annual: 10 hours/month × 12 = 120 hours/year
 ```
 
 **Automated Process (Measured):**
-```
+
+```text
 40 executions/month × 0.6 min/execution = 24 min/month = 0.4 hours/month
 Annual: 0.4 hours/month × 12 = 4.8 hours/year
 ```
@@ -236,7 +238,7 @@ Annual: 0.4 hours/month × 12 = 4.8 hours/year
 
 #### Total Financial Impact
 
-```
+```text
 Time Savings:        115.2 hours × £50/hour = £5,760
 Error Reduction:     43 hours × £50/hour    = £2,150
 ─────────────────────────────────────────────────
@@ -258,7 +260,7 @@ Metrics reveal optimisation opportunities:
 
 **Analysis of Execution Times:**
 
-```
+```text
 Device Connection:     22 seconds (58% of total time)
 Config Application:    8 seconds (21%)
 Validation:           7 seconds (18%)
@@ -274,7 +276,7 @@ Reporting:            1 second (3%)
 
 **Failure Analysis (90 days):**
 
-```
+```text
 Auth Timeouts:        8 occurrences (67%)
 Config Rejected:      3 occurrences (25%)
 Device Unreachable:   1 occurrence (8%)
@@ -299,7 +301,7 @@ We create reports tailored to different audiences:
 
 **Format:** One-page dashboard
 
-```
+```text
 AUTOMATION PERFORMANCE - Q1 2024
 ================================
 

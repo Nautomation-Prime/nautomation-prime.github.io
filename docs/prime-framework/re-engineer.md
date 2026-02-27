@@ -8,7 +8,7 @@ tags:
   - Architecture
 ---
 
-# Re-engineer Workflows
+## Re-engineer Workflows
 
 ## Stage 2 of the PRIME Framework
 
@@ -42,7 +42,7 @@ Design optimised, scalable workflows and architecture **before** writing code. T
 
 The most common (and expensive) mistake in automation:
 
-```
+```text
 Current Manual Workflow (inefficient)
         ↓ automate directly
 Automated Workflow (still inefficient, now faster!)
@@ -55,6 +55,7 @@ Manually adding VLANs requires logging into 5 switches individually, copying con
 **Good Re-engineering:** Template-based bulk provisioning with validation
 
 ---
+
 ## ✅ What Happens During Re-engineer
 
 ### 1. Process Analysis
@@ -63,9 +64,9 @@ For each prioritised automation from the [Pinpoint](./pinpoint.md) stage, we map
 
 #### Current State Mapping
 
-**Example: VLAN Provisioning (Current Process)**
+### Example: VLAN Provisioning (Current Process)
 
-```
+```text
 1. Receive change ticket
 2. Identify target switches from site documentation
 3. SSH to each switch individually
@@ -94,9 +95,9 @@ We design an optimised process that addresses identified issues:
 
 #### Future State Design
 
-**Example: VLAN Provisioning (Re-engineered)**
+### Example: VLAN Provisioning (Re-engineered)
 
-```
+```text
 1. Receive change ticket (parsed for VLAN details)
 2. Validate VLAN ID doesn't conflict
 3. Generate config from template (Jinja2)
@@ -170,7 +171,7 @@ For each automation, we design the technical architecture:
 
 #### Data Flow
 
-```
+```text
 [User Input] → [Validation Layer] → [Inventory Source]
                       ↓
               [Template Engine]
@@ -187,7 +188,7 @@ For each automation, we design the technical architecture:
 #### Component Selection
 
 | Requirement | Technology Choice | Rationale |
-|:---|:---|:---|
+| :--- | :--- | :--- |
 | Device connection | Netmiko | Broad platform support, reliable |
 | Templating | Jinja2 | Industry standard, powerful |
 | Inventory | CSV → Netbox (future) | Start simple, path to scale |
@@ -243,7 +244,7 @@ We design comprehensive error handling:
 #### Failure Modes
 
 | Failure Type | Detection | Response |
-|:---|:---|:---|
+| :--- | :--- | :--- |
 | Device unreachable | Pre-flight ICMP check | Skip device, log, continue |
 | Authentication failure | SSH connection attempt | Alert, halt (credential issue) |
 | Config syntax error | Commit check | Rollback, alert |

@@ -8,7 +8,7 @@ tags:
   - ROI
 ---
 
-# Pinpoint Inefficiencies
+## Pinpoint Inefficiencies
 
 ## Stage 1 of the PRIME Framework
 
@@ -70,7 +70,7 @@ We conduct a structured interview with your network operations team to understan
 For each identified pain point, we quantify:
 
 | Metric | Purpose |
-|:---|:---|
+| :--- | :--- |
 | **Frequency** | How often does this task occur? |
 | **Duration** | How long does it take manually? |
 | **Error Rate** | What percentage require rework? |
@@ -79,7 +79,7 @@ For each identified pain point, we quantify:
 
 **Example:**
 
-```
+```text
 Task: Add VLANs to access switches
 Frequency: 40 times/month
 Duration: 15 minutes per switch (average 5 switches/change)
@@ -119,7 +119,8 @@ Not all tasks are good automation candidates. We evaluate each opportunity again
 For each feasible automation, we calculate:
 
 **Time Savings:**
-```
+
+```text
 Annual Time Saved = Frequency × Duration × (1 - Automation Time Ratio)
 
 Example (VLAN provisioning):
@@ -129,7 +130,8 @@ Example (VLAN provisioning):
 ```
 
 **Error Reduction:**
-```
+
+```text
 Annual Errors Avoided = Frequency × Error Rate × Remediation Time
 
 Example:
@@ -149,7 +151,7 @@ Example:
 We estimate the implementation effort for each automation:
 
 | Complexity | Typical Effort | Examples |
-|:---|:---:|:---|
+| :--- | :---: | :--- |
 | **Simple** | 1-2 weeks | Single-device show command collection, basic config backups |
 | **Medium** | 3-5 weeks | Multi-device config changes with validation, inventory audits |
 | **Complex** | 6-12 weeks | Multi-stage workflows, external integrations, stack/chassis awareness |
@@ -199,7 +201,7 @@ A ranked list of automation opportunities with:
 **Example Extract:**
 
 | Priority | Automation | Annual Savings | Effort | ROI |
-|:---:|:---|---:|:---:|---:|
+| :---: | :--- | ---: | :---: | ---: |
 | 1 | VLAN provisioning | £7,550 | 3 weeks | 12 months |
 | 2 | Config compliance audits | £8,000 | 4 weeks | 8 months |
 | 3 | Port health monitoring | £4,200 | 2 weeks | 6 months |
