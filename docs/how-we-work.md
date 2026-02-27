@@ -87,38 +87,38 @@ Most automation fails because teams automate broken processes. We fix the proces
 ### Your Experience
 
 1. **Current State Documentation**  
-   We map the current workflow in detail:
+    We map the current workflow in detail:
 
-   - Steps (in order)
-   - Decision points ("If this, then that")
-   - Edge cases ("What if this happens?")
-   - Validation and rollback procedures
-   - Team handoffs and communication
+    - Steps (in order)
+    - Decision points ("If this, then that")
+    - Edge cases ("What if this happens?")
+    - Validation and rollback procedures
+    - Team handoffs and communication
 
 2. **Future State Design**  
-   We design the optimized workflow:
+    We design the optimized workflow:
 
-   - Eliminate unnecessary steps
-   - Add safety checkpoints (pre-flight, post-flight validation)
-   - Design rollback procedures (what happens if automation fails?)
-   - Plan error alerting (who gets notified if something goes wrong?)
+    - Eliminate unnecessary steps
+    - Add safety checkpoints (pre-flight, post-flight validation)
+    - Design rollback procedures (what happens if automation fails?)
+    - Plan error alerting (who gets notified if something goes wrong?)
 
 3. **Technical Architecture Blueprint**  
-   We design how the code will be structured:
+    We design how the code will be structured:
 
-   - Library choices (Netmiko, Nornir, etc.)
-   - Execution model (serial vs. parallel)
-   - Credential management (secure, no plaintext)
-   - Logging and reporting strategy
-   - Deployment constraints (Windows workstation, Linux server, Docker, etc.)
+    - Library choices (Netmiko, Nornir, etc.)
+    - Execution model (serial vs. parallel)
+    - Credential management (secure, no plaintext)
+    - Logging and reporting strategy
+    - Deployment constraints (Windows workstation, Linux server, Docker, etc.)
 
 4. **Safety & Validation Specifications**  
-   Before coding, we document:
+    Before coding, we document:
 
-   - Pre-flight checks ("Verify device is reachable before attempting config")
-   - Validation tests ("Confirm config was actually applied")
-   - Rollback triggers ("Automatically undo if validation fails")
-   - Error handling ("If device X fails, should we continue with device Y?")
+    - Pre-flight checks ("Verify device is reachable before attempting config")
+    - Validation tests ("Confirm config was actually applied")
+    - Rollback triggers ("Automatically undo if validation fails")
+    - Error handling ("If device X fails, should we continue with device Y?")
 
 ### The Deliverable
 
@@ -147,43 +147,43 @@ Now we build the automation—with transparency, safety, and maintainability as 
 ### Your Experience
 
 1. **Development with Transparency**  
-   We code according to the **Prime Philosophy**:
+    We code according to the **Prime Philosophy**:
 
-   - **Line-by-line documentation** — Why we chose each library, why this approach, what this function does
-   - **Verbose logging** — When the code runs, it tells you exactly what it's doing
-   - **Pragmatic design** — Simple, direct solutions over over-engineered frameworks
-   - **Hardened error handling** — Code doesn't crash; it fails gracefully with clear errors
+    - **Line-by-line documentation** — Why we chose each library, why this approach, what this function does
+    - **Verbose logging** — When the code runs, it tells you exactly what it's doing
+    - **Pragmatic design** — Simple, direct solutions over over-engineered frameworks
+    - **Hardened error handling** — Code doesn't crash; it fails gracefully with clear errors
 
 2. **Lab Testing** (Week 6)  
-   We test in a sandboxed environment:
+    We test in a sandboxed environment:
 
-   - Does the code do what it's supposed to do?
-   - Do error handlers work ("What happens if a device is unreachable?")
-   - Does rollback work ("Can we undo if something goes wrong?")
-   - Does logging work ("Can we understand what happened if it fails?")
+    - Does the code do what it's supposed to do?
+    - Do error handlers work ("What happens if a device is unreachable?")
+    - Does rollback work ("Can we undo if something goes wrong?")
+    - Does logging work ("Can we understand what happened if it fails?")
 
 3. **Code Review & Documentation**  
-   We document everything:
+    We document everything:
 
-   - README (how to install and run the code)
-   - Technical reference (what each function does)
-   - Troubleshooting guide ("If X error appears, do Y")
-   - Line-by-line comments in the code itself
+    - README (how to install and run the code)
+    - Technical reference (what each function does)
+    - Troubleshooting guide ("If X error appears, do Y")
+    - Line-by-line comments in the code itself
 
 4. **Pilot Deployment** (Week 7-8)  
-   We deploy to a small subset of your network:
+    We deploy to a small subset of your network:
 
-   - A few test devices first
-   - Measure actual time savings
-   - Verify zero unintended side effects
-   - Gather feedback from your operations team
+    - A few test devices first
+    - Measure actual time savings
+    - Verify zero unintended side effects
+    - Gather feedback from your operations team
 
 5. **Full Production Rollout** (End of Stage 3)  
-   Once pilot is successful, we deploy to your full environment with:
+    Once pilot is successful, we deploy to your full environment with:
 
-   - Live monitoring (we watch the first few runs)
-   - Direct support (if issues arise, we're available)
-   - Handoff documentation (everything your team needs to run it independently)
+    - Live monitoring (we watch the first few runs)
+    - Direct support (if issues arise, we're available)
+    - Handoff documentation (everything your team needs to run it independently)
 
 ### The Deliverable
 
@@ -216,38 +216,38 @@ This is where most automation consulting falls short—they deliver code and dis
 ### Your Experience
 
 1. **Baseline Reconstruction** (Week 9)  
-   We reconstruct pre-automation metrics:
+    We reconstruct pre-automation metrics:
 
-   - Historical task duration (from logs, timesheets, ticket systems)
-   - Manual effort required
-   - Errors or incidents caused by manual processes
-   - Operational cost
+    - Historical task duration (from logs, timesheets, ticket systems)
+    - Manual effort required
+    - Errors or incidents caused by manual processes
+    - Operational cost
 
 2. **Instrumentation** (Week 10)  
-   We add lightweight tracking to your automation:
+    We add lightweight tracking to your automation:
 
-   - Execution time
-   - Tasks completed
-   - Errors caught and handled
-   - Time saved per run
+    - Execution time
+    - Tasks completed
+    - Errors caught and handled
+    - Time saved per run
 
 3. **3–6 Months of Tracking** (Weeks 10-22)  
-   Real-world data collection:
+    Real-world data collection:
 
-   - How often is the automation run?
-   - How many tasks does it complete per run?
-   - How much time does it save each time it runs?
-   - What errors did it catch that would have become incidents?
+    - How often is the automation run?
+    - How many tasks does it complete per run?
+    - How much time does it save each time it runs?
+    - What errors did it catch that would have become incidents?
 
 4. **Executive Reporting** (Month 4–6)  
-   You receive a formal **ROI Report** with:
+    You receive a formal **ROI Report** with:
 
-   - Baseline metrics vs. post-automation metrics
-   - Time savings quantified in hours
-   - Operational cost reduction (£)
-   - Risk reduction (incidents prevented, compliance violations avoided)
-   - ROI calculation (savings ÷ investment = payback period)
-   - Recommendations for the next automation opportunity
+    - Baseline metrics vs. post-automation metrics
+    - Time savings quantified in hours
+    - Operational cost reduction (£)
+    - Risk reduction (incidents prevented, compliance violations avoided)
+    - ROI calculation (savings ÷ investment = payback period)
+    - Recommendations for the next automation opportunity
 
 ### Example Report
 
@@ -291,48 +291,48 @@ After engagement ends, your network engineers can maintain, modify, and extend t
 
    **Session 1: Architecture & Design** (Week 10)
 
-   - How the automation is structured
-   - Why we chose each library (Netmiko, Nornir, etc.)
-   - How data flows through the system
-   - Where validation and error handling happen
+    - How the automation is structured
+    - Why we chose each library (Netmiko, Nornir, etc.)
+    - How data flows through the system
+    - Where validation and error handling happen
 
    **Session 2: Code Deep-Dive** (Week 11)  
 
-   - Reading through the actual source code line-by-line
-   - Understanding the logic and decision points
-   - Explaining error handling and edge cases
-   - Q&A on any confusing parts
+    - Reading through the actual source code line-by-line
+    - Understanding the logic and decision points
+    - Explaining error handling and edge cases
+    - Q&A on any confusing parts
 
    **Session 3: Operations & Troubleshooting** (Week 12)  
 
-   - How to run the automation day-to-day
-   - What to do if something fails
-   - How to read logs and understand what went wrong
-   - Common issues and their solutions
+    - How to run the automation day-to-day
+    - What to do if something fails
+    - How to read logs and understand what went wrong
+    - Common issues and their solutions
 
    **Session 4: Modification & Extension** (Week 13)  
 
-   - How to add features to the automation
-   - Where to make changes and how to test them
-   - How to add new device types or workflows
-   - Building confidence to extend the code independently
+    - How to add features to the automation
+    - Where to make changes and how to test them
+    - How to add new device types or workflows
+    - Building confidence to extend the code independently
 
 2. **Documentation Package**  
-   You receive a complete knowledge base:
+    You receive a complete knowledge base:
 
-   - **User Guide** — For network ops running the automation
-   - **Technical Reference** — For engineers modifying the code
-   - **Runbooks** — Step-by-step procedures for specific scenarios
-   - **Architecture Diagrams** — Visual system design
-   - **FAQ & Troubleshooting** — Common questions answered
+    - **User Guide** — For network ops running the automation
+    - **Technical Reference** — For engineers modifying the code
+    - **Runbooks** — Step-by-step procedures for specific scenarios
+    - **Architecture Diagrams** — Visual system design
+    - **FAQ & Troubleshooting** — Common questions answered
 
 3. **8 Weeks of Support** (Post-engagement)  
-   After we step back, you can still reach out:
+    After we step back, you can still reach out:
 
-   - Questions about the code ("Why did we do it this way?")
-   - Bugs or edge cases you discover
-   - Modification assistance ("How do I add support for device Y?")
-   - Confidence building ("Is my proposed change safe?")
+    - Questions about the code ("Why did we do it this way?")
+    - Bugs or edge cases you discover
+    - Modification assistance ("How do I add support for device Y?")
+    - Confidence building ("Is my proposed change safe?")
 
 ### The Deliverable
 
