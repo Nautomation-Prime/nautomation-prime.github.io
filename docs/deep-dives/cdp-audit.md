@@ -421,7 +421,7 @@ The tool supports a **primary credential** and a **fully customizable fallback c
 
 **User Experience:** When you run CDP Network Audit for the first time, the script checks Windows Credential Manager for stored credentials. If none are found, it prompts you to enter your username and password. Once you provide them, the script saves them to Windows Credential Manager and uses them for the discovery process. On subsequent runs, the script retrieves the stored credentials automatically without prompting you again.
 
-### Module Architecture
+### Credentials Module Architecture
 
 The `credentials.py` module exports a single class: `CredentialManager`.
 
@@ -811,7 +811,7 @@ The heart of the tool: **multi-threaded network discovery via CDP**.
 
 **The Solution:** Thread pool with 10 concurrent workers = 5x faster. 10 simultaneous connections instead of waiting for each one.
 
-### Module Architecture
+### Discovery Module Architecture
 
 The `discovery.py` module exports a single class: `NetworkDiscoverer`.
 
@@ -1558,7 +1558,7 @@ Professional, template-driven Excel report generation.
 
 **The Solution:** Use a pre-formatted Excel template. Write data into it while preserving all formatting, charts, filters, and branding.
 
-### Module Architecture
+### Excel Reporter Module Architecture
 
 The `excel_reporter.py` module exports a single class: `ExcelReporter`.
 
