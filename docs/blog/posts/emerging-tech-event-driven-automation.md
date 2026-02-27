@@ -1,5 +1,5 @@
 ---
-title: Event-Driven Automation in the Network: Webhooks, Message Queues, and Real-Time Response
+title: Event-Driven Automation in the Network
 date: 2026-02-26T12:00:00
 draft: false
 author: "Nautomation Prime Team"

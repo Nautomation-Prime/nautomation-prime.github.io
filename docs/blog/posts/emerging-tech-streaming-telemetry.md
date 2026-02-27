@@ -1,5 +1,5 @@
 ---
-title: Streaming Telemetry in Network Automation: Real-Time Data for Modern Operations
+title: Streaming Telemetry in Network Automation
 date: 2026-02-26T12:00:00
 draft: false
 author: "Nautomation Prime Team"

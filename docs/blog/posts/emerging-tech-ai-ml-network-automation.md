@@ -1,5 +1,5 @@
 ---
-title: AI and Machine Learning in Network Automation: Hype, Reality, and Practical Use Cases
+title: AI and Machine Learning in Network Automation
 date: 2026-02-26T12:00:00
 draft: false
 author: "Nautomation Prime Team"

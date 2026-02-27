@@ -1,5 +1,5 @@
 ---
-title: Model-Driven APIs in Network Automation: gNMI, RESTCONF, and the Future of Device Management
+title: Model-Driven APIs in Network Automation
 date: 2026-02-26T12:00:00
 author: "Nautomation Prime Team"
 draft: false

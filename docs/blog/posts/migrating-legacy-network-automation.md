@@ -1,5 +1,5 @@
 ---
-title: Migrating Legacy Network Automation to Modern Frameworks: A Step-by-Step Guide
+title: Migrating Legacy Network Automation to Modern Frameworks
 date: 2026-02-26T12:00:00
 draft: false
 author: "Nautomation Prime Team"
