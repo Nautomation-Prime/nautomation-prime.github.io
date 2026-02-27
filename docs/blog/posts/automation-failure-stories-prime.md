@@ -1,5 +1,5 @@
 ---
-title: Automation Failure Stories: How PRIME Would Have Prevented Disaster
+title: Automation Failure Stories
 date: 2026-02-26T12:00:00
 draft: false
 author: "Nautomation Prime Team"
