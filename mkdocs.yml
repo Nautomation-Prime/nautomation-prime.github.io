@@ -89,7 +89,10 @@ markdown_extensions:
   - pymdownx.critic  # Track changes
   - pymdownx.keys  # Keyboard keys (++ctrl+alt+del++)
   - pymdownx.smartsymbols  # Smart symbols (copyright, arrows, etc.)
-  - pymdownx.emoji  # Enable emoji support
+  - pymdownx.emoji:
+      emoji_index: !!python/name:materialx.emoji.twemoji
+      emoji_generator: !!python/name:materialx.emoji.to_svg
+  - pymdownx.icon
   - pymdownx.highlight:
       use_pygments: true      
       linenums: true
