@@ -40,25 +40,25 @@ You're drowning in network operational tasks. Some feel painful. Some seem obvio
 ### Your Experience
 
 1. **Discovery Workshop** (4 hours)  
-   We sit with your network operations team and document:
+    We sit with your network operations team and document:
     - Current operational workflows
     - Pain points and frustration areas
     - Time spent on each task (daily/weekly/monthly)
     - Constraints and constraints (compliance, legacy systems, team skills)
     - Success criteria (how will we know this worked?)
 
-2. **Time-Motion Analysis** (1-2 weeks background work)  
-   We analyze operational logs, ticket systems, and team feedback to build accurate time estimates.
+2. **Time-Motion Analysis** (1–2 weeks background work)  
+    We analyze operational logs, ticket systems, and team feedback to build accurate time estimates.
 
 3. **ROI Calculation**  
-   We calculate the payback period for each automation opportunity:
+    We calculate the payback period for each automation opportunity:
     - Time savings per task
     - Annual operational cost reduction
     - Risk reduction (compliance, outages)
     - Capital freed up for other priorities
 
 4. **Automated Roadmap Delivery** (Week 1 conclusion)  
-   You receive a **prioritized automation roadmap** with:
+    You receive a **prioritized automation roadmap** with:
     - Top 3–5 automation opportunities ranked by ROI
     - Timeline and effort estimates for each
     - Risk assessment and feasibility notes
