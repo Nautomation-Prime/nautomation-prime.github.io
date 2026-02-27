@@ -370,7 +370,7 @@ Roadmap                      Full Deploy
                              for Measure
 ```
 
-**Total engagement: 6–12 weeks (typical medium-complexity automation)**
+## Total engagement: 6–12 weeks (typical medium-complexity automation)
 
 ---
 
