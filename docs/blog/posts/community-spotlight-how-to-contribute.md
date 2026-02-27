@@ -1,4 +1,5 @@
 ---
+title: Community Spotlight & How to Contribute
 date: 2026-02-26T12:00:00
 draft: false
 author: "Nautomation Prime Team"
@@ -11,7 +12,7 @@ tags:
   - Best Practices
 ---
 
-# Community Spotlight & How to Contribute
+## Community Spotlight & How to Contribute
 
 ---
 
@@ -25,12 +26,11 @@ Nautomation Prime is built by and for the community. This post explains how you 
 
 ---
 
-
 ## Ways to Contribute
 
 - **Share your success story:** Submit a case study, lesson learned, or automation win. Inspire others and get featured!
 - **Suggest a topic:** Request a blog post, tutorial, or deep dive on something you want to learn or teach.
-- **Contribute code:** Submit scripts, tools, bug fixes, or improvements via GitHub. See our [contribution guidelines](#contribution-guidelines) below.
+- **Contribute code:** Submit scripts, tools, bug fixes, or improvements via GitHub. See our [contribution guidelines](#contribution-guidelines-best-practices) below.
 - **Review and improve docs:** Help make our guides clearer, more accurate, and more useful for everyone.
 - **Join discussions:** Comment on posts, join our forums or chat, and help answer questions from others.
 - **Mentor and support:** Help onboard new contributors, review pull requests, or run a community workshop.

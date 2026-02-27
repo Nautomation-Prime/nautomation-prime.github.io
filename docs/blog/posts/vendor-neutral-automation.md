@@ -1,4 +1,5 @@
 ---
+title: Vendor-Neutral Automation
 date: 2026-02-26T12:00:00
 draft: false
 author: "Nautomation Prime Team"
@@ -11,7 +12,7 @@ tags:
   - Best Practices
 ---
 
-# Vendor-Neutral Automation: Avoiding Lock-In and Building for Portability
+## Vendor-Neutral Automation: Avoiding Lock-In and Building for Portability
 
 ---
 
@@ -35,9 +36,6 @@ Vendor lock-in is a hidden risk in network automation. This post explains why it
 
 ---
 
-
----
-
 ## Related Tutorials & Deep Dives
 
 - [Migrating Legacy Network Automation](migrating-legacy-network-automation.md) — Learn how to refactor and modernize old scripts for portability.
@@ -51,7 +49,6 @@ Vendor lock-in is a hidden risk in network automation. This post explains why it
 
 ---
 
-
 ## Patterns for Vendor-Neutral Automation
 
 - Use open-source frameworks (Nornir, Netmiko, PyATS, NAPALM, Scrapli)
@@ -64,7 +61,6 @@ Vendor lock-in is a hidden risk in network automation. This post explains why it
 
 ---
 
-
 ## Example: Migrating from Proprietary to Open-Source
 
 1. Inventory all proprietary dependencies (APIs, libraries, data formats)
@@ -75,6 +71,7 @@ Vendor lock-in is a hidden risk in network automation. This post explains why it
 6. Automate migration validation with CI/CD and testbeds
 
 **Abstraction Example:**
+
 ```python
 class DeviceDriver:
   def get_facts(self): ...
@@ -89,7 +86,6 @@ class JuniperDriver(DeviceDriver):
 
 ---
 
-
 ## PRIME in Action: Portability Audits
 
 - Regularly review automation for vendor dependencies and proprietary features
@@ -98,7 +94,6 @@ class JuniperDriver(DeviceDriver):
 - Schedule periodic migration drills to ensure readiness
 
 ---
-
 
 ## Summary: Blog Takeaways
 

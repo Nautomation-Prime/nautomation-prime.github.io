@@ -3,7 +3,7 @@ title: Nautomation Prime Blog
 description: Real-world, transparent insights on network automation, the PRIME Framework, and building production-ready solutions.
 ---
 
-# 🚀 Nautomation Prime Blog
+## 🚀 Nautomation Prime Blog
 
 Welcome to the Nautomation Prime blog—where network automation meets transparency, measurability, and real-world results.
 

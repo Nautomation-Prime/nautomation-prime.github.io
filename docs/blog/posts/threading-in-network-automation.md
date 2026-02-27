@@ -1,4 +1,5 @@
 ---
+title: Threading in Network Automation
 date: 2026-02-26T12:00:00
 draft: false
 author: "Nautomation Prime Team"
@@ -12,7 +13,7 @@ tags:
   - Lessons Learned
 ---
 
-# Threading in Network Automation: When to Use It and When to Avoid It
+## Threading in Network Automation: When to Use It and When to Avoid It
 
 ---
 
@@ -39,7 +40,6 @@ Before we dive into the technicals, let's set the stage. At Nautomation Prime, e
 > Learn more: [The PRIME Philosophy](../../prime-framework/philosophy.md)
 
 ---
-
 
 ## Why Threading Is Problematic for Network Device Automation
 
@@ -90,7 +90,6 @@ Python's Global Interpreter Lock (GIL) means only one thread executes Python byt
 If you answered "no" to any of these, **avoid threading**.
 
 ---
-
 
 ## When Threading Is (and Isn't) Appropriate
 
@@ -187,18 +186,17 @@ for t in threads:
 
 ---
 
-
 ## PRIME Framework: The Right Way to Scale
 
 The [PRIME Framework](../../prime-framework/index.md) is designed to prevent exactly the kinds of failures threading introduces. Here’s how each stage helps:
 
-| PRIME Stage   | How It Prevents Threading Pitfalls |
-|-------------- |------------------------------------|
-| **Pinpoint**  | Identifies where concurrency is safe and where it’s not. No guessing. |
-| **Re-engineer** | Redesigns workflows for safety and scalability before automating. |
-| **Implement** | Uses frameworks (like Nornir, AsyncIO) that provide safe, transparent parallelism. |
-| **Measure**   | Tracks outcomes—so you know if concurrency is helping or hurting. |
-| **Empower**   | Ensures your team understands the risks and best practices. |
+| PRIME Stage     | How It Prevents Threading Pitfalls                                                 |
+|-----------------|------------------------------------------------------------------------------------|
+| **Pinpoint**    | Identifies where concurrency is safe and where it’s not. No guessing.              |
+| **Re-engineer** | Redesigns workflows for safety and scalability before automating.                  |
+| **Implement**   | Uses frameworks (like Nornir, AsyncIO) that provide safe, transparent parallelism. |
+| **Measure**     | Tracks outcomes—so you know if concurrency is helping or hurting.                  |
+| **Empower**     | Ensures your team understands the risks and best practices.                        |
 
 ### PRIME in Practice: Robust Alternatives
 
@@ -229,22 +227,20 @@ for host, multi_result in results.items():
 
 Different automation tasks require different concurrency models. Here’s a quick reference:
 
-| Task Type                      | Recommended Approach                        | Why It Works                                   | Notes                                  |
-|--------------------------------|---------------------------------------------|------------------------------------------------|----------------------------------------|
-| Configuration changes          | Nornir (serial or controlled parallelism)   | Ensures deterministic ordering and per‑host isolation | Use `num_workers` conservatively       |
-| State‑changing workflows       | Nornir + per‑task error handling            | Predictable, structured execution              | Avoid high parallelism                  |
-| Bulk read‑only data collection | ThreadPoolExecutor or Nornir parallel mode  | I/O‑bound, stateless, safe to parallelise      | Ensure each thread has its own connection |
-| High‑volume telemetry          | AsyncIO + scrapli‑community async drivers   | Designed for concurrency, non‑blocking I/O     | Requires async‑capable libraries        |
-| Long‑running workflows         | Process pools or distributed workers        | Avoids GIL limitations and isolates state      | Use for CPU‑heavy parsing or analytics  |
-| Device inventory or discovery  | Threading or async                          | Stateless and tolerant of retries              | Ideal use case for threading            |
+| Task Type                        | Recommended Approach                         | Why It Works                                          | Notes                                     |
+|----------------------------------|----------------------------------------------|-------------------------------------------------------|-------------------------------------------|
+| Configuration changes            | Nornir (serial or controlled parallelism)    | Ensures deterministic ordering and per‑host isolation | Use `num_workers` conservatively          |
+| State‑changing workflows         | Nornir + per‑task error handling             | Predictable, structured execution                     | Avoid high parallelism                    |
+| Bulk read‑only data collection   | ThreadPoolExecutor or Nornir parallel mode   | I/O‑bound, stateless, safe to parallelise             | Ensure each thread has its own connection |
+| High‑volume telemetry            | AsyncIO + scrapli‑community async drivers    | Designed for concurrency, non‑blocking I/O            | Requires async‑capable libraries          |
+| Long‑running workflows           | Process pools or distributed workers         | Avoids GIL limitations and isolates state             | Use for CPU‑heavy parsing or analytics    |
+| Device inventory or discovery    | Threading or async                           | Stateless and tolerant of retries                     | Ideal use case for threading              |
 
 ---
----
-
 
 ## Practical Guidance: Expert Best Practices
 
-### Use Threading When:
+### Use Threading When
 
 - Each task is independent
 - No configuration is being changed
@@ -252,7 +248,7 @@ Different automation tasks require different concurrency models. Here’s a quic
 - Failures can be retried without impact
 - You need fast, parallel data collection
 
-### Avoid Threading When:
+### Avoid Threading When
 
 - You are modifying device state
 - You rely on multi‑step CLI interactions
@@ -271,17 +267,15 @@ Different automation tasks require different concurrency models. Here’s a quic
 
 ---
 
-
 ## Real-World Example: PRIME Philosophy in Action
 
 > "We once rescued a client whose previous consultant used threading for config changes. The result? Interleaved commands, random failures, and a week of outages. We rebuilt their automation using the PRIME Framework—measurable, safe, and fully documented. No more outages, and the client's team could finally own their scripts."
 
-#### Additional Case Study: Threading Gone Wrong
+### Additional Case Study: Threading Gone Wrong
 
 At another enterprise, a well-meaning engineer used threading to push VLAN changes to 100+ switches. Halfway through, devices started locking out sessions, and some switches received only partial configs. The result: a multi-day outage and a costly manual recovery. The root cause? Threading was used for a stateful, multi-step workflow—violating every PRIME principle. The fix: move to Nornir with serial execution and robust error handling.
 
 ---
-
 
 ## Summary: Blog Takeaways
 

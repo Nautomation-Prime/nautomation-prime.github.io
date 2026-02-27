@@ -1,4 +1,6 @@
 ---
+title: A Full Network Automation Journey
+
 date: 2026-02-26T12:00:00
 draft: false
 author: "Nautomation Prime Team"
@@ -11,7 +13,7 @@ tags:
   - Best Practices
 ---
 
-# Case Study: A Full Network Automation Journey (From Problem to Business Outcome)
+## Case Study: A Full Network Automation Journey (From Problem to Business Outcome)
 
 ---
 
@@ -25,8 +27,6 @@ Most automation stories stop at "the script worked." This case study follows a r
 
 ---
 
-
-
 ## 1. The Problem: Manual VLAN Provisioning
 
 - 200+ switches, 10+ VLAN changes per week
@@ -34,13 +34,13 @@ Most automation stories stop at "the script worked." This case study follows a r
 - Business impact: Delays, outages, compliance risk
 
 **Symptoms:**
+
 - Engineers spending hours on repetitive CLI work
 - Frequent mistakes and missed changes
 - No way to prove who changed what, or when
 - No integration with ITSM or compliance systems
 
 ---
-
 
 ## 2. Pinpoint: Analyzing the Pain and Opportunity
 
@@ -53,7 +53,6 @@ Most automation stories stop at "the script worked." This case study follows a r
 
 ---
 
-
 ## 3. Re-engineer: Designing for Safety and Scale
 
 - Defined requirements: validation, rollback, auditability, modularity, ITSM integration
@@ -62,6 +61,7 @@ Most automation stories stop at "the script worked." This case study follows a r
 - Built in error handling, logging, and reporting from the start
 
 **Workflow Diagram:**
+
 1. Pre-flight validation (PyATS)
 2. Config push (Nornir)
 3. Post-flight validation (PyATS)
@@ -71,7 +71,6 @@ Most automation stories stop at "the script worked." This case study follows a r
 
 ---
 
-
 ## 4. Implement: Building the Solution
 
 - Developed modular Python scripts (Nornir + PyATS)
@@ -80,7 +79,8 @@ Most automation stories stop at "the script worked." This case study follows a r
 - Automated ITSM ticket creation and closure
 - Wrote unit, integration, and mock device tests for every module
 
-**Example: Modular Task Structure**
+## Example: Modular Task Structure
+
 ```python
 def preflight_validation(device):
     # Use PyATS to check current VLAN state
@@ -101,7 +101,6 @@ def update_itsm_ticket(ticket_id, status):
 
 ---
 
-
 ## 5. Measure: Proving Value
 
 - Tracked time saved, errors prevented, and compliance improvements
@@ -113,7 +112,6 @@ def update_itsm_ticket(ticket_id, status):
 
 ---
 
-
 ## 6. Empower: Knowledge Transfer and Handover
 
 - Documented every step and decision (runbooks, diagrams, code comments)
@@ -123,7 +121,6 @@ def update_itsm_ticket(ticket_id, status):
 - Ensured at least two team members could extend and support the automation
 
 ---
-
 
 ## PRIME in Action: Lessons Learned
 
@@ -135,7 +132,6 @@ def update_itsm_ticket(ticket_id, status):
 - ITSM and compliance integration made audits painless
 
 ---
-
 
 ## Summary: Blog Takeaways
 

@@ -1,4 +1,5 @@
 ---
+title: Building a Source of Truth for Network Automation
 date: 2026-02-26T12:00:00
 draft: false
 author: "Nautomation Prime Team"
@@ -12,7 +13,7 @@ tags:
     - Best Practices
 ---
 
-# Building a Source of Truth for Network Automation: Netbox, CMDB, and Inventory Strategies
+## Building a Source of Truth for Network Automation: Netbox, CMDB, and Inventory Strategies
 
 ---
 
@@ -36,9 +37,6 @@ Automation is only as good as its data. A reliable "source of truth" is the foun
 
 ---
 
-
----
-
 ## Related Tutorials & Deep Dives
 
 - [Tool Ecosystem Integration (Expert)](../../tutorials/expert/tool-ecosystem-integration.md) — Integrate Netbox and other tools for inventory management.
@@ -51,7 +49,6 @@ Automation is only as good as its data. A reliable "source of truth" is the foun
 
 ---
 
-
 ## Options for Building a Source of Truth
 
 ### 1. Netbox
@@ -63,14 +60,12 @@ Automation is only as good as its data. A reliable "source of truth" is the foun
 - REST API and webhooks for automation triggers
 - Role-based access control and audit logging
 
-
 ### 2. CMDB (ServiceNow, custom)
 
 - Enterprise-wide, not just network
 - Often integrates with ITSM and change management
 - Can be extended with network-specific attributes and relationships
 - Supports workflow automation, approvals, and compliance gates
-
 
 ### 3. YAML/CSV Inventories
 
@@ -81,7 +76,6 @@ Automation is only as good as its data. A reliable "source of truth" is the foun
 
 ---
 
-
 ## Integrating Inventory with Automation
 
 - Nornir: Netbox inventory plugin, YAML/CSV support, dynamic inventory refresh
@@ -90,7 +84,6 @@ Automation is only as good as its data. A reliable "source of truth" is the foun
 - Use inventory as the single source for device targeting, variable resolution, and secrets management
 
 ---
-
 
 ## PRIME in Action: Inventory Change Tracking
 
@@ -101,7 +94,6 @@ Automation is only as good as its data. A reliable "source of truth" is the foun
 - Alert on drift, missing devices, or attribute mismatches
 
 ---
-
 
 ## Example: Using Netbox with Nornir
 
@@ -125,6 +117,7 @@ results = nr.run(task=validate_inventory)
 ```
 
 **Drift Detection Pattern:**
+
 ```python
 def detect_drift(device, netbox_data, live_data):
     drift = {}
@@ -135,7 +128,6 @@ def detect_drift(device, netbox_data, live_data):
 ```
 
 ---
-
 
 ## Summary: Blog Takeaways
 

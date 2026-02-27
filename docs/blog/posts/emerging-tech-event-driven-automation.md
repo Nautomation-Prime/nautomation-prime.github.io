@@ -1,4 +1,5 @@
 ---
+title: Event-Driven Automation in the Network: Webhooks, Message Queues, and Real-Time Response
 date: 2026-02-26T12:00:00
 draft: false
 author: "Nautomation Prime Team"
@@ -13,7 +14,7 @@ tags:
   - Best Practices
 ---
 
-# Event-Driven Automation in the Network: Webhooks, Message Queues, and Real-Time Response
+## Event-Driven Automation in the Network: Webhooks, Message Queues, and Real-Time Response
 
 ---
 > **This post is part of our ongoing series on network automation best practices, grounded in the [PRIME Framework](../../prime-framework/index.md) and [PRIME Philosophy](../../prime-framework/philosophy.md).**
@@ -25,7 +26,6 @@ Polling is slow and inefficient. Event-driven automation enables real-time respo
 <!-- more -->
 
 ---
-
 
 ## What is Event-Driven Automation?
 
@@ -44,6 +44,7 @@ Polling is slow and inefficient. Event-driven automation enables real-time respo
 - **Reliability:** Buffer and retry events with queues; avoid missed changes
 
 **Common Use Cases:**
+
 - Automated ticket creation on device failure
 - Real-time compliance checks on config changes
 - Closed-loop remediation (e.g., auto-remediate BGP flap)
@@ -135,9 +136,6 @@ asyncio.run(main())
 - Use webhooks, message queues, and telemetry for modern workflows
 - Apply advanced patterns for correlation, error handling, and observability
 - PRIME principles ensure safe, measurable, and transparent adoption
-
----
-
 
 ---
 

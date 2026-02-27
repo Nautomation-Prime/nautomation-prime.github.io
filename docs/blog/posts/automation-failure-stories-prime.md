@@ -1,4 +1,5 @@
 ---
+title: Automation Failure Stories: How PRIME Would Have Prevented Disaster
 date: 2026-02-26T12:00:00
 draft: false
 author: "Nautomation Prime Team"
@@ -11,7 +12,7 @@ tags:
   - Best Practices
 ---
 
-# Automation Failure Stories: How PRIME Would Have Prevented Disaster
+## Automation Failure Stories: How PRIME Would Have Prevented Disaster
 
 ---
 
@@ -25,7 +26,6 @@ Everyone loves a good war story—especially when there’s a lesson to be learn
 
 ---
 
-
 ## 🚦 PRIME Philosophy: Learning from Failure
 
 - **Transparency:** Document what happened and why, share postmortems
@@ -36,13 +36,13 @@ Everyone loves a good war story—especially when there’s a lesson to be learn
 
 ---
 
-
 ## Failure Story #1: The Unvalidated VLAN Push
 
 **Scenario:**
 A script pushed VLAN changes to 500 switches in parallel—without validation. Half the network lost connectivity, causing a major outage.
 
 **Technical Breakdown:**
+
 ```python
 # What went wrong: No validation, no error handling, no rollback
 for device in devices:
@@ -50,16 +50,19 @@ for device in devices:
 ```
 
 **Root Causes:**
+
 - No pre-flight validation (didn't check if VLANs already existed or if devices were reachable)
 - No error handling or rollback (failures left devices in inconsistent states)
 - No change tracking (couldn't prove what changed or when)
 
 **How PRIME Would Have Helped:**
+
 - Pre-flight checks (Pinpoint, Re-engineer)
 - Transactional changes with rollback (Implement)
 - Change tracking and reporting (Measure)
 
 **PRIME-Aligned Solution:**
+
 ```python
 # PRIME: Validate, change, rollback, and log
 for device in devices:
@@ -76,6 +79,7 @@ for device in devices:
 ```
 
 **Best Practices:**
+
 - Always validate device state before making changes
 - Use dry-run or pre-checks to catch issues early
 - Build rollback and error handling into every script
@@ -83,29 +87,32 @@ for device in devices:
 
 ---
 
-
 ## Failure Story #2: The Credential Leak
 
 **Scenario:**
 A consultant hardcoded device passwords in a public Git repo. The credentials were scraped and used for unauthorized access, resulting in a security incident.
 
 **Technical Breakdown:**
+
 ```python
 # What went wrong: Hardcoded secrets
 DEVICE_PASSWORD = "SuperSecret123"  # committed to git!
 ```
 
 **Root Causes:**
+
 - Hardcoded secrets in code
 - No credential management or rotation
 - No audit trail for secret access
 
 **How PRIME Would Have Helped:**
+
 - Secure credential storage (Safety)
 - Audit logging and access control (Measurability)
 - Team training and onboarding (Empowerment)
 
 **PRIME-Aligned Solution:**
+
 ```python
 # PRIME: Use a secrets manager and environment variables
 import os
@@ -116,12 +123,12 @@ password = creds["data"]["data"]["password"]
 ```
 
 **Best Practices:**
+
 - Never hardcode credentials—use environment variables or vaults
 - Rotate secrets regularly and audit access
 - Train all contributors on secure coding practices
 
 ---
-
 
 ## Failure Story #3: The Untouchable Script
 
@@ -129,6 +136,7 @@ password = creds["data"]["data"]["password"]
 A critical automation script was written by a contractor, undocumented and unmaintainable. When requirements changed, nobody could update it, leading to technical debt and business risk.
 
 **Technical Breakdown:**
+
 ```python
 # What went wrong: No docs, no standards, no ownership
 def do_everything():
@@ -137,16 +145,19 @@ def do_everything():
 ```
 
 **Root Causes:**
+
 - No documentation or code comments
 - No knowledge transfer or onboarding
 - Vendor lock-in and lack of ownership
 
 **How PRIME Would Have Helped:**
+
 - Inline documentation and code reviews (Transparency)
 - Knowledge transfer and runbooks (Empowerment)
 - Vendor-neutral, open-source design (Ownership)
 
 **PRIME-Aligned Solution:**
+
 ```python
 # PRIME: Document, modularize, and share
 def backup_device(device):
@@ -161,12 +172,12 @@ def push_config(device, config):
 ```
 
 **Best Practices:**
+
 - Document every script and workflow
 - Share knowledge through runbooks, wikis, and workshops
 - Avoid vendor lock-in by using open standards and tools
 
 ---
-
 
 ## PRIME in Action: Turning Failure into Success
 
@@ -185,7 +196,6 @@ def push_config(device, config):
 
 ---
 
-
 ## Summary: Blog Takeaways
 
 - Every failure is a learning opportunity
@@ -195,7 +205,6 @@ def push_config(device, config):
 - Always test automation in a lab before production
 
 ---
-
 
 ## Related Tutorials & Deep Dives
 

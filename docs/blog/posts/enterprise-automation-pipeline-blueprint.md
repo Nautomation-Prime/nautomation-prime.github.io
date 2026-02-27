@@ -1,4 +1,5 @@
 ---
+title: Blueprint for Enterprise-Ready Network Automation Pipelines
 date: 2026-02-26T12:00:00
 draft: false
 author: "Nautomation Prime Team"
@@ -12,7 +13,7 @@ tags:
   - Best Practices
 ---
 
-# Blueprint for Enterprise-Ready Network Automation Pipelines
+## Blueprint for Enterprise-Ready Network Automation Pipelines
 
 ---
 
@@ -36,9 +37,6 @@ Enterprise automation is more than scripts—it’s pipelines, version control, 
 
 ---
 
-
----
-
 ## Related Tutorials & Deep Dives
 
 - [DevOps & Observability (Expert)](../../tutorials/expert/devops-observability-network-automation.md) — Build CI/CD, GitOps, and monitoring for automation.
@@ -52,7 +50,6 @@ Enterprise automation is more than scripts—it’s pipelines, version control, 
 
 ---
 
-
 ## Example: Building a Pipeline for Config Backup
 
 1. **Push code to Git**
@@ -65,13 +62,13 @@ Enterprise automation is more than scripts—it’s pipelines, version control, 
 8. **Automate rollback and incident response** (triggered by failed health checks)
 
 **Advanced Patterns:**
+
 - Use GitOps tools (ArgoCD, Flux) for declarative deployments
 - Integrate ITSM approval gates (ServiceNow, Jira) into pipelines
 - Use secrets managers (Vault, AWS Secrets Manager) for credentials
 - Automate compliance checks and reporting as part of CI/CD
 
 ---
-
 
 ## PRIME in Action: Safe Rollouts
 
@@ -82,7 +79,6 @@ Enterprise automation is more than scripts—it’s pipelines, version control, 
 - Integrate observability and incident response into every pipeline
 
 ---
-
 
 ## Summary: Blog Takeaways
 

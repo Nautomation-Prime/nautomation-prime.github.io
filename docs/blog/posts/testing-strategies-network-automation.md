@@ -1,4 +1,5 @@
 ---
+title: Testing Strategies for Network Automation
 date: 2026-02-26T12:00:00
 draft: false
 author: "Nautomation Prime Team"
@@ -11,7 +12,7 @@ tags:
   - Best Practices
 ---
 
-# Testing Strategies for Network Automation: From Unit Tests to Mock Devices
+## Testing Strategies for Network Automation: From Unit Tests to Mock Devices
 
 ---
 
@@ -35,9 +36,6 @@ Testing is the difference between "it works on my machine" and "it works in prod
 
 ---
 
-
----
-
 ## Related Tutorials & Deep Dives
 
 - [PyATS Fundamentals](../../tutorials/intermediate/pyats-fundamentals.md) — Learn the basics of network validation with PyATS.
@@ -51,7 +49,6 @@ Testing is the difference between "it works on my machine" and "it works in prod
 
 ---
 
-
 ## Types of Tests
 
 ### 1. Unit Tests
@@ -62,7 +59,6 @@ Testing is the difference between "it works on my machine" and "it works in prod
 - Should cover all logic branches and edge cases
 - Use mocks to isolate dependencies (e.g., device responses, file I/O)
 
-
 ### 2. Integration Tests
 
 - Test end-to-end workflows
@@ -70,7 +66,6 @@ Testing is the difference between "it works on my machine" and "it works in prod
 - Validate that all parts work together
 - Include error paths, rollback, and recovery scenarios
 - Use testbeds (pyATS) or dynamic inventory (Nornir/NetBox)
-
 
 ### 3. Mock Device Testing
 
@@ -81,10 +76,10 @@ Testing is the difference between "it works on my machine" and "it works in prod
 
 ---
 
-
 ## Example: Adding Tests to a Script
 
 **Unit Test Example:**
+
 ```python
 import pytest
 def test_parse_vlan_output():
@@ -93,7 +88,8 @@ def test_parse_vlan_output():
   assert result == expected_dict
 ```
 
-**Advanced: Parametrized Unit Tests**
+## Advanced: Parametrized Unit Tests
+
 ```python
 @pytest.mark.parametrize("output,expected", [
   ("VLAN Name Status", expected_dict),
@@ -104,6 +100,7 @@ def test_parse_vlan_output_cases(output, expected):
 ```
 
 **Mock Device Example:**
+
 ```python
 from pyats.topology import loader
 from pyats.aetest import Testcase
@@ -116,6 +113,7 @@ class MyTest(Testcase):
 ```
 
 **Integration Test Example:**
+
 ```python
 def test_end_to_end_workflow():
   # Setup testbed, push config, validate state, rollback
@@ -123,7 +121,6 @@ def test_end_to_end_workflow():
 ```
 
 ---
-
 
 ## PRIME in Action: Test Coverage and Reporting
 
@@ -135,7 +132,6 @@ def test_end_to_end_workflow():
 
 ---
 
-
 ## Summary: Blog Takeaways
 
 - Testing is essential for safe, reliable automation
@@ -146,7 +142,6 @@ def test_end_to_end_workflow():
 - Use mocks and simulators to test at scale and under failure conditions
 
 ---
-
 
 ## 📣 Want More?
 

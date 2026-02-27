@@ -13,11 +13,11 @@ tags:
   - YAML Configuration
 ---
 
-# Deep Dive: CDP Network Audit Tool
+## Deep Dive: CDP Network Audit Tool
 
 ## "Production-Ready Python Automation, Built for Scale."
 
-A **modular, enterprise-grade** network discovery utility that crawls Cisco network topologies via **Cisco Discovery Protocol (CDP)**. It connects (optionally through an SSH jump/bastion host), collects `show cdp neighbors detail` and `show version`, parses outputs with **TextFSM**, enriches with **DNS resolution**, and writes structured **Excel reports** from pre-formatted templates. 
+A **modular, enterprise-grade** network discovery utility that crawls Cisco network topologies via **Cisco Discovery Protocol (CDP)**. It connects (optionally through an SSH jump/bastion host), collects `show cdp neighbors detail` and `show version`, parses outputs with **TextFSM**, enriches with **DNS resolution**, and writes structured **Excel reports** from pre-formatted templates.
 
 **What's New:** The tool has undergone a **complete architectural restructure** — migrated from a monolithic script to a **modular Python package** with YAML-based configuration, dedicated modules for each concern, and enhanced maintainability for enterprise deployments.
 
@@ -315,13 +315,9 @@ The tool operates as a **modular Python package** with eight primary modules, ea
 
 !!! quote "Design Philosophy"
     **Separation of Concerns**: Each module has a single, well-defined responsibility. Changes to Excel formatting don't affect discovery logic.
-    
     **Package-Based Organization**: The `cdp_audit/` package structure enables clean imports, testability, and proper Python packaging.
-    
     **Dependency Injection**: Modules receive configuration objects rather than reading global state. Easier to test and reason about.
-    
     **Fail-Fast Validation**: The `validators.py` module checks all prerequisites **before** discovery starts. No more failures after 10 minutes of crawling.
-    
     **Testability**: Each module can be imported and tested independently. Mock the config, test credential logic in isolation.
 
 ### Module Interaction Flow
@@ -2042,11 +2038,11 @@ The repository includes a **professional Windows batch launcher** (`run.bat`) th
 
 ### Using run.bat
 
-**Option 1: Double-click**
+## Option 1: Double-click
 
 Simply double-click `run.bat` in Windows Explorer to launch the tool with default behavior.
 
-**Option 2: Command Line**
+## Option 2: Command Line
 
 ```cmd
 run.bat
@@ -2057,26 +2053,21 @@ This runs the CDP Network Audit with all default settings from `config.yaml`.
 ### What the Launcher Does
 
 1 **Validates the environment:**
-
-   - Checks that the `portable_env` virtual environment exists
-   - Verifies Python executable is present
-   - Confirms `cdp_audit` package exists
-   - Validates required TextFSM templates are present
-   - Validates Excel template exists
-
+    - Checks that the `portable_env` virtual environment exists
+    - Verifies Python executable is present
+    - Confirms `cdp_audit` package exists
+    - Validates required TextFSM templates are present
+    - Validates Excel template exists
 2. **Provides clear feedback:**
-
-   - Shows [OK] for successful checks
-   - Shows [WARNING] for missing optional files
-   - Shows [ERROR] for critical missing components
-   - Displays helpful troubleshooting tips on failure
-
+    - Shows [OK] for successful checks
+    - Shows [WARNING] for missing optional files
+    - Shows [ERROR] for critical missing components
+    - Displays helpful troubleshooting tips on failure
 3. **Runs the tool:**
-
-   - Activates the virtual environment
-   - Executes `python -m cdp_audit`
-   - Captures and displays the exit code
-   - Provides common troubleshooting tips if errors occur
+    - Activates the virtual environment
+    - Executes `python -m cdp_audit`
+    - Captures and displays the exit code
+    - Provides common troubleshooting tips if errors occur
 
 ### Example Output
 
@@ -2120,12 +2111,12 @@ Running CDP Network Audit...
 python -m cdp_audit
 ```
 
-5. Follow prompts:
-   - Site name (used in the output filename)
-   - Seed devices (comma-separated IPv4 / resolvable hostnames)
-   - Primary credentials (reads from CredMan if present; else prompts; optional save)
-   - Fallback password (username from `config.yaml`; reads from CredMan if present; else prompts; optional save)
-   - Jump server (from `config.yaml`, env var, or prompt; blank = direct)
+1. Follow prompts:
+    - Site name (used in the output filename)
+    - Seed devices (comma-separated IPv4 / resolvable hostnames)
+    - Primary credentials (reads from CredMan if present; else prompts; optional save)
+    - Fallback password (username from `config.yaml`; reads from CredMan if present; else prompts; optional save)
+    - Jump server (from `config.yaml`, env var, or prompt; blank = direct)
 
 The tool validates/normalizes seeds to IP addresses, de-duplicates them, then starts the threaded discovery.
 

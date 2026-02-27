@@ -1,4 +1,5 @@
 ---
+title: Model-Driven APIs in Network Automation: gNMI, RESTCONF, and the Future of Device Management
 date: 2026-02-26T12:00:00
 author: "Nautomation Prime Team"
 draft: false
@@ -13,7 +14,7 @@ tags:
   - Best Practices
 ---
 
-# Model-Driven APIs in Network Automation: gNMI, RESTCONF, and the Future of Device Management
+## Model-Driven APIs in Network Automation: gNMI, RESTCONF, and the Future of Device Management
 
 ---
 > **This post is part of our ongoing series on network automation best practices, grounded in the [PRIME Framework](../../prime-framework/index.md) and [PRIME Philosophy](../../prime-framework/philosophy.md).**
@@ -25,7 +26,6 @@ Legacy CLI and SNMP are giving way to model-driven APIs like gNMI and RESTCONF. 
 <!-- more -->
 
 ---
-
 
 ## What are Model-Driven APIs?
 
@@ -45,6 +45,7 @@ Legacy CLI and SNMP are giving way to model-driven APIs like gNMI and RESTCONF. 
 - **Intent-based automation:** Express desired state, not just CLI commands
 
 **Common Use Cases:**
+
 - Automated config deployment and validation
 - Real-time state monitoring and alerting
 - Closed-loop remediation (auto-fix drift)
@@ -117,9 +118,6 @@ print(json.dumps(response.json(), indent=2))
 - Use gNMI and RESTCONF for structured config, state, and telemetry
 - Build abstractions and track changes for long-term success
 - PRIME principles ensure safe, transparent, and measurable adoption
-
----
-
 
 ---
 

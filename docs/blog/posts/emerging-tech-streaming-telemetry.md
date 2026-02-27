@@ -1,4 +1,5 @@
 ---
+title: Streaming Telemetry in Network Automation: Real-Time Data for Modern Operations
 date: 2026-02-26T12:00:00
 draft: false
 author: "Nautomation Prime Team"
@@ -11,7 +12,7 @@ tags:
   - Best Practices
 ---
 
-# Streaming Telemetry in Network Automation: Real-Time Data for Modern Operations
+## Streaming Telemetry in Network Automation: Real-Time Data for Modern Operations
 
 ---
 
@@ -24,7 +25,6 @@ SNMP and CLI scraping are no longer enough. Streaming telemetry provides real-ti
 <!-- more -->
 
 ---
-
 
 ## What is Streaming Telemetry?
 
@@ -43,6 +43,7 @@ SNMP and CLI scraping are no longer enough. Streaming telemetry provides real-ti
 - **Automation triggers:** Use telemetry events to drive config changes, ticketing, or remediation
 
 **Common Use Cases:**
+
 - SLA monitoring and alerting
 - Automated compliance checks
 - Dynamic traffic engineering
@@ -123,7 +124,6 @@ def trigger_alert(device, errors):
 - [Model-Driven APIs in Network Automation](emerging-tech-model-driven-apis.md) — Learn about gNMI, RESTCONF, and YANG for structured device management.
 - [Event-Driven Automation in the Network](emerging-tech-event-driven-automation.md) — Build real-time, event-driven workflows with webhooks and message queues.
 - [DevOps & Observability (Expert)](../../tutorials/expert/devops-observability-network-automation.md) — Integrate telemetry into CI/CD and monitoring pipelines.
-
 
 ## 📣 Want More?
 

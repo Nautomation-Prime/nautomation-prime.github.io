@@ -1,4 +1,5 @@
 ---
+title: Observability for Network Automation
 date: 2026-02-26T12:00:00
 draft: false
 author: "Nautomation Prime Team"
@@ -13,7 +14,7 @@ tags:
   - Best Practices
 ---
 
-# Observability for Network Automation: Logging, Metrics, and Alerting Patterns
+## Observability for Network Automation: Logging, Metrics, and Alerting Patterns
 
 ---
 > **This post is part of our ongoing series on network automation best practices, grounded in the [PRIME Framework](../../prime-framework/index.md) and [PRIME Philosophy](../../prime-framework/philosophy.md).**
@@ -50,7 +51,6 @@ You can’t fix what you can’t see. Observability is the foundation of safe, r
 
 ---
 
-
 ## Tools and Patterns
 
 - **Logging:** Python logging, JSON logs, ELK/Splunk, structured logs for machine parsing
@@ -60,7 +60,6 @@ You can’t fix what you can’t see. Observability is the foundation of safe, r
 - **Tracing:** Correlate logs and metrics with unique run IDs for end-to-end visibility
 
 ---
-
 
 ## Example: Adding Structured Logging
 
@@ -79,7 +78,8 @@ except Exception as e:
   logger.error(json.dumps({'event': 'error', 'run_id': run_id, 'error': str(e)}))
 ```
 
-**Advanced Pattern: Prometheus Metrics Exporter**
+## Advanced Pattern: Prometheus Metrics Exporter
+
 ```python
 from prometheus_client import start_http_server, Counter
 AUTOMATION_RUNS = Counter('automation_runs_total', 'Total automation runs', ['script', 'status'])
@@ -94,7 +94,6 @@ def run_backup():
 
 ---
 
-
 ## PRIME in Action: Building Dashboards
 
 - Collect logs and metrics centrally (ELK, Loki, Prometheus)
@@ -104,7 +103,6 @@ def run_backup():
 - Use run IDs and trace context to correlate automation runs across systems
 
 ---
-
 
 ## Summary: Blog Takeaways
 

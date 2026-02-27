@@ -1,4 +1,5 @@
 ---
+title: Integrating Network Automation with ITSM and Change Management
 date: 2026-02-26T12:00:00
 draft: false
 author: "Nautomation Prime Team"
@@ -11,7 +12,7 @@ tags:
   - Best Practices
 ---
 
-# Integrating Network Automation with ITSM and Change Management
+## Integrating Network Automation with ITSM and Change Management
 
 ---
 
@@ -35,9 +36,6 @@ Automation without change management is a compliance risk. This post explains wh
 
 ---
 
-
----
-
 ## Related Tutorials & Deep Dives
 
 - [Tool Ecosystem Integration (Expert)](../../tutorials/expert/tool-ecosystem-integration.md) — Integrate with ServiceNow, Netbox, and other ITSM tools.
@@ -50,7 +48,6 @@ Automation without change management is a compliance risk. This post explains wh
 
 ---
 
-
 ## Patterns for ITSM Integration
 
 ### 1. ServiceNow API Integration
@@ -61,6 +58,7 @@ Automation without change management is a compliance risk. This post explains wh
 - Example: Python requests to ServiceNow REST API with error handling and status checks
 
 **Advanced Example:**
+
 ```python
 import requests
 def create_change(description, token):
@@ -86,6 +84,7 @@ def check_approval(change_number, token):
 - Integrate with CI/CD for pre- and post-change validation
 
 **Advanced Example:**
+
 ```python
 import requests
 def log_jira_change(summary, token):
@@ -106,7 +105,6 @@ def log_jira_change(summary, token):
 
 ---
 
-
 ## Example: Logging a Change to ServiceNow
 
 ```python
@@ -123,7 +121,6 @@ else:
 
 ---
 
-
 ## PRIME in Action: Automated Compliance
 
 - Automate ticket creation, status checks, and closure
@@ -133,7 +130,6 @@ else:
 - Integrate ITSM checks into CI/CD and pre-change validation
 
 ---
-
 
 ## Summary: Blog Takeaways
 

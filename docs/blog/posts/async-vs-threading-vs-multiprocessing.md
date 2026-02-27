@@ -1,4 +1,5 @@
 ---
+title: Async vs. Threading vs. Multiprocessing in Network Automation
 date: 2026-02-26T12:00:00
 draft: false
 author: "Nautomation Prime Team"
@@ -13,7 +14,7 @@ tags:
   - Best Practices
 ---
 
-# Async vs. Threading vs. Multiprocessing in Network Automation
+## Async vs. Threading vs. Multiprocessing in Network Automation
 
 ---
 > **This post is part of our ongoing series on network automation best practices, grounded in the [PRIME Framework](../../prime-framework/index.md) and [PRIME Philosophy](../../prime-framework/philosophy.md).**
@@ -26,7 +27,6 @@ Concurrency is essential for scalable automation—but not all concurrency model
 
 ---
 
-
 ## 🚦 PRIME Philosophy: Safety and Transparency
 
 - **Safety:** Choose the right concurrency model for your task, avoid race conditions and deadlocks
@@ -37,7 +37,6 @@ Concurrency is essential for scalable automation—but not all concurrency model
 
 ---
 
-
 ## Understanding the Models: Async, Threading, Multiprocessing
 
 - **Threading:** Multiple threads in one process, good for I/O-bound tasks (e.g., SSH, file I/O). Python's GIL limits CPU-bound scaling. Beware of shared state, race conditions, and thread-unsafe libraries.
@@ -45,6 +44,7 @@ Concurrency is essential for scalable automation—but not all concurrency model
 - **Async:** Non-blocking I/O, best for high-volume, lightweight tasks (e.g., API calls, telemetry). Uses event loop and coroutines. Requires async-capable libraries and a new way of thinking about code structure.
 
 **Key Differences:**
+
 - Threading: Simple for I/O, but beware of shared state and race conditions
 - Multiprocessing: True parallelism, but higher memory and startup cost
 - Async: Most efficient for many small, non-blocking tasks; requires async/await code
@@ -56,35 +56,35 @@ Concurrency is essential for scalable automation—but not all concurrency model
 - **Async:** Async code uses an event loop to schedule coroutines. No threads or processes are created by default. Async is ideal for high-scale, non-blocking I/O, but requires async libraries (e.g., scrapli, aiohttp) and careful error handling.
 
 **Common Pitfalls:**
+
 - Threading: Race conditions, deadlocks, thread-unsafe libraries, debugging complexity
 - Multiprocessing: Serialization errors, high memory usage, slow startup
 - Async: Mixing sync and async code, blocking the event loop, poor error handling
 
 ---
 
-
 ## When to Use Each Model
 
-| Model            | Best For                | Example Use Case                |
-|------------------|------------------------|---------------------------------|
-| Threading        | I/O-bound, blocking    | Parallel SSH sessions           |
-| Multiprocessing  | CPU-bound, heavy tasks | Parsing large configs           |
-| Async            | High-volume, lightweight| Telemetry collection, APIs      |
+| Model            | Best For                 | Example Use Case           |
+|------------------|--------------------------|----------------------------|
+| Threading        | I/O-bound, blocking      | Parallel SSH sessions      |
+| Multiprocessing  | CPU-bound, heavy tasks   | Parsing large configs      |
+| Async            | High-volume, lightweight | Telemetry collection, APIs |
 
 ### PRIME-Aligned Decision Tree
 
 1. **Is the task CPU-bound?**
-  - Yes: Use multiprocessing
-  - No: Continue
+    - Yes: Use multiprocessing
+    - No: Continue
 2. **Is the task I/O-bound and blocking?**
-  - Yes: Use threading (if library is thread-safe)
-  - No: Continue
+    - Yes: Use threading (if library is thread-safe)
+    - No: Continue
 3. **Is the task high-volume, lightweight, and async-capable?**
-  - Yes: Use async
-  - No: Re-examine requirements or refactor
-
+    - Yes: Use async
+    - No: Re-examine requirements or refactor
 
 **Decision Checklist:**
+
 - Is your task waiting on network or disk? (Threading or Async)
 - Is your task CPU-intensive? (Multiprocessing)
 - Do you need to scale to thousands of concurrent tasks? (Async)
@@ -94,10 +94,10 @@ Concurrency is essential for scalable automation—but not all concurrency model
 
 ---
 
-
 ## Example 1: Refactoring for Async
 
 **Before (Threading):**
+
 ```python
 from threading import Thread
 for device in devices:
@@ -107,6 +107,7 @@ for device in devices:
 **Pitfall:** No thread join, no error handling, possible race conditions.
 
 **After (Async):**
+
 ```python
 import asyncio
 async def collect_data(device):
@@ -114,7 +115,8 @@ async def collect_data(device):
 asyncio.run(asyncio.gather(*(collect_data(d) for d in devices)))
 ```
 
-**Advanced Async Example: Error Handling and Timeouts**
+### Advanced Async Example: Error Handling and Timeouts
+
 ```python
 import asyncio
 async def collect_data(device):
@@ -127,7 +129,6 @@ results = asyncio.run(asyncio.gather(*(collect_data(d) for d in devices)))
 
 ---
 
-
 ## Example 2: Multiprocessing for CPU-Bound Tasks
 
 ```python
@@ -138,7 +139,8 @@ with Pool(4) as pool:
   results = pool.map(parse_config, devices)
 ```
 
-**Advanced Pattern: Process Pool with Error Handling**
+## Advanced Pattern: Process Pool with Error Handling
+
 ```python
 from multiprocessing import Pool
 def safe_parse(device):
@@ -151,7 +153,6 @@ with Pool(4) as pool:
 ```
 
 ---
-
 
 ## Advanced Patterns: Error Handling, Debugging, and Monitoring
 
@@ -166,7 +167,6 @@ with Pool(4) as pool:
 
 ---
 
-
 ## PRIME in Action: Choosing Safely
 
 - Document concurrency choices in code and runbooks
@@ -178,7 +178,6 @@ with Pool(4) as pool:
 
 ---
 
-
 ## Summary: Blog Takeaways
 
 - Use threading for I/O, multiprocessing for CPU, async for high-volume I/O
@@ -188,7 +187,6 @@ with Pool(4) as pool:
 - Use advanced patterns (timeouts, error handling, resource monitoring) for production-grade reliability
 
 ---
-
 
 ## Related Tutorials & Deep Dives
 

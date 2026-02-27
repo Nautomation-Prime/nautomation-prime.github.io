@@ -1,4 +1,5 @@
 ---
+title: Credential Management in Network Automation: Best Practices for Safety and Scale
 date: 2026-02-26T12:00:00
 draft: false
 author: "Nautomation Prime Team"
@@ -11,7 +12,7 @@ tags:
   - Best Practices
 ---
 
-# Credential Management in Network Automation: Best Practices for Safety and Scale
+## Credential Management in Network Automation: Best Practices for Safety and Scale
 
 ---
 
@@ -35,9 +36,6 @@ Credentials are the keys to your network—and the #1 target for attackers. This
 
 ---
 
-
----
-
 ## Related Tutorials & Deep Dives
 
 - [Secure Credential Vaulting (Expert)](../../tutorials/expert/secure-credential-vaulting.md) — Integrate enterprise-grade secrets management into your automation workflows.
@@ -50,7 +48,6 @@ Credentials are the keys to your network—and the #1 target for attackers. This
 
 ---
 
-
 ## Secure Credential Management Patterns
 
 ### 1. Environment Variables
@@ -58,10 +55,12 @@ Credentials are the keys to your network—and the #1 target for attackers. This
 - Store secrets outside code and config files
 - Use `.env` files (with python-dotenv) or CI/CD secret managers (GitHub Actions, GitLab CI)
 - Example:
+
   ```python
   import os
   password = os.environ['DEVICE_PASSWORD']
   ```
+
 - Rotate secrets by updating environment variables in the secret manager
 
 ### 2. Secrets Managers (Vault, AWS, Azure)
@@ -69,12 +68,14 @@ Credentials are the keys to your network—and the #1 target for attackers. This
 - Use enterprise-grade solutions: HashiCorp Vault, AWS Secrets Manager, Azure Key Vault
 - Centralized, auditable, and automatable
 - Example: Integrate Vault with Python scripts
+
   ```python
   import hvac
   client = hvac.Client(url='https://vault.example.com', token='YOUR_TOKEN')
   secret = client.secrets.kv.v2.read_secret_version(path='network/creds')
   password = secret['data']['data']['password']
   ```
+
 - Automate rotation and expiration checks
 - Use audit logs to track access
 
@@ -83,6 +84,7 @@ Credentials are the keys to your network—and the #1 target for attackers. This
 - Use encrypted YAML or JSON files (e.g., Ansible Vault, SOPS)
 - Decrypt at runtime with a key from a secure source (env var, vault)
 - Example:
+
   ```bash
   ansible-vault encrypt_string 'cisco123' --name 'device_password'
   ```

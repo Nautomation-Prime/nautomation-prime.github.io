@@ -1,4 +1,5 @@
 ---
+title: Migrating Legacy Network Automation to Modern Frameworks: A Step-by-Step Guide
 date: 2026-02-26T12:00:00
 draft: false
 author: "Nautomation Prime Team"
@@ -12,7 +13,7 @@ tags:
    - Best Practices
 ---
 
-# Migrating Legacy Network Automation to Modern Frameworks: A Step-by-Step Guide
+## Migrating Legacy Network Automation to Modern Frameworks: A Step-by-Step Guide
 
 ---
 
@@ -68,7 +69,6 @@ Legacy scripts are everywhere—but they’re hard to maintain, scale, and secur
 
 ---
 
-
 ## Example: Refactoring a Backup Script
 
 **Before:**
@@ -108,7 +108,6 @@ results = nr.run(task=backup)
 
 ---
 
-
 ## PRIME in Action: Sustainable Modernization
 
 - **Transparency:** Document every change, decision, and migration step
@@ -118,7 +117,6 @@ results = nr.run(task=backup)
 - **Empowerment:** Provide training, support, and clear onboarding for new team members
 
 ---
-
 
 ## Summary: Blog Takeaways
 
