@@ -15,7 +15,9 @@ tags:
 
 ---
 
-## Quick Reference
+## IOS-XE Upgrade Orchestrator
+
+### Quick Reference
 
 **Jump to Section:**
 
@@ -242,7 +244,7 @@ A robust upgrade orchestrator must implement a well-defined, repeatable workflow
 - **Trigger Conditions:** Automated (failed health checks) or manual (operator approval).
 - **Rollback Verification:** Confirm device is restored to previous version and operational state.
 
-#### Rollback Strategies Table
+### Rollback Strategies Table
 
 | Rollback Type      | Supported Modes | Downtime | Automation | Notes                                  |
 |--------------------|-----------------|----------|------------|----------------------------------------|
@@ -463,25 +465,26 @@ flowchart TD
 ## Security Considerations
 
 !!! warning "Critical Security Requirements"
-    **Credential Management:**
 
-    - Store device credentials securely (e.g., encrypted vault, environment variables).
-    - Support per-device or per-group credentials for least privilege.
+**Credential Management:**
 
-    **Image Integrity:**
+- Store device credentials securely (e.g., encrypted vault, environment variables).
+- Support per-device or per-group credentials for least privilege.
 
-    - Always verify image hashes before and after transfer.
-    - Use signed images where supported.
+**Image Integrity:**
 
-    **Access Controls:**
+- Always verify image hashes before and after transfer.
+- Use signed images where supported.
 
-    - Restrict orchestrator execution to authorized operators.
-    - Log all actions for auditability.
+**Access Controls:**
 
-    **Network Security:**
+- Restrict orchestrator execution to authorized operators.
+- Log all actions for auditability.
 
-    - Use secure protocols (SSH, SCP, HTTPS) for all device and file transfers.
-    - Avoid exposing sensitive data in logs or error messages.
+**Network Security:**
+
+- Use secure protocols (SSH, SCP, HTTPS) for all device and file transfers.
+- Avoid exposing sensitive data in logs or error messages.
 
 ---
 
@@ -566,9 +569,9 @@ flowchart TD
 ### Why Python + Cisco Catalyst Center (DNA Center) = Enhanced Capabilities
 
 !!! question "Couldn't I Just Use Catalyst Center Instead?"
-    This is a common and valid question. Cisco Catalyst Center (formerly DNA Center) provides excellent GUI-driven software upgrade capabilities with Software Image Management (SWIM). So why build a Python orchestrator?
+This is a common and valid question. Cisco Catalyst Center (formerly DNA Center) provides excellent GUI-driven software upgrade capabilities with Software Image Management (SWIM). So why build a Python orchestrator?
 
-    **The answer:** Python and Catalyst Center are **complementary, not competing** solutions. Python orchestration enhances and extends Catalyst Center's capabilities rather than replacing them.
+**The answer:** Python and Catalyst Center are **complementary, not competing** solutions. Python orchestration enhances and extends Catalyst Center's capabilities rather than replacing them.
 
 **Key Limitations of Catalyst Center Alone:**
 
@@ -598,29 +601,24 @@ flowchart TD
 **How Python Orchestrators Enhance Catalyst Center:**
 
 !!! success "Synergistic Integration Strategies"
-    **1. Use Catalyst Center as the Source-of-Truth**
-
+**1. Use Catalyst Center as the Source-of-Truth**
     - Leverage Catalyst Center's Intent API to query device inventory, software compliance status, and health metrics.
     - Python orchestrators can consume this data via REST APIs, eliminating the need to maintain separate inventory files.
     - Example: `GET /dna/intent/api/v1/network-device` retrieves device details; Python script uses this to build upgrade candidates list.
 
-    **2. Trigger Python Workflows from Catalyst Center Events**
-
+**2. Trigger Python Workflows from Catalyst Center Events**
     - Use Catalyst Center's Event Management (Eastbound) APIs to trigger Python orchestrators when specific conditions occur (e.g., device out of compliance, critical CVE detected).
     - Python script executes custom pre-checks, stages images, and performs upgrades, then reports status back to Catalyst Center via REST APIs.
 
-    **3. Hybrid Orchestration: Catalyst Center + Python**
-
+**3. Hybrid Orchestration: Catalyst Center + Python**
     - Use Catalyst Center for standard, low-risk upgrades (e.g., access switches during maintenance windows).
     - Reserve Python orchestrators for high-stakes, complex scenarios (e.g., core routers, dual-SUP chassis, StackWise Virtual, or devices requiring custom validation logic).
 
-    **4. Extend Catalyst Center with Custom Integrations**
-
+**4. Extend Catalyst Center with Custom Integrations**
     - Python scripts can integrate Catalyst Center with third-party tools not natively supported (e.g., ServiceNow, Slack, legacy CMDB systems, custom dashboards).
     - Example: Python orchestrator fetches upgrade candidates from Catalyst Center, cross-references with ServiceNow change tickets, executes upgrades, and updates both systems.
 
-    **5. Reporting and Analytics**
-
+**5. Reporting and Analytics**
     - Catalyst Center provides robust reporting, but Python orchestrators can generate bespoke reports tailored to specific compliance, audit, or operational requirements.
     - Example: Export upgrade history to Excel with custom formatting, compare against baseline configurations, and highlight deviations.
 
@@ -652,9 +650,9 @@ An enterprise network team manages 5,000 Catalyst switches via Catalyst Center. 
 ### Why Python + Ansible = Powerful Hybrid Orchestration
 
 !!! question "Couldn't I Just Use Ansible Instead?"
-    Another excellent question. Ansible is the industry-standard automation platform with excellent Cisco network module support (`cisco.ios`, `ansible.netcommon`). Many teams already use Ansible for configuration management, so why build a Python orchestrator?
-    
-    **The answer:** Ansible and Python are **complementary tools that serve different orchestration paradigms**. Each has unique strengths, and combining them creates a more robust automation ecosystem.
+Another excellent question. Ansible is the industry-standard automation platform with excellent Cisco network module support (`cisco.ios`, `ansible.netcommon`). Many teams already use Ansible for configuration management, so why build a Python orchestrator?
+
+**The answer:** Ansible and Python are **complementary tools that serve different orchestration paradigms**. Each has unique strengths, and combining them creates a more robust automation ecosystem.
 
 ### Key Differences: Ansible vs. Python Orchestration
 
@@ -691,29 +689,24 @@ An enterprise network team manages 5,000 Catalyst switches via Catalyst Center. 
 **How Python Orchestrators Enhance Ansible:**
 
 !!! success "Synergistic Integration Strategies"
-    **1. Use Python as the Workflow Orchestrator, Ansible as the Execution Engine**
-    
+**1. Use Python as the Workflow Orchestrator, Ansible as the Execution Engine**
     - Python script manages upgrade workflow state (discovery → pre-check → transfer → upgrade → verify → rollback).
     - At each stage, Python calls Ansible playbooks via `ansible-runner` Python library to execute device-level tasks.
     - Example: Python orchestrator determines which devices need upgrades, calls Ansible playbook to transfer images in parallel, tracks success/failure, and proceeds to next stage only when all transfers complete.
-    
-    **2. Leverage Ansible for Device-Level Idempotency, Python for Workflow Logic**
-    
+
+**2. Leverage Ansible for Device-Level Idempotency, Python for Workflow Logic**
     - Use Ansible modules for idempotent operations (e.g., `cisco.ios.ios_command` ensures commands execute correctly, `ansible.netcommon.net_get` handles file transfers).
     - Python orchestrator handles non-idempotent workflow decisions (e.g., "If pre-check fails, abort upgrade and notify operator").
-    
-    **3. Python Orchestrator Generates Dynamic Ansible Inventories**
-    
+
+**3. Python Orchestrator Generates Dynamic Ansible Inventories**
     - Python reads device list from Excel, applies business logic (e.g., filter by maintenance window, exclude devices with active incidents), and generates Ansible inventory files.
     - Ansible playbooks consume dynamically generated inventories, ensuring only eligible devices are targeted.
-    
-    **4. Use Ansible for Multi-Vendor Normalization, Python for Cisco-Specific Logic**
-    
+
+**4. Use Ansible for Multi-Vendor Normalization, Python for Cisco-Specific Logic**
     - Ansible's multi-vendor module support (IOS, NX-OS, Junos, Arista) handles cross-platform command execution.
     - Python orchestrator implements Cisco IOS-XE-specific upgrade logic (Install Mode, ISSU detection, StackWise coordination) not covered by generic Ansible modules.
-    
-    **5. Ansible Playbooks as Reusable Components in Python Workflows**
-    
+
+**5. Ansible Playbooks as Reusable Components in Python Workflows**
     - Develop modular Ansible playbooks for reusable tasks (backup configs, verify image hash, check flash space).
     - Python orchestrator calls these playbooks as needed, combining them into bespoke upgrade workflows tailored to specific device groups or scenarios.
 
@@ -733,15 +726,15 @@ A network team manages upgrades for 3,000 Cisco devices (mix of IOS, IOS-XE, NX-
 
 ### Decision Matrix: Ansible vs Python
 
-| Scenario                         | Ansible Alone                       | Python Orchestrator Alone | Python + Ansible                          |
-|----------------------------------|-------------------------------------|---------------------------|-------------------------------------------|
-| Simple config changes            | ✅ Recommended                      | ❌ Overkill               | ❌ Overkill                                |
-| Multi-stage upgrade workflows    | ⚠️ Complex playbooks              | ✅ Recommended            | ✅ Best of both worlds                     |
-| Excel-driven inventory           | ⚠️ Requires pre-processing        | ✅ Native support         | ✅ Python reads, Ansible executes         |
-| Multi-vendor environments        | ✅ Excellent support                | ⚠️ Custom per-vendor logic  | ✅ Ansible modules + Python orchestration |
-| Real-time operator approvals     | ⚠️ Requires AWX/Tower             | ✅ Native CLI prompts     | ✅ Python prompts + Ansible tasks         |
-| Team already uses Ansible        | ✅ Leverage existing investment     | ⚠️ Learning curve        | ✅ Extend Ansible with Python             |
-| Complex rollback logic           | ⚠️ Limited state tracking        | ✅ Full control           | ✅ Python logic + Ansible execution       |
+| Scenario                         | Ansible Alone                       | Python Orchestrator Alone     | Python + Ansible                           |
+|----------------------------------|-------------------------------------|-------------------------------|--------------------------------------------|
+| Simple config changes            | ✅ Recommended                      | ❌ Overkill                   |   ❌ Overkill                              |
+| Multi-stage upgrade workflows    | ⚠️ Complex playbooks                | ✅ Recommended                | ✅ Best of both worlds                     |
+| Excel-driven inventory           | ⚠️ Requires pre-processing          | ✅ Native support             | ✅ Python reads, Ansible executes          |
+| Multi-vendor environments        | ✅ Excellent support                | ⚠️ Custom per-vendor logic    | ✅ Ansible modules + Python orchestration  |
+| Real-time operator approvals     | ⚠️ Requires AWX/Tower               | ✅ Native CLI prompts         | ✅ Python prompts + Ansible tasks          |
+| Team already uses Ansible        | ✅ Leverage existing investment     | ⚠️ Learning curve             | ✅ Extend Ansible with Python              |
+| Complex rollback logic           | ⚠️ Limited state tracking           | ✅ Full control               | ✅ Python logic + Ansible execution        |
 
 !!! tip "Best Practice Recommendation"
     **Use Ansible for device-level task execution and idempotency**, and **develop Python orchestrators for workflow state management, conditional logic, and integrations** that extend Ansible's capabilities. This approach leverages Ansible's mature ecosystem while adding the flexibility and control of Python for complex enterprise workflows.
@@ -751,9 +744,9 @@ A network team manages upgrades for 3,000 Cisco devices (mix of IOS, IOS-XE, NX-
 ### Nornir: The Python-Native Framework for Scalable Network Automation
 
 !!! info "What is Nornir?"
-    **Nornir** is a pure-Python automation framework specifically designed for network operations at scale. Unlike Ansible (which uses YAML-based playbooks), Nornir is **Python-native**—you write automation logic in Python itself, giving you the full power of a programming language without abstraction layers.
-    
-    **Why it's less known:** Nornir is newer (first released in 2018) and targets a more technical audience (network engineers who code in Python). It lacks the marketing presence of Ansible/Red Hat, but has become the framework of choice for sophisticated network automation engineers who need Python's flexibility with built-in scalability.
+**Nornir** is a pure-Python automation framework specifically designed for network operations at scale. Unlike Ansible (which uses YAML-based playbooks), Nornir is **Python-native**—you write automation logic in Python itself, giving you the full power of a programming language without abstraction layers.
+
+**Why it's less known:** Nornir is newer (first released in 2018) and targets a more technical audience (network engineers who code in Python). It lacks the marketing presence of Ansible/Red Hat, but has become the framework of choice for sophisticated network automation engineers who need Python's flexibility with built-in scalability.
 
 **Why Nornir is Ideally Suited for IOS-XE Upgrade Orchestration:**
 
@@ -791,33 +784,29 @@ A network team manages upgrades for 3,000 Cisco devices (mix of IOS, IOS-XE, NX-
 **How Nornir Enhances This Python Orchestrator:**
 
 !!! success "Integration Strategies"
-    **1. Use Nornir as the Core Execution Engine**
-    
-    - Replace custom threading/multiprocessing code with Nornir's built-in parallelization.
-    - Define upgrade workflow stages as Nornir tasks: `pre_check_task()`, `transfer_image_task()`, `upgrade_task()`, `verify_task()`.
-    - Execute tasks across device inventory with automatic concurrency management: `nr.run(task=pre_check_task)`.
-    
-    **2. Custom Nornir Inventory from Excel**
-    
+**1. Use Nornir as the Core Execution Engine**
+
+- Replace custom threading/multiprocessing code with Nornir's built-in parallelization.
+- Define upgrade workflow stages as Nornir tasks: `pre_check_task()`, `transfer_image_task()`, `upgrade_task()`, `verify_task()`.
+- Execute tasks across device inventory with automatic concurrency management: `nr.run(task=pre_check_task)`.
+
+**2. Custom Nornir Inventory from Excel**
     - Develop a custom Nornir inventory plugin that reads device list, credentials, and upgrade parameters from Excel.
     - Map Excel columns to Nornir host attributes: `hostname`, `platform`, `target_version`, `maintenance_window`, etc.
     - Filter inventory dynamically: `nr_filtered = nr.filter(platform="catalyst9k", maintenance_window="tonight")`.
-    
-    **3. Encapsulate IOS-XE Upgrade Logic in Nornir Tasks**
-    
+
+**3. Encapsulate IOS-XE Upgrade Logic in Nornir Tasks**
     - Create custom Nornir tasks for platform-specific operations:
-        - `ios_xe_install_mode_upgrade()`: Handles `install add`, `install activate`, `install commit` workflow.
-        - `stackwise_version_check()`: Validates all stack members are running same version.
-        - `dual_sup_upgrade()`: Coordinates standby-first upgrade logic.
+    - `ios_xe_install_mode_upgrade()`: Handles `install add`, `install activate`, `install commit` workflow.
+    - `stackwise_version_check()`: Validates all stack members are running same version.
+    - `dual_sup_upgrade()`: Coordinates standby-first upgrade logic.
     - Reuse tasks across different upgrade scenarios and device groups.
-    
-    **4. Leverage Nornir Processors for Logging and State Tracking**
-    
+
+**4. Leverage Nornir Processors for Logging and State Tracking**
     - Use Nornir's `processor` framework to automatically log every task execution to Excel, database, or SIEM.
     - Example: Custom processor updates Excel row with upgrade status after each task completes.
-    
-    **5. Conditional Task Execution Based on Results**
-    
+
+**5. Conditional Task Execution Based on Results**
     - Analyze `AggregatedResult` after each stage to determine next steps:
         ```python
         result = nr.run(task=pre_check_task)
@@ -888,62 +877,53 @@ A network team develops an IOS-XE upgrade orchestrator using Nornir:
 ## Compliance, Audit Trail, and Reporting
 
 **Compliance:**
-
-- Ensure all upgrade actions are logged and traceable.
-- Generate reports on upgrade status, failures, and operator actions.
+    - Ensure all upgrade actions are logged and traceable.
+    - Generate reports on upgrade status, failures, and operator actions.
 
 **Audit Trail:**
-
-- Maintain detailed logs for all workflow stages, approvals, and rollbacks.
-- Support export to CSV, PDF, or integration with compliance tools.
+    - Maintain detailed logs for all workflow stages, approvals, and rollbacks.
+    - Support export to CSV, PDF, or integration with compliance tools.
 
 **Reporting:**
-
-- Real-time dashboards for upgrade progress.
-- Historical reports for trend analysis and continuous improvement.
+    - Real-time dashboards for upgrade progress.
+    - Historical reports for trend analysis and continuous improvement.
 
 ---
 
 ## Error Handling and Escalation Procedures
 
 **Error Handling:**
-
-- Classify errors (transient vs. permanent) and handle accordingly.
-- Implement retries with exponential backoff for transient errors.
-- Route unrecoverable errors to dead letter queues for manual intervention.
+    - Classify errors (transient vs. permanent) and handle accordingly.
+    - Implement retries with exponential backoff for transient errors.
+    - Route unrecoverable errors to dead letter queues for manual intervention.
 
 **Escalation:**
-
-- Notify operators and escalate to higher-level support if errors persist.
-- Provide actionable error messages and remediation steps.
+    - Notify operators and escalate to higher-level support if errors persist.
+    - Provide actionable error messages and remediation steps.
 
 ---
 
 ## SMU, FPGA, and Platform Firmware Handling
 
 **SMU (Software Maintenance Upgrade):**
-
-- Support installation, activation, and rollback of SMU packages for critical patches.
-- Automate compatibility checks and ensure SMUs are committed post-activation.
+    - Support installation, activation, and rollback of SMU packages for critical patches.
+    - Automate compatibility checks and ensure SMUs are committed post-activation.
 
 **FPGA/Firmware:**
-
-- Detect and manage required FPGA or platform firmware upgrades as part of the workflow.
-- Schedule firmware upgrades during maintenance windows due to potential reloads.
+    - Detect and manage required FPGA or platform firmware upgrades as part of the workflow.
+    - Schedule firmware upgrades during maintenance windows due to potential reloads.
 
 ---
 
 ## Time Windows, Scheduling, and Maintenance Window Management
 
 **Scheduling:**
-
-- Support scheduling upgrades within approved maintenance windows.
-- Batch upgrades to avoid network congestion and minimize impact.
+    - Support scheduling upgrades within approved maintenance windows.
+    - Batch upgrades to avoid network congestion and minimize impact.
 
 **Window Management:**
-
-- Validate that upgrades do not exceed allocated windows.
-- Provide rollback triggers if upgrades overrun or fail within the window.
+    - Validate that upgrades do not exceed allocated windows.
+    - Provide rollback triggers if upgrades overrun or fail within the window.
 
 ---
 
@@ -1002,4 +982,3 @@ A well-designed IOS-XE Software Upgrade Orchestrator is a force multiplier for n
 
 !!! info "Want to Contribute or Collaborate?"
     This design document is part of Nautomation Prime's commitment to transparent, production-ready automation. If you have feedback, suggestions, or would like to collaborate on implementation, please visit our [about page](../about.md) for contact information.
-
