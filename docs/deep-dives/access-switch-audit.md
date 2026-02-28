@@ -64,12 +64,15 @@ A modular Python utility that connects to Cisco switches (optionally through an 
 Before diving into the code, understand how every design decision reflects our three core principles:
 
 ### **Principle 1: Line-by-Line Transparency**
+
 Every function in this tool includes explicit documentation of *what it does* and *why it's structured this way*. You'll see comments explaining the engineering tradeoffs—why we parse with TextFSM *and* maintain a fallback parser, why we use conservative stale-detection logic, and why conditional formatting in Excel matters for operations teams.
 
 ### **Principle 2: Hardened for Production**
+
 Access layer audits run on infrastructure that cannot afford downtime. You'll notice patterns like concurrent connection pooling, per-device failure isolation, graceful fallbacks when commands fail, and secure credential rotation. These aren't "nice to have"—they're mandatory for enterprise reliability.
 
 ### **Principle 3: Vendor-Neutral**
+
 This tool is built on industry-standard Python libraries: **Netmiko** (multi-device SSH), **Paramiko** (jump host tunnelling), **Pandas & OpenPyXL** (Excel generation), and **TextFSM** (intelligent parsing). Your skills remain portable across vendors.
 
 ---
@@ -78,33 +81,33 @@ This tool is built on industry-standard Python libraries: **Netmiko** (multi-dev
 
 The tool has been restructured into a **professional modular package** (v2.0), separating concerns and following enterprise Python best practices:
 
-```
-.
-├── switch_audit/           # Main package (modular design)
-│   ├── __init__.py
-│   ├── __main__.py        # Entry point for python -m switch_audit
-│   ├── cli.py             # Command-line interface and orchestration
-│   ├── device_auditor.py  # Device connection and data collection
-│   ├── excel_reporter.py  # Excel workbook generation
-│   ├── credentials.py     # Secure credential management
-│   ├── jump_manager.py    # SSH jump host (bastion) support
-│   ├── netmiko_utils.py   # Network device connection utilities
-│   ├── formatters.py      # Excel formatting and interface name normalization
-│   ├── validators.py      # Input validation functions
-│   └── app_config.py      # Configuration access wrapper
-├── ProgramFiles/
-│   └── config_files/
-│       ├── __init__.py
-│       └── config_loader.py  # YAML configuration loader
-├── config.yaml            # User-editable configuration
-├── devices.txt            # Device list (one IP/hostname per line)
-├── main_new.py            # Backward compatibility entry point
-├── main.py                # Legacy entry point (deprecated)
-├── run.bat                # Windows launcher script
-├── requirements.txt       # Python dependencies
-├── MIGRATION.md           # Migration guide for v2.0
-└── README.md
-```
+    ```text
+    .
+    ├── switch_audit/           # Main package (modular design)
+    │   ├── __init__.py
+    │   ├── __main__.py        # Entry point for python -m switch_audit
+    │   ├── cli.py             # Command-line interface and orchestration
+    │   ├── device_auditor.py  # Device connection and data collection
+    │   ├── excel_reporter.py  # Excel workbook generation
+    │   ├── credentials.py     # Secure credential management
+    │   ├── jump_manager.py    # SSH jump host (bastion) support
+    │   ├── netmiko_utils.py   # Network device connection utilities
+    │   ├── formatters.py      # Excel formatting and interface name normalization
+    │   ├── validators.py      # Input validation functions
+    │   └── app_config.py      # Configuration access wrapper
+    ├── ProgramFiles/
+    │   └── config_files/
+    │       ├── __init__.py
+    │       └── config_loader.py  # YAML configuration loader
+    ├── config.yaml            # User-editable configuration
+    ├── devices.txt            # Device list (one IP/hostname per line)
+    ├── main_new.py            # Backward compatibility entry point
+    ├── main.py                # Legacy entry point (deprecated)
+    ├── run.bat                # Windows launcher script
+    ├── requirements.txt       # Python dependencies
+    ├── MIGRATION.md           # Migration guide for v2.0
+    └── README.md
+    ```
 
 > **V2.0 Architecture:** The restructure separates the monolithic `main.py` (1,300+ lines) into focused modules with single responsibilities. This improves maintainability, testability, and extensibility.
 >
@@ -146,9 +149,9 @@ Each module in the `switch_audit/` package has a specific, well-defined role:
   - `pywin32` (Windows only; used for Windows Credential Manager integration)
 
 Install with pip:
-```bash
-pip install netmiko paramiko pandas openpyxl pywin32
-```
+    ```bash
+    pip install netmiko paramiko pandas openpyxl pywin32
+    ```
 
 ### Optional but Recommended
 
@@ -169,44 +172,44 @@ All configurable settings are centralized in `config.yaml` at the project root. 
 **Key Configuration Categories:**
 
 **1. Network Settings:**
-```yaml
-network:
-  jump_host: "jump-gateway.example.com"  # Default bastion/jump host
-  device_type: "cisco_ios"                # Netmiko device type
-  ssh_port: 22                            # SSH port
-  read_timeout: 30                        # Command read timeout
-```
+    ```yaml
+    network:
+    jump_host: "jump-gateway.example.com"  # Default bastion/jump host
+    device_type: "cisco_ios"                # Netmiko device type
+    ssh_port: 22                            # SSH port
+    read_timeout: 30                        # Command read timeout
+    ```
 
 **2. Credential Settings:**
-```yaml
-credentials:
-  cred_target: "MyApp/ADM"  # Windows Credential Manager target
-  enable_target: ""          # Optional enable secret target
-```
+    ```yaml
+    credentials:
+    cred_target: "MyApp/ADM"  # Windows Credential Manager target
+    enable_target: ""          # Optional enable secret target
+    ```
 
 **3. Performance & Concurrency:**
-```yaml
-concurrency:
-  default_workers: 10        # Max concurrent device sessions
-  retry_attempts: 3          # Connection retry count
-  retry_base_wait: 2         # Base wait time for exponential backoff
-```
+    ```yaml
+    concurrency:
+    default_workers: 10        # Max concurrent device sessions
+    retry_attempts: 3          # Connection retry count
+    retry_base_wait: 2         # Base wait time for exponential backoff
+    ```
 
 **4. Excel Output:**
-```yaml
-output:
-  default_filename: "audit.xlsx"  # Default output filename
-  
-excel_formatting:
-  min_column_width: 10
-  max_column_width: 50
-```
+    ```yaml
+    output:
+    default_filename: "audit.xlsx"  # Default output filename
+
+    excel_formatting:
+    min_column_width: 10
+    max_column_width: 50
+    ```
 
 **5. Stale Port Detection:**
-```yaml
-stale_detection:
-  default_stale_days: 30  # Days threshold for stale ports
-```
+    ```yaml
+    stale_detection:
+    default_stale_days: 30  # Days threshold for stale ports
+    ```
 
 ### Why YAML Configuration?
 
@@ -223,10 +226,10 @@ stale_detection:
 
 Specific settings can be overridden at runtime via environment variables (primarily for the jump host):
 
-```powershell
-# Override jump host at runtime
-$env:JUMP_HOST = "temp-bastion.example.com"
-```
+    ```powershell
+    # Override jump host at runtime
+    $env:JUMP_HOST = "temp-bastion.example.com"
+    ```
 
 > **Best Practice:** Use `config.yaml` for organizational defaults; use CLI arguments (`--direct`, `--workers`, etc.) for per-run overrides.
 
@@ -247,15 +250,15 @@ The repository includes a **professional Windows batch launcher** (`run.bat`) th
 
 ### Using run.bat
 
-**Option 1: Double-click**
+## **Option 1: Double-click**
 
 Simply double-click `run.bat` in Windows Explorer to launch the tool with default behavior.
 
-**Option 2: Command Line (Default Behavior)**
+## **Option 2: Command Line (Default Behavior)**
 
-```cmd
-run.bat
-```
+    ```cmd
+    run.bat
+    ```
 
 This runs the Access Switch Audit using `python -m switch_audit` with all default settings from `config.yaml`.
 
@@ -281,31 +284,31 @@ This runs the Access Switch Audit using `python -m switch_audit` with all defaul
 
 ### Example Output
 
-```
-================================================================================
-                  ACCESS SWITCH AUDIT TOOL
-================================================================================
+    ```
+    ================================================================================
+                    ACCESS SWITCH AUDIT TOOL
+    ================================================================================
 
-Starting validation checks...
+    Starting validation checks...
 
-[OK] Python Environment: Found at portable_env\Scripts\python.exe
-[OK] Required support files found
-[OK] All validation checks passed
+    [OK] Python Environment: Found at portable_env\Scripts\python.exe
+    [OK] Required support files found
+    [OK] All validation checks passed
 
-================================================================================
+    ================================================================================
 
-Running Access Switch Audit...
+    Running Access Switch Audit...
 
-================================================================================
+    ================================================================================
 
-[Script output appears here]
+    [Script output appears here]
 
-================================================================================
+    ================================================================================
 
-[SUCCESS] Script completed successfully
+    [SUCCESS] Script completed successfully
 
-================================================================================
-```
+    ================================================================================
+    ```
 
 ---
 
@@ -328,31 +331,31 @@ Use `python -m switch_audit` with arguments when you need to:
 
 You can pass arguments to `run.bat` and they will be forwarded to the Python script:
 
-```cmd
-run.bat --devices my-switches.txt --output custom-audit.xlsx --workers 5
-```
+    ```cmd
+    run.bat --devices my-switches.txt --output custom-audit.xlsx --workers 5
+    ```
 
 ### Method 2: Direct Python Execution (New in v2.0)
 
 Activate the virtual environment and run the package as a module:
 
-```bash
-# Windows (recommended)
-portable_env\Scripts\activate
-python -m switch_audit --devices my-switches.txt --output audit-report.xlsx
+    ```bash
+    # Windows (recommended)
+    portable_env\Scripts\activate
+    python -m switch_audit --devices my-switches.txt --output audit-report.xlsx
 
-# Linux/macOS  
-source portable_env/bin/activate
-python -m switch_audit --devices my-switches.txt --output audit-report.xlsx
+    # Linux/macOS  
+    source portable_env/bin/activate
+    python -m switch_audit --devices my-switches.txt --output audit-report.xlsx
 
-# Backward compatibility (still works)
-python main_new.py --devices my-switches.txt --output audit-report.xlsx
-```
+    # Backward compatibility (still works)
+    python main_new.py --devices my-switches.txt --output audit-report.xlsx
+    ```
 
 ### Available Command-Line Arguments
 
 | Argument | Description | Default |
-|:---------|:------------|:--------|
+| :--------- | :------------ | :-------- |
 | `--devices`, `-d` | Path to devices file | `devices.txt` |
 | `--output`, `-o` | Output Excel filename | `audit.xlsx` |
 | `--workers`, `-w` | Number of concurrent threads | 10 |
@@ -362,9 +365,9 @@ python main_new.py --devices my-switches.txt --output audit-report.xlsx
 
 **Example: Custom audit with direct connections:**
 
-```bash
-python -m switch_audit --devices critical-switches.txt --output critical-audit.xlsx --direct --debug
-```
+    ```bash
+    python -m switch_audit --devices critical-switches.txt --output critical-audit.xlsx --direct --debug
+    ```
 
 ---
 
@@ -436,28 +439,26 @@ If you're upgrading from the older monolithic version, see the **MIGRATION.md** 
 ### What Changed in v2.0?
 
 **1. Modular Package Design**
-
-- Code separated into focused modules (cli.py, device_auditor.py, excel_reporter.py, etc.)
-- `Modules/` directory components moved to `switch_audit/` package
-- Config loader relocated to `ProgramFiles/config_files/`
+    - Code separated into focused modules (cli.py, device_auditor.py, excel_reporter.py, etc.)
+    - `Modules/` directory components moved to `switch_audit/` package
+    - Config loader relocated to `ProgramFiles/config_files/`
 
 **2. New Entry Point**
-
-- **Old**: `python main.py --devices devices.txt`
-- **New**: `python -m switch_audit --devices devices.txt` (recommended)
-- **Backward Compatible**: `python main_new.py --devices devices.txt`
+    - **Old**: `python main.py --devices devices.txt`
+    - **New**: `python -m switch_audit --devices devices.txt` (recommended)
+    - **Backward Compatible**: `python main_new.py --devices devices.txt`
 
 **3. Updated Imports (for developers)**
-```python
-# Old imports:
-from Modules.config_loader import Config
-from Modules.credentials import get_secret_with_fallback
+    ```python
+    # Old imports:
+    from Modules.config_loader import Config
+    from Modules.credentials import get_secret_with_fallback
 
-# New imports:
-from ProgramFiles.config_files.config_loader import Config
-from switch_audit.credentials import get_secret_with_fallback
-from switch_audit.app_config import config  # Singleton wrapper
-```
+    # New imports:
+    from ProgramFiles.config_files.config_loader import Config
+    from switch_audit.credentials import get_secret_with_fallback
+    from switch_audit.app_config import config  # Singleton wrapper
+    ```
 
 ### Benefits of v2.0 Restructure
 
@@ -488,20 +489,20 @@ For end users, the tool works identically. All CLI arguments, configuration opti
 
 ### Parsing Strategy: TextFSM + Custom Fallback
 
-```python
-def get_interfaces_via_show_interfaces(conn) -> List[Dict[str, Any]]:
-    """
-    Use TextFSM to parse 'show interfaces' for all ports.
-    Falls back gracefully if templates unavailable.
-    """
-    try:
-        output = conn.send_command("show interfaces", use_textfsm=True)
-        if isinstance(output, list):
-            return output
-        return []
-    except Exception:
-        return []  # Graceful degradation
-```
+    ```python
+    def get_interfaces_via_show_interfaces(conn) -> List[Dict[str, Any]]:
+        """
+        Use TextFSM to parse 'show interfaces' for all ports.
+        Falls back gracefully if templates unavailable.
+        """
+        try:
+            output = conn.send_command("show interfaces", use_textfsm=True)
+            if isinstance(output, list):
+                return output
+            return []
+        except Exception:
+            return []  # Graceful degradation
+    ```
 
 **Why This Approach:**
 
@@ -513,42 +514,40 @@ def get_interfaces_via_show_interfaces(conn) -> List[Dict[str, Any]]:
 
 This is the **authoritative source** for port mode and VLAN classification.
 
-```python
-def parse_show_interfaces_status(output: str) -> List[Dict[str, str]]:
-    """
-    Robust fixed-width parser for 'show interfaces status'.
-    Handles:
-    - Multiple header formats
-    - Variable column widths
-    - Missing/malformed data
-    """
-```
+    ```python
+    def parse_show_interfaces_status(output: str) -> List[Dict[str, str]]:
+        """
+        Robust fixed-width parser for 'show interfaces status'.
+        Handles:
+        - Multiple header formats
+        - Variable column widths
+        - Missing/malformed data
+        """
+    ```
 
 **Step 1: Identify Header Row**
-
-```python
-def is_header(ln: str) -> bool:
-    return ("Port" in ln and "Status" in ln and "Vlan" in ln and "Speed" in ln)
-```
+    ```python
+    def is_header(ln: str) -> bool:
+        return ("Port" in ln and "Status" in ln and "Vlan" in ln and "Speed" in ln)
+    ```
 
 **Why:** Header detection must be flexible. Different IOS versions capitalize differently.
 
 **Step 2: Extract Column Positions**
-
-```python
-def _find_columns(header_line: str) -> Dict[str, slice]:
-    """
-    Calculate exact character positions for each column.
-    Returns slice objects for substring extraction.
-    """
-    tokens = ["Port", "Name", "Status", "Vlan", "Duplex", "Speed", "Type"]
-    positions = {}
-    for i, tok in enumerate(tokens):
-        start = header_line.find(tok)
-        end = header_line.find(tokens[i+1]) if i+1 < len(tokens) else len(header_line)
-        positions[tok.lower()] = slice(start, end)
-    return positions
-```
+    ```python
+    def _find_columns(header_line: str) -> Dict[str, slice]:
+        """
+        Calculate exact character positions for each column.
+        Returns slice objects for substring extraction.
+        """
+        tokens = ["Port", "Name", "Status", "Vlan", "Duplex", "Speed", "Type"]
+        positions = {}
+        for i, tok in enumerate(tokens):
+            start = header_line.find(tok)
+            end = header_line.find(tokens[i+1]) if i+1 < len(tokens) else len(header_line)
+            positions[tok.lower()] = slice(start, end)
+        return positions
+    ```
 
 **Why This Matters:**
 
@@ -557,27 +556,26 @@ def _find_columns(header_line: str) -> Dict[str, slice]:
 - Slice objects provide clean substring extraction
 
 **Step 3: Parse Data Rows**
+    ```python
+    for line in lines:
+        if line.startswith(("--", "Port")) or not line.strip():
+            continue  # Skip separators and empty lines
 
-```python
-for line in lines:
-    if line.startswith(("--", "Port")) or not line.strip():
-        continue  # Skip separators and empty lines
-    
-    record = {}
-    for key, col_slice in slices.items():
-        record[key] = line[col_slice].strip()
-    
-    # Normalize status values
-    status_raw = record.get('status', '').lower()
-    if 'connect' in status_raw:
-        record['status'] = 'connected'
-    elif 'notconnect' in status_raw:
-        record['status'] = 'notconnect'
-    elif 'disabled' in status_raw:
-        record['status'] = 'disabled'
-    elif 'err' in status_raw:
-        record['status'] = 'err-disabled'
-```
+        record = {}
+        for key, col_slice in slices.items():
+            record[key] = line[col_slice].strip()
+        
+        # Normalize status values
+        status_raw = record.get('status', '').lower()
+        if 'connect' in status_raw:
+            record['status'] = 'connected'
+        elif 'notconnect' in status_raw:
+            record['status'] = 'notconnect'
+        elif 'disabled' in status_raw:
+            record['status'] = 'disabled'
+        elif 'err' in status_raw:
+            record['status'] = 'err-disabled'
+    ```
 
 **Why Status Normalization:**
 
@@ -587,17 +585,17 @@ for line in lines:
 
 ### Port Mode Classification
 
-```python
-# Determine mode from VLAN column
-vlan_value = record.get('vlan', '').lower()
+    ```python
+    # Determine mode from VLAN column
+    vlan_value = record.get('vlan', '').lower()
 
-if vlan_value in ('trunk', 'rspan'):
-    mode = 'trunk'
-elif vlan_value == 'routed':
-    mode = 'routed'
-else:
-    mode = 'access'  # Default assumption
-```
+    if vlan_value in ('trunk', 'rspan'):
+        mode = 'trunk'
+    elif vlan_value == 'routed':
+        mode = 'routed'
+    else:
+        mode = 'access'  # Default assumption
+    ```
 
 **Why This Logic:**
 
@@ -621,34 +619,34 @@ else:
 
 ### Interface Name Normalization
 
-```python
-def normalize_ifname(ifname: str) -> Tuple[str, str]:
-    """
-    Normalize interface names to canonical short and long forms.
-    Returns: (short_form, long_form)
-    Example: "Gi1/0/1" → ("Gi1/0/1", "GigabitEthernet1/0/1")
-    """
-    # Extract prefix and port number
-    m = re.match(r"([A-Za-z]+)([0-9/\.]+.*)", ifname)
-    if not m:
-        return (ifname, ifname)
-    
-    prefix_raw = m.group(1)
-    rest = m.group(2)
-    
-    # Map to short form
-    short_prefix = _IF_MAP.get(prefix_raw.lower(), prefix_raw)
-    
-    # Generate long form
-    long_prefix = {
-        "Gi": "GigabitEthernet",
-        "Fa": "FastEthernet",
-        "Te": "TenGigabitEthernet",
-        "Eth": "Ethernet",
-    }.get(short_prefix, prefix_raw)
-    
-    return (f"{short_prefix}{rest}", f"{long_prefix}{rest}")
-```
+    ```python
+    def normalize_ifname(ifname: str) -> Tuple[str, str]:
+        """
+        Normalize interface names to canonical short and long forms.
+        Returns: (short_form, long_form)
+        Example: "Gi1/0/1" → ("Gi1/0/1", "GigabitEthernet1/0/1")
+        """
+        # Extract prefix and port number
+        m = re.match(r"([A-Za-z]+)([0-9/\.]+.*)", ifname)
+        if not m:
+            return (ifname, ifname)
+        
+        prefix_raw = m.group(1)
+        rest = m.group(2)
+        
+        # Map to short form
+        short_prefix = _IF_MAP.get(prefix_raw.lower(), prefix_raw)
+        
+        # Generate long form
+        long_prefix = {
+            "Gi": "GigabitEthernet",
+            "Fa": "FastEthernet",
+            "Te": "TenGigabitEthernet",
+            "Eth": "Ethernet",
+        }.get(short_prefix, prefix_raw)
+        
+        return (f"{short_prefix}{rest}", f"{long_prefix}{rest}")
+    ```
 
 **Why This Matters:**
 
@@ -658,21 +656,21 @@ def normalize_ifname(ifname: str) -> Tuple[str, str]:
 
 ### Alias-Based Lookup
 
-```python
-def all_aliases(ifname: str) -> List[str]:
-    """
-    Return all possible alias strings for an interface.
-    Used for PoE data matching.
-    """
-    short, long = normalize_ifname(ifname)
-    return [short, long, ifname]  # Try all variations
+    ```python
+    def all_aliases(ifname: str) -> List[str]:
+        """
+        Return all possible alias strings for an interface.
+        Used for PoE data matching.
+        """
+        short, long = normalize_ifname(ifname)
+        return [short, long, ifname]  # Try all variations
 
-# During PoE enrichment:
-for alias in all_aliases(port_name):
-    if alias in poe_map:
-        poe_data = poe_map[alias]
-        break
-```
+    # During PoE enrichment:
+    for alias in all_aliases(port_name):
+        if alias in poe_map:
+            poe_data = poe_map[alias]
+            break
+    ```
 
 **Why Multiple Aliases:**
 
@@ -701,34 +699,32 @@ for alias in all_aliases(port_name):
 
 ### Conservative Detection Strategy
 
-```python
-def _categorize_port(row: Dict[str, Any], stale_days: int) -> str:
-    """
-    Classify port as: active, stale, or available.
-    Uses conservative logic to minimize false positives.
-    """
-```
+    ```python
+    def _categorize_port(row: Dict[str, Any], stale_days: int) -> str:
+        """
+        Classify port as: active, stale, or available.
+        Uses conservative logic to minimize false positives.
+        """
+    ```
 
 **Rule 1: Only Classify Access Ports**
-
-```python
-mode = row.get('Mode', '')
-if mode != 'access':
-    return 'active'  # Trunk and routed ports are infrastructure
-```
+    ```python
+    mode = row.get('Mode', '')
+    if mode != 'access':
+        return 'active'  # Trunk and routed ports are infrastructure
+    ```
 
 **Why:** Trunk and routed ports connect switches to each other. They should never be flagged as stale.
 
 **Rule 2: Connected Ports — Check Activity**
-
-```python
-status = row.get('Status', '')
-if status == 'connected':
-    last_input_secs = row.get('Last Input Seconds')
-    if last_input_secs and last_input_secs >= (stale_days * 86400):
-        return 'stale'
-    return 'active'
-```
+    ```python
+    status = row.get('Status', '')
+    if status == 'connected':
+        last_input_secs = row.get('Last Input Seconds')
+        if last_input_secs and last_input_secs >= (stale_days * 86400):
+            return 'stale'
+        return 'active'
+    ```
 
 **Why:**
 
@@ -737,26 +733,25 @@ if status == 'connected':
 - Likely a powered-off device or misconfigured endpoint
 
 **Rule 3: Disconnected Ports — Check for Indicators**
+    ```python
+    if status in ('notconnect', 'disabled', 'err-disabled'):
+        # Conservative: require BOTH conditions to flag as stale
+        has_poe = row.get('PoE Power (W)')
+        has_neighbor = row.get('LLDP/CDP Neighbor')
 
-```python
-if status in ('notconnect', 'disabled', 'err-disabled'):
-    # Conservative: require BOTH conditions to flag as stale
-    has_poe = row.get('PoE Power (W)')
-    has_neighbor = row.get('LLDP/CDP Neighbor')
-    
-    poe_w = None
-    if has_poe:
-        try:
-            poe_w = float(str(has_poe).split()[0])
-        except:
-            pass
-    
-    # Stale only if: no PoE draw AND no neighbor
-    if (poe_w is None or poe_w == 0.0) and not has_neighbor:
-        return 'stale'
-    
-    return 'available'  # May be in use (PoE or neighbor present)
-```
+        poe_w = None
+        if has_poe:
+            try:
+                poe_w = float(str(has_poe).split()[0])
+            except:
+                pass
+        
+        # Stale only if: no PoE draw AND no neighbor
+        if (poe_w is None or poe_w == 0.0) and not has_neighbor:
+            return 'stale'
+        
+        return 'available'  # May be in use (PoE or neighbor present)
+    ```
 
 **Why This Conservative Approach:**
 
@@ -778,34 +773,34 @@ if status in ('notconnect', 'disabled', 'err-disabled'):
 
 ### Time Parsing: Handling Cisco Duration Formats
 
-```python
-def _parse_last_input_seconds(s: str) -> float | None:
-    """
-    Parse Cisco 'Last input' timer into seconds.
-    Handles: "00:01:23", "1d2h30m", "never"
-    """
-    s = (s or "").strip().lower()
-    if not s or s == "never":
-        return None
-    
-    # Format 1: hh:mm:ss
-    if re.match(r"^\d{1,2}:\d{2}:\d{2}$", s):
-        hh, mm, ss = s.split(":")
-        return int(hh) * 3600 + int(mm) * 60 + int(ss)
-    
-    # Format 2: Compact duration (1y2w3d4h5m6s)
-    m = _TIME_RE.fullmatch(s.replace(" ", ""))
-    if m:
-        y = int(m.group("y") or 0)
-        w = int(m.group("w") or 0)
-        d = int(m.group("d") or 0)
-        h = int(m.group("h").rstrip("h") or 0)
-        m_val = int(m.group("m").rstrip("m") or 0)
-        s_val = int(m.group("s").rstrip("s") or 0)
+    ```python
+    def _parse_last_input_seconds(s: str) -> float | None:
+        """
+        Parse Cisco 'Last input' timer into seconds.
+        Handles: "00:01:23", "1d2h30m", "never"
+        """
+        s = (s or "").strip().lower()
+        if not s or s == "never":
+            return None
         
-        days = y * 365 + w * 7 + d
-        return days * 86400 + h * 3600 + m_val * 60 + s_val
-```
+        # Format 1: hh:mm:ss
+        if re.match(r"^\d{1,2}:\d{2}:\d{2}$", s):
+            hh, mm, ss = s.split(":")
+            return int(hh) * 3600 + int(mm) * 60 + int(ss)
+        
+        # Format 2: Compact duration (1y2w3d4h5m6s)
+        m = _TIME_RE.fullmatch(s.replace(" ", ""))
+        if m:
+            y = int(m.group("y") or 0)
+            w = int(m.group("w") or 0)
+            d = int(m.group("d") or 0)
+            h = int(m.group("h").rstrip("h") or 0)
+            m_val = int(m.group("m").rstrip("m") or 0)
+            s_val = int(m.group("s").rstrip("s") or 0)
+            
+            days = y * 365 + w * 7 + d
+            return days * 86400 + h * 3600 + m_val * 60 + s_val
+    ```
 
 **Why Multiple Format Support:**
 
@@ -828,11 +823,11 @@ The script retrieves device credentials using `switch_audit/credentials.py`:
 >
 > **Configuration:** Credential Manager targets are set in `config.yaml` under the `credentials` section:
 >
-> ```yaml
-> credentials:
->   cred_target: "MyApp/ADM"  # Primary credential target
->   enable_target: ""          # Optional enable secret target
-> ```
+    > ```yaml
+    > credentials:
+    >   cred_target: "MyApp/ADM"  # Primary credential target
+    >   enable_target: ""          # Optional enable secret target
+    > ```
 
 ---
 
