@@ -9,7 +9,8 @@ tags:
   - Production Ready
 ---
 
-# Script Library
+## Script Library
+
 ### Production-Ready Automation for Cisco Infrastructure
 
 Welcome to the **Nautomation Prime Script Library**. Here you'll find open-source, hardened Python automation tools designed for enterprise Cisco deployments.
@@ -21,10 +22,12 @@ Welcome to the **Nautomation Prime Script Library**. Here you'll find open-sourc
 ## 📚 Available Scripts
 
 ### CDP Network Audit Tool
+
 **Status:** ✅ Available  
 **Description:** A threaded discovery utility that starts from seed Cisco devices and crawls the network using Cisco Discovery Protocol (CDP), producing structured Excel reports with professional formatting.
 
 **Features:**
+
 - Parallel discovery with configurable worker pool (via config.py or environment variable overrides)
 - Centralised configuration with comprehensive config.py (200+ documented settings)
 - Two-tier authentication (primary user with customisable fallback username)
@@ -41,10 +44,12 @@ Welcome to the **Nautomation Prime Script Library**. Here you'll find open-sourc
 ---
 
 ### Access Switch Port Audit Tool
+
 **Status:** ✅ Available  
 **Description:** A production-hardened collector designed to map interface health and utilisation across your access layer.
 
 **Features:**
+
 - Parallel device SSH connections for high-speed audits
 - Conservative "Stale Port" detection logic using PoE, neighbours, and input timers
 - Multi-source port classification (Access vs. Trunk vs. Routed)
@@ -60,21 +65,27 @@ Welcome to the **Nautomation Prime Script Library**. Here you'll find open-sourc
 **Unsure where to start?** These learning paths connect scripts to tutorials and deep dives based on your experience level:
 
 ### 📖 Beginner Path
+
 Start here if you're new to network automation:
+
 1. Learn Python fundamentals (external resources)
 2. Read [Multi-Device Show Command Collection](../tutorials/beginner/multi-device-show-command.md) — learn Netmiko basics
 3. Try [Configuration Backup Tutorial](../tutorials/beginner/multi-device-config-backup.md) — understand backup patterns
 4. Explore [CDP Network Audit Deep Dive](../deep-dives/cdp-audit.md) — see how threading and configuration work at scale
 
 ### 🛠️ Intermediate Path
+
 Ready to understand production patterns:
+
 1. Read [Nornir Fundamentals](../tutorials/intermediate/nornir-fundamentals.md) — multi-device automation framework
 2. Read [Enterprise Config Backup with Nornir](../tutorials/intermediate/enterprise-config-backup-nornir.md) — scalable patterns
 3. Study [Access Switch Audit Deep Dive](../deep-dives/access-switch-audit.md) — parallel collection and intelligent parsing
 4. Study [CDP Network Audit Deep Dive](../deep-dives/cdp-audit.md) — threading, configuration, and jump hosts
 
 ### 🚀 Advanced Path
+
 Ready to build custom solutions:
+
 1. Review both [Deep Dives](../deep-dives/index.md) for architectural patterns
 2. Customize scripts for your environment (GitHub repositories include full source)
 3. Integrate with [PRIME Framework](../prime-framework/index.md) methodology
@@ -85,10 +96,12 @@ Ready to build custom solutions:
 ## 🔄 Coming Soon
 
 ### Zero Touch Provisioning (ZTP) Tool
+
 **Status:** 🚧 In Development  
 **Description:** Automated deployment solution for Cisco devices that streamlines initial configuration and reduces deployment time from hours to minutes.
 
 **Planned Features:**
+
 - Automated device configuration from templates
 - DHCP option integration for network-based provisioning
 - Email notifications for deployment status and errors
@@ -102,10 +115,12 @@ Ready to build custom solutions:
 ---
 
 ### IOS-XE Software Upgrade Orchestrator
+
 **Status:** 🚧 In Development  
 **Description:** Automated, intelligent firmware management for Cisco IOS-XE switch stacks that eliminates manual upgrade errors and reduces downtime through comprehensive pre-flight validation.
 
 **Planned Features:**
+
 - Pre-flight validation (disk space, compatibility, current version checks)
 - Binary integrity verification (MD5/SHA checksums)
 - Automated file transfer to target devices (SCP/TFTP/HTTP)
@@ -123,6 +138,7 @@ Ready to build custom solutions:
 ## 🛠️ Getting Started with Scripts
 
 ### Prerequisites
+
 - Python 3.8+
 - Netmiko or equivalent SSH library
 - Network access to target devices
@@ -158,14 +174,16 @@ See each repository's README for platform-specific instructions.
 
 ### Configuration
 
-All scripts follow the **Nautomation Prime** philosophy of transparency and security:  
-- Credentials are stored in OS credential managers (Windows Credential Manager, etc.)  
+All scripts follow the **Nautomation Prime** philosophy of transparency and security:
+
+- Credentials are stored in OS credential managers (Windows Credential Manager, etc.)
 - Configuration files are well-documented with inline comments.  
 - Pre-flight validation checks prevent unsafe deployments.  
 
 ### Support & Questions
 
 For issues, feature requests, or questions about any script:  
+
 - Check the **Deep Dives** documentation for detailed explanations.  
 - Open an issue on the respective GitHub repository.  
 - Contact us via [email](mailto:nautomationprime.f3wfe@simplelogin.com) or [LinkedIn](https://www.linkedin.com/company/nautomationprime) for consulting services.  
@@ -177,7 +195,7 @@ For issues, feature requests, or questions about any script:
 **Quick access to find what you need:**
 
 | Topic | Resources |
-|:---|:---|
+| :--- | :--- |
 | **Network Discovery** | [📖 CDP Network Audit Deep Dive](../deep-dives/cdp-audit.md) • [💾 Script](https://github.com/Nautomation-Prime/Cisco_CDP_Network_Audit) |
 | **Port & Interface Health** | [📖 Access Switch Audit Deep Dive](../deep-dives/access-switch-audit.md) • [💾 Script](https://github.com/Nautomation-Prime/Access_Switch_Audit) |
 | **Configuration Management** | [🎓 Configuration Backup (Beginner)](../tutorials/beginner/multi-device-config-backup.md) • [🎓 Enterprise Backup with Nornir (Intermediate)](../tutorials/intermediate/enterprise-config-backup-nornir.md) |

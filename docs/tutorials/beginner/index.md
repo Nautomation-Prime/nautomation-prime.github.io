@@ -9,7 +9,7 @@ tags:
   - Excel
 ---
 
-# Beginner Tutorials
+## Beginner Tutorials
 
 ## "Master the Fundamentals — Build Confidence with Simple, Working Scripts"
 
@@ -96,6 +96,7 @@ Learn how to:
 Before starting these tutorials, ensure you have:
 
 ### Python Environment
+
 ```bash
 # Install required libraries
 pip install netmiko pandas openpyxl

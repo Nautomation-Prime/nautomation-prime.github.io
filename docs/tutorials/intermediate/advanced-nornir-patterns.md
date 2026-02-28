@@ -10,7 +10,7 @@ tags:
   - Tutorial
 ---
 
-# Advanced Nornir Patterns: Production-Grade Architecture
+## Advanced Nornir Patterns: Production-Grade Architecture
 
 ## "From Working Scripts to Enterprise Systems — Advanced Patterns for Real Deployments"
 
@@ -40,6 +40,7 @@ By the end of this tutorial, you'll understand:
 ## 📋 Prerequisites
 
 ### Required Knowledge
+
 - ✅ **Completed [Tutorial #3: Enterprise Config Backup](./enterprise-config-backup-nornir.md)** — Understand complex task composition
 - ✅ Comfortable with Python classes and inheritance
 - ✅ Understanding of HTTP requests and APIs
@@ -47,6 +48,7 @@ By the end of this tutorial, you'll understand:
 - ✅ Optional: Understanding of decorators and metaclasses
 
 ### Required Software
+
 ```bash
 # Add to your existing Nornir environment
 pip install requests pytest pytest-mock netbox-api
@@ -57,7 +59,7 @@ pip install requests pytest pytest-mock netbox-api
 ## 📚 Quick Reference: Which Pattern Do I Need?
 
 | Challenge | Pattern | Benefit |
-|:---|:---|:---|
+| :--- | :--- | :--- |
 | Inventory always out-of-sync | Pattern 1 | Single source of truth |
 | Repetitive logging/validation | Pattern 2 | DRY, automatic preprocessing |
 | Devices timeout or fail | Pattern 3 | Automatic recovery |
@@ -220,19 +222,16 @@ inventory:
 ### Gotchas & Solutions for Pattern 1
 
 **Gotcha 1A: "Token Expired" error during backup**
-
-- **Root cause:** Netbox token rotated while Nornir was running
-- **Solution:** Reload inventory on each run instead of caching
+    - **Root cause:** Netbox token rotated while Nornir was running
+    - **Solution:** Reload inventory on each run instead of caching
 
 **Gotcha 1B: Missing "primary_ip" in Netbox**
-
-- **Root cause:** Device added to Netbox but IP not assigned
-- **Solution:** Add fallback: `ip = device.get('primary_ip', {}).get('address', device['name'])`
+    - **Root cause:** Device added to Netbox but IP not assigned
+    - **Solution:** Add fallback: `ip = device.get('primary_ip', {}).get('address', device['name'])`
 
 **Gotcha 1C: Device types don't map correctly**
-
-- **Root cause:** Netbox device type names don't match vendor expectations
-- **Solution:** Build mapping table or use device role instead of type
+    - **Root cause:** Netbox device type names don't match vendor expectations
+    - **Solution:** Build mapping table or use device role instead of type
 
 ---
 
@@ -405,19 +404,16 @@ def resilient_backup(task: Task) -> Result:
 ### Gotchas & Solutions for Pattern 3
 
 **Gotcha 3A: Retrying idempotent tasks**
-
-- **Problem:** If a task partially succeeds (config saved but validation failed), retry saves duplicate
-- **Solution:** Make tasks idempotent (safe to run twice) OR track state (is this already done?)
+    - **Problem:** If a task partially succeeds (config saved but validation failed), retry saves duplicate
+    - **Solution:** Make tasks idempotent (safe to run twice) OR track state (is this already done?)
 
 **Gotcha 3B: Exponential backoff is too aggressive**
-
-- **Problem:** Waiting 2^5=32 seconds between retries = slow job
-- **Solution:** Use `backoff_factor=1.2` (12% increase) instead of 2.0 (100% increase)
+    - **Problem:** Waiting 2^5=32 seconds between retries = slow job
+    - **Solution:** Use `backoff_factor=1.2` (12% increase) instead of 2.0 (100% increase)
 
 **Gotcha 3C: Retrying won't help if issue is permanent**
-
-- **Problem:** Device password expired = will never work, just wastes time
-- **Solution:** Add circuit breaker pattern (stop retrying if error is permanent)
+    - **Problem:** Device password expired = will never work, just wastes time
+    - **Solution:** Add circuit breaker pattern (stop retrying if error is permanent)
 
 ---
 
@@ -534,19 +530,16 @@ def backup_multivendor(task: Task) -> Result:
 ### Gotchas & Solutions for Pattern 5
 
 **Gotcha 5A: Device type string doesn't match**
-
-- **Problem:** Netbox says "catalyst", Netmiko expects "cisco_ios"
-- **Solution:** Build normalization map: `DeviceTypeMap = {'catalyst': 'cisco_ios', ...}`
+    - **Problem:** Netbox says "catalyst", Netmiko expects "cisco_ios"
+    - **Solution:** Build normalization map: `DeviceTypeMap = {'catalyst': 'cisco_ios', ...}`
 
 **Gotcha 5B: Command outputs differently between vendors**
-
-- **Problem:** `show running-config` vs `show configuration` = different format
-- **Solution:** Normalize output parser (strip vendor-specific headers)
+    - **Problem:** `show running-config` vs `show configuration` = different format
+    - **Solution:** Normalize output parser (strip vendor-specific headers)
 
 **Gotcha 5C: Not all vendors support all features**
-
-- **Problem:** You check for `spanning-tree` on a Junos router (doesn't use STP)
-- **Solution:** Make compliance checks vendor-aware
+    - **Problem:** You check for `spanning-tree` on a Junos router (doesn't use STP)
+    - **Solution:** Make compliance checks vendor-aware
 
 ---
 
@@ -607,19 +600,16 @@ def save_to_database(device_name, result):
 ### Gotchas & Solutions for Pattern 6
 
 **Gotcha 6A: Batch size is wrong**
-
-- **Problem:** Batch size of 1000 = memory spike again
-- **Solution:** Start with 100, monitor memory. Formula: `batch_size = available_ram_mb / (config_size_mb * 2)`
+    - **Problem:** Batch size of 1000 = memory spike again
+    - **Solution:** Start with 100, monitor memory. Formula: `batch_size = available_ram_mb / (config_size_mb * 2)`
 
 **Gotcha 6B: Losing progress on failure**
-
-- **Problem:** Batch 50 of 100 fails, entire batch lost
-- **Solution:** Save `backup_id` to database immediately, mark status as "saved" even if later steps fail
+    - **Problem:** Batch 50 of 100 fails, entire batch lost
+    - **Solution:** Save `backup_id` to database immediately, mark status as "saved" even if later steps fail
 
 **Gotcha 6C: Database writes become the bottleneck**
-
-- **Problem:** Fast backups, slow database writes = queue backs up
-- **Solution:** Use connection pooling, batch database inserts (50 at a time), or use async DB driver
+    - **Problem:** Fast backups, slow database writes = queue backs up
+    - **Solution:** Use connection pooling, batch database inserts (50 at a time), or use async DB driver
 
 ---
 
@@ -725,6 +715,7 @@ if __name__ == "__main__":
 ```
 
 **Run tests:**
+
 ```bash
 pytest tests/test_tasks.py -v
 ```
@@ -994,12 +985,14 @@ if __name__ == "__main__":
 ```
 
 **Run it:**
+
 ```bash
 python benchmark.py --workers 5 10 20 50
 ```
 
 **Expected output:**
-```
+
+```bash
 ======================================================================
 BENCHMARK REPORT
 ======================================================================
@@ -1104,7 +1097,8 @@ save_benchmark_history(benchmark_results)
 
 ### Real-World Benchmarking Scenarios
 
-**Scenario 1: Adding 100 new devices**
+## **Scenario 1: Adding 100 new devices**
+
 ```python
 # Before addition
 devices: 500, duration: 50s, throughput: 10 dev/sec
@@ -1115,7 +1109,8 @@ devices: 600, duration: 55s, throughput: 10.9 dev/sec
 # Analysis: Throughput stayed same → network is bottleneck, not code
 ```
 
-**Scenario 2: Database writes getting slower**
+## **Scenario 2: Database writes getting slower**
+
 ```python
 # Week 1: save_config task = 2s
 # Week 4: save_config task = 8s
@@ -1124,7 +1119,8 @@ devices: 600, duration: 55s, throughput: 10.9 dev/sec
 # Solution: Add database index on device_name, backup_timestamp
 ```
 
-**Scenario 3: Memory leak detection**
+## **Scenario 3: Memory leak detection**
+
 ```python
 # First run: peak memory = 300 MB
 # Second run: peak memory = 400 MB
@@ -1139,7 +1135,7 @@ devices: 600, duration: 55s, throughput: 10.9 dev/sec
 ## 🎓 Key Patterns Summary
 
 | Pattern | Use Case | Benefit |
-|:---|:---|:---|
+| :--- | :--- | :--- |
 | Custom Inventory | Netbox integration | Single source of truth |
 | Middleware | Cross-cutting concerns | DRY principle, reusability |
 | Retry Logic | Unreliable networks | Automatic recovery |
@@ -1170,6 +1166,7 @@ These advanced patterns are what enable the **Implement** stage of the PRIME Fra
 Before deploying to production:
 
 ### Infrastructure
+
 - [ ] Credential vaulting (HashiCorp Vault, AWS Secrets Manager)
 - [ ] Job scheduling (Cron, Kubernetes CronJob, Temporal)
 - [ ] Message queue for distributed tasks (RabbitMQ, Redis)
@@ -1177,12 +1174,14 @@ Before deploying to production:
 - [ ] Logging aggregation (ELK stack, Splunk)
 
 ### Code Quality
+
 - [ ] Unit tests with >80% coverage
 - [ ] Integration tests on staged network
 - [ ] Code review process
 - [ ] CI/CD pipeline (GitHub Actions, GitLab CI)
 
 ### Operations
+
 - [ ] Runbooks for common failures
 - [ ] Alerting on task failures
 - [ ] Audit logging for compliance
@@ -1190,6 +1189,7 @@ Before deploying to production:
 - [ ] Rollback procedures
 
 ### Observability
+
 - [ ] Structured logging
 - [ ] Performance metrics
 - [ ] Error tracking (Sentry, Rollbar)
@@ -1230,7 +1230,7 @@ You've mastered advanced Nornir patterns used in enterprise deployments worldwid
 
 2. **[Script Library](../../scripts/index.md)** — Deploy production-ready tools using these patterns
 
-**Build and Scale:**
+    **Build and Scale:**
 
 3. **[PRIME Framework](../../prime-framework/index.md)** — Structure your automation projects for sustainable ROI
    - Pinpoint opportunities with measurable impact

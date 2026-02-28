@@ -10,7 +10,7 @@ tags:
   - Tutorial
 ---
 
-# Multi-Device Show Command Collection
+## Multi-Device Show Command Collection
 
 ## "From One to Many — Evolve Your Script for Production Scale"
 
@@ -43,17 +43,20 @@ By the end of this tutorial, you'll understand:
 ## 📋 Prerequisites
 
 ### Required Knowledge
+
 - ✅ **Completed [Tutorial #1](./netmiko-show-command-to-excel.md)** — This builds directly on that script
 - ✅ Basic understanding of CSV files
 - ✅ Comfortable with Python loops and error handling
 
 ### Required Software
+
 ```bash
 # Same libraries as Tutorial #1
 pip install netmiko pandas openpyxl
 ```
 
 ### Required Access
+
 - **Multiple Cisco devices** (2 or more) with:
   - SSH enabled
   - Same credentials (or we'll show you how to handle different credentials)
@@ -66,7 +69,7 @@ pip install netmiko pandas openpyxl
 Here's what we're changing:
 
 | Tutorial #1 (Single Device) | Tutorial #2 (Multi-Device) |
-|:---|:---|
+| :--- | :--- |
 | Device details hardcoded in script | Device list in external CSV file |
 | Connects to one device | Loops through multiple devices |
 | Script stops if connection fails | Continues to next device on error |
@@ -221,7 +224,8 @@ if __name__ == "__main__":
 
 Before running the script, create a CSV file named `devices.csv` in the same directory:
 
-**devices.csv**
+## **devices.csv**
+
 ```csv
 device_type,host,username,secret
 cisco_ios,192.168.1.1,admin,
@@ -264,11 +268,13 @@ import csv
 ### Password Handling Change
 
 **Tutorial #1:**
+
 ```python
 'password': getpass.getpass('Enter password: '),
 ```
 
 **Tutorial #2:**
+
 ```python
 device_password = getpass.getpass('Enter device password: ')
 ```
@@ -338,11 +344,13 @@ reader = csv.DictReader(file)
 **Why**: `DictReader` automatically uses the first row as column headers. Each subsequent row becomes a dictionary where keys are column names. This is much easier to work with than positional indexes.
 
 For example, if a CSV row is:
-```
+
+```csv
 cisco_ios,192.168.1.1,admin,
 ```
 
 `DictReader` converts it to:
+
 ```python
 {
     'device_type': 'cisco_ios',
@@ -594,6 +602,7 @@ for device in devices:
 - `results[hostname] = df` stores the DataFrame with the hostname as the key
 
 This builds a dictionary like:
+
 ```python
 {
     '192.168.1.1': DataFrame(...),
@@ -658,7 +667,7 @@ df.to_excel(writer, sheet_name=sheet_name, index=False)
 
 **What it does**: Writes this device's DataFrame to its own sheet.
 
-**Why**: 
+**Why**:
 
 - `writer` is the Excel file we opened above
 - `sheet_name=sheet_name` names the sheet after the device
@@ -722,7 +731,8 @@ python multi_device_show_version.py
 ### Step 4: Enter Your Password
 
 When prompted:
-```
+
+```bash
 Enter device password:
 ```
 
@@ -734,7 +744,7 @@ Type your password (it won't be displayed) and press Enter.
 
 You'll see output like:
 
-```
+```bash
 ============================================================
 Multi-Device Show Version Collection
 ============================================================
@@ -785,6 +795,7 @@ output = connection.send_command('show ip interface brief', use_textfsm=True)
 ```
 
 **And update the filename:**
+
 ```python
 excel_file = 'multi_device_interfaces.xlsx'
 ```
@@ -796,6 +807,7 @@ excel_file = 'multi_device_interfaces.xlsx'
 Congratulations! You've learned critical production automation patterns:
 
 ### 1. **External Inventory Management**
+
 Instead of hardcoding devices, you now use CSV files. This means:
 
 - Non-programmers can update the device list
@@ -803,6 +815,7 @@ Instead of hardcoding devices, you now use CSV files. This means:
 - Can generate the CSV from other systems (CMDB, monitoring tools, etc.)
 
 ### 2. **Continue-on-Error Pattern**
+
 One device failing doesn't stop the entire job. This is essential for production automation where you might have:
 
 - Devices undergoing maintenance
@@ -810,6 +823,7 @@ One device failing doesn't stop the entire job. This is essential for production
 - Devices with different credential requirements
 
 ### 3. **Per-Device Error Handling**
+
 Each device operation is isolated in a try/except block, providing:
 
 - Clear logging of which device failed and why
@@ -817,6 +831,7 @@ Each device operation is isolated in a try/except block, providing:
 - Easier troubleshooting
 
 ### 4. **Data Aggregation**
+
 Multiple device results combined into one Excel file with multiple sheets. This is much better than:
 
 - Dozens of separate files
@@ -824,6 +839,7 @@ Multiple device results combined into one Excel file with multiple sheets. This 
 - Losing track of which device is which
 
 ### 5. **User Feedback**
+
 Progress indicators during long operations keep users informed:
 
 - CSV load confirmation
@@ -839,7 +855,7 @@ Progress indicators during long operations keep users informed:
 
 **Cause**: The CSV file isn't in the same directory as the script.
 
-**Solution**: 
+**Solution**:
 
 - Check the CSV file exists
 - Make sure it's in the same folder as your Python script
@@ -887,6 +903,7 @@ Progress indicators during long operations keep users informed:
 If devices have different passwords, modify the CSV and script:
 
 **devices.csv with passwords:**
+
 ```csv
 device_type,host,username,password,secret
 cisco_ios,10.1.1.1,admin,password1,
@@ -894,6 +911,7 @@ cisco_ios,10.1.1.2,admin,password2,
 ```
 
 **Modified script (don't prompt for password):**
+
 ```python
 # Remove this line:
 # device_password = getpass.getpass('Enter device password: ')
@@ -969,13 +987,13 @@ You've now mastered multi-device automation! Ready for the next challenge?
    - Integration with structured logging and error handling
    - Real-world patterns used in enterprise deployments
 
-**Study Production Code:**
+    **Study Production Code:**
 
 4. **[Deep Dives](../../deep-dives/index.md)** — Review complete production tools
    - [Access Switch Audit](../../deep-dives/access-switch-audit.md) — Learn parallel device collection and PoE intelligence
    - [CDP Network Audit](../../deep-dives/cdp-audit.md) — Study threading, configuration, and jump host support
 
-**Ready to Deploy?**
+    **Ready to Deploy?**
 
 5. **[Script Library](../../scripts/index.md)** — Deploy pre-built tools based on these patterns
    - Credential vaulting with HashiCorp Vault
@@ -983,11 +1001,11 @@ You've now mastered multi-device automation! Ready for the next challenge?
    - GitOps workflows and CI/CD integration
    - Container deployment and orchestration
 
-3. **[Deep Dives](../../deep-dives/index.md)** — Study production-grade tools:
+6. **[Deep Dives](../../deep-dives/index.md)** — Study production-grade tools:
    - [CDP Network Audit](../../deep-dives/cdp-audit.md) — Multi-threaded topology discovery
    - [Access Switch Audit](../../deep-dives/access-switch-audit.md) — Parallel port health collection
 
-4. **Enhance This Script** — Practice by adding:
+7. **Enhance This Script** — Practice by adding:
    - Progress bars (using the `tqdm` library)
    - Logging to file with the `logging` module
    - Retry logic for failed devices

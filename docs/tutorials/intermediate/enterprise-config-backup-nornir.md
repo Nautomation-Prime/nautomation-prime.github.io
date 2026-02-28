@@ -10,7 +10,7 @@ tags:
   - Tutorial
 ---
 
-# Enterprise Config Backup Deep Dive: Real System Build
+## Enterprise Config Backup Deep Dive: Real System Build
 
 ## "From Simple Backup to Automated Compliance — Real Enterprise Architecture"
 
@@ -50,6 +50,7 @@ By the end of this tutorial, you'll understand:
 - ✅ File I/O and comparison concepts
 
 ### Required Software
+
 ```bash
 # SQLite3 ships with Python; no install needed in most environments
 # If `import sqlite3` fails, install the fallback package:
@@ -64,7 +65,7 @@ SQLite3 is included in Python by default. If `import sqlite3` fails, install `py
 
 Before writing code, let's understand the system:
 
-```
+```text
 Nornir Task Flow:
 
 1. backup_config (task)
@@ -287,6 +288,7 @@ if __name__ == "__main__":
 ```
 
 **Run this once:**
+
 ```bash
 python init_db.py
 ```
@@ -893,7 +895,7 @@ python enterprise_main.py
 
 ### Expected Output
 
-```
+```bash
 ======================================================================
 Enterprise Configuration Backup System
 ======================================================================
@@ -1127,6 +1129,7 @@ def cleanup_old_backups(days_to_keep=30):
 **Scenario:** Device connects fine for `backup_config`, then drops during `compliance_check`.
 
 **What happens without handling:**
+
 ```python
 # ✗ BAD: Entire pipeline fails
 result1 = nr.run(backup_config)      # Device connects ✓
@@ -1134,6 +1137,7 @@ result2 = nr.run(compliance_check)   # Device drops ✗ Pipeline aborts
 ```
 
 **Solution:** Add error recovery in each task:
+
 ```python
 @task
 def compliance_check(task: Task, config: str) -> Result:
@@ -1163,11 +1167,13 @@ def compliance_check(task: Task, config: str) -> Result:
 **Solutions:**
 
 1. **Use connection timeout (simplest fix):**
+
    ```python
    conn = sqlite3.connect("backup.db", timeout=30.0)  # Wait 30 seconds if locked
    ```
 
 2. **Use PostgreSQL for multi-process writes (best for scale):**
+
    ```python
    import psycopg2
    conn = psycopg2.connect("dbname=backup user=admin password=secret host=localhost")
@@ -1210,7 +1216,7 @@ def cleanup_old_backups(days_to_keep=30):
 
 **Scenario:** Config comparison shows "changed" but only whitespace/timestamps differ.
 
-```
+```text
 # Actual diff:
 - Last config saved: Tuesday 3:00 AM
 + Last config saved: Wednesday 3:00 AM
@@ -1371,6 +1377,7 @@ for host in nr.inventory.hosts.values():
 ```
 
 **Create `.env` file** (gitignored):
+
 ```bash
 DEVICE_USERNAME=admin
 DEVICE_PASSWORD=your_real_password
@@ -1413,6 +1420,7 @@ for host in nr.inventory.hosts.values():
 ```
 
 **Install Vault client:**
+
 ```bash
 pip install hvault
 ```
@@ -1458,6 +1466,7 @@ router2:
 ```
 
 Then in code:
+
 ```python
 def fetch_credentials_for_host(host):
     """Fetch host-specific credentials from Vault"""
@@ -1664,6 +1673,7 @@ prompts:
 ```
 
 Then in Python:
+
 ```python
 import yaml
 
@@ -1718,7 +1728,8 @@ crontab -e
 ```
 
 **Common cron schedules:**
-```
+
+```bash
 0 2 * * *      Daily at 2:00 AM
 0 */6 * * *    Every 6 hours
 0 0 * * 0      Weekly on Sunday
@@ -1730,6 +1741,7 @@ crontab -e
 Best for: Modern Linux distributions (Ubuntu 20.04+, RHEL 8+)
 
 Create service file `/etc/systemd/system/nornir-backup.service`:
+
 ```ini
 [Unit]
 Description=Enterprise Nornir Config Backup
@@ -1748,6 +1760,7 @@ StandardError=journal
 ```
 
 Create timer file `/etc/systemd/system/nornir-backup.timer`:
+
 ```ini
 [Unit]
 Description=Run Nornir Backup Daily
@@ -1762,6 +1775,7 @@ WantedBy=timers.target
 ```
 
 Enable and start:
+
 ```bash
 sudo systemctl daemon-reload
 sudo systemctl enable nornir-backup.timer
@@ -1781,12 +1795,13 @@ Best for: Windows networks
 1. Open Task Scheduler
 2. Create Basic Task → "Enterprise Nornir Backup"
 3. Trigger: Daily at 2:00 AM
-4. Action: 
+4. Action:
    - Program: `C:\Python\python.exe`
    - Arguments: `C:\nornir\backup.py --group ios_devices`
    - Start in: `C:\nornir`
 
 **Via PowerShell:**
+
 ```powershell
 $action = New-ScheduledTaskAction -Execute "C:\Python\python.exe" -Argument "C:\nornir\backup.py"
 $trigger = New-ScheduledTaskTrigger -Daily -At 2:00AM
@@ -1798,6 +1813,7 @@ Register-ScheduledTask -TaskName "NornirBackup" -Action $action -Trigger $trigge
 Best for: Cloud-native deployments
 
 **Docker Compose with scheduler:**
+
 ```yaml
 version: '3.8'
 
@@ -1815,6 +1831,7 @@ services:
 ```
 
 **Kubernetes CronJob:**
+
 ```yaml
 apiVersion: batch/v1
 kind: CronJob
@@ -1842,7 +1859,8 @@ spec:
 ### Production Best Practices
 
 ✅ **Avoid peak hours** — Don't backup during business hours
-```
+
+```bash
 # Good: Early morning
 0 2 * * *
 
@@ -1851,6 +1869,7 @@ spec:
 ```
 
 ✅ **Avoid overlapping runs** — Ensure backup #1 finishes before #2 starts
+
 ```python
 # Use lockfile to prevent concurrent runs
 import os
@@ -1871,17 +1890,20 @@ finally:
 ```
 
 ✅ **Log everything** — You'll need logs when something fails
+
 ```bash
 # In crontab, redirect output to file
 0 2 * * * /path/to/backup.py >> /var/log/nornir_backup.log 2>&1
 ```
 
 **Windows Task Scheduler action (example):**
+
 ```powershell
 python C:\nornir\backup.py --group ios_devices >> C:\Logs\nornir_backup.log 2>&1
 ```
 
 ✅ **Alert on failure** — Send email/Slack when backup fails
+
 ```python
 import subprocess
 
@@ -1895,6 +1917,7 @@ if sum(1 for r in backup_results.values() if r.failed) > 0:
 ```
 
 ✅ **Stagger backups by site** — Don't backup all 5000 devices simultaneously
+
 ```yaml
 # Create groups by location
 location_ny:
@@ -1909,7 +1932,8 @@ location_london:
 ```
 
 Then schedule 30 minutes apart:
-```
+
+```bash
 0 2 * * * backup.py --group location_ny
 30 2 * * * backup.py --group location_la
 0 3 * * * backup.py --group location_london
@@ -1918,6 +1942,7 @@ Then schedule 30 minutes apart:
 ### Monitoring Your Schedule
 
 **Check cron logs (Linux):**
+
 ```bash
 # Tail cron logs
 tail -f /var/log/syslog | grep nornir
@@ -1927,6 +1952,7 @@ grep nornir /var/log/syslog
 ```
 
 **Check Task Scheduler logs (Windows):**
+
 ```powershell
 # Task run history
 Get-ScheduledTaskInfo -TaskName "NornirBackup"
@@ -1936,6 +1962,7 @@ Get-WinEvent -LogName Microsoft-Windows-TaskScheduler/Operational -MaxEvents 20
 ```
 
 **Check systemd timer (Linux):**
+
 ```bash
 # List timers
 systemctl list-timers
@@ -1948,6 +1975,7 @@ journalctl -u nornir-backup.service -n 50 --no-pager
 ```
 
 **Database monitoring:**
+
 ```python
 # Check when last backup ran
 import sqlite3
@@ -2042,6 +2070,7 @@ def backup_via_bastion(task: Task) -> Result:
 ```
 
 **Test it works:**
+
 ```bash
 # Verify SSH config
 ssh -G 10.1.1.1  # Shows what SSH will use
@@ -2186,7 +2215,7 @@ def backup_via_tunnel(task: Task) -> Result:
 
 Some networks require chaining through multiple bastions:
 
-```
+```text
 Automation Server → Bastion1 → Bastion2 → Device
 ```
 
@@ -2216,7 +2245,7 @@ ssh admin@10.1.1.1
 
 ### Key Management for Jump Hosts
 
-**Best practice: Separate keys for each tier**
+## **Best practice: Separate keys for each tier**
 
 ```bash
 # Generate keys
@@ -2233,7 +2262,7 @@ Host 10.1.1.*
     IdentityFile ~/.ssh/device_key
 ```
 
-**Or: SSH agent forwarding (less secure but simpler)**
+## **Or: SSH agent forwarding (less secure but simpler)**
 
 ```ssh
 Host bastion
@@ -2298,29 +2327,24 @@ for device, result in results.items():
 ### Gotchas & Solutions
 
 **Gotcha 1: "Permission denied (publickey)"**
-
-- **Problem:** SSH key not authorized on bastion
-- **Solution:** Add your public key to bastion's `~/.ssh/authorized_keys`
+    - **Problem:** SSH key not authorized on bastion
+    - **Solution:** Add your public key to bastion's `~/.ssh/authorized_keys`
 
 **Gotcha 2: "Connection timeout" through bastion**
-
-- **Problem:** Bastion can't reach internal device IP
-- **Solution:** Verify device IP is reachable from bastion: `ssh -J bastion admin@10.1.1.1`
+    - **Problem:** Bastion can't reach internal device IP
+    - **Solution:** Verify device IP is reachable from bastion: `ssh -J bastion admin@10.1.1.1`
 
 **Gotcha 3: Slow connections via bastion**
-
-- **Problem:** Extra network hop = latency
-- **Solution:** Increase Nornir timeout: set `connection_timeout: 30` in inventory
+    - **Problem:** Extra network hop = latency
+    - **Solution:** Increase Nornir timeout: set `connection_timeout: 30` in inventory
 
 **Gotcha 4: SSH tunnel ports conflict**
-
-- **Problem:** Multiple devices use same local tunnel port
-- **Solution:** Let system assign random ports (code above does this automatically)
+    - **Problem:** Multiple devices use same local tunnel port
+    - **Solution:** Let system assign random ports (code above does this automatically)
 
 **Gotcha 5: Bastion host becomes bottleneck**
-
-- **Problem:** 100 devices × connection through same bastion = slow
-- **Solution:** Use multiple bastions or connection pooling
+    - **Problem:** 100 devices × connection through same bastion = slow
+    - **Solution:** Use multiple bastions or connection pooling
 
 ### Bastion Monitoring & Logging
 
@@ -2411,13 +2435,13 @@ You've built an enterprise-grade automation system! Here's what's next:
 
 2. **[Why Nornir?](./why-nornir.md)** — Understand architectural decisions and alternatives
 
-**Study Production Code:**
+    **Study Production Code:**
 
 3. **[Deep Dives](../../deep-dives/index.md)** — See how production tools implement similar patterns
    - [CDP Network Audit](../../deep-dives/cdp-audit.md) — Enterprise discovery at scale
    - [Access Switch Audit](../../deep-dives/access-switch-audit.md) — Parallel collection and intelligent handling
 
-**Scale & Deploy:**
+    **Scale & Deploy:**
 
 4. **[PRIME Framework](../../prime-framework/index.md)** — Structure your automation for sustainable ROI
 5. **[Services](../../services.md)** — Consulting for enterprise automation systems

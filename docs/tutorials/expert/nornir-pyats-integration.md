@@ -10,7 +10,7 @@ tags:
   - Tutorial
 ---
 
-# Nornir + PyATS Integration: Enterprise-Grade Automation and Validation
+## Nornir + PyATS Integration: Enterprise-Grade Automation and Validation
 
 ## Why This Tutorial Exists
 
@@ -34,13 +34,13 @@ Most automation frameworks excel at either execution (Nornir) or validation (PyA
 
 ---
 
-
 ## Step 1: Define Inventory and Testbed (Source of Truth)
 
 - Use NetBox, Nautobot, or YAML for Nornir inventory (dynamic inventory recommended for large-scale)
 - Use PyATS testbed YAML for device definitions, or generate dynamically from inventory
 
 Example: Dynamic inventory from NetBox
+
 ```python
 from nornir_netbox.plugins.tasks import netbox_inventory
 nr = InitNornir(
@@ -124,6 +124,7 @@ def orchestrate(devices, commands, testbed_file, validation_cmd, parser_name):
 - Generate HTML/Markdown reports for stakeholders
 
 Example: Structured logging
+
 ```python
 import structlog
 logger = structlog.get_logger()

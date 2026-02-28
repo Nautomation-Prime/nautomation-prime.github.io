@@ -10,7 +10,7 @@ tags:
   - Tutorial
 ---
 
-# Multi-Device Configuration Backup
+## Multi-Device Configuration Backup
 
 ## "From Read-Only to Read-and-Archive — Capture Your Network's Source of Truth"
 
@@ -46,12 +46,14 @@ By the end of this tutorial, you'll understand:
 ## 📋 Prerequisites
 
 ### Required Knowledge
+
 - ✅ **Completed [Tutorial #2](./multi-device-show-command.md)** — This builds directly on that script
 - ✅ Basic understanding of network configuration files
 - ✅ Comfortable with Python file I/O operations
 - ✅ Familiar with directory structures and file naming conventions
 
 ### Required Software
+
 ```bash
 # Same libraries as Tutorial #2
 pip install netmiko pandas openpyxl
@@ -60,6 +62,7 @@ pip install netmiko pandas openpyxl
 Note: We use `pandas` and `openpyxl` only for the backup manifest. Configuration data is plain text files.
 
 ### Required Access
+
 - **Multiple Cisco devices** (2 or more) with:
   - SSH enabled
   - Same credentials (or per-device credentials)
@@ -73,7 +76,7 @@ Note: We use `pandas` and `openpyxl` only for the backup manifest. Configuration
 Here's what we're changing:
 
 | Tutorial #2 (Show Commands) | Tutorial #3 (Configurations) |
-|:---|:---|
+| :--- | :--- |
 | Executes show commands | Executes `show run` (running config) |
 | Parses output with TextFSM | No parsing—raw config text |
 | Exports to Excel sheets | Saves to timestamped `.txt` files |
@@ -492,7 +495,7 @@ config_filename = f"{safe_hostname}_running-config.txt"
 
 **What it does**: Creates a safe filename from the hostname.
 
-**Why**: 
+**Why**:
 
 - Filenames can't contain certain characters (like dots)
 - Replacing `192.168.1.1` with `192-168-1-1` makes the filename valid
@@ -695,7 +698,8 @@ python backup_running_configs.py
 ### Step 4: Enter Your Password
 
 When prompted:
-```
+
+```text
 Enter device password:
 ```
 
@@ -707,7 +711,7 @@ Type your password (it won't be displayed) and press Enter.
 
 You'll see output like:
 
-```
+```bash
 ======================================================================
 Multi-Device Configuration Backup
 ======================================================================
@@ -749,7 +753,7 @@ Backed Up Devices:
 
 After running, you'll see this directory structure:
 
-```
+```text
 backups/
 └── 20260215_143022/
     ├── backup_manifest.xlsx
@@ -766,7 +770,7 @@ Each `.txt` file contains the full running configuration from that device!
 
 After running backups multiple times, you'll have:
 
-```
+```text
 backups/
 ├── 20260215_120000/
 │   ├── backup_manifest.xlsx
@@ -815,24 +819,31 @@ Just update the `send_command()` call and modify the filename accordingly.
 Congratulations! You've built a production-grade backup system. You now understand:
 
 ### 1. **File I/O Operations**
+
 Reading configurations from devices and reliably writing them to disk with proper error handling.
 
 ### 2. **Directory Structure and Organisation**
+
 Using timestamps to organise backups chronologically and creating logical directory hierarchies.
 
 ### 3. **Backup Validation**
+
 Confirming that data was successfully written to disk by checking file sizes.
 
 ### 4. **Manifest/Inventory Tracking**
+
 Creating audit trails (the Excel manifest) that record what was backed up, when, and the status.
 
 ### 5. **Configuration Versioning**
+
 Organizing timestamped backups to enable version tracking and change detection.
 
 ### 6. **Safe Filename Handling**
+
 Converting hostnames with special characters into valid filenames.
 
 ### 7. **Multi-Step Operations**
+
 Combining several operations (connect, command, file write, validation) into a cohesive workflow.
 
 ---
@@ -900,6 +911,7 @@ Or implement retention policies (see "Advanced Variations").
 If devices have different passwords, use per-device credentials in CSV:
 
 **devices.csv with passwords:**
+
 ```csv
 device_type,host,username,password,secret
 cisco_ios,10.1.1.1,admin,password1,
@@ -907,6 +919,7 @@ cisco_ios,10.1.1.2,admin,password2,
 ```
 
 **Modified `read_inventory()` function:**
+
 ```python
 def read_inventory(csv_file):
     devices = []
@@ -969,7 +982,8 @@ def backup_device_config(device, backup_dir):
 ```
 
 Result:
-```
+
+```text
 backups/20260215_143022/
 ├── cisco_ios/
 │   ├── 192-168-1-1_running-config.txt
@@ -1146,18 +1160,18 @@ You've now built a complete backup system! Ready for the next challenge?
    - Custom inventory sources
    - Integration with external systems
 
-**Study Production Code:**
+    **Study Production Code:**
 
 5. **[Deep Dives](../../deep-dives/index.md)** — Review how production tools handle similar challenges
    - [CDP Network Audit](../../deep-dives/cdp-audit.md) — Threading, security, and credential management
    - [Access Switch Audit](../../deep-dives/access-switch-audit.md) — Parallel device collection and intelligent parsing
 
-**Ready to Deploy?**
+    **Ready to Deploy?**
 
 6. **[Script Library](../../scripts/index.md)** — Deploy pre-built tools
    - Access Switch Audit for port configurations
 
-4. **Enhance This Script** — Practice by adding:
+7. **Enhance This Script** — Practice by adding:
    - Configuration comparison between backup runs
    - Backup compression (ZIP files for storage efficiency)
    - Progress bars using `tqdm`

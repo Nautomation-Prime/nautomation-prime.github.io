@@ -1,7 +1,5 @@
 # Terms of Use
 
-_Last updated: 30 January 2026_
-
 By using this website, you agree to the following Terms of Use.
 
 ## 1. Website Content & Licensing

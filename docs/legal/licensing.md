@@ -1,7 +1,5 @@
 # Licensing
 
-_Last updated: February 2026_
-
 This page explains how licensing works for content and code produced by **Nautomation Prime**.
 
 ## 1. Proprietary Content (All Rights Reserved)
@@ -39,7 +37,7 @@ Educational content on nautomationprime.io is licensed under:
 This includes:
 
 - [Beginner Tutorials](../tutorials/beginner/index.md)
-- [Intermediate Tutorials](../tutorials/intermediate/index.md) 
+- [Intermediate Tutorials](../tutorials/intermediate/index.md)
 - [Technical Deep Dives](../deep-dives/index.md)
 - How-to guides and walkthroughs
 - Learning resources and educational examples

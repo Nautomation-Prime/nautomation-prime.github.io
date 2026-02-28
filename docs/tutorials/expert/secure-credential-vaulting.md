@@ -11,7 +11,7 @@ tags:
   - Tutorial
 ---
 
-# Secure Credential Vaulting for Network Automation: HashiCorp Vault, AWS Secrets Manager, and Beyond
+## Secure Credential Vaulting for Network Automation: HashiCorp Vault, AWS Secrets Manager, and Beyond
 
 ## Why This Tutorial Exists
 
@@ -25,7 +25,6 @@ Hardcoded credentials are a top security risk. This tutorial shows how to use en
 - Familiarity with environment variables and API authentication
 
 ---
-
 
 ## Why Use a Secrets Manager?
 
@@ -112,6 +111,7 @@ nr.inventory.hosts['router1'].password = get_vault_secret('network/creds', 'pass
 - Never commit secrets to code or config files
 
 Example: GitHub Actions with HashiCorp Vault
+
 ```yaml
 jobs:
   deploy:

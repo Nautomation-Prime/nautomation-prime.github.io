@@ -1,7 +1,5 @@
 # Privacy Policy
 
-_Last updated: 31 January 2026_
-
 ## Operator Details
 
 This website is operated by:
@@ -38,11 +36,11 @@ Email communications are processed through our email provider **SimpleLogin**, w
 
 SimpleLogin's privacy policy can be found here:
 
-https://simplelogin.io/privacy/
+<https://simplelogin.io/privacy/>
 
 ## 3. Purpose of Processing
 
-We use the information you provide in email communications *solely* for:
+We use the information you provide in email communications _solely_ for:
 
 - Responding to your enquiry  
 - Discussing potential work or collaboration  

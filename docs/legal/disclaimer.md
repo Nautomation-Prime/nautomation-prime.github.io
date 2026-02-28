@@ -1,7 +1,5 @@
 # Disclaimer
 
-_Last updated: 30 January 2026_
-
 ## 1. No Affiliation With Cisco
 
 This website and all related content are **not affiliated, associated, endorsed, or sponsored by Cisco Systems, Inc.**

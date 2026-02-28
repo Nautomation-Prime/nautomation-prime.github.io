@@ -58,7 +58,7 @@ for device_ip in switch_ips:
 
 Combine Netmiko for configuration with PyATS for validation:
 
-### The Setup
+### The Setup (Nornir + PyATS)
 
 ```python
 from netmiko import ConnectHandler
@@ -83,7 +83,7 @@ net_connect = ConnectHandler(
 # (already connected via device.connect())
 ```
 
-### The Implementation
+### The Implementation (Nornir + PyATS)
 
 ```python
 def deploy_and_validate_vlan(testbed_file, device_name, vlan_config):
@@ -332,7 +332,7 @@ print(f"✅ All {results['passed']} VLANs deployed and validated")
 
 **Output:**
 
-```
+```bash
 [1/4] Capturing baseline...
       Baseline: 42 VLANs exist
 [2/4] Deploying VLAN configuration...
@@ -353,7 +353,7 @@ print(f"✅ All {results['passed']} VLANs deployed and validated")
 
 For deploying across multiple devices simultaneously:
 
-### The Setup
+### The Setup (Parallel Deployment)
 
 ```python
 from nornir import InitNornir
@@ -368,7 +368,7 @@ nr = InitNornir(config_file='config.yaml')
 testbed = loader.load('testbed.yaml')
 ```
 
-### The Implementation
+### The Implementation (Parallel Deployment)
 
 ```python
 def parallel_deploy_and_validate(nr, testbed, vlan_config):
@@ -454,7 +454,7 @@ parallel_deploy_and_validate(nr, testbed, vlan_config)
 
 **Output:**
 
-```
+```bash
 ============================================================
 DEPLOYING VLANS IN PARALLEL...
 ============================================================
@@ -787,4 +787,3 @@ Or continue learning:
 ---
 
 > **Production reliability isn't built on hope.** It's built on validation, testing, and recovery. PyATS makes all three automatic.
-

@@ -11,7 +11,7 @@ tags:
   - Tutorial
 ---
 
-# Tool Ecosystem Integration for Network Automation: Netbox, ServiceNow, DNA Center, and More
+## Tool Ecosystem Integration for Network Automation: Netbox, ServiceNow, DNA Center, and More
 
 > *Published: February 24, 2026  \
 Author: Nautomation Prime Team*
@@ -28,7 +28,6 @@ Modern automation is not an island. This tutorial shows how to integrate with Ne
 - Familiarity with REST APIs and authentication
 
 ---
-
 
 ## NetBox Integration (Advanced)
 
@@ -51,7 +50,6 @@ devices = get_netbox_devices()
 ```
 
 ---
-
 
 ## ServiceNow Integration (Advanced)
 
@@ -77,7 +75,6 @@ ticket = create_snow_ticket('Automated VLAN deployment')
 
 ---
 
-
 ## Cisco DNA Center Integration (Advanced)
 
 - Use dnacentersdk for API access
@@ -102,9 +99,6 @@ def get_dnac_devices():
 
 devices = get_dnac_devices()
 ```
-
----
-
 
 ---
 

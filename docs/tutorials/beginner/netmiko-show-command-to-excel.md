@@ -10,7 +10,7 @@ tags:
   - Tutorial
 ---
 
-# Send a Show Command and Export to Excel
+## Send a Show Command and Export to Excel
 
 ## "Your First Python Network Automation Script — Explained Line-by-Line"
 
@@ -41,17 +41,20 @@ By the end of this tutorial, you'll understand:
 ## 📋 Prerequisites
 
 ### Required Knowledge
+
 - Basic Python syntax (variables, dictionaries, functions)
 - How to run Python scripts from the command line
 - Basic understanding of Cisco show commands
 
 ### Required Software
+
 ```bash
 # Install required Python libraries
 pip install netmiko pandas openpyxl
 ```
 
 ### Required Access
+
 - One Cisco device (IOS, IOS-XE, or NX-OS) with:
   - SSH enabled
   - Reachable IP address
@@ -280,18 +283,20 @@ output = connection.send_command('show version', use_textfsm=True)
 1. **`send_command('show version')`**: Sends the show command to the device
 2. **`use_textfsm=True`**: Tells Netmiko to automatically parse the output using TextFSM
 
-**What is TextFSM?** 
+**What is TextFSM?**
 
-TextFSM is a parsing engine that converts unstructured text output (like show commands) into structured data (lists and dictionaries). 
+TextFSM is a parsing engine that converts unstructured text output (like show commands) into structured data (lists and dictionaries).
 
 For example, `show version` normally returns text like:
-```
+
+```cisco
 Cisco IOS Software, Version 15.2(4)M3
 ...
 uptime is 2 weeks, 3 days, 4 hours, 22 minutes
 ```
 
 With TextFSM enabled, it becomes a Python list of dictionaries:
+
 ```python
 [
     {
@@ -486,7 +491,8 @@ python show_version_to_excel.py
 ### Step 4: Enter Your Password
 
 When prompted:
-```
+
+```bash
 Enter password:
 ```
 
@@ -495,7 +501,8 @@ Type your password (it won't be displayed) and press Enter.
 ### Step 5: Check the Output
 
 You should see:
-```
+
+```bash
 Connecting to 10.1.1.1...
 ✓ Connected to 10.1.1.1
 Executing 'show version'...
@@ -512,9 +519,9 @@ The Excel file will be created in the same directory!
 
 After running the script, open the Excel file. You'll see columns like:
 
-| hostname | version | uptime | serial | model | ... |
-|----------|---------|--------|--------|-------|-----|
-| ROUTER1 | 15.2(4)M3 | 2 weeks, 3 days... | FCZ1234A5BC | CISCO2901 | ... |
+| hostname | version   | uptime             | serial      | model       | ... |
+|----------|-----------|--------------------|-------------|-------------|-----|
+| ROUTER1  | 15.2(4)M3 | 2 weeks, 3 days... | FCZ1234A5BC | CISCO2901   | ... |
 
 The exact columns depend on the TextFSM template for your device type.
 
@@ -548,6 +555,7 @@ Popular commands that work well with TextFSM:
 ### "Module 'netmiko' not found"
 
 **Solution**: Install the required libraries:
+
 ```bash
 pip install netmiko pandas openpyxl
 ```
@@ -562,7 +570,7 @@ pip install netmiko pandas openpyxl
 - Account locked
 - SSH authentication method not supported
 
-**Solution**: 
+**Solution**:
 
 - Verify credentials by manually SSH'ing to the device
 - Check if the device requires key-based authentication
@@ -602,6 +610,7 @@ pip install netmiko pandas openpyxl
 - Manually parse the raw text using string methods or regular expressions
 
 Example without TextFSM:
+
 ```python
 output = connection.send_command('show version')  # Raw string
 # Then manually parse the string
@@ -638,18 +647,18 @@ Ready to build on this foundation? Here's your learning path:
 1. [**Multi-Device Collection**](./multi-device-show-command.md) — Extend this script to work with multiple devices at once
 2. [**Configuration Backup**](./multi-device-config-backup.md) — Learn to save and manage device configurations
 
-**Move to Intermediate Skills:**
+    **Move to Intermediate Skills:**
 
 3. [**Nornir Fundamentals**](../intermediate/nornir-fundamentals.md) — Understand frameworks that scale automation to thousands of devices
 4. [**Enterprise Config Backup with Nornir**](../intermediate/enterprise-config-backup-nornir.md) — See how patterns scale to production
 
-**Study Production Code:**
+    **Study Production Code:**
 
 5. [**Deep Dives Section**](../../deep-dives/index.md) — Review complete production scripts with line-by-line explanations
    - Start with [CDP Network Audit](../../deep-dives/cdp-audit.md) to see threading, error handling, and enterprise patterns
    - Then explore [Access Switch Audit](../../deep-dives/access-switch-audit.md) for parallel device collection
 
-**Ready to Deploy?**
+    **Ready to Deploy?**
 
 6. [**Script Library**](../../scripts/index.md) — Use production-ready tools built on these same concepts
 

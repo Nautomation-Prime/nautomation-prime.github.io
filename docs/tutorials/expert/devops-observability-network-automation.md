@@ -11,7 +11,7 @@ tags:
   - Tutorial
 ---
 
-# DevOps and Observability for Network Automation: CI/CD, GitOps, and Monitoring
+## DevOps and Observability for Network Automation: CI/CD, GitOps, and Monitoring
 
 ## Why This Tutorial Exists
 
@@ -20,6 +20,7 @@ Enterprise automation is more than scripts—it’s pipelines, version control, 
 ---
 
 ## Prerequisites
+
 - Advanced Python
 - Familiarity with Git, CI/CD tools, and monitoring basics
 
@@ -93,6 +94,7 @@ jobs:
 ## Observability: Logging, Metrics, Tracing
 
 ### Structured Logging Example
+
 ```python
 import structlog
 logger = structlog.get_logger()
@@ -100,6 +102,7 @@ logger.info("automation_run", device="router1", status="success")
 ```
 
 ### Metrics and Tracing
+
 - Export custom metrics to Prometheus (e.g., job duration, device failures)
 - Use OpenTelemetry for distributed tracing of automation workflows
 
