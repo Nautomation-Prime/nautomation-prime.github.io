@@ -11,7 +11,7 @@ tags:
   - Tutorials
 ---
 
-# Intermediate Tutorials
+## Intermediate Tutorials
 
 ## "From Guessing to Proving — Validate Your Automation at Enterprise Scale"
 
@@ -105,21 +105,25 @@ By completing these intermediate tutorials, you'll understand:
 ### Required Software
 
 **For the full series (PyATS + Nornir):**
+
 ```bash
 pip install pyats genie netmiko nornir nornir-netmiko nornir-utils pandas openpyxl pyyaml
 ```
 
 **For PyATS tutorials only:**
+
 ```bash
 pip install pyats genie netmiko pandas openpyxl
 ```
 
 **For Nornir tutorials only:**
+
 ```bash
 pip install nornir nornir-netmiko nornir-utils netmiko pandas openpyxl pyyaml
 ```
 
 ### Required Access
+
 - **Multiple Cisco devices** (5+) with:
 
   - SSH enabled
@@ -310,7 +314,7 @@ python -c "import netmiko; print('Netmiko OK')"
 
 Create a directory for your Nornir projects:
 
-```
+```text
 my-nornir-project/
 ├── inventory/
 │   ├── hosts.yaml      # Device inventory
@@ -376,7 +380,7 @@ When we move from tutorials to consulting engagements, Nornir becomes the founda
 After completing all 4 intermediate tutorials, you'll be able to:
 
 | Capability | Before | After |
-|:---|:---|:---|
+| :--- | :--- | :--- |
 | **Max devices per script** | 50 (before slowness) | 5,000+ (easily) |
 | **Config backup time** | 30+ minutes | 3-5 minutes |
 | **Error visibility** | Per-device try/catch | Unified result aggregation |
@@ -394,21 +398,18 @@ After completing all 4 intermediate tutorials, you'll be able to:
 ## 🆘 Troubleshooting
 
 **"I'm not sure if I'm ready for these tutorials"**
-
-- Complete all [Beginner Tutorials](../beginner/index.md) first
-- These tutorials assume you're comfortable with Python functions, loops, and basic OOP
+    - Complete all [Beginner Tutorials](../beginner/index.md) first
+    - These tutorials assume you're comfortable with Python functions, loops, and basic OOP
 
 **"I don't have 5+ devices to practice with"**
-
-- Use Cisco Devnet Always-On labs (free, no lab equipment needed)
-- Use GNS3 or EVE-NG with CSR1000v images
-- Virtual labs work perfectly for learning
+    - Use Cisco Devnet Always-On labs (free, no lab equipment needed)
+    - Use GNS3 or EVE-NG with CSR1000v images
+    - Virtual labs work perfectly for learning
 
 **"Nornir seems complex"**
-
-- Yes, it's more complex than Beginner scripts—but the complexity is worth it
-- Tutorial #1 explains WHY complexity is justified
-- Each tutorial builds gradually; don't skip ahead
+    - Yes, it's more complex than Beginner scripts—but the complexity is worth it
+    - Tutorial #1 explains WHY complexity is justified
+    - Each tutorial builds gradually; don't skip ahead
 
 ---
 

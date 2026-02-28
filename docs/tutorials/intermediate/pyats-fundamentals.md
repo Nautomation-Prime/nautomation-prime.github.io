@@ -246,7 +246,7 @@ assert '10' in output['vlans'], "VLAN 10 missing!"
 - `output['vlans']` — Dictionary key access. Parsed data is always in the same structure regardless of device output formatting.
 - `'10' in output['vlans']` — Check if VLAN ID exists. Uses dictionary keys, not string searching.
 
-**Why This Matters:** 
+**Why This Matters:**
 
 - ❌ **Without parsing:** Regex patterns that break when output format changes, fragile text processing
 - ✅ **With PyATS:** Structured data, consistent dictionary access, parser handles all OS variations
@@ -355,7 +355,8 @@ def test_vlan_has_interfaces(device):
     # '.keys()' gives us interface names, we check if one exists
 ```
 
-**Run all tests with:** 
+**Run all tests with:**
+
 ```bash
 pytest test_vlan_validation.py -v
 # Output:
@@ -832,4 +833,3 @@ Or jump straight to:
 ---
 
 > **Production automation without validation is guesswork.** PyATS transforms validation from manual checklist to automated proof. Enterprise teams use it millions of times per month for good reason.
-

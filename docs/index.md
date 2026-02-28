@@ -11,8 +11,6 @@ tags:
   - Netmiko
 ---
 
-<div class="homepage" markdown="1">
-
 ![Nautomation Prime Logo](assets/main_logo.jpg)
 
 ---
@@ -87,28 +85,28 @@ Every tool and guide is built on **five core principles** that ensure your autom
 
 === "🎯 Looking for Solutions"
     I have a specific network problem to solve or want production-ready tools.
-    
+
     - **[📚 Script Library](./scripts/index.md)** — Browse available automation tools
     - **[🐳 Services](./services.md)** — Custom automation, portable bundles, Docker containers
     - **[📞 Contact Us](mailto:nautomationprime.f3wfe@simplelogin.com)** — Let's chat about your needs
 
 === "📖 Learning Code & Patterns"
     I want to understand how production network automation works.
-    
+
     1. Read [**Getting Started**](./getting-started.md) (2 min overview)
     2. Pick a tutorial: [**Beginner**](./tutorials/beginner/index.md) or [**Intermediate**](./tutorials/intermediate/index.md)
     3. Deep dive into [**CDP Network Audit**](./deep-dives/cdp-audit.md) — see real production code
 
 === "🚀 Enterprise Automation"
     I need a structured approach to network automation for my organization.
-    
+
     - **[PRIME Framework](./prime-framework/index.md)** — Our proven 5-stage methodology
     - **[Empower Phase](./prime-framework/empower.md)** — Building sustainable automation teams
     - **[Services](./services.md)** — Consulting and implementation
 
 === "👨‍💻 Improving My Python Skills"
     I know Python and want to apply it to network automation.
-    
+
     1. Start with [**Show Command to Excel**](./tutorials/beginner/netmiko-show-command-to-excel.md) & [**Netmiko basics**](./tutorials/beginner/multi-device-show-command.md)
     2. Learn [**Nornir fundamentals**](./tutorials/intermediate/nornir-fundamentals.md) — frameworks for scale
     3. Study [**Deep Dives**](./deep-dives/index.md) for patterns (threading, configuration, error handling)
@@ -117,7 +115,7 @@ Every tool and guide is built on **five core principles** that ensure your autom
 
 ## 💰 Typical Investment
 
-**Full PRIME Framework Engagement: £12,000 – £28,000**
+## **Full PRIME Framework Engagement: £12,000 – £28,000**
 
 Covers complete end-to-end delivery from opportunity discovery to team empowerment (6–12 weeks, typical).
 
@@ -202,7 +200,7 @@ Custom solutions tailored to your topology. Expert consultancy for Zero Trust de
 
 ---
 
-##  Why Nautomation Prime?
+## Why Nautomation Prime?
 
 Nautomation Prime was founded by a **CCNP-certified Senior Network Engineer** with **10+ years** in enterprise network infrastructure, Cisco technologies, and large-scale automation projects—including network upgrades across 200+ devices, NHS systems integration, and critical infrastructure hardening.
 
@@ -248,5 +246,3 @@ Built from **real-world experience**, not theory.
 ---
 
 > **Mission:** To empower network engineers through the **[PRIME Framework](./prime-framework/index.md)**—delivering automation with measurable ROI, production-grade quality, and sustainable team capability built on the **[Prime Philosophy](./prime-framework/philosophy.md)** of transparency, reliability, and pragmatism.
-
-</div>

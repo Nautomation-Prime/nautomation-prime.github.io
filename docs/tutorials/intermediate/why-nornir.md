@@ -10,7 +10,7 @@ tags:
   - Tutorial
 ---
 
-# Why Nornir? Understanding the Problem and Solution
+## Why Nornir? Understanding the Problem and Solution
 
 ## "From 30 Minutes to 3 Minutes — Why Enterprise Networks Need Parallel Automation"
 
@@ -62,7 +62,7 @@ for device in devices:
 
 Let's do some math:
 
-**Scenario: Enterprise network with 300 devices**
+## **Scenario: Enterprise network with 300 devices**
 
 **Per-device timing:**
 
@@ -109,7 +109,7 @@ CPU:  ░░░░░░░░░░░░░░░░░░░░░░░░�
 
 ### Parallel Execution (Nornir Approach)
 
-```
+```bash
 Device 1: [=====network=====]
 Device 2:  [  ↑ overlapping  =====network=====]
 Device 3:   [  ↑ overlapping  =====network=====]
@@ -393,7 +393,7 @@ Nornir Instance
 ✅ **Enterprise requirements** (audit trails, integration, reliability)  
 ✅ **Future growth** (will your network grow?)  
 
-### Use Tutorial #3 When:
+### **Use Tutorial #3 When:**
 
 ✅ **Quick one-off script**  
 ✅ **Very small network** (<10 devices)  
@@ -406,7 +406,7 @@ Nornir Instance
 
 The table below breaks down how different approaches compare across real-world concerns:
 
-| Aspect | Tutorial #3<br/>(Sequential) | Threading<br/>(DIY) | Nornir<br/>(Framework) | Ansible<br/>(Alternative) |
+| Aspect | Tutorial #3 (Sequential) | Threading (DIY) | Nornir (Framework) | Ansible (Alternative) |
 | :--- | :--- | :--- | :--- | :--- |
 | **Learning curve** | Easy | Moderate | Moderate | Moderate-Hard |
 | **Max devices** | ~100 | ~50 (GIL limits) | 500-5000+ | 1000+ |
@@ -421,7 +421,7 @@ The table below breaks down how different approaches compare across real-world c
 | **Production-ready** | No | Rarely | Yes | Yes |
 | **Maintenance burden** | Low initially, high later | Very high | Moderate | Moderate |
 
-* Threading performance varies wildly due to GIL contention
+- Threading performance varies wildly due to GIL contention
 
 ---
 
@@ -594,7 +594,7 @@ async def backup_all(devices):
 
 ## 📊 Real Enterprise Example
 
-**Telecom company with 2,500 Cisco devices**
+## **Telecom company with 2,500 Cisco devices**
 
 **Old approach (Tutorial #3):**
 

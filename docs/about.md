@@ -130,12 +130,15 @@ Our tools and guides leverage industry-standard Python libraries:
 We balance **proprietary methodology protection** with **community-driven education**:
 
 ### 🔒 PRIME Framework & Philosophy (All Rights Reserved)
+
 Our methodology is proprietary. The PRIME Framework and Philosophy represent our core IP and competitive differentiation.
 
 ### 📚 Educational Content (CC-BY 4.0)
+
 Tutorials, guides, and technical deep dives are licensed under Creative Commons Attribution. Share them freely in courses, blogs, and educational settings—just credit Nautomation Prime.
 
 ### 💻 Code & Scripts (Apache License 2.0)
+
 All public repositories are licensed under **Apache License 2.0**, ensuring:
 
 - Source code transparency

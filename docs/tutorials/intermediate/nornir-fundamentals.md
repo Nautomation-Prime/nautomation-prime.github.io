@@ -10,7 +10,7 @@ tags:
   - Tutorial
 ---
 
-# Nornir Fundamentals
+## Nornir Fundamentals
 
 ## "From Sequential Scripts to Parallel Tasks — The Foundation of Enterprise Automation"
 
@@ -46,6 +46,7 @@ By the end of this tutorial, you'll understand:
 - ✅ Basic YAML format understanding
 
 ### Required Software
+
 ```bash
 # Create a virtual environment
 python -m venv nornir_venv
@@ -177,7 +178,8 @@ python minimal_example.py
 ```
 
 **Expected output:**
-```
+
+```bash
 ✓ router1: SUCCESS
 ✓ switch1: SUCCESS
 ✓ switch2: SUCCESS
@@ -233,7 +235,7 @@ flowchart TD
 
 Create a directory for your Nornir project and organise it like this:
 
-```
+```text
 my-nornir-automation/
 ├── nornir_config.yaml      # ← Nornir configuration
 ├── inventory/
@@ -683,7 +685,7 @@ python main.py
 
 You'll be prompted:
 
-```
+```bash
 Enter device password:
 ```
 
@@ -693,7 +695,7 @@ Type your password and press Enter.
 
 You'll see output like:
 
-```
+```bash
 ======================================================================
 Nornir Multi-Device Configuration Backup
 ======================================================================
@@ -851,12 +853,14 @@ for host_name, result in backup_results.items():
 Let's measure the difference:
 
 **Tutorial #3 (Sequential):**
-```
+
+```bash
 5 devices × 6 seconds = 30 seconds
 ```
 
 **This Nornir script (Parallel):**
-```
+
+```bash
 1 round × 6 seconds = 6 seconds
 (All 5 devices run simultaneously)
 ```
@@ -974,7 +978,7 @@ core:
 
 ### "Connection failed: hostname not reachable"
 
-**Check:** 
+**Check:**
 
 - Device IP is correct in `hosts.yaml`
 - Device is reachable: `ping 10.1.1.1`
@@ -1012,6 +1016,7 @@ def my_task(task: Task) -> Result:  # ← Must match this
 **Cause:** Netmiko plugin not installed
 
 **Solution:**
+
 ```bash
 pip install nornir-netmiko
 ```
@@ -1041,6 +1046,7 @@ pip install nornir-netmiko
     - Fix: Adjust firewall rules
 
 **Debug technique:** Before running Nornir, test SSH manually:
+
 ```bash
 ssh -v admin@192.168.1.1
 ```
@@ -1062,8 +1068,8 @@ ios_devices:
 
 # ✗ WRONG (tabs used)
 ios_devices:
-	username: admin
-	password: secret
+    username: admin
+    password: secret
 ```
 
 **Check:** In your editor, enable "visible whitespace" (`Ctrl+Shift+P` → "toggle whitespace")
@@ -1073,6 +1079,7 @@ ios_devices:
 **Cause:** `num_workers` is too high for your system
 
 **Your system limits:**
+
 ```bash
 # Check max open files (Linux/Mac)
 ulimit -n
@@ -1093,7 +1100,7 @@ core:
 
 **Cause:** Device doesn't support concurrent SSH sessions
 
-**Solution:** 
+**Solution:**
 
 - Reduce `num_workers`
 - OR check device documentation for session limits
@@ -1121,7 +1128,8 @@ for host in nr.inventory.hosts.values():
 ```
 
 **Expected output:**
-```
+
+```bash
 ✓ Loaded 5 devices:
   - router1: 192.168.1.1
   - switch1: 192.168.1.2
@@ -1205,6 +1213,7 @@ for device, result_obj in results.items():
 ### Gotcha 1: Hardcoded Passwords Are Evil
 
 **Bad:**
+
 ```yaml
 ios_devices:
   username: admin
@@ -1212,6 +1221,7 @@ ios_devices:
 ```
 
 **Good:**
+
 ```yaml
 ios_devices:
   username: admin
@@ -1219,6 +1229,7 @@ ios_devices:
 ```
 
 Then in Python:
+
 ```python
 import os
 
@@ -1233,12 +1244,14 @@ for host in nr.inventory.hosts.values():
 ### Gotcha 2: Too Many Workers = System Crash
 
 **Bad:**
+
 ```yaml
 core:
   num_workers: 500  # If you have 500 devices!
 ```
 
 **Good:**
+
 ```yaml
 core:
   num_workers: 20  # Conservative, increase if needed
@@ -1256,12 +1269,14 @@ core:
 ### Gotcha 3: Failing Device Breaks the Entire Job
 
 **Your old Tutorial #3 code:**
+
 ```python
 for device in devices:
     backup_device(device)  # If device 10 fails, 11-100 don't run
 ```
 
 **Nornir approach:**
+
 ```python
 results = nr.run(backup_config)  # All devices run, failures isolated
 
@@ -1276,12 +1291,14 @@ for device, result_obj in results.items():
 ### Gotcha 4: Logs Are Messy in Parallel Environment
 
 **Bad (from Tutorial #3):**
+
 ```python
 for device in devices:
     print(f"Backing up {device}")  # Output is interleaved/garbled
 ```
 
 **Good (Nornir way):**
+
 ```python
 import logging
 
@@ -1297,6 +1314,7 @@ logger.info(f"Device {task.host.name}: Starting backup")
 ### Gotcha 5: You Can't Modify Results After Task Completes
 
 **Bad:**
+
 ```python
 @task
 def backup_config(task: Task) -> Result:
@@ -1308,6 +1326,7 @@ def backup_config(task: Task) -> Result:
 ```
 
 **Good:**
+
 ```python
 @task
 def backup_config(task: Task) -> Result:
@@ -1331,7 +1350,7 @@ As you scale beyond this tutorial, use this structure:
 
 ### Recommended Project Layout
 
-```
+```text
 my-nornir-automation/
 ├── .gitignore              # Exclude secrets, venv, __pycache__
 ├── .env.example            # Template for environment variables
@@ -1370,7 +1389,7 @@ my-nornir-automation/
 
 ### Sample `requirements.txt`
 
-```
+```text
 nornir==3.3.0
 nornir-netmiko==0.4.0
 nornir-utils==0.4.0
@@ -1435,7 +1454,7 @@ NETBOX_TOKEN=your_netbox_token
 
 ### Sample `.gitignore`
 
-```
+```text
 # Python
 __pycache__/
 *.py[cod]
@@ -1489,6 +1508,7 @@ python -c "from nornir import InitNornir; nr = InitNornir(config_file='nornir_co
 ### Key Practices
 
 ✅ **Use `python-dotenv`** to load `.env` file:
+
 ```python
 from dotenv import load_dotenv
 import os
@@ -1539,17 +1559,17 @@ You've mastered Nornir fundamentals! Here's your path forward:
    - Integration with external systems
    - Performance optimization techniques
 
-**Learn More About Network Automation Frameworks:**
+    **Learn More About Network Automation Frameworks:**
 
 3. **[Why Nornir?](./why-nornir.md)** — Understand when to use Nornir vs alternatives
 
-**Study Production Code:**
+    **Study Production Code:**
 
 4. **[Deep Dives](../../deep-dives/index.md)** — See how production tools apply these patterns
    - [Access Switch Audit](../../deep-dives/access-switch-audit.md) — Parallel device collection at scale
    - [CDP Network Audit](../../deep-dives/cdp-audit.md) — Multi-threaded network discovery
 
-**Ready to Deploy?**
+    **Ready to Deploy?**
 
 5. **[Script Library](../../scripts/index.md)** — Deploy production-ready tools built with Nornir
 6. **[PRIME Framework](../../prime-framework/index.md)** — Structure your automation projects for success

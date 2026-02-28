@@ -93,7 +93,7 @@ We deliver automation projects through the **[PRIME Framework](prime-framework/i
 
 !!! tip "The Foundation Behind Everything We Build"
     Every tool, script, and service at Nautomation Prime is guided by the **[PRIME Philosophy](prime-framework/philosophy.md)**—five core principles that ensure transparency, measurability, ownership, safety, and empowerment.
-    
+
     These values define **how** we build (pragmatic, transparent, reliable), while the **[PRIME Framework](prime-framework/index.md)** defines **what** we deliver (structured methodology).
     
     **[Read the complete PRIME Philosophy →](prime-framework/philosophy.md)**

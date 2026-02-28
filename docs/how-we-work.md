@@ -31,13 +31,13 @@ Discovery     Design           Build            Track ROI     Transfer Ownership
 
 ## Stage 1: Pinpoint (Discovery & Roadmap) — Week 1
 
-### What Happens
+### What Happens (Pinpoint)
 
 You're drowning in network operational tasks. Some feel painful. Some seem obvious to automate. But which ones actually deserve automation?
 
 **The Pinpoint stage answers that question with data.**
 
-### Your Experience
+### Your Experience (Pinpoint)
 
 1. **Discovery Workshop** (4 hours)  
     We sit with your network operations team and document:
@@ -64,7 +64,7 @@ You're drowning in network operational tasks. Some feel painful. Some seem obvio
     - Risk assessment and feasibility notes
     - Business case (you'll know exactly why we recommended these)
 
-### The Guarantee
+### The Guarantee (Pinpoint)
 
 You walk away with a clear roadmap of what to automate and why—**even if you decide not to proceed with us.**
 
@@ -78,13 +78,13 @@ You walk away with a clear roadmap of what to automate and why—**even if you d
 
 ## Stage 2: Re-engineer (Workflow Design) — Weeks 2-3
 
-### What Happens
+### What Happens (Re-engineer)
 
 You've decided what to automate. Now we optimize the *workflow itself* before writing a single line of code.
 
 Most automation fails because teams automate broken processes. We fix the process first.
 
-### Your Experience
+### Your Experience (Re-engineer)
 
 1. **Current State Documentation**  
     We map the current workflow in detail:
@@ -120,7 +120,7 @@ Most automation fails because teams automate broken processes. We fix the proces
     - Rollback triggers ("Automatically undo if validation fails")
     - Error handling ("If device X fails, should we continue with device Y?")
 
-### The Deliverable
+### The Deliverable (Re-engineer)
 
 You receive detailed **architecture documents** that show:
 
@@ -140,11 +140,11 @@ You receive detailed **architecture documents** that show:
 
 ## Stage 3: Implement (Development & Testing) — Weeks 4-8
 
-### What Happens
+### What Happens (Implement)
 
 Now we build the automation—with transparency, safety, and maintainability as first-class requirements (not afterthoughts).
 
-### Your Experience
+### Your Experience (Implement)
 
 1. **Development with Transparency**  
     We code according to the **Prime Philosophy**:
@@ -185,7 +185,7 @@ Now we build the automation—with transparency, safety, and maintainability as 
     - Direct support (if issues arise, we're available)
     - Handoff documentation (everything your team needs to run it independently)
 
-### The Deliverable
+### The Deliverable (Implement)
 
 You receive:
 
@@ -207,13 +207,13 @@ You receive:
 
 ## Stage 4: Measure (ROI Tracking) — Weeks 9-12 (Ongoing)
 
-### What Happens
+### What Happens (Measure)
 
 Now we prove the value.
 
 This is where most automation consulting falls short—they deliver code and disappear. We quantify the business impact.
 
-### Your Experience
+### Your Experience (Measure)
 
 1. **Baseline Reconstruction** (Week 9)  
     We reconstruct pre-automation metrics:
@@ -258,7 +258,7 @@ This is where most automation consulting falls short—they deliver code and dis
 **Cost Savings:** 1,160 hours × £25 hourly rate = £29,000  
 **ROI:** £29,000 savings ÷ £15,000 investment = 193% ROI in Year 1
 
-### The Deliverable
+### The Deliverable (Measure)
 
 You receive a formal **ROI Report** suitable for:
 
@@ -279,13 +279,13 @@ You receive a formal **ROI Report** suitable for:
 
 ## Stage 5: Empower (Knowledge Transfer) — Weeks 10-16
 
-### What Happens
+### What Happens (Empower)
 
 We transfer full ownership of the automation to your team.
 
 After engagement ends, your network engineers can maintain, modify, and extend the automation independently. You're not dependent on us forever.
 
-### Your Experience
+### Your Experience (Empower)
 
 1. **Knowledge Transfer Workshops** (4 sessions, usually 2-3 hours each)
 
@@ -334,7 +334,7 @@ After engagement ends, your network engineers can maintain, modify, and extend t
     - Modification assistance ("How do I add support for device Y?")
     - Confidence building ("Is my proposed change safe?")
 
-### The Deliverable
+### The Deliverable (Empower)
 
 Your team walks away with:
 
