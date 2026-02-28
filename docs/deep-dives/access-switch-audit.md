@@ -823,11 +823,11 @@ The script retrieves device credentials using `switch_audit/credentials.py`:
 >
 > **Configuration:** Credential Manager targets are set in `config.yaml` under the `credentials` section:
 >
-    > ```yaml
-    > credentials:
-    >   cred_target: "MyApp/ADM"  # Primary credential target
-    >   enable_target: ""          # Optional enable secret target
-    > ```
+    ```yaml
+    credentials:
+    cred_target: "MyApp/ADM"  # Primary credential target
+    enable_target: ""          # Optional enable secret target
+    ```
 
 ---
 
