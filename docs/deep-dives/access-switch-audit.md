@@ -838,42 +838,42 @@ The script retrieves device credentials using `switch_audit/credentials.py`:
 - `--direct` will skip the jump host entirely and attempt direct SSH connections
 
 Example configuration in `config.yaml`:
-```yaml
-network:
-  jump_host: "jump-gateway.example.com"  # or "" to disable by default
-```
+    ```yaml
+    network:
+    jump_host: "jump-gateway.example.com"  # or "" to disable by default
+    ```
 
 The `JumpManager` (now in `switch_audit/jump_manager.py`) maintains a persistent SSH session to the bastion and proxies device connections through it.
 
 **How JumpManager Works:**
 
-```python
-class JumpManager:
-    def __init__(self, jump_host: str, username: str, password: str):
-        self.jump_host = jump_host
-        self.username = username
-        self.password = password
-        self.client = None  # Paramiko SSH client
-    
-    def connect(self) -> None:
-        """Establish persistent SSH connection to bastion."""
-        self.client = paramiko.SSHClient()
-        self.client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
-        self.client.connect(
-            self.jump_host,
-            username=self.username,
-            password=self.password,
-            timeout=10
-        )
-    
-    def open_channel(self, target_ip: str, target_port: int):
-        """Open direct-tcpip channel through bastion."""
-        return self.client.get_transport().open_channel(
-            'direct-tcpip',
-            (target_ip, target_port),
-            ('localhost', 0)
-        )
-```
+    ```python
+    class JumpManager:
+        def __init__(self, jump_host: str, username: str, password: str):
+            self.jump_host = jump_host
+            self.username = username
+            self.password = password
+            self.client = None  # Paramiko SSH client
+        
+        def connect(self) -> None:
+            """Establish persistent SSH connection to bastion."""
+            self.client = paramiko.SSHClient()
+            self.client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+            self.client.connect(
+                self.jump_host,
+                username=self.username,
+                password=self.password,
+                timeout=10
+            )
+        
+        def open_channel(self, target_ip: str, target_port: int):
+            """Open direct-tcpip channel through bastion."""
+            return self.client.get_transport().open_channel(
+                'direct-tcpip',
+                (target_ip, target_port),
+                ('localhost', 0)
+            )
+    ```
 
 **Why direct-tcpip Channel:**
 
@@ -888,13 +888,13 @@ class JumpManager:
 
 Provide a plain-text file with one device per line. Lines that are blank or start with `#` are ignored.
 
-```
-# devices.txt
-192.0.2.11
-192.0.2.12  # inline comments are not parsed; this whole token must be a host/IP only
-core-switch-01
-access-sw-22
-```
+    ```text
+    # devices.txt
+    192.0.2.11
+    192.0.2.12  # inline comments are not parsed; this whole token must be a host/IP only
+    core-switch-01
+    access-sw-22
+    ```
 
 > **Note:** Hostnames must be resolvable from the machine (or via the jump host, depending on your SSH setup).
 
@@ -907,16 +907,16 @@ access-sw-22
 3. (Optional) Configure `config.yaml` with your `jump_host` and other settings.
 4. Run the audit:
 
-```bash
-# Using jump host from config.yaml
-python -m switch_audit --devices devices.txt --output access_port_audit.xlsx
+        ```bash
+        # Using jump host from config.yaml
+        python -m switch_audit --devices devices.txt --output access_port_audit.xlsx
 
-# Direct connections (no bastion), 5 workers, different stale threshold
-python -m switch_audit --direct -w 5 --stale-days 60 -d devices.txt -o results.xlsx
+        # Direct connections (no bastion), 5 workers, different stale threshold
+        python -m switch_audit --direct -w 5 --stale-days 60 -d devices.txt -o results.xlsx
 
-# Verbose debugging
-python -m switch_audit --debug -d devices.txt
-```
+        # Verbose debugging
+        python -m switch_audit --debug -d devices.txt
+        ```
 
 ---
 
@@ -924,14 +924,14 @@ python -m switch_audit --debug -d devices.txt
 
 `switch_audit` exposes the following command-line options:
 
-```
---devices, -d    (required)  Path to the devices file (one IP/hostname per line; '#' comments allowed)
---output,  -o    (optional)  Output Excel file name. Default: audit.xlsx
---workers, -w    (optional)  Max concurrent device sessions (threads). Default: 10
---stale-days     (optional)  Days threshold for stale access ports. 0 disables stale flagging. Default: 30
---direct         (optional)  Connect directly (do not use jump host)
---debug          (optional)  Enable verbose logging/prints
-```
+    ```text
+    --devices, -d    (required)  Path to the devices file (one IP/hostname per line; '#' comments allowed)
+    --output,  -o    (optional)  Output Excel file name. Default: audit.xlsx
+    --workers, -w    (optional)  Max concurrent device sessions (threads). Default: 10
+    --stale-days     (optional)  Days threshold for stale access ports. 0 disables stale flagging. Default: 30
+    --direct         (optional)  Connect directly (do not use jump host)
+    --debug          (optional)  Enable verbose logging/prints
+    ```
 
 ### Required vs Optional
 
@@ -940,19 +940,19 @@ python -m switch_audit --debug -d devices.txt
 
 **Usage Examples:**
 
-```bash
-# Standard audit with jump host
-python -m switch_audit --devices devices.txt --output report.xlsx
+    ```bash
+    # Standard audit with jump host
+    python -m switch_audit --devices devices.txt --output report.xlsx
 
-# Direct connections, custom workers
-python -m switch_audit --devices devices.txt --direct --workers 20
+    # Direct connections, custom workers
+    python -m switch_audit --devices devices.txt --direct --workers 20
 
-# Debug mode with custom stale threshold
-python -m switch_audit --devices devices.txt --stale-days 60 --debug
+    # Debug mode with custom stale threshold
+    python -m switch_audit --devices devices.txt --stale-days 60 --debug
 
-# Using the launcher
-run.bat --devices devices.txt --output audit.xlsx
-```
+    # Using the launcher
+    run.bat --devices devices.txt --output audit.xlsx
+    ```
 
 ---
 
@@ -966,13 +966,13 @@ run.bat --devices devices.txt --output audit.xlsx
 
 ### Thread-Safe Architecture
 
-```python
-# Thread-safe accumulators (protected by locks)
-self.device_records = []       # Parsed results: one row per device
-self.interface_details = []    # Detailed per-interface data
-self.failed_devices = {}       # {ip: error_message}
-self.progress_lock = threading.Lock()  # Protects shared state
-```
+    ```python
+    # Thread-safe accumulators (protected by locks)
+    self.device_records = []       # Parsed results: one row per device
+    self.interface_details = []    # Detailed per-interface data
+    self.failed_devices = {}       # {ip: error_message}
+    self.progress_lock = threading.Lock()  # Protects shared state
+    ```
 
 **Why Thread Locks Matter:**
 
@@ -999,15 +999,15 @@ For each device, the tool collects five commands in sequence:
 
 ### The Intelligence Layer: Port Classification
 
-```python
-def classify_port(interface_record):
-    """
-    Assign a port to one of three categories:
-    - 'access': Single VLAN, typically hosts
-    - 'trunk': Multiple VLANs, typically uplinks
-    - 'routed': No VLAN (layer 3), typically inter-device links
-    """
-```
+    ```python
+    def classify_port(interface_record):
+        """
+        Assign a port to one of three categories:
+        - 'access': Single VLAN, typically hosts
+        - 'trunk': Multiple VLANs, typically uplinks
+        - 'routed': No VLAN (layer 3), typically inter-device links
+        """
+    ```
 
 **Classification Logic:**
 
@@ -1104,9 +1104,9 @@ Columns typically include (when available):
 
 The script prints an event-driven progress bar like:
 
-```
-Progress: [██████████░░░░░░░░░░░░] 12/30 started: 15/30
-```
+    ```
+    Progress: [██████████░░░░░░░░░░░░] 12/30 started: 15/30
+    ```
 
 On completion, the Excel workbook is written to the filename you specify (default `audit.xlsx`).
 
@@ -1143,28 +1143,28 @@ On completion, the Excel workbook is written to the filename you specify (defaul
 
 **Example config.yaml for Enterprise:**
 
-```yaml
-network:
-  jump_host: "bastion.corp.example.com"
-  read_timeout: 45  # Slower WAN links
-  
-credentials:
-  cred_target: "NetworkAudit/Production"
-  
-concurrency:
-  default_workers: 20  # Fast discovery
-  retry_attempts: 5    # More retries for flaky network
-  
-stale_detection:
-  default_stale_days: 90  # Longer threshold
-  
-output:
-  default_filename: "port_audit_report.xlsx"
-  
-excel_formatting:
-  min_column_width: 12
-  max_column_width: 60
-```
+    ```yaml
+    network:
+    jump_host: "bastion.corp.example.com"
+    read_timeout: 45  # Slower WAN links
+    
+    credentials:
+    cred_target: "NetworkAudit/Production"
+    
+    concurrency:
+    default_workers: 20  # Fast discovery
+    retry_attempts: 5    # More retries for flaky network
+    
+    stale_detection:
+    default_stale_days: 90  # Longer threshold
+    
+    output:
+    default_filename: "port_audit_report.xlsx"
+    
+    excel_formatting:
+    min_column_width: 12
+    max_column_width: 60
+    ```
 
 ---
 
@@ -1200,19 +1200,19 @@ This tool has been tested and verified on the following Cisco IOS and IOS-XE pla
 
 ## ✅ Examples
 
-```bash
-# Basic, with jump host (new modular entry point)
-python -m switch_audit -d devices.txt -o audit.xlsx
+    ```bash
+    # Basic, with jump host (new modular entry point)
+    python -m switch_audit -d devices.txt -o audit.xlsx
 
-# Direct (no bastion), 20 workers, stale disabled
-python -m switch_audit --direct -w 20 --stale-days 0 -d devices.txt -o audit.xlsx
+    # Direct (no bastion), 20 workers, stale disabled
+    python -m switch_audit --direct -w 20 --stale-days 0 -d devices.txt -o audit.xlsx
 
-# Conservative concurrency, higher stale threshold, verbose
-python -m switch_audit -w 4 --stale-days 90 --debug -d devices.txt -o siteA.xlsx
+    # Conservative concurrency, higher stale threshold, verbose
+    python -m switch_audit -w 4 --stale-days 90 --debug -d devices.txt -o siteA.xlsx
 
-# Backward compatibility (still works)
-python main_new.py --devices devices.txt --output audit.xlsx
-```
+    # Backward compatibility (still works)
+    python main_new.py --devices devices.txt --output audit.xlsx
+    ```
 
 ---
 
@@ -1257,70 +1257,77 @@ After studying this code, you should understand:
 
 ### Key Code Patterns Demonstrated
 
-**Pattern 1: Modular Package Structure**
-```python
-# Entry point (__main__.py)
-from .cli import main
-if __name__ == "__main__":
-    main()
+## **Pattern 1: Modular Package Structure**
 
-# CLI layer delegates to business logic
-from .device_auditor import audit_device
-results = audit_device(ip, username, password, ...)
+    ```python
+    # Entry point (__main__.py)
+    from .cli import main
+    if __name__ == "__main__":
+        main()
 
-# Business logic delegates to reporting
-from .excel_reporter import ExcelReporter
-reporter = ExcelReporter()
-reporter.generate(results)
-```
+    # CLI layer delegates to business logic
+    from .device_auditor import audit_device
+    results = audit_device(ip, username, password, ...)
 
-**Pattern 2: Configuration Singleton**
-```python
-# app_config.py - Single source of truth
-from ProgramFiles.config_files.config_loader import Config
-config = Config()
+    # Business logic delegates to reporting
+    from .excel_reporter import ExcelReporter
+    reporter = ExcelReporter()
+    reporter.generate(results)
+    ```
 
-# Used throughout application
-from .app_config import config
-workers = config.default_workers
-```
+## **Pattern 2: Configuration Singleton**
 
-**Pattern 3: Graceful Degradation**
-```python
-try:
-    data = parse_with_textfsm(output)  # Preferred method
-except:
-    data = parse_with_custom_logic(output)  # Fallback
-```
+    ```python
+    # app_config.py - Single source of truth
+    from ProgramFiles.config_files.config_loader import Config
+    config = Config()
 
-**Pattern 4: Multi-Key Lookup**
-```python
-for alias in all_aliases(interface_name):
-    if alias in poe_map:
-        poe_data = poe_map[alias]
-        break
-```
+    # Used throughout application
+    from .app_config import config
+    workers = config.default_workers
+    ```
 
-**Pattern 5: Thread-Safe Accumulation**
-```python
-with lock:
-    results.append(new_data)  # Atomic operation
-```
+## Pattern 3: Graceful Degradation**
 
-**Pattern 6: Conservative Classification**
-```python
-if condition_A and condition_B:  # Both must be true
-    mark_as_risky()
-else:
-    mark_as_safe()  # Default to safe
-```
+    ```python
+    try:
+        data = parse_with_textfsm(output)  # Preferred method
+    except:
+        data = parse_with_custom_logic(output)  # Fallback
+    ```
 
-**Pattern 7: Type-Safe Configuration**
-```python
-@property
-def default_workers(self) -> int:
-    return self._get_nested("concurrency", "default_workers", default=10)
-```
+## **Pattern 4: Multi-Key Lookup**
+
+    ```python
+    for alias in all_aliases(interface_name):
+        if alias in poe_map:
+            poe_data = poe_map[alias]
+            break
+    ```
+
+## **Pattern 5: Thread-Safe Accumulation**
+
+    ```python
+    with lock:
+        results.append(new_data)  # Atomic operation
+    ```
+
+## **Pattern 6: Conservative Classification**
+
+    ```python
+    if condition_A and condition_B:  # Both must be true
+        mark_as_risky()
+    else:
+        mark_as_safe()  # Default to safe
+    ```
+
+## **Pattern 7: Type-Safe Configuration**
+
+    ```python
+    @property
+    def default_workers(self) -> int:
+        return self._get_nested("concurrency", "default_workers", default=10)
+    ```
 
 ---
 
@@ -1328,11 +1335,11 @@ def default_workers(self) -> int:
 
 Consistent with the **Nautomation Prime** delivery model, this tool is available in multiple formats:
 
-* **Zero-Install Portable Bundle:** A self-contained package including the Python interpreter and all libraries (Netmiko, Pandas, OpenPyXL) for use on restricted Windows jump boxes.
+- **Zero-Install Portable Bundle:** A self-contained package including the Python interpreter and all libraries (Netmiko, Pandas, OpenPyXL) for use on restricted Windows jump boxes.
 
-* **Scheduled Docker Appliance:** A pre-built container designed for autonomous execution and periodic port auditing.
+- **Scheduled Docker Appliance:** A pre-built container designed for autonomous execution and periodic port auditing.
 
-* **Source Code:** Full access to customize parsing logic, add vendor-specific commands, or integrate with your CMDB.
+- **Source Code:** Full access to customize parsing logic, add vendor-specific commands, or integrate with your CMDB.
 
 ---
 
