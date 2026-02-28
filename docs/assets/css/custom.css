@@ -1,4 +1,0 @@
-/* Hide page title on home page only */
-article:has(.homepage) h1:first-of-type {
-    display: none;
-}

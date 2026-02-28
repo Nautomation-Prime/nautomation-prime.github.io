@@ -3,7 +3,7 @@ title: Resources
 description: Comprehensive guide to all Nautomation Prime learning materials, scripts, and automation tools organized by skill level and use case.
 ---
 
-# Resources
+## Resources
 
 Your complete guide to network automation tools, tutorials, and deep dives. Whether you're building your first Python script or orchestrating enterprise automation, find exactly what you need.
 
@@ -86,19 +86,16 @@ Ready-to-use automation tools for common network tasks.
 ### By Category
 
 **Device Information & Auditing**
-
-- [CDP Network Audit](deep-dives/cdp-audit.md) — Find and validate CDP discoveries
-- [Access Switch Audit](deep-dives/access-switch-audit.md) — Detect configuration drift
+    - [CDP Network Audit](deep-dives/cdp-audit.md) — Find and validate CDP discoveries
+    - [Access Switch Audit](deep-dives/access-switch-audit.md) — Detect configuration drift
 
 **Configuration Management**
-
-- [Multi-Device Config Backup](tutorials/beginner/multi-device-config-backup.md) — Backup enterprise configurations  
-- [Enterprise Config Backup with Nornir](tutorials/intermediate/enterprise-config-backup-nornir.md) — Scale to thousands of devices
+    - [Multi-Device Config Backup](tutorials/beginner/multi-device-config-backup.md) — Backup enterprise configurations  
+    - [Enterprise Config Backup with Nornir](tutorials/intermediate/enterprise-config-backup-nornir.md) — Scale to thousands of devices
 
 **Reporting & Data Export**
-
-- [Show Command to Excel](tutorials/beginner/netmiko-show-command-to-excel.md) — Execute commands and generate reports
-- [Multi-Device Show Commands](tutorials/beginner/multi-device-show-command.md) — Query and compare device data
+    - [Show Command to Excel](tutorials/beginner/netmiko-show-command-to-excel.md) — Execute commands and generate reports
+    - [Multi-Device Show Commands](tutorials/beginner/multi-device-show-command.md) — Query and compare device data
 
 **[Full Scripts Library](scripts/index.md)** — Browse all available tools
 
@@ -169,6 +166,7 @@ Understand the philosophy and methodology behind Nautomation Prime.
 ## Suggested Learning Sequences
 
 ### Path 1: Foundation Builder (3 hours)
+
 Perfect if you've never automated a network device before.
 
 1. [Your First Python Automation Script](tutorials/beginner/netmiko-show-command-to-excel.md) — Understand the basics
@@ -178,6 +176,7 @@ Perfect if you've never automated a network device before.
 **Next:** Jump to [Why Nornir?](tutorials/intermediate/why-nornir.md)
 
 ### Path 2: Production Scaler (5 hours)
+
 You know Python and basic network automation. Need to handle 100+ devices.
 
 1. [Why Nornir?](tutorials/intermediate/why-nornir.md) — Understand parallel execution
@@ -191,6 +190,7 @@ You know Python and basic network automation. Need to handle 100+ devices.
 **Next:** Explore Deep Dives for implementation patterns
 
 ### Path 3: Validation Specialist (3 hours)
+
 You need repeatable, enterprise-grade validation for automation changes.
 
 1. [PyATS Fundamentals](tutorials/intermediate/pyats-fundamentals.md) — Core concepts and testbed setup
@@ -200,6 +200,7 @@ You need repeatable, enterprise-grade validation for automation changes.
 **Next:** Pair with [Nornir Fundamentals](tutorials/intermediate/nornir-fundamentals.md) for large-scale execution
 
 ### Path 4: Methodology Deep Dive (2 hours)
+
 Understand the strategic framework behind automation decisions.
 
 1. [PRIME Philosophy](prime-framework/philosophy.md) — Core principles and values that drive decisions
@@ -209,6 +210,7 @@ Understand the strategic framework behind automation decisions.
 **Next:** Apply PRIME thinking to your automation initiatives
 
 ### Path 5: Deep Dive Study (2 hours)
+
 Learn by examining production-grade implementations.
 
 1. [CDP Network Audit Deep Dive](deep-dives/cdp-audit.md) — Real network intelligence  
@@ -232,23 +234,20 @@ Each resource is tagged to help you find content that matches your style:
 ## Frequently Accessed Resources
 
 **Most Popular**
-
-- [Why Nornir?](tutorials/intermediate/why-nornir.md) — The clearest explanation of parallel automation
-- [Nornir Fundamentals](tutorials/intermediate/nornir-fundamentals.md) — Your first production task  
-- [Multi-Device Config Backup](tutorials/beginner/multi-device-config-backup.md) — The most practical beginner tutorial
-- [PyATS Fundamentals](tutorials/intermediate/pyats-fundamentals.md) — The validation framework used at enterprise scale
+    - [Why Nornir?](tutorials/intermediate/why-nornir.md) — The clearest explanation of parallel automation
+    - [Nornir Fundamentals](tutorials/intermediate/nornir-fundamentals.md) — Your first production task  
+    - [Multi-Device Config Backup](tutorials/beginner/multi-device-config-backup.md) — The most practical beginner tutorial
+    - [PyATS Fundamentals](tutorials/intermediate/pyats-fundamentals.md) — The validation framework used at enterprise scale
 
 **Highest ROI**
-
-- [Enterprise Config Backup with Nornir](tutorials/intermediate/enterprise-config-backup-nornir.md) — Applies immediately to time-consuming manual work
-- [Advanced Nornir Patterns](tutorials/intermediate/advanced-nornir-patterns.md) — Turns working code into production-ready code
-- [Building Reliable Automation with PyATS](tutorials/intermediate/building-reliable-automation-with-pyats.md) — Proves changes worked in production
+    - [Enterprise Config Backup with Nornir](tutorials/intermediate/enterprise-config-backup-nornir.md) — Applies immediately to time-consuming manual work
+    - [Advanced Nornir Patterns](tutorials/intermediate/advanced-nornir-patterns.md) — Turns working code into production-ready code
+    - [Building Reliable Automation with PyATS](tutorials/intermediate/building-reliable-automation-with-pyats.md) — Proves changes worked in production
 
 **Best for Executives**
-
-- [PRIME Philosophy](prime-framework/philosophy.md) — Core principles: transparency, measurability, ownership, safety
-- [PRIME Framework](prime-framework/index.md) — Strategic, ROI-focused automation methodology
-- [Measure](prime-framework/measure.md) — Track and communicate automation impact
+    - [PRIME Philosophy](prime-framework/philosophy.md) — Core principles: transparency, measurability, ownership, safety
+    - [PRIME Framework](prime-framework/index.md) — Strategic, ROI-focused automation methodology
+    - [Measure](prime-framework/measure.md) — Track and communicate automation impact
 
 ---
 

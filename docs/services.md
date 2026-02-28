@@ -30,18 +30,18 @@ At Nautomation Prime, we deliver network automation through the **[PRIME Framewo
 
 !!! question "Does my team need Python knowledge?"
     **No.** We offer three [engagement tracks](#engagement-tracks-by-technical-capability) tailored to your team's skill level:
-    
+
     - **Operational Ownership** — No Python required, automation delivered as operational tools
     - **Code-Level Ownership** — Python-capable teams gain full modification autonomy
     - **Hybrid Approach** — Gradual skill building from operations to code mastery
-    
+
     [See engagement tracks →](#engagement-tracks-by-technical-capability)
 
 ---
 
 !!! success "Confidentiality & Ownership Guarantee"
     **All bespoke automation projects are developed exclusively for the commissioning client.**
-    
+
     Custom scripts are never published, reused, or shared with third parties. Clients receive full ownership rights or an exclusive licence as defined in the project agreement. Non-disclosure agreements (NDAs) are standard for all engagements.
 
 ---
@@ -435,17 +435,17 @@ These are **indicative ranges**—actual quotes provided after discovery call.
 
 **For You:**
 
-* **Measurable value** from Pinpoint stage—you know the ROI before committing
-* **Optimized workflows** from Re-engineer—not just faster bad processes
-* **Production-grade reliability** from Implement—no "prototype" code
-* **Proven results** from Measure—concrete metrics and executive reports
-* **Long-term capability** from Empower—team independence, not vendor lock-in
+- **Measurable value** from Pinpoint stage—you know the ROI before committing
+- **Optimized workflows** from Re-engineer—not just faster bad processes
+- **Production-grade reliability** from Implement—no "prototype" code
+- **Proven results** from Measure—concrete metrics and executive reports
+- **Long-term capability** from Empower—team independence, not vendor lock-in
 
 **For Your Organization:**
 
-* **Sustainable automation** that evolves with your needs
-* **Team empowerment** to build additional automations
-* **Compounding returns**—first automation pays for itself, subsequent ones are pure savings
+- **Sustainable automation** that evolves with your needs
+- **Team empowerment** to build additional automations
+- **Compounding returns**—first automation pays for itself, subsequent ones are pure savings
 
 ---
 
@@ -569,19 +569,19 @@ As a boutique practice, you work directly with the principal engineer on every e
 
 **Credentials & Compliance:**
 
-* VAT-registered UK business (VAT number provided on invoices)
-* Professional Indemnity & Public Liability Insurance
-* GDPR-compliant data handling (see [Privacy Policy](legal/privacy-policy.md))
-* Non-disclosure agreements (NDAs) standard for all bespoke projects
-* Client code ownership: full rights transfer or exclusive licence (your choice)
-* Open-source contributions licensed under MIT or Apache 2.0
+- VAT-registered UK business (VAT number provided on invoices)
+- Professional Indemnity & Public Liability Insurance
+- GDPR-compliant data handling (see [Privacy Policy](legal/privacy-policy.md))
+- Non-disclosure agreements (NDAs) standard for all bespoke projects
+- Client code ownership: full rights transfer or exclusive licence (your choice)
+- Open-source contributions licensed under MIT or Apache 2.0
 
 **Technical Expertise:**
 
-* Python automation: Netmiko, Nornir, NAPALM, PyATS
-* Cisco platforms: IOS, IOS-XE, NX-OS
-* Integration: Ansible, Catalyst Center, ISE, Netbox, ServiceNow
-* Deployment: Docker containers, portable bundles, CI/CD pipelines
+- Python automation: Netmiko, Nornir, NAPALM, PyATS
+- Cisco platforms: IOS, IOS-XE, NX-OS
+- Integration: Ansible, Catalyst Center, ISE, Netbox, ServiceNow
+- Deployment: Docker containers, portable bundles, CI/CD pipelines
 
 ---
 
