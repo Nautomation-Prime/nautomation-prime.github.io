@@ -9,7 +9,7 @@ tags:
   - Enterprise
 ---
 
-# ZTP Automation Platform
+## ZTP Automation Platform
 
 !!! abstract "Project Status"
     **Current Phase:** :fontawesome-solid-hammer: **Build Phase**

@@ -10,10 +10,12 @@ tags:
   - YAML
 ---
 
-# Deep Dive: Access Switch Port Audit Tool
+## Deep Dive: Access Switch Port Audit Tool
+
 ### "Enterprise Port Intelligence, Distilled to Pure Python."
 
-> **Version 2.0 Update:** This tool has been restructured into a professional Python package with modular architecture. All functionality remains identical, but the code is now organized following enterprise best practices. See the [Migration Guide](#migration-guide-v10-v20) below for details.
+> **Version 2.0 Update:** This tool has been restructured into a professional Python package with modular architecture. All functionality remains identical, but the code is now organized following enterprise best practices.
+See the [Migration Guide](#Migration Guide (v1.0 → v2.0)) below for details.
 
 A modular Python utility that connects to Cisco switches (optionally through an SSH jump host), collects comprehensive interface details, PoE information, and neighbor presence, then exports a professional, filters-only Excel workbook with a SUMMARY sheet and one sheet per device. Built for production reliability with **YAML-based configuration**, **intelligent fallback parsing**, and **customizable credential management**.
 
@@ -23,7 +25,7 @@ A modular Python utility that connects to Cisco switches (optionally through an 
 
 !!! success "What's New in Version 2.0"
     **The Access Switch Audit tool has been restructured into a professional Python package!**
-    
+
     ✨ **Key Improvements:**
     
     - **Modular Architecture:** Code separated into focused modules (`cli.py`, `device_auditor.py`, `excel_reporter.py`, etc.)
