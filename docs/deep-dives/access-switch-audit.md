@@ -14,9 +14,6 @@ tags:
 
 ### "Enterprise Port Intelligence, Distilled to Pure Python."
 
-> **Version 2.0 Update:** This tool has been restructured into a professional Python package with modular architecture. All functionality remains identical, but the code is now organized following enterprise best practices.
-See the [Migration Guide](#Migration Guide (v1.0 → v2.0)) below for details.
-
 A modular Python utility that connects to Cisco switches (optionally through an SSH jump host), collects comprehensive interface details, PoE information, and neighbor presence, then exports a professional, filters-only Excel workbook with a SUMMARY sheet and one sheet per device. Built for production reliability with **YAML-based configuration**, **intelligent fallback parsing**, and **customizable credential management**.
 
 [:material-github: View Source Code on GitHub](https://github.com/Nautomation-Prime/Access_Switch_Audit){ .md-button .md-button--primary }

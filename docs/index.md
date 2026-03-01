@@ -114,10 +114,10 @@ For organizations ready to redesign their automation program:
 
 - **[PRIME Framework Engagements](./prime-framework/index.md)** — 8–12 week transformations with measurable ROI
   - Typical outcomes: 6–12 month payback, 60%+ efficiency gains, team ownership
-- **[Bespoke Solutions](./services.md#bespoke-services)** — Custom automation for your topology and compliance requirements
+- **[Bespoke Solutions](./services.md)** — Custom automation for your topology and compliance requirements
   - Zero Trust architecture, ISE automation, bulk provisioning, compliance auditing
 
-**[Explore Services](./services.md)** | **[Compare Service Tiers](./services.md#service-packages)**
+**[Explore Services](./services.md)** | **[Compare Service Tiers](./services.md)**
 
 ---
 
