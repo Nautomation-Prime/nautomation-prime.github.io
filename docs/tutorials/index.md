@@ -16,7 +16,7 @@ tags:
 Welcome to the **Nautomation Prime Tutorials**! This section is your hands-on laboratory for developing real-world network automation skills. Each tutorial provides complete, working code with line-by-line explanations so you understand *exactly* what every line does and why.
 
 !!! warning "Python Prerequisite"
-  This site focuses on applying Python to network automation. We assume familiarity with core Python concepts (variables, functions, loops, exceptions, and file I/O). If you're new to Python, complete a fundamentals course first, then return here.
+    This site focuses on applying Python to network automation. We assume familiarity with core Python concepts (variables, functions, loops, exceptions, and file I/O). If you're new to Python, complete a fundamentals course first, then return here.
 
 ---
 
