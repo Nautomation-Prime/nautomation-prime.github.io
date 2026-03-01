@@ -44,6 +44,7 @@ The PRIME Framework addresses all of these challenges with a structured, proven 
 ## 📐 The Five Stages
 
 ```mermaid
+%%{init: {'theme':'base', 'themeVariables': {'fontSize':'18px'}}}%%
 graph LR
     P[Pinpoint]
     R[Re-engineer]
@@ -331,6 +332,7 @@ These aren't just buzzwords—they represent specific approaches that differenti
 ### Visual Overview
 
 ```mermaid
+%%{init: {'theme':'base', 'themeVariables': {'fontSize':'18px'}}}%%
 graph TD
     A[Your Network Operations] -->|Inefficient Manual Work| B{PRIME Framework}
     B -->|Stage 1| C[Pinpoint: Discover ROI Opportunities]
