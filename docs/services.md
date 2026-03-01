@@ -1000,7 +1000,7 @@ This commitment to transparency strengthens the ecosystem while protecting clien
 
 ??? question "Can we engage for just one stage (not the full framework)?"
 
-    Yes. Individual [à la carte services](#-individual-services) are available:
+    Yes. [individual services](#individual-services) are available:
     
     - **Pinpoint only**: Discovery and roadmap without implementation (£2,500-£4,000)
     - **Implement only**: If you already have architecture and requirements (£6,000-£18,000)
