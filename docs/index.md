@@ -95,16 +95,16 @@ Whether you're learning, deploying, or transforming your entire automation progr
 ### 🎓 **Learn — Build Your Capabilities**
 
 - **[Tutorials](./tutorials/index.md)** — Step-by-step practical scripts (beginner to expert)
-  - Start here: [Show Command to Excel](./tutorials/beginner/netmiko-show-command-to-excel.md) — Your first Netmiko script
+    - Start here: [Show Command to Excel](./tutorials/beginner/netmiko-show-command-to-excel.md) — Your first Netmiko script
 - **[Deep Dives](./deep-dives/index.md)** — Production code walkthroughs with line-by-line explanations
-  - Featured: [CDP Network Audit](./deep-dives/cdp-audit.md) — Multi-threaded discovery with security patterns
+    - Featured: [CDP Network Audit](./deep-dives/cdp-audit.md) — Multi-threaded discovery with security patterns
 - **[Blog](./blog/index.md)** — Advanced patterns, case studies, and best practices (19 in-depth posts)
 
 ### 🚀 **Deploy — Use Pre-Built Tools**
 
 - **[Script Library](./scripts/index.md)** — Production-ready, hardened automation (open-source)
-  - Available: CDP Network Audit, Access Switch Audit
-  - Coming Soon: IOS-XE Upgrade Orchestrator, Zero Touch Provisioning (ZTP)
+    - Available: CDP Network Audit, Access Switch Audit
+    - Coming Soon: IOS-XE Upgrade Orchestrator, Zero Touch Provisioning (ZTP)
 - **[Docker Containers](./services.md#scheduled-docker-containers)** — Daily audits and reporting, no manual intervention
 - **[Zero-Install Bundles](./services.md#zero-install-portable-bundles)** — Portable executables for Windows/Linux, no Python required
 
@@ -113,9 +113,9 @@ Whether you're learning, deploying, or transforming your entire automation progr
 For organizations ready to redesign their automation program:
 
 - **[PRIME Framework Engagements](./prime-framework/index.md)** — 8–12 week transformations with measurable ROI
-  - Typical outcomes: 6–12 month payback, 60%+ efficiency gains, team ownership
+    - Typical outcomes: 6–12 month payback, 60%+ efficiency gains, team ownership
 - **[Bespoke Solutions](./services.md)** — Custom automation for your topology and compliance requirements
-  - Zero Trust architecture, ISE automation, bulk provisioning, compliance auditing
+    - Zero Trust architecture, ISE automation, bulk provisioning, compliance auditing
 
 **[Explore Services](./services.md)** | **[Compare Service Tiers](./services.md)**
 
