@@ -115,7 +115,7 @@ def update_itsm_ticket(ticket_id, status):
 **Time & Efficiency Metrics:**
 
 | Metric | Before | After | Improvement |
-|--------|--------|-------|-------------|
+| -------- | -------- | ------- | ------------- |
 | VLAN deployment time | 15 mins per job | 2 mins per job | 87% faster |
 | Failed deployments | 1-2 per month | <0.1 per month | 95% fewer failures |
 | Manual hours/month | 20 hours | 2 hours | 90% reduction |
@@ -124,7 +124,7 @@ def update_itsm_ticket(ticket_id, status):
 **Quality Metrics:**
 
 | Metric | Before | After | Improvement |
-|--------|--------|-------|-------------|
+| -------- | -------- | ------- | ------------- |
 | Deployment success rate | 92% | 99.5% | +7.5% |
 | MTTR (if failure occurs) | 2-3 hours | 5 mins | 95% faster recovery |
 | Unplanned outages caused by manual changes | 2-3 per quarter | 0 | 100% eliminated |
@@ -133,7 +133,7 @@ def update_itsm_ticket(ticket_id, status):
 **Business Metrics:**
 
 | Metric | Calculation | Value |
-|--------|-----------|-------|
+| -------- | ----------- | ------- |
 | **Monthly time saved** | 20 hours - 2 hours | 18 hours |
 | **Annual time saved** | 18 hours × 12 months | 216 hours = $10,800 (@ $50/hr) |
 | **Avoided outage costs** | 0 unplanned outages × $50K per outage | $50,000 saved |
@@ -142,7 +142,7 @@ def update_itsm_ticket(ticket_id, status):
 
 ### Dashboard Example (Grafana)
 
-```
+```text
 ┌─────────────────────────────────────────────────┐
 │        VLAN Automation Metrics Dashboard         │
 ├─────────────────────────────────────────────────┤
@@ -184,26 +184,26 @@ def update_itsm_ticket(ticket_id, status):
 ### Knowledge Transfer Program
 
 **Week 1-2: Onboarding Workshop**
-- Intro to Nornir, Netbox, and PRIME Framework
-- Walk through the VLAN deployment workflow
-- Hands-on: Deploy test VLANs in staging
-- Q&A and feedback
+    - Intro to Nornir, Netbox, and PRIME Framework
+    - Walk through the VLAN deployment workflow
+    - Hands-on: Deploy test VLANs in staging
+    - Q&A and feedback
 
 **Week 3-4: Deep Dive Training**
-- Code review: Walk through every module
-- Explain design decisions and trade-offs
-- Practice troubleshooting (simulate failures)
-- Team builds their first new automation
+    - Code review: Walk through every module
+    - Explain design decisions and trade-offs
+    - Practice troubleshooting (simulate failures)
+    - Team builds their first new automation
 
 **Week 5-6: Ownership Transfer**
-- Team runs deployments independently
-- Support call with questions
-- Review improvements and enhancements
-- Celebrate success
+    - Team runs deployments independently
+    - Support call with questions
+    - Review improvements and enhancements
+    - Celebrate success
 
 ### Documentation Provided
 
-```
+```text
 docs/
 ├── README.md                    # Overview & quick start
 ├── VLAN_DEPLOYMENT.md           # Step-by-step workflow
@@ -230,7 +230,7 @@ docs/
 ### Phase Completion Timeline
 
 | Phase | Timeline | Key Deliverables |
-|-------|----------|------------------|
+| ------- | ---------- | ------------------ |
 | Pinpoint | Weeks 1-2 | ROI analysis, prioritized roadmap |
 | Re-engineer | Weeks 3-5 | Architecture, tool selection, design review |
 | Implement | Weeks 6-12 | Nornir scripts, PyATS tests, documentation |
@@ -249,7 +249,7 @@ docs/
 ### Challenges & How We Overcame Them
 
 | Challenge | Solution |
-|-----------|----------|
+| ----------- | ---------- |
 | Netbox not initially populated | Bulk-imported from existing DHCP/DNS data + manual cleanup |
 | Old version of Nornir (compatibility) | Upgraded carefully in staging first, no production impact |
 | Team skepticism about automation | Showed wins on low-risk changes first, built confidence |
@@ -277,10 +277,10 @@ docs/
 ### Sustainability & Next Steps
 
 **Year 2 Plans:**
-- Extend to BGP route deployment
-- Add AI/ML for anomaly detection
-- Integrate with SD-WAN for dynamic traffic engineering
-- Expand to multi-vendor environment (Juniper, Arista)
+    - Extend to BGP route deployment
+    - Add AI/ML for anomaly detection
+    - Integrate with SD-WAN for dynamic traffic engineering
+    - Expand to multi-vendor environment (Juniper, Arista)
 
 The **real success** was this: the network team now views automation as their tool, not something done *to* them. They have the skills, confidence, and support to continuously improve automation as their network evolves.
 

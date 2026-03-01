@@ -17,31 +17,40 @@ tags:
 
 ## Welcome
 
-### 🚀 Enterprise-Grade Cisco Automation — Delivered Transparently, Explained Line-by-Line, Built to Last
+### 🚀 Enterprise-Grade Cisco Automation — Delivered Transparently, Built to Last
+
+**For Network Infrastructure Managers:** We rescue and design automation so your team owns it completely, your leadership can prove ROI, and it survives infrastructure changes—without vendor lock-in or reliance on consultants.
 
 Most network automation projects fail within 6 months. Not because the code breaks—but because nobody understands it, leadership can't prove ROI, and when requirements change, the whole thing collapses.
 
-**Nautomation Prime is different.**
+**Nautomation Prime is different.** We deliver hardened, production-ready Cisco automation with zero black-box code. Every line explained. Every design decision documented. Every project structured for sustainable ROI and team empowerment.
 
-We deliver **hardened, production-ready Cisco automation** with **zero black-box code**. Every line explained. Every design decision documented. Every project structured for sustainable, measurable ROI and team empowerment.
+[**📞 Request Discovery Call**](mailto:nautomationprime.f3wfe@simplelogin.com){.md-button .md-button--primary}
 
-### 🎯 The PRIME Framework
+**[Explore Services](./services.md){.md-button}** | **[About the PRIME Framework](./prime-framework/index.md){.md-button}**
 
-We deliver automation projects through a **proven 5-stage methodology** that ensures value, sustainability, and team empowerment:
+---
 
-**[Pinpoint](./prime-framework/pinpoint.md)** → **[Re-engineer](./prime-framework/re-engineer.md)** → **[Implement](./prime-framework/implement.md)** → **[Measure](./prime-framework/measure.md)** → **[Empower](./prime-framework/empower.md)**
+## ✅ Real-World Outcomes We've Delivered
 
-**Why it works:**
+**Proof that our methodology works:**
 
-- ✅ **[Pinpoint](./prime-framework/pinpoint.md)** high-impact opportunities (not guesswork)
-- ✅ **[Re-engineer](./prime-framework/re-engineer.md)** workflows for scalability before coding
-- ✅ **[Implement](./prime-framework/implement.md)** production-grade solutions with safety and testing
-- ✅ **[Measure](./prime-framework/measure.md)** ROI with concrete metrics (not "it works")
-- ✅ **[Empower](./prime-framework/empower.md)** your team for long-term ownership
+- **Reduced VLAN provisioning time** from 15 minutes to 30 seconds (per VLAN) — *60x faster*
+- **Automated IOS-XE upgrades** across 200+ devices with automatic rollback safety — *zero manual intervention*
+- **Eliminated 90% of manual compliance checks** through continuous auditing — *compliance at scale*
+- **Removed vendor lock-in** by rebuilding legacy proprietary automation in portable Python — *owned by your team*
 
-**Typical ROI: Payback in 6–12 months, then pure savings thereafter.**
+**[Read the full case study →](./blog/posts/case-study-full-automation-journey.md)** | **[ROI Measurement Framework →](./prime-framework/measure.md)**
 
-**[Learn about the PRIME Framework →](./prime-framework/index.md)** | **[Request Discovery Call](mailto:nautomationprime.f3wfe@simplelogin.com)**
+---
+
+### 🎯 How We Deliver: The PRIME Framework
+
+Our proven **5-stage methodology** ensures your automation delivers measurable value:
+
+**[Pinpoint](./prime-framework/pinpoint.md)** (identify high-impact opportunities) → **[Re-engineer](./prime-framework/re-engineer.md)** (scalable workflows) → **[Implement](./prime-framework/implement.md)** (production-grade code) → **[Measure](./prime-framework/measure.md)** (concrete ROI) → **[Empower](./prime-framework/empower.md)** (team ownership)
+
+**[Learn the complete PRIME Framework →](./prime-framework/index.md)**
 
 ---
 
@@ -79,37 +88,54 @@ Every tool and guide is built on **five core principles** that ensure your autom
 
 ---
 
-## 🧭 Choose Your Path
+## 📈 Choose Your Path
 
-**First time here?** Select the path that best matches your experience and goals:
+Whether you're learning, deploying, or transforming your entire automation program—we have resources and services for every stage.
 
-=== "🎯 Looking for Solutions"
-    I have a specific network problem to solve or want production-ready tools.
+### 🎓 **Learn — Build Your Capabilities**
 
-    - **[📚 Script Library](./scripts/index.md)** — Browse available automation tools
-    - **[🐳 Services](./services.md)** — Custom automation, portable bundles, Docker containers
-    - **[📞 Contact Us](mailto:nautomationprime.f3wfe@simplelogin.com)** — Let's chat about your needs
+- **[Tutorials](./tutorials/index.md)** — Step-by-step practical scripts (beginner to expert)
+  - Start here: [Show Command to Excel](./tutorials/beginner/netmiko-show-command-to-excel.md) — Your first Netmiko script
+- **[Deep Dives](./deep-dives/index.md)** — Production code walkthroughs with line-by-line explanations
+  - Featured: [CDP Network Audit](./deep-dives/cdp-audit.md) — Multi-threaded discovery with security patterns
+- **[Blog](./blog/index.md)** — Advanced patterns, case studies, and best practices (19 in-depth posts)
 
-=== "📖 Learning Code & Patterns"
-    I want to understand how production network automation works.
+### 🚀 **Deploy — Use Pre-Built Tools**
 
-    1. Read [**Getting Started**](./getting-started.md) (2 min overview)
-    2. Pick a tutorial: [**Beginner**](./tutorials/beginner/index.md) or [**Intermediate**](./tutorials/intermediate/index.md)
-    3. Deep dive into [**CDP Network Audit**](./deep-dives/cdp-audit.md) — see real production code
+- **[Script Library](./scripts/index.md)** — Production-ready, hardened automation (open-source)
+  - Available: CDP Network Audit, Access Switch Audit
+  - Coming Soon: IOS-XE Upgrade Orchestrator, Zero Touch Provisioning (ZTP)
+- **[Docker Containers](./services.md#scheduled-docker-containers)** — Daily audits and reporting, no manual intervention
+- **[Zero-Install Bundles](./services.md#zero-install-portable-bundles)** — Portable executables for Windows/Linux, no Python required
 
-=== "🚀 Enterprise Automation"
-    I need a structured approach to network automation for my organization.
+### 🛠️ **Transform — Bespoke Services & PRIME Engagements**
 
-    - **[PRIME Framework](./prime-framework/index.md)** — Our proven 5-stage methodology
-    - **[Empower Phase](./prime-framework/empower.md)** — Building sustainable automation teams
-    - **[Services](./services.md)** — Consulting and implementation
+For organizations ready to redesign their automation program:
 
-=== "👨‍💻 Improving My Python Skills"
-    I know Python and want to apply it to network automation.
+- **[PRIME Framework Engagements](./prime-framework/index.md)** — 8–12 week transformations with measurable ROI
+  - Typical outcomes: 6–12 month payback, 60%+ efficiency gains, team ownership
+- **[Bespoke Solutions](./services.md#bespoke-services)** — Custom automation for your topology and compliance requirements
+  - Zero Trust architecture, ISE automation, bulk provisioning, compliance auditing
 
-    1. Start with [**Show Command to Excel**](./tutorials/beginner/netmiko-show-command-to-excel.md) & [**Netmiko basics**](./tutorials/beginner/multi-device-show-command.md)
-    2. Learn [**Nornir fundamentals**](./tutorials/intermediate/nornir-fundamentals.md) — frameworks for scale
-    3. Study [**Deep Dives**](./deep-dives/index.md) for patterns (threading, configuration, error handling)
+**[Explore Services](./services.md)** | **[Compare Service Tiers](./services.md#service-packages)**
+
+---
+
+## 📅 Typical PRIME Framework Engagement Timeline
+
+Wondering what an engagement looks like? Here's how we structure automation transformations:
+
+| Phase | Weeks | What We Do | Your Team Does |
+| :------ | :-----: | ----------- | ---------------- |
+| **Pinpoint** | 1–2 | Workshops, data gathering, gap analysis | Participate in 3–4 workshops, provide network data |
+| **Re-engineer** | 3–4 | Architecture design, safety model, testing strategy | Review designs, approve approaches |
+| **Implement** | 5–8 | Code development, pilot testing, staged rollout | Test pilots, validate on production-like labs |
+| **Measure** | 9–10 | ROI reporting, performance dashboards, KPI baseline | Approve metrics, review business case |
+| **Empower** | 10–12 | Knowledge transfer, handoff docs, team training | Attend training, take ownership |
+
+**Expected Outcome:** Your team owns production automation with 6–12 month payback, 60%+ operational efficiency gains, and sustainable scaling.
+
+**[Ready to start? Request a Discovery Call](mailto:nautomationprime.f3wfe@simplelogin.com){.md-button .md-button--primary}**
 
 ---
 
@@ -129,119 +155,51 @@ Covers complete end-to-end delivery from opportunity discovery to team empowerme
 
 ## 🚀 Quick Navigation
 
-=== "Need Automation Services?"
-    **[PRIME Framework](./prime-framework/index.md)** — Our proven 5-stage methodology.
-
-    Pinpoint → Re-engineer → Implement → Measure → Empower
-
-    [View Services](./services.md) | [Request Discovery Call](mailto:nautomationprime.f3wfe@simplelogin.com)
-
-=== "New Here?"
-    **[Get Started](./getting-started.md)** with our onboarding guide.
-
-    Learn what Nautomation Prime offers and which path is right for you.
-
-=== "Learn Step-by-Step"
-    **[Tutorials](./tutorials/index.md)** teach practical automation skills.
-
-    Start with [Show Command to Excel](./tutorials/beginner/netmiko-show-command-to-excel.md)—your first network automation script.
-
-=== "Study Production Code"
-    **[Technical Deep Dives](./deep-dives/index.md)** teach you the "why" behind production automation.
-
-    Start with [CDP Network Audit](./deep-dives/cdp-audit.md)—learn threading, security, and enterprise patterns.
-
-=== "Deploy Pre-Built Tools"
-    **[Script Library](./scripts/index.md)** has production-ready automation.
-
-    Tools are documented, hardened, and explained line-by-line.
-
-=== "Bespoke Solutions"
-    **[Services](./services.md)** covers custom automation, portable bundles, and Docker containers.
-
-    We build automation tailored to your specific topology.
+**[Tutorials](./tutorials/index.md)** — Learn hands-on automation  
+**[Deep Dives](./deep-dives/index.md)** — Study production code  
+**[Scripts](./scripts/index.md)** — Deploy ready-made tools  
+**[Services](./services.md)** — Bespoke solutions  
+**[Blog](./blog/index.md)** — Advanced patterns & case studies  
+**[PRIME Framework](./prime-framework/index.md)** — Our methodology
 
 ---
 
-## What We Offer
+## 🏆 Why Choose Nautomation Prime?
 
-> **Note:** This site assumes you already know Python. We don't teach Python itself — we teach you how to understand, adapt, and extend our production‑grade automation scripts. If you're new to Python, complete a fundamentals course first, then return to explore the internals of our tooling.
+Founded by a **CCNP-certified Senior Network Engineer** with **10+ years** in enterprise infrastructure and large-scale automation (200+ device upgrades, NHS systems, critical infrastructure hardening).
 
-### 🎓 [Tutorials](./tutorials/index.md)
+**Built from battle-tested experience, not theory.**
 
-Step-by-step practical scripts with line-by-line explanations. Learn by building real automation tools.
+### What Sets Us Apart
 
-**Start Here:** [Show Command to Excel](./tutorials/beginner/netmiko-show-command-to-excel.md) — Your first Netmiko script
+- **🔍 Transparent Code** — Every line explained. No black boxes. You understand and own your automation.
+- **📊 Proven Methodology** — PRIME Framework built on 10+ years of enterprise deployments. It works at scale.
+- **👥 Team Empowerment** — We build YOUR capability, not create dependency. After engagement, you own and extend the solution.
+- **📈 Measurable ROI** — Concrete metrics: hours saved, risk reduced, capital freed. Not "it feels faster."
+- **🛡️ Production Grade** — Hardened error handling, security-first credential management, enterprise-scale parallelization.
 
-### 📖 [Deep Dives](./deep-dives/index.md)
-
-Detailed walkthroughs of production Python scripts. We explain the logic, the libraries, the safety checks, and the engineering decisions behind every line.
-
-**Featured:** [CDP Network Audit Tool](./deep-dives/cdp-audit.md) — Multi-threaded topology discovery with hardened security
-
-### 📚 [Script Library](./scripts/index.md)
-
-Open-source, production-ready automation tools for Cisco infrastructure.
-
-**Available:** CDP Network Audit, Access Switch Audit  
-**Coming Soon:** IOS-XE Upgrade Orchestrator, Zero Touch Provisioning (ZTP)
-
-### 🐳 [Scheduled Automation (Docker)](./services.md#scheduled-docker-containers)
-
-Pre-built containers for continuous network oversight. Daily config audits, health checks, and automated reporting—no human intervention needed.
-
-### 🚀 [Zero-Install Bundles](./services.md#zero-install-portable-bundles)
-
-No Python installed? No problem. Portable, "plug-and-play" bundles run on Windows and Linux without installation or admin rights. Full source code included.
-
-### 🛠️ [Bespoke Services](./services.md#standard-python-scripts)
-
-Custom solutions tailored to your topology. Expert consultancy for Zero Trust deployment, bulk provisioning, ISE automation, and more.
+**[Learn our philosophy + 10-year track record →](./about.md)**
 
 ---
 
-## Why Nautomation Prime?
+## Next Steps
 
-Nautomation Prime was founded by a **CCNP-certified Senior Network Engineer** with **10+ years** in enterprise network infrastructure, Cisco technologies, and large-scale automation projects—including network upgrades across 200+ devices, NHS systems integration, and critical infrastructure hardening.
+**🏢 For Infrastructure Managers & Leaders:**
+    - [**Schedule a Discovery Call**](mailto:nautomationprime.f3wfe@simplelogin.com) → Discuss your automation challenges and ROI goals (30 min, no commitment)
+    - [**View Services & Pricing**](./services.md) → See PRIME engagements, Docker containers, custom solutions
+    - [**Read the Case Study**](./blog/posts/case-study-full-automation-journey.md) → See real metrics: 438% ROI, 87% faster deployments
 
-Built from **real-world experience**, not theory.
+**👨‍💻 For Engineers & Technical Teams:**
+    - [**Getting Started Guide**](./getting-started.md) → Understand philosophy, pathways, and prerequisites
+    - [**Learn by Building**](./tutorials/index.md) → Hands-on tutorials from beginner to expert
+    - [**Study Production Code**](./deep-dives/index.md) → Deep dives into hardened automation patterns
+    - [**Explore Scripts**](./scripts/index.md) → Open-source, documented automation tools
+    - [**Blog & Articles**](./blog/index.md) → 19 in-depth posts on patterns, tooling, and best practices
 
-### What Makes Us Different
-
-**❌ Most automation shops:**
-
-- Build for one client, move on
-- Leave you with code you don't understand
-- Can't prove ROI
-- Disappear when the project ends
-
-**✅ Nautomation Prime:**
-
-- **Transparent Code** — Every line explained. No black boxes. You own and understand your automation completely.
-- **Proven Methodology** — The PRIME Framework is built on 10+ years of enterprise network deployments. It works because it's been battle-tested at scale.
-- **Team Empowerment** — We don't just deliver code—we build your team's capability. After engagement, you own the solution and can extend it.
-- **Measurable ROI** — We quantify the value: time saved, operational risk reduced, capital freed up. You get concrete metrics, not just "it's faster."
-- **Production Grade** — Hardened error handling, security-focused credential management, enterprise-scale parallelization. Not hobbyist scripts.
-
-### Real-World Outcomes We've Delivered
-
-- **Reduced VLAN provisioning time** from 15 minutes to 30 seconds (per VLAN)
-- **Automated IOS-XE upgrades** across 200+ devices with automatic rollback safety
-- **Eliminated 90% of manual compliance checks** through continuous auditing
-- **Removed vendor lock-in** by rebuilding legacy proprietary automation in portable Python
-
-**[Get more details about what we've built →](./about.md)**
-
----
-
-## Ready to Get Started?
-
-- **Need Automation Services?** → [PRIME Framework](./prime-framework/index.md) for proven methodology | [Request Discovery Call](mailto:nautomationprime.f3wfe@simplelogin.com)
-- **New to Nautomation Prime?** → [Getting Started Guide](./getting-started.md) for philosophy and pathways
-- **Want to Learn Automation?** → [Tutorials](./tutorials/index.md) for hands-on, step-by-step learning
-- **Study Production Code?** → [Technical Deep Dives](./deep-dives/index.md) for production-grade walkthroughs
-- **Ready to Deploy?** → [Script Library](./scripts/index.md) or explore [Services](./services.md)
-- **Have Questions?** → Check [Getting Started FAQ](./getting-started.md#frequently-asked-questions) or contact us via [email](mailto:nautomationprime.f3wfe@simplelogin.com) or [LinkedIn](https://www.linkedin.com/company/nautomationprime)
+**❓ Still Have Questions?**
+    - [FAQ & Common Scenarios](./getting-started.md#frequently-asked-questions)
+    - [About & Track Record](./about.md)
+    - [Contact us](mailto:nautomationprime.f3wfe@simplelogin.com) or [Connect on LinkedIn](https://www.linkedin.com/company/nautomationprime)
 
 ---
 

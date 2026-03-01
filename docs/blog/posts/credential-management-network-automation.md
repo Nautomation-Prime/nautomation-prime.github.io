@@ -86,17 +86,18 @@ password = os.environ['DEVICE_PASSWORD']
 ```
 
 **`.env` file example (development only):**
-```
+
+```text
 DEVICE_USERNAME=admin
 DEVICE_PASSWORD=SecurePassword123!
 DEVICE_IPS=10.0.0.1,10.0.0.2,10.0.0.3
 ```
 
 **Security checklist:**
-- [ ] `.env` file is in `.gitignore` (never commit!)
-- [ ] Env vars are set by deployment system (Kubernetes, CI/CD, cloud provider)
-- [ ] Different credentials for dev/staging/prod
-- [ ] Credentials are rotated regularly
+    - [ ] `.env` file is in `.gitignore` (never commit!)
+    - [ ] Env vars are set by deployment system (Kubernetes, CI/CD, cloud provider)
+    - [ ] Different credentials for dev/staging/prod
+    - [ ] Credentials are rotated regularly
 
 ---
 
@@ -169,11 +170,11 @@ print(creds)  # Only username, password, enable_password (no URLs or extra secre
 ```
 
 **Vault Setup & Best Practices:**
-- Create separate Vault paths for dev/staging/prod
-- Use AppRole or JWT authentication (not long-lived tokens)
-- Enable audit logging (log every secret access)
-- Auto-rotate credentials using Vault workflows
-- Limit token TTL (time-to-live)
+    - Create separate Vault paths for dev/staging/prod
+    - Use AppRole or JWT authentication (not long-lived tokens)
+    - Enable audit logging (log every secret access)
+    - Auto-rotate credentials using Vault workflows
+    - Limit token TTL (time-to-live)
 
 ---
 
@@ -253,6 +254,7 @@ devices:
 ```
 
 **In code:**
+
 ```python
 import yaml
 import subprocess
@@ -277,6 +279,7 @@ creds = load_sops_secrets('secrets.yaml')
 ## Refactoring a Script for Secure Credentials
 
 **Before (INSECURE):**
+
 ```python
 # BAD: Hardcoded credentials visible in code and Git history!
 devices = [
@@ -290,6 +293,7 @@ for device in devices:
 ```
 
 **After (SECURE with Vault):**
+
 ```python
 # GOOD: Credentials pulled from Vault at runtime
 vault = VaultCredentialProvider(vault_addr=os.environ['VAULT_ADDR'],

@@ -82,11 +82,11 @@ Nautomation Prime is built by and for the community. This post explains how you 
 7. **Merge and celebrate:** Your contribution is merged and credited in the release notes
 
 **PR Tips:**
-- Start small—fix one issue, implement one feature
-- Reference issues or discussions in your PR description
-- Include examples and tests for all new functionality
-- Update docs and README if adding new features
-- Be open to feedback and iteration
+    - Start small—fix one issue, implement one feature
+    - Reference issues or discussions in your PR description
+    - Include examples and tests for all new functionality
+    - Update docs and README if adding new features
+    - Be open to feedback and iteration
 
 ### Option 3: Participate in Discussions & Forums
 
@@ -102,7 +102,7 @@ Nautomation Prime is built by and for the community. This post explains how you 
 
 Use this template to maintain consistency across contributed content:
 
-```
+```text
 ---
 title: Your Post Title Here
 date: YYYY-MM-DD (date submitted)
@@ -199,7 +199,7 @@ tags:
 
 ### Commit Message Format
 
-```
+```text
 [Category] Short description (50 chars max)
 
 Longer explanation (if needed), wrapped at 72 characters.
@@ -346,7 +346,7 @@ def test_discover_multiple_hosts(host, expected_neighbors):
 ### Recognition Tiers
 
 | Tier | Criteria | Benefits |
-|------|----------|----------|
+| ------ | ---------- | ---------- |
 | **Contributor** | 1+ merged PR or +100 lines of contribution | Credit, badge, mention in release notes |
 | **Active Contributor** | 5+ merged PRs or 5+ blog posts | All above + swag, speaking opportunity |
 | **Maintainer** | Long-term, consistent contributions (6+ months) | All above + merge permissions, feature ownership |
@@ -359,7 +359,7 @@ def test_discover_multiple_hosts(host, expected_neighbors):
 
 ### How to Submit Your Story
 
-- **Email us:** nautomationprime.f3wfe@simplelogin.com with subject "Community Spotlight: [Your Story Title]"
+- **Email us:** <nautomationprime.f3wfe@simplelogin.com> with subject "Community Spotlight: [Your Story Title]"
 - **Open a discussion:** Start a thread on our GitHub Discussions channel
 - **Submit a PR:** Create a new markdown file in docs/community-spotlights/ with your story
 - **Reach out directly:** Comment on related blog posts or join our Slack channel to tell us your idea
@@ -388,37 +388,37 @@ def test_discover_multiple_hosts(host, expected_neighbors):
 ### Q: I don't know much Python or coding—can I still contribute?
 
 **A:** Absolutely! We welcome contributions at all skill levels:
-- **Write docs or blog posts** — You don't need to code
-- **Report bugs** — Found an issue? File a bug report with details
-- **Suggest ideas** — Tell us what's missing or what you'd like to learn
-- **Help others** — Answer questions in forums or chat
-- **Translate content** — Localize docs for non-English communities
+    - **Write docs or blog posts** — You don't need to code
+    - **Report bugs** — Found an issue? File a bug report with details
+    - **Suggest ideas** — Tell us what's missing or what you'd like to learn
+    - **Help others** — Answer questions in forums or chat
+    - **Translate content** — Localize docs for non-English communities
 
 ### Q: How long does it take to get a PR merged?
 
 **A:** Typically 5–10 business days:
-- Initial review within 48 hours
-- Feedback and iteration during the week
-- Merge once approved and CI/CD passes
-- Complex PRs may take longer; we'll communicate timeline upfront
+    - Initial review within 48 hours
+    - Feedback and iteration during the week
+    - Merge once approved and CI/CD passes
+    - Complex PRs may take longer; we'll communicate timeline upfront
 
 ### Q: Can I contribute a tool or script that uses a vendor-specific API?
 
 **A:** Yes! We welcome vendor-specific tools as long as:
-- The code is well-documented and tested
-- It follows our code standards (PEP 8, type hints, test coverage)
-- It's licensed under Apache 2.0 or MIT
-- It's open-source (no proprietary libraries)
-- It includes clear setup and usage instructions
-- It includes examples and edge-case handling
+    - The code is well-documented and tested
+    - It follows our code standards (PEP 8, type hints, test coverage)
+    - It's licensed under Apache 2.0 or MIT
+    - It's open-source (no proprietary libraries)
+    - It includes clear setup and usage instructions
+    - It includes examples and edge-case handling
 
 ### Q: What if my contribution gets rejected or heavily modified?
 
 **A:** That's normal! Code review and feedback help make automation better. We appreciate your work and will:
-- Explain the reasoning clearly
-- Suggest alternative approaches
-- Help you iterate and improve
-- Credit you regardless of the final form
+    - Explain the reasoning clearly
+    - Suggest alternative approaches
+    - Help you iterate and improve
+    - Credit you regardless of the final form
 
 ### Q: Can I contribute anonymously?
 
@@ -427,11 +427,11 @@ def test_discover_multiple_hosts(host, expected_neighbors):
 ### Q: How do I become a maintainer?
 
 **A:** We look for:
-- Consistent contributions over 6+ months
-- Deep knowledge of project(s)
-- Active participation in code reviews
-- Strong communication and mentorship skills
-- Agreement to our maintainer responsibilities (detailed in MAINTAINERS.md)
+    - Consistent contributions over 6+ months
+    - Deep knowledge of project(s)
+    - Active participation in code reviews
+    - Strong communication and mentorship skills
+    - Agreement to our maintainer responsibilities (detailed in MAINTAINERS.md)
 
 Reach out to the team if you're interested in stepping into this role.
 

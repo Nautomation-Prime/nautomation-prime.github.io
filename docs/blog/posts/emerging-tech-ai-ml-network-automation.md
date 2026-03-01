@@ -373,15 +373,6 @@ def detect_security_threats(logs, model):
 
 ---
 
-## PRIME in Action: Measurability, Safety, and Transparency
-
-- Validate ML models before production use
-- Monitor for false positives/negatives and model drift
-- Document model decisions, limitations, and data sources
-- Integrate ML with automation for measurable outcomes
-
----
-
 ## Summary: Blog Takeaways
 
 - AI/ML can enhance, but not replace, network automation
