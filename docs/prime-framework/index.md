@@ -257,59 +257,6 @@ Explore each stage in detail:
 
 ---
 
-## 💡 Frequently Asked Questions
-
-??? question "Do I need all five stages?"
-
-    **For best results, yes.** The stages are sequential and build on each other. However, if you have existing design documentation, we can start at the "Implement" stage.
-    
-    If you're unsure about ROI, start with just the "Pinpoint" stage as a standalone assessment.
-
-??? question "How is this different from other consultancies?"
-
-    Most consultancies jump straight to implementation without understanding workflows ("Implement-first"). Others provide strategy without execution ("PowerPoint automation").
-    
-    PRIME Framework combines **both strategy and execution** with a proven structure.
-
-??? question "Can I implement the framework myself?"
-
-    Absolutely! The framework isn't proprietary—it's a best-practice methodology. Our [Tutorials](../tutorials/index.md) and [Deep Dives](../deep-dives/index.md) give you the technical skills to follow the PRIME Framework internally.
-
-??? question "What if my team is new to Python?"
-
-    **You can still use the PRIME Framework.** We offer different engagement tracks:
-    
-    **Track 1: Operational Ownership (No Python Required)**
-    
-    - We deliver production-ready automation with comprehensive user documentation
-    - Focus: Your team learns to **operate** the automation effectively
-    - Empowerment: Understanding what automation does, when to run it, how to interpret results
-    - Outcome: Reliable automation that reduces manual work, owned operationally by your team
-    
-    **Track 2: Code-Level Ownership (Python Knowledge Helpful)**
-    
-    - We deliver code with line-by-line technical documentation
-    - Focus: Your team learns to **modify and extend** automation
-    - Empowerment: Training includes Python fundamentals, code walkthroughs, modification workshops
-    - Outcome: Full autonomy—your team writes new automation independently
-    
-    **Track 3: Hybrid (Recommended for Growing Teams)**
-    
-    - Operational ownership initially, with gradual code-level capability building
-    - Focus: Start using automation immediately, build Python skills over time
-    - Empowerment: Phased training—operations first, code literacy second, modification third
-    - Outcome: Progressive independence as team skills develop
-    
-    See [Services: Engagement Tracks](../services.md#engagement-tracks-by-technical-capability) for detailed breakdowns.
-    
-    We also offer [beginner tutorials](../tutorials/beginner/index.md) to help your team build Python foundational skills.
-
-??? question "How do you handle failed automations?"
-
-    The "Measure" stage includes failure analysis and remediation. If automation doesn't deliver expected value, we refine iteratively. The fixed-fee model means we're incentivized to deliver working solutions.
-
----
-
 ## 🆚 PRIME Framework vs. Traditional Automation
 
 How does the PRIME Framework compare to typical automation approaches?
@@ -426,6 +373,59 @@ These aren't just buzzwords—they represent specific approaches that differenti
 - **Empower:** Network team achieved **Prime Capability**—now handles firmware updates independently
 
 **ROI:** £22,000 saved (160 hours + travel elimination), 96% success rate, no network downtime incidents
+
+---
+
+## 💡 Frequently Asked Questions
+
+??? question "Do I need all five stages?"
+
+    **For best results, yes.** The stages are sequential and build on each other. However, if you have existing design documentation, we can start at the "Implement" stage.
+    
+    If you're unsure about ROI, start with just the "Pinpoint" stage as a standalone assessment.
+
+??? question "How is this different from other consultancies?"
+
+    Most consultancies jump straight to implementation without understanding workflows ("Implement-first"). Others provide strategy without execution ("PowerPoint automation").
+    
+    PRIME Framework combines **both strategy and execution** with a proven structure.
+
+??? question "Can I implement the framework myself?"
+
+    Absolutely! The framework isn't proprietary—it's a best-practice methodology. Our [Tutorials](../tutorials/index.md) and [Deep Dives](../deep-dives/index.md) give you the technical skills to follow the PRIME Framework internally.
+
+??? question "What if my team is new to Python?"
+
+    **You can still use the PRIME Framework.** We offer different engagement tracks:
+    
+    **Track 1: Operational Ownership (No Python Required)**
+    
+    - We deliver production-ready automation with comprehensive user documentation
+    - Focus: Your team learns to **operate** the automation effectively
+    - Empowerment: Understanding what automation does, when to run it, how to interpret results
+    - Outcome: Reliable automation that reduces manual work, owned operationally by your team
+    
+    **Track 2: Code-Level Ownership (Python Knowledge Helpful)**
+    
+    - We deliver code with line-by-line technical documentation
+    - Focus: Your team learns to **modify and extend** automation
+    - Empowerment: Training includes Python fundamentals, code walkthroughs, modification workshops
+    - Outcome: Full autonomy—your team writes new automation independently
+    
+    **Track 3: Hybrid (Recommended for Growing Teams)**
+    
+    - Operational ownership initially, with gradual code-level capability building
+    - Focus: Start using automation immediately, build Python skills over time
+    - Empowerment: Phased training—operations first, code literacy second, modification third
+    - Outcome: Progressive independence as team skills develop
+    
+    See [Services: Engagement Tracks](../services.md#engagement-tracks-by-technical-capability) for detailed breakdowns.
+    
+    We also offer [beginner tutorials](../tutorials/beginner/index.md) to help your team build Python foundational skills.
+
+??? question "How do you handle failed automations?"
+
+    The "Measure" stage includes failure analysis and remediation. If automation doesn't deliver expected value, we refine iteratively. The fixed-fee model means we're incentivized to deliver working solutions.
 
 ---
 
