@@ -14,8 +14,16 @@ tags:
 
 The **PRIME Framework** is Nautomation Prime's systematic approach to transforming network operations through intelligent Python automation. This five-stage methodology ensures every automation project delivers measurable value while maintaining production safety and transparency.
 
-!!! info "Start with the Prime Philosophy"
-    Before diving into the framework stages, understand the **[PRIME Philosophy](./philosophy.md)**—the core principles that drive every decision we make. Transparency, measurability, ownership, safety, and empowerment over vendor lock-in.
+!!! success "Proven Track Record"
+    Organizations using the PRIME Framework achieve:
+
+    - **6-12 month payback** on automation investments
+    - **60-80% reduction** in manual configuration time
+    - **Full code ownership** with zero vendor lock-in
+    - **Sustainable team capability** built through knowledge transfer
+
+!!! info "Start with the Philosophy"
+    Before diving into the five stages, understand the **[PRIME Philosophy](./philosophy.md)**—the core principles that guide every decision we make: transparency, measurability, ownership, safety, and empowerment.
 
 ---
 
@@ -35,23 +43,23 @@ The PRIME Framework addresses all of these challenges with a structured, proven 
 
 ## 📐 The Five Stages
 
-```mermaid
-graph LR
-    P[Pinpoint]
-    R[Re-engineer]
-    I[Implement]
-    M[Measure]
-    E[Empower]
-    P --> R
-    R --> I
-    I --> M
-    M --> E
-    style P fill:#4A90E2
-    style R fill:#7B68EE
-    style I fill:#50C878
-    style M fill:#FFB347
-    style E fill:#FF6B9D
-```
+    ```mermaid
+    graph LR
+        P[Pinpoint]
+        R[Re-engineer]
+        I[Implement]
+        M[Measure]
+        E[Empower]
+        P --> R
+        R --> I
+        I --> M
+        M --> E
+        style P fill:#4A90E2
+        style R fill:#7B68EE
+        style I fill:#50C878
+        style M fill:#FFB347
+        style E fill:#FF6B9D
+    ```
 
 ### [**P** — Pinpoint](./pinpoint.md) Inefficiencies
 
@@ -194,13 +202,16 @@ Together, they ensure **value, quality, and sustainability**.
 
 ### Investment by Stage
 
-Projects are priced as fixed-fee engagements based on scope. You can engage for:
+Projects are priced as fixed-fee engagements based on scope and complexity. You can engage for:
 
-- **Full framework** (all five stages) — Recommended for maximum value
-- **Selected stages** (e.g., just Implement + Empower) — When design is already complete
-- **Assessment only** (Pinpoint stage) — Understand opportunities before committing
+- **Full Framework** (all five stages) — Recommended for maximum value and sustainable ROI
+- **Selected Stages** (e.g., Implement + Empower) — When design documentation already exists
+- **Pinpoint Assessment Only** — Understand opportunities before committing to full engagement
 
-See [Services](../services.md) for detailed pricing and engagement models.
+**See [Services & Pricing](../services.md) for detailed engagement models and cost estimates.**
+
+!!! info "Flexible Engagement Models"
+    We work with your timeline and budget. Most projects complete in 7-13 weeks. We can structure payment around project milestones to align with your financial planning.
 
 ---
 
@@ -372,31 +383,31 @@ These aren't just buzzwords—they represent specific approaches that differenti
 
 ### Visual Overview
 
-```mermaid
-graph TD
-    A[Your Network Operations] -->|Inefficient Manual Work| B{PRIME Framework}
-    B -->|Stage 1| C[Pinpoint: Discover ROI Opportunities]
-    B -->|Stage 2| D[Re-engineer: optimise Workflows]
-    B -->|Stage 3| E[Implement: Build Prime Agents]
-    B -->|Stage 4| F[Measure: Prime Overwatch]
-    B -->|Stage 5| G[Empower: Prime Capability]
-    
-    C --> H[Prime Automation™]
-    D --> H
-    E --> H
-    F --> H
-    G --> H
-    
-    H --> I[Measurable ROI]
-    H --> J[Team Independence]
-    H --> K[Sustainable Growth]
-    
-    style B fill:#4A90E2
-    style H fill:#50C878
-    style I fill:#FFB347
-    style J fill:#FFB347
-    style K fill:#FFB347
-```
+    ```mermaid
+    graph TD
+        A[Your Network Operations] -->|Inefficient Manual Work| B{PRIME Framework}
+        B -->|Stage 1| C[Pinpoint: Discover ROI Opportunities]
+        B -->|Stage 2| D[Re-engineer: optimise Workflows]
+        B -->|Stage 3| E[Implement: Build Prime Agents]
+        B -->|Stage 4| F[Measure: Prime Overwatch]
+        B -->|Stage 5| G[Empower: Prime Capability]
+        
+        C --> H[Prime Automation™]
+        D --> H
+        E --> H
+        F --> H
+        G --> H
+        
+        H --> I[Measurable ROI]
+        H --> J[Team Independence]
+        H --> K[Sustainable Growth]
+        
+        style B fill:#4A90E2
+        style H fill:#50C878
+        style I fill:#FFB347
+        style J fill:#FFB347
+        style K fill:#FFB347
+    ```
 
 ---
 

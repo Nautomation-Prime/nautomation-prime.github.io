@@ -7,6 +7,9 @@ description: Comprehensive guide to all Nautomation Prime learning materials, sc
 
 Your complete guide to network automation tools, tutorials, and deep dives. Whether you're building your first Python script or orchestrating enterprise automation, find exactly what you need.
 
+!!! info "Navigation Guide"
+    All content is **tagged by skill level** (Beginner, Intermediate, Expert) and **organized by use case**. Start with your skill level above, or jump to a specific learning path based on your needs.
+
 ## Learning Paths by Skill Level
 
 === "Beginner"
@@ -233,21 +236,27 @@ Each resource is tagged to help you find content that matches your style:
 
 ## Frequently Accessed Resources
 
-**Most Popular**
+!!! success "Most Popular"
+    Proven entry points used by thousands of engineers. Start here if you're unsure:
+
     - [Why Nornir?](tutorials/intermediate/why-nornir.md) — The clearest explanation of parallel automation
     - [Nornir Fundamentals](tutorials/intermediate/nornir-fundamentals.md) — Your first production task  
-    - [Multi-Device Config Backup](tutorials/beginner/multi-device-config-backup.md) — The most practical beginner tutorial
-    - [PyATS Fundamentals](tutorials/intermediate/pyats-fundamentals.md) — The validation framework used at enterprise scale
+    - [Multi-Device Config Backup](tutorials/beginner/multi-device-config-backup.md) — Most practical beginner example
+    - [PyATS Fundamentals](tutorials/intermediate/pyats-fundamentals.md) — Enterprise-scale validation framework
 
-**Highest ROI**
-    - [Enterprise Config Backup with Nornir](tutorials/intermediate/enterprise-config-backup-nornir.md) — Applies immediately to time-consuming manual work
-    - [Advanced Nornir Patterns](tutorials/intermediate/advanced-nornir-patterns.md) — Turns working code into production-ready code
-    - [Building Reliable Automation with PyATS](tutorials/intermediate/building-reliable-automation-with-pyats.md) — Proves changes worked in production
+!!! tip "Highest ROI"
+    These directly replace current manual work. Organizations see value within the first week:
 
-**Best for Executives**
+    - [Enterprise Config Backup with Nornir](tutorials/intermediate/enterprise-config-backup-nornir.md) — Eliminates hours of manual work
+    - [Advanced Nornir Patterns](tutorials/intermediate/advanced-nornir-patterns.md) — Hardens code for production reliability
+    - [Building Reliable Automation with PyATS](tutorials/intermediate/building-reliable-automation-with-pyats.md) — Proves changes before deployment
+
+!!! info "For Leadership & Strategy"
+    If you're evaluating automation as a strategic initiative:
+
     - [PRIME Philosophy](prime-framework/philosophy.md) — Core principles: transparency, measurability, ownership, safety
     - [PRIME Framework](prime-framework/index.md) — Strategic, ROI-focused automation methodology
-    - [Measure](prime-framework/measure.md) — Track and communicate automation impact
+    - [Measure](prime-framework/measure.md) — How to track and communicate impact
 
 ---
 

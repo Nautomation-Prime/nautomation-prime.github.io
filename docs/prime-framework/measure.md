@@ -14,6 +14,10 @@ tags:
 
 > **"What gets measured gets improved. The Measure stage proves automation value and identifies opportunities for optimisation."**
 
+!!! success "Stage Outcome"
+    **Deliverable:** Quantified ROI metrics dashboard, time savings analysis, error reduction reports, and executive communication ready.  
+    **Typical Result:** Prove 6-12 month payback period with concrete numbers: hours saved, errors eliminated, SLA improvements, and compliance gains.
+
 ```mermaid
 graph TD
     A[📊 Baseline] --> B[🔍 Monitor]
@@ -89,6 +93,9 @@ Financial Cost:      £8,150/year @ £50/hour
 ### 2. Instrumentation (During Implementation)
 
 We build metrics collection into every automation:
+
+!!! info "Measuring as You Build"
+    The best metrics are collected automatically during execution. This means no additional overhead for staff—metrics just happen as the automation runs. We instrument every script to track time, success/failure, errors, and business outcomes.
 
 #### Execution Metrics
 

@@ -14,17 +14,22 @@ tags:
 
 > **"You can't improve what you don't measure. The Pinpoint stage ensures we're automating the right things, not just the easy things."**
 
-```mermaid
-graph LR
-    A[🔍 Discovery] --> B[📊 Analysis]
-    B --> C[🎯 Prioritisation]
-    C --> D[📝 Roadmap]
-    
-    style A fill:#4A90E2
-    style B fill:#5BA3E8
-    style C fill:#6CB5EE
-    style D fill:#7DC8F4
-```
+!!! success "Stage Outcome"
+    **Deliverable:** Prioritised roadmap of automation opportunities with ROI estimates, risk assessment, and 12-month implementation plan.
+
+    **Typical Result:** Identify £50k-£500k annual value in automation opportunities that increase efficiency, reduce errors, and improve compliance.
+
+    ```mermaid
+    graph LR
+        A[🔍 Discovery] --> B[📊 Analysis]
+        B --> C[🎯 Prioritisation]
+        C --> D[📝 Roadmap]
+        
+        style A fill:#4A90E2
+        style B fill:#5BA3E8
+        style C fill:#6CB5EE
+        style D fill:#7DC8F4
+    ```
 
 **Prime Terminology Used:** Prime Workflows identification, Prime Efficiency Stack opportunities
 
@@ -79,14 +84,14 @@ For each identified pain point, we quantify:
 
 **Example:**
 
-```text
-Task: Add VLANs to access switches
-Frequency: 40 times/month
-Duration: 15 minutes per switch (average 5 switches/change)
-Error Rate: 12% require config rollback
-Dependencies: Blocks user onboarding, new site deployments
-Risk: Low (access layer, easy rollback)
-```
+    ```text
+    Task: Add VLANs to access switches
+    Frequency: 40 times/month
+    Duration: 15 minutes per switch (average 5 switches/change)
+    Error Rate: 12% require config rollback
+    Dependencies: Blocks user onboarding, new site deployments
+    Risk: Low (access layer, easy rollback)
+    ```
 
 **Annual Impact:** 40 × 5 × 15 minutes = **50 hours/year** of manual effort
 
@@ -118,31 +123,44 @@ Not all tasks are good automation candidates. We evaluate each opportunity again
 
 For each feasible automation, we calculate:
 
+!!! info "Why ROI Estimation Matters"
+    This is how we prove the business case. Leadership doesn't invest in automation out of principle—they invest because the financial case is clear. Every recommended automation has a payback period estimate.
+
 **Time Savings:**
 
-```text
-Annual Time Saved = Frequency × Duration × (1 - Automation Time Ratio)
+    ```text
+    Annual Time Saved = Frequency × Duration × (1 - Automation Time Ratio)
 
-Example (VLAN provisioning):
-= 40/month × 12 months × 15 mins × (1 - 0.1)
-= 480 changes × 15 mins × 0.9
-= 108 hours/year saved
-```
+    Example (VLAN provisioning):
+    = 40/month × 12 months × 15 mins × (1 - 0.1)
+    = 480 changes × 15 mins × 0.9
+    = 108 hours/year saved
+    ```
 
 **Error Reduction:**
 
-```text
-Annual Errors Avoided = Frequency × Error Rate × Remediation Time
+    ```text
+    Annual Errors Avoided = Frequency × Error Rate × Remediation Time
 
-Example:
-= 480 changes × 12% × 45 mins (avg rollback time)
-= 57.6 errors × 45 mins
-= 43 hours/year saved from error remediation
-```
+    Example:
+    = 480 changes × 12% × 45 mins (avg rollback time)
+    = 57.6 errors × 45 mins
+    = 43 hours/year saved from error remediation
+    ```
 
 **Total Annual Savings:** 108 + 43 = **151 hours/year**
 
 **Financial Impact:** 151 hours × £50/hour = **£7,550/year**
+
+!!! success "Output: Prioritised Roadmap"
+    All opportunities are ranked by ROI. Your leadership sees:
+
+    - Which automations save the most money (top 5, top 10, etc.)
+    - When each will pay back (weeks, months, or years)
+    - Risk level for each (low, medium, high)
+    - Required team effort and dependencies
+    
+    This roadmap guides the entire PRIME Framework engagement.
 
 ---
 
@@ -162,16 +180,16 @@ We estimate the implementation effort for each automation:
 
 We plot each opportunity on an impact/effort matrix:
 
-```mermaid
-quadrantChart
-    title Automation Prioritisation Matrix
-    x-axis Low Effort --> High Effort
-    y-axis Low Impact --> High Impact
-    quadrant-1 Major Projects
-    quadrant-2 Quick Wins
-    quadrant-3 Avoid
-    quadrant-4 Hard Pass
-```
+    ```mermaid
+    quadrantChart
+        title Automation Prioritisation Matrix
+        x-axis Low Effort --> High Effort
+        y-axis Low Impact --> High Impact
+        quadrant-1 Major Projects
+        quadrant-2 Quick Wins
+        quadrant-3 Avoid
+        quadrant-4 Hard Pass
+    ```
 
 **Prioritisation Criteria:**
 

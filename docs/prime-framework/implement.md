@@ -14,17 +14,22 @@ tags:
 
 > **"Code is a liability, not an asset. The Implement stage focuses on building *just enough* automation—maintainable, documented, and built to last."**
 
-```mermaid
-graph LR
-    A[🛠️ Setup] --> B[📝 Code]
-    B --> C[✅ Test]
-    C --> D[📦 Deploy]
-    
-    style A fill:#50C878
-    style B fill:#60D388
-    style C fill:#70DE98
-    style D fill:#80E9A8
-```
+!!! success "Stage Outcome"
+    **Deliverable:** Production-ready Python scripts with line-by-line documentation, comprehensive error handling, and pre/post-flight validation.
+
+    **Typical Result:** Hardened automation that runs reliably in production, with complete audit trails and the ability for your team to modify and extend it independently.
+
+    ```mermaid
+    graph LR
+        A[🛠️ Setup] --> B[📝 Code]
+        B --> C[✅ Test]
+        C --> D[📦 Deploy]
+        
+        style A fill:#50C878
+        style B fill:#60D388
+        style C fill:#70DE98
+        style D fill:#80E9A8
+    ```
 
 **Prime Terminology Used:** Prime Agents development, Prime Philosophy principles, Prime Efficiency Stack
 
@@ -46,47 +51,47 @@ Before writing code, we establish consistent tooling:
 
 **Python Environment:**
 
-```text
-Python 3.9+ (avoid cutting edge, prefer stability)
-Virtual environment (venv or conda)
-requirements.txt with pinned versions
-```
+    ```text
+    Python 3.9+ (avoid cutting edge, prefer stability)
+    Virtual environment (venv or conda)
+    requirements.txt with pinned versions
+    ```
 
 **Essential Libraries:**
 
-```python
-netmiko==4.1.2      # SSH connections
-textfsm==1.1.3      # Output parsing
-jinja2==3.1.2       # Config templating
-pandas==2.0.3       # Data manipulation
-openpyxl==3.1.2     # Excel reporting
-pyyaml==6.0.1       # Config files
-python-dotenv==1.0.0 # Environment variables
-```
+    ```python
+    netmiko==4.1.2      # SSH connections
+    textfsm==1.1.3      # Output parsing
+    jinja2==3.1.2       # Config templating
+    pandas==2.0.3       # Data manipulation
+    openpyxl==3.1.2     # Excel reporting
+    pyyaml==6.0.1       # Config files
+    python-dotenv==1.0.0 # Environment variables
+    ```
 
 **Code Quality Tools:**
 
-```text
-black                # Code formatting
-pylint               # Linting
-pytest               # Testing
-```
+    ```text
+    black                # Code formatting
+    pylint               # Linting
+    pytest               # Testing
+    ```
 
 #### Source Control
 
 All automation projects use Git from day one:
 
-```text
-automation-project/
-├── .gitignore       # Exclude credentials, outputs
-├── README.md        # Project documentation
-├── requirements.txt # Dependencies
-├── config/          # YAML configs (NOT in git)
-├── templates/       # Jinja2 templates
-├── scripts/         # Python scripts
-├── tests/           # Unit tests
-└── outputs/         # Generated reports (NOT in git)
-```
+    ```text
+    automation-project/
+    ├── .gitignore       # Exclude credentials, outputs
+    ├── README.md        # Project documentation
+    ├── requirements.txt # Dependencies
+    ├── config/          # YAML configs (NOT in git)
+    ├── templates/       # Jinja2 templates
+    ├── scripts/         # Python scripts
+    ├── tests/           # Unit tests
+    └── outputs/         # Generated reports (NOT in git)
+    ```
 
 ---
 
@@ -94,30 +99,41 @@ automation-project/
 
 Every line of code reflects our five core principles. Here are key implementation patterns:
 
+!!! warning "Production Safety is Non-Negotiable"
+    Most scripts fail in production because they were written for happy-path scenarios. We build every script assuming:
+
+    - Connection timeouts will happen
+    - Authentication will fail on some devices
+    - Config tasks will raise exceptions
+    - Partially-completed operations must be detected
+    - Human visibility into failures is essential
+    
+    These aren't edge cases—they're baseline requirements.
+
 #### 🔍 Principle 1: Transparency Over Obscurity
 
 **What This Means in Practice:**
 
 ❌ **Avoid:** Over-engineering  
 
-```python
-# DON'T: Abstract factory pattern for 2 device types
-class DeviceFactory:
-    @staticmethod
-    def create_device(device_type):
-        if device_type == "cisco_ios":
-            return CiscoIOSDevice()
-        elif device_type == "cisco_nxos":
-            return CiscoNXOSDevice()
-```
+    ```python
+    # DON'T: Abstract factory pattern for 2 device types
+    class DeviceFactory:
+        @staticmethod
+        def create_device(device_type):
+            if device_type == "cisco_ios":
+                return CiscoIOSDevice()
+            elif device_type == "cisco_nxos":
+                return CiscoNXOSDevice()
+    ```
 
 ✅ **Prefer:** Simple, direct solutions  
 
-```python
-# DO: Simple conditional logic
-device_type = "cisco_ios" if "IOS" in version else "cisco_nxos"
-connection = ConnectHandler(device_type=device_type, **device)
-```
+    ```python
+    # DO: Simple conditional logic
+    device_type = "cisco_ios" if "IOS" in version else "cisco_nxos"
+    connection = ConnectHandler(device_type=device_type, **device)
+    ```
 
 **When to Choose Pragmatic:**
 
@@ -139,64 +155,64 @@ connection = ConnectHandler(device_type=device_type, **device)
 
 ✅ **Verbose Logging:**
 
-```python
-# Track progress for multi-device operations
-logger.info(f"Starting VLAN provisioning for {len(devices)} devices")
+    ```python
+    # Track progress for multi-device operations
+    logger.info(f"Starting VLAN provisioning for {len(devices)} devices")
 
-for device in devices:
-    logger.info(f"Connecting to {device['hostname']} ({device['ip']})")
-    try:
-        connection = ConnectHandler(**device)
-        logger.info(f"✓ Connected to {device['hostname']}")
-        
-        output = connection.send_config_set(config_commands)
-        logger.info(f"✓ Config applied to {device['hostname']}")
-        
-        # Validation
-        verify = connection.send_command("show vlan brief")
-        if new_vlan_id in verify:
-            logger.info(f"✓ VLAN {new_vlan_id} verified on {device['hostname']}")
-        else:
-            logger.warning(f"✗ VLAN {new_vlan_id} NOT found on {device['hostname']}")
+    for device in devices:
+        logger.info(f"Connecting to {device['hostname']} ({device['ip']})")
+        try:
+            connection = ConnectHandler(**device)
+            logger.info(f"✓ Connected to {device['hostname']}")
             
-    except NetmikoTimeoutException:
-        logger.error(f"✗ Timeout connecting to {device['hostname']}")
-        failed_devices.append(device['hostname'])
-    except NetmikoAuthenticationException:
-        logger.error(f"✗ Authentication failed for {device['hostname']}")
-        failed_devices.append(device['hostname'])
+            output = connection.send_config_set(config_commands)
+            logger.info(f"✓ Config applied to {device['hostname']}")
+            
+            # Validation
+            verify = connection.send_command("show vlan brief")
+            if new_vlan_id in verify:
+                logger.info(f"✓ VLAN {new_vlan_id} verified on {device['hostname']}")
+            else:
+                logger.warning(f"✗ VLAN {new_vlan_id} NOT found on {device['hostname']}")
+                
+        except NetmikoTimeoutException:
+            logger.error(f"✗ Timeout connecting to {device['hostname']}")
+            failed_devices.append(device['hostname'])
+        except NetmikoAuthenticationException:
+            logger.error(f"✗ Authentication failed for {device['hostname']}")
+            failed_devices.append(device['hostname'])
 
-logger.info(f"Completed: {len(devices) - len(failed_devices)}/{len(devices)} successful")
-```
+    logger.info(f"Completed: {len(devices) - len(failed_devices)}/{len(devices)} successful")
+    ```
 
 **Output Example:**
 
-```text
-2024-01-15 10:30:22 INFO Starting VLAN provisioning for 12 devices
-2024-01-15 10:30:23 INFO Connecting to SW-ACCESS-01 (192.168.1.10)
-2024-01-15 10:30:24 INFO ✓ Connected to SW-ACCESS-01
-2024-01-15 10:30:26 INFO ✓ Config applied to SW-ACCESS-01
-2024-01-15 10:30:27 INFO ✓ VLAN 150 verified on SW-ACCESS-01
-2024-01-15 10:30:27 INFO Connecting to SW-ACCESS-02 (192.168.1.11)
-...
-2024-01-15 10:31:45 INFO Completed: 11/12 successful
-```
+    ```text
+    2024-01-15 10:30:22 INFO Starting VLAN provisioning for 12 devices
+    2024-01-15 10:30:23 INFO Connecting to SW-ACCESS-01 (192.168.1.10)
+    2024-01-15 10:30:24 INFO ✓ Connected to SW-ACCESS-01
+    2024-01-15 10:30:26 INFO ✓ Config applied to SW-ACCESS-01
+    2024-01-15 10:30:27 INFO ✓ VLAN 150 verified on SW-ACCESS-01
+    2024-01-15 10:30:27 INFO Connecting to SW-ACCESS-02 (192.168.1.11)
+    ...
+    2024-01-15 10:31:45 INFO Completed: 11/12 successful
+    ```
 
 ✅ **Human-Readable Output:**
 
-```python
-# Generate Excel reports, not just terminal output
-df = pd.DataFrame(results)
-df.to_excel("vlan_provisioning_report.xlsx", index=False)
+    ```python
+    # Generate Excel reports, not just terminal output
+    df = pd.DataFrame(results)
+    df.to_excel("vlan_provisioning_report.xlsx", index=False)
 
-# Include summary statistics
-summary = {
-    "Total Devices": len(devices),
-    "Successful": len(success_devices),
-    "Failed": len(failed_devices),
-    "Duration": f"{duration:.1f} seconds"
-}
-```
+    # Include summary statistics
+    summary = {
+        "Total Devices": len(devices),
+        "Successful": len(success_devices),
+        "Failed": len(failed_devices),
+        "Duration": f"{duration:.1f} seconds"
+    }
+    ```
 
 ---
 
@@ -206,75 +222,75 @@ summary = {
 
 ✅ **Validate Before Changing:**
 
-```python
-# PRE-FLIGHT CHECKS
-def pre_flight_checks(device):
-    """
-    Verify device is safe to modify.
-    Returns (bool, str): (is_safe, failure_reason)
-    """
-    # Check reachability
-    if not ping_device(device['ip']):
-        return False, "Device unreachable"
-    
-    # Verify no existing config session
-    output = send_command("show configuration sessions")
-    if "Session" in output:
-        return False, "Active config session detected"
-    
-    # Check VLAN ID isn't already used
-    vlans = send_command("show vlan brief")
-    if new_vlan_id in parse_vlans(vlans):
-        return False, f"VLAN {new_vlan_id} already exists"
-    
-    return True, "All checks passed"
+    ```python
+    # PRE-FLIGHT CHECKS
+    def pre_flight_checks(device):
+        """
+        Verify device is safe to modify.
+        Returns (bool, str): (is_safe, failure_reason)
+        """
+        # Check reachability
+        if not ping_device(device['ip']):
+            return False, "Device unreachable"
+        
+        # Verify no existing config session
+        output = send_command("show configuration sessions")
+        if "Session" in output:
+            return False, "Active config session detected"
+        
+        # Check VLAN ID isn't already used
+        vlans = send_command("show vlan brief")
+        if new_vlan_id in parse_vlans(vlans):
+            return False, f"VLAN {new_vlan_id} already exists"
+        
+        return True, "All checks passed"
 
-# Only proceed if safe
-is_safe, reason = pre_flight_checks(device)
-if not is_safe:
-    logger.warning(f"Skipping {device['hostname']}: {reason}")
-    continue
-```
+    # Only proceed if safe
+    is_safe, reason = pre_flight_checks(device)
+    if not is_safe:
+        logger.warning(f"Skipping {device['hostname']}: {reason}")
+        continue
+    ```
 
 ✅ **Verify After Changing:**
 
-```python
-# POST-FLIGHT VALIDATION
-def verify_vlan_creation(connection, vlan_id, vlan_name):
-    """
-    Confirm VLAN was actually created.
-    """
-    output = connection.send_command("show vlan brief")
-    
-    if str(vlan_id) in output and vlan_name in output:
-        return True
-    else:
-        # VLAN creation failed - trigger rollback
-        logger.error(f"VLAN {vlan_id} not found after creation")
-        rollback_vlan(connection, vlan_id)
-        return False
-```
+    ```python
+    # POST-FLIGHT VALIDATION
+    def verify_vlan_creation(connection, vlan_id, vlan_name):
+        """
+        Confirm VLAN was actually created.
+        """
+        output = connection.send_command("show vlan brief")
+        
+        if str(vlan_id) in output and vlan_name in output:
+            return True
+        else:
+            # VLAN creation failed - trigger rollback
+            logger.error(f"VLAN {vlan_id} not found after creation")
+            rollback_vlan(connection, vlan_id)
+            return False
+    ```
 
 ✅ **Automatic Rollback:**
 
-```python
-# CHECKPOINT BEFORE CHANGE
-checkpoint_name = f"before_vlan_{vlan_id}_{timestamp}"
-connection.send_command(f"archive config")
+    ```python
+    # CHECKPOINT BEFORE CHANGE
+    checkpoint_name = f"before_vlan_{vlan_id}_{timestamp}"
+    connection.send_command(f"archive config")
 
-try:
-    # Apply change
-    connection.send_config_set(config_commands)
-    
-    # Verify
-    if not verify_vlan_creation(connection, vlan_id, vlan_name):
-        raise ValidationError("VLAN verification failed")
+    try:
+        # Apply change
+        connection.send_config_set(config_commands)
         
-except Exception as e:
-    logger.error(f"Change failed: {e}. Rolling back...")
-    connection.send_command(f"configure replace flash:checkpoint")
-    raise
-```
+        # Verify
+        if not verify_vlan_creation(connection, vlan_id, vlan_name):
+            raise ValidationError("VLAN verification failed")
+            
+    except Exception as e:
+        logger.error(f"Change failed: {e}. Rolling back...")
+        connection.send_command(f"configure replace flash:checkpoint")
+        raise
+    ```
 
 ---
 
@@ -284,93 +300,93 @@ All implemented automation follows a consistent structure:
 
 #### Main Script Template
 
-```python
-#!/usr/bin/env python3
-"""
-VLAN Provisioning Automation
+    ```python
+    #!/usr/bin/env python3
+    """
+    VLAN Provisioning Automation
 
-Description:
-    Provisions VLANs across multiple access switches with validation.
+    Description:
+        Provisions VLANs across multiple access switches with validation.
 
-Usage:
-    python provision_vlan.py --vlan 150 --name "Guest_WiFi"
+    Usage:
+        python provision_vlan.py --vlan 150 --name "Guest_WiFi"
 
-Author: Nautomation Prime
-Created: 2024-01-15
-"""
+    Author: Nautomation Prime
+    Created: 2024-01-15
+    """
 
-import logging
-from netmiko import ConnectHandler, NetmikoTimeoutException
-import pandas as pd
-from datetime import datetime
+    import logging
+    from netmiko import ConnectHandler, NetmikoTimeoutException
+    import pandas as pd
+    from datetime import datetime
 
-# ============================================================================
-# CONFIGURATION
-# ============================================================================
+    # ============================================================================
+    # CONFIGURATION
+    # ============================================================================
 
-# Logging setup
-logging.basicConfig(
-    level=logging.INFO,
-    format='%(asctime)s - %(levelname)s - %(message)s',
-    handlers=[
-        logging.FileHandler('vlan_provisioning.log'),
-        logging.StreamHandler()
-    ]
-)
-logger = logging.getLogger(__name__)
+    # Logging setup
+    logging.basicConfig(
+        level=logging.INFO,
+        format='%(asctime)s - %(levelname)s - %(message)s',
+        handlers=[
+            logging.FileHandler('vlan_provisioning.log'),
+            logging.StreamHandler()
+        ]
+    )
+    logger = logging.getLogger(__name__)
 
-# ============================================================================
-# CORE FUNCTIONS
-# ============================================================================
+    # ============================================================================
+    # CORE FUNCTIONS
+    # ============================================================================
 
-def load_device_inventory(csv_file):
-    """Load device list from CSV file."""
-    pass
+    def load_device_inventory(csv_file):
+        """Load device list from CSV file."""
+        pass
 
-def pre_flight_checks(connection, vlan_id):
-    """Validate device is safe to modify."""
-    pass
+    def pre_flight_checks(connection, vlan_id):
+        """Validate device is safe to modify."""
+        pass
 
-def apply_vlan_config(connection, vlan_id, vlan_name):
-    """Apply VLAN configuration to device."""
-    pass
+    def apply_vlan_config(connection, vlan_id, vlan_name):
+        """Apply VLAN configuration to device."""
+        pass
 
-def verify_vlan_creation(connection, vlan_id):
-    """Verify VLAN was successfully created."""
-    pass
+    def verify_vlan_creation(connection, vlan_id):
+        """Verify VLAN was successfully created."""
+        pass
 
-def generate_report(results, output_file):
-    """Create Excel report of provisioning results."""
-    pass
+    def generate_report(results, output_file):
+        """Create Excel report of provisioning results."""
+        pass
 
-# ============================================================================
-# MAIN EXECUTION
-# ============================================================================
+    # ============================================================================
+    # MAIN EXECUTION
+    # ============================================================================
 
-def main():
-    """Main automation workflow."""
-    logger.info("=== VLAN Provisioning Started ===")
-    
-    # Load devices
-    devices = load_device_inventory("inventory.csv")
-    logger.info(f"Loaded {len(devices)} devices from inventory")
-    
-    # Results tracking
-    results = []
-    
-    # Process each device
-    for device in devices:
-        result = process_device(device)
-        results.append(result)
-    
-    # Generate report
-    generate_report(results, "vlan_report.xlsx")
-    
-    logger.info("=== VLAN Provisioning Completed ===")
+    def main():
+        """Main automation workflow."""
+        logger.info("=== VLAN Provisioning Started ===")
+        
+        # Load devices
+        devices = load_device_inventory("inventory.csv")
+        logger.info(f"Loaded {len(devices)} devices from inventory")
+        
+        # Results tracking
+        results = []
+        
+        # Process each device
+        for device in devices:
+            result = process_device(device)
+            results.append(result)
+        
+        # Generate report
+        generate_report(results, "vlan_report.xlsx")
+        
+        logger.info("=== VLAN Provisioning Completed ===")
 
-if __name__ == "__main__":
-    main()
-```
+    if __name__ == "__main__":
+        main()
+    ```
 
 ---
 
@@ -408,28 +424,28 @@ Every script includes:
 
 #### README.md
 
-```markdown
-# VLAN Provisioning Automation
+    ```markdown
+    # VLAN Provisioning Automation
 
-## Purpose
-Provisions VLANs to access switches with pre-flight validation.
+    ## Purpose
+    Provisions VLANs to access switches with pre-flight validation.
 
-## Prerequisites
+    ## Prerequisites
 
-- Python 3.9+
-- Network connectivity to devices
-- Credentials in `.env` file
+    - Python 3.9+
+    - Network connectivity to devices
+    - Credentials in `.env` file
 
-## Installation
-```bash
-pip install -r requirements.txt
-```
+    ## Installation
+    ```bash
+    pip install -r requirements.txt
+    ```
 
 ## Usage
 
-```bash
-python provision_vlan.py --vlan 150 --name "Guest_WiFi"
-```
+    ```bash
+    python provision_vlan.py --vlan 150 --name "Guest_WiFi"
+    ```
 
 ## Configuration
 
@@ -444,13 +460,13 @@ Edit `inventory.csv` with target devices.
 
 Focus on **why**, not **what**:
 
-```python
-# DON'T: State the obvious
-x = x + 1  # Increment x
+    ```python
+    # DON'T: State the obvious
+    x = x + 1  # Increment x
 
-# DO: Explain the reasoning
-x = x + 1  # Account for 1-based VLAN IDs in UI vs 0-based array
-```
+    # DO: Explain the reasoning
+    x = x + 1  # Account for 1-based VLAN IDs in UI vs 0-based array
+    ```
 
 ---
 

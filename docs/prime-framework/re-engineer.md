@@ -14,19 +14,24 @@ tags:
 
 > **"Don't automate broken processes. The Re-engineer stage ensures we're building the *right* automation, not just making bad workflows faster."**
 
-```mermaid
-graph TD
-    A[Current Workflow] -->|Analyse| B[Identify Issues]
-    B -->|Redesign| C[Prime Workflows]
-    C -->|Architect| D[Technical Design]
-    D -->|Validate| E[Safety Mechanisms]
-    
-    style A fill:#999
-    style B fill:#7B68EE
-    style C fill:#8A7AEE
-    style D fill:#998CEE
-    style E fill:#A89EEE
-```
+!!! success "Stage Outcome"
+    **Deliverable:** Technical architecture documents, workflow diagrams, and design decision records with safety mechanisms planned.
+
+    **Typical Result:** Workflows redesigned to eliminate 30-50% of manual steps, built for parallel execution and scalability before coding begins.
+
+        ```mermaid
+        graph TD
+        A[Current Workflow] -->|Analyse| B[Identify Issues]
+        B -->|Redesign| C[Prime Workflows]
+        C -->|Architect| D[Technical Design]
+        D -->|Validate| E[Safety Mechanisms]
+        
+        style A fill:#999
+        style B fill:#7B68EE
+        style C fill:#8A7AEE
+        style D fill:#998CEE
+        style E fill:#A89EEE
+        ```
 
 **Prime Terminology Used:** Prime Workflows design, Prime Agents architecture planning
 
@@ -42,17 +47,22 @@ Design optimised, scalable workflows and architecture **before** writing code. T
 
 The most common (and expensive) mistake in automation:
 
-```text
-Current Manual Workflow (inefficient)
-        ↓ automate directly
-Automated Workflow (still inefficient, now faster!)
-```
+        ```text
+        Current Manual Workflow (inefficient)
+                ↓ automate directly
+        Automated Workflow (still inefficient, now faster!)
+        ```
 
 **Example:**  
 Manually adding VLANs requires logging into 5 switches individually, copying configs, pasting with modifications, saving.
 
 **Bad Automation:** Script that mimics these exact steps  
 **Good Re-engineering:** Template-based bulk provisioning with validation
+
+!!! info "Why Re-engineering Comes Before Implementation"
+    If you skip this stage and jump straight to coding, you'll automate your current inefficiencies. You'll get a faster version of a bad process. Then you're locked into that design.
+
+    This stage is where you solve the problem *permanently*—by redesigning the workflow *before* automating it. It costs more upfront, but saves infinitely more in the long run.
 
 ---
 
@@ -66,17 +76,17 @@ For each prioritised automation from the [Pinpoint](./pinpoint.md) stage, we map
 
 ### Example: VLAN Provisioning (Current Process)
 
-```text
-1. Receive change ticket
-2. Identify target switches from site documentation
-3. SSH to each switch individually
-4. Copy running-config for backup (manual paste to notepad)
-5. Enter config mode
-6. Add VLAN commands (typing by hand)
-7. Save config
-8. Repeat steps 3-7 for remaining switches
-9. Update change ticket
-```
+        ```text
+        1. Receive change ticket
+        2. Identify target switches from site documentation
+        3. SSH to each switch individually
+        4. Copy running-config for backup (manual paste to notepad)
+        5. Enter config mode
+        6. Add VLAN commands (typing by hand)
+        7. Save config
+        8. Repeat steps 3-7 for remaining switches
+        9. Update change ticket
+        ```
 
 **Identified Issues:**
 
@@ -97,22 +107,22 @@ We design an optimised process that addresses identified issues:
 
 ### Example: VLAN Provisioning (Re-engineered)
 
-```text
-1. Receive change ticket (parsed for VLAN details)
-2. Validate VLAN ID doesn't conflict
-3. Generate config from template (Jinja2)
-4. Identify target switches from inventory (CSV/Netbox)
-5. Pre-flight checks:
-   - Verify device reachability
-   - Check VLAN ID availability
-   - Validate trunk port capacity
-6. Apply config to all switches (parallel execution)
-7. Post-flight validation:
-   - Verify VLAN in show vlan
-   - Check STP state
-8. Generate completion report (with before/after snapshots)
-9. Auto-update ticket with results
-```
+        ```text
+        1. Receive change ticket (parsed for VLAN details)
+        2. Validate VLAN ID doesn't conflict
+        3. Generate config from template (Jinja2)
+        4. Identify target switches from inventory (CSV/Netbox)
+        5. Pre-flight checks:
+        - Verify device reachability
+        - Check VLAN ID availability
+        - Validate trunk port capacity
+        6. Apply config to all switches (parallel execution)
+        7. Post-flight validation:
+        - Verify VLAN in show vlan
+        - Check STP state
+        8. Generate completion report (with before/after snapshots)
+        9. Auto-update ticket with results
+        ```
 
 **Improvements:**
 
@@ -171,19 +181,19 @@ For each automation, we design the technical architecture:
 
 #### Data Flow
 
-```text
-[User Input] → [Validation Layer] → [Inventory Source]
-                      ↓
-              [Template Engine]
-                      ↓
-[Pre-Flight Checks] → [Device Connection Pool]
-                      ↓
-              [Parallel Execution]
-                      ↓
-[Post-Flight Validation] → [Reporting Engine]
-                      ↓
-              [Audit Log] + [Ticket Update]
-```
+        ```text
+        [User Input] → [Validation Layer] → [Inventory Source]
+                        ↓
+                [Template Engine]
+                        ↓
+        [Pre-Flight Checks] → [Device Connection Pool]
+                        ↓
+                [Parallel Execution]
+                        ↓
+        [Post-Flight Validation] → [Reporting Engine]
+                        ↓
+                [Audit Log] + [Ticket Update]
+        ```
 
 #### Component Selection
 

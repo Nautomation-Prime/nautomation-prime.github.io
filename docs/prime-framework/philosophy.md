@@ -20,6 +20,15 @@ Before we write a single line of code, before we design a workflow, we agree on 
 
 If you understand our philosophy, you'll understand why the [PRIME Framework](./index.md) works the way it does.
 
+!!! info "Five Core Principles"
+    Our philosophy rests on five interconnected principles that appear throughout all we deliver:
+  
+    1. **Transparency** — No black boxes, full understanding
+    2. **Measurability** — Data-driven decisions, proven ROI
+    3. **Ownership** — Your team owns the automation
+    4. **Safety** — Production-grade reliability, not shortcuts
+    5. **Empowerment** — Understanding, not dependency
+
 ---
 
 ## The Five Core Principles

@@ -14,19 +14,24 @@ tags:
 
 > **"The best automation is the automation your team can maintain and extend. The Empower stage ensures long-term success through knowledge transfer and capability building."**
 
-```mermaid
-graph LR
-    A[🏛️ Training] --> B[📚 Documentation]
-    B --> C[🔧 Practice]
-    C --> D[🎓 Prime Capability]
-    D -->|Independent| E[🚀 Scale]
-    
-    style A fill:#FF6B9D
-    style B fill:#FF7BAD
-    style C fill:#FF8BBD
-    style D fill:#FF9BCD
-    style E fill:#FFABDD
-```
+!!! success "Stage Outcome"
+    **Deliverable:** Trained team with full understanding of codebase, runbooks for operation/troubleshooting, and capability to extend automation independently.
+  
+    **Typical Result:** Your team achieves (Prime Capability)—zero dependency on consultants, ability to modify and scale automation, sustainable long-term value.
+
+    ```mermaid
+    graph LR
+        A[🏛️ Training] --> B[📚 Documentation]
+        B --> C[🔧 Practice]
+        C --> D[🎓 Prime Capability]
+        D -->|Independent| E[🚀 Scale]
+        
+        style A fill:#FF6B9D
+        style B fill:#FF7BAD
+        style C fill:#FF8BBD
+        style D fill:#FF9BCD
+        style E fill:#FFABDD
+    ```
 
 **Prime Terminology Used:** Prime Capability achievement, Prime Workflows extension, Prime Agents maintenance
 
@@ -43,6 +48,9 @@ Transfer knowledge and build internal capability so your team can maintain, trou
 ### 1. Knowledge Transfer Sessions
 
 Comprehensive handoff of developed automation:
+
+!!! success "Building Prime Capability"
+    Prime Capability means your team can modify, troubleshoot, and extend automation without consulting us. These sessions build exactly that—transferable understanding, not just operational knowledge. Your team leaves knowing not just *what* the code does, but *why* it does it that way.
 
 #### Session 1: Architecture Overview (2 hours)
 
@@ -72,31 +80,31 @@ Comprehensive handoff of developed automation:
 
 **Example Walkthrough:**
 
-```python
-# START: Main execution
-def main():
-    """
-    WHY THIS EXISTS:
-    Entry point for VLAN provisioning automation.
-    
-    WHAT IT DOES:
-    1. Loads device inventory from CSV
-    2. Connects to each device
-    3. Applies VLAN config with validation
-    4. Generates Excel report
-    
-    HOW TO MODIFY:
-    - Change inventory source: Edit load_device_inventory()
-    - Add validation steps: Modify verify_vlan_creation()
-    - Change report format: Edit generate_report()
-    """
-    logger.info("=== VLAN Provisioning Started ===")
-    
-    # STEP 1: Load devices
-    # WHY: CSV allows non-Python staff to manage inventory
-    # HOW TO CHANGE: Swap to Netbox API in load_device_inventory()
-    devices = load_device_inventory("inventory.csv")
-```
+    ```python
+    # START: Main execution
+    def main():
+        """
+        WHY THIS EXISTS:
+        Entry point for VLAN provisioning automation.
+        
+        WHAT IT DOES:
+        1. Loads device inventory from CSV
+        2. Connects to each device
+        3. Applies VLAN config with validation
+        4. Generates Excel report
+        
+        HOW TO MODIFY:
+        - Change inventory source: Edit load_device_inventory()
+        - Add validation steps: Modify verify_vlan_creation()
+        - Change report format: Edit generate_report()
+        """
+        logger.info("=== VLAN Provisioning Started ===")
+        
+        # STEP 1: Load devices
+        # WHY: CSV allows non-Python staff to manage inventory
+        # HOW TO CHANGE: Swap to Netbox API in load_device_inventory()
+        devices = load_device_inventory("inventory.csv")
+    ```
 
 ---
 
@@ -151,42 +159,42 @@ Comprehensive written materials for long-term reference:
 
 **Contents:**
 
-```markdown
-# VLAN Provisioning Automation - User Guide
+    ```markdown
+    # VLAN Provisioning Automation - User Guide
 
-## Quick Start
-1. Copy `inventory_template.csv` and add your devices
-2. Run: `python provision_vlan.py --vlan 150 --name "Guest_WiFi"`
-3. Check `outputs/` folder for Excel report
+    ## Quick Start
+    1. Copy `inventory_template.csv` and add your devices
+    2. Run: `python provision_vlan.py --vlan 150 --name "Guest_WiFi"`
+    3. Check `outputs/` folder for Excel report
 
-## Detailed Usage
-### Command-Line Arguments
+    ## Detailed Usage
+    ### Command-Line Arguments
 
-- `--vlan` : VLAN ID to create (required)
-- `--name` : VLAN name (required)
-- `--inventory` : Path to device CSV (default: inventory.csv)
-- `--dry-run` : Validate without applying changes
+    - `--vlan` : VLAN ID to create (required)
+    - `--name` : VLAN name (required)
+    - `--inventory` : Path to device CSV (default: inventory.csv)
+    - `--dry-run` : Validate without applying changes
 
-### Example Commands
-```bash
-# Normal execution
-python provision_vlan.py --vlan 150 --name "Guest_WiFi"
+    ### Example Commands
+    ```bash
+    # Normal execution
+    python provision_vlan.py --vlan 150 --name "Guest_WiFi"
 
-# Dry-run (validation only)
-python provision_vlan.py --vlan 150 --name "Guest_WiFi" --dry-run
+    # Dry-run (validation only)
+    python provision_vlan.py --vlan 150 --name "Guest_WiFi" --dry-run
 
-# Custom inventory file
-python provision_vlan.py --vlan 150 --name "Guest_WiFi" --inventory devices_dc1.csv
-```
+    # Custom inventory file
+    python provision_vlan.py --vlan 150 --name "Guest_WiFi" --inventory devices_dc1.csv
+    ```
 
 ## Understanding the Output
 
 ### Log Files
 
 - `vlan_provisioning.log` : Detailed execution log
-  - **INFO**: Normal operations
-  - **WARNING**: Devices skipped (with reason)
-  - **ERROR**: Failures requiring attention
+    - **INFO**: Normal operations
+    - **WARNING**: Devices skipped (with reason)
+    - **ERROR**: Failures requiring attention
 
 ### Excel Reports
 
@@ -224,33 +232,33 @@ Columns:
 
 **Contents:**
 
-```markdown
-# VLAN Provisioning Automation - Runbook
+    ```markdown
+    # VLAN Provisioning Automation - Runbook
 
-## Emergency Procedures
+    ## Emergency Procedures
 
-### Automation Failed Mid-Execution
-**Symptoms:** Some devices configured, others not
-**Resolution:**
-1. Check log file for last successful device
-2. Update inventory.csv to include only failed devices
-3. Re-run automation with updated inventory
+    ### Automation Failed Mid-Execution
+    **Symptoms:** Some devices configured, others not
+    **Resolution:**
+    1. Check log file for last successful device
+    2. Update inventory.csv to include only failed devices
+    3. Re-run automation with updated inventory
 
-### All Devices Failing with Auth Error
-**Symptoms:** "Authentication failed" for all devices
-**Resolution:**
-1. Verify credentials in `.env` file unchanged
-2. Test manual SSH to one device
-3. Check account lockout in authentication system
-4. If credential rotation, update `.env` file
+    ### All Devices Failing with Auth Error
+    **Symptoms:** "Authentication failed" for all devices
+    **Resolution:**
+    1. Verify credentials in `.env` file unchanged
+    2. Test manual SSH to one device
+    3. Check account lockout in authentication system
+    4. If credential rotation, update `.env` file
 
-### VLAN Created but Validation Failed
-**Symptoms:** Config applied but post-flight check failed
-**Resolution:**
-1. Manual verification: ssh to device, `show vlan brief`
-2. If VLAN exists: False alarm, check parsing logic
-3. If VLAN missing: Check `show running-config` for rejected config
-```
+    ### VLAN Created but Validation Failed
+    **Symptoms:** Config applied but post-flight check failed
+    **Resolution:**
+    1. Manual verification: ssh to device, `show vlan brief`
+    2. If VLAN exists: False alarm, check parsing logic
+    3. If VLAN missing: Check `show running-config` for rejected config
+    ```
 
 ---
 
