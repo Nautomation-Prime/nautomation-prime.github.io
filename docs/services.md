@@ -169,7 +169,7 @@ Our flagship service delivers the complete journey: from identifying the right o
 
 ---
 
-### 🛠️ Individual Services (À La Carte)
+### 🛠️ Individual Services (A La Carte) {#individual-services}
 
 If you already have automation plans or internal capability, we offer individual PRIME stages:
 
@@ -809,7 +809,7 @@ We'll explore:
 | **[Measure](./prime-framework/measure.md)** | 3-6 months | Performance tracking, ROI calculation, executive reporting |
 | **[Empower](./prime-framework/empower.md)** | 2-4 weeks | Knowledge transfer, team training, transition support (8 weeks) |
 
-**Or choose [individual à la carte services](#️-individual-services-à-la-carte)** if you need specific stages only.
+**Or choose [individual services](#individual-services)** if you need specific stages only.
 
 **Engagement Models:**
 
