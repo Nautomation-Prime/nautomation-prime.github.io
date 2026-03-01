@@ -175,14 +175,6 @@ Found a bug or have a feature request? Open an issue on our [GitHub organisation
 
 ## Contact
 
-**Geographic Address (UK):**  
-Christopher Davies T/A Nautomation Prime  
-9 The Sleeve  
-Leek, ST13 8HR  
-Staffordshire  
-England  
-United Kingdom
-
 - **Email:** [nautomationprime.f3wfe@simplelogin.com](mailto:nautomationprime.f3wfe@simplelogin.com)
 - **LinkedIn:** [Nautomation Prime Company Page](https://www.linkedin.com/company/nautomationprime)
 - **GitHub:** [Nautomation-Prime Organisation](https://github.com/Nautomation-Prime)
