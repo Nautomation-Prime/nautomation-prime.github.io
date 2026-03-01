@@ -184,19 +184,17 @@ Founded by a **CCNP-certified Senior Network Engineer** with **10+ years** in en
 
 ## Next Steps
 
-**🏢 For Infrastructure Managers & Leaders:**
+- **🏢 For Infrastructure Managers & Leaders:**
     - [**Schedule a Discovery Call**](mailto:nautomationprime.f3wfe@simplelogin.com) → Discuss your automation challenges and ROI goals (30 min, no commitment)
     - [**View Services & Pricing**](./services.md) → See PRIME engagements, Docker containers, custom solutions
     - [**Read the Case Study**](./blog/posts/case-study-full-automation-journey.md) → See real metrics: 438% ROI, 87% faster deployments
-
-**👨‍💻 For Engineers & Technical Teams:**
+- **👨‍💻 For Engineers & Technical Teams:**
     - [**Getting Started Guide**](./getting-started.md) → Understand philosophy, pathways, and prerequisites
     - [**Learn by Building**](./tutorials/index.md) → Hands-on tutorials from beginner to expert
     - [**Study Production Code**](./deep-dives/index.md) → Deep dives into hardened automation patterns
     - [**Explore Scripts**](./scripts/index.md) → Open-source, documented automation tools
     - [**Blog & Articles**](./blog/index.md) → 19 in-depth posts on patterns, tooling, and best practices
-
-**❓ Still Have Questions?**
+- **❓ Still Have Questions?**
     - [FAQ & Common Scenarios](./getting-started.md#frequently-asked-questions)
     - [About & Track Record](./about.md)
     - [Contact us](mailto:nautomationprime.f3wfe@simplelogin.com) or [Connect on LinkedIn](https://www.linkedin.com/company/nautomationprime)
