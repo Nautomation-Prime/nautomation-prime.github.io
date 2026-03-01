@@ -36,6 +36,8 @@ jobs:
 
       # Fail fast on broken internal links, missing pages in nav, etc.
       - name: Build (strict)
+        env:
+          NO_MKDOCS_2_WARNING: 1
         run: mkdocs build --strict
 
       - name: Generate sitemap.xml
