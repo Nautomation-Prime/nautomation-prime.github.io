@@ -332,7 +332,7 @@ These aren't just buzzwords—they represent specific approaches that differenti
 ### Visual Overview
 
 ```mermaid
-%%{init: {'theme':'base', 'themeVariables': {'fontSize':'18px'}}}%%
+%%{init: {'theme':'base', 'themeVariables': {'fontSize':'20px'}}}%%
 graph TD
     A[Your Network Operations] -->|Inefficient Manual Work| B{PRIME Framework}
     B -->|Stage 1| C[Pinpoint: Discover ROI Opportunities]
