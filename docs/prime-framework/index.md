@@ -43,23 +43,23 @@ The PRIME Framework addresses all of these challenges with a structured, proven 
 
 ## 📐 The Five Stages
 
-    ```mermaid
-    graph LR
-        P[Pinpoint]
-        R[Re-engineer]
-        I[Implement]
-        M[Measure]
-        E[Empower]
-        P --> R
-        R --> I
-        I --> M
-        M --> E
-        style P fill:#4A90E2
-        style R fill:#7B68EE
-        style I fill:#50C878
-        style M fill:#FFB347
-        style E fill:#FF6B9D
-    ```
+```mermaid
+graph LR
+    P[Pinpoint]
+    R[Re-engineer]
+    I[Implement]
+    M[Measure]
+    E[Empower]
+    P --> R
+    R --> I
+    I --> M
+    M --> E
+    style P fill:#4A90E2
+    style R fill:#7B68EE
+    style I fill:#50C878
+    style M fill:#FFB347
+    style E fill:#FF6B9D
+```
 
 ### [**P** — Pinpoint](./pinpoint.md) Inefficiencies
 
@@ -330,31 +330,31 @@ These aren't just buzzwords—they represent specific approaches that differenti
 
 ### Visual Overview
 
-    ```mermaid
-    graph TD
-        A[Your Network Operations] -->|Inefficient Manual Work| B{PRIME Framework}
-        B -->|Stage 1| C[Pinpoint: Discover ROI Opportunities]
-        B -->|Stage 2| D[Re-engineer: optimise Workflows]
-        B -->|Stage 3| E[Implement: Build Prime Agents]
-        B -->|Stage 4| F[Measure: Prime Overwatch]
-        B -->|Stage 5| G[Empower: Prime Capability]
-        
-        C --> H[Prime Automation™]
-        D --> H
-        E --> H
-        F --> H
-        G --> H
-        
-        H --> I[Measurable ROI]
-        H --> J[Team Independence]
-        H --> K[Sustainable Growth]
-        
-        style B fill:#4A90E2
-        style H fill:#50C878
-        style I fill:#FFB347
-        style J fill:#FFB347
-        style K fill:#FFB347
-    ```
+```mermaid
+graph TD
+    A[Your Network Operations] -->|Inefficient Manual Work| B{PRIME Framework}
+    B -->|Stage 1| C[Pinpoint: Discover ROI Opportunities]
+    B -->|Stage 2| D[Re-engineer: optimise Workflows]
+    B -->|Stage 3| E[Implement: Build Prime Agents]
+    B -->|Stage 4| F[Measure: Prime Overwatch]
+    B -->|Stage 5| G[Empower: Prime Capability]
+    
+    C --> H[Prime Automation™]
+    D --> H
+    E --> H
+    F --> H
+    G --> H
+    
+    H --> I[Measurable ROI]
+    H --> J[Team Independence]
+    H --> K[Sustainable Growth]
+    
+    style B fill:#4A90E2
+    style H fill:#50C878
+    style I fill:#FFB347
+    style J fill:#FFB347
+    style K fill:#FFB347
+```
 
 ---
 
