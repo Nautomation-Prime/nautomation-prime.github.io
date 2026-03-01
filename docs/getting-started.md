@@ -140,35 +140,35 @@ For custom automation tailored to your specific topology:
 
 ## ❓ Frequently Asked Questions
 
-**Q: Do I need Python installed to use Nautomation Prime tools?**  
-A: Not necessarily! We offer [portable bundles](services.md#zero-install-portable-bundles) that run without Python installation. These are ideal for restricted enterprise environments where Python may not be permitted. However, if you want to modify or extend our scripts, you'll need Python 3.8 or higher.
+??? **Q: Do I need Python installed to use Nautomation Prime tools?**  
+    A: Not necessarily! We offer [portable bundles](services.md#zero-install-portable-bundles) that run without Python installation. These are ideal for restricted enterprise environments where Python may not be permitted. However, if you want to modify or extend our scripts, you'll need Python 3.8 or higher.
 
-**Q: What's the difference between tutorials, deep dives, and services?**  
-A: **[Tutorials](tutorials/index.md)** teach you to build automation yourself with step-by-step guides. **[Deep Dives](deep-dives/index.md)** explain production-grade scripts line-by-line so you understand how they work. **[Services](services.md)** deliver complete automation projects through the **[PRIME Framework](prime-framework/index.md)** with ROI proof and team empowerment.
+??? **Q: What's the difference between tutorials, deep dives, and services?**  
+    A: **[Tutorials](tutorials/index.md)** teach you to build automation yourself with step-by-step guides. **[Deep Dives](deep-dives/index.md)** explain production-grade scripts line-by-line so you understand how they work. **[Services](services.md)** deliver complete automation projects through the **[PRIME Framework](prime-framework/index.md)** with ROI proof and team empowerment.
 
-**Q: Can you automate my specific network topology?**  
-A: Absolutely! Our bespoke services cover custom scripting for any topology. Contact us via [email](mailto:nautomationprime.f3wfe@simplelogin.com) or [LinkedIn](https://www.linkedin.com/company/nautomationprime) to discuss your specific requirements.
+??? **Q: Can you automate my specific network topology?**  
+    A: Absolutely! Our bespoke services cover custom scripting for any topology. Contact us via [email](mailto:nautomationprime.f3wfe@simplelogin.com) or [LinkedIn](https://www.linkedin.com/company/nautomationprime) to discuss your specific requirements.
 
-**Q: Are these tools vendor-locked to Cisco?**  
-A: Our tools are built on vendor-neutral libraries like **Netmiko**, **Nornir**, and **NAPALM**. While designed for Cisco, the patterns and concepts apply across other vendors (Juniper, Arista, Palo Alto, etc.). Your skills remain portable across platforms.
+??? **Q: Are these tools vendor-locked to Cisco?**  
+    A: Our tools are built on vendor-neutral libraries like **Netmiko**, **Nornir**, and **NAPALM**. While designed for Cisco, the patterns and concepts apply across other vendors (Juniper, Arista, Palo Alto, etc.). Your skills remain portable across platforms.
 
-**Q: How do I secure my credentials?**  
-A: We leverage native OS credential managers (Windows Credential Manager, Keychain on macOS, pass on Linux). Passwords are never stored in plaintext files or hardcoded in scripts. When you run a script like CDP Network Audit for the first time, it will prompt you to save your credentials to Windows Credential Manager—just enter your username and password, and the script will store them securely. Future runs will use the stored credentials automatically.
+??? **Q: How do I secure my credentials?**  
+    A: We leverage native OS credential managers (Windows Credential Manager, Keychain on macOS, pass on Linux). Passwords are never stored in plaintext files or hardcoded in scripts. When you run a script like CDP Network Audit for the first time, it will prompt you to save your credentials to Windows Credential Manager—just enter your username and password, and the script will store them securely. Future runs will use the stored credentials automatically.
 
-**Q: What if I don't have Python experience?**  
-A: This site assumes you already know Python basics (variables, functions, loops, exceptions). If you're new to Python, we recommend completing a Python fundamentals course first (Codecademy, Real Python, or similar), then return to apply those skills to network automation. Our code is written for clarity, so even beginners with solid fundamentals will be able to follow along.
+??? **Q: What if I don't have Python experience?**  
+    A: This site assumes you already know Python basics (variables, functions, loops, exceptions). If you're new to Python, we recommend completing a Python fundamentals course first (Codecademy, Real Python, or similar), then return to apply those skills to network automation. Our code is written for clarity, so even beginners with solid fundamentals will be able to follow along.
 
-**Q: Do your scripts work in production environments?**  
-A: Yes! All our scripts are production-grade with robust error handling, pre-flight safety checks, thread-safe concurrent operations, and comprehensive logging. We follow the [PRIME Philosophy](prime-framework/philosophy.md) principles—transparency, measurability, ownership, safety, and empowerment. Many organisations use our scripts in live production environments.
+??? **Q: Do your scripts work in production environments?**  
+    A: Yes! All our scripts are production-grade with robust error handling, pre-flight safety checks, thread-safe concurrent operations, and comprehensive logging. We follow the [PRIME Philosophy](prime-framework/philosophy.md) principles—transparency, measurability, ownership, safety, and empowerment. Many organisations use our scripts in live production environments.
 
-**Q: What network devices do your scripts support?**  
-A: Our scripts primarily target Cisco devices (IOS, IOS-XE, NX-OS, IOS-XR) but the underlying libraries (Netmiko, Nornir, NAPALM) support many vendors including Juniper, Arista, Palo Alto Networks, F5, and more. The patterns and techniques we teach are transferable across vendors.
+??? **Q: What network devices do your scripts support?**  
+    A: Our scripts primarily target Cisco devices (IOS, IOS-XE, NX-OS, IOS-XR) but the underlying libraries (Netmiko, Nornir, NAPALM) support many vendors including Juniper, Arista, Palo Alto Networks, F5, and more. The patterns and techniques we teach are transferable across vendors.
 
-**Q: Can I use your code in my own projects?**  
-A: Yes! Our open-source scripts are available under permissive licenses. Check each repository for specific licensing terms. We encourage you to learn from, modify, and build upon our code for your own automation projects.
+??? **Q: Can I use your code in my own projects?**  
+    A: Yes! Our open-source scripts are available under permissive licenses. Check each repository for specific licensing terms. We encourage you to learn from, modify, and build upon our code for your own automation projects.
 
-**Q: What's included in the PRIME Framework?**  
-A: The [PRIME Framework](prime-framework/index.md) is our proven 5-stage methodology: **Pinpoint** (identify opportunities), **Re-engineer** (design solutions), **Implement** (build automation), **Measure** (prove ROI), and **Empower** (transfer knowledge). Each stage delivers specific outcomes with measurable value. You can engage for the full framework or individual stages à la carte.
+??? **Q: What's included in the PRIME Framework?**  
+    A: The [PRIME Framework](prime-framework/index.md) is our proven 5-stage methodology: **Pinpoint** (identify opportunities), **Re-engineer** (design solutions), **Implement** (build automation), **Measure** (prove ROI), and **Empower** (transfer knowledge). Each stage delivers specific outcomes with measurable value. You can engage for the full framework or individual stages à la carte.
 
 ---
 
