@@ -23,7 +23,7 @@ Welcome! This guide will help you understand what Nautomation Prime offers and h
 - **[Professional Services](services.md)** — Custom automation tailored to your topology
 
 !!! warning "Important"
-   This site does **not contain Python tutorials.** We assume you already know Python basics (variables, functions, loops, exceptions, file I/O). Our goal is to teach you how to apply Python to network automation and provide a foundation you can transfer into your own scripts or learning journey.
+    This site does **not contain Python tutorials.** We assume you already know Python basics (variables, functions, loops, exceptions, file I/O). Our goal is to teach you how to apply Python to network automation and provide a foundation you can transfer into your own scripts or learning journey.
 
 ---
 

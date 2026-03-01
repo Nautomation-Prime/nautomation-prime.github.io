@@ -16,7 +16,7 @@ tags:
 Welcome to the **Nautomation Prime Script Library**. Here you'll find open-source, hardened Python automation tools designed for enterprise Cisco deployments.
 
 !!! warning "Python Prerequisite"
-  This site focuses on applying Python to network automation. We assume familiarity with core Python concepts (variables, functions, loops, exceptions, and file I/O). If you're new to Python, complete a fundamentals course first, then return here.
+    This site focuses on applying Python to network automation. We assume familiarity with core Python concepts (variables, functions, loops, exceptions, and file I/O). If you're new to Python, complete a fundamentals course first, then return here.
 
 ---
 

@@ -43,7 +43,7 @@ Every technical guide in this library adheres to three core principles:
 ## 🚀 How to Use These Guides
 
 !!! warning "Python Prerequisite"
-  This site focuses on applying Python to network automation. We assume familiarity with core Python concepts (variables, functions, loops, exceptions, and file I/O). If you're new to Python, complete a fundamentals course first, then return here.
+    This site focuses on applying Python to network automation. We assume familiarity with core Python concepts (variables, functions, loops, exceptions, and file I/O). If you're new to Python, complete a fundamentals course first, then return here.
 
 Each Deep Dive is structured as:
 
