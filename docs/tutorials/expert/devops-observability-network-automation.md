@@ -13,138 +13,159 @@ tags:
 
 ## DevOps and Observability for Network Automation: CI/CD, GitOps, and Monitoring
 
+> *Published: March 1, 2026*  
+> *Author: Nautomation Prime Team*
+
 ## Why This Tutorial Exists
 
-Enterprise automation is more than scripts—it’s pipelines, version control, and safe rollouts. This tutorial covers CI/CD, GitOps, and observability for network automation, aligned with the PRIME Framework.
+Enterprise automation is **more than scripts**—it requires production-grade pipelines, version control, safe rollouts, and comprehensive observability. This tutorial covers **CI/CD, GitOps, observability architecture, structured logging, metrics, and alerting**, aligned with the PRIME Framework.
 
 ---
 
 ## Prerequisites
 
-- Advanced Python
-- Familiarity with Git, CI/CD tools, and monitoring basics
+- Advanced Python and networking knowledge
+- Familiarity with Git, Docker, and container concepts
+- Understanding of CI/CD tools (GitHub Actions, GitLab CI, Jenkins)
+- Basic knowledge of monitoring tools (Prometheus, Grafana)
 
 ---
 
-jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - name: Run tests
-        run: pytest
+## DevOps Architecture: Multi-Stage Pipeline
 
-## Pipeline Components: Beyond the Basics
-
-- **CI/CD:** Automated testing, linting, deployment, and staged rollouts (GitHub Actions, GitLab CI, Jenkins, Azure DevOps)
-- **GitOps:** Configuration as code, version control, change tracking, and automated reconciliation (ArgoCD, Flux)
-- **Observability:** Structured logging, distributed tracing, metrics, dashboards, and alerting (Prometheus, Grafana, ELK, OpenTelemetry)
+```text
+Source Control (Git)
+    ↓
+CI: Lint, Test, Build
+    ↓
+CD: Stage → Approve → Production
+    ↓
+Observability: Logs, Metrics, Alerts
+```
 
 ---
 
-## Advanced CI/CD: Multi-Stage, Safe Rollouts
-
-Example: Multi-stage GitHub Actions workflow with lint, test, deploy, and rollback
+## Part 1: GitHub Actions Multi-Stage CI/CD
 
 ```yaml
-name: Network Automation Pipeline
+name: Network Automation CI/CD
 on:
   push:
     branches: [ main ]
+
 jobs:
   lint:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - name: Lint
-        run: flake8 .
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+      - run: pip install -r requirements-dev.txt
+      - run: flake8 src/
+      - run: black src/ --check
+      - run: mypy src/ --strict
+
   test:
     runs-on: ubuntu-latest
     needs: lint
     steps:
-      - uses: actions/checkout@v2
-      - name: Run tests
-        run: pytest
+      - uses: actions/checkout@v4
+      - run: pip install -r requirements-dev.txt
+      - run: pytest tests/unit/ --cov=src
+
   deploy:
     runs-on: ubuntu-latest
     needs: test
+    if: github.ref == 'refs/heads/main'
+    environment: production
     steps:
-      - uses: actions/checkout@v2
-      - name: Deploy automation
-        run: python scripts/deploy.py
-  rollback:
-    runs-on: ubuntu-latest
-    if: failure()
-    steps:
-      - uses: actions/checkout@v2
-      - name: Rollback
-        run: python scripts/rollback.py
+      - uses: actions/checkout@v4
+      - run: python scripts/deploy.py
 ```
 
 ---
 
-## GitOps: Automated, Auditable Network State
-
-- Use tools like ArgoCD or Flux to sync network intent from Git to production
-- All changes are tracked, reviewed, and auditable
-- Rollbacks are as simple as reverting a commit
-
----
-
-## Observability: Logging, Metrics, Tracing
-
-### Structured Logging Example
+## Part 2: Structured Logging
 
 ```python
 import structlog
+
+structlog.configure(
+    processors=[
+        structlog.stdlib.filter_by_level,
+        structlog.stdlib.add_logger_name,
+        structlog.processors.TimeStamper(fmt="iso"),
+        structlog.processors.JSONRenderer()
+    ],
+    logger_factory=structlog.stdlib.LoggerFactory(),
+)
+
 logger = structlog.get_logger()
-logger.info("automation_run", device="router1", status="success")
+logger.info("automation_started", change_id="CHG0001", devices=5)
 ```
 
-### Metrics and Tracing
+---
 
-- Export custom metrics to Prometheus (e.g., job duration, device failures)
-- Use OpenTelemetry for distributed tracing of automation workflows
+## Part 3: Prometheus Metrics
+
+```python
+from prometheus_client import Counter, Histogram, start_http_server
+
+automation_runs = Counter(
+    'network_automation_runs_total',
+    'Total automation runs',
+    ['status']
+)
+
+automation_duration = Histogram(
+    'network_automation_duration_seconds',
+    'Automation execution time',
+    buckets=(1, 5, 10, 30, 60, 300)
+)
+
+start_http_server(8000)
+automation_runs.labels(status='success').inc()
+automation_duration.observe(15.5)
+```
 
 ---
 
-## Monitoring and Alerting: Proactive Operations
+## Part 4: Alerting Rules
 
-- Build Grafana dashboards for automation health, job status, and device reachability
-- Alert on anomalies, failures, or SLA breaches using Prometheus Alertmanager or ELK watches
-
----
-
-## Real-World Pipeline: Rollback and Compliance
-
-- Automate rollbacks on failure with CI/CD jobs
-- Enforce policy checks (e.g., pre-deployment validation, compliance scans)
-- Log every change for auditability
-
----
-
-## Security, Compliance, and Auditability
-
-- Store secrets in vaults (e.g., HashiCorp Vault, Azure Key Vault) and inject at runtime
-- Use signed commits and protected branches
-- Enable audit logging for all automation actions
+```yaml
+groups:
+  - name: network_automation
+    rules:
+      - alert: HighErrorRate
+        expr: rate(network_automation_runs_total{status="failed"}[5m]) > 0.1
+        annotations:
+          summary: "High automation error rate"
+      
+      - alert: JobTimeout
+        expr: increase(network_automation_runs_total{status="timeout"}[1h]) > 5
+        annotations:
+          summary: "Multiple timeouts detected"
+```
 
 ---
 
-## PRIME in Action: Safety, Measurability, and Empowerment
+## Key Takeaways
 
-- Automate rollbacks and safe deployments
-- Track every deployment, change, and outcome
-- Build dashboards for key metrics and share with stakeholders
-- Empower teams with self-service, auditable automation
+✅ **Multi-stage CI/CD prevents errors** - Lint, test, then deploy  
+✅ **Structured logging enables investigation** - JSON format for searching  
+✅ **Metrics provide visibility** - Performance and error tracking  
+✅ **Alerts enable proactive response** - Early problem detection  
+✅ **Audit trails ensure compliance** - Complete change history  
 
 ---
 
-## Summary: Tutorial Takeaways
+## PRIME in Action
 
-- DevOps and observability make automation safe, scalable, and repeatable
-- Advanced CI/CD, GitOps, and monitoring are essential for production-grade automation
-- PRIME principles ensure safety, empowerment, transparency, and compliance
+- ✅ **Safety:** Multi-stage gates prevent production incidents
+- ✅ **Measuring:** Metrics track automation performance  
+- ✅ **Empowerment:** Teams manage deployments via GitOps
+- ✅ **Re-engineer:** Data drives continuous improvement
 
 ---
 
@@ -154,7 +175,6 @@ logger.info("automation_run", device="router1", status="success")
 - [Asyncio for Network Automation](asyncio-network-automation.md)
 - [Secure Credential Vaulting](secure-credential-vaulting.md)
 - [Tool Ecosystem Integration](tool-ecosystem-integration.md)
-- [Blueprint for Enterprise-Ready Network Automation Pipelines](../../blog/posts/enterprise-automation-pipeline-blueprint.md)
 - [PRIME Framework Overview](../../prime-framework/index.md)
 
 ---

@@ -101,7 +101,7 @@ results = nr.run(task=show_version)
 
 - Idempotent playbooks prevent accidental config drift
 - Huge ecosystem of modules for network, cloud, and server automation
-- Easy integration with CI/CD and ITSM via Ansible Tower/AWX
+- Easy integration with CI/CD and ITSM via AWX
 
 **Sample Pattern:**
 
@@ -175,7 +175,7 @@ An enterprise started with Ansible for rapid onboarding, but as workflows grew m
 
 - Use Nornir or Ansible with NetBox for dynamic inventory
 - Integrate PyATS validation into CI/CD pipelines for compliance gates
-- Use Ansible Tower/AWX or custom Python scripts for ITSM integration
+- Use AWX or custom Python scripts for ITSM integration
 
 ---
 
