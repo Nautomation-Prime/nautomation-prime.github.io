@@ -88,17 +88,17 @@ Ready-to-use automation tools for common network tasks.
 
 ### By Category
 
-**Device Information & Auditing**
-  - [CDP Network Audit](deep-dives/cdp-audit.md) — Find and validate CDP discoveries
-  - [Access Switch Audit](deep-dives/access-switch-audit.md) — Detect configuration drift
+- **Device Information & Auditing**
+    - [CDP Network Audit](deep-dives/cdp-audit.md) — Find and validate CDP discoveries
+    - [Access Switch Audit](deep-dives/access-switch-audit.md) — Detect configuration drift
 
-**Configuration Management**
-  - [Multi-Device Config Backup](tutorials/beginner/multi-device-config-backup.md) — Backup enterprise configurations  
-  - [Enterprise Config Backup with Nornir](tutorials/intermediate/enterprise-config-backup-nornir.md) — Scale to thousands of devices
+- **Configuration Management**
+    - [Multi-Device Config Backup](tutorials/beginner/multi-device-config-backup.md) — Backup enterprise configurations  
+    - [Enterprise Config Backup with Nornir](tutorials/intermediate/enterprise-config-backup-nornir.md) — Scale to thousands of devices
 
-**Reporting & Data Export**
-  - [Show Command to Excel](tutorials/beginner/netmiko-show-command-to-excel.md) — Execute commands and generate reports
-  - [Multi-Device Show Commands](tutorials/beginner/multi-device-show-command.md) — Query and compare device data
+- **Reporting & Data Export**
+    - [Show Command to Excel](tutorials/beginner/netmiko-show-command-to-excel.md) — Execute commands and generate reports
+    - [Multi-Device Show Commands](tutorials/beginner/multi-device-show-command.md) — Query and compare device data
 
 **[Full Scripts Library](scripts/index.md)** — Browse all available tools
 
