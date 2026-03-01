@@ -33,20 +33,20 @@ Nautomation Prime is built by and for the community. This post explains how you 
 - **Share your success story:** Submit a case study, lesson learned, or automation win. Inspire others and get featured! We're looking for stories about network transformation, cost savings, team empowerment, and lessons learned from failures.
 - **Contribute real-world scripts:** Share production-grade automation tools, templates, or frameworks you've built. Include documentation, examples, and test coverage. We'll integrate and credit you.
 - **Write technical deep-dives:** Author tutorials, walkthroughs, or technical guides on topics like:
-  - Device-specific automation (IOS-XE, NX-OS, Junos, Arista)
-  - Framework deep-dives (Nornir advanced patterns, Ansible role design, PyATS testbed strategies)
-  - Integration patterns (ITSM, monitoring, observability)
-  - Vendor-specific APIs and models
+    - Device-specific automation (IOS-XE, NX-OS, Junos, Arista)
+    - Framework deep-dives (Nornir advanced patterns, Ansible role design, PyATS testbed strategies)
+    - Integration patterns (ITSM, monitoring, observability)
+    - Vendor-specific APIs and models
 - **Suggest a topic:** Request a blog post, tutorial, or deep dive on something you want to learn or teach. Tell us what knowledge gap exists in the community and we'll prioritize creating content to fill it.
 
 ### Code & Documentation
 
 - **Contribute code:** Submit scripts, tools, bug fixes, or improvements via GitHub. See our [contribution guidelines](#contribution-guidelines-best-practices) below. Examples include:
-  - New Nornir plugins or inventory integrations
-  - PyATS test libraries and compliance checkers
-  - Ansible roles for network automation workflows
-  - Utility libraries for credential management, logging, or observability
-  - CI/CD pipeline templates and GitHub Actions workflows
+    - New Nornir plugins or inventory integrations
+    - PyATS test libraries and compliance checkers
+    - Ansible roles for network automation workflows
+    - Utility libraries for credential management, logging, or observability
+    - CI/CD pipeline templates and GitHub Actions workflows
 - **Review and improve docs:** Help make our guides clearer, more accurate, and more useful for everyone. Fix typos, clarify confusing sections, add examples, or improve organization.
 - **Create examples and demos:** Build working code samples that demonstrate best practices covered in our tutorials or framework stages.
 
@@ -181,8 +181,8 @@ tags:
 ### Code Standards
 
 - **Python:** Follow PEP 8, use type hints, aim for 80%+ test coverage
-  - Use tools: `black` for formatting, `flake8` for linting, `pytest` for testing
-  - Example: `pytest tests/ --cov=src --cov-report=html`
+    - Use tools: `black` for formatting, `flake8` for linting, `pytest` for testing
+    - Example: `pytest tests/ --cov=src --cov-report=html`
 - **Documentation:** Clear docstrings, inline comments for complex logic, README with examples
 - **Testing:** Unit tests, integration tests, mock device tests. Write tests *before* code (TDD preferred)
 - **Git hygiene:** Meaningful commit messages, one feature per branch, rebase before PR
@@ -385,55 +385,48 @@ def test_discover_multiple_hosts(host, expected_neighbors):
 
 ## Frequently Asked Questions
 
-### Q: I don't know much Python or coding—can I still contribute?
+??? question "I don't know much Python or coding—can I still contribute?"
+    Absolutely! We welcome contributions at all skill levels:
+        - **Write docs or blog posts** — You don't need to code
+        - **Report bugs** — Found an issue? File a bug report with details
+        - **Suggest ideas** — Tell us what's missing or what you'd like to learn
+        - **Help others** — Answer questions in forums or chat
+        - **Translate content** — Localize docs for non-English communities
 
-**A:** Absolutely! We welcome contributions at all skill levels:
-    - **Write docs or blog posts** — You don't need to code
-    - **Report bugs** — Found an issue? File a bug report with details
-    - **Suggest ideas** — Tell us what's missing or what you'd like to learn
-    - **Help others** — Answer questions in forums or chat
-    - **Translate content** — Localize docs for non-English communities
+??? question "How long does it take to get a PR merged?"
+    Typically 5–10 business days:
+        - Initial review within 48 hours
+        - Feedback and iteration during the week
+        - Merge once approved and CI/CD passes
+        - Complex PRs may take longer; we'll communicate timeline upfront
 
-### Q: How long does it take to get a PR merged?
+??? question "Can I contribute a tool or script that uses a vendor-specific API?"
+    Yes! We welcome vendor-specific tools as long as:
+        - The code is well-documented and tested
+        - It follows our code standards (PEP 8, type hints, test coverage)
+        - It's licensed under Apache 2.0 or MIT
+        - It's open-source (no proprietary libraries)
+        - It includes clear setup and usage instructions
+        - It includes examples and edge-case handling
 
-**A:** Typically 5–10 business days:
-    - Initial review within 48 hours
-    - Feedback and iteration during the week
-    - Merge once approved and CI/CD passes
-    - Complex PRs may take longer; we'll communicate timeline upfront
+??? question "What if my contribution gets rejected or heavily modified?"
+    That's normal! Code review and feedback help make automation better. We appreciate your work and will:
+        - Explain the reasoning clearly
+        - Suggest alternative approaches
+        - Help you iterate and improve
+        - Credit you regardless of the final form
 
-### Q: Can I contribute a tool or script that uses a vendor-specific API?
+??? question "Can I contribute anonymously?"
+    We prefer to credit contributors by name (it's great for your portfolio!), but we can discuss anonymity on a case-by-case basis. Reach out via email to discuss.
 
-**A:** Yes! We welcome vendor-specific tools as long as:
-    - The code is well-documented and tested
-    - It follows our code standards (PEP 8, type hints, test coverage)
-    - It's licensed under Apache 2.0 or MIT
-    - It's open-source (no proprietary libraries)
-    - It includes clear setup and usage instructions
-    - It includes examples and edge-case handling
-
-### Q: What if my contribution gets rejected or heavily modified?
-
-**A:** That's normal! Code review and feedback help make automation better. We appreciate your work and will:
-    - Explain the reasoning clearly
-    - Suggest alternative approaches
-    - Help you iterate and improve
-    - Credit you regardless of the final form
-
-### Q: Can I contribute anonymously?
-
-**A:** We prefer to credit contributors by name (it's great for your portfolio!), but we can discuss anonymity on a case-by-case basis. Reach out via email to discuss.
-
-### Q: How do I become a maintainer?
-
-**A:** We look for:
-    - Consistent contributions over 6+ months
-    - Deep knowledge of project(s)
-    - Active participation in code reviews
-    - Strong communication and mentorship skills
-    - Agreement to our maintainer responsibilities (detailed in MAINTAINERS.md)
-
-Reach out to the team if you're interested in stepping into this role.
+??? question "How do I become a maintainer?"
+    We look for:
+        - Consistent contributions over 6+ months
+        - Deep knowledge of project(s)
+        - Active participation in code reviews
+        - Strong communication and mentorship skills
+        - Agreement to our maintainer responsibilities (detailed in MAINTAINERS.md)
+    Reach out to the team if you're interested in stepping into this role.
 
 ---
 
