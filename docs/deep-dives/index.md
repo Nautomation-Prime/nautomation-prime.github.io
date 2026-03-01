@@ -42,7 +42,8 @@ Every technical guide in this library adheres to three core principles:
 
 ## 🚀 How to Use These Guides
 
-**Important:** These Deep Dives assume you already know Python. We teach you how Python solves network automation problems—not Python fundamentals. If you're new to Python, start with a Python course first, then come back here.
+!!! warning "Python Prerequisite"
+  This site focuses on applying Python to network automation. We assume familiarity with core Python concepts (variables, functions, loops, exceptions, and file I/O). If you're new to Python, complete a fundamentals course first, then return here.
 
 Each Deep Dive is structured as:
 
