@@ -24,7 +24,7 @@ Now consider these real-world scenarios:
 
 **Decorators are Python's answer to these problems.**
 
-Decorators let you wrap functions with cross-cutting behavior—retry logic, logging, error handling, rate limiting—without modifying the original function. In network automation, this pattern separates your **core device logic** from your **operational concerns**.
+Decorators let you wrap functions with cross-cutting behaviour—retry logic, logging, error handling, rate limiting—without modifying the original function. In network automation, this pattern separates your **core device logic** from your **operational concerns**.
 
 ---
 
@@ -225,8 +225,8 @@ except Exception as e:
 ### Why This Matters
 
 - **Resilience** — Transient failures don't crash your automation
-- **No code duplication** — Every function you decorate gets retry behavior
-- **Configurable** — Adjust retry behavior per function, not at application level
+- **No code duplication** — Every function you decorate gets retry behaviour
+- **Configurable** — Adjust retry behaviour per function, not at application level
 - **Observable** — Print statements show retry attempts (integrate with logging in production)
 
 ---
@@ -355,7 +355,7 @@ provision_vlan(device, 100, "Management")
 - **Compliance** — Every change is tracked with timestamp and outcome
 - **Troubleshooting** — When something goes wrong, you have a complete audit trail
 - **Accountability** — Clear record of what automation did
-- **Forensics** — Analyze what happened during a failure
+- **Forensics** — Analyse what happened during a failure
 
 ---
 
@@ -685,8 +685,8 @@ parse_and_store:
 ### Why This Matters
 
 - **Identify bottlenecks** — See which operations are slow
-- **Data-driven optimization** — Fix what actually matters
-- **Track improvements** — Measure impact of optimizations
+- **Data-driven optimisation** — Fix what actually matters
+- **Track improvements** — Measure impact of optimisations
 - **Capacity planning** — Understand performance at scale
 
 ---
@@ -857,7 +857,7 @@ def conditional_retry(condition, **retry_kwargs):
         return wrapper
     return decorator
 
-# Use environment variable to control behavior
+# Use environment variable to control behaviour
 PRODUCTION = os.getenv("ENV") == "production"
 
 @conditional_retry(
@@ -1392,7 +1392,7 @@ Decorators solve real problems in network automation:
 | Compliance audits | Audit logging | Complete audit trail for every operation |
 | Rate limits | Rate limiter | Scale safely without triggering limits |
 | Performance bottlenecks | Performance monitor | Identify and fix slow operations |
-| Error handling | Unified error handling | Consistent error behavior and alerting |
+| Error handling | Unified error handling | Consistent error behaviour and alerting |
 | Cross-cutting concerns | Composable decorators | Separation of business logic and infrastructure |
 
 **Master these patterns and your network automation will be more resilient, observable, and maintainable.**
