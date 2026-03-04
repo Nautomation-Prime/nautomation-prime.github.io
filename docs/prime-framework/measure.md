@@ -303,7 +303,7 @@ ROI varies based on key inputs. Here's how different scenarios affect returns:
 !!! info "ROI Calculator Available"
     **Want to calculate ROI for your specific environment?**
 
-    A downloadable ROI calculator spreadsheet is available under [Resources](../../resources/index.md) to help you estimate your automation value with your own inputs:
+    An ROI calculator spreadsheet is available on request to help you estimate your automation value with your own inputs:
 
     - Baseline duration and frequency
     - Error rates and rework time
@@ -312,6 +312,8 @@ ROI varies based on key inputs. Here's how different scenarios affect returns:
 
     The calculator provides instant Year-1 ROI, steady-state ROI, and payback period calculations.
 
+    **[Request A Copy](mailto:nautomationprime.f3wfe@simplelogin.com)**
+    
 ---
 
 ### 5. Continuous Improvement Analysis
