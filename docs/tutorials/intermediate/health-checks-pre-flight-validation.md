@@ -564,4 +564,4 @@ Pre-flight validation is critical:
 
 ## Next Steps
 
-- **[Circuit Breakers & Backpressure](./circuit-breakers-backpressure-network-automation.md)** — Safety at scale
+- **[Circuit Breakers & Backpressure](../expert/circuit-breakers-backpressure-network-automation.md)** — Safety at scale

@@ -747,6 +747,7 @@ class AutomationEngine:
 ## Summary
 
 Incident automation provides:
+
 - **Detection** → Pattern matching identifies problems
 - **Response** → Automatic remediation for known issues
 - **History** → Track what happened and why
@@ -757,6 +758,6 @@ Incident automation provides:
 
 ## Related Patterns
 
-- **[Testing Patterns](./testing-network-automation.md)** — Test remediation behaviors
-- **[Health Checks](./health-checks-pre-flight-validation.md)** — Detect issues early
+- **[Testing Patterns](../intermediate/testing-network-automation.md)** — Test remediation behaviors
+- **[Health Checks](../intermediate/health-checks-pre-flight-validation.md)** — Detect issues early
 - **[Circuit Breakers](./circuit-breakers-backpressure-network-automation.md)** — Prevent cascade failures

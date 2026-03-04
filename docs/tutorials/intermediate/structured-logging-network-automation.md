@@ -700,4 +700,4 @@ logger.info("Device 2 configured")
 ## Next Steps
 
 - **[Health Checks & Pre-Flight](./health-checks-pre-flight-validation.md)** — Log pre-deployment validation
-- **[Circuit Breakers](./circuit-breakers-backpressure-network-automation.md)** — Log safe failure patterns
+- **[Circuit Breakers](../expert/circuit-breakers-backpressure-network-automation.md)** — Log safe failure patterns
