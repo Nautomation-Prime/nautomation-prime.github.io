@@ -13,7 +13,7 @@ tags:
 
 ## Why Decorators Matter in Network Automation
 
-You've written automation that connects to devices, extracts data, and makes changes. 
+You've written automation that connects to devices, extracts data, and makes changes.
 
 Now consider these real-world scenarios:
 
@@ -54,7 +54,7 @@ def configure_interface(device, interface, config):
     device.send_command(config)
 ```
 
-**Result:** 
+**Result:**
 
 - Retries automatically on failure
 - Logs every attempt for compliance
@@ -333,7 +333,7 @@ provision_vlan(device, 100, "Management")
 
 ### Audit Log Output
 
-```
+```text
 2026-03-04 14:23:45,123 - network_audit - INFO - [AUDIT START] {
   'timestamp': '2026-03-04T14:23:45.123456', 
   'action': 'enable_interface', 
@@ -649,7 +649,7 @@ perf.report()
 
 ### Example Output
 
-```
+```text
 ============================================================
 PERFORMANCE REPORT
 ============================================================
@@ -1264,7 +1264,7 @@ results = deployer.deploy_to_fleet(devices, config)
 
 ### Output
 
-```
+```text
 INFO:__main__:AUDIT START - action=deploy_config, device=10.0.0.1
 INFO:__main__:[deploy_to_single_device] took 2.34s
 INFO:__main__:✅ 10.0.0.1: deployment successful
