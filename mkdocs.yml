@@ -160,10 +160,10 @@ nav:
       - prime-framework/index.md
       - Prime Philosophy: prime-framework/philosophy.md
       - Pinpoint: prime-framework/pinpoint.md
+      - Re-Engineer: prime-framework/re-engineer.md
       - Implement: prime-framework/implement.md
       - Measure: prime-framework/measure.md
       - Empower: prime-framework/empower.md
-      - Re-Engineer: prime-framework/re-engineer.md
   - About:
       - about.md
       - founder.md
