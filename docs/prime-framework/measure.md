@@ -69,7 +69,7 @@ Before deploying automation, we capture baseline performance:
 
 | Metric | How to Measure | Example |
 | :--- | :--- | ---: |
-| **Labor Cost** | Time × Blended rate | £6,000/year |
+| **Labour Cost (fully loaded)** | Time × Fully loaded rate | £6,000/year |
 | **Opportunity Cost** | Blocked work value | Unknown |
 | **User Impact** | Support tickets | 15 tickets/month |
 
@@ -85,7 +85,7 @@ Annual Time:         120 hours
 Error Rate:          12% (58 failures/year)
 Rework Time:         43 hours/year
 Total Time Cost:     163 hours/year
-Financial Cost:      £8,150/year @ £50/hour
+Labour Cost (fully loaded): £8,150/year @ £50/hour
 ```
 
 ---
@@ -216,7 +216,16 @@ Failures:         4 devices (3× auth timeout, 1× config rollback)
 
 ### 4. ROI Calculation
 
-We prove value with concrete numbers:
+We prove value with concrete numbers.
+
+!!! note "ROI Formulas"
+    **ROI (%) = (Total Annual Benefits − Total Costs) ÷ Total Costs × 100**
+
+    **Payback (months) = Implementation Cost ÷ Monthly Net Benefit**
+
+    We use your team's **fully loaded hourly rate** (salary + benefits + overhead) for all labour cost calculations.
+
+    **Note:** Actual ROI varies by labour rates, change volume, process maturity, and tooling—calculated using your data during discovery.
 
 #### Time Savings
 
@@ -238,24 +247,70 @@ Annual: 0.4 hours/month × 12 = 4.8 hours/year
 
 #### Error Reduction
 
-**Manual Error Rate:** 12% (58 failures/year, 43 hours rework)  
-**Automated Error Rate:** 2.6% (12 failures/year, 0 rework—automatic rollback)
+**Manual Error Rate:** 12% (58 failures/year, 43 hours rework)
+**Automated Error Rate:** ~2-3% with auto-rollback (12 failures/year); rework typically ≤10% of baseline rework time (4.3 hours/year)
 
-**Rework Hours Saved:** 43 hours/year
+**Rework Hours Saved:** 43 - 4.3 = **38.7 hours/year** (conservative estimate accounting for investigation and retries)
 
 #### Total Financial Impact
 
 ```text
-Time Savings:        115.2 hours × £50/hour = £5,760
-Error Reduction:     43 hours × £50/hour    = £2,150
-─────────────────────────────────────────────────
-Total Annual Savings:                        £7,910
+Time Savings:             115.2 hours × £50/hour = £5,760
+Error Reduction:          38.7 hours × £50/hour  = £1,935
+─────────────────────────────────────────────────────
+Total Annual Savings:                             £7,695
 
-Implementation Cost: £6,000 (one-time)
-Payback Period:      9.1 months
-Year 1 ROI:          32% (£7,910 - £6,000) / £6,000
-Year 2 ROI:          132% (pure savings, no new cost)
+Implementation Cost:      £6,000 (one-time)
+Ongoing Cost (annual):    £1,200 (maintenance, monitoring, platform)
+
+Net Annual Benefit (Year 1):    £7,695 - £6,000 - £1,200 = £495
+Net Annual Benefit (Steady-state): £7,695 - £1,200 = £6,495
+
+Year-1 ROI:              (£495) ÷ (£6,000 + £1,200) × 100 = 6.9%
+Steady-state ROI:        (£6,495) ÷ (£1,200) × 100 = 541%
+
+Payback Period:          9.3 months (assuming £659 monthly net benefit)
+                        (With £1,200/yr maintenance included)
 ```
+
+!!! tip "Additional Value Streams"
+    **Risk Reduction:** Avoided compliance penalties and incidents (expected value analysis)
+
+    **Throughput Uplift:** Saved time converts to additional change capacity—accelerates backlog burn-down and enables faster feature delivery
+
+    **SLA Improvements:** Reduced mean time to complete changes improves service levels
+
+#### Sensitivity Analysis
+
+ROI varies based on key inputs. Here's how different scenarios affect returns:
+
+| Variable | Low Scenario | Base Case | High Scenario |
+| :--- | :--- | :--- | :--- |
+| **Labour Rate** | £35/hour | £50/hour | £65/hour |
+| **Annual Savings** | £5,382 | £7,695 | £10,009 |
+| **Year-1 ROI** | -25% | 6.9% | 39% |
+| **Payback Period** | 16.2 months | 9.3 months | 6.8 months |
+
+| Variable | Low Volume | Base Case | High Volume |
+| :--- | :--- | :--- | :--- |
+| **Change Volume** | 30/month | 40/month | 50/month |
+| **Annual Savings** | £5,771 | £7,695 | £9,619 |
+| **Year-1 ROI** | -20% | 6.9% | 34% |
+| **Payback Period** | 15.0 months | 9.3 months | 7.1 months |
+
+**Key Insight:** ROI is most sensitive to labour rates and change volume. Higher wage environments and busier teams see faster payback.
+
+!!! info "ROI Calculator Available"
+    **Want to calculate ROI for your specific environment?**
+
+    A downloadable ROI calculator spreadsheet is available under [Resources](../../resources/index.md) to help you estimate your automation value with your own inputs:
+
+    - Baseline duration and frequency
+    - Error rates and rework time
+    - Fully loaded labour rates
+    - Implementation and ongoing costs
+
+    The calculator provides instant Year-1 ROI, steady-state ROI, and payback period calculations.
 
 ---
 
@@ -317,8 +372,8 @@ VLAN Provisioning Automation
 ✓ 480 changes executed (100% of volume automated)
 ✓ 97.5% success rate (467 successful, 13 failed)
 ✓ 115 hours saved vs manual process
-✓ £7,910 cost avoidance
-✓ ROI: 32% (Year 1), 132% (Year 2+)
+✓ £7,695 annual cost avoidance
+✓ ROI: 6.9% (Year-1), 100%+ steady-state (depending on ongoing cost)
 
 Network Audit Automation
 ────────────────────────
