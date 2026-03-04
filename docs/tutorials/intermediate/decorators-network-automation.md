@@ -572,13 +572,14 @@ import functools
 import time
 import statistics
 from collections import defaultdict
+from threading import Lock
 
 class PerformanceMonitor:
-    """Track and report performance metrics."""
+    """Thread-safe performance monitor for tracking execution time."""
     
     def __init__(self):
         self.metrics = defaultdict(list)
-        self.lock = {}
+        self.lock = Lock()
     
     def monitor(self, func):
         @functools.wraps(func)
@@ -589,7 +590,8 @@ class PerformanceMonitor:
                 return result
             finally:
                 elapsed = time.time() - start_time
-                self.metrics[func.__name__].append(elapsed)
+                with self.lock:
+                    self.metrics[func.__name__].append(elapsed)
                 print(f"[{func.__name__}] took {elapsed:.2f}s")
         
         return wrapper
@@ -600,7 +602,10 @@ class PerformanceMonitor:
         print("PERFORMANCE REPORT")
         print("="*60)
         
-        for func_name, times in self.metrics.items():
+        with self.lock:
+            metrics_snapshot = dict(self.metrics)
+        
+        for func_name, times in metrics_snapshot.items():
             print(f"\n{func_name}:")
             print(f"  Calls:     {len(times)}")
             print(f"  Min:       {min(times):.3f}s")
