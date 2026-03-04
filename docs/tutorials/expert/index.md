@@ -35,7 +35,10 @@ By working through these expert tutorials, you will:
 ## ✅ Available Expert Tutorials
 
 - [Asyncio for Network Automation: High-Performance, Non-Blocking Operations](asyncio-network-automation.md)
+- [Circuit Breakers and Backpressure for Network Automation](circuit-breakers-backpressure-network-automation.md)
+- [Dependency Management and Task Orchestration](dependency-ordering-task-orchestration.md)
 - [DevOps and Observability for Network Automation: CI/CD, GitOps, and Monitoring](devops-observability-network-automation.md)
+- [Incident Response Automation](incident-response-automation.md)
 - [Nornir + PyATS Integration: Enterprise-Grade Automation and Validation](nornir-pyats-integration.md)
 - [Secure Credential Vaulting for Network Automation: HashiCorp Vault, AWS Secrets Manager, and Beyond](secure-credential-vaulting.md)
 - [Tool Ecosystem Integration for Network Automation: Netbox, ServiceNow, DNA Center, and More](tool-ecosystem-integration.md)

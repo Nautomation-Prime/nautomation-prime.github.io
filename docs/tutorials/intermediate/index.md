@@ -73,6 +73,17 @@ Before diving into specific frameworks, master **decorator patterns**—the Pyth
 
 Decorators are the "secret weapon" of production network automation. You'll see them used throughout PyATS and Nornir tutorials.
 
+### Production Reliability Series (New)
+
+These intermediate tutorials extend the core PyATS/Nornir path with production operational patterns:
+
+- [Testing Automation Scripts](./testing-network-automation.md)
+- [Credential Management for Network Automation](./credential-management-network-automation.md)
+- [Error Recovery and Rollback](./error-recovery-rollback-network-automation.md)
+- [State Management and Idempotency](./state-management-idempotency-network-automation.md)
+- [Structured Logging for Network Automation](./structured-logging-network-automation.md)
+- [Health Checks and Pre-Flight Validation](./health-checks-pre-flight-validation.md)
+
 ---
 
 ## 📚 What You'll Learn

@@ -44,7 +44,13 @@ Ready to handle more complex scenarios and multi-device operations.
 - **Prerequisites**: Comfortable with beginner concepts, understand functions and data structures
 - **Topics**: Threading & concurrency, custom TextFSM templates, Jinja2 templating, structured logging, argparse CLIs, retry logic, code organization
 
-**Coming Soon**: Multi-threaded device collection, configuration templating, advanced error handling, professional CLI tools
+**New Production Patterns Available:**
+- [Testing Automation Scripts](./intermediate/testing-network-automation.md)
+- [Credential Management for Network Automation](./intermediate/credential-management-network-automation.md)
+- [Error Recovery and Rollback](./intermediate/error-recovery-rollback-network-automation.md)
+- [State Management and Idempotency](./intermediate/state-management-idempotency-network-automation.md)
+- [Structured Logging for Network Automation](./intermediate/structured-logging-network-automation.md)
+- [Health Checks and Pre-Flight Validation](./intermediate/health-checks-pre-flight-validation.md)
 
 ---
 
@@ -56,7 +62,10 @@ Production-grade automation with enterprise patterns and advanced techniques.
 - **Prerequisites**: Strong Python skills, experience with intermediate tutorials
 - **Topics**: **Nornir framework**, asyncio, NAPALM, PyATS, database integration, credential vaulting, API development, GitOps, CI/CD, containerization, observability
 
-**Coming Soon**: Nornir automation, HashiCorp Vault integration, event-driven automation, GitOps workflows, Netbox integration, streaming telemetry
+**New Production Patterns Available:**
+- [Circuit Breakers and Backpressure](./expert/circuit-breakers-backpressure-network-automation.md)
+- [Dependency Management and Task Orchestration](./expert/dependency-ordering-task-orchestration.md)
+- [Incident Response Automation](./expert/incident-response-automation.md)
 
 ---
 
