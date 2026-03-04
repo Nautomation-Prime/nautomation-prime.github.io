@@ -58,6 +58,21 @@ The **final tutorial** shows how to combine both:
 - Validate with PyATS (structured testing)
 - Use PRIME Framework integration for repeatable, safe deployments
 
+### Foundation Pattern: Decorators in Network Automation
+
+Before diving into specific frameworks, master **decorator patterns**—the Python technique used throughout production automation.
+
+**Why it matters:**
+
+- ✅ **Retry Logic** — Handle transient failures automatically without rewriting code
+- ✅ **Audit Logging** — Compliance tracking for every operation
+- ✅ **Error Handling** — Unified error handling and alerts across all functions
+- ✅ **Rate Limiting** — Prevent API throttling and device overload
+- ✅ **Performance Monitoring** — Identify bottlenecks data-driven optimization
+- ✅ **Composable Infrastructure** — Stack multiple concerns without code duplication
+
+Decorators are the "secret weapon" of production network automation. You'll see them used throughout PyATS and Nornir tutorials.
+
 ---
 
 ## 📚 What You'll Learn
@@ -72,6 +87,16 @@ By completing these intermediate tutorials, you'll understand:
 - ✅ Pre-flight and post-flight validation patterns
 - ✅ Integrating PyATS into deployment workflows
 - ✅ Handling failures and automatic rollback
+
+**Decorator Foundations (Applies to All Paths):**
+
+- ✅ How decorators solve cross-cutting concerns
+- ✅ Retry patterns for resilience
+- ✅ Logging and audit trails for compliance
+- ✅ Error handling and recovery
+- ✅ Rate limiting for safe scaling
+- ✅ Performance monitoring and optimization
+- ✅ Composing multiple decorators together
 
 **Nornir Path:**
 
@@ -125,11 +150,10 @@ pip install nornir nornir-netmiko nornir-utils netmiko pandas openpyxl pyyaml
 ### Required Access
 
 - **Multiple Cisco devices** (5+) with:
-
-  - SSH enabled
-  - Same credentials
-  - Reachable from your workstation
-  - Privilege level 15 (to read running configs)
+    - SSH enabled
+    - Same credentials
+    - Reachable from your workstation
+    - Privilege level 15 (to read running configs)
 
 ### Optional: Choose Your Path
 
@@ -140,6 +164,31 @@ pip install nornir nornir-netmiko nornir-utils netmiko pandas openpyxl pyyaml
 ---
 
 ## 📚 Tutorial Series
+
+### Foundation Patterns: Master Core Python Techniques
+
+#### 0. [Decorators in Network Automation — Build Resilient, Observable Systems](./decorators-network-automation.md)
+
+**Master the decorator pattern used throughout production automation.**
+
+Learn:
+
+- Why decorators matter in network automation
+- Automatic retry with exponential backoff
+- Audit logging for compliance
+- Unified error handling
+- Rate limiting for safe scaling
+- Performance monitoring and optimization
+- Composing multiple decorators
+- Integration with Nornir and PyATS
+
+**What You'll Build:** Reusable decorators you'll use in every subsequent tutorial—retry logic, audit logging, error handling, rate limiting, and performance monitoring.
+
+**Why Now:** These patterns are foundational and used throughout the remaining tutorials. Understanding decorators first makes the PyATS and Nornir tutorials much clearer.
+
+**Prerequisite:** Comfortable with Python functions and basic OOP
+
+---
 
 ### PyATS: Master Network Validation
 
@@ -157,7 +206,7 @@ Learn:
 
 **What You'll Build:** A first validation test that parses device state and confirms changes succeeded.
 
-**Prerequisite:** Complete Beginner tutorials
+**Prerequisite:** Complete Beginner tutorials and Tutorial #0 (Decorators)
 
 ---
 
@@ -328,15 +377,18 @@ my-nornir-project/
 
 We'll build this structure in Tutorial #2.
 
----
-
 ## 💡 How to Use These Tutorials
 
-1. **Read the "Why" sections first** — Understand the problem before the solution
-2. **Review complete working code** — Copy and run each script in your lab
-3. **Study the line-by-line breakdown** — Learn exactly what each line does
-4. **Experiment and modify** — Change parameters, try different devices
-5. **Build on the patterns** — Use Tutorial #4 patterns in your own automation
+1. **Start with Tutorial #0: Decorators** — Understanding decorator patterns makes all subsequent tutorials clearer
+2. **Choose your path:**
+   - **PyATS focused?** Continue to Tutorial #1
+   - **Nornir focused?** Skip to Tutorial #4
+   - **Want it all?** Follow tutorials in order (0-7)
+3. **Read the "Why" sections first** — Understand the problem before the solution
+4. **Review complete working code** — Copy and run each script in your lab
+5. **Study the line-by-line breakdown** — Learn exactly what each line does
+6. **Experiment and modify** — Change parameters, try different devices
+7. **Build on the patterns** — Use decorators and framework patterns in your own automation
 
 ---
 
@@ -344,17 +396,18 @@ We'll build this structure in Tutorial #2.
 
 ```mermaid
 graph LR
-    A["Beginner Tutorials<br>(Fundamentals)"] --> B["Tutorial 1: Why Nornir<br>(Understand Problem)"]
-    B --> C["Tutorial 2: Fundamentals<br>(Learn Framework)"]
-    C --> D["Tutorial 3: Config Backup<br>(Build System)"]
-    D --> E["Tutorial 4: Advanced Patterns<br>(Master Architecture)"]
+    A["Beginner Tutorials<br>(Fundamentals)"] --> B["Tutorial 0: Decorators<br>(Foundation)"]
+    B --> C["Tutorial 1-3: PyATS<br>(Validation)"]
+    B --> D["Tutorial 4-7: Nornir<br>(Scale)"]
+    C --> E["Tutorial 8: PyATS + Nornir<br>(Combined)"]
+    D --> E
     E --> F["Ready for<br>Expert + Consulting"]
     
     style A fill:#90EE90
-    style B fill:#87CEEB
+    style B fill:#DAA520
     style C fill:#87CEEB
     style D fill:#87CEEB
-    style E fill:#87CEEB
+    style E fill:#FFB6C1
     style F fill:#FFD700
 ```
 
@@ -391,7 +444,10 @@ After completing all 4 intermediate tutorials, you'll be able to:
 ---
 
 !!! success "Next Steps"
-    Ready? Start with **[Tutorial #1: Why Nornir](./why-nornir.md)** to understand the problem Nornir solves.
+    Ready? Start with **[Tutorial #0: Decorators in Network Automation](./decorators-network-automation.md)** to master foundational patterns used throughout the remaining tutorials.
+    Then choose your path:
+    - **PyATS track?** Continue to [Tutorial #1: PyATS Fundamentals](./pyats-fundamentals.md)
+    - **Nornir track?** Skip to [Tutorial #4: Why Nornir?](./why-nornir.md)
 
 ---
 
