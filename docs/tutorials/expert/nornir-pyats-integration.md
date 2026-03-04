@@ -42,6 +42,8 @@ This isn't just about running commands—it's about building resilient, observab
 
 **Environment Setup:**
 
+> **Platform note:** PyATS/Genie is best supported on Linux and macOS. If you're on Windows, run this tutorial in WSL2 (recommended), a Linux VM, or a Linux container.
+
 ```bash
 pip install nornir nornir-netmiko nornir-utils nornir-napalm
 pip install pyats genie unicon

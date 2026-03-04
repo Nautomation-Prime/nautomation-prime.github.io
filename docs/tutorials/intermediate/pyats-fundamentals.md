@@ -17,6 +17,12 @@ That's not millions per year. **Millions per month.**
 
 If you're building production network automation—whether deploying configurations, upgrading devices, or making bulk changes—you need **validation**. PyATS is how enterprise teams prove their automation actually worked.
 
+### Platform Support Note
+
+PyATS/Genie is built for **Linux and macOS environments**. Native Windows installation is typically not supported for full workflows.
+
+If you're on Windows, run these tutorials using **WSL2**, a Linux VM, or a containerized Linux environment.
+
 ---
 
 ## What is PyATS?

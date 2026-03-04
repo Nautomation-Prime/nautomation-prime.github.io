@@ -15,6 +15,10 @@ You've learned PyATS fundamentals and validation patterns. Now the critical piec
 
 This is where automation becomes **reliable**.
 
+### Platform Support Note
+
+Run this tutorial from a **Linux or macOS** environment for best compatibility with PyATS/Genie. On Windows, use **WSL2** or a Linux VM/container.
+
 ---
 
 ## The Reality of Production Automation

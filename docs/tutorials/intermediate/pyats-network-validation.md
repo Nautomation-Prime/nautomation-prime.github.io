@@ -20,6 +20,10 @@ This guide focuses on:
 - Handling common pitfalls (dealing with failures, timeouts, credential issues)
 - Scaling across multiple devices
 
+### Platform Support Note
+
+PyATS/Genie workflows are intended for **Linux and macOS**. If you're working from Windows, use **WSL2** (recommended), a Linux VM, or a Linux container before following the examples.
+
 ---
 
 ## Deep Dive: Device Parsing
