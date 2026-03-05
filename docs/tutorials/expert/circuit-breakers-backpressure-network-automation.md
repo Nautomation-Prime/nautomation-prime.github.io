@@ -38,7 +38,7 @@ tags:
 
 ```mermaid
 flowchart TB
-    A["CLOSED<br>(Normal Operation)"] -- Failure! ← Failure hits threshold --> B["OPEN<br>(Failing)<br>(Requests fail fast)"]
+    A["CLOSED<br>(Normal Operation)"] -- Failure! ← Failure hits threshold --> B["OPEN<br>  (Failing)<br>  (Requests fail fast)"]
     B -- After timeout period --> C["HALF-OPEN<br>(Testing if fixed)"]
     C --> J[" "]
     J --> S["Success"] & F["Failure"]
