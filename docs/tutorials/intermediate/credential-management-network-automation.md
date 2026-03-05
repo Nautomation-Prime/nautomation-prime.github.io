@@ -802,27 +802,27 @@ vault_token = "hvs.CBwQv28r_FULL_ADMIN_ACCESS"
 
 1. **Audit current practice**
 
-   ```bash
-   # Find hardcoded passwords
-   grep -r "password\s*=" src/ --include="*.py"
-   grep -r "api_key\s*=" src/ --include="*.py"
-   ```
+    ```bash
+    # Find hardcoded passwords
+    grep -r "password\s*=" src/ --include="*.py"
+    grep -r "api_key\s*=" src/ --include="*.py"
+    ```
 
 2. **Move to environment variables (Phase 1)**
-   - Extract secrets to `.env` file
-   - Add to `.gitignore`
-   - Update code to read from env
+    - Extract secrets to `.env` file
+    - Add to `.gitignore`
+    - Update code to read from env
 
 3. **Move to Vault/Secrets Manager (Phase 2)**
-   - Set up Vault instance
-   - Migrate credentials to Vault
-   - Update code to read from Vault
-   - Remove env vars
+    - Set up Vault instance
+    - Migrate credentials to Vault
+    - Update code to read from Vault
+    - Remove env vars
 
 4. **Implement rotation (Phase 3)**
-   - Automated credential rotation
-   - Audit logging
-   - Emergency rollback procedures
+    - Automated credential rotation
+    - Audit logging
+    - Emergency rollback procedures
 
 ---
 
