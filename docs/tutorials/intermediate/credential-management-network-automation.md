@@ -86,29 +86,15 @@ Benefits:
 
 ## Architecture: Credential Flow
 
-```text
-┌──────────────────┐
-│   Your Script   │
-└────────┬─────────┘
-         │ "Give me credentials for device X"
-         ↓
-┌──────────────────────────┐
-│  Secrets Manager       │
-│  (Vault/AWS/Azure)     │
-└────────┬─────────────────┘
-         │ "Here are credentials (encrypted)"
-         ↓
-┌──────────────────┐
-│   Your Script   │
-│   (now has      │
-│   credentials)  │
-└────────┬─────────┘
-         │
-         ↓
-┌──────────────────────────┐
-│   Network Device        │
-│   (via Netmiko/SSH)     │
-└──────────────────────────┘
+```mermaid
+flowchart TD
+    A[Your Script]
+    B[Secrets Manager]
+    C[Your Script with credentials]
+    D[Network Device]
+    A -->|Request credentials| B
+    B -->|Return encrypted credentials| C
+    C -->|SSH connection| D
 ```
 
 ---
