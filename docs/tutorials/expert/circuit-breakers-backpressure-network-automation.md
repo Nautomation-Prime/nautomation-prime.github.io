@@ -46,11 +46,7 @@ flowchart TD
     F["Failure"]
     A2["CLOSED"]
     B2["OPEN"]
-    A -->|Failure! ← Failure hits threshold| B
-    B -->|After timeout period| C
-
-
-    A --> B --> C --> J
+    A -->|Failure! ← Failure hits threshold|B -->|After timeout period|C --> J
     J --> S --> A2
     J --> F --> B2
 ```
