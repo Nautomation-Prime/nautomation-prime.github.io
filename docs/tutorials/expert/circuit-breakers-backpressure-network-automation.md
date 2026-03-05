@@ -37,18 +37,15 @@ tags:
 ## Architecture: Circuit Breaker States
 
 ```mermaid
-flowchart TD
-    A["CLOSED<br/>(Normal Operation)"]
-    B["OPEN<br/>(Failing)<br/>(Requests fail fast)"]
-    C["HALF-OPEN<br/>(Testing if fixed)"]
-    J{{ }}
-    S["Success"]
-    F["Failure"]
-    A2["CLOSED"]
-    B2["OPEN"]
-    A -->|Failure! ← Failure hits threshold|B -->|After timeout period|C --> J
-    J --> S --> A2
-    J --> F --> B2
+flowchart TB
+    A["CLOSED<br>(Normal Operation)"] -- Failure! ← Failure hits threshold --> B["OPEN<br>(Failing)<br>(Requests fail fast)"]
+    B -- After timeout period --> C["HALF-OPEN<br>(Testing if fixed)"]
+    C --> J[" "]
+    J --> S["Success"] & F["Failure"]
+    S --> A2["CLOSED"]
+    F --> B2["OPEN"]
+
+    J@{ shape: f-circ}
 ```
 
 ---
