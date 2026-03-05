@@ -88,26 +88,26 @@ Benefits:
 
 ```text
 ┌──────────────────┐
-│   Your Script    │
+│   Your Script   │
 └────────┬─────────┘
          │ "Give me credentials for device X"
          ↓
 ┌──────────────────────────┐
-│  Secrets Manager         │
-│  (Vault/AWS/Azure)       │
+│  Secrets Manager       │
+│  (Vault/AWS/Azure)     │
 └────────┬─────────────────┘
          │ "Here are credentials (encrypted)"
          ↓
 ┌──────────────────┐
-│   Your Script    │
-│   (now has       │
-│   credentials)   │
+│   Your Script   │
+│   (now has      │
+│   credentials)  │
 └────────┬─────────┘
          │
          ↓
 ┌──────────────────────────┐
-│   Network Device         │
-│   (via Netmiko/SSH)      │
+│   Network Device        │
+│   (via Netmiko/SSH)     │
 └──────────────────────────┘
 ```
 
