@@ -36,36 +36,23 @@ tags:
 
 ## Architecture: Circuit Breaker States
 
-```text
-                  ┌─────────────────────┐
-                  │     CLOSED          │
-                  │  (Normal           │
-                  │   Operation)        │
-                  └────────┬────────────┘
-                           │
-                      Failure! ← Failure hits threshold
-                           │
-                           ↓
-                  ┌─────────────────────┐
-                  │     OPEN            │
-                  │ (Failing)           │
-                  │ (Requests fail fast)│
-                  └────────┬────────────┘
-                           │
-                  After timeout period
-                           │
-                           ↓
-                  ┌─────────────────────┐
-                  │  HALF-OPEN          │
-                  │ (Testing if fixed)  │
-                  └────────┬────────────┘
-                           │
-            ┌──────────────┴──────────────┐
-            │                             │
-       Success                        Failure
-            │                             │
-            ↓                             ↓
-        CLOSED                          OPEN
+```mermaid
+flowchart TD
+    A["CLOSED<br/>(Normal Operation)"]
+    B["OPEN<br/>(Failing)<br/>(Requests fail fast)"]
+    C["HALF-OPEN<br/>(Testing if fixed)"]
+    J{{ }}
+    S["Success"]
+    F["Failure"]
+    A2["CLOSED"]
+    B2["OPEN"]
+    A -->|Failure! ← Failure hits threshold| B
+    B -->|After timeout period| C
+
+
+    A --> B --> C --> J
+    J --> S --> A2
+    J --> F --> B2
 ```
 
 ---
