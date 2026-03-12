@@ -58,11 +58,30 @@ The **final tutorial** shows how to combine both:
 - Validate with PyATS (structured testing)
 - Use PRIME Framework integration for repeatable, safe deployments
 
-### Foundation Pattern: Decorators in Network Automation
+### Foundation Patterns: Core Skills for Modern Automation
 
-Before diving into specific frameworks, master **decorator patterns**—the Python technique used throughout production automation.
+Before diving into specific frameworks, master the **foundational patterns** used throughout production automation.
 
-**Why it matters:**
+#### Data Modeling Essentials (New)
+
+**Master the data formats that power network automation:**
+
+- **[YAML Data Modeling](./yaml-data-modeling-network-automation.md)** — Human-readable configuration files, device inventories (Nornir, PyATS)
+- **[JSON Data Handling](./json-data-handling-network-automation.md)** — API interactions, structured logging, REST APIs
+- **[Jinja2 Configuration Templates](./jinja2-configuration-templates.md)** — Generate device configs from data, eliminate copy-paste errors
+
+**Why these matter:**
+
+- ✅ **YAML** — Nornir inventories, PyATS testbeds, readable by network engineers
+- ✅ **JSON** — Every modern network API (DNA Center, Meraki, RESTCONF)
+- ✅ **Jinja2** — Template-driven configuration generation at scale
+- ✅ **Separation of concerns** — Data separate from code, version control friendly
+
+These three skills form the foundation for all subsequent tutorials. Master them first.
+
+#### Python Patterns for Network Automation
+
+**Decorator patterns**—the Python technique used throughout production automation:
 
 - ✅ **Retry Logic** — Handle transient failures automatically without rewriting code
 - ✅ **Audit Logging** — Compliance tracking for every operation
@@ -176,9 +195,78 @@ pip install nornir nornir-netmiko nornir-utils netmiko pandas openpyxl pyyaml
 
 ## 📚 Tutorial Series
 
-### Foundation Patterns: Master Core Python Techniques
+### Foundation: Data Modeling for Network Automation
 
-#### 0. [Decorators in Network Automation — Build Resilient, Observable Systems](./decorators-network-automation.md)
+Master the three essential data formats before building complex automation systems.
+
+#### Tutorial Series A: Data Modeling Trilogy
+
+##### A1. [YAML Data Modeling — Human-Readable Configuration](./yaml-data-modeling-network-automation.md)
+
+**Learn the foundation of network automation data structures.**
+
+Learn:
+
+- YAML syntax fundamentals
+- Nornir inventory structure (hosts, groups, defaults)
+- PyATS testbed structure (devices, connections)
+- Configuration data modeling patterns
+- Common pitfalls and validation
+- Version control best practices
+
+**What You'll Build:** Complete device inventory system with YAML files that work with Nornir and PyATS.
+
+**Why First:** YAML is used by Nornir inventories, PyATS testbeds, and Ansible playbooks—you need this for all subsequent tutorials.
+
+**Prerequisite:** Completed Beginner tutorials and comfortable with Python dictionaries
+
+---
+
+##### A2. [JSON Data Handling — API Interactions and Structured Logging](./json-data-handling-network-automation.md)
+
+**Master the data format for APIs, logging, and machine-to-machine communication.**
+
+Learn:
+
+- JSON syntax and differences from YAML
+- Consuming REST APIs with JSON responses
+- Generating JSON for API requests
+- Structured logging with JSON output
+- JSON Schema validation
+- Performance optimization for large datasets
+
+**What You'll Build:** REST API client with structured logging and complete error handling.
+
+**Why Now:** Modern network devices and controllers expose REST APIs that speak JSON—essential for API-driven automation.
+
+**Prerequisite:** Complete Tutorial A1 (YAML)
+
+---
+
+##### A3. [Jinja2 Configuration Templates — Generate Configs from Data](./jinja2-configuration-templates.md)
+
+**Transform structured data into device configurations automatically.**
+
+Learn:
+
+- Jinja2 template syntax (variables, conditionals, loops, filters)
+- Rendering templates with Python
+- Template inheritance and reusability
+- Advanced filters for network automation
+- Whitespace control for clean configs
+- Multi-device configuration generation
+
+**What You'll Build:** Complete configuration generation system that produces device configs from YAML data and Jinja2 templates.
+
+**Why Now:** Combines YAML/JSON data with templates to eliminate manual configuration errors—the core pattern of scalable automation.
+
+**Prerequisite:** Complete Tutorials A1 and A2
+
+---
+
+### Foundation: Python Patterns for Network Automation
+
+#### B0. [Decorators in Network Automation — Build Resilient, Observable Systems](./decorators-network-automation.md)
 
 **Master the decorator pattern used throughout production automation.**
 
@@ -390,16 +478,20 @@ We'll build this structure in Tutorial #2.
 
 ## 💡 How to Use These Tutorials
 
-1. **Start with Tutorial #0: Decorators** — Understanding decorator patterns makes all subsequent tutorials clearer
-2. **Choose your path:**
-   - **PyATS focused?** Continue to Tutorial #1
-   - **Nornir focused?** Skip to Tutorial #4
-   - **Want it all?** Follow tutorials in order (0-7)
-3. **Read the "Why" sections first** — Understand the problem before the solution
-4. **Review complete working code** — Copy and run each script in your lab
-5. **Study the line-by-line breakdown** — Learn exactly what each line does
-6. **Experiment and modify** — Change parameters, try different devices
-7. **Build on the patterns** — Use decorators and framework patterns in your own automation
+1. **Start with Tutorial Series A: Data Modeling Trilogy** — YAML, JSON, and Jinja2 form the foundation
+   - **A1: YAML** → Device inventories and configuration files
+   - **A2: JSON** → API interactions and structured logging
+   - **A3: Jinja2** → Template-driven configuration generation
+2. **Continue with Tutorial B0: Decorators** — Python patterns used throughout automation
+3. **Choose your framework path:**
+   - **PyATS focused?** Continue to Tutorial #1 (PyATS Fundamentals)
+   - **Nornir focused?** Skip to Tutorial #4 (Why Nornir?)
+   - **Want it all?** Follow tutorials in order (A1-A3 → B0 → 1-7)
+4. **Read the "Why" sections first** — Understand the problem before the solution
+5. **Review complete working code** — Copy and run each script in your lab
+6. **Study the line-by-line breakdown** — Learn exactly what each line does
+7. **Experiment and modify** — Change parameters, try different devices
+8. **Build on the patterns** — Use data modeling and framework patterns in your own automation
 
 ---
 
@@ -407,19 +499,21 @@ We'll build this structure in Tutorial #2.
 
 ```mermaid
 graph LR
-    A["Beginner Tutorials<br>(Fundamentals)"] --> B["Tutorial 0: Decorators<br>(Foundation)"]
-    B --> C["Tutorial 1-3: PyATS<br>(Validation)"]
-    B --> D["Tutorial 4-7: Nornir<br>(Scale)"]
-    C --> E["Tutorial 8: PyATS + Nornir<br>(Combined)"]
-    D --> E
-    E --> F["Ready for<br>Expert + Consulting"]
-    
+    A["Beginner Tutorials<br>(Fundamentals)"] --> B["Series A: Data Modeling<br>(YAML→JSON→Jinja2)"]
+    B --> C["Tutorial B0: Decorators<br>(Python Patterns)"]
+    C --> D["Series 1-3: PyATS<br>(Validation)"]
+    C --> E["Series 4-7: Nornir<br>(Scale)"]
+    D --> F["Tutorial 8: PyATS + Nornir<br>(Combined)"]
+    E --> F
+    F --> G["Ready for<br>Expert + Production"]
+
     style A fill:#90EE90
-    style B fill:#DAA520
-    style C fill:#87CEEB
+    style B fill:#FFD700
+    style C fill:#DAA520
     style D fill:#87CEEB
-    style E fill:#FFB6C1
-    style F fill:#FFD700
+    style E fill:#87CEEB
+    style F fill:#FFB6C1
+    style G fill:#FFD700
 ```
 
 ---
@@ -455,8 +549,12 @@ After completing all 4 intermediate tutorials, you'll be able to:
 ---
 
 !!! success "Next Steps"
-    Ready? Start with **[Tutorial #0: Decorators in Network Automation](./decorators-network-automation.md)** to master foundational patterns used throughout the remaining tutorials.
-    Then choose your path:
+    Ready? Start with **[Tutorial A1: YAML Data Modeling](./yaml-data-modeling-network-automation.md)** to master the foundation of structured network automation data.
+    Then continue with:
+    - **[Tutorial A2: JSON Data Handling](./json-data-handling-network-automation.md)** — APIs and structured logging
+    - **[Tutorial A3: Jinja2 Templates](./jinja2-configuration-templates.md)** — Configuration generation
+    - **[Tutorial B0: Decorators](./decorators-network-automation.md)** — Python patterns
+    After mastering data modeling and Python patterns, choose your framework path:
     - **PyATS track?** Continue to [Tutorial #1: PyATS Fundamentals](./pyats-fundamentals.md)
     - **Nornir track?** Skip to [Tutorial #4: Why Nornir?](./why-nornir.md)
 
