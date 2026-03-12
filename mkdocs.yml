@@ -127,20 +127,23 @@ nav:
           - Netmiko Show Command to Excel: tutorials/beginner/netmiko-show-command-to-excel.md
       - Intermediate Tutorials:
           - tutorials/intermediate/index.md
+          - YAML Data Modeling: tutorials/intermediate/yaml-data-modeling-network-automation.md
+          - JSON Data Handling: tutorials/intermediate/json-data-handling-network-automation.md
+          - Jinja2 Configuration Templates: tutorials/intermediate/jinja2-configuration-templates.md
           - Decorators for Network Automation: tutorials/intermediate/decorators-network-automation.md
-          - Advanced Nornir Patterns: tutorials/intermediate/advanced-nornir-patterns.md
-          - Building Reliable Automation with PyATS: tutorials/intermediate/building-reliable-automation-with-pyats.md
-          - Credential Management for Network Automation: tutorials/intermediate/credential-management-network-automation.md
-          - Enterprise Config Backup Nornir: tutorials/intermediate/enterprise-config-backup-nornir.md
-          - Error Recovery and Rollback: tutorials/intermediate/error-recovery-rollback-network-automation.md
-          - Health Checks and Pre-Flight Validation: tutorials/intermediate/health-checks-pre-flight-validation.md
-          - Nornir Fundamentals: tutorials/intermediate/nornir-fundamentals.md
           - PyATS Fundamentals: tutorials/intermediate/pyats-fundamentals.md
           - PyATS Network Validation: tutorials/intermediate/pyats-network-validation.md
+          - Building Reliable Automation with PyATS: tutorials/intermediate/building-reliable-automation-with-pyats.md
+          - Why Nornir: tutorials/intermediate/why-nornir.md
+          - Nornir Fundamentals: tutorials/intermediate/nornir-fundamentals.md
+          - Enterprise Config Backup Nornir: tutorials/intermediate/enterprise-config-backup-nornir.md
+          - Advanced Nornir Patterns: tutorials/intermediate/advanced-nornir-patterns.md
+          - Testing Network Automation Scripts: tutorials/intermediate/testing-network-automation.md
+          - Credential Management for Network Automation: tutorials/intermediate/credential-management-network-automation.md
+          - Error Recovery and Rollback: tutorials/intermediate/error-recovery-rollback-network-automation.md
           - State Management and Idempotency: tutorials/intermediate/state-management-idempotency-network-automation.md
           - Structured Logging for Network Automation: tutorials/intermediate/structured-logging-network-automation.md
-          - Testing Network Automation Scripts: tutorials/intermediate/testing-network-automation.md
-          - Why Nornir: tutorials/intermediate/why-nornir.md
+          - Health Checks and Pre-Flight Validation: tutorials/intermediate/health-checks-pre-flight-validation.md
       - Expert Tutorials:
           - tutorials/expert/index.md
           - Circuit Breakers and Backpressure: tutorials/expert/circuit-breakers-backpressure-network-automation.md
