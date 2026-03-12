@@ -158,6 +158,8 @@ nav:
           - deep-dives/index.md
           - Access Switch Audit: deep-dives/access-switch-audit.md
           - CDP Audit: deep-dives/cdp-audit.md
+          - Cisco Compliance Audit: deep-dives/cisco-compliance-audit.md
+          - Cisco Compliance Audit Runbook: deep-dives/cisco-compliance-audit-runbook.md
       - Scripts: scripts/index.md
   - Blog:
       - blog/index.md
