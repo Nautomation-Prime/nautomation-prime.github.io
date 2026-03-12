@@ -50,7 +50,7 @@ By the end of this tutorial, you'll understand:
 ### Required Knowledge
 
 - ✅ **Completed [YAML Data Modeling Tutorial](./yaml-data-modeling-network-automation.md)** — Understanding structured data
-- ✅ **Completed [Beginner Tutorials](../beginner/index.md)** — Familiar with Python dictionaries
+- ✅ Understanding of Python data structures (dict, list, str)
 - ✅ Understanding of HTTP basics (GET, POST, PUT, DELETE)
 
 ### Required Software

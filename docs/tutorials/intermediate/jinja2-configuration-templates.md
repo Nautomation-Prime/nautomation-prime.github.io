@@ -51,7 +51,6 @@ By the end of this tutorial, you'll understand:
 
 - ✅ **Completed [YAML Data Modeling Tutorial](./yaml-data-modeling-network-automation.md)** — Understanding structured data
 - ✅ **Completed [JSON Data Handling Tutorial](./json-data-handling-network-automation.md)** — Data serialization
-- ✅ **Completed [Beginner Tutorials](../beginner/index.md)** — Python basics
 - ✅ Familiarity with Cisco IOS configuration syntax
 
 ### Required Software
