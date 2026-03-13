@@ -46,7 +46,7 @@ Welcome to the **Nautomation Prime Script Library**. Here you'll find open-sourc
 
 ### Access Switch Port Audit Tool
 
-**Status:** ✅ Available  
+**Status:** ✅ Available
 **Description:** A production-hardened collector designed to map interface health and utilisation across your access layer.
 
 **Features:**
@@ -58,6 +58,26 @@ Welcome to the **Nautomation Prime Script Library**. Here you'll find open-sourc
 - Full Jump-Host (Bastion) integration for restricted environments
 
 [📖 View Deep Dive Documentation](../deep-dives/access-switch-audit.md) | [:material-github: GitHub Repository](https://github.com/Nautomation-Prime/Access_Switch_Audit)
+
+---
+
+### Cisco IOS-XE Compliance Audit
+
+**Status:** ✅ Available
+**Description:** A policy-driven compliance auditor with 90+ role-aware checks, automated remediation generation, and multi-format reporting for enterprise Cisco switches.
+
+**Features:**
+
+- Policy-as-code YAML configuration for easy governance customization
+- Role-aware port classification (uplink, downlink, access, routed, unused)
+- 90+ toggleable checks across management, control, and data planes
+- Multi-format reporting (HTML dashboards, JSON, CSV, remediation scripts)
+- Delta tracking for continuous compliance trending
+- Dry-run mode for safe policy validation and CI/CD integration
+- Jump host / bastion support for restricted environments
+- Concurrent device auditing for large-scale operations
+
+[📖 View Deep Dive Documentation](../deep-dives/cisco-compliance-audit.md) | [🗒️ Runbook](../deep-dives/cisco-compliance-audit-runbook.md) | [:material-github: GitHub Repository](https://github.com/Nautomation-Prime/Cisco-Compliance-Audit)
 
 ---
 
@@ -87,10 +107,11 @@ Ready to understand production patterns:
 
 Ready to build custom solutions:
 
-1. Review both [Deep Dives](../deep-dives/index.md) for architectural patterns
-2. Customize scripts for your environment (GitHub repositories include full source)
-3. Integrate with [PRIME Framework](../prime-framework/index.md) methodology
-4. Contact us for [consulting services](../services.md) on bespoke automation
+1. Review all [Deep Dives](../deep-dives/index.md) for architectural patterns
+2. Study [Cisco Compliance Audit Deep Dive](../deep-dives/cisco-compliance-audit.md) — policy-driven compliance with remediation generation
+3. Customize scripts for your environment (GitHub repositories include full source)
+4. Integrate with [PRIME Framework](../prime-framework/index.md) methodology
+5. Contact us for [consulting services](../services.md) on bespoke automation
 
 ---
 
@@ -199,6 +220,7 @@ For issues, feature requests, or questions about any script:
 | :--- | :--- |
 | **Network Discovery** | [📖 CDP Network Audit Deep Dive](../deep-dives/cdp-audit.md) • [💾 Script](https://github.com/Nautomation-Prime/Cisco_CDP_Network_Audit) |
 | **Port & Interface Health** | [📖 Access Switch Audit Deep Dive](../deep-dives/access-switch-audit.md) • [💾 Script](https://github.com/Nautomation-Prime/Access_Switch_Audit) |
+| **Compliance & Governance** | [📖 Cisco Compliance Audit Deep Dive](../deep-dives/cisco-compliance-audit.md) • [🗒️ Runbook](../deep-dives/cisco-compliance-audit-runbook.md) • [💾 Script](https://github.com/Nautomation-Prime/Cisco-Compliance-Audit) |
 | **Configuration Management** | [🎓 Configuration Backup (Beginner)](../tutorials/beginner/multi-device-config-backup.md) • [🎓 Enterprise Backup with Nornir (Intermediate)](../tutorials/intermediate/enterprise-config-backup-nornir.md) |
 | **Data Collection & Reporting** | [🎓 Show Commands to Excel (Beginner)](../tutorials/beginner/netmiko-show-command-to-excel.md) • [🎓 Multi-Device Collection (Beginner)](../tutorials/beginner/multi-device-show-command.md) |
 | **Automation Frameworks** | [🎓 Nornir Fundamentals](../tutorials/intermediate/nornir-fundamentals.md) • [📖 Advanced Patterns](../tutorials/intermediate/advanced-nornir-patterns.md) |
