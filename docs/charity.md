@@ -18,6 +18,8 @@ That means our giving model is built on one rule: **donations should create real
 
 ## Policy Review Status
 
+- **Policy version:** 1.0
+- **Policy owner:** Christopher Davies (Founder, Nautomation Prime)
 - **Last reviewed:** 17 March 2026
 - **Next scheduled review:** June 2026
 - **Current status:** Active policy, pre-revenue implementation phase
