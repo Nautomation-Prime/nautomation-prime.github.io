@@ -19,6 +19,9 @@ tags:
 
 > **This post is part of our ongoing series on network automation best practices, grounded in the [PRIME Framework](../../prime-framework/index.md) and [PRIME Philosophy](../../prime-framework/philosophy.md).**
 
+!!! info "Transparency Note"
+    Examples, scenarios, and any outcome figures in this article are provided for education and are based on enterprise delivery experience or anonymised composite scenarios unless explicitly identified as direct Nautomation Prime client outcomes.
+
 ## Why This Blog Exists
 
 If you've ever been tempted to sprinkle a bit of Python `threading` into your network scripts for "speed"—stop! This post is for you. We'll show you why threading is almost always the wrong tool for network automation, and how the PRIME Framework's principles lead to safer, more scalable solutions.

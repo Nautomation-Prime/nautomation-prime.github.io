@@ -18,6 +18,9 @@ tags:
 
 > **This post is part of our ongoing series on network automation best practices, grounded in the [PRIME Framework](../../prime-framework/index.md) and [PRIME Philosophy](../../prime-framework/philosophy.md).**
 
+!!! info "Transparency Note"
+    Examples, scenarios, and any outcome figures in this article are provided for education and are based on enterprise delivery experience or anonymised composite scenarios unless explicitly identified as direct Nautomation Prime client outcomes.
+
 ## Why This Blog Exists
 
 SNMP and CLI scraping are no longer enough. Streaming telemetry provides real-time, structured data for modern network automation. This post introduces the concept, benefits, and practical steps to get started.
@@ -239,7 +242,7 @@ asyncio.run(main())
 ### Time-Series Database Options
 
 | Database | Pros | Cons | Best For |
-|----------|------|------|----------|
+| :--- | :--- | :--- | :--- |
 | **InfluxDB** | Fast, simple, built-in compression | Single node scalability | Small to medium networks |
 | **Prometheus** | Pull-based, excellent for metrics | Limited retention/high cardinality | Kubernetes, multi-vendor |
 | **TimescaleDB** | PostgreSQL-compatible, SQL queries | Steeper setup | Complex queries, large scale |
@@ -247,7 +250,7 @@ asyncio.run(main())
 
 ### Example: Querying Telemetry with InfluxQL
 
-```
+```sql
 SELECT IF(mean("in_errors") > 100, 'ALERT', 'OK') as status
 FROM "interface_counters"
 WHERE device = 'router-01' AND time > now() - 1h
@@ -346,9 +349,9 @@ gc = gNMIclient(
 )
 ```
 
---- 
+---
 
-## PRIME in Action: Measurability, Safety, and Transparency
+## Additional PRIME Practices: Measurability, Safety, and Transparency
 
 - **Establish baselines** — Collect 1-2 weeks of normal telemetry before alerting
 - **Track alert accuracy** — Monitor false positive and false negative rates monthly

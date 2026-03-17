@@ -18,6 +18,9 @@ tags:
 
 > **This post is part of our ongoing series on network automation best practices, grounded in the [PRIME Framework](../../prime-framework/index.md) and [PRIME Philosophy](../../prime-framework/philosophy.md).**
 
+!!! info "Transparency Note"
+    Examples, scenarios, and any outcome figures in this article are provided for education and are based on enterprise delivery experience or anonymised composite scenarios unless explicitly identified as direct Nautomation Prime client outcomes.
+
 ## Why This Blog Exists
 
 Testing is the difference between "it works on my machine" and "it works in production." This post covers why testing matters, the types of tests you need, and how the PRIME Framework makes testing sustainable and measurable.

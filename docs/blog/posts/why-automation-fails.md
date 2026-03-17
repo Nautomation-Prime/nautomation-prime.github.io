@@ -19,9 +19,12 @@ tags:
 
 > **This post is part of our ongoing series on network automation best practices, grounded in the [PRIME Framework](../../prime-framework/index.md) and [PRIME Philosophy](../../prime-framework/philosophy.md).**
 
+!!! info "Transparency Note"
+    Examples and metrics in this article are based on enterprise delivery experience and anonymised scenario analysis unless explicitly identified as direct Nautomation Prime client outcomes.
+
 ## Why This Blog Exists
 
-**70% of network automation projects collapse within 6 months.**
+**A high proportion of network automation projects struggle or stall within 6-12 months when foundations are weak.**
 
 Not because the code is broken. Not because the idea is bad. But because something deeper—structural—goes wrong. This post breaks down the most common failure patterns and shows how the PRIME Framework prevents them.
 
@@ -49,7 +52,7 @@ At Nautomation Prime, every automation decision is guided by five core principle
 
 An enterprise automated device backups, saving 2 hours/week. But they ignored compliance audits, which cost 10 hours/week. Six months later, leadership questioned the ROI. The fix: use PRIME Pinpoint to measure and prioritize high-impact tasks.
 
-### The Trap
+### Pattern #1 Trap
 
 You identify a pain point—maybe VLAN provisioning takes 15 minutes. "Let's automate it!" You hire a consultant, they write a script, and suddenly VLANs provision in 15 seconds.
 
@@ -59,13 +62,13 @@ Meanwhile, compliance audits still require two network engineers manually walkin
 
 **Result:** You've optimized the easy thing and ignored the hard (valuable) thing.
 
-### Why It Happens
+### Why Pattern #1 Happens
 
 - **No structured discovery process.** You guess which tasks will deliver ROI instead of measuring it.
 - **Gut-feel prioritization.** "This seems painful" isn't data. You need actual time-motion studies.
 - **Nobody asks "what's next?"** Once the first automation is done, teams have no roadmap—so they guess at the second one too.
 
-### How PRIME Solves It
+### How PRIME Solves Pattern #1
 
 **[Pinpoint Stage](../../prime-framework/pinpoint.md)** uses structured discovery:
 
@@ -129,7 +132,6 @@ You're locked in. Worse—the automation is fragile. Change one thing and it bre
 
 ---
 
-
 ## Failure Pattern #3: No Proof of Value (And Leadership Questions Everything)
 
 ### Advanced Metrics Patterns
@@ -138,7 +140,7 @@ You're locked in. Worse—the automation is fragile. Change one thing and it bre
 - Build dashboards for leadership (Grafana, PowerBI)
 - Automate monthly ROI reports from logs and ticketing systems
 
-### The Trap
+### Pattern #3 Trap
 
 You deploy automation. Operationally, it works great. Engineers love it.
 
@@ -152,13 +154,13 @@ Nobody has an answer.
 
 Without metrics, the project looks like an expensive experiment instead of a business investment. Next budget cycle, its funding gets cut.
 
-### Why It Happens
+### Why Pattern #3 Happens
 
 - **No baseline metrics.** You didn't measure *before* time—so you can't measure *after*.
 - **Qualitative feelings.** "It feels faster" doesn't convince CFOs.
 - **No ongoing measurement.** Someone should be tracking whether automation is delivering sustained value.
 
-### How PRIME Solves It
+### How PRIME Solves Pattern #3
 
 **[Measure Stage](../../prime-framework/measure.md)** builds ROI proof:
 
@@ -187,7 +189,7 @@ Without metrics, the project looks like an expensive experiment instead of a bus
 - Maintain up-to-date runbooks and architecture diagrams
 - Require at least two team members to review and extend every new automation
 
-### The Trap
+### Pattern #4 Trap
 
 Year one: Automation is working great. Saves 5 hours per week.
 
@@ -199,13 +201,13 @@ The automation becomes "untouchable"—it works, so you leave it alone. But it a
 
 **Result:** Static automation. No growth.
 
-### Why It Happens
+### Why Pattern #4 Happens
 
 - **No knowledge transfer.** The consultant didn't teach your team how the code works.
 - **No documentation.** There's no reference guide for understanding or extending it.
 - **Fear of breaking it.** If one person understands the code and they leave, everything breaks.
 
-### How PRIME Solves It
+### How PRIME Solves Pattern #4
 
 **[Empower Stage](../../prime-framework/empower.md)** transfers ownership to your team:
 
@@ -233,7 +235,7 @@ The automation becomes "untouchable"—it works, so you leave it alone. But it a
 
 One team built a custom orchestration engine for 200 devices—when a simple Nornir script would have sufficed. The result: high maintenance, slow onboarding, and no measurable ROI. PRIME's "measurability over assumptions" principle would have prevented this.
 
-### The Trap
+### Pattern #5 Trap
 
 A consultant designs a "framework" to handle:
 
@@ -246,13 +248,13 @@ Result: 4,000 lines of code to accomplish what should take 400.
 
 The code is "elegant" but impossible for normal engineers to understand.
 
-### Why It Happens
+### Why Pattern #5 Happens
 
 - **Architectural perfectionism.** "Let's build the 'right way,' even if it's overkill."
 - **Resume-driven development.** Complex code looks impressive at interview.
 - **Time-based billing.** Hourly consultants have incentive to expand scope.
 
-### How PRIME Solves It
+### How PRIME Solves Pattern #5
 
 **PRIME Philosophy** principle: **Measurability Over Assumptions**
 
@@ -277,7 +279,7 @@ Our approach:
 - Integrate with incident response (PagerDuty, Opsgenie)
 - Test automation against simulated device failures and network outages
 
-### The Trap
+### Pattern #6 Trap
 
 Your compliance script runs every Sunday and reports: "All devices passed audit."
 
@@ -287,13 +289,13 @@ You don't know until someone manually checks weeks later—and you're now non-co
 
 **Result:** False confidence. Automation hiding failures instead of catching them.
 
-### Why It Happens
+### Why Pattern #6 Happens
 
 - **Weak error handling.** Code doesn't distinguish between "check completed, all passed" vs. "check failed, results unknown."
 - **No alerting.** If automation fails, does anyone know?
 - **"Good enough" testing.** Tested on happy paths, not failure modes.
 
-### How PRIME Solves It
+### How PRIME Solves Pattern #6
 
 **[Re-engineer](../../prime-framework/re-engineer.md)** and **[Implement](../../prime-framework/implement.md)** stages include:
 
@@ -334,7 +336,7 @@ except FailureException as e:
 - Require migration playbooks and regular portability audits
 - Avoid proprietary data formats and APIs
 
-### The Trap
+### Pattern #7 Trap
 
 You hire a consultant who specializes in Tool X. They build your entire automation stack in Tool X.
 
@@ -342,12 +344,12 @@ Two years later, you want to switch vendors or add another platform. Your entire
 
 You're locked in.
 
-### Why It Happens
+### Why Pattern #7 Happens
 
 - **Specialized tools.** Some vendors offer "automation platforms" that lock you into proprietary languages and libraries.
 - **Consultant incentive.** If you're locked in, you need them for modifications.
 
-### How PRIME Solves It
+### How PRIME Solves Pattern #7
 
 **Prime Philosophy** principle: **Vendor-Neutral**
 
@@ -381,7 +383,6 @@ The [PRIME Framework](../../prime-framework/index.md) is designed to prevent exa
 | Vendor lock-in | **[PRIME Philosophy](../../prime-framework/philosophy.md)** — Ownership over dependency |
 
 ---
-
 
 ## Summary: Blog Takeaways
 

@@ -19,6 +19,9 @@ tags:
 
 > **This post is part of our ongoing series on network automation best practices, grounded in the [PRIME Framework](../../prime-framework/index.md) and [PRIME Philosophy](../../prime-framework/philosophy.md).**
 
+!!! info "Transparency Note"
+    Examples, scenarios, and any outcome figures in this article are provided for education and are based on enterprise delivery experience or anonymised composite scenarios unless explicitly identified as direct Nautomation Prime client outcomes.
+
 ## Why This Blog Exists
 
 Legacy scripts are everywhere—but they’re hard to maintain, scale, and secure. This post shows how to migrate to modern frameworks (Nornir, PyATS, Ansible) and adopt PRIME-aligned best practices for sustainable automation.
@@ -40,43 +43,49 @@ Legacy scripts are everywhere—but they’re hard to maintain, scale, and secur
 ## Migration Approach: Structured Steps
 
 ### Step 1: Inventory Existing Scripts
-   - List all automation scripts and their functions
-   - Identify dependencies, pain points, and security risks
-   - Map out undocumented logic and tribal knowledge
-   - Measure baseline metrics (execution time, error rates, maintenance burden)
-   
+
+- List all automation scripts and their functions
+- Identify dependencies, pain points, and security risks
+- Map out undocumented logic and tribal knowledge
+- Measure baseline metrics (execution time, error rates, maintenance burden)
+
 ### Step 2: Define Requirements
-   - What must the new solution do? (features, scale, compliance, security, integrations)
-   - Identify gaps in current workflows and desired improvements
-   - Get stakeholder input (ops team, security, network engineering)
-   - Prioritize high-ROI improvements
+
+- What must the new solution do? (features, scale, compliance, security, integrations)
+- Identify gaps in current workflows and desired improvements
+- Get stakeholder input (ops team, security, network engineering)
+- Prioritize high-ROI improvements
 
 ### Step 3: Choose a Modern Framework
-   - **Nornir** for Pythonic parallelism and custom logic
-   - **PyATS** for validation, testing, and compliance gates
-   - **Ansible** for declarative config management and onboarding
-   - Consider hybrid approaches for complex environments
-   - Evaluate learning curve and team skills
+
+- **Nornir** for Pythonic parallelism and custom logic
+- **PyATS** for validation, testing, and compliance gates
+- **Ansible** for declarative config management and onboarding
+- Consider hybrid approaches for complex environments
+- Evaluate learning curve and team skills
 
 ### Step 4: Refactor in Stages
-   - Start with core logic, then add features and integrations
-   - Modularize code for reuse and testability
-   - Use version control, code reviews, and CI/CD pipelines
-   - Automate linting, testing, and deployment
-   - Plan for incremental rollout (don't switch everything at once)
+
+- Start with core logic, then add features and integrations
+- Modularize code for reuse and testability
+- Use version control, code reviews, and CI/CD pipelines
+- Automate linting, testing, and deployment
+- Plan for incremental rollout (don't switch everything at once)
 
 ### Step 5: Test and Validate
-   - Unit, integration, and mock device tests
-   - Compare outputs with legacy scripts and real devices
-   - Validate error handling, rollbacks, and edge cases
-   - Test against multiple device types and OS versions
+
+- Unit, integration, and mock device tests
+- Compare outputs with legacy scripts and real devices
+- Validate error handling, rollbacks, and edge cases
+- Test against multiple device types and OS versions
 
 ### Step 6: Document and Train
-   - Update runbooks, user guides, and architecture diagrams
-   - Train the team on new workflows, tools, and best practices
-   - Provide runbooks, troubleshooting guides, and onboarding materials
-   - Hold knowledge transfer sessions and create onboarding materials
-   - Ensure at least 2 team members can maintain each script
+
+- Update runbooks, user guides, and architecture diagrams
+- Train the team on new workflows, tools, and best practices
+- Provide runbooks, troubleshooting guides, and onboarding materials
+- Hold knowledge transfer sessions and create onboarding materials
+- Ensure at least 2 team members can maintain each script
 
 ---
 
@@ -122,6 +131,8 @@ def backup(task):
    with open(f"{task.host}.cfg", "w") as f:
       f.write(result.result)
    logging.info(f"Backed up {task.host}")
+```
+
 ```python
 # modern_backup.py
 from nornir import InitNornir
@@ -156,6 +167,7 @@ results = nr.run(task=backup)
 ```
 
 **Key Improvements:**
+
 - Credentials in config file, not hardcoded
 - Comprehensive error handling and logging
 - Parallel execution (all devices backed up concurrently)

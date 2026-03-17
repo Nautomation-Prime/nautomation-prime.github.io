@@ -19,6 +19,9 @@ tags:
 ---
 > **This post is part of our ongoing series on network automation best practices, grounded in the [PRIME Framework](../../prime-framework/index.md) and [PRIME Philosophy](../../prime-framework/philosophy.md).**
 
+!!! info "Transparency Note"
+    Examples, scenarios, and any outcome figures in this article are provided for education and are based on enterprise delivery experience or anonymised composite scenarios unless explicitly identified as direct Nautomation Prime client outcomes.
+
 ## Why This Blog Exists
 
 You can’t fix what you can’t see. Observability is the foundation of safe, reliable automation. This post covers what to log, how to collect metrics, and how to alert on failures—so you can operate automation at scale with confidence.

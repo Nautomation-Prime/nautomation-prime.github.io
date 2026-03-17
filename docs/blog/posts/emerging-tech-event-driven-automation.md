@@ -19,6 +19,9 @@ tags:
 ---
 > **This post is part of our ongoing series on network automation best practices, grounded in the [PRIME Framework](../../prime-framework/index.md) and [PRIME Philosophy](../../prime-framework/philosophy.md).**
 
+!!! info "Transparency Note"
+    Examples, scenarios, and any outcome figures in this article are provided for education and are based on enterprise delivery experience or anonymised composite scenarios unless explicitly identified as direct Nautomation Prime client outcomes.
+
 ## Why This Blog Exists
 
 Polling is slow and inefficient. Event-driven automation enables real-time response to network changes. This post covers webhooks, message queues, and how to build event-driven workflows with the PRIME Framework.
@@ -403,7 +406,7 @@ async def process_and_measure(event, handler):
 
 ---
 
-## PRIME in Action: Safety, Measurability, and Transparency
+## Additional PRIME Practices: Safety, Measurability, and Transparency
 
 - **Log every event** — Maintain an immutable event log for audit and replay
 - **Monitor queue health** — Alert if queue depth grows too large (indicates processing backlog)

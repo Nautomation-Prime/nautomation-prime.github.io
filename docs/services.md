@@ -12,10 +12,14 @@ tags:
 
 ## Transform Network Operations with Proven Methodology
 
-At Nautomation Prime, we partner with enterprise organizations to deliver strategic network automation through the **[PRIME Framework](./prime-framework/index.md)**—a proven 5-stage methodology that ensures measurable business value, production-grade quality, and sustainable organizational capability.
+At Nautomation Prime, we help enterprise organizations deliver strategic network automation through the **[PRIME Framework](./prime-framework/index.md)**—a proven 5-stage methodology focused on measurable business value, production-grade quality, and sustainable organizational capability.
 
-!!! abstract "Trusted by Enterprise IT Organizations"
-    Organizations implementing the PRIME Framework typically achieve:
+!!! abstract "Transparency Note: Business Stage and Evidence Base"
+    Nautomation Prime is an early-stage, founder-led practice.
+
+    Figures, outcomes, and examples on this page are based on Christopher Davies' enterprise delivery experience unless explicitly identified as direct Nautomation Prime client results.
+
+    Representative outcomes from comparable enterprise environments include:
 
     - **6-12 month payback period** on automation investments
     - **60-80% reduction** in manual configuration time
@@ -41,7 +45,7 @@ At Nautomation Prime, we partner with enterprise organizations to deliver strate
 
 ### Why Automation Projects Fail
 
-Through our engagements, we've observed three critical failure patterns in enterprise automation initiatives:
+Across enterprise environments we have worked in, three critical failure patterns appear repeatedly:
 
 **❌ Tactical Execution Without Strategic Planning**
     - Automating low-value, high-effort tasks instead of high-ROI opportunities
@@ -161,7 +165,7 @@ Our flagship service delivers the complete journey: from identifying the right o
 
 **Investment Range:** £12,000 - £28,000 (depending on scope and complexity)
 
-**Expected ROI:** Clients typically achieve payback within 6-12 months, with compounding returns thereafter
+**Expected ROI:** In comparable enterprise environments, payback is often 6-12 months when scope and adoption are disciplined
 
 **Ideal For:** Organizations seeking strategic, sustainable automation with proven methodology and measurable business outcomes
 
@@ -890,6 +894,14 @@ As revenue scales, a percentage is allocated to vetted charities reviewed for tr
 
 ### Enterprise Decision-Making
 
+??? question "Are your examples from current Nautomation Prime client projects?"
+
+    Not always, and we state this deliberately.
+
+    Nautomation Prime is an early-stage, founder-led practice. Unless a result is explicitly labelled as a direct Nautomation Prime client engagement, metrics and examples are based on Christopher's prior enterprise delivery experience and presented in anonymised form.
+
+    This is part of our Transparency Over Obscurity principle.
+
 ??? question "How do we justify the investment to senior leadership?"
 
     The [Pinpoint](./prime-framework/pinpoint.md) stage delivers concrete ROI projections **before** you commit to full implementation. You receive:
@@ -900,7 +912,7 @@ As revenue scales, a percentage is allocated to vetted charities reviewed for tr
     - Payback period estimates
     - Executive summary suitable for budget presentations
     
-    Most organizations achieve payback within 6-12 months, with pure savings thereafter. The business case is built into the methodology.
+    In comparable enterprise environments, many teams achieve payback within 6-12 months, with pure savings thereafter. The business case is built into the methodology.
 
 ??? question "What if our requirements change mid-project?"
 

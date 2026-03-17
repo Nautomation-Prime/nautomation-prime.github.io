@@ -25,6 +25,8 @@ Most network automation projects fail within 6 months. Not because the code brea
 
 **Nautomation Prime is different.** We deliver hardened, production-ready Cisco automation with zero black-box code. Every line explained. Every design decision documented. Every project structured for sustainable ROI and team empowerment.
 
+> **Transparency note:** Nautomation Prime is an early-stage, founder-led practice. Methods, figures, and examples across this site are grounded in Christopher's enterprise delivery experience unless explicitly labelled as a direct Nautomation Prime client engagement.
+
 [**📞 Request Discovery Call**](mailto:nautomationprime.f3wfe@simplelogin.com){.md-button .md-button--primary}
 
 **[Explore Services](./services.md){.md-button}** | **[About the PRIME Framework](./prime-framework/index.md){.md-button}**
@@ -43,16 +45,16 @@ No blind giving. No checkbox charity. No tolerance for wasteful models.
 
 ---
 
-## ✅ Real-World Outcomes We've Delivered
+## ✅ Real-World Outcomes From Enterprise Delivery Experience
 
-**Proof that our methodology works:**
+**Representative outcomes from comparable enterprise environments:**
 
 - **Reduced VLAN provisioning time** from 15 minutes to 30 seconds (per VLAN) — *60x faster*
 - **Automated IOS-XE upgrades** across 200+ devices with automatic rollback safety — *zero manual intervention*
 - **Eliminated 90% of manual compliance checks** through continuous auditing — *compliance at scale*
 - **Removed vendor lock-in** by rebuilding legacy proprietary automation in portable Python — *owned by your team*
 
-**[Read the full case study →](./blog/posts/case-study-full-automation-journey.md)** | **[ROI Measurement Framework →](./prime-framework/measure.md)**
+**[Read the full experience-based case study →](./blog/posts/case-study-full-automation-journey.md)** | **[ROI Measurement Framework →](./prime-framework/measure.md)**
 
 ---
 
@@ -199,7 +201,7 @@ Founded by a **CCNP-certified Senior Network Engineer** with **10+ years** in en
 - **🏢 For Infrastructure Managers & Leaders:**
     - [**Schedule a Discovery Call**](mailto:nautomationprime.f3wfe@simplelogin.com) → Discuss your automation challenges and ROI goals (30 min, no commitment)
     - [**View Services & Pricing**](./services.md) → See PRIME engagements, Docker containers, custom solutions
-    - [**Read the Case Study**](./blog/posts/case-study-full-automation-journey.md) → See real metrics: 438% ROI, 87% faster deployments
+    - [**Read the Case Study**](./blog/posts/case-study-full-automation-journey.md) → See anonymised, experience-based metrics: 438% ROI, 87% faster deployments
 - **👨‍💻 For Engineers & Technical Teams:**
     - [**Getting Started Guide**](./getting-started.md) → Understand philosophy, pathways, and prerequisites
     - [**Learn by Building**](./tutorials/index.md) → Hands-on tutorials from beginner to expert

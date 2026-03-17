@@ -19,9 +19,14 @@ tags:
 
 > **This post is part of our ongoing series on network automation best practices, grounded in the [PRIME Framework](../../prime-framework/index.md) and [PRIME Philosophy](../../prime-framework/philosophy.md).**
 
+!!! info "Transparency Note"
+    This case study is an anonymised, experience-based example derived from enterprise delivery environments.
+
+    It is presented to illustrate the PRIME Framework method and expected outcome patterns. It is not automatically a record of a current Nautomation Prime client engagement unless explicitly stated.
+
 ## Why This Blog Exists
 
-Most automation stories stop at "the script worked." This case study follows a real project from pain point to measurable business value, showing how the PRIME Framework guides every step.
+Most automation stories stop at "the script worked." This representative case study follows a full project journey from pain point to measurable business value, showing how the PRIME Framework guides every step.
 
 <!-- more -->
 
@@ -81,23 +86,21 @@ Most automation stories stop at "the script worked." This case study follows a r
 
 ## Example: Modular Task Structure
 
-```python
-def preflight_validation(device):
-    # Use PyATS to check current VLAN state
-    ...
+    def preflight_validation(device):
+        # Use PyATS to check current VLAN state
+        ...
 
-def push_vlan_config(device, vlan):
-    # Use Nornir to push config
-    ...
+    def push_vlan_config(device, vlan):
+        # Use Nornir to push config
+        ...
 
-def postflight_validation(device):
-    # Use PyATS to verify VLAN applied
-    ...
+    def postflight_validation(device):
+        # Use PyATS to verify VLAN applied
+        ...
 
-def update_itsm_ticket(ticket_id, status):
-    # Use ServiceNow/Jira API to update change record
-    ...
-```
+    def update_itsm_ticket(ticket_id, status):
+        # Use ServiceNow/Jira API to update change record
+        ...
 
 ---
 
@@ -142,25 +145,23 @@ def update_itsm_ticket(ticket_id, status):
 
 ### Dashboard Example (Grafana)
 
-```text
-┌─────────────────────────────────────────────────┐
-│        VLAN Automation Metrics Dashboard         │
-├─────────────────────────────────────────────────┤
-│                                                 │
-│  Deployments/Month: 45                          │
-│  Success Rate: 99.5% ✓                          │
-│  Avg Duration: 2.3 mins                         │
-│  Failed Deployments: 0                          │
-│                                                 │
-│  Time Saved This Month: 18 hours                │
-│  Cumulative Savings: 108 hours                  │
-│  Estimated Cost Savings: $5,400 YTD             │
-│                                                 │
-│  Top Implementation: Nornir/Netbox              │
-│  Top Error Type: None (0 critical failures)     │
-│                                                 │
-└─────────────────────────────────────────────────┘
-```
+    ┌─────────────────────────────────────────────────┐
+    │        VLAN Automation Metrics Dashboard         │
+    ├─────────────────────────────────────────────────┤
+    │                                                 │
+    │  Deployments/Month: 45                          │
+    │  Success Rate: 99.5% ✓                          │
+    │  Avg Duration: 2.3 mins                         │
+    │  Failed Deployments: 0                          │
+    │                                                 │
+    │  Time Saved This Month: 18 hours                │
+    │  Cumulative Savings: 108 hours                  │
+    │  Estimated Cost Savings: $5,400 YTD             │
+    │                                                 │
+    │  Top Implementation: Nornir/Netbox              │
+    │  Top Error Type: None (0 critical failures)     │
+    │                                                 │
+    └─────────────────────────────────────────────────┘
 
 ### How Time Was Measured
 
@@ -203,17 +204,15 @@ def update_itsm_ticket(ticket_id, status):
 
 ### Documentation Provided
 
-```text
-docs/
-├── README.md                    # Overview & quick start
-├── VLAN_DEPLOYMENT.md           # Step-by-step workflow
-├── TROUBLESHOOTING.md           # Common issues & fixes
-├── ARCHITECTURE.md              # Design diagrams & rationale
-├── API_REFERENCE.md             # Function/class documentation
-├── RUNBOOK_VLAN_DEPLOY.md       # Operations runbook
-├── RUNBOOK_ROLLBACK.md          # Rollback procedure
-└── CONTRIBUTING.md              # How to add features
-```
+    docs/
+    ├── README.md                    # Overview & quick start
+    ├── VLAN_DEPLOYMENT.md           # Step-by-step workflow
+    ├── TROUBLESHOOTING.md           # Common issues & fixes
+    ├── ARCHITECTURE.md              # Design diagrams & rationale
+    ├── API_REFERENCE.md             # Function/class documentation
+    ├── RUNBOOK_VLAN_DEPLOY.md       # Operations runbook
+    ├── RUNBOOK_ROLLBACK.md          # Rollback procedure
+    └── CONTRIBUTING.md              # How to add features
 
 ### Measurable Knowledge Transfer
 
@@ -225,7 +224,7 @@ docs/
 
 ---
 
-## PRIME in Action: Real-World Results
+## PRIME in Action: Representative Results
 
 ### Phase Completion Timeline
 

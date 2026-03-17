@@ -19,6 +19,9 @@ tags:
 
 > **This post is part of our ongoing series on network automation best practices, grounded in the [PRIME Framework](../../prime-framework/index.md) and [PRIME Philosophy](../../prime-framework/philosophy.md).**
 
+!!! info "Transparency Note"
+    Examples, scenarios, and any outcome figures in this article are provided for education and are based on enterprise delivery experience or anonymised composite scenarios unless explicitly identified as direct Nautomation Prime client outcomes.
+
 ## Why This Blog Exists
 
 Enterprise automation is more than scripts—it’s pipelines, version control, and safe rollouts. This post covers how to build CI/CD, GitOps, and containerized pipelines for network automation, and how the PRIME Framework ensures safety and empowerment.
@@ -52,7 +55,7 @@ Enterprise automation is more than scripts—it’s pipelines, version control, 
 
 A typical enterprise network automation pipeline has these stages:
 
-```
+```text
 Code Push → Lint & Format → Unit Tests → Integration Tests → 
 Staging Deployment → Smoke Tests → Approval → Production Deployment → 
 Monitoring & Alerts → Rollback (if needed)
@@ -385,7 +388,7 @@ change_mgr.close_change(change['change_id'], status='successful')
 
 ### Blue-Green Deployment
 
-```
+```text
 Blue Environment (Old)     Green Environment (New)
     ✓ Active                    ✗ Inactive
     
@@ -439,7 +442,7 @@ async def monitor_health(environment, duration=300):
 
 ### Canary Deployment
 
-```
+```text
 All traffic initially to Stable
 
 Stable (99%)  →  New (1%)

@@ -20,6 +20,9 @@ tags:
 
 > **This post is part of our ongoing series on network automation best practices, grounded in the [PRIME Framework](../../prime-framework/index.md) and [PRIME Philosophy](../../prime-framework/philosophy.md).**
 
+!!! info "Transparency Note"
+    Examples, scenarios, and any outcome figures in this article are provided for education and are based on enterprise delivery experience or anonymised composite scenarios unless explicitly identified as direct Nautomation Prime client outcomes.
+
 ## Why This Blog Exists
 
 Choosing the right automation framework is one of the most important decisions for any network automation project. The wrong choice can lead to wasted effort, technical debt, and failed outcomes. This guide breaks down the strengths, weaknesses, and best-fit scenarios for Nornir, Ansible, and PyATS—so you can make a PRIME-aligned, confident decision.

@@ -11,9 +11,19 @@ tags:
 
 Nautomation Prime was founded to bridge the gap between complex Cisco infrastructure and accessible Python-driven automation. We believe network engineers deserve transparency in their automation tools—no black boxes, no mystery code, just clear, production-ready solutions explained line-by-line.
 
+## Business Stage Transparency
+
+Nautomation Prime is currently an early-stage, founder-led practice.
+
+To keep communication honest:
+
+- Delivery methods and technical examples are based on Christopher's enterprise engineering experience.
+- Metrics and outcomes are presented as representative unless explicitly identified as direct Nautomation Prime client results.
+- Case studies are anonymised to protect confidentiality and avoid exposing employer or client-sensitive details.
+
 ### The Birth of the PRIME Framework
 
-In the early days, we built custom automation for clients the traditional way: they'd describe a pain point, we'd write a Python script, deliver the code, invoice, and move on. Projects succeeded technically—the code worked—but we noticed a pattern:
+Before launching Nautomation Prime, Christopher delivered custom automation in enterprise roles and project environments the traditional way: teams described pain points, automation was built, and technical delivery completed. Projects succeeded technically, but a pattern kept appearing:
 
 **6 months later, the automation had stalled.**
 
