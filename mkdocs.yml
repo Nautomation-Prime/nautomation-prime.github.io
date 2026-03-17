@@ -116,6 +116,7 @@ markdown_extensions:
 
 nav:
   - Home: index.md
+  - Giving With Integrity: charity.md
   - Getting Started: getting-started.md
   - Resources: resources.md
   - Learning:

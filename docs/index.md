@@ -31,6 +31,18 @@ Most network automation projects fail within 6 months. Not because the code brea
 
 ---
 
+## Giving With Integrity
+
+We are building Nautomation Prime to create value beyond technology delivery.
+
+As the business grows, a percentage of revenue will be donated to carefully vetted charities that demonstrate transparency, responsible spending, ethical governance, and measurable community impact.
+
+No blind giving. No checkbox charity. No tolerance for wasteful models.
+
+**[Read Our Full Giving Policy ->](./charity.md)**
+
+---
+
 ## ✅ Real-World Outcomes We've Delivered
 
 **Proof that our methodology works:**
