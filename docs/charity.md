@@ -16,6 +16,21 @@ That means our giving model is built on one rule: **donations should create real
 
 ---
 
+## Policy Review Status
+
+- **Last reviewed:** 17 March 2026
+- **Next scheduled review:** June 2026
+- **Current status:** Active policy, pre-revenue implementation phase
+
+### Change Log
+
+| Date | Update | Why it was updated |
+| :--- | :--- | :--- |
+| 17 March 2026 | Initial publication of Giving With Integrity policy | To define transparent giving standards before commercial scale begins |
+| 17 March 2026 | Added review cadence and change log | To improve accountability and make policy updates traceable |
+
+---
+
 ## Why This Matters
 
 A fair question many people ask is this:
@@ -167,3 +182,8 @@ Our approach is simple:
 - **zero tolerance for wasteful models**
 
 As Nautomation Prime grows, this page will grow with full transparency.
+
+### Related Pages
+
+- [Enterprise Services](./services.md)
+- [About Nautomation Prime](./about.md)

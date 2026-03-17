@@ -876,6 +876,16 @@ This commitment to transparency strengthens the ecosystem while protecting clien
 
 ---
 
+## Giving With Integrity
+
+Alongside technical delivery, Nautomation Prime is building a transparent giving model so growth benefits communities as well as clients.
+
+As revenue scales, a percentage is allocated to vetted charities reviewed for transparency, governance, and measurable impact.
+
+**[Read the full Giving With Integrity policy ->](./charity.md)**
+
+---
+
 ## Frequently Asked Questions
 
 ### Enterprise Decision-Making
