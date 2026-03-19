@@ -1729,7 +1729,7 @@ If ZTP fails catastrophically:
 ## Support and Contributions
 
 **Author:** Christopher Davies  
-**Email:** <nautomationprime.f3wfe@simplelogin.com>  
+**Email:** <enquiries@nautomationprime.io>  
 **License:** GNU General Public License v3.0
 
 **Repository:** (Add GitHub/GitLab URL when published)

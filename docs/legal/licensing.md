@@ -24,7 +24,7 @@ You may **NOT**:
 - Use commercially without written permission
 - Claim ownership or authorship
 
-**For licensing inquiries or commercial use:** Contact [nautomationprime.f3wfe@simplelogin.com](mailto:nautomationprime.f3wfe@simplelogin.com)
+**For licensing inquiries or commercial use:** Contact [enquiries@nautomationprime.io](mailto:enquiries@nautomationprime.io)
 
 ---
 
@@ -164,5 +164,5 @@ To use the PRIME Framework officially, contact us for a partnership or licensing
 
 For licensing questions, permissions requests, or commercial inquiries:
 
-📧 **Email:** [nautomationprime.f3wfe@simplelogin.com](mailto:nautomationprime.f3wfe@simplelogin.com)  
+📧 **Email:** [enquiries@nautomationprime.io](mailto:enquiries@nautomationprime.io)  
 🔗 **Contact Page:** [About Us](../about.md#contact)

@@ -453,7 +453,7 @@ Ready to transform your network operations?
 
 ### Step 1: Free Discovery Call
 
-**[Book a Discovery Call](mailto:nautomationprime.f3wfe@simplelogin.com)** — 30–60 minutes, no obligation
+**[Book a Discovery Call](mailto:enquiries@nautomationprime.io)** — 30–60 minutes, no obligation
 
 We'll discuss:
 

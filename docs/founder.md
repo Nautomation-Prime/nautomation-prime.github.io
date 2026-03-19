@@ -152,7 +152,7 @@ Whether you're:
 - **Improving existing automation** — I can help you understand and maintain what you have
 - **Scaling across your organization** — I can help you build sustainable, team-owned capability
 
-**[Book a Discovery Call](mailto:nautomationprime.f3wfe@simplelogin.com)** (30-60 minutes, free, no obligation)
+**[Book a Discovery Call](mailto:enquiries@nautomationprime.io)** (30-60 minutes, free, no obligation)
 
 **[Explore the PRIME Framework](./prime-framework/index.md)** to understand how we deliver sustainable automation
 
@@ -163,7 +163,7 @@ Whether you're:
 - **Location:** Leek, Staffordshire, UK
 - **LinkedIn:** [Christopher Davies](https://www.linkedin.com/in/christopher-davies-6b345026/)
 - **GitHub:** [Nautomation-Prime](https://github.com/Nautomation-Prime)
-- **Email:** [nautomationprime.f3wfe@simplelogin.com](mailto:nautomationprime.f3wfe@simplelogin.com)
+- **Email:** [enquiries@nautomationprime.io](mailto:enquiries@nautomationprime.io)
 
 ---
 

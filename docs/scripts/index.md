@@ -208,7 +208,7 @@ For issues, feature requests, or questions about any script:
 
 - Check the **Deep Dives** documentation for detailed explanations.  
 - Open an issue on the respective GitHub repository.  
-- Contact us via [email](mailto:nautomationprime.f3wfe@simplelogin.com) or [LinkedIn](https://www.linkedin.com/company/nautomationprime) for consulting services.  
+- Contact us via [email](mailto:enquiries@nautomationprime.io) or [LinkedIn](https://www.linkedin.com/company/nautomationprime) for consulting services.  
 
 ---
 

@@ -117,7 +117,7 @@ Christopher specialises in enterprise Cisco automation, with deep expertise in P
 
 Whether you want to learn, deploy tools, or build bespoke solutions, let's talk.
 
-**[Book a Discovery Call](mailto:nautomationprime.f3wfe@simplelogin.com)** — 30-60 minutes, free, no obligation  
+**[Book a Discovery Call](mailto:enquiries@nautomationprime.io)** — 30-60 minutes, free, no obligation  
 [Explore Services](./services.md) — PRIME Framework, à la carte options, pricing
 
 ---
@@ -185,7 +185,7 @@ Found a bug or have a feature request? Open an issue on our [GitHub organisation
 
 ## Contact
 
-- **Email:** [nautomationprime.f3wfe@simplelogin.com](mailto:nautomationprime.f3wfe@simplelogin.com)
+- **Email:** [enquiries@nautomationprime.io](mailto:enquiries@nautomationprime.io)
 - **LinkedIn:** [Nautomation Prime Company Page](https://www.linkedin.com/company/nautomationprime)
 - **GitHub:** [Nautomation-Prime Organisation](https://github.com/Nautomation-Prime)
 

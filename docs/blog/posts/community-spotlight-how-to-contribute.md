@@ -362,7 +362,7 @@ def test_discover_multiple_hosts(host, expected_neighbors):
 
 ### How to Submit Your Story
 
-- **Email us:** <nautomationprime.f3wfe@simplelogin.com> with subject "Community Spotlight: [Your Story Title]"
+- **Email us:** <enquiries@nautomationprime.io> with subject "Community Spotlight: [Your Story Title]"
 - **Open a discussion:** Start a thread on our GitHub Discussions channel
 - **Submit a PR:** Create a new markdown file in docs/community-spotlights/ with your story
 - **Reach out directly:** Comment on related blog posts or join our Slack channel to tell us your idea

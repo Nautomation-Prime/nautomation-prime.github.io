@@ -15,7 +15,7 @@ Staffordshire
 England  
 United Kingdom
 
-**Email:** [nautomationprime.f3wfe@simplelogin.com](mailto:nautomationprime.f3wfe@simplelogin.com)
+**Email:** [enquiries@nautomationprime.io](mailto:enquiries@nautomationprime.io)
 
 This Privacy Policy explains what personal information is collected when you use this website and how it is handled.
 
@@ -32,11 +32,9 @@ When you contact us via email, we receive only the information you choose to inc
 
 ## 2. How Your Data Is Processed
 
-Email communications are processed through our email provider **SimpleLogin**, which provides privacy-focused email forwarding.
+Email communications are processed through our current business email service provider.
 
-SimpleLogin's privacy policy can be found here:
-
-<https://simplelogin.io/privacy/>
+Where third-party email infrastructure is used, processing is limited to what is necessary to deliver, route, and store email communications securely.
 
 ## 3. Purpose of Processing
 
@@ -67,11 +65,11 @@ If you are in the UK or EU, you have the right to:
 - Request correction of inaccurate data  
 - Request deletion of your data  
 
-To exercise these rights, please contact us via email at [nautomationprime.f3wfe@simplelogin.com](mailto:nautomationprime.f3wfe@simplelogin.com).
+To exercise these rights, please contact us via email at [enquiries@nautomationprime.io](mailto:enquiries@nautomationprime.io).
 
 ## 7. International Transfers
 
-SimpleLogin is a privacy-focused service that may process email data in regions outside the UK/EU under appropriate data protection safeguards.
+Our email service providers may process limited email data outside the UK/EU under appropriate data protection safeguards.
 
 ## 8. Children’s Privacy
 
@@ -81,4 +79,4 @@ We do not knowingly collect information from minors.
 
 ## 9. Contact
 
-For any privacy-related questions, please contact us at [nautomationprime.f3wfe@simplelogin.com](mailto:nautomationprime.f3wfe@simplelogin.com).
+For any privacy-related questions, please contact us at [enquiries@nautomationprime.io](mailto:enquiries@nautomationprime.io).

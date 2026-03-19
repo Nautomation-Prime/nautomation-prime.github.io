@@ -325,7 +325,7 @@ Included as Stage 1 when you engage for the complete framework. Typically 1 week
 - **[PRIME Framework Overview](./index.md)** — See how all five stages work together
 - **[Next Stage: Re-engineer](./re-engineer.md)** — Process optimisation before automation
 - **[View Services](../services.md)** — Engagement models and pricing
-- **[Request Discovery Call](mailto:nautomationprime.f3wfe@simplelogin.com)** — Discuss your automation needs
+- **[Request Discovery Call](mailto:enquiries@nautomationprime.io)** — Discuss your automation needs
 
 ---
 

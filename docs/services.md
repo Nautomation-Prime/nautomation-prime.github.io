@@ -169,7 +169,7 @@ Our flagship service delivers the complete journey: from identifying the right o
 
 **Ideal For:** Organizations seeking strategic, sustainable automation with proven methodology and measurable business outcomes
 
-**[Request Discovery Call](mailto:nautomationprime.f3wfe@simplelogin.com)** to discuss your automation requirements.
+**[Request Discovery Call](mailto:enquiries@nautomationprime.io)** to discuss your automation requirements.
 
 ---
 
@@ -391,7 +391,7 @@ The PRIME Framework adapts to your team's Python knowledge. Choose the track tha
 - Team skill levels vary (some Python-capable, others not)
 - You prefer gradual capability building over immediate deep-dive training
 
-**Still unsure?** [Request a discovery call](mailto:nautomationprime.f3wfe@simplelogin.com) to discuss which track fits your organisation.
+**Still unsure?** [Request a discovery call](mailto:enquiries@nautomationprime.io) to discuss which track fits your organisation.
 
 ---
 
@@ -757,7 +757,7 @@ Ready to transform your network operations with proven automation methodology?
 
 ### Step 1: Discovery & Assessment (Free, No Obligation)
 
-**[Request a Discovery Call](mailto:nautomationprime.f3wfe@simplelogin.com)**
+**[Request a Discovery Call](mailto:enquiries@nautomationprime.io)**
 
 **Initial Consultation (30-60 minutes):**
 
@@ -1081,7 +1081,7 @@ The PRIME Framework provides the proven methodology, production-grade quality, a
 
 #### Option 1: Schedule a Discovery Call
 
-**[Request Free Consultation](mailto:nautomationprime.f3wfe@simplelogin.com)**
+**[Request Free Consultation](mailto:enquiries@nautomationprime.io)**
 
 - No obligation, no sales pressure
 - 30-60 minute discussion of your specific challenges
@@ -1096,7 +1096,7 @@ Browse our [educational content](./tutorials/index.md) and [blog articles](./blo
 
 ## Contact Information
 
-**Email:** [nautomationprime.f3wfe@simplelogin.com](mailto:nautomationprime.f3wfe@simplelogin.com)
+**Email:** [enquiries@nautomationprime.io](mailto:enquiries@nautomationprime.io)
 
 **Response Time:** 24-48 hours (UK business days)
 
@@ -1109,4 +1109,4 @@ Browse our [educational content](./tutorials/index.md) and [blog articles](./blo
 
 **Transform your network operations. Build lasting capability. Achieve measurable results.**
 
-**[Begin with a discovery call →](mailto:nautomationprime.f3wfe@simplelogin.com)**
+**[Begin with a discovery call →](mailto:enquiries@nautomationprime.io)**

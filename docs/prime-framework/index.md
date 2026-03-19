@@ -234,7 +234,7 @@ The PRIME Framework has delivered measurable improvements across enterprise netw
 
 30-60 minute consultation to understand your challenges and automation maturity. No obligation.
 
-[**Request Discovery Call →**](mailto:nautomationprime.f3wfe@simplelogin.com)
+[**Request Discovery Call →**](mailto:enquiries@nautomationprime.io)
 
 ### Step 2: Pinpoint Assessment (Optional)
 
@@ -438,7 +438,7 @@ The PRIME Framework takes the guesswork out of network automation. Whether you'r
 **Next Steps:**
 
 - **[Understand our principles](./philosophy.md)** — Read the PRIME Philosophy
-- **[Request a free discovery call](mailto:nautomationprime.f3wfe@simplelogin.com)** to discuss your needs
+- **[Request a free discovery call](mailto:enquiries@nautomationprime.io)** to discuss your needs
 - **[Explore our services](../services.md)** to see engagement options and pricing
 - **[Learn the foundations](../tutorials/index.md)** with free tutorials
 - **[Study production tools](../deep-dives/index.md)** to see the framework in action

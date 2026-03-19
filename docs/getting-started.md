@@ -68,7 +68,7 @@ We deliver automation projects through the **[PRIME Framework](prime-framework/i
 - Custom Python automation (VLAN provisioning, fleet upgrades, ISE integration)
 - Deployment options (standard scripts, portable bundles, Docker containers)
 
-**[View Services](services.md)** | **[Request Discovery Call](mailto:nautomationprime.f3wfe@simplelogin.com)**
+**[View Services](services.md)** | **[Request Discovery Call](mailto:enquiries@nautomationprime.io)**
 
 ---
 
@@ -113,7 +113,7 @@ We deliver automation projects through the **[PRIME Framework](prime-framework/i
 
 For structured automation projects with proven ROI:
 
-1. **[Request Discovery Call](mailto:nautomationprime.f3wfe@simplelogin.com)**—free 30-60 minute discussion
+1. **[Request Discovery Call](mailto:enquiries@nautomationprime.io)**—free 30-60 minute discussion
 2. Receive [Pinpoint stage](prime-framework/pinpoint.md) roadmap with ROI calculations
 3. Choose full [PRIME Framework](prime-framework/index.md) or individual stages (à la carte)
 4. Deliverables: Production code, documentation, ROI metrics, team capability
@@ -125,7 +125,7 @@ For structured automation projects with proven ROI:
 For custom automation tailored to your specific topology:
 
 1. Review available [services and deployment options](services.md)
-2. Contact us via [email](mailto:nautomationprime.f3wfe@simplelogin.com) or [LinkedIn](https://www.linkedin.com/company/nautomationprime)
+2. Contact us via [email](mailto:enquiries@nautomationprime.io) or [LinkedIn](https://www.linkedin.com/company/nautomationprime)
 3. Describe your requirements and any constraints (e.g., restricted environments, specific platforms)
 4. Receive a detailed proposal and timeline
 
@@ -150,7 +150,7 @@ For custom automation tailored to your specific topology:
 
 ??? question "Can you automate my specific network topology?"
 
-    Absolutely! Our bespoke services cover custom scripting for any topology. Contact us via [email](mailto:nautomationprime.f3wfe@simplelogin.com) or [LinkedIn](https://www.linkedin.com/company/nautomationprime) to discuss your specific requirements.
+    Absolutely! Our bespoke services cover custom scripting for any topology. Contact us via [email](mailto:enquiries@nautomationprime.io) or [LinkedIn](https://www.linkedin.com/company/nautomationprime) to discuss your specific requirements.
 
 ??? question "Are these tools vendor-locked to Cisco?"
 
@@ -188,13 +188,13 @@ Whether you're learning automation, deploying tools, or need bespoke services—
 
 ### For Custom Automation & Services
 
-**[Book a Discovery Call](mailto:nautomationprime.f3wfe@simplelogin.com)** (Free, 30-60 minutes)
+**[Book a Discovery Call](mailto:enquiries@nautomationprime.io)** (Free, 30-60 minutes)
 
 No obligation. We'll discuss your goals, timeline, and answer any questions about the PRIME Framework.
 
 ### For Questions or Discussions
 
-- **Email:** [nautomationprime.f3wfe@simplelogin.com](mailto:nautomationprime.f3wfe@simplelogin.com)
+- **Email:** [enquiries@nautomationprime.io](mailto:enquiries@nautomationprime.io)
 - **LinkedIn:** [Nautomation Prime](https://www.linkedin.com/company/nautomationprime)
 
 ---
@@ -203,7 +203,7 @@ No obligation. We'll discuss your goals, timeline, and answer any questions abou
 - **Deploy Tools:** Browse the [Script Library](scripts/index.md)
 - **Professional Services:** Explore [PRIME Framework](prime-framework/index.md) for structured automation delivery
 - **Custom Solutions:** View [Services](services.md) for bespoke automation options
-- **Connect:** Contact us via [email](mailto:nautomationprime.f3wfe@simplelogin.com) or [LinkedIn](https://www.linkedin.com/company/nautomationprime)
+- **Connect:** Contact us via [email](mailto:enquiries@nautomationprime.io) or [LinkedIn](https://www.linkedin.com/company/nautomationprime)
 
 ---
 

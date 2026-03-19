@@ -399,7 +399,7 @@ The [PRIME Framework](../../prime-framework/index.md) is designed to prevent exa
 
 If you've experienced automation failure—or want to avoid it—let's talk.
 
-**[Book a Discovery Call](mailto:nautomationprime.f3wfe@simplelogin.com)** (30-60 minutes, free)
+**[Book a Discovery Call](mailto:enquiries@nautomationprime.io)** (30-60 minutes, free)
 
 We'll discuss:
 

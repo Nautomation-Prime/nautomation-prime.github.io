@@ -27,7 +27,7 @@ Most network automation projects fail within 6 months. Not because the code brea
 
 > **Transparency note:** Nautomation Prime is an early-stage, founder-led practice. Methods, figures, and examples across this site are grounded in Christopher's enterprise delivery experience unless explicitly labelled as a direct Nautomation Prime client engagement.
 
-[**📞 Request Discovery Call**](mailto:nautomationprime.f3wfe@simplelogin.com){.md-button .md-button--primary}
+[**📞 Request Discovery Call**](mailto:enquiries@nautomationprime.io){.md-button .md-button--primary}
 
 **[Explore Services](./services.md){.md-button}** | **[About the PRIME Framework](./prime-framework/index.md){.md-button}**
 
@@ -149,7 +149,7 @@ Wondering what an engagement looks like? Here's how we structure automation tran
 
 **Expected Outcome:** Your team owns production automation with 6–12 month payback, 60%+ operational efficiency gains, and sustainable scaling.
 
-**[Ready to start? Request a Discovery Call](mailto:nautomationprime.f3wfe@simplelogin.com){.md-button .md-button--primary}**
+**[Ready to start? Request a Discovery Call](mailto:enquiries@nautomationprime.io){.md-button .md-button--primary}**
 
 ---
 
@@ -163,7 +163,7 @@ Covers complete end-to-end delivery from opportunity discovery to team empowerme
 
 **Timeline to ROI Payback: 6–12 months** (then pure savings thereafter)
 
-[Get detailed pricing and options →](./services.md) | [Request Discovery Call](mailto:nautomationprime.f3wfe@simplelogin.com)
+[Get detailed pricing and options →](./services.md) | [Request Discovery Call](mailto:enquiries@nautomationprime.io)
 
 ---
 
@@ -199,7 +199,7 @@ Founded by a **CCNP-certified Senior Network Engineer** with **10+ years** in en
 ## Next Steps
 
 - **🏢 For Infrastructure Managers & Leaders:**
-    - [**Schedule a Discovery Call**](mailto:nautomationprime.f3wfe@simplelogin.com) → Discuss your automation challenges and ROI goals (30 min, no commitment)
+    - [**Schedule a Discovery Call**](mailto:enquiries@nautomationprime.io) → Discuss your automation challenges and ROI goals (30 min, no commitment)
     - [**View Services & Pricing**](./services.md) → See PRIME engagements, Docker containers, custom solutions
     - [**Read the Case Study**](./blog/posts/case-study-full-automation-journey.md) → See anonymised, experience-based metrics: 438% ROI, 87% faster deployments
 - **👨‍💻 For Engineers & Technical Teams:**
@@ -211,7 +211,7 @@ Founded by a **CCNP-certified Senior Network Engineer** with **10+ years** in en
 - **❓ Still Have Questions?**
     - [FAQ & Common Scenarios](./getting-started.md#frequently-asked-questions)
     - [About & Track Record](./about.md)
-    - [Contact us](mailto:nautomationprime.f3wfe@simplelogin.com) or [Connect on LinkedIn](https://www.linkedin.com/company/nautomationprime)
+    - [Contact us](mailto:enquiries@nautomationprime.io) or [Connect on LinkedIn](https://www.linkedin.com/company/nautomationprime)
 
 ---
 

@@ -400,7 +400,7 @@ Sometimes clients have identified their automations but need design help:
 - **[PRIME Framework Overview](./index.md)** — See how all five stages work together
 - **[Previous Stage: Pinpoint](./pinpoint.md)** — How we identified this automation
 - **[Next Stage: Implement](./implement.md)** — Building production-ready code
-- **[Request Discovery Call](mailto:nautomationprime.f3wfe@simplelogin.com)** — Discuss your automation needs
+- **[Request Discovery Call](mailto:enquiries@nautomationprime.io)** — Discuss your automation needs
 
 ---
 

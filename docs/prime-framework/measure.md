@@ -312,7 +312,7 @@ ROI varies based on key inputs. Here's how different scenarios affect returns:
 
     The calculator provides instant Year-1 ROI, steady-state ROI, and payback period calculations.
 
-    **[Request A Copy](mailto:nautomationprime.f3wfe@simplelogin.com)**
+    **[Request A Copy](mailto:enquiries@nautomationprime.io)**
     
 ---
 
@@ -522,7 +522,7 @@ For Organisations with existing automation needing ROI proof:
 - **[PRIME Framework Overview](./index.md)** — See how all five stages work together
 - **[Previous Stage: Implement](./implement.md)** — Building the automation we're now measuring
 - **[Next Stage: Empower](./empower.md)** — Knowledge transfer and capability building
-- **[Request Discovery Call](mailto:nautomationprime.f3wfe@simplelogin.com)** — Discuss your automation needs
+- **[Request Discovery Call](mailto:enquiries@nautomationprime.io)** — Discuss your automation needs
 
 ---
 
