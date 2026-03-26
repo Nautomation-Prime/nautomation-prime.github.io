@@ -1,6 +1,6 @@
 ---
 title: Cisco IOS-XE Compliance Audit
-description: Comprehensive deep dive into a policy-driven Cisco IOS-XE compliance auditor with role-aware checks, port classification, remediation generation, and multi-format reporting.
+description: Comprehensive deep dive into Cisco IOS-XE Compliance Auditor v4.0, including policy-driven checks, remediation lifecycle workflow, and multi-format reporting.
 tags:
   - Deep Dive
   - Compliance Audit
@@ -16,6 +16,9 @@ tags:
 ## Deep Dive: Cisco IOS-XE Compliance Audit
 
 ## "Policy-Driven Compliance, Engineered for Real Networks."
+
+!!! info "Version Alignment"
+  This deep dive reflects **Cisco IOS-XE Compliance Auditor v4.0** (March 2026) and includes the remediation lifecycle workflow (`--remediation-list`, approve/reject, apply, bulk apply) and ROI reporting features.
 
 The **Cisco IOS-XE Compliance Audit** tool is a role-aware, policy-driven audit framework for Cisco switching and routing estates. It connects to devices (directly or through a jump host), collects operational and configuration state, classifies every interface by intent, runs 90+ toggleable compliance checks, and generates actionable reports with remediation commands.
 
@@ -40,6 +43,9 @@ This auditor solves that with:
 - **Role-aware logic**: Access vs core vs SD-WAN vs industrial behavior
 - **Port-intent classification**: ACCESS, TRUNK_UPLINK, TRUNK_DOWNLINK, TRUNK_ENDPOINT, UNUSED, ROUTED, and more
 - **Operational output**: Rich console summaries, HTML dashboards, JSON, CSV, and per-device remediation scripts
+- **Remediation lifecycle workflow**: Review packs, approvals, change-ticket linkage, expiry control, and guarded apply operations
+- **Bulk operations**: `--remediation-approve-all` and `--remediation-apply-all` for scalable change windows
+- **ROI reporting**: Optional estimated time/value saved in console, JSON, and HTML outputs
 - **Offline mode**: Validate policies against saved command outputs without live SSH
 
 ---
@@ -69,6 +75,7 @@ A failed finding includes remediation intent, and the tool can compile per-devic
 ```text
 Cisco-Compliance-Audit/
 ├── compliance_audit/
+│   ├── __init__.py             # Package exports + version (v4.0)
 │   ├── __main__.py             # CLI entry point (python -m compliance_audit)
 │   ├── auditor.py              # Orchestrator, threading, run pipeline
 │   ├── collector.py            # Command collection + parsing (Genie + fallback)
@@ -80,6 +87,7 @@ Cisco-Compliance-Audit/
 │   ├── netmiko_utils.py        # Netmiko connection wrappers
 │   ├── hostname_parser.py      # Role extraction from naming convention
 │   ├── config_loader.py        # YAML loader and inventory resolution
+│   ├── remediation_workflow.py # Review-pack lifecycle (list/approve/reject/apply)
 │   ├── compliance_config.yaml  # Compliance policy and runtime settings
 │   └── devices.yaml            # Inventory (can be overridden)
 ├── requirements.txt
@@ -109,7 +117,7 @@ graph TD
 
 ## 📦 Prerequisites and Platform Notes
 
-- Python 3.12+
+- Python 3.10+
 - SSH reachability to targets (direct or via jump host)
 - Privileged access for command collection
 - Dependencies from `requirements.txt`
@@ -143,6 +151,15 @@ python -m compliance_audit -c configs/site_london.yaml
 
 # Override inventory path
 python -m compliance_audit -i inventories/site_london_devices.yaml
+
+# List remediation review packs
+python -m compliance_audit --remediation-list pending
+
+# Approve all pending packs for a change ticket
+python -m compliance_audit --remediation-approve-all --approver "john.doe" --ticket-id "CHG0012345"
+
+# Dry-run apply across all approved packs
+python -m compliance_audit --remediation-apply-all --apply-dry-run
 ```
 
 ---
@@ -154,6 +171,15 @@ python -m compliance_audit [-h] [-c CONFIG] [-d DEVICE] [-i INVENTORY]
                            [--no-jump] [--categories CAT [CAT ...]]
                            [-o OUTPUT_DIR] [--fail-threshold PCT]
                            [--dry-run DIR] [--csv] [--no-csv] [-v]
+                           [--remediation-list [STATUS]]
+                           [--remediation-approve PACK_ID]
+                           [--remediation-approve-all]
+                           [--remediation-reject PACK_ID]
+                           [--remediation-apply PACK_ID]
+                           [--remediation-apply-all]
+                           [--approver NAME] [--ticket-id ID] [--reason TEXT]
+                           [--expires-hours HOURS] [--apply-dry-run]
+                           [--allow-high-risk]
 ```
 
 Most useful real-world options:
@@ -162,7 +188,24 @@ Most useful real-world options:
 - `--dry-run ./saved_outputs` for validation in change windows and CI
 - `--fail-threshold 80` for pipeline quality gates
 - `--csv` / `--no-csv` for explicit report behavior
+- `--remediation-list pending` to view queued review packs
+- `--remediation-approve PACK_ID --approver NAME --ticket-id CHG_ID` for approval control
+- `--remediation-apply PACK_ID --apply-dry-run` before any production push
+- `--remediation-apply-all` for approved bulk operations
 - `-v` or `-vv` for run-time diagnostics
+
+---
+
+## 🆕 What's New in v4.0
+
+Key enhancements reflected in this deep dive update:
+
+1. **Enterprise remediation lifecycle**: Review packs are generated, tracked, and governed through approval and apply states.
+2. **Ticket-aware approvals**: Optional enforcement of change ticket IDs during approvals.
+3. **Risk controls**: High-risk command blocks are denied by default unless explicitly allowed.
+4. **Preflight drift and identity checks**: Apply paths can verify findings still fail and target hostname matches expected identity.
+5. **Bulk lifecycle operations**: Approve-all and apply-all workflows for large estates.
+6. **ROI instrumentation**: Optional effort/value estimation embedded in reports.
 
 ---
 
@@ -1144,6 +1187,9 @@ Need a compact printable version?
   2. No unexpected score regressions on unaffected devices.
   3. Delta report shows resolved findings greater than or equal to new failures.
   4. Change record contains complete evidence package.
+
+!!! note "v4.0 Operational Shift"
+  In addition to command-level remediation scripts, v4.0 introduces a governed remediation lifecycle (review packs -> approval -> apply). For day-to-day operations, use the one-page runbook linked above.
 
 ---
 

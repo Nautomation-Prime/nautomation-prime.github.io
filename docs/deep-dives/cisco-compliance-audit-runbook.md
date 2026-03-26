@@ -1,6 +1,6 @@
 ---
 title: Cisco Compliance Audit Runbook
-description: One-page operational runbook for Cisco IOS-XE Compliance Audit change windows.
+description: One-page operational runbook for Cisco IOS-XE Compliance Auditor v4.0 including remediation lifecycle workflow.
 tags:
   - Deep Dive
   - Runbook
@@ -11,7 +11,10 @@ tags:
 
 ## Cisco IOS-XE Compliance Audit: One-Page Runbook
 
-This runbook is a compact operational checklist for change windows.
+This runbook is a compact operational guide for change windows and the v4.0 remediation lifecycle workflow.
+
+!!! info "Version Alignment"
+   This runbook reflects **Cisco IOS-XE Compliance Auditor v4.0** (March 2026).
 
 Primary deep dive:
 
@@ -21,94 +24,155 @@ Primary deep dive:
 
 ## Scope
 
-Use this workflow when implementing or validating the following control areas:
+Use this workflow to:
 
-1. Root guard direction correctness
-2. Trunk native VLAN compliance
-3. DHCP snooping trust placement
-4. Unused-port hardening
-5. Remediation script execution and verification
-
----
-
-## Phase 1: Pre-Change Validation
-
-1. Run baseline audit and save HTML, JSON, and CSV outputs.
-2. Confirm trunk direction classification before applying STP guard changes.
-3. Verify policy values for native VLAN, parking VLAN, and trust intent in YAML.
-4. Flag unknown-direction and unknown-native-VLAN findings for manual review.
-5. Generate remediation script and prune to approved change scope.
+1. Run audits and generate reports
+2. Review remediation packs
+3. Approve or reject remediation packs with change control metadata
+4. Apply one approved pack or all approved packs
+5. Re-verify compliance posture after implementation
 
 ---
 
-## Phase 2: Controlled Implementation
+## Pre-Checks (Start Here)
 
-1. Apply root guard only on validated downlinks.
-2. Remove root guard from validated uplinks.
-3. Correct native VLAN mismatches on trunk interfaces using policy-defined values.
-4. Apply DHCP snooping trust only on policy-approved interfaces.
-5. Enforce unused-port hardening as a bundle:
-   - shutdown
-   - parking VLAN
-   - BPDU guard
-   - CDP/LLDP restrictions
-6. Apply remediation commands in staged order:
-   - global commands first
-   - interface commands second
+1. Confirm Linux/macOS/WSL execution environment (no native Windows PyATS runtime).
+2. Confirm config and inventory paths are correct.
+3. Confirm credentials are available (keyring, environment variables, or prompt).
+4. Confirm remediation execution policy in YAML if you plan to apply changes.
+5. If required, enable ROI settings in `audit_settings.roi`.
 
 ---
 
-## Phase 3: Post-Change Verification
+## Standard Operating Procedure
 
-1. Re-run audit immediately after implementation.
-2. Confirm targeted FAIL and WARN findings moved to PASS.
-3. Verify no new failures were introduced in adjacent controls.
-4. Review consolidated HTML dashboard for cross-device regressions.
-5. Validate per-device score movement and delta summary.
+### 1) Run Baseline Audit
+
+```bash
+python -m compliance_audit -c compliance_audit/compliance_config.yaml
+```
+
+Expected outcome:
+
+1. HTML/JSON/CSV reports are generated in output directory.
+2. Remediation scripts and review packs are generated for failing findings.
+
+### 2) Review Pack Queue
+
+```bash
+python -m compliance_audit --remediation-list pending
+```
+
+Decision logic:
+
+1. Approve if in scope and operationally safe.
+2. Reject if out of policy, risky, or outside change window.
+
+### 3) Approve or Reject Packs
+
+Approve one:
+
+```bash
+python -m compliance_audit --remediation-approve <PACK_ID> --approver "john.doe" --ticket-id "CHG0012345"
+```
+
+Approve all pending:
+
+```bash
+python -m compliance_audit --remediation-approve-all --approver "john.doe" --ticket-id "CHG0012345"
+```
+
+Reject one:
+
+```bash
+python -m compliance_audit --remediation-reject <PACK_ID> --approver "john.doe" --reason "Out of approved change scope"
+```
+
+### 4) Preflight Before Apply (Recommended)
+
+Single pack preflight:
+
+```bash
+python -m compliance_audit --remediation-apply <PACK_ID> --apply-dry-run
+```
+
+Bulk preflight:
+
+```bash
+python -m compliance_audit --remediation-apply-all --apply-dry-run
+```
+
+### 5) Apply Approved Packs
+
+Apply one pack:
+
+```bash
+python -m compliance_audit --remediation-apply <PACK_ID>
+```
+
+Apply all approved packs:
+
+```bash
+python -m compliance_audit --remediation-apply-all
+```
+
+If high-risk packs are blocked and exception approval exists:
+
+```bash
+python -m compliance_audit --remediation-apply <PACK_ID> --allow-high-risk
+python -m compliance_audit --remediation-apply-all --allow-high-risk
+```
+
+### 6) Post-Apply Verification
+
+```bash
+python -m compliance_audit --remediation-list applied
+python -m compliance_audit --remediation-list failed
+python -m compliance_audit -c compliance_audit/compliance_config.yaml
+```
 
 ---
 
-## Phase 4: Evidence and Closure
+## Safety Rules
 
-1. Attach before/after reports to the change record.
-2. Include generated remediation script and final executed command list.
-3. Record approved exceptions directly in policy.
-4. Schedule follow-up audit run after normal operations resume.
-5. Capture lessons learned and update site policy defaults.
+1. Do not apply remediation outside authorized change windows.
+2. Always run `--apply-dry-run` before production apply.
+3. Do not approve packs without ticket and risk validation.
+4. Treat `--allow-high-risk` as exception-only.
+5. Prefer `--remediation-apply-all` only after queue review.
+
+---
+
+## Troubleshooting Quick Table
+
+| Symptom | Likely Cause | Action |
+| --- | --- | --- |
+| Remediation workflow disabled | `remediation.enabled: false` | Enable `audit_settings.remediation.enabled` |
+| Execution disabled | `execution.enabled: false` | Enable `audit_settings.remediation.execution.enabled` |
+| Approval expired | TTL elapsed | Re-run audit and approve new pack |
+| Checksum mismatch | Script changed after approval | Re-run audit and approve fresh pack |
+| High-risk blocked | Policy enforcement active | Use `--allow-high-risk` only with approval |
+| Hostname mismatch | Device identity mismatch | Validate inventory and target prompt before apply |
 
 ---
 
 ## Fast Pass Criteria
 
-All criteria should pass before closing the change:
+All criteria should pass before closure:
 
-1. No critical FAIL findings in changed scope.
+1. No critical FAIL findings remain in changed scope.
 2. No unexpected score regressions on unaffected devices.
-3. Delta report shows resolved findings greater than or equal to new failures.
-4. Change evidence package is complete and attached.
+3. Applied packs show successful status (or documented exception).
+4. Change evidence package includes baseline and post-change reports.
 
 ---
 
-## Quick Command Patterns
+## Daily Operator Checklist
 
-```bash
-# Full run
-python -m compliance_audit
-
-# Scoped categories
-python -m compliance_audit --categories management_plane control_plane data_plane
-
-# Custom output path
-python -m compliance_audit -o ./reports/change-window
-
-# CI gate example
-python -m compliance_audit --fail-threshold 80
-```
-
----
-
-## Notes
-
-1. If trunk direction is unknown, pause guard changes until topology intent is confirmed.
-2. Treat remediation scripts as change artifacts, not blind auto-fix payloads.
-3. Prefer dry-run validation for policy changes before production enforcement.
+1. Run audit.
+2. Review pending queue.
+3. Approve or reject with ticket mapping.
+4. Run apply preflight dry-run.
+5. Apply approved pack(s).
+6. Verify applied/failed status.
+7. Re-run audit for closure evidence.
