@@ -448,7 +448,7 @@ If hostname appears in startup-config, configuration save succeeded.
 ```
 
 **Expected Directory Structure:**
-```
+```text
     /var/www/html/
     ├── scripts/
     │   └── day_0_provisioning.py
@@ -928,7 +928,7 @@ When enabled, creates `/flash/ztp_report_<SERIAL>.json`:
 5. **Monitor Progress**
 
 ### Option A: Console Monitoring
-```
+```text
     ###### STARTING ZTP SCRIPT ######
 
     Device Model: C9300-48U
@@ -1036,7 +1036,7 @@ When enabled, creates `/flash/ztp_report_<SERIAL>.json`:
 #### Issue 2: HTTP 404 Error (Config File Not Found)
 
 **Symptoms:**
-```
+```text
     File 'FCW2144L045.cfg' not found.
     Failed to transfer 'FCW2144L045.cfg' after 3 attempts.
 ```
@@ -1063,7 +1063,7 @@ When enabled, creates `/flash/ztp_report_<SERIAL>.json`:
 #### Issue 3: Network Timeout / Retry Failures
 
 **Symptoms:**
-```
+```text
     Attempt 1 failed: Network timeout
     Attempt 2 failed: Network timeout
     Attempt 3 failed: Network timeout
@@ -1089,7 +1089,7 @@ When enabled, creates `/flash/ztp_report_<SERIAL>.json`:
 #### Issue 4: Configuration Syntax Errors
 
 **Symptoms:**
-```
+```text
     % Invalid input detected at '^' marker.
     Configuration merge completed.  # But not all commands applied
 ```
