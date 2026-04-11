@@ -808,14 +808,14 @@ A network team manages upgrades for 3,000 Cisco devices (mix of IOS, IOS-XE, NX-
 
 **5. Conditional Task Execution Based on Results**
     - Analyze `AggregatedResult` after each stage to determine next steps:
-        ```python
+```python
         result = nr.run(task=pre_check_task)
         failed_hosts = [host for host, r in result.items() if r.failed]
         if failed_hosts:
             # Remove failed hosts from inventory, notify operator
             nr = nr.filter(~F(name__any=failed_hosts))
         nr.run(task=transfer_image_task)  # Only successful hosts proceed
-        ```
+```
     - Implement multi-tier rollback: if post-verification fails, execute rollback tasks only on affected hosts.
 
 ### Nornir vs. Raw Python with Netmiko/Threading

@@ -72,8 +72,7 @@ Traditional Cisco switch deployment requires manual intervention:
 ## Architecture Overview
 
 ### High-Level Workflow
-
-    ```mermaid
+```mermaid
     graph TD
         A[Switch Powers On<br/>No Startup-Config] --> B[DHCP Request]
         B --> C[DHCP Server]
@@ -91,11 +90,10 @@ Traditional Cisco switch deployment requires manual intervention:
         M --> N[Save to Startup-Config]
         N --> O[Production Ready]
         J -->|Failure After 3 Retries| P[Log Error + Exit]
-    ```
+```
 
 ### Component Architecture
-
-    ```mermaid
+```mermaid
     flowchart LR
         subgraph Infrastructure["Infrastructure Components"]
             DHCP[DHCP Server<br/>Options 66/67]
@@ -127,7 +125,7 @@ Traditional Cisco switch deployment requires manual intervention:
         style Infrastructure fill:#fff4e6
         style Switch fill:#e1f5ff
         style HTTPServer fill:#f3e5f5
-    ```
+```
 
 ---
 
@@ -156,13 +154,12 @@ Cisco IOS-XE devices include a built-in ZTP agent that activates automatically w
     - **Flexibility:** Pre-checks, validation, logging, error handling, post-config actions (SSH keys, save config, etc.)
 
 ### Stage 1: Device Identification
-
-    ```python
+```python
     # Script queries device facts using IOS-XE Python 'cli' module
     model = get_model()              # Extract model (C9300-48U, etc.)
     serial = get_serial()            # Extract serial number
     version = get_version()          # Extract IOS-XE version
-    ```
+```
 
 **Key Operations:**
 
@@ -182,19 +179,18 @@ Cisco IOS-XE devices include a built-in ZTP agent that activates automatically w
     The serial number must exactly match the configuration filename on the HTTP server. Mismatches cause HTTP 404 errors and ZTP failure.
 
     **Verification Command:**
-    ```cisco
+```cisco
     Switch# show version | include Serial
     System Serial Number : FCW2144L045
-    ```
+```
     
     **HTTP Server File:** `FCW2144L045.cfg` (exact match required)
 
 ### Stage 2: Configuration Download with Retry Logic
-
-    ```python
+```python
     config_file = f"{serial_number}.cfg"  # Build filename
     file_transfer_with_retry(HTTP_SERVER, config_file, max_attempts=3)
-    ```
+```
 
 **Retry Schedule (Exponential Backoff):**
 
@@ -211,13 +207,12 @@ Cisco IOS-XE devices include a built-in ZTP agent that activates automatically w
 - **DHCP Timing:** IP address acquisition may still be stabilizing
 
 **Verification After Each Attempt:**
-
-    ```python
+```python
     # Don't just trust the copy command - verify file exists
     if check_file_exists(config_file):
         log_and_print(f"File '{config_file}' successfully downloaded and verified.")
         return True
-    ```
+```
 
 !!! danger "Common Failure: Network Not Ready"
     During mass deployments (100+ switches powered on simultaneously), early ZTP attempts may fail due to:
@@ -229,12 +224,11 @@ Cisco IOS-XE devices include a built-in ZTP agent that activates automatically w
     **Mitigation:** Exponential backoff gives network time to stabilise. Consider staggered power-on in very large deployments.
 
 ### Stage 3: Configuration Application
-
-    ```python
+```python
     configure_merge(config_file)     # Merge config to running-config
     secure_delete(config_file)       # Remove temporary file for security
     hostname = get_hostname()        # Extract configured hostname for logging
-    ```
+```
 
 **Configuration Merge Process:**
 
@@ -273,16 +267,14 @@ Leaving these files on flash creates a security risk. The `secure_delete()` func
     - Complex QoS policies (deploy via templates later)
 
 ### Stage 4: SSH Key Generation
-
-    ```python
+```python
     generate_crypto_keys()  # Create 2048-bit RSA keys
-    ```
+```
 
 **Operation:**
-
-    ```cisco
+```cisco
     crypto key generate rsa label ZTP_Key_General modulus 2048
-    ```
+```
 
 **Why This Matters:**
 
@@ -303,10 +295,9 @@ Leaving these files on flash creates a security risk. The `secure_delete()` func
     **1024-bit:** Deprecated, insecure. Do not use.
 
 ### Stage 5: Save Configuration
-
-    ```python
+```python
     save_configuration()  # Write memory
-    ```
+```
 
 **Critical Importance:**
 
@@ -315,25 +306,22 @@ Leaving these files on flash creates a security risk. The `secure_delete()` func
 - If not saved, device re-enters ZTP mode on next boot
 
 **Verification:**
-
-    ```cisco
+```cisco
     Switch# show startup-config | include hostname
     hostname SW-ACCESS-01
-    ```
+```
 
 If hostname appears in startup-config, configuration save succeeded.
 
 ### Stage 6: Optional Reporting and Telemetry
-
-    ```python
+```python
     if ENABLE_REPORT_UPLOAD:
         facts = collect_device_facts()
         push_report_file(facts)
-    ```
+```
 
 **JSON Report Structure:**
-
-    ```json
+```json
     {
     "model": "C9300-48U",
     "serial_number": "FCW2144L045",
@@ -342,7 +330,7 @@ If hostname appears in startup-config, configuration save succeeded.
     "timestamp": "2026-02-06 14:21:45",
     "ztp_status": "SUCCESS"
     }
-    ```
+```
 
 **Use Cases:**
 
@@ -369,8 +357,7 @@ If hostname appears in startup-config, configuration save succeeded.
 #### ISC DHCP (Linux)
 
 **File:** `/etc/dhcp/dhcpd.conf`
-
-    ```bash
+```bash
     subnet 192.168.1.0 netmask 255.255.255.0 {
         range 192.168.1.100 192.168.1.200;
         option routers 192.168.1.1;
@@ -382,20 +369,18 @@ If hostname appears in startup-config, configuration save succeeded.
         # Optional: Option 66 (TFTP Server - not used but some devices check it)
         # option tftp-server-name "192.168.1.235";
     }
-    ```
+```
 
 **Restart DHCP:**
-
-    ```bash
+```bash
     sudo systemctl restart isc-dhcp-server
     sudo systemctl status isc-dhcp-server  # Verify running
-    ```
+```
 
 #### Windows DHCP Server
 
 **PowerShell Method:**
-
-    ```powershell
+```powershell
     # Set DHCP Option 67 (Boot File Name)
     Set-DhcpServerv4OptionValue -OptionId 67 `
         -Value "http://192.168.1.235/scripts/day_0_provisioning.py" `
@@ -403,7 +388,7 @@ If hostname appears in startup-config, configuration save succeeded.
 
     # Verify configuration
     Get-DhcpServerv4OptionValue -OptionId 67 -ScopeId 192.168.1.0
-    ```
+```
 
 **GUI Method:**
 
@@ -414,8 +399,7 @@ If hostname appears in startup-config, configuration save succeeded.
 4. Click **Apply** and **OK**
 
 #### Cisco IOS/IOS-XE DHCP Server
-
-    ```cisco
+```cisco
     ip dhcp pool ZTP_POOL
     network 192.168.1.0 255.255.255.0
     default-router 192.168.1.1
@@ -423,7 +407,7 @@ If hostname appears in startup-config, configuration save succeeded.
     option 67 ascii http://192.168.1.235/scripts/day_0_provisioning.py
     !
     ip dhcp excluded-address 192.168.1.1 192.168.1.99
-    ```
+```
 
 !!! warning "DHCP Option 67 Syntax"
     **Correct:** `http://192.168.1.235/scripts/day_0_provisioning.py`
@@ -437,8 +421,7 @@ If hostname appears in startup-config, configuration save succeeded.
 ### HTTP Server Setup
 
 #### Option A: Apache (Ubuntu/Debian)
-
-    ```bash
+```bash
     # Install Apache
     sudo apt update && sudo apt install apache2
 
@@ -462,11 +445,10 @@ If hostname appears in startup-config, configuration save succeeded.
 
     # Verify (should return Python script content)
     curl http://localhost/scripts/day_0_provisioning.py
-    ```
+```
 
 **Expected Directory Structure:**
-
-    ```
+```
     /var/www/html/
     ├── scripts/
     │   └── day_0_provisioning.py
@@ -474,11 +456,10 @@ If hostname appears in startup-config, configuration save succeeded.
         ├── FCW2144L045.cfg
         ├── FDO2129Y06B.cfg
         └── FOC2201X0QY.cfg
-    ```
+```
 
 #### Option B: Nginx (Ubuntu/Debian)
-
-    ```bash
+```bash
     # Install Nginx
     sudo apt update && sudo apt install nginx
 
@@ -500,14 +481,13 @@ If hostname appears in startup-config, configuration save succeeded.
 
     # Test
     curl http://localhost/scripts/day_0_provisioning.py
-    ```
+```
 
 #### Option C: Python SimpleHTTPServer (Testing Only)
 
 !!! danger "Not for Production"
     Python's built-in HTTP server is single-threaded and insecure. Use only for lab testing with 1-5 devices. Production deployments require Apache/Nginx.
-
-    ```bash
+```bash
     # Create directory structure
     mkdir -p ztp-server/{scripts,files}
     cd ztp-server
@@ -521,7 +501,7 @@ If hostname appears in startup-config, configuration save succeeded.
 
     # Verify from another terminal
     curl http://localhost/scripts/day_0_provisioning.py
-    ```
+```
 
 ### Syslog/Graylog Configuration (Optional)
 
@@ -541,8 +521,7 @@ If hostname appears in startup-config, configuration save succeeded.
 5. Click **Launch Input**
 
 **Graylog Search Examples:**
-
-    ```text
+```text
     # Find specific device by serial number
     serial_number:FCW2144L045
 
@@ -557,7 +536,7 @@ If hostname appears in startup-config, configuration save succeeded.
 
     # Find events from specific ZTP session
     ztp_session:FCW2144L045_1675891234
-    ```
+```
 
 **Alerting Example:**
 
@@ -576,11 +555,10 @@ Create alert for ZTP failures:
 **Rule:** Configuration files MUST be named `<SERIAL_NUMBER>.cfg` exactly.
 
 **Finding Serial Numbers:**
-
-    ```cisco
+```cisco
     Switch# show version | include Serial
     System Serial Number : FCW2144L045
-    ```
+```
 
 **Configuration Filename:** `FCW2144L045.cfg`
 
@@ -599,8 +577,7 @@ Create alert for ZTP failures:
 ### Configuration File Template
 
 **Minimal Production Config:**
-
-    ```cisco
+```cisco
     !
     ! Minimal ZTP Configuration Template
     ! Device: Cisco Catalyst 9300
@@ -651,11 +628,10 @@ Create alert for ZTP failures:
     ! no service dhcp
     !
     end
-    ```
+```
 
 **Advanced Configuration (AAA + TACACS+):**
-
-    ```cisco
+```cisco
     !
     ! Advanced ZTP Configuration with AAA
     !
@@ -721,7 +697,7 @@ Create alert for ZTP failures:
     no ip http secure-server
     !
     end
-    ```
+```
 
 ### Generating Config Files at Scale
 
@@ -732,8 +708,7 @@ Create alert for ZTP failures:
 **For Large Deployments (100+ devices):** NetBox + CI/CD pipeline
 
 ## Example: Python + Jinja2 Templating
-
-    ```python
+```python
     from jinja2 import Template
     import openpyxl
 
@@ -789,7 +764,7 @@ Create alert for ZTP failures:
             f.write(config)
         
         print(f'Generated: {serial}.cfg ({hostname})')
-    ```
+```
 
 ---
 
@@ -798,22 +773,20 @@ Create alert for ZTP failures:
 All configurable parameters are located at the top of `day_0_provisioning.py`:
 
 ### HTTP Server Settings
-
-    ```python
+```python
     HTTP_SERVER = "192.0.2.235"  # IP or hostname of HTTP server
-    ```
+```
 
 **Change this to:** Your HTTP server's IP address or DNS hostname
 
 **Note:** DNS hostname requires functioning DNS resolution on management VLAN
 
 ### Logging Settings
-
-    ```python
+```python
     LOG_TO_FILE = True                       # Enable persistent flash logging
     LOG_PATH_PRIMARY = "/flash/guest-share/ztp.log"  # Preferred log location
     LOG_PATH_FALLBACK = "/flash/ztp.log"     # Fallback if guest-share unavailable
-    ```
+```
 
 **Log Rotation:**
 
@@ -822,11 +795,10 @@ All configurable parameters are located at the top of `day_0_provisioning.py`:
 - **Format:** `2026-02-06 14:20:03 :: INFO :: Message`
 
 ### Retry Policy
-
-    ```python
+```python
     MAX_COPY_ATTEMPTS = 3      # Number of download attempts
     BASE_BACKOFF_SECONDS = 2   # Base delay for exponential backoff
-    ```
+```
 
 **Retry Schedule:**
 
@@ -835,17 +807,15 @@ All configurable parameters are located at the top of `day_0_provisioning.py`:
 - Attempt 3: Wait 4 seconds
 
 **Increasing Retries (High-Latency Networks):**
-
-    ```python
+```python
     MAX_COPY_ATTEMPTS = 5
     BASE_BACKOFF_SECONDS = 5  # 5s, 10s, 20s, 40s
-    ```
+```
 
 ### Configuration Persistence
-
-    ```python
+```python
     WRITE_MEMORY = True  # MUST BE TRUE for production
-    ```
+```
 
 !!! danger "Critical Setting"
     **Never set `WRITE_MEMORY = False` in production!**
@@ -855,16 +825,14 @@ All configurable parameters are located at the top of `day_0_provisioning.py`:
     **Valid use case for False:** Lab testing where you want devices to re-run ZTP on each boot.
 
 ### Syslog/Graylog Integration
-
-    ```python
+```python
     ENABLE_SYSLOG = False              # Set to True to enable
     SYSLOG_SERVER = "192.0.2.50"       # Graylog/Syslog server IP
     SYSLOG_PORT = 514                  # UDP port (514 = standard syslog)
-    ```
+```
 
 **JSON Log Structure:**
-
-    ```json
+```json
     {
     "timestamp": "2026-02-06 14:21:45",
     "level": "INFO",
@@ -875,17 +843,15 @@ All configurable parameters are located at the top of `day_0_provisioning.py`:
     "device_model": "C9300-48U",
     "ztp_session": "FCW2144L045_1675891234"
     }
-    ```
+```
 
 ### Device Reporting
-
-    ```python
+```python
     ENABLE_REPORT_UPLOAD = False  # Set to True to enable local JSON reports
-    ```
+```
 
 When enabled, creates `/flash/ztp_report_<SERIAL>.json`:
-
-    ```json
+```json
     {
     "model": "C9300-48U",
     "serial_number": "FCW2144L045",
@@ -894,7 +860,7 @@ When enabled, creates `/flash/ztp_report_<SERIAL>.json`:
     "timestamp": "2026-02-06 14:21:45",
     "ztp_status": "SUCCESS"
     }
-    ```
+```
 
 **Use Case:** Post-ZTP automation (Ansible/AWX) can collect these JSON files and populate CMDB/NetBox.
 
@@ -919,8 +885,7 @@ When enabled, creates `/flash/ztp_report_<SERIAL>.json`:
     - Upload to HTTP server: `/var/www/html/files/<SERIAL>.cfg`
 
 4. **Validate Infrastructure**
-
-        ```bash
+```bash
         # Test HTTP server accessibility
         curl http://192.168.1.235/scripts/day_0_provisioning.py
         curl http://192.168.1.235/files/FCW2144L045.cfg
@@ -928,16 +893,15 @@ When enabled, creates `/flash/ztp_report_<SERIAL>.json`:
         # Verify DHCP Option 67
         # (From DHCP client test or switch console)
         show dhcp lease  # Should show Option 67 with script URL
-        ```
+```
 
 ### Per-Device Deployment
 
 1. **Verify Serial Number**
-
-        ```cisco
+```cisco
         Switch# show version | include Serial
         System Serial Number : FCW2144L045
-        ```
+```
 
 2. **Create Matching Config File**
 
@@ -945,8 +909,7 @@ When enabled, creates `/flash/ztp_report_<SERIAL>.json`:
     - Upload to HTTP server: `/var/www/html/files/FCW2144L045.cfg`
 
 3. **Erase Existing Config (If Re-Provisioning)**
-
-        ```cisco
+```cisco
         Switch# write erase
         Erasing the nvram filesystem will remove all configuration files! Continue? [confirm]
         [OK]
@@ -954,7 +917,7 @@ When enabled, creates `/flash/ztp_report_<SERIAL>.json`:
 
         Switch# reload
         Proceed with reload? [confirm]
-        ```
+```
 
 4. **Connect to Network and Power On**
 
@@ -965,8 +928,7 @@ When enabled, creates `/flash/ztp_report_<SERIAL>.json`:
 5. **Monitor Progress**
 
 ## Option A: Console Monitoring
-
-    ```
+```
     ###### STARTING ZTP SCRIPT ######
 
     Device Model: C9300-48U
@@ -991,32 +953,29 @@ When enabled, creates `/flash/ztp_report_<SERIAL>.json`:
     Configuration saved successfully.
 
     ###### ZTP PROCESS COMPLETE ######
-    ```
+```
 
 ## Option B: Graylog Monitoring
-
-    ```text
+```text
     # Real-time search (auto-refresh every 5 seconds)
     serial_number:FCW2144L045
 
     # Successful completion indicator
     message:"ZTP PROCESS COMPLETE" AND serial_number:FCW2144L045
-    ```
+```
 
     ## Option C: Flash Log Review (Post-ZTP)
-
-    ```cisco
+```cisco
     Switch# more flash:guest-share/ztp.log
     2026-02-06 14:20:03 :: INFO :: ###### STARTING ZTP SCRIPT ######
     2026-02-06 14:20:04 :: INFO :: Device Model: C9300-48U
     2026-02-06 14:20:04 :: INFO :: Serial Number: FCW2144L045
     ...
     2026-02-06 14:21:45 :: INFO :: ###### ZTP PROCESS COMPLETE ######
-    ```
+```
 
 6. **Post-Provisioning Verification**
-
-    ```cisco
+```cisco
     ! Verify SSH keys exist
     Switch# show crypto key mypubkey rsa
     % Key pair was generated at: 14:21:30 UTC Feb 6 2026
@@ -1035,7 +994,7 @@ When enabled, creates `/flash/ztp_report_<SERIAL>.json`:
     ssh admin@10.1.10.50
     Password:
     SW-ACCESS-01#
-    ```
+```
 
 ---
 
@@ -1060,8 +1019,7 @@ When enabled, creates `/flash/ztp_report_<SERIAL>.json`:
 | Console interaction during boot | N/A | Don't press any keys during boot timer |
 
 **Verification Steps:**
-
-    ```cisco
+```cisco
     ! Check if ZTP is enabled (should be enabled by default)
     Switch# show boot | include ZTP
     ZTP is enabled
@@ -1073,16 +1031,15 @@ When enabled, creates `/flash/ztp_report_<SERIAL>.json`:
     DHCP Lease server: 192.168.1.1, state: 5 Bound
     ...
     Option 67 = "http://192.168.1.235/scripts/day_0_provisioning.py"
-    ```
+```
 
 #### Issue 2: HTTP 404 Error (Config File Not Found)
 
 **Symptoms:**
-
-    ```
+```
     File 'FCW2144L045.cfg' not found.
     Failed to transfer 'FCW2144L045.cfg' after 3 attempts.
-    ```
+```
 
 **Causes:**
 
@@ -1094,26 +1051,24 @@ When enabled, creates `/flash/ztp_report_<SERIAL>.json`:
 | Wrong HTTP server path | Verify script points to correct server IP |
 
 **Verification:**
-
-    ```bash
+```bash
     # From HTTP server
     ls -la /var/www/html/files/ | grep FCW2144L045
     -rw-r--r-- 1 www-data www-data 1234 Feb  6 09:30 FCW2144L045.cfg
 
     # Test HTTP access from another machine
     curl http://192.168.1.235/files/FCW2144L045.cfg
-    ```
+```
 
 #### Issue 3: Network Timeout / Retry Failures
 
 **Symptoms:**
-
-    ```
+```
     Attempt 1 failed: Network timeout
     Attempt 2 failed: Network timeout
     Attempt 3 failed: Network timeout
     Failed to transfer 'FCW2144L045.cfg' after 3 attempts.
-    ```
+```
 
 **Causes:**
 
@@ -1125,21 +1080,19 @@ When enabled, creates `/flash/ztp_report_<SERIAL>.json`:
 | HTTP server overloaded | Stagger switch power-on (don't boot 100 simultaneously) |
 
 **Mitigation:**
-
-    ```python
+```python
     # In day_0_provisioning.py, increase retry attempts
     MAX_COPY_ATTEMPTS = 5        # Up from 3
     BASE_BACKOFF_SECONDS = 5     # Up from 2 (gives STP more time)
-    ```
+```
 
 #### Issue 4: Configuration Syntax Errors
 
 **Symptoms:**
-
-    ```
+```
     % Invalid input detected at '^' marker.
     Configuration merge completed.  # But not all commands applied
-    ```
+```
 
 **Causes:**
 
@@ -1150,18 +1103,16 @@ When enabled, creates `/flash/ztp_report_<SERIAL>.json`:
 **Solution:**
 
 1. **Pre-validate config files:**
-
-        ```cisco
+```cisco
         ! Test config on lab device first
         Switch# configure terminal
         Switch(config)# [paste entire config]
         Switch(config)# end
         Switch# show running-config
-        ```
+```
 
 2. **Common syntax errors:**
-
-        ```cisco
+```cisco
         ! WRONG: Missing 'no shutdown' on SVI
         interface Vlan10
         ip address 10.1.10.50 255.255.255.0
@@ -1170,7 +1121,7 @@ When enabled, creates `/flash/ztp_report_<SERIAL>.json`:
         interface Vlan10
         ip address 10.1.10.50 255.255.255.0
         no shutdown
-        ```
+```
 
 #### Issue 5: SSH Connection Refused Post-ZTP
 
@@ -1189,8 +1140,7 @@ When enabled, creates `/flash/ztp_report_<SERIAL>.json`:
 | VTY access-class blocking source | `show run \| include access-class` | Verify source IP allowed in ACL |
 
 **Manual Fix:**
-
-    ```cisco
+```cisco
     ! Configure IP domain (prerequisite for SSH)
     Switch(config)# ip domain-name company.local
 
@@ -1206,7 +1156,7 @@ When enabled, creates `/flash/ztp_report_<SERIAL>.json`:
     ! Verify SSH enabled
     Switch# show ip ssh
     SSH Enabled - version 2.0
-    ```
+```
 
 #### Issue 6: Config Not Saved (Re-ZTP on Reboot)
 
@@ -1221,8 +1171,7 @@ When enabled, creates `/flash/ztp_report_<SERIAL>.json`:
 - `write memory` command failed silently
 
 **Verification:**
-
-    ```cisco
+```cisco
     ! Check if startup-config matches running-config
     Switch# show startup-config | include hostname
     hostname SW-ACCESS-01  # Should match running-config
@@ -1231,7 +1180,7 @@ When enabled, creates `/flash/ztp_report_<SERIAL>.json`:
     Switch# write memory
     Building configuration...
     [OK]
-    ```
+```
 
 **Fix:**
 
@@ -1254,21 +1203,19 @@ Ensure `WRITE_MEMORY = True` in `day_0_provisioning.py` (default setting)
 ### Best Practices
 
 #### 1. Use Isolated Management VLAN
-
-    ```cisco
+```cisco
     ! Trunk only management VLAN to ZTP devices
     interface GigabitEthernet1/0/48
     description ZTP Uplink
     switchport mode trunk
     switchport trunk allowed vlan 10
     spanning-tree portfast trunk
-    ```
+```
 
 **Why:** Prevents ZTP traffic from reaching production VLANs
 
 #### 2. Enable DHCP Snooping
-
-    ```cisco
+```cisco
     ! On distribution/access switches
     ip dhcp snooping
     ip dhcp snooping vlan 10
@@ -1277,23 +1224,21 @@ Ensure `WRITE_MEMORY = True` in `day_0_provisioning.py` (default setting)
     interface GigabitEthernet1/0/1
     description Trunk to DHCP Server
     ip dhcp snooping trust
-    ```
+```
 
 **Why:** Prevents rogue DHCP servers from hijacking ZTP
 
 #### 3. Restrict HTTP Server Access
 
 **Firewall Rule (Linux iptables):**
-
-    ```bash
+```bash
     # Allow HTTP only from management VLAN
     sudo iptables -A INPUT -p tcp --dport 80 -s 192.168.1.0/24 -j ACCEPT
     sudo iptables -A INPUT -p tcp --dport 80 -j DROP
-    ```
+```
 
 **Apache Virtual Host (IP-based restriction):**
-
-    ```apache
+```apache
     <VirtualHost *:80>
         DocumentRoot /var/www/html
         
@@ -1301,22 +1246,20 @@ Ensure `WRITE_MEMORY = True` in `day_0_provisioning.py` (default setting)
             Require ip 192.168.1.0/24
         </Directory>
     </VirtualHost>
-    ```
+```
 
 #### 4. Disable ZTP After Provisioning
 
 ## Option A: Explicitly Disable DHCP-Based Provisioning
-
-    ```cisco
+```cisco
     ! Prevents device from re-attempting ZTP
     Switch(config)# no service dhcp
-    ```
+```
 
 ## Option B: Remove Startup-Config Detection
 
 Add to ZTP config template:
-
-    ```cisco
+```cisco
     ! This command is processed only after startup-config exists
     ! Prevents future ZTP even if startup-config is erased
     event manager applet DISABLE_ZTP
@@ -1326,28 +1269,27 @@ Add to ZTP config template:
     action 3.0 cli command "no boot network"
     action 4.0 cli command "end"
     action 5.0 cli command "write memory"
-    ```
+```
 
 ### 5. Secure Credential Storage
 
 !!! danger "Never Store Plain-Text Passwords in Config Files"
     **Bad Practice:**
-    ```cisco
+```cisco
     username admin privilege 15 password MyPassword123
-    ```
+```
 
     **Best Practice:**
-    ```cisco
+```cisco
     ! Use Type 8 (PBKDF2) or Type 9 (scrypt) secrets
     username admin privilege 15 secret MyStrongPassword
     
     ! Result in running-config (hashed):
     username admin privilege 15 secret 8 $8$xyz...
-    ```
+```
 
 **Generating Hashed Passwords:**
-
-    ```cisco
+```cisco
     ! On any Cisco device
     Switch# show run | include username
     username admin privilege 15 secret YourPassword
@@ -1356,7 +1298,7 @@ Add to ZTP config template:
     username admin privilege 15 secret 5 $1$abc123$xyz...
 
     ! Copy hash to config template
-    ```
+```
 
 #### 6. Audit Trail and Compliance
 
@@ -1412,8 +1354,7 @@ Enable Syslog to Graylog with retention policies:
 **Solution Options:**
 
 ## Option 1: Stack Master Serial (Recommended)
-
-    ```python
+```python
     # Modify get_serial() function to detect stack and return master serial
     def get_serial():
         show_version = cli("show version")
@@ -1430,7 +1371,7 @@ Enable Syslog to Graylog with retention policies:
         serial_match = re.search(r"System Serial Number\s+:\s+(\S+)", show_version)
         if serial_match:
             return serial_match.group(1)
-    ```
+```
 
 ## Option 2: Separate Configs Per Member
 
@@ -1451,8 +1392,7 @@ Create configs for each stack member:
 **Workaround:** Use HTTP for ZTP script, implement HTTPS within script for config download.
 
 **Modified Script:**
-
-    ```python
+```python
     import ssl
     import urllib.request
 
@@ -1472,7 +1412,7 @@ Create configs for each stack member:
         except Exception as e:
             log_and_print(f"HTTPS download failed: {e}", "error")
             return False
-    ```
+```
 
 **Trade-off:** Requires Python `ssl` module (available in Guestshell) but adds complexity.
 
@@ -1489,8 +1429,7 @@ Create configs for each stack member:
 5. **Apply config** (no pre-created `.cfg` files needed)
 
 **Modified Script:**
-
-    ```python
+```python
     import requests
     import json
     from jinja2 import Template
@@ -1538,7 +1477,7 @@ Create configs for each stack member:
         config_content = generate_config_from_template(device_data)
         with open(f"/flash/{serial_number}.cfg", 'w') as f:
             f.write(config_content)
-    ```
+```
 
 **Benefits:**
 
@@ -1597,8 +1536,7 @@ Create configs for each stack member:
 
 !!! tip "Version Control Your Config Files"
     Treat configuration files as code:
-
-    ```bash
+```bash
     # Initialize Git repository for config files
     cd /var/www/html/files/
     git init
@@ -1608,7 +1546,7 @@ Create configs for each stack member:
     # Track changes over time
     git log --oneline
     git diff FCW2144L045.cfg
-    ```
+```
 
 ### Testing Strategy
 
@@ -1632,13 +1570,12 @@ Create configs for each stack member:
 - **Large deployment (100+ devices):** Stagger over multiple nights
 
 **Staggered Deployment:**
-
-    ```bash
+```bash
     # Power on devices in batches to avoid overwhelming HTTP/DHCP
     # Batch 1: Devices 1-50 (wait for completion)
     # Batch 2: Devices 51-100 (wait for completion)
     # Batch 3: Devices 101-150
-    ```
+```
 
 **Rollback Plan:**
 
@@ -1698,8 +1635,7 @@ If ZTP fails catastrophically:
 ---
 
 ## Troubleshooting Decision Tree
-
-    ```mermaid
+```mermaid
     graph TD
         A[ZTP Issue Detected] --> B{Did ZTP Start?}
         B -->|No| C{Startup-config exists?}
@@ -1722,7 +1658,7 @@ If ZTP fails catastrophically:
         P -->|Yes| R{Config saved to startup?}
         R -->|No| S[Manually: write memory]
         R -->|Yes| T[ZTP Success!]
-    ```
+```
 
 ---
 
