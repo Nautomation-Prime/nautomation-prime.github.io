@@ -501,7 +501,7 @@ Choose full PRIME Framework or individual stages. We'll deliver sustainable auto
 
 **[Services & Pricing](./services.md)** — Investment and deliverables
 
-**[Why Automation Fails](./blog/posts/why-automation-fails.md)** — Understand common failure patterns and how PRIME prevents them
+**[Production-Grade Network Automation Principles](./tutorials/production-grade-network-automation-principles/index.md)** — Understand the operating patterns PRIME applies in practice
 
 ---
 

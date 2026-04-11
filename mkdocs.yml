@@ -183,8 +183,6 @@ nav:
           - Cisco Compliance Audit: deep-dives/cisco-compliance-audit.md
           - Cisco Compliance Audit Runbook: deep-dives/cisco-compliance-audit-runbook.md
       - Scripts: scripts/index.md
-  - Blog:
-      - blog/index.md
   - Coming Soon:
       - coming-soon/index.md
       - Cisco IOS XE ZTP: coming-soon/cisco-ios-xe-ztp.md
@@ -223,6 +221,4 @@ plugins:
       fallback_to_build_date: true
       enable_git_follow: false  # Disable to avoid quirks with new files
       strict: false  # Don't show warnings for files without git logs
-  - blog:
-      archive: false
 

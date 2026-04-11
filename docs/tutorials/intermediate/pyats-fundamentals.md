@@ -834,7 +834,7 @@ pytest test_interface_config.py -v
 Or jump straight to:
 
 - **[Nornir Fundamentals](./nornir-fundamentals.md)** — Framework for parallel automation execution
-- **[Why Automation Fails](../../blog/posts/why-automation-fails.md)** — Understand how PyATS prevents failures
+- **[Health Checks and Pre-Flight Validation](./health-checks-pre-flight-validation.md)** — Understand how structured validation prevents failures
 
 ---
 

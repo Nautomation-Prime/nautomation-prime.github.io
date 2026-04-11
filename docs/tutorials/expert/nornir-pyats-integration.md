@@ -4746,7 +4746,7 @@ Expert automation isn't just about writing code—it's about building systems th
 - [Secure Credential Vaulting](secure-credential-vaulting.md)
 - [DevOps & Observability](devops-observability-network-automation.md)
 - [Tool Ecosystem Integration](tool-ecosystem-integration.md)
-- [Testing Strategies for Network Automation](../../blog/posts/testing-strategies-network-automation.md)
+- [Testing Network Automation Scripts](../intermediate/testing-network-automation.md)
 - [PRIME Framework Overview](../../prime-framework/index.md)
 
 ---

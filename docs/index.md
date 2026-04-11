@@ -54,7 +54,7 @@ No blind giving. No checkbox charity. No tolerance for wasteful models.
 - **Eliminated 90% of manual compliance checks** through continuous auditing — *compliance at scale*
 - **Removed vendor lock-in** by rebuilding legacy proprietary automation in portable Python — *owned by your team*
 
-**[Read the full experience-based case study →](./blog/posts/case-study-full-automation-journey.md)** | **[ROI Measurement Framework →](./prime-framework/measure.md)**
+**[See how we deliver these outcomes →](./how-we-work.md)** | **[ROI Measurement Framework →](./prime-framework/measure.md)**
 
 ---
 
@@ -112,7 +112,7 @@ Whether you're learning, deploying, or transforming your entire automation progr
     - Start here: [Show Command to Excel](./tutorials/beginner/netmiko-show-command-to-excel.md) — Your first Netmiko script
 - **[Deep Dives](./deep-dives/index.md)** — Production code walkthroughs with line-by-line explanations
     - Featured: [CDP Network Audit](./deep-dives/cdp-audit.md) — Multi-threaded discovery with security patterns
-- **[Blog](./blog/index.md)** — Advanced patterns, case studies, and best practices (19 in-depth posts)
+- **[Production-Grade Principles](./tutorials/production-grade-network-automation-principles/index.md)** — Enterprise patterns, governance, and implementation guidance
 
 ### 🚀 **Deploy — Use Pre-Built Tools**
 
@@ -173,7 +173,7 @@ Covers complete end-to-end delivery from opportunity discovery to team empowerme
 **[Deep Dives](./deep-dives/index.md)** — Study production code  
 **[Scripts](./scripts/index.md)** — Deploy ready-made tools  
 **[Services](./services.md)** — Bespoke solutions  
-**[Blog](./blog/index.md)** — Advanced patterns & case studies  
+**[Production-Grade Principles](./tutorials/production-grade-network-automation-principles/index.md)** — Enterprise patterns & operating guidance  
 **[PRIME Framework](./prime-framework/index.md)** — Our methodology
 
 ---
@@ -201,13 +201,13 @@ Founded by a **CCNP-certified Senior Network Engineer** with **10+ years** in en
 - **🏢 For Infrastructure Managers & Leaders:**
     - [**Schedule a Discovery Call**](mailto:enquiries@nautomationprime.io) → Discuss your automation challenges and ROI goals (30 min, no commitment)
     - [**View Services & Pricing**](./services.md) → See PRIME engagements, Docker containers, custom solutions
-    - [**Read the Case Study**](./blog/posts/case-study-full-automation-journey.md) → See anonymised, experience-based metrics: 438% ROI, 87% faster deployments
+    - [**Review how we work**](./how-we-work.md) → See delivery structure, governance, and measurable outcomes
 - **👨‍💻 For Engineers & Technical Teams:**
     - [**Getting Started Guide**](./getting-started.md) → Understand philosophy, pathways, and prerequisites
     - [**Learn by Building**](./tutorials/index.md) → Hands-on tutorials from beginner to expert
     - [**Study Production Code**](./deep-dives/index.md) → Deep dives into hardened automation patterns
     - [**Explore Scripts**](./scripts/index.md) → Open-source, documented automation tools
-    - [**Blog & Articles**](./blog/index.md) → 19 in-depth posts on patterns, tooling, and best practices
+    - [**Production-Grade Principles**](./tutorials/production-grade-network-automation-principles/index.md) → 14-part guidance on safe enterprise automation
 - **❓ Still Have Questions?**
     - [FAQ & Common Scenarios](./getting-started.md#frequently-asked-questions)
     - [About & Track Record](./about.md)

@@ -872,7 +872,7 @@ As a specialized practice, you receive dedicated principal engineer engagement t
 
 While bespoke client work remains confidential, we contribute to the network automation community through:
 
-- Educational content via [blog posts](./blog/index.md) and [tutorials](./tutorials/index.md)
+- Educational content via [tutorials](./tutorials/index.md), [deep dives](./deep-dives/index.md), and structured implementation guides
 - Open-source tool development (MIT/Apache 2.0 licensed)
 - Knowledge sharing through [deep-dive technical articles](./deep-dives/index.md)
 
@@ -1061,7 +1061,7 @@ As revenue scales, a percentage is allocated to vetted charities reviewed for tr
 
 ### Educational Resources
 
-**[Network Automation Blog](./blog/index.md)** — Technical articles and industry insights
+**[Production-Grade Principles](./tutorials/production-grade-network-automation-principles/index.md)** — Technical guidance and enterprise operating patterns
 
 **[Tutorials & Guides](./tutorials/index.md)** — Hands-on Python automation training
 
@@ -1090,7 +1090,7 @@ The PRIME Framework provides the proven methodology, production-grade quality, a
 
 #### Option 2: Download Resources First
 
-Browse our [educational content](./tutorials/index.md) and [blog articles](./blog/index.md) to learn more about network automation approaches before engaging.
+Browse our [educational content](./tutorials/index.md) and [deep dives](./deep-dives/index.md) to learn more about network automation approaches before engaging.
 
 ---
 

@@ -757,7 +757,7 @@ async def test_secret_rotation():
 - [Asyncio for Network Automation](asyncio-network-automation.md) - Async operations
 - [DevOps & Observability](devops-observability-network-automation.md) - Vault in pipelines
 - [Tool Ecosystem Integration](tool-ecosystem-integration.md) - Multi-tool credential sharing
-- [Credential Management in Network Automation](../../blog/posts/credential-management-network-automation.md)
+- [Credential Management for Network Automation](../intermediate/credential-management-network-automation.md)
 - [PRIME Framework Overview](../../prime-framework/index.md)
 
 ---

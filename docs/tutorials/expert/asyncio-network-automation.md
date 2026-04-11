@@ -771,7 +771,7 @@ async def benchmark_pool():
 - [Secure Credential Vaulting](secure-credential-vaulting.md) - Safe credential injection
 - [DevOps & Observability](devops-observability-network-automation.md) - Production monitoring
 - [Tool Ecosystem Integration](tool-ecosystem-integration.md) - Multi-tool workflows
-- [Async vs. Threading vs. Multiprocessing](../../blog/posts/async-vs-threading-vs-multiprocessing.md) - Detailed comparison
+- [Why Nornir](../intermediate/why-nornir.md) - When threads become the wrong abstraction
 - [PRIME Framework Overview](../../prime-framework/index.md)
 
 ---
