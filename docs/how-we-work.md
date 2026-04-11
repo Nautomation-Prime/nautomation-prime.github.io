@@ -20,12 +20,11 @@ This is how it works.
 
 ## The 5 Stages at a Glance
 
-```
-Stage 1       Stage 2          Stage 3          Stage 4       Stage 5
-Pinpoint  →   Re-engineer  →   Implement   →    Measure   →  Empower
-(Week 1)      (Weeks 2-3)      (Weeks 4-8)      (Weeks 9-12)  (Weeks 10-16)
-Discovery     Design           Build            Track ROI     Transfer Ownership
-```
+| Stage 1 | Stage 2 | Stage 3 | Stage 4 | Stage 5 |
+| :--- | :--- | :--- | :--- | :--- |
+| Pinpoint | Re-engineer | Implement | Measure | Empower |
+| Week 1 | Weeks 2-3 | Weeks 4-8 | Weeks 9-12 | Weeks 10-16 |
+| Discovery | Design | Build | Track ROI | Transfer Ownership |
 
 ---
 
@@ -356,19 +355,13 @@ Your team walks away with:
 
 ## The Full Timeline
 
-```
-Week 1      Weeks 2-3        Weeks 4-8       Weeks 9-12+     Weeks 10-16
-Pinpoint    Re-engineer      Implement       Measure         Empower
-(1 week)    (2 weeks)        (4 weeks)       (4+ weeks)      (6 weeks workshops)
-            + 8 weeks support
-
-Discovery   Architecture     Dev + Testing   ROI Tracking    Knowledge
-Workshop    Blueprint        + Pilot         + Executive     Transfer +
-ROI         Safety Plan      Deployment      Reporting       Documentation
-Roadmap                      Full Deploy
-                             Code ready
-                             for Measure
-```
+| Timeline | Stage | Typical Duration | Primary Outputs |
+| :--- | :--- | :--- | :--- |
+| Week 1 | Pinpoint | 1 week | Discovery workshop, ROI roadmap |
+| Weeks 2-3 | Re-engineer | 2 weeks | Architecture blueprint, safety plan |
+| Weeks 4-8 | Implement | 4 weeks | Development, testing, pilot, full deploy |
+| Weeks 9-12+ | Measure | 4+ weeks | ROI tracking, executive reporting |
+| Weeks 10-16 | Empower | 6 weeks workshops + 8 weeks support | Knowledge transfer, documentation |
 
 ## Total engagement: 6–12 weeks (typical medium-complexity automation)
 
