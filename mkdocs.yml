@@ -155,6 +155,27 @@ nav:
           - Secure Credential Vaulting: tutorials/expert/secure-credential-vaulting.md
           - DevOps & Observability: tutorials/expert/devops-observability-network-automation.md
           - Tool Ecosystem Integration: tutorials/expert/tool-ecosystem-integration.md
+      - Production-Grade Network Automation Principles:
+          - tutorials/production-grade-network-automation-principles/index.md
+          - Validating Device Identity Before Automation Runs: tutorials/production-grade-network-automation-principles/validating-device-identity-before-automation-runs.md
+          - Pre-Flight Checks - Failing Fast Before Making Changes: tutorials/production-grade-network-automation-principles/pre-flight-checks-failing-fast-before-making-changes.md
+          - Trust Boundaries Around Your Source of Truth: tutorials/production-grade-network-automation-principles/trust-boundaries-around-your-source-of-truth.md
+          - Detecting and Handling Configuration Drift Safely: tutorials/production-grade-network-automation-principles/detecting-and-handling-configuration-drift-safely.md
+          - Real-World Idempotency in Network Automation: tutorials/production-grade-network-automation-principles/real-world-idempotency-in-network-automation.md
+          - Scoping Automation to Reduce Blast Radius: tutorials/production-grade-network-automation-principles/scoping-automation-to-reduce-blast-radius.md
+          - Designing Automation That Can Safely Fail: tutorials/production-grade-network-automation-principles/designing-automation-that-can-safely-fail.md
+          - Rollback Strategies - What Works and What Doesn't: tutorials/production-grade-network-automation-principles/rollback-strategies-what-works-and-what-doesnt.md
+          - Separating Read and Write Phases in Automation Workflows: tutorials/production-grade-network-automation-principles/separating-read-and-write-phases.md
+          - Making Automation Output Operator-Friendly: tutorials/production-grade-network-automation-principles/making-automation-output-operator-friendly.md
+          - Building Audit-Ready Automation: tutorials/production-grade-network-automation-principles/building-audit-ready-automation.md
+          - Secrets and Credentials in Enterprise Automation: tutorials/production-grade-network-automation-principles/secrets-and-credentials-in-enterprise-automation.md
+          - Human-in-the-Loop Automation Design: tutorials/production-grade-network-automation-principles/human-in-the-loop-automation-design.md
+          - Knowing When Not to Automate: tutorials/production-grade-network-automation-principles/knowing-when-not-to-automate.md
+          - Executive Summary for Leadership: tutorials/production-grade-network-automation-principles/executive-summary.md
+          - Program Charter for Production-Grade Automation: tutorials/production-grade-network-automation-principles/program-charter.md
+          - Enterprise Control Matrix: tutorials/production-grade-network-automation-principles/enterprise-control-matrix.md
+          - Implementation Roadmap (30/60/90 Days): tutorials/production-grade-network-automation-principles/implementation-roadmap-30-60-90-days.md
+          - Operator Review Worksheet: tutorials/production-grade-network-automation-principles/operator-review-worksheet.md
       - Deep Dives:
           - deep-dives/index.md
           - Access Switch Audit: deep-dives/access-switch-audit.md

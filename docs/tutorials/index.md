@@ -69,6 +69,18 @@ Production-grade automation with enterprise patterns and advanced techniques.
 
 ---
 
+### ⚙️ [Production-Grade Network Automation Principles](./production-grade-network-automation-principles/index.md)
+
+This track focuses on how to run automation safely in enterprise production environments.
+
+- **Focus**: Risk reduction, validation strategy, failure handling, governance, and operational trust
+- **Prerequisites**: Working knowledge of network automation and change control processes
+- **Topics**: Identity validation, pre-flight enforcement, trust boundaries, drift handling, idempotency, blast radius control, safe failure, rollback strategy, workflow phase separation, operator-friendly output, audit evidence, secret hygiene, human approval gates, and deciding when not to automate
+
+**Start Here**: [Production-Grade Network Automation Principles Index](./production-grade-network-automation-principles/index.md)
+
+---
+
 ## 🎯 Tutorial Philosophy
 
 Every tutorial follows these principles:
