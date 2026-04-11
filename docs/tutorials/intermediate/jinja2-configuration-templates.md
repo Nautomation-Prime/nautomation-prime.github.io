@@ -14,7 +14,7 @@ tags:
 
 ## "From Copy-Paste Configs to Data-Driven Generation — Template Everything"
 
-You've mastered YAML for data modeling and JSON for API interactions. Now it's time to learn **Jinja2**—the template engine that transforms your structured data into actual device configurations.
+You've mastered YAML for data modelling and JSON for API interactions. Now it's time to learn **Jinja2**—the template engine that transforms your structured data into actual device configurations.
 
 **Why Jinja2 is essential for network automation:**
 
@@ -49,7 +49,7 @@ By the end of this tutorial, you'll understand:
 
 ### Required Knowledge
 
-- ✅ **Completed [YAML Data Modeling Tutorial](./yaml-data-modeling-network-automation.md)** — Understanding structured data
+- ✅ **Completed [YAML Data Modelling Tutorial](./yaml-data-modeling-network-automation.md)** — Understanding structured data
 - ✅ **Completed [JSON Data Handling Tutorial](./json-data-handling-network-automation.md)** — Data serialization
 - ✅ Familiarity with Cisco IOS configuration syntax
 
@@ -1421,7 +1421,7 @@ def validate_config(config):
 
 ## 🎓 Next Steps
 
-You've mastered the data modeling trilogy (YAML + JSON + Jinja2)! Now apply these skills:
+You've mastered the data modelling trilogy (YAML + JSON + Jinja2)! Now apply these skills:
 
 1. **[Nornir Fundamentals](./nornir-fundamentals.md)** (Recommended Next)
    - Use YAML inventories and Jinja2 templates

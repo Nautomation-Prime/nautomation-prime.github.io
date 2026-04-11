@@ -190,7 +190,7 @@ A robust upgrade orchestrator must implement a well-defined, repeatable workflow
 - **Commands:**
   - **Install Mode:** `install add file ...`, `install activate`, `install commit`
   - **Bundle Mode:** Copy `.bin` to flash, update boot variable, reload
-- **Redundancy Handling:** For dual SUPs or StackWise Virtual, coordinate upgrade steps to maintain HA and minimize downtime.
+- **Redundancy Handling:** For dual SUPs or StackWise Virtual, coordinate upgrade steps to maintain HA and minimise downtime.
 - **ISSU Support:** Where available, perform In-Service Software Upgrade to avoid traffic disruption (see ISSU vs. non-ISSU matrix below).
 
 #### Upgrade Method Comparison Table
@@ -358,14 +358,14 @@ flowchart TD
 
 ### Dual Supervisors (SUPs) and StackWise Virtual
 
-- **Dual SUPs:** Upgrade standby supervisor first, verify, then switchover and upgrade the former active. Ensure SSO is maintained and minimize traffic disruption.
+- **Dual SUPs:** Upgrade standby supervisor first, verify, then switchover and upgrade the former active. Ensure SSO is maintained and minimise traffic disruption.
 - **StackWise Virtual:** Coordinate upgrade across both virtual stack members, ensuring version consistency and stack health.
-- **Chassis-Specific Behaviors:** Handle platform-specific requirements (e.g., bootloader/CPLD upgrades, module compatibility).
+- **Chassis-Specific Behaviours:** Handle platform-specific requirements (e.g., bootloader/CPLD upgrades, module compatibility).
 
 !!! tip "Best Practices"
     - Automate detection of redundancy state and adapt workflow accordingly.
     - Validate both active and standby SUPs post-upgrade.
-    - For StackWise, use `software auto-upgrade enable` to synchronize stack members.
+    - For StackWise, use `software auto-upgrade enable` to synchronise stack members.
 
 !!! warning "Common Pitfalls"
     - Upgrading both SUPs simultaneously, causing loss of redundancy.
@@ -576,7 +576,7 @@ This is a common and valid question. Cisco Catalyst Center (formerly DNA Center)
 **Key Limitations of Catalyst Center Alone:**
 
 1. **Workflow Customization Constraints**
-    - Catalyst Center provides standardized workflows optimized for common use cases, but enterprises often require bespoke logic (e.g., custom pre-checks, integration with legacy ticketing systems, specific maintenance window rules).
+    - Catalyst Center provides standardised workflows optimized for common use cases, but enterprises often require bespoke logic (e.g., custom pre-checks, integration with legacy ticketing systems, specific maintenance window rules).
     - Python orchestrators enable fully customized workflow stages, conditional logic, and integration points that may not be exposed via the Catalyst Center GUI or standard APIs.
 
 2. **Multi-Vendor and Hybrid Environments**
@@ -596,7 +596,7 @@ This is a common and valid question. Cisco Catalyst Center (formerly DNA Center)
     - Python scripts can be version-controlled in Git, shared across teams, and deployed without additional licensing overhead.
 
 6. **Edge Case and Platform-Specific Handling**
-    - Python orchestrators can implement highly specialized logic for edge cases (e.g., StackWise version mismatch recovery, FPGA upgrades on NCS platforms, legacy ISR router nuances) that may not be fully supported by Catalyst Center's standardized workflows.
+    - Python orchestrators can implement highly specialized logic for edge cases (e.g., StackWise version mismatch recovery, FPGA upgrades on NCS platforms, legacy ISR router nuances) that may not be fully supported by Catalyst Center's standardised workflows.
 
 **How Python Orchestrators Enhance Catalyst Center:**
 
@@ -768,7 +768,7 @@ A network team manages upgrades for 3,000 Cisco devices (mix of IOS, IOS-XE, NX-
 4. **Plugin Architecture for Extensibility**
     - **Task Plugins:** Encapsulate reusable operations (e.g., `netmiko_send_command`, `napalm_get`, custom `ios_xe_upgrade_install_mode`).
     - **Connection Plugins:** Manage device connections (Netmiko, NAPALM, Scrapli, or custom SSH implementations).
-    - **Inventory, Processor, and Runner Plugins:** Customize every aspect of Nornir's behavior.
+    - **Inventory, Processor, and Runner Plugins:** Customize every aspect of Nornir's behaviour.
     - **Why It Matters:** You can develop custom plugins for IOS-XE-specific upgrade operations (StackWise coordination, dual-SUP handling) and reuse them across projects.
 
 5. **Integrated Result Object and Error Handling**
@@ -778,7 +778,7 @@ A network team manages upgrades for 3,000 Cisco devices (mix of IOS, IOS-XE, NX-
 
 6. **Integration with Netmiko, NAPALM, and Scrapli**
     - **Leverage Existing Libraries:** Nornir plugins provide seamless integration with Netmiko (CLI automation), NAPALM (structured data retrieval), and Scrapli (fast, modern SSH library).
-    - **Best of Both Worlds:** Use Netmiko for raw CLI commands, NAPALM for standardized getters (facts, interfaces), and Scrapli for performance-critical operations.
+    - **Best of Both Worlds:** Use Netmiko for raw CLI commands, NAPALM for standardised getters (facts, interfaces), and Scrapli for performance-critical operations.
     - **Why It Matters:** You don't reinvent the wheel—Nornir orchestrates existing, battle-tested libraries while providing structure, parallelization, and result handling.
 
 **How Nornir Enhances This Python Orchestrator:**
@@ -919,7 +919,7 @@ A network team develops an IOS-XE upgrade orchestrator using Nornir:
 
 **Scheduling:**
     - Support scheduling upgrades within approved maintenance windows.
-    - Batch upgrades to avoid network congestion and minimize impact.
+    - Batch upgrades to avoid network congestion and minimise impact.
 
 **Window Management:**
     - Validate that upgrades do not exceed allocated windows.
@@ -972,7 +972,7 @@ flowchart TD
 A well-designed IOS-XE Software Upgrade Orchestrator is a force multiplier for network operations, enabling safe, scalable, and auditable upgrades across diverse Cisco platforms. By adhering to modular design, best practices, and robust error handling, the orchestrator minimizes risk, reduces downtime, and streamlines compliance. Integration with an Excel-driven source-of-truth and CLI-based operator workflows ensures accessibility and adaptability for a wide range of environments.
 
 !!! success "Next Steps"
-    - Finalize module interfaces and data models.
+    - Finalise module interfaces and data models.
     - Develop and test each module independently, starting with inventory and device abstraction.
     - Implement robust logging, error handling, and rollback mechanisms.
     - Validate workflows in a lab environment, covering all supported platforms and edge cases.

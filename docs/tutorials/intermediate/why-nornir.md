@@ -433,7 +433,7 @@ The table below breaks down how different approaches compare across real-world c
 
 **The problem:** You didn't anticipate scale early.
 
-**The lesson:** Planning for scale isn't premature optimization—it's professional development.
+**The lesson:** Planning for scale isn't premature optimisation—it's professional development.
 
 ### Gotcha #2: The Failing Device That Kills Everything
 

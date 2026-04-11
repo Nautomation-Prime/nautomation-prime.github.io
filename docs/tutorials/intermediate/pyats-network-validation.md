@@ -806,7 +806,7 @@ def test_vlan_automation_with_validation(device):
 
 - ❌ **Hardcode IP addresses** — Use testbed files
 - ❌ **Store credentials in test files** — Use vault encryption
-- ❌ **Assume device behavior** — Parse and validate actual state
+- ❌ **Assume device behaviour** — Parse and validate actual state
 - ❌ **Skip error handling** — Devices fail. Handle it gracefully.
 - ❌ **Test only happy paths** — What happens when a device is unreachable?
 

@@ -56,7 +56,7 @@ Automation is only as good as its data. A reliable "source of truth" is the foun
 - Open-source, API-driven, network-focused
 - Integrates with Nornir, Ansible, custom scripts
 - Supports devices, IPs, racks, circuits, and more
-- Enables custom fields, tags, and relationships for advanced modeling
+- Enables custom fields, tags, and relationships for advanced modelling
 - REST API and webhooks for automation triggers
 - Role-based access control and audit logging
 
@@ -134,7 +134,7 @@ def detect_drift(device, netbox_data, live_data):
 - A source of truth is essential for reliable, scalable automation
 - Netbox, CMDB, and YAML/CSV all have their place
 - PRIME principles ensure your inventory is transparent, owned, and safe
-- Use advanced modeling, validation, and drift detection for production-grade reliability
+- Use advanced modelling, validation, and drift detection for production-grade reliability
 - Integrate inventory with automation, CI/CD, and compliance workflows
 
 ---

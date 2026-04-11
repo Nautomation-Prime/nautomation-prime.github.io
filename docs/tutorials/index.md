@@ -42,9 +42,10 @@ Ready to handle more complex scenarios and multi-device operations.
 
 - **Focus**: Multi-threading, advanced parsing, data aggregation, professional development practices
 - **Prerequisites**: Comfortable with beginner concepts, understand functions and data structures
-- **Topics**: Threading & concurrency, custom TextFSM templates, Jinja2 templating, structured logging, argparse CLIs, retry logic, code organization
+- **Topics**: Threading & concurrency, custom TextFSM templates, Jinja2 templating, structured logging, argparse CLIs, retry logic, code organisation
 
 **New Production Patterns Available:**
+
 - [Testing Automation Scripts](./intermediate/testing-network-automation.md)
 - [Credential Management for Network Automation](./intermediate/credential-management-network-automation.md)
 - [Error Recovery and Rollback](./intermediate/error-recovery-rollback-network-automation.md)
@@ -63,6 +64,7 @@ Production-grade automation with enterprise patterns and advanced techniques.
 - **Topics**: **Nornir framework**, asyncio, NAPALM, PyATS, database integration, credential vaulting, API development, GitOps, CI/CD, containerization, observability
 
 **New Production Patterns Available:**
+
 - [Circuit Breakers and Backpressure](./expert/circuit-breakers-backpressure-network-automation.md)
 - [Dependency Management and Task Orchestration](./expert/dependency-ordering-task-orchestration.md)
 - [Incident Response Automation](./expert/incident-response-automation.md)

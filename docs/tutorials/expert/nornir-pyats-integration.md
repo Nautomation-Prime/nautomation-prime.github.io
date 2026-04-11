@@ -21,7 +21,7 @@ Most automation frameworks excel at either execution (Nornir) or validation (PyA
 - Build a production-grade integration architecture combining Nornir's parallelism with PyATS's validation
 - Implement advanced error handling, state management, and rollback mechanisms
 - Master pre/post-flight validation patterns with structured diff analysis
-- Deploy circuit breakers, connection pooling, and performance optimization strategies
+- Deploy circuit breakers, connection pooling, and performance optimisation strategies
 - Create comprehensive observability pipelines with metrics, logging, and alerting
 - Implement safe deployment patterns: dry-run, canary, and blue-green strategies
 - Build a complete end-to-end automation platform with testing, monitoring, and audit trails
@@ -64,7 +64,7 @@ pip install structlog prometheus-client
 
 ### Integration Philosophy
 
-The key insight: **Nornir excels at parallel execution and task orchestration; PyATS excels at structured data validation and state modeling**. By combining them, you create a closed-loop automation system:
+The key insight: **Nornir excels at parallel execution and task orchestration; PyATS excels at structured data validation and state modelling**. By combining them, you create a closed-loop automation system:
 
 ```text
 ┌─────────────────────────────────────────────────────────────┐
@@ -133,7 +133,7 @@ The key insight: **Nornir excels at parallel execution and task orchestration; P
 | **Orchestration** | Nornir Runner | Task scheduling, parallelism control, worker management |
 | **Inventory** | NetBox/Nautobot + Nornir | Dynamic device discovery, grouping, filtering |
 | **Execution** | Nornir + Netmiko/NAPALM | Command execution, configuration deployment |
-| **Validation** | PyATS Genie | Parsing, state modeling, diff generation |
+| **Validation** | PyATS Genie | Parsing, state modelling, diff generation |
 | **State Mgmt** | Custom + PyATS | Pre/post-flight checks, rollback logic |
 | **Observability** | Structlog + Prometheus | Logging, metrics, alerting |
 | **Audit** | Git + Database | Change tracking, compliance reporting |
@@ -4692,7 +4692,7 @@ This integrated system delivers:
 
 **Security & Compliance**
     - Credential vaulting with multiple backend support
-    - RBAC for authorization
+    - RBAC for authorisation
     - Complete audit trail for compliance
     - Change ticket integration for accountability
 
@@ -4710,7 +4710,7 @@ This integrated system delivers:
 
 ### Real-World Impact
 
-Organizations implementing these patterns report:
+Organisations implementing these patterns report:
 
 - **85% reduction** in configuration errors
 - **90% faster** change execution
@@ -4726,7 +4726,7 @@ Organizations implementing these patterns report:
 4. **Scale Up**: Implement batching and circuit breakers
 5. **Secure**: Add vault integration and RBAC
 6. **Monitor**: Implement metrics and alerting
-7. **Optimize**: Refine based on operational experience
+7. **Optimise**: Refine based on operational experience
 
 ### The Expert Mindset
 

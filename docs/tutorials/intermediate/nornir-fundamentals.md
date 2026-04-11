@@ -1557,7 +1557,7 @@ You've mastered Nornir fundamentals! Here's your path forward:
    - Custom inventory sources
    - Advanced filtering and task chaining
    - Integration with external systems
-   - Performance optimization techniques
+   - Performance optimisation techniques
 
     **Learn More About Network Automation Frameworks:**
 

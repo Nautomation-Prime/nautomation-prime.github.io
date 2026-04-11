@@ -12,7 +12,7 @@ tags:
 
 ## Transform Network Operations with Proven Methodology
 
-At Nautomation Prime, we help enterprise organizations deliver strategic network automation through the **[PRIME Framework](./prime-framework/index.md)**—a proven 5-stage methodology focused on measurable business value, production-grade quality, and sustainable organizational capability.
+At Nautomation Prime, we help enterprise organisations deliver strategic network automation through the **[PRIME Framework](./prime-framework/index.md)**—a proven 5-stage methodology focused on measurable business value, production-grade quality, and sustainable organizational capability.
 
 !!! abstract "Transparency Note: Business Stage and Evidence Base"
     Nautomation Prime is an early-stage, founder-led practice.
@@ -60,7 +60,7 @@ Across enterprise environments we have worked in, three critical failure pattern
 **❌ Build-and-Abandon Delivery**
     - Consultant delivers code and leaves immediately
     - No documentation, knowledge transfer, or team capability building
-    - Organization becomes dependent on original author for any modifications
+    - Organisation becomes dependent on original author for any modifications
 
 ---
 
@@ -69,7 +69,7 @@ Across enterprise environments we have worked in, three critical failure pattern
 **A methodology designed to prevent failure and ensure sustainable success:**
 
 ✅ **[Pinpoint](./prime-framework/pinpoint.md)** — Identify opportunities with proven ROI through data-driven analysis  
-✅ **[Re-engineer](./prime-framework/re-engineer.md)** — Optimize workflows for scalability before any code is written  
+✅ **[Re-engineer](./prime-framework/re-engineer.md)** — Optimise workflows for scalability before any code is written  
 ✅ **[Implement](./prime-framework/implement.md)** — Deliver production-ready solutions built on [PRIME Philosophy](./prime-framework/philosophy.md) principles  
 ✅ **[Measure](./prime-framework/measure.md)** — Track performance and demonstrate quantifiable business value  
 ✅ **[Empower](./prime-framework/empower.md)** — Transfer knowledge and build sustainable long-term team capability
@@ -156,7 +156,7 @@ Our flagship service delivers the complete journey: from identifying the right o
 | Stage | Duration | Key Deliverables |
 | :------ | :--------- | :---------------- |
 | **[Pinpoint](./prime-framework/pinpoint.md)** | 1-2 weeks | Discovery workshop, ROI analysis, prioritized automation roadmap, executive summary |
-| **[Re-engineer](./prime-framework/re-engineer.md)** | 1-2 weeks | Workflow optimization, technical architecture design, safety & validation plans |
+| **[Re-engineer](./prime-framework/re-engineer.md)** | 1-2 weeks | Workflow optimisation, technical architecture design, safety & validation plans |
 | **[Implement](./prime-framework/implement.md)** | 2-6 weeks | Production-ready Python automation, comprehensive testing, documentation |
 | **[Measure](./prime-framework/measure.md)** | 3-6 months | Performance instrumentation, ROI tracking, executive reporting dashboard |
 | **[Empower](./prime-framework/empower.md)** | 2-4 weeks | Knowledge transfer sessions, technical documentation, 8-week transition support |
@@ -167,7 +167,7 @@ Our flagship service delivers the complete journey: from identifying the right o
 
 **Expected ROI:** In comparable enterprise environments, payback is often 6-12 months when scope and adoption are disciplined
 
-**Ideal For:** Organizations seeking strategic, sustainable automation with proven methodology and measurable business outcomes
+**Ideal For:** Organisations seeking strategic, sustainable automation with proven methodology and measurable business outcomes
 
 **[Request Discovery Call](mailto:enquiries@nautomationprime.io)** to discuss your automation requirements.
 
@@ -179,7 +179,7 @@ If you already have automation plans or internal capability, we offer individual
 
 #### Pinpoint (Discovery & Roadmap)
 
-**Perfect for:** Organizations exploring automation maturity or building internal business cases
+**Perfect for:** Organisations exploring automation maturity or building internal business cases
 
 **Deliverables:**
 
@@ -215,7 +215,7 @@ If you already have automation plans or internal capability, we offer individual
 
 #### Implement (Custom Development)
 
-**Perfect for:** Organizations needing production-ready automation built by experts
+**Perfect for:** Organisations needing production-ready automation built by experts
 
 **What We Build:**
 
@@ -242,7 +242,7 @@ If you already have automation plans or internal capability, we offer individual
 
 #### Measure (ROI Tracking)
 
-**Perfect for:** Organizations with existing automation needing ROI proof
+**Perfect for:** Organisations with existing automation needing ROI proof
 
 **Deliverables:**
 
@@ -260,7 +260,7 @@ If you already have automation plans or internal capability, we offer individual
 
 #### Empower (Knowledge Transfer)
 
-**Perfect for:** Organizations with existing automation needing team capability building
+**Perfect for:** Organisations with existing automation needing team capability building
 
 **Deliverables:**
 
@@ -492,13 +492,13 @@ Through the PRIME Framework, we've delivered measurable value across diverse ent
 
 **Retail:**
 
-- Store network provisioning and standardization
+- Store network provisioning and standardisation
 - PCI-DSS compliance automation for payment networks
 - Centralized configuration management across distributed locations
 
 ---
 
-## Why Enterprise Organizations Choose Nautomation Prime
+## Why Enterprise Organisations Choose Nautomation Prime
 
 ### Strategic Partnership, Not Just Code Delivery
 
@@ -509,7 +509,7 @@ Our approach differs fundamentally from traditional consulting models:
 | Traditional Consulting | PRIME Framework Approach |
 | :--- | :--- |
 | Automate obvious tasks without ROI analysis | **[Pinpoint](./prime-framework/pinpoint.md)** — Data-driven opportunity identification with concrete ROI projections before commitment |
-| Automate existing inefficient workflows as-is | **[Re-engineer](./prime-framework/re-engineer.md)** — Optimize processes for scalability before writing any code |
+| Automate existing inefficient workflows as-is | **[Re-engineer](./prime-framework/re-engineer.md)** — Optimise processes for scalability before writing any code |
 | Deliver prototype code with minimal documentation | **[Implement](./prime-framework/implement.md)** — Production-grade solutions with comprehensive documentation following [PRIME Philosophy](./prime-framework/philosophy.md) |
 | No proof of value or business metrics | **[Measure](./prime-framework/measure.md)** — Concrete ROI metrics and executive reporting that prove business value |
 | "Here's the code, good luck" handoff | **[Empower](./prime-framework/empower.md)** — Comprehensive knowledge transfer builds team autonomy and eliminates vendor dependency |
@@ -639,7 +639,7 @@ These are **indicative ranges**—actual quotes provided after discovery call.
 - **Proven results** from Measure—concrete metrics and executive reports
 - **Long-term capability** from Empower—team independence, not vendor lock-in
 
-**For Your Organization:**
+**For Your Organisation:**
 
 - **Sustainable automation** that evolves with your needs
 - **Team empowerment** to build additional automations
@@ -655,7 +655,7 @@ Our 5-stage methodology ensures maximum value and sustainable success:
 Discovery workshop → ROI analysis → Automation roadmap
 
 **Stage 2: [Re-engineer](./prime-framework/re-engineer.md)** (Weeks 2-3)  
-Workflow optimization → Technical architecture → Safety planning
+Workflow optimisation → Technical architecture → Safety planning
 
 **Stage 3: [Implement](./prime-framework/implement.md)** (Weeks 4-8)  
 Production-ready development → Lab testing → Pilot deployment
@@ -808,7 +808,7 @@ We'll explore:
 
 | Stage | Duration | Key Activities |
 | :------ | :--------- | :--------------- |
-| **[Re-engineer](./prime-framework/re-engineer.md)** | 1-2 weeks | Workflow optimization, architecture design, safety planning |
+| **[Re-engineer](./prime-framework/re-engineer.md)** | 1-2 weeks | Workflow optimisation, architecture design, safety planning |
 | **[Implement](./prime-framework/implement.md)** | 2-6 weeks | Development, lab testing, pilot deployment, documentation |
 | **[Measure](./prime-framework/measure.md)** | 3-6 months | Performance tracking, ROI calculation, executive reporting |
 | **[Empower](./prime-framework/empower.md)** | 2-4 weeks | Knowledge transfer, team training, transition support (8 weeks) |
@@ -1038,7 +1038,7 @@ As revenue scales, a percentage is allocated to vetted charities reviewed for tr
     - **Healthcare**: HIPAA-compliant network segmentation and medical device management
     - **Education**: Campus-scale automation for distributed environments
     - **Manufacturing**: OT/IT convergence and industrial network automation
-    - **Retail**: Multi-site standardization and PCI-DSS compliance
+    - **Retail**: Multi-site standardisation and PCI-DSS compliance
     - **Government**: Security-focused environments (UK jurisdiction, GDPR-compliant)
     
     Industry experience informs compliance requirements but automation principles are universal.
@@ -1054,7 +1054,7 @@ As revenue scales, a percentage is allocated to vetted charities reviewed for tr
 **Individual Stage Deep-Dives:**
 
 - **[Pinpoint](./prime-framework/pinpoint.md)** — Opportunity discovery & ROI analysis
-- **[Re-engineer](./prime-framework/re-engineer.md)** — Workflow optimization & architecture design
+- **[Re-engineer](./prime-framework/re-engineer.md)** — Workflow optimisation & architecture design
 - **[Implement](./prime-framework/implement.md)** — Production-ready development
 - **[Measure](./prime-framework/measure.md)** — Performance tracking & ROI validation
 - **[Empower](./prime-framework/empower.md)** — Knowledge transfer & team capability building
@@ -1075,7 +1075,7 @@ As revenue scales, a percentage is allocated to vetted charities reviewed for tr
 
 **Enterprise networks are growing more complex. Manual processes can't scale. Your competition is automating.**
 
-The PRIME Framework provides the proven methodology, production-grade quality, and sustainable capability your organization needs to succeed.
+The PRIME Framework provides the proven methodology, production-grade quality, and sustainable capability your organisation needs to succeed.
 
 ### Start Your Journey
 

@@ -29,7 +29,7 @@ Legacy CLI and SNMP are giving way to model-driven APIs like gNMI and RESTCONF. 
 
 ## What are Model-Driven APIs?
 
-- APIs based on YANG data models (standardized, vendor-neutral)
+- APIs based on YANG data models (standardised, vendor-neutral)
 - gNMI (gRPC Network Management Interface): high-performance, streaming, and config/state access
 - RESTCONF: RESTful API for YANG models, easy to use with HTTP/JSON
 - Enable structured, programmatic device management and automation

@@ -4,7 +4,7 @@ description: Master JSON for network automation - REST API interactions, structu
 tags:
   - Intermediate
   - JSON
-  - Data Modeling
+    - Data Modelling
   - APIs
   - REST
   - Structured Logging
@@ -40,7 +40,7 @@ By the end of this tutorial, you'll understand:
 - ✅ Generating JSON for API requests
 - ✅ Structured logging with JSON output
 - ✅ JSON Schema validation for data integrity
-- ✅ Performance optimization for large JSON datasets
+- ✅ Performance optimisation for large JSON datasets
 - ✅ Real-world patterns: API clients, logging, data pipelines
 
 ---
@@ -49,7 +49,7 @@ By the end of this tutorial, you'll understand:
 
 ### Required Knowledge
 
-- ✅ **Completed [YAML Data Modeling Tutorial](./yaml-data-modeling-network-automation.md)** — Understanding structured data
+- ✅ **Completed [YAML Data Modelling Tutorial](./yaml-data-modeling-network-automation.md)** — Understanding structured data
 - ✅ Understanding of Python data structures (dict, list, str)
 - ✅ Understanding of HTTP basics (GET, POST, PUT, DELETE)
 
@@ -477,7 +477,7 @@ headers = {
 
 def get_networks(org_id):
     """
-    Get all networks in an organization
+    Get all networks in an organisation
     Returns list of network dictionaries
     """
     url = f"{BASE_URL}/organizations/{org_id}/networks"
@@ -754,7 +754,7 @@ if __name__ == "__main__":
 
 - ✅ **Queryable** — Search by device, duration, error type
 - ✅ **Machine-parsable** — Feed into Elasticsearch, Splunk, Datadog
-- ✅ **Standardized** — Same format across all automation scripts
+- ✅ **Standardised** — Same format across all automation scripts
 - ✅ **Aggregatable** — Combine logs from multiple sources easily
 
 ---
@@ -1006,7 +1006,7 @@ Testing invalid VLAN range:
 
 ---
 
-## ⚡ Performance Optimization for Large JSON
+## ⚡ Performance Optimisation for Large JSON
 
 ### Streaming Large JSON Files
 
@@ -1062,7 +1062,7 @@ def process_item(item):
 ```python
 #!/usr/bin/env python3
 """
-JSON performance optimization tips
+JSON performance optimisation tips
 """
 
 import json
@@ -1071,7 +1071,7 @@ import ujson  # pip install ujson (faster JSON library)
 # Tip 1: Use ujson for faster parsing
 data = ujson.loads(json_string)  # ~2-4x faster than json.loads()
 
-# Tip 2: Minimize serialization round trips
+# Tip 2: Minimise serialization round trips
 # Bad (serializes twice)
 json_str = json.dumps(data)
 data_again = json.loads(json_str)
@@ -1483,7 +1483,7 @@ if __name__ == "__main__":
 
 ## 🎓 Next Steps
 
-You've mastered JSON! Continue your data modeling journey:
+You've mastered JSON! Continue your data modelling journey:
 
 1. **[Jinja2 Configuration Templates](./jinja2-configuration-templates.md)** (Recommended Next)
    - Combine YAML/JSON data with Jinja2 templates

@@ -625,7 +625,7 @@ def get_tacacs_credentials(username, password, device_ip):
         device_ip: Target device IP
     
     Returns:
-        str: Session authorization token
+        str: Session authorisation token
     """
     tacacs = TACACSClient(
         server="10.0.0.100",  # TACACS+ server
@@ -644,7 +644,7 @@ def get_tacacs_credentials(username, password, device_ip):
     if not authen.ok:
         raise CredentialRetrievalError("TACACS+ authentication failed")
     
-    # Request authorization for specific device
+    # Request authorisation for specific device
     author = tacacs.authorize(
         username=username,
         arguments=[
@@ -654,7 +654,7 @@ def get_tacacs_credentials(username, password, device_ip):
     )
     
     if not author.ok:
-        raise CredentialRetrievalError("TACACS+ authorization failed")
+        raise CredentialRetrievalError("TACACS+ authorisation failed")
     
     return authen.session_id
 ```

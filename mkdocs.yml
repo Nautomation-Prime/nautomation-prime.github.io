@@ -128,7 +128,7 @@ nav:
           - Netmiko Show Command to Excel: tutorials/beginner/netmiko-show-command-to-excel.md
       - Intermediate Tutorials:
           - tutorials/intermediate/index.md
-          - YAML Data Modeling: tutorials/intermediate/yaml-data-modeling-network-automation.md
+          - YAML Data Modelling: tutorials/intermediate/yaml-data-modeling-network-automation.md
           - JSON Data Handling: tutorials/intermediate/json-data-handling-network-automation.md
           - Jinja2 Configuration Templates: tutorials/intermediate/jinja2-configuration-templates.md
           - Decorators for Network Automation: tutorials/intermediate/decorators-network-automation.md

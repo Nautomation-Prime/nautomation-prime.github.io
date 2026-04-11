@@ -54,7 +54,7 @@ Most automation stories stop at "the script worked." This representative case st
 - Calculated potential savings: 8 hours/week
 - Mapped out current process and pain points
 - Benchmarked error rates and outage frequency
-- Used time-motion studies and ticket analysis for data-driven prioritization
+- Used time-motion studies and ticket analysis for data-driven prioritisation
 
 ---
 

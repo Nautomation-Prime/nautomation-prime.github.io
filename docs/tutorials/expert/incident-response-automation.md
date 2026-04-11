@@ -758,6 +758,6 @@ Incident automation provides:
 
 ## Related Patterns
 
-- **[Testing Patterns](../intermediate/testing-network-automation.md)** — Test remediation behaviors
+- **[Testing Patterns](../intermediate/testing-network-automation.md)** — Test remediation behaviours
 - **[Health Checks](../intermediate/health-checks-pre-flight-validation.md)** — Detect issues early
 - **[Circuit Breakers](./circuit-breakers-backpressure-network-automation.md)** — Prevent cascade failures

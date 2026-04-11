@@ -66,7 +66,7 @@ pip install requests pytest pytest-mock netbox-api
 | Supporting multiple vendors | Pattern 5 | One system for all devices |
 | Managing 10,000+ devices | Pattern 6 | Unlimited scale |
 | Quality assurance | Pattern 7 | Prevent regressions |
-| Identifying bottlenecks | Pattern 10 | Know what to optimize |
+| Identifying bottlenecks | Pattern 10 | Know what to optimise |
 
 ---
 

@@ -124,7 +124,7 @@ Whether you're learning, deploying, or transforming your entire automation progr
 
 ### 🛠️ **Transform — Bespoke Services & PRIME Engagements**
 
-For organizations ready to redesign their automation program:
+For organisations ready to redesign their automation program:
 
 - **[PRIME Framework Engagements](./prime-framework/index.md)** — 8–12 week transformations with measurable ROI
     - Typical outcomes: 6–12 month payback, 60%+ efficiency gains, team ownership

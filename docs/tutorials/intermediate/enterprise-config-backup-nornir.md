@@ -2429,7 +2429,7 @@ You've built an enterprise-grade automation system! Here's what's next:
    - Custom inventory plugins (Netbox integration)
    - Middleware for cross-task logic
    - Advanced error handling and logging
-   - Memory optimization for 10,000+ devices
+   - Memory optimisation for 10,000+ devices
    - Multi-vendor support
    - Testing and debugging workflows
 

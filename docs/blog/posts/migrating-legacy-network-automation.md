@@ -54,7 +54,7 @@ Legacy scripts are everywhere—but they’re hard to maintain, scale, and secur
 - What must the new solution do? (features, scale, compliance, security, integrations)
 - Identify gaps in current workflows and desired improvements
 - Get stakeholder input (ops team, security, network engineering)
-- Prioritize high-ROI improvements
+- Prioritise high-ROI improvements
 
 ### Step 3: Choose a Modern Framework
 
@@ -335,7 +335,7 @@ def test_backup_with_mock_device():
 - **Big bang migration:** Don't rewrite everything at once. Do it in stages.
 - **Skipping tests:** New framework means new tests. Don't skip them.
 - **Ignoring team feedback:** If team doesn't like it, it won't be adopted.
-- **Premature optimization:** Get it working first, optimize later.
+- **Premature optimisation:** Get it working first, optimise later.
 - **Documentation debt:** Document as you go.
 - **No rollback plan:** Always be able to revert if needed.
 

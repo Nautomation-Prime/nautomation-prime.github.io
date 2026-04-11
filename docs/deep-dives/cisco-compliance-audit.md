@@ -40,7 +40,7 @@ Most compliance scripts fail in production because they are:
 This auditor solves that with:
 
 - **Policy-as-data in YAML**: Every check can be enabled or disabled
-- **Role-aware logic**: Access vs core vs SD-WAN vs industrial behavior
+- **Role-aware logic**: Access vs core vs SD-WAN vs industrial behaviour
 - **Port-intent classification**: ACCESS, TRUNK_UPLINK, TRUNK_DOWNLINK, TRUNK_ENDPOINT, UNUSED, ROUTED, and more
 - **Operational output**: Rich console summaries, HTML dashboards, JSON, CSV, and per-device remediation scripts
 - **Remediation lifecycle workflow**: Review packs, approvals, change-ticket linkage, expiry control, and guarded apply operations
@@ -58,7 +58,7 @@ Checks are explicit and traceable. Every finding maps to a check key in YAML and
 
 ### 2. Hardened for Production
 
-The auditor uses concurrent workers, optional jump-host access, fallback parsing strategies, and safe failure behavior so one bad device does not invalidate an entire run.
+The auditor uses concurrent workers, optional jump-host access, fallback parsing strategies, and safe failure behaviour so one bad device does not invalidate an entire run.
 
 ### 3. Policy Before Code
 
@@ -187,7 +187,7 @@ Most useful real-world options:
 - `--categories management_plane control_plane` to run scoped audits
 - `--dry-run ./saved_outputs` for validation in change windows and CI
 - `--fail-threshold 80` for pipeline quality gates
-- `--csv` / `--no-csv` for explicit report behavior
+- `--csv` / `--no-csv` for explicit report behaviour
 - `--remediation-list pending` to view queued review packs
 - `--remediation-approve PACK_ID --approver NAME --ticket-id CHG_ID` for approval control
 - `--remediation-apply PACK_ID --apply-dry-run` before any production push
@@ -223,11 +223,11 @@ Examples include:
 - `html_report`, `json_report`, `csv_report`
 - `parking_vlan`, `native_vlan`
 
-These govern runtime behavior and report generation, not compliance logic itself.
+These govern runtime behaviour and report generation, not compliance logic itself.
 
 ### 2. Connection Settings
 
-Controls transport behavior:
+Controls transport behaviour:
 
 - Jump-host usage
 - Device type
@@ -271,7 +271,7 @@ This allows governance teams to tailor standards without code edits.
 
 ## 1) Structured Collection First
 
-`collector.py` gathers key show commands and parses them into structured models (Genie preferred, with fallback behavior when unavailable).
+`collector.py` gathers key show commands and parses them into structured models (Genie preferred, with fallback behaviour when unavailable).
 
 This provides stable inputs for compliance checks and avoids fragile single-line CLI scraping.
 
@@ -318,7 +318,7 @@ This section is the "under the hood" explanation many engineers ask for: not jus
   Snippets below are intentionally simplified to focus on the design pattern.
   They represent the production structure and decision logic used by the project.
 
-## 1) CLI Entry Point and Exit Behavior
+## 1) CLI Entry Point and Exit Behaviour
 
 The entrypoint keeps the interface thin and delegates implementation detail to the orchestrator.
 
@@ -354,7 +354,7 @@ def main() -> None:
 ### Trade-off
 
 - The process-level pass/fail is simple and strict.
-- If teams need nuanced gating (for example, allow WARN but not FAIL in certain categories), that policy should be added intentionally rather than hidden in ambiguous CLI behavior.
+- If teams need nuanced gating (for example, allow WARN but not FAIL in certain categories), that policy should be added intentionally rather than hidden in ambiguous CLI behaviour.
 
 ---
 
@@ -468,7 +468,7 @@ for category, fn in checks:
 ### Why this design
 
 - New checks can be added without rewriting framework flow.
-- Category filtering from CLI naturally maps to engine behavior.
+- Category filtering from CLI naturally maps to engine behaviour.
 - Teams can disable checks in YAML without code edits.
 
 ### Trade-off
@@ -478,7 +478,7 @@ for category, fn in checks:
 
 ---
 
-## 6) Finding Model: Standardized Audit Currency
+## 6) Finding Model: Standardised Audit Currency
 
 Every check emits a normalized finding object.
 
@@ -707,7 +707,7 @@ How to read this:
 
 1. Interface role is decided first; the check never assumes all trunks are equal.
 2. Downlinks are expected to enforce root guard.
-3. Uplinks must not enforce root guard, because that can block valid root behavior.
+3. Uplinks must not enforce root guard, because that can block valid root behaviour.
 4. Unknown direction downgrades certainty to WARN.
 
 Why this design:
@@ -955,7 +955,7 @@ Two notable strengths of this auditor are speed-aware and direction-aware valida
 
 ### Storm Control
 
-Checks can enforce threshold behavior based on interface speed tiers (10G/1G/100M), reducing one-size-fits-none policy mistakes.
+Checks can enforce threshold behaviour based on interface speed tiers (10G/1G/100M), reducing one-size-fits-none policy mistakes.
 
 ### BPDU Guard and Root Guard Matrix
 
@@ -966,7 +966,7 @@ Operational intent is encoded clearly:
 - Root guard on uplinks flagged as failure
 - Unknown-direction trunks may produce warn-level findings for review
 
-This is exactly the kind of nuanced behavior needed for enterprise-safe automation.
+This is exactly the kind of nuanced behaviour needed for enterprise-safe automation.
 
 ---
 
@@ -986,7 +986,7 @@ The check library spans governance domains rather than isolated commands.
 
 ### Control Plane (Examples)
 
-- STP global posture and priority behavior
+- STP global posture and priority behaviour
 - VTP mode requirements
 - DHCP snooping controls
 - Dynamic ARP inspection controls
@@ -1108,7 +1108,7 @@ saved_outputs/
 
 1. Define policy node under `data_plane`
 2. Implement in `_check_access_port`, `_check_trunk_port`, `_check_unused_port`, or `_check_routed_port`
-3. Reuse interface helper matching patterns for deterministic behavior
+3. Reuse interface helper matching patterns for deterministic behaviour
 
 ### Add a New Device Role
 

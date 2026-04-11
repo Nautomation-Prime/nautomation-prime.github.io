@@ -54,11 +54,11 @@ My name is **Christopher Davies**, and I've spent the last 10+ years building ne
 
 Over a decade in enterprise networking, I noticed a pattern that frustrated me:
 
-**Organizations would invest £15,000–£25,000 in a "network automation solution," deploy it... and six months later, nobody was using it.**
+**Organisations would invest £15,000–£25,000 in a "network automation solution," deploy it... and six months later, nobody was using it.**
 
 Not because the code was bad. Sometimes it was brilliant code. But:
 
-- **Nobody in the organization understood how it worked.** When the original engineer left, the solution became a black box.
+- **Nobody in the organisation understood how it worked.** When the original engineer left, the solution became a black box.
 - **The wrong things got automated.** Teams automated easy tasks instead of painful ones, and then couldn't figure out *what to automate next*.
 - **Nobody could measure the business value.** "Is this saving time? How much?" The answer was usually "...we think so?"
 - **The company was locked in to the original consultants.** Any change required going back to expensive external help.
@@ -71,7 +71,7 @@ I realized: **Delivering scripts isn't enough. Sustainable automation requires a
 
 ### Enterprise Network Engineering (10+ Years)
 
-I cut my teeth in **hands-on network operations** at diverse organizations:
+I cut my teeth in **hands-on network operations** at diverse organisations:
 
 - **Muller UK & Ireland** - Network Operations Senior Analyst
 - **Involve Visual Collaboration** — System Infrastructure Specialist
@@ -150,7 +150,7 @@ Whether you're:
 
 - **Starting automation** — I can help you build the right roadmap (not just "automate everything")
 - **Improving existing automation** — I can help you understand and maintain what you have
-- **Scaling across your organization** — I can help you build sustainable, team-owned capability
+- **Scaling across your organisation** — I can help you build sustainable, team-owned capability
 
 **[Book a Discovery Call](mailto:enquiries@nautomationprime.io)** (30-60 minutes, free, no obligation)
 

@@ -26,7 +26,7 @@ A modular Python utility that connects to Cisco switches (optionally through an 
     ✨ **Key Improvements:**
     
     - **Modular Architecture:** Code separated into focused modules (`cli.py`, `device_auditor.py`, `excel_reporter.py`, etc.)
-    - **Professional Package Structure:** Follows enterprise Python best practices with proper package organization
+    - **Professional Package Structure:** Follows enterprise Python best practices with proper package organisation
     - **Better Maintainability:** Each module has a single, well-defined responsibility
     - **Enhanced Extensibility:** Easy to add new features, output formats, or device types
     - **Improved Testing:** Isolated components can be unit tested independently
@@ -249,9 +249,9 @@ The repository includes a **professional Windows batch launcher** (`run.bat`) th
 
 ## **Option 1: Double-click**
 
-Simply double-click `run.bat` in Windows Explorer to launch the tool with default behavior.
+Simply double-click `run.bat` in Windows Explorer to launch the tool with default behaviour.
 
-## **Option 2: Command Line (Default Behavior)**
+## **Option 2: Command Line (Default Behaviour)**
 
     ```cmd
     run.bat
@@ -311,7 +311,7 @@ This runs the Access Switch Audit using `python -m switch_audit` with all defaul
 
 ## 🚀 Advanced: Command Line with Arguments
 
-For advanced users who need to **customize behavior beyond the defaults**, you can still run the tool directly with Python and command-line arguments.
+For advanced users who need to **customize behaviour beyond the defaults**, you can still run the tool directly with Python and command-line arguments.
 
 ### When to Use Command Line Arguments
 
@@ -461,7 +461,7 @@ If you're upgrading from the older monolithic version, see the **MIGRATION.md** 
 
 | Benefit | Description |
 | :--- | :--- |
-| **Better Organization** | Each module has a single, clear responsibility |
+| **Better Organisation** | Each module has a single, clear responsibility |
 | **Easier Testing** | Isolated components can be unit tested |
 | **Professional Architecture** | Follows enterprise Python package standards |
 | **Improved Maintainability** | Changes to one module don't cascade |
@@ -700,7 +700,7 @@ This is the **authoritative source** for port mode and VLAN classification.
     def _categorize_port(row: Dict[str, Any], stale_days: int) -> str:
         """
         Classify port as: active, stale, or available.
-        Uses conservative logic to minimize false positives.
+        Uses conservative logic to minimise false positives.
         """
     ```
 

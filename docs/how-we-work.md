@@ -20,7 +20,7 @@ This is how it works.
 
 ## The 5 Stages at a Glance
 
-```text
+```
 Stage 1       Stage 2          Stage 3          Stage 4       Stage 5
 Pinpoint  →   Re-engineer  →   Implement   →    Measure   →  Empower
 (Week 1)      (Weeks 2-3)      (Weeks 4-8)      (Weeks 9-12)  (Weeks 10-16)
@@ -80,7 +80,7 @@ You walk away with a clear roadmap of what to automate and why—**even if you d
 
 ### What Happens (Re-engineer)
 
-You've decided what to automate. Now we optimize the *workflow itself* before writing a single line of code.
+You've decided what to automate. Now we optimise the *workflow itself* before writing a single line of code.
 
 Most automation fails because teams automate broken processes. We fix the process first.
 
@@ -356,7 +356,7 @@ Your team walks away with:
 
 ## The Full Timeline
 
-```text
+```
 Week 1      Weeks 2-3        Weeks 4-8       Weeks 9-12+     Weeks 10-16
 Pinpoint    Re-engineer      Implement       Measure         Empower
 (1 week)    (2 weeks)        (4 weeks)       (4+ weeks)      (6 weeks workshops)
@@ -380,7 +380,7 @@ Roadmap                      Full Deploy
 
 **All 5 stages from Pinpoint through Empower.**
 
-**Best for:** Organizations serious about sustainable automation capability
+**Best for:** Organisations serious about sustainable automation capability
 
 **Investment:** £12,000–£28,000 (depending on complexity)
 

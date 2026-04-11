@@ -25,7 +25,7 @@ Hardcoded credentials are a **top security risk** in network automation. This co
 ## Prerequisites
 
 - Advanced Python (3.8+)
-- Understanding of authentication and authorization models
+- Understanding of authentication and authorisation models
 - Experience with environment variables and secure API calls
 - Familiarity with network security concepts (SSH keys, OAuth, mTLS)
 

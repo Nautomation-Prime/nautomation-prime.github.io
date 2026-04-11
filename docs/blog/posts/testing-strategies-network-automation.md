@@ -74,7 +74,7 @@ Testing is the difference between "it works on my machine" and "it works in prod
 
 - Use tools like pyATS, nornir_utils, or custom mocks
 - Simulate device responses for safe, repeatable tests
-- Enables testing of failure modes, edge cases, and rare device behaviors
+- Enables testing of failure modes, edge cases, and rare device behaviours
 - Use for CI/CD pipelines where real devices are unavailable
 
 ---

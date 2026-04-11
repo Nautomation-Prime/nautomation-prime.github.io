@@ -140,7 +140,7 @@ Cisco IOS-XE devices include a built-in ZTP agent that activates automatically w
 1. Switch boots without a `startup-config` file
 2. No manual console interaction occurs during bootup timer (default 5 minutes)
 
-**ZTP Agent Behavior:**
+**ZTP Agent Behaviour:**
 
 - Sends DHCP request with vendor-specific options
 - Looks for **DHCP Option 67** (Boot File Name) containing HTTP URL
@@ -226,7 +226,7 @@ Cisco IOS-XE devices include a built-in ZTP agent that activates automatically w
     - **Port-channel negotiation** — LACP bundle not formed (10-30 seconds)
     - **DHCP exhaustion** — Server overwhelmed, slow responses
     
-    **Mitigation:** Exponential backoff gives network time to stabilize. Consider staggered power-on in very large deployments.
+    **Mitigation:** Exponential backoff gives network time to stabilise. Consider staggered power-on in very large deployments.
 
 ### Stage 3: Configuration Application
 
@@ -664,8 +664,8 @@ Create alert for ZTP failures:
     ! AAA Configuration
     aaa new-model
     aaa authentication login default group tacacs+ local
-    aaa authorization exec default group tacacs+ local
-    aaa authorization commands 15 default group tacacs+ local
+    aaa authorisation exec default group tacacs+ local
+    aaa authorisation commands 15 default group tacacs+ local
     aaa accounting exec default start-stop group tacacs+
     aaa accounting commands 15 default start-stop group tacacs+
     !
@@ -1498,7 +1498,7 @@ Create configs for each stack member:
     def get_device_from_netbox(serial):
         """Query NetBox API for device by serial number"""
         netbox_url = "https://netbox.company.local/api/dcim/devices/"
-        headers = {"Authorization": "Token YOUR_NETBOX_API_TOKEN"}
+        headers = {"Authorisation": "Token YOUR_NETBOX_API_TOKEN"}
         params = {"serial": serial}
         
         response = requests.get(netbox_url, headers=headers, params=params, verify=False)
@@ -1739,7 +1739,7 @@ If ZTP fails catastrophically:
 - Provide device model and IOS-XE version
 - Include flash log: `more flash:guest-share/ztp.log`
 - Attach sanitized config file (redact passwords)
-- Describe expected vs. actual behavior
+- Describe expected vs. actual behaviour
 
 ---
 

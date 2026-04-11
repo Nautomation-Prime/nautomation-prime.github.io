@@ -50,7 +50,7 @@ At Nautomation Prime, every automation decision is guided by five core principle
 
 ### Real-World Case Study
 
-An enterprise automated device backups, saving 2 hours/week. But they ignored compliance audits, which cost 10 hours/week. Six months later, leadership questioned the ROI. The fix: use PRIME Pinpoint to measure and prioritize high-impact tasks.
+An enterprise automated device backups, saving 2 hours/week. But they ignored compliance audits, which cost 10 hours/week. Six months later, leadership questioned the ROI. The fix: use PRIME Pinpoint to measure and prioritise high-impact tasks.
 
 ### Pattern #1 Trap
 
@@ -65,7 +65,7 @@ Meanwhile, compliance audits still require two network engineers manually walkin
 ### Why Pattern #1 Happens
 
 - **No structured discovery process.** You guess which tasks will deliver ROI instead of measuring it.
-- **Gut-feel prioritization.** "This seems painful" isn't data. You need actual time-motion studies.
+- **Gut-feel prioritisation.** "This seems painful" isn't data. You need actual time-motion studies.
 - **Nobody asks "what's next?"** Once the first automation is done, teams have no roadmap—so they guess at the second one too.
 
 ### How PRIME Solves Pattern #1

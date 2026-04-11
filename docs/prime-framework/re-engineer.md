@@ -161,7 +161,7 @@ Before making any changes, automation should verify:
 
 - Configuration doesn't conflict with existing state
 - Required parameters present and valid
-- Change scope matches authorization
+- Change scope matches authorisation
 - Dry-run simulation successful
 
 #### Rollback Capability

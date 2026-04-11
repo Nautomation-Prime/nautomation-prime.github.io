@@ -15,7 +15,7 @@ tags:
 The **PRIME Framework** is Nautomation Prime's systematic approach to transforming network operations through intelligent Python automation. This five-stage methodology ensures every automation project delivers measurable value while maintaining production safety and transparency.
 
 !!! success "Proven Track Record"
-    Organizations using the PRIME Framework achieve:
+    Organisations using the PRIME Framework achieve:
 
     - **6-12 month payback** on automation investments
     - **60-80% reduction** in manual configuration time

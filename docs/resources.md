@@ -44,7 +44,7 @@ Your complete guide to network automation tools, tutorials, and deep dives. Whet
 
     **Perfect for:** Framework architects, infrastructure engineers
     
-    Build production-grade automation systems. Design custom workflows, integrate with enterprise tools, optimize performance.
+    Build production-grade automation systems. Design custom workflows, integrate with enterprise tools, optimise performance.
     
     **Content coming soon.** In the meantime:
     - Explore the [Enterprise Config Backup](tutorials/intermediate/enterprise-config-backup-nornir.md) deep implementation
@@ -245,7 +245,7 @@ Each resource is tagged to help you find content that matches your style:
     - [PyATS Fundamentals](tutorials/intermediate/pyats-fundamentals.md) — Enterprise-scale validation framework
 
 !!! tip "Highest ROI"
-    These directly replace current manual work. Organizations see value within the first week:
+    These directly replace current manual work. Organisations see value within the first week:
 
     - [Enterprise Config Backup with Nornir](tutorials/intermediate/enterprise-config-backup-nornir.md) — Eliminates hours of manual work
     - [Advanced Nornir Patterns](tutorials/intermediate/advanced-nornir-patterns.md) — Hardens code for production reliability

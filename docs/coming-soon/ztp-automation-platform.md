@@ -42,9 +42,9 @@ This is a paid, enterprise-grade service with optional bespoke add-ons by reques
 
 ## Ideal For
 
-- Large-scale rollouts with strict standardization requirements
+- Large-scale rollouts with strict standardisation requirements
 - Teams needing repeatable, auditable provisioning workflows
-- Organizations that want a managed ZTP platform, not just a script
+- Organisations that want a managed ZTP platform, not just a script
 
 ---
 

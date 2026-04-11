@@ -45,7 +45,7 @@ Built by Cisco engineers to test Cisco equipment at massive scale, it's now avai
 | :--- | :--- | :--- |
 | **Focus** | Network devices & infrastructure | Code logic |
 | **Connection Model** | SSH/NETCONF to actual devices | Mocks and stubs |
-| **Real Device State** | Validates actual network state | Validates code behavior |
+| **Real Device State** | Validates actual network state | Validates code behaviour |
 | **Enterprise Scale** | Built for millions of tests/month | Built for thousands/day |
 | **Network-Specific** | Parsers for Cisco output, device APIs | Generic assertions |
 
@@ -123,7 +123,7 @@ devices:
     # This is just a label you choose (can be hostname, IP, or any identifier)
     
     type: switch
-    # Device type (switch, router, etc.) — helps PyATS optimize communications
+    # Device type (switch, router, etc.) — helps PyATS optimise communications
     
     os: ios
     # Operating system — determines which parser to use

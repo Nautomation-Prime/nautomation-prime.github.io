@@ -875,7 +875,7 @@ Progress indicators during long operations keep users informed:
 
 **Cause**: Hostname longer than 31 characters (Excel limit).
 
-**Solution**: This is expected behavior. The script automatically truncates to 31 characters. If you need full hostnames, you could:
+**Solution**: This is expected behaviour. The script automatically truncates to 31 characters. If you need full hostnames, you could:
 
 - Add a column in the sheet with the full hostname
 - Create a mapping file

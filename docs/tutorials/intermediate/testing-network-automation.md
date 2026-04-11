@@ -146,7 +146,7 @@ from unittest.mock import MagicMock, patch
 from src.decorators import retry
 
 class TestRetryDecorator:
-    """Test retry decorator behavior."""
+    """Test retry decorator behaviour."""
     
     def test_succeeds_on_first_attempt(self):
         """Function succeeds immediately—no retries needed."""
@@ -603,7 +603,7 @@ Now **every commit is automatically tested** before merging.
 
 ## Best Practices
 
-### 1. Test Behavior, Not Implementation
+### 1. Test Behaviour, Not Implementation
 
 ```python
 # ❌ BAD - Tests implementation details
@@ -614,7 +614,7 @@ def test_retry():
     
     assert func.__name__ == "wrapper"  # Tests internal name
 
-# ✅ GOOD - Tests behavior
+# ✅ GOOD - Tests behaviour
 def test_retry():
     @retry()
     def func():

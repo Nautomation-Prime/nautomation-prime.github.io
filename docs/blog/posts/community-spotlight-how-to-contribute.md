@@ -40,7 +40,7 @@ Nautomation Prime is built by and for the community. This post explains how you 
     - Framework deep-dives (Nornir advanced patterns, Ansible role design, PyATS testbed strategies)
     - Integration patterns (ITSM, monitoring, observability)
     - Vendor-specific APIs and models
-- **Suggest a topic:** Request a blog post, tutorial, or deep dive on something you want to learn or teach. Tell us what knowledge gap exists in the community and we'll prioritize creating content to fill it.
+- **Suggest a topic:** Request a blog post, tutorial, or deep dive on something you want to learn or teach. Tell us what knowledge gap exists in the community and we'll prioritise creating content to fill it.
 
 ### Code & Documentation
 
@@ -50,14 +50,14 @@ Nautomation Prime is built by and for the community. This post explains how you 
     - Ansible roles for network automation workflows
     - Utility libraries for credential management, logging, or observability
     - CI/CD pipeline templates and GitHub Actions workflows
-- **Review and improve docs:** Help make our guides clearer, more accurate, and more useful for everyone. Fix typos, clarify confusing sections, add examples, or improve organization.
+- **Review and improve docs:** Help make our guides clearer, more accurate, and more useful for everyone. Fix typos, clarify confusing sections, add examples, or improve organisation.
 - **Create examples and demos:** Build working code samples that demonstrate best practices covered in our tutorials or framework stages.
 
 ### Community & Mentorship
 
 - **Join discussions:** Comment on posts, join our forums or chat, and help answer questions from others. Share your perspective, lessons learned, and working solutions.
 - **Mentor and support:** Help onboard new contributors, review pull requests, or run a community workshop. We have webinar slots and event opportunities for experienced automation engineers.
-- **Translate and localize:** Help localize our content for non-English-speaking communities (docs, blog posts, tutorials).
+- **Translate and localise:** Help localise our content for non-English-speaking communities (docs, blog posts, tutorials).
 - **Maintain reference implementations:** Adopt an example project or reference tool and keep it current with library updates and best practices.
 
 ---
@@ -394,7 +394,7 @@ def test_discover_multiple_hosts(host, expected_neighbors):
         - **Report bugs** — Found an issue? File a bug report with details
         - **Suggest ideas** — Tell us what's missing or what you'd like to learn
         - **Help others** — Answer questions in forums or chat
-        - **Translate content** — Localize docs for non-English communities
+        - **Translate content** — Localise docs for non-English communities
 
 ??? question "How long does it take to get a PR merged?"
     Typically 5–10 business days:

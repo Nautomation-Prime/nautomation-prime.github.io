@@ -153,7 +153,7 @@ Ready to build custom solutions:
 - Email notifications and comprehensive logging
 - Integration with maintenance windows and change control systems
 
-**Current Status:** Architecture and design phase. Feature set being finalized based on enterprise deployment requirements.
+**Current Status:** Architecture and design phase. Feature set being finalised based on enterprise deployment requirements.
 
 ---
 

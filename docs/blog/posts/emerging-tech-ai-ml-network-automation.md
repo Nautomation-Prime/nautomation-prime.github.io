@@ -32,7 +32,7 @@ AI and ML are everywhere—but what do they really mean for network automation? 
 
 ## What AI/ML Can (and Can’t) Do
 
-- **Can:** Detect anomalies, predict failures, optimize performance, automate routine decisions, classify traffic, forecast capacity
+- **Can:** Detect anomalies, predict failures, optimise performance, automate routine decisions, classify traffic, forecast capacity
 - **Can’t:** Replace domain expertise, guarantee accuracy, fix bad data, make business decisions in isolation
 
 ---
@@ -49,7 +49,7 @@ AI and ML are everywhere—but what do they really mean for network automation? 
 - Anomaly detection in telemetry streams
 - Predictive maintenance for network devices
 - Automated ticket triage and incident response
-- Intelligent traffic engineering and path optimization
+- Intelligent traffic engineering and path optimisation
 - Capacity forecasting and planning
 
 ---
@@ -97,7 +97,7 @@ print(anomalies[['timestamp', 'device', 'interface', 'in_errors']])
 ### Interpreting Results
 
 - **True positives:** Real anomalies (actual interface flaps, device overload)
-- **False positives:** Normal behavior incorrectly flagged as anomaly (adjust model threshold)
+- **False positives:** Normal behaviour incorrectly flagged as anomaly (adjust model threshold)
 - **False negatives:** Real anomalies missed (increase model sensitivity, add more features)
 
 ---

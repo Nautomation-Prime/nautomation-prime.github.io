@@ -752,7 +752,7 @@ async def benchmark_pool():
 ✅ **Circuit breakers prevent cascade failures** when devices are unhealthy  
 ✅ **Proper error handling and retries** ensure reliability at scale  
 ✅ **Observability integration** (metrics, logging) provides production insights  
-✅ **Event loop optimization** (uvloop) boosts performance further  
+✅ **Event loop optimisation** (uvloop) boosts performance further  
 
 ---
 

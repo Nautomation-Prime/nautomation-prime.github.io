@@ -1,16 +1,16 @@
 ---
-title: YAML Data Modeling for Network Automation
+title: YAML Data Modelling for Network Automation
 description: Master YAML for network automation - device inventories, configuration templates, and structured data. Learn syntax, best practices, and real-world patterns.
 tags:
   - Intermediate
   - YAML
-  - Data Modeling
+  - Data Modelling
   - Configuration
   - Best Practices
   - Tutorial
 ---
 
-## YAML Data Modeling for Network Automation
+## YAML Data Modelling for Network Automation
 
 ## "From Hardcoded Values to Structured Data — The Foundation of Scalable Automation"
 
@@ -36,7 +36,7 @@ By the end of this tutorial, you'll understand:
 - ✅ Reading and writing YAML in Python
 - ✅ Nornir inventory structure (hosts, groups, defaults)
 - ✅ PyATS testbed structure (devices, connections, credentials)
-- ✅ Configuration data modeling best practices
+- ✅ Configuration data modelling best practices
 - ✅ Common YAML pitfalls and how to avoid them
 - ✅ Real-world patterns used in production automation
 - ✅ Validating YAML structure programmatically
@@ -546,7 +546,7 @@ data:
 **Key concepts:**
 
 - Applies to all devices unless overridden
-- Useful for organization-wide standards
+- Useful for organisation-wide standards
 
 ### Using Nornir Inventory in Python
 
@@ -691,7 +691,7 @@ device.disconnect()
 
 ---
 
-## 🏭 Real-World Pattern 3: Configuration Data Modeling
+## 🏭 Real-World Pattern 3: Configuration Data Modelling
 
 Model configuration data in YAML for template-driven automation.
 
@@ -1389,7 +1389,7 @@ with open('devices.yaml') as f:
 
 ## 🎯 Key Takeaways
 
-- ✅ **YAML is the standard** for network automation data modeling
+- ✅ **YAML is the standard** for network automation data modelling
 - ✅ **Human-readable** format that network engineers can edit without programming
 - ✅ **Separation of concerns** — Keep data (YAML) separate from code (Python)
 - ✅ **Version control friendly** — Track changes, rollback if needed
@@ -1401,7 +1401,7 @@ with open('devices.yaml') as f:
 
 ## 🎓 Next Steps
 
-You've mastered YAML! Continue your data modeling journey:
+You've mastered YAML! Continue your data modelling journey:
 
 1. **[JSON Data Handling for Network Automation](./json-data-handling-network-automation.md)** (Recommended Next)
    - Learn JSON for API interactions

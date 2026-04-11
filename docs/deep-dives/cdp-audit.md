@@ -315,7 +315,7 @@ The tool operates as a **modular Python package** with eight primary modules, ea
 
 !!! quote "Design Philosophy"
     **Separation of Concerns**: Each module has a single, well-defined responsibility. Changes to Excel formatting don't affect discovery logic.
-    **Package-Based Organization**: The `cdp_audit/` package structure enables clean imports, testability, and proper Python packaging.
+    **Package-Based Organisation**: The `cdp_audit/` package structure enables clean imports, testability, and proper Python packaging.
     **Dependency Injection**: Modules receive configuration objects rather than reading global state. Easier to test and reason about.
     **Fail-Fast Validation**: The `validators.py` module checks all prerequisites **before** discovery starts. No more failures after 10 minutes of crawling.
     **Testability**: Each module can be imported and tested independently. Mock the config, test credential logic in isolation.
@@ -463,7 +463,7 @@ class CredentialManager:
 **Why This Matters:**
 
 - **Centralized config access**: Uses `app_config.py` instead of direct Config() instantiation
-- **config.yaml**: Human-readable, persistent, version-controlled settings that match your organization's standards
+- **config.yaml**: Human-readable, persistent, version-controlled settings that match your organisation's standards
 - **Environment variables**: Runtime overrides for different environments (dev/prod) or testing
 - **Fallback username**: No longer hardcoded—customize in config.yaml to match your local accounts
 - **Module-level logging**: Each module logs with its own name for easy filtering
@@ -635,7 +635,7 @@ def get_secret_with_fallback(
 - Two credentials maximize success: primary fails → retry with fallback
 - Jump host always uses primary (tighter control)
 - Device can fall back to secondary user (local account)
-- Fully customizable to match your organization's account naming standards
+- Fully customizable to match your organisation's account naming standards
 
 ### `collect_all_credentials() -> dict`
 
@@ -1048,7 +1048,7 @@ else:
 - Jump host always uses primary (tightest control)
 - Device can use fallback if primary fails (username customizable in config.yaml)
 - Resilience: if your primary account is locked, fallback account can still work
-- Flexibility: adapt to your organization's local account naming conventions
+- Flexibility: adapt to your organisation's local account naming conventions
 
 **Direct Connection:**
 Simply pass device IP to Netmiko.
@@ -2040,7 +2040,7 @@ The repository includes a **professional Windows batch launcher** (`run.bat`) th
 
 ## Option 1: Double-click
 
-Simply double-click `run.bat` in Windows Explorer to launch the tool with default behavior.
+Simply double-click `run.bat` in Windows Explorer to launch the tool with default behaviour.
 
 ## Option 2: Command Line
 
@@ -2103,7 +2103,7 @@ Running CDP Network Audit...
 ## 🚀 How to Run (Interactive Flow)
 
 1. Ensure templates and Excel file exist under `ProgramFiles/...` (see above).
-2. (Optional) Customize `config.yaml` with your organization's defaults.
+2. (Optional) Customize `config.yaml` with your organisation's defaults.
 3. (Optional) Set environment variables as needed for runtime overrides.
 4. Run:
 
@@ -2138,7 +2138,7 @@ For each visited device the tool attempts to collect:
 
 ---
 
-## 🌐 Jump Server Behavior
+## 🌐 Jump Server Behaviour
 
 - Set `jump_host` in the `network` section of `config.yaml` to specify a default jump host.
 - Alternatively, use the `CDP_JUMP_SERVER` environment variable to override at runtime.
@@ -2271,7 +2271,7 @@ Catch problems before expensive operations begin.
 
 ---
 
-## 🧯 Errors & Retry Behavior
+## 🧯 Errors & Retry Behaviour
 
 - **Authentication failures**: the host is recorded under Authentication Errors
 - **Connectivity/timeouts**: the host is recorded under Connection Errors with the last error tag (e.g., `NetmikoTimeoutException`, `SSHException`, `socket.timeout`)
