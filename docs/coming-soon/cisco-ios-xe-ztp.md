@@ -179,10 +179,10 @@ Cisco IOS-XE devices include a built-in ZTP agent that activates automatically w
     The serial number must exactly match the configuration filename on the HTTP server. Mismatches cause HTTP 404 errors and ZTP failure.
 
     **Verification Command:**
-```cisco
+    ```cisco
     Switch# show version | include Serial
     System Serial Number : FCW2144L045
-```
+    ```
     
     **HTTP Server File:** `FCW2144L045.cfg` (exact match required)
 
@@ -927,7 +927,7 @@ When enabled, creates `/flash/ztp_report_<SERIAL>.json`:
 
 5. **Monitor Progress**
 
-## Option A: Console Monitoring
+### Option A: Console Monitoring
 ```
     ###### STARTING ZTP SCRIPT ######
 
@@ -955,7 +955,7 @@ When enabled, creates `/flash/ztp_report_<SERIAL>.json`:
     ###### ZTP PROCESS COMPLETE ######
 ```
 
-## Option B: Graylog Monitoring
+### Option B: Graylog Monitoring
 ```text
     # Real-time search (auto-refresh every 5 seconds)
     serial_number:FCW2144L045
@@ -964,7 +964,7 @@ When enabled, creates `/flash/ztp_report_<SERIAL>.json`:
     message:"ZTP PROCESS COMPLETE" AND serial_number:FCW2144L045
 ```
 
-    ## Option C: Flash Log Review (Post-ZTP)
+### Option C: Flash Log Review (Post-ZTP)
 ```cisco
     Switch# more flash:guest-share/ztp.log
     2026-02-06 14:20:03 :: INFO :: ###### STARTING ZTP SCRIPT ######
@@ -1250,13 +1250,13 @@ Ensure `WRITE_MEMORY = True` in `day_0_provisioning.py` (default setting)
 
 #### 4. Disable ZTP After Provisioning
 
-## Option A: Explicitly Disable DHCP-Based Provisioning
+### Option A: Explicitly Disable DHCP-Based Provisioning
 ```cisco
     ! Prevents device from re-attempting ZTP
     Switch(config)# no service dhcp
 ```
 
-## Option B: Remove Startup-Config Detection
+### Option B: Remove Startup-Config Detection
 
 Add to ZTP config template:
 ```cisco
@@ -1275,18 +1275,18 @@ Add to ZTP config template:
 
 !!! danger "Never Store Plain-Text Passwords in Config Files"
     **Bad Practice:**
-```cisco
+    ```cisco
     username admin privilege 15 password MyPassword123
-```
+    ```
 
     **Best Practice:**
-```cisco
+    ```cisco
     ! Use Type 8 (PBKDF2) or Type 9 (scrypt) secrets
     username admin privilege 15 secret MyStrongPassword
     
     ! Result in running-config (hashed):
     username admin privilege 15 secret 8 $8$xyz...
-```
+    ```
 
 **Generating Hashed Passwords:**
 ```cisco
@@ -1353,7 +1353,7 @@ Enable Syslog to Graylog with retention policies:
 
 **Solution Options:**
 
-## Option 1: Stack Master Serial (Recommended)
+### Option 1: Stack Master Serial (Recommended)
 ```python
     # Modify get_serial() function to detect stack and return master serial
     def get_serial():
@@ -1373,7 +1373,7 @@ Enable Syslog to Graylog with retention policies:
             return serial_match.group(1)
 ```
 
-## Option 2: Separate Configs Per Member
+### Option 2: Separate Configs Per Member
 
 Create configs for each stack member:
 
@@ -1536,7 +1536,7 @@ Create configs for each stack member:
 
 !!! tip "Version Control Your Config Files"
     Treat configuration files as code:
-```bash
+    ```bash
     # Initialize Git repository for config files
     cd /var/www/html/files/
     git init
@@ -1546,7 +1546,7 @@ Create configs for each stack member:
     # Track changes over time
     git log --oneline
     git diff FCW2144L045.cfg
-```
+    ```
 
 ### Testing Strategy
 
