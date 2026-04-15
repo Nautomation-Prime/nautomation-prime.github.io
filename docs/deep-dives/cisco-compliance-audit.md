@@ -1,6 +1,6 @@
 ---
 title: Cisco IOS-XE Compliance Audit
-description: Comprehensive deep dive into Cisco IOS-XE Compliance Auditor v4.0, including policy-driven checks, remediation lifecycle workflow, and multi-format reporting.
+description: Comprehensive deep dive into Cisco IOS-XE Compliance Auditor, including policy-driven checks, remediation lifecycle workflow, interactive operations modes, and multi-format reporting.
 tags:
   - Deep Dive
   - Compliance Audit
@@ -18,7 +18,7 @@ tags:
 ## "Policy-Driven Compliance, Engineered for Real Networks."
 
 !!! info "Version Alignment"
-  This deep dive reflects **Cisco IOS-XE Compliance Auditor v4.0** (March 2026) and includes the remediation lifecycle workflow (`--remediation-list`, approve/reject, apply, bulk apply) and ROI reporting features.
+  This deep dive reflects the **current main branch state (April 2026)** of Cisco IOS-XE Compliance Auditor (package version `4.0`) and includes the remediation lifecycle workflow, ROI reporting, guided interactive mode (`--interactive`), full-screen TUI mode (`--tui`), and CLI option discovery (`--list-options`).
 
 The **Cisco IOS-XE Compliance Audit** tool is a role-aware, policy-driven audit framework for Cisco switching and routing estates. It connects to devices (directly or through a jump host), collects operational and configuration state, classifies every interface by intent, runs 90+ toggleable compliance checks, and generates actionable reports with remediation commands.
 
@@ -43,6 +43,7 @@ This auditor solves that with:
 - **Role-aware logic**: Access vs core vs SD-WAN vs industrial behaviour
 - **Port-intent classification**: ACCESS, TRUNK_UPLINK, TRUNK_DOWNLINK, TRUNK_ENDPOINT, UNUSED, ROUTED, and more
 - **Operational output**: Rich console summaries, HTML dashboards, JSON, CSV, and per-device remediation scripts
+- **Operator UX modes**: Guided wizard (`--interactive`) and full-screen TUI (`--tui`) for day-to-day execution
 - **Remediation lifecycle workflow**: Review packs, approvals, change-ticket linkage, expiry control, and guarded apply operations
 - **Bulk operations**: `--remediation-approve-all` and `--remediation-apply-all` for scalable change windows
 - **ROI reporting**: Optional estimated time/value saved in console, JSON, and HTML outputs
@@ -160,6 +161,15 @@ python -m compliance_audit --remediation-approve-all --approver "john.doe" --tic
 
 # Dry-run apply across all approved packs
 python -m compliance_audit --remediation-apply-all --apply-dry-run
+
+# Guided interactive wizard
+python -m compliance_audit --interactive
+
+# Full-screen terminal app (TUI)
+python -m compliance_audit --tui
+
+# Discover all options in a CLI table
+python -m compliance_audit --list-options
 ```
 
 ---
@@ -179,7 +189,8 @@ python -m compliance_audit [-h] [-c CONFIG] [-d DEVICE] [-i INVENTORY]
                            [--remediation-apply-all]
                            [--approver NAME] [--ticket-id ID] [--reason TEXT]
                            [--expires-hours HOURS] [--apply-dry-run]
-                           [--allow-high-risk]
+                           [--allow-high-risk] [--interactive] [--tui]
+                           [--list-options]
 ```
 
 Most useful real-world options:
@@ -192,11 +203,14 @@ Most useful real-world options:
 - `--remediation-approve PACK_ID --approver NAME --ticket-id CHG_ID` for approval control
 - `--remediation-apply PACK_ID --apply-dry-run` before any production push
 - `--remediation-apply-all` for approved bulk operations
+- `--interactive` for guided operator workflows
+- `--tui` for full-screen operational runs and live UX
+- `--list-options` to quickly discover available flags and defaults
 - `-v` or `-vv` for run-time diagnostics
 
 ---
 
-## 🆕 What's New in v4.0
+## 🆕 Current-State Enhancements (April 2026)
 
 Key enhancements reflected in this deep dive update:
 
@@ -206,12 +220,16 @@ Key enhancements reflected in this deep dive update:
 4. **Preflight drift and identity checks**: Apply paths can verify findings still fail and target hostname matches expected identity.
 5. **Bulk lifecycle operations**: Approve-all and apply-all workflows for large estates.
 6. **ROI instrumentation**: Optional effort/value estimation embedded in reports.
+7. **Guided operator mode**: `--interactive` adds menu-driven execution for day-to-day workflows.
+8. **Full-screen operations UI**: `--tui` provides a richer terminal experience for live runs.
+9. **Discoverable CLI options**: `--list-options` prints a complete options table for faster operator onboarding.
+10. **Expanded runbook assets**: Repository runbook documentation now includes command-first operating guidance across markdown, HTML, and text formats.
 
 ---
 
 ## ⚙️ Configuration Model
 
-The tool is centered around a primary YAML policy file and a separate inventory file.
+The tool is centred around a primary YAML policy file and a separate inventory file.
 
 ### 1. Audit Settings
 
@@ -249,7 +267,7 @@ devices:
 ### 4. Classification Settings
 
 - Hostname role-code mapping
-- Endpoint-neighbor signature patterns
+- Endpoint-neighbour signature patterns
 
 These values drive trunk direction inference and role-specific checks.
 
@@ -290,7 +308,7 @@ This gives the engine consistent helpers for checks like "present globally" vs "
 `port_classifier.py` combines signals from:
 
 - STP root-port state
-- CDP/LLDP neighbor identity
+- CDP/LLDP neighbour identity
 - Hostname role parsing
 - EtherChannel mapping
 - Interface config and operational metadata
@@ -480,7 +498,7 @@ for category, fn in checks:
 
 ## 6) Finding Model: Standardised Audit Currency
 
-Every check emits a normalized finding object.
+Every check emits a normalised finding object.
 
 ```python
 Finding(
@@ -566,7 +584,7 @@ else:
 
 ## 9) Remediation Script Generation Strategy
 
-The remediation builder only includes FAIL findings with remediation commands and then organizes commands by scope.
+The remediation builder only includes FAIL findings with remediation commands and then organises commands by scope.
 
 ```python
 fails = [f for f in findings if f.status == FAIL and f.remediation]
@@ -660,7 +678,7 @@ data = collector.collect(hostname, ip)
 If you are building your own automation framework, these patterns are worth copying:
 
 - **Policy-as-data** rather than hardcoded checks
-- **Normalized finding model** consumed by all report channels
+- **Normalised finding model** consumed by all report channels
 - **Signal fusion** for topology-aware decisions
 - **Structured-first, fallback-second parsing** for robustness
 - **Delta tracking** to measure posture changes over time
@@ -929,7 +947,7 @@ A major challenge in network compliance is avoiding wrong conclusions on trunk l
 Primary and secondary signals are combined:
 
 1. STP root-port election (strong signal)
-2. Neighbor role from CDP/LLDP hostname parsing (context signal)
+2. Neighbour role from CDP/LLDP hostname parsing (context signal)
 
 This helps correctly label ports as:
 
@@ -1005,7 +1023,7 @@ The check library spans governance domains rather than isolated commands.
 - Core should be STP root where expected
 - Access should not be root
 - Access uplink redundancy via port-channel
-- Additional role-bound checks for specialized topologies
+- Additional role-bound checks for specialised topologies
 
 ---
 
@@ -1189,7 +1207,7 @@ Need a compact printable version?
   4. Change record contains complete evidence package.
 
 !!! note "v4.0 Operational Shift"
-  In addition to command-level remediation scripts, v4.0 introduces a governed remediation lifecycle (review packs -> approval -> apply). For day-to-day operations, use the one-page runbook linked above.
+  In addition to command-level remediation scripts, the current v4.0 code line now includes governed remediation lifecycle operations plus two premium operator experiences (`--interactive` and `--tui`). For day-to-day operations, use the one-page runbook linked above.
 
 ---
 

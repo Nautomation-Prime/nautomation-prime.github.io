@@ -66,9 +66,10 @@ We deliver automation projects through the **[PRIME Framework](prime-framework/i
 - Full PRIME Framework engagements (discovery to team capability)
 - Individual stages (à la carte services)
 - Custom Python automation (VLAN provisioning, fleet upgrades, ISE integration)
+- Optional code-signing and software integrity controls for delivered Python automation
 - Deployment options (standard scripts, portable bundles, Docker containers)
 
-**[View Services](services.md)** | **[Request Discovery Call](mailto:enquiries@nautomationprime.io)**
+**[View Services](services.md)** | **[Code-Signing Service](services.md#code-signing-software-integrity-new)** | **[Request Discovery Call](mailto:enquiries@nautomationprime.io)**
 
 ---
 

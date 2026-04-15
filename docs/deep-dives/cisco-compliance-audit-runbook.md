@@ -14,7 +14,7 @@ tags:
 This runbook is a compact operational guide for change windows and the v4.0 remediation lifecycle workflow.
 
 !!! info "Version Alignment"
-   This runbook reflects **Cisco IOS-XE Compliance Auditor v4.0** (March 2026).
+  This runbook reflects the **current main branch state (April 2026)** of Cisco IOS-XE Compliance Auditor (package version `4.0`).
 
 Primary deep dive:
 
@@ -135,7 +135,7 @@ python -m compliance_audit -c compliance_audit/compliance_config.yaml
 
 ## Safety Rules
 
-1. Do not apply remediation outside authorized change windows.
+1. Do not apply remediation outside authorised change windows.
 2. Always run `--apply-dry-run` before production apply.
 3. Do not approve packs without ticket and risk validation.
 4. Treat `--allow-high-risk` as exception-only.

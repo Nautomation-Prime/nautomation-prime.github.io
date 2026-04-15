@@ -58,6 +58,15 @@ No blind giving. No checkbox charity. No tolerance for wasteful models.
 
 ---
 
+!!! tip "New: Code-Signing for Delivered Python Automation"
+    Need stronger software supply-chain assurance?
+
+    We now offer optional **code-signing and software integrity controls** for delivered Python automation tools, giving your security team cryptographic proof of publisher authenticity and tamper evidence.
+
+    **[Explore this service →](./services.md#code-signing-software-integrity-new)**
+
+---
+
 ### 🎯 How We Deliver: The PRIME Framework
 
 Our proven **5-stage methodology** ensures your automation delivers measurable value:
@@ -191,6 +200,7 @@ Founded by a **CCNP-certified Senior Network Engineer** with **10+ years** in en
 - **👥 Team Empowerment** — We build YOUR capability, not create dependency. After engagement, you own and extend the solution.
 - **📈 Measurable ROI** — Concrete metrics: hours saved, risk reduced, capital freed. Not "it feels faster."
 - **🛡️ Production Grade** — Hardened error handling, security-first credential management, enterprise-scale parallelization.
+- **🔐 Software Integrity Option** — Optional code-signing for delivered automation packages to support enterprise security assurance.
 
 **[Learn our philosophy + 10-year track record →](./about.md)**
 

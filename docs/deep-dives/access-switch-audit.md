@@ -14,7 +14,7 @@ tags:
 
 ### "Enterprise Port Intelligence, Distilled to Pure Python."
 
-A modular Python utility that connects to Cisco switches (optionally through an SSH jump host), collects comprehensive interface details, PoE information, and neighbor presence, then exports a professional, filters-only Excel workbook with a SUMMARY sheet and one sheet per device. Built for production reliability with **YAML-based configuration**, **intelligent fallback parsing**, and **customizable credential management**.
+A modular Python utility that connects to Cisco switches (optionally through an SSH jump host), collects comprehensive interface details, PoE information, and neighbour presence, then exports a professional, filters-only Excel workbook with a SUMMARY sheet and one sheet per device. Built for production reliability with **YAML-based configuration**, **intelligent fallback parsing**, and **customisable credential management**.
 
 [:material-github: View Source Code on GitHub](https://github.com/Nautomation-Prime/Access_Switch_Audit){ .md-button .md-button--primary }
 
@@ -89,7 +89,7 @@ The tool has been restructured into a **professional modular package** (v2.0), s
     │   ├── credentials.py     # Secure credential management
     │   ├── jump_manager.py    # SSH jump host (bastion) support
     │   ├── netmiko_utils.py   # Network device connection utilities
-    │   ├── formatters.py      # Excel formatting and interface name normalization
+    │   ├── formatters.py      # Excel formatting and interface name normalisation
     │   ├── validators.py      # Input validation functions
     │   └── app_config.py      # Configuration access wrapper
     ├── ProgramFiles/
@@ -123,7 +123,7 @@ Each module in the `switch_audit/` package has a specific, well-defined role:
 | **`credentials.py`** | Credential management | Windows Credential Manager integration, interactive prompts |
 | **`jump_manager.py`** | SSH bastion support | Persistent jump host connections, channel management |
 | **`netmiko_utils.py`** | Network device utilities | Netmiko connection wrappers, timeout handling |
-| **`formatters.py`** | Data formatting utilities | Interface name normalization, CLI parsing, Excel formatting |
+| **`formatters.py`** | Data formatting utilities | Interface name normalisation, CLI parsing, Excel formatting |
 | **`validators.py`** | Input validation | File existence checks, argument validation |
 | **`app_config.py`** | Configuration singleton | Global config access wrapper |
 
@@ -160,11 +160,11 @@ Install with pip:
 
 ## ⚙️ Configuration System
 
-The tool uses a **modern YAML-based configuration system** with centralized management in v2.0.
+The tool uses a **modern YAML-based configuration system** with centralised management in v2.0.
 
 ### YAML Configuration File (config.yaml)
 
-All configurable settings are centralized in `config.yaml` at the project root. The configuration is loaded via `ProgramFiles/config_files/config_loader.py` and accessed throughout the application via the `app_config.py` singleton wrapper.
+All configurable settings are centralised in `config.yaml` at the project root. The configuration is loaded via `ProgramFiles/config_files/config_loader.py` and accessed throughout the application via the `app_config.py` singleton wrapper.
 
 **Key Configuration Categories:**
 
@@ -311,7 +311,7 @@ This runs the Access Switch Audit using `python -m switch_audit` with all defaul
 
 ## 🚀 Advanced: Command Line with Arguments
 
-For advanced users who need to **customize behaviour beyond the defaults**, you can still run the tool directly with Python and command-line arguments.
+For advanced users who need to **customise behaviour beyond the defaults**, you can still run the tool directly with Python and command-line arguments.
 
 ### When to Use Command Line Arguments
 
@@ -380,7 +380,7 @@ The v2.0 restructure transformed the tool from a monolithic script into a **prof
 | **credentials.py** | Secure credential retrieval from OS stores | Passwords never touch plaintext or config files |
 | **jump_manager.py** | Persistent SSH tunnelling through bastion | Centralises network access control; supports air-gapped environments |
 | **netmiko_utils.py** | Network device connection utilities | Connection wrapper with timeout and error handling |
-| **formatters.py** | Interface name normalization and Excel formatting | Cross-command data correlation and professional output |
+| **formatters.py** | Interface name normalisation and Excel formatting | Cross-command data correlation and professional output |
 | **validators.py** | Input validation functions | Pre-flight checks for files and arguments |
 | **app_config.py** | Configuration access wrapper | Singleton pattern for config access across modules |
 | **config_loader.py** | YAML parsing and validation | Type-safe settings with environment overrides |
@@ -401,7 +401,7 @@ The v2.0 restructure transformed the tool from a monolithic script into a **prof
 - **Data layer** (excel_reporter.py, formatters.py): Output generation
 - **Infrastructure layer** (credentials.py, jump_manager.py, netmiko_utils.py): Supporting services
 
-**3. Configuration Centralization:**
+**3. Configuration Centralisation:**
 
 - All config in `ProgramFiles/config_files/config_loader.py`
 - Accessed via singleton pattern in `app_config.py`
@@ -476,7 +476,7 @@ For end users, the tool works identically. All CLI arguments, configuration opti
 
 ## 📊 Intelligent Parsing: The Heart of the Tool
 
-> **Note:** In v2.0, parsing logic has been modularized into `switch_audit/formatters.py` for better maintainability and reusability.
+> **Note:** In v2.0, parsing logic has been modularised into `switch_audit/formatters.py` for better maintainability and reusability.
 
 ### Why Intelligent Parsing Matters
 
@@ -562,7 +562,7 @@ This is the **authoritative source** for port mode and VLAN classification.
         for key, col_slice in slices.items():
             record[key] = line[col_slice].strip()
         
-        # Normalize status values
+        # Normalise status values
         status_raw = record.get('status', '').lower()
         if 'connect' in status_raw:
             record['status'] = 'connected'
@@ -574,11 +574,11 @@ This is the **authoritative source** for port mode and VLAN classification.
             record['status'] = 'err-disabled'
     ```
 
-**Why Status Normalization:**
+**Why Status Normalisation:**
 
 - Different IOS versions use slight variations ("connected" vs "connect")
-- Normalized values enable reliable conditional formatting in Excel
-- Consistent categorization across device types
+- Normalised values enable reliable conditional formatting in Excel
+- Consistent categorisation across device types
 
 ### Port Mode Classification
 
@@ -614,12 +614,12 @@ This is the **authoritative source** for port mode and VLAN classification.
 
 **Solution:** Interface name aliasing and multi-key lookups.
 
-### Interface Name Normalization
+### Interface Name Normalisation
 
     ```python
     def normalize_ifname(ifname: str) -> Tuple[str, str]:
         """
-        Normalize interface names to canonical short and long forms.
+        Normalise interface names to canonical short and long forms.
         Returns: (short_form, long_form)
         Example: "Gi1/0/1" → ("Gi1/0/1", "GigabitEthernet1/0/1")
         """
@@ -743,11 +743,11 @@ This is the **authoritative source** for port mode and VLAN classification.
             except:
                 pass
         
-        # Stale only if: no PoE draw AND no neighbor
+        # Stale only if: no PoE draw AND no neighbour
         if (poe_w is None or poe_w == 0.0) and not has_neighbor:
             return 'stale'
         
-        return 'available'  # May be in use (PoE or neighbor present)
+        return 'available'  # May be in use (PoE or neighbour present)
     ```
 
 **Why This Conservative Approach:**
@@ -755,18 +755,18 @@ This is the **authoritative source** for port mode and VLAN classification.
 | Indicator | Interpretation |
 | :--- | :--- |
 | **PoE draw > 0** | Device is powered (IP phone, camera, AP) |
-| **LLDP/CDP neighbor** | Device is network-aware (switch, phone, AP) |
+| **LLDP/CDP neighbour** | Device is network-aware (switch, phone, AP) |
 | **Both absent** | Likely unused cable or dead device |
 
 **Example Scenarios:**
 
-| Status | PoE | Neighbor | Last Input | Classification | Reasoning |
+| Status | PoE | Neighbour | Last Input | Classification | Reasoning |
 | :--- | :--- | :--- | :--- | :--- | :--- |
 | connected | 7.0W | Yes | 10 days | **active** | IP phone actively drawing power |
 | connected | 0W | No | 45 days | **stale** | Connected but no traffic for 45+ days |
 | notconnect | 0W | No | N/A | **stale** | Disconnected, no indicators of use |
 | notconnect | 6.5W | No | N/A | **available** | PoE device present (might be powered off) |
-| notconnect | 0W | Yes | N/A | **available** | Neighbor detected (might be rebooting) |
+| notconnect | 0W | Yes | N/A | **available** | Neighbour detected (might be rebooting) |
 
 ### Time Parsing: Handling Cisco Duration Formats
 
@@ -1123,12 +1123,12 @@ On completion, the Excel workbook is written to the filename you specify (defaul
 
 ---
 
-## 🔧 Extending and Customizing
+## 🔧 Extending and Customising
 
 - **Credentials:** Adapt `switch_audit/credentials.py` to your environment (Linux keyring, Azure Key Vault, etc.)
 - **Jump host:** Tune `switch_audit/jump_manager.py` (keep-alive, ciphers, auth methods) as needed
 - **Connection behaviour:** Modify `switch_audit/netmiko_utils.py` for device types, timeouts, or SSH options
-- **Configuration:** Edit `config.yaml` to set organizational defaults:
+- **Configuration:** Edit `config.yaml` to set organisational defaults:
   - `network.jump_host`: Default bastion server
   - `concurrency.default_workers`: Concurrent device sessions
   - `stale_detection.default_stale_days`: Stale port threshold
@@ -1228,7 +1228,7 @@ A: From `show interfaces status`: if VLAN column is `trunk`/`rspan` → `trunk`;
 A: Only for access ports and when `--stale-days > 0`. Connected ports are flagged stale only if `Last input ≥ N days`. Disconnected ports require both no PoE draw and no LLDP/CDP neighbour to be flagged stale.
 
 **Q: What changed in v2.0?**  
-A: The monolithic `main.py` was restructured into a professional Python package (`switch_audit/`) with modular components. The functionality is identical, but the code is now organized following enterprise best practices. See MIGRATION.md for details.
+A: The monolithic `main.py` was restructured into a professional Python package (`switch_audit/`) with modular components. The functionality is identical, but the code is now organised following enterprise best practices. See MIGRATION.md for details.
 
 ---
 
@@ -1243,10 +1243,10 @@ After studying this code, you should understand:
 ✅ **Singleton Pattern** — Using configuration singletons for application-wide settings access  
 ✅ **Fixed-Width Parsing** — Reliable CLI output parsing without external dependencies  
 ✅ **Multi-Source Data Fusion** — Correlating data across different commands using interface name aliasing  
-✅ **Conservative Risk Assessment** — Stale port detection logic that minimizes false positives  
+✅ **Conservative Risk Assessment** — Stale port detection logic that minimises false positives  
 ✅ **Thread-Safe Concurrency** — Parallel device audits with proper lock management  
 ✅ **Intelligent Fallback Strategy** — TextFSM + custom parsers for maximum compatibility  
-✅ **SSH Tunneling** — Jump host integration with Paramiko direct-tcpip channels  
+✅ **SSH Tunnelling** — Jump host integration with Paramiko direct-tcpip channels  
 ✅ **Excel Automation** — Professional workbook generation with conditional formatting  
 ✅ **Exponential Backoff** — Retry logic for transient network failures  
 ✅ **Credential Management** — Secure OS-level credential storage integration  
@@ -1336,7 +1336,7 @@ Consistent with the **Nautomation Prime** delivery model, this tool is available
 
 - **Scheduled Docker Appliance:** A pre-built container designed for autonomous execution and periodic port auditing.
 
-- **Source Code:** Full access to customize parsing logic, add vendor-specific commands, or integrate with your CMDB.
+- **Source Code:** Full access to customise parsing logic, add vendor-specific commands, or integrate with your CMDB.
 
 ---
 

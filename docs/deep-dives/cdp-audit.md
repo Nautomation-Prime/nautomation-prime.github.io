@@ -29,9 +29,9 @@ A **modular, enterprise-grade** network discovery utility that crawls Cisco netw
 
 - **Modular Python package** — Clean separation of concerns with `cdp_audit/` package structure
 - **Package-based execution** — Run as `python -m cdp_audit` for proper module resolution
-- **YAML configuration** — Human-readable `config.yaml` for easy customization without touching code
+- **YAML configuration** — Human-readable `config.yaml` for easy customisation without touching code
 - **Parallel discovery** with a worker pool (configurable via environment variables or YAML config)
-- **Two-tier authentication** — Primary user first, then customizable fallback user if primary fails
+- **Two-tier authentication** — Primary user first, then customisable fallback user if primary fails
 - **Jump server / bastion support** — Paramiko channel + Netmiko sock for secure proxy connections
 - **DNS enrichment** — Parallel DNS resolution for discovered hostnames
 - **Professional Excel reporting** — Template-driven reports with multiple sheets and metadata stamping
@@ -56,7 +56,7 @@ The entire application is now a **proper Python package** (`cdp_audit/`) with:
 
 ### **Principle 2: Configuration as Code (the Right Way)**
 
-Configuration migrated from hardcoded Python to **human-readable YAML**. Network engineers can customize worker threads, timeouts, and credential targets **without touching Python code**. Version control tracks configuration changes. Rollbacks are simple: `git revert`.
+Configuration migrated from hardcoded Python to **human-readable YAML**. Network engineers can customise worker threads, timeouts, and credential targets **without touching Python code**. Version control tracks configuration changes. Rollbacks are simple: `git revert`.
 
 The `config_loader.py` module provides a clean interface between YAML configuration and Python code, with type safety and validation built in.
 
@@ -67,8 +67,8 @@ You'll notice patterns like thread locks, exception handling, retry logic, compr
 The new modular structure makes these patterns **easier to implement and maintain**:
 
 - Validators run before discovery starts (fail-fast)
-- Logging is centralized in `logging_setup.py`
-- Configuration access is centralized in `app_config.py`
+- Logging is centralised in `logging_setup.py`
+- Configuration access is centralised in `app_config.py`
 - Each module handles its own error scenarios
 
 ### **Principle 4: Vendor-Neutral Foundation**
@@ -82,9 +82,9 @@ Built on industry-standard libraries: **Netmiko** (SSH connection handling), **P
 ```text
 .
 ├── cdp_audit/                   # Main Python package
-│   ├── __init__.py              # Package initialization and version
+│   ├── __init__.py              # Package initialisation and version
 │   ├── __main__.py              # Package entry point (python -m cdp_audit)
-│   ├── app_config.py            # Centralized configuration access
+│   ├── app_config.py            # Centralised configuration access
 │   ├── cli.py                   # Command-line interface and main flow
 │   ├── credentials.py           # Credential management (Cred Manager integration)
 │   ├── discovery.py             # Network discovery engine (threading, CDP crawl)
@@ -180,7 +180,7 @@ network:
 credentials:
   cred_target: "MyApp/ADM"         # Primary credential target (Windows Credential Manager)
   alt_creds: "MyApp/Answer"        # Fallback credential target
-  cdp_fallback_username: "answer"  # Fallback username (customizable)
+    cdp_fallback_username: "answer"  # Fallback username (customisable)
 ```
 
 **File Paths (Auto-Resolved from Project Root):**
@@ -194,7 +194,7 @@ file_paths:
   logging_config: "ProgramFiles/config_files/logging.conf"
 ```
 
-**Excel Report Customization:**
+**Excel Report Customisation:**
 
 ```yaml
 excel:
@@ -223,7 +223,7 @@ excel:
     - **Comment Support**: Inline documentation stays with config
     - **Type Safety**: Config loader validates and provides defaults
     - **Data-Only**: No code execution (safer than Python config files)
-    - **Team Collaboration**: Network engineers can customize without developer involvement
+    - **Team Collaboration**: Network engineers can customise without developer involvement
 
 ### Layer 2: Environment Variables (Runtime Overrides)
 
@@ -254,7 +254,7 @@ $env:CDP_ANSWER_CRED_TARGET = "MyApp/LocalAdmin"
 - **Testing**: Temporary overrides without modifying config.yaml
 - **Multi-Environment Deployments**: Different settings for dev/staging/prod
 - **CI/CD Pipelines**: Dynamic configuration from build systems
-- **Per-Instance Customization**: Running multiple instances with different settings
+- **Per-Instance Customisation**: Running multiple instances with different settings
 
 ### Layer 3: Config Loader (`config_loader.py`)
 
@@ -302,7 +302,7 @@ The tool operates as a **modular Python package** with eight primary modules, ea
 | **`excel_reporter.py`** | Professional, templated report generation | Maintains business branding and formatting |
 | **`validators.py`** | Pre-flight checks for templates and configuration | Catches problems early; prevents mid-run failures |
 | **`logging_setup.py`** | Logging configuration bootstrap | Consistent logging across all modules |
-| **`app_config.py`** | Centralized configuration access point | Single source of truth for config values |
+| **`app_config.py`** | Centralised configuration access point | Single source of truth for config values |
 
 **Additional Support Modules:**
 
@@ -404,14 +404,14 @@ This module handles all credential management with secure OS integration.
 
 ### The Two-Credential Strategy
 
-The tool supports a **primary credential** and a **fully customizable fallback credential**:
+The tool supports a **primary credential** and a **fully customisable fallback credential**:
 
 - **Primary credentials** (used for jump and device): Read from Windows Credential Manager if present (default target `MyApp/ADM`), else prompted. You can optionally save what you type back to Credential Manager.
-- **Fallback credentials** (device hop only, jump still uses primary): **Username is fully customizable via config.yaml** (default: `answer`). Password is read from Credential Manager (default target `MyApp/Answer`) or prompted; you may choose to save it.
+- **Fallback credentials** (device hop only, jump still uses primary): **Username is fully customisable via config.yaml** (default: `answer`). Password is read from Credential Manager (default target `MyApp/Answer`) or prompted; you may choose to save it.
 
 > **Note:** On non-Windows platforms, prompts are used (no Credential Manager).
 >
-> **Customization:** Change the fallback username in `config.yaml` by setting `cdp_fallback_username` under the `credentials` section to match your environment (e.g., `localadmin`, `backup`, `netops`, `svc_network`).
+> **Customisation:** Change the fallback username in `config.yaml` by setting `cdp_fallback_username` under the `credentials` section to match your environment (e.g., `localadmin`, `backup`, `netops`, `svc_network`).
 
 ### Why Credential Management Matters
 
@@ -429,7 +429,7 @@ The `credentials.py` module exports a single class: `CredentialManager`.
 
 | Method | Purpose | Returns |
 | :--- | :--- | :--- |
-| `__init__()` | Initialize with config values | N/A |
+| `__init__()` | Initialise with config values | N/A |
 | `_read_win_cred(target)` | Read from Windows Credential Manager | `(username, password)` or `(None, None)` |
 | `_write_win_cred(target, user, pass)` | Write to Windows Credential Manager | `bool` |
 | `get_secret_with_fallback(...)` | Orchestrate credential retrieval | `(username, password)` |
@@ -442,7 +442,7 @@ class CredentialManager:
     """Handles credential collection with OS integration and fallback."""
     
     def __init__(self):
-        """Initialize credential manager with config values."""
+        """Initialise credential manager with config values."""
         from cdp_audit.app_config import config
         
         # Read from environment variables (override) or config.yaml (default)
@@ -455,17 +455,17 @@ class CredentialManager:
 
 **Line-by-Line:**
 
-- Import centralized config from `app_config.py` (single source of truth)
+- Import centralised config from `app_config.py` (single source of truth)
 - Environment variables override YAML config if set (runtime flexibility)
 - Three configurable values: primary target, fallback target, and fallback username
 - Logger uses `__name__` for proper module-level logging
 
 **Why This Matters:**
 
-- **Centralized config access**: Uses `app_config.py` instead of direct Config() instantiation
+- **Centralised config access**: Uses `app_config.py` instead of direct Config() instantiation
 - **config.yaml**: Human-readable, persistent, version-controlled settings that match your organisation's standards
 - **Environment variables**: Runtime overrides for different environments (dev/prod) or testing
-- **Fallback username**: No longer hardcoded—customize in config.yaml to match your local accounts
+- **Fallback username**: No longer hardcoded—customise in config.yaml to match your local accounts
 - **Module-level logging**: Each module logs with its own name for easy filtering
 
 ### `_read_win_cred(target_name: str) -> Tuple[str, str]`
@@ -584,7 +584,7 @@ def get_secret_with_fallback(
         prompt_user: Username prompt text
         prompt_pass: Password prompt text
         target_name: Credential Manager target name
-        allow_custom_username: Whether to allow username customization
+        allow_custom_username: Whether to allow username customisation
         
     Returns:
         (username, password) tuple
@@ -627,7 +627,7 @@ def get_secret_with_fallback(
 **Two-Credential Model:**
 
 - **Primary:** Your main automation account (flexible username, likely AD-backed)
-- **Fallback:** A secondary user on each device (username customizable in config.yaml, typically a local account)
+- **Fallback:** A secondary user on each device (username customisable in config.yaml, typically a local account)
 
 **Why This Design:**
 
@@ -635,7 +635,7 @@ def get_secret_with_fallback(
 - Two credentials maximize success: primary fails → retry with fallback
 - Jump host always uses primary (tighter control)
 - Device can fall back to secondary user (local account)
-- Fully customizable to match your organisation's account naming standards
+- Fully customisable to match your organisation's account naming standards
 
 ### `collect_all_credentials() -> dict`
 
@@ -832,7 +832,7 @@ class NetworkDiscoverer:
     
     def __init__(self, credentials: dict, jump_host: str = ""):
         """
-        Initialize discovery engine.
+        Initialise discovery engine.
         
         Args:
             credentials: Dict with primary_user, primary_pass, fallback_user, fallback_pass
@@ -1046,7 +1046,7 @@ else:
 **Why This Two-Credential Model:**
 
 - Jump host always uses primary (tightest control)
-- Device can use fallback if primary fails (username customizable in config.yaml)
+- Device can use fallback if primary fails (username customisable in config.yaml)
 - Resilience: if your primary account is locked, fallback account can still work
 - Flexibility: adapt to your organisation's local account naming conventions
 
@@ -1066,7 +1066,7 @@ Simply pass device IP to Netmiko.
 - No port forwarding configuration required
 - All traffic is inside the already-authenticated SSH session
 - Secure and clean
-- Standard SSH tunneling mechanism
+- Standard SSH tunnelling mechanism
 
 ### Device Command Execution
 
@@ -1152,7 +1152,7 @@ def run_device_commands(self, device_ip: str) -> Tuple[str, str]:
 **Strategy:**
 
 1. Try with primary credentials
-2. On auth failure, catch and retry with fallback (customizable fallback user on device)
+2. On auth failure, catch and retry with fallback (customisable fallback user on device)
 3. Don't retry auth failures (credentials won't change between attempts)
 4. Do retry transient errors (timeouts, SSH glitches) up to 3 times
 5. Always disconnect in finally block (prevent socket leaks)
@@ -1179,7 +1179,7 @@ def parse_outputs_and_enqueue_neighbors(
     cdp_output: str
 ) -> None:
     """
-    Parse command outputs and enqueue neighbor devices for discovery.
+    Parse command outputs and enqueue neighbour devices for discovery.
     
     Three-step process:
     1. Parse version output for device context (hostname, serial, uptime)
@@ -1231,7 +1231,7 @@ def parse_outputs_and_enqueue_neighbors(
         self.logger.info(f"No CDP neighbors found for {device_ip}")
         return
     
-    # Step 3: Process Each CDP Neighbor
+    # Step 3: Process Each CDP Neighbour
     with self.data_lock:
         for entry in cdp_parsed:
             # Extract CDP fields
@@ -1282,7 +1282,7 @@ def parse_outputs_and_enqueue_neighbors(
 
 ### **Step 2: Parse CDP Neighbors**
 
-- Extract each neighbor's details (ports, capabilities, management IP)
+- Extract each neighbour's details (ports, capabilities, management IP)
 - Store in thread-safe list
 - Add hostnames to DNS resolution set
 
@@ -1580,7 +1580,7 @@ class ExcelReporter:
     
     def __init__(self, site_name: str, seeds: List[str]):
         """
-        Initialize Excel reporter.
+        Initialise Excel reporter.
         
         Args:
             site_name: Site name for filename and metadata
@@ -1659,7 +1659,7 @@ def generate_report(
     Generate Excel report with all data.
     
     Args:
-        cdp_data: List of CDP neighbor dicts
+        cdp_data: List of CDP neighbour dicts
         dns_data: Dict of hostname -> IP mappings
         auth_errors: Set of IPs with auth failures
         conn_errors: Dict of IP -> error message
@@ -1952,10 +1952,10 @@ if __name__ == "__main__":
 
 ## 🛠️ Configuration Access (`app_config.py`)
 
-Centralized configuration access point for all modules.
+Centralised configuration access point for all modules.
 
 ```python
-"""Centralized configuration access for all modules."""
+"""Centralised configuration access for all modules."""
 
 from ProgramFiles.config_files.config_loader import Config
 
@@ -1969,7 +1969,7 @@ config = Config()
 **Why This Module?**
 
 - **Single source of truth:** All modules import from here
-- **Lazy initialization:** Config is only loaded once
+- **Lazy initialisation:** Config is only loaded once
 - **Easy mocking:** Tests can replace this module to inject test config
 - **Clean imports:** `from cdp_audit.app_config import config` instead of creating Config() everywhere
 
@@ -2103,7 +2103,7 @@ Running CDP Network Audit...
 ## 🚀 How to Run (Interactive Flow)
 
 1. Ensure templates and Excel file exist under `ProgramFiles/...` (see above).
-2. (Optional) Customize `config.yaml` with your organisation's defaults.
+2. (Optional) Customise `config.yaml` with your organisation's defaults.
 3. (Optional) Set environment variables as needed for runtime overrides.
 4. Run:
 
@@ -2188,7 +2188,7 @@ from cdp_audit.app_config import config
 
 Each module has a single responsibility. Changes to one don't affect others.
 
-### Pattern 2: Centralized Configuration
+### Pattern 2: Centralised Configuration
 
 ```python
 # All modules import from app_config
@@ -2199,7 +2199,7 @@ jump_host = config.JUMP_HOST
 timeout = config.DEFAULT_TIMEOUT
 ```
 
-Configuration is centralized and consistent across all modules.
+Configuration is centralised and consistent across all modules.
 
 ### Pattern 3: Thread-Safe Data Accumulation
 
@@ -2378,17 +2378,17 @@ Report saved to:     HQ-Campus_CDP_Network_Audit_20260214_143022.xlsx
 
 ---
 
-## 🛠️ Customization Points
+## 🛠️ Customisation Points
 
-- **User settings**: Edit `config.yaml` to customize worker threads, timeouts, jump server, credential targets, and fallback username
+- **User settings**: Edit `config.yaml` to customise worker threads, timeouts, jump server, credential targets, and fallback username
 - **Template paths**: Adjust in `config.yaml` under the `file_paths` section
 - **Queueing heuristics** (which neighbors to crawl): Modify `parse_outputs_and_enqueue_neighbors()` in `discovery.py`
 - **Retry counts / timeouts**: Configure in `config.yaml` under `network` or override via environment variables
 - **Logging**: Provide a `logging.conf` that matches your standards (path configurable via `LOGGING_CONFIG` env var)
 - **Fallback account**: Set `cdp_fallback_username` in `config.yaml` (under `credentials`) to match your local admin account naming
-- **Excel formatting**: Customize cell locations and sheet names in `config.yaml` under `excel`
+- **Excel formatting**: Customise cell locations and sheet names in `config.yaml` under `excel`
 
-**Example config.yaml Customization:**
+**Example config.yaml Customisation:**
 
 ```yaml
 credentials:
@@ -2415,12 +2415,12 @@ After studying this code, you should understand:
 
 ✅ **Modular Python packaging** — How to structure a package with `__main__.py` and proper imports  
 ✅ **Concurrent programming** — How thread pools and locks prevent race conditions  
-✅ **SSH tunneling** — How direct-tcpip channels work and why they're safer  
+✅ **SSH tunnelling** — How direct-tcpip channels work and why they're safer  
 ✅ **Credential management** — OS-level credential stores vs. plaintext files  
 ✅ **TextFSM parsing** — How to extract structured data from CLI output  
 ✅ **Error handling** — Retry strategies and graceful degradation  
 ✅ **Excel automation** — Template-driven reporting with data overlay  
-✅ **Network discovery** — CDP heuristics and neighbor crawling logic  
+✅ **Network discovery** — CDP heuristics and neighbour crawling logic  
 ✅ **Configuration management** — YAML config with environment variable overrides  
 ✅ **Separation of concerns** — Single-responsibility modules for maintainability  
 
@@ -2462,9 +2462,9 @@ Ready to audit your own network? Access the hardened source code and pre-configu
 
 1. **Clone the repository:** `git clone https://github.com/Nautomation-Prime/Cisco_CDP_Network_Audit`
 2. **Install dependencies:** `pip install -r requirements.txt`
-3. **Customize config.yaml** to match your environment:
+3. **Customise config.yaml** to match your environment:
    - Set `jump_host` under `network` section
-   - Customize `cdp_fallback_username` under `credentials` section
+    - Customise `cdp_fallback_username` under `credentials` section
    - Adjust `default_limit` and `default_timeout` under `network` section
    - Configure credential targets if different from defaults
 4. **Read the README** for installation and configuration details
@@ -2472,7 +2472,7 @@ Ready to audit your own network? Access the hardened source code and pre-configu
 6. **Run your first discovery:** `python -m cdp_audit`
 7. **Review the Excel output** to understand the report format
 
-Once comfortable, customize the discovery heuristics and template for your specific topology.
+Once comfortable, customise the discovery heuristics and template for your specific topology.
 
 **Example config.yaml for Enterprise Use:**
 
@@ -2489,7 +2489,7 @@ credentials:
   
 excel:
   sheets:
-    audit: "Network Audit"  # Customize sheet names
+    audit: "Network Audit"  # Customise sheet names
     dns: "DNS Resolution"
 ```
 

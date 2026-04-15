@@ -181,6 +181,7 @@ We document everything:
 - README (how to install and run the code)
 - Technical reference (what each function does)
 - Troubleshooting guide ("If X error appears, do Y")
+- Optional code-signing and verification guide for security assurance workflows
 - Line-by-line comments in the code itself
 
 #### 4. Pilot Deployment (Week 7-8)
@@ -208,6 +209,7 @@ You receive:
 ✅ **Comprehensive documentation** (README, technical reference, runbooks)  
 ✅ **Full source code** (you own it, can modify it, understand every line)  
 ✅ **Line-by-line code comments** explaining the *why* behind each decision  
+✅ **Optional software integrity controls** (code-signing + signature verification guidance for client security teams)  
 ✅ **Testing results** (lab testing, pilot testing, measured outcomes)  
 
 **Investment:** £6,000–£18,000

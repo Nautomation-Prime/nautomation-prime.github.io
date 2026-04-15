@@ -106,6 +106,7 @@ All PRIME Framework engagements adhere to strict security and compliance standar
 | **Audit Trails** | Comprehensive logging of all automation activities with timestamp, user, action, and outcome |
 | **Change Control** | Pre-flight validation, post-flight verification, automated rollback capabilities |
 | **Code Security** | Static analysis, dependency vulnerability scanning, secrets detection |
+| **Software Integrity** | Optional code-signing for delivered Python automation packages to verify publisher authenticity and tamper evidence |
 | **Access Control** | Role-based execution permissions, segregation of duties support |
 | **Data Protection** | Compliance with GDPR; all client data handled within UK jurisdiction |
 
@@ -237,6 +238,33 @@ If you already have automation plans or internal capability, we offer individual
 **Investment:** £6,000 - £18,000
 
 **[Learn more about Implement →](./prime-framework/implement.md)**
+
+---
+
+#### Code-Signing & Software Integrity (New)
+
+**Perfect for:** Security-conscious organisations requiring cryptographic proof of software origin and integrity
+
+**What This Adds:**
+
+- Cryptographic signing of delivered Python automation packages and release artefacts
+- Verification instructions for security teams and change governance workflows
+- Signature validation checks integrated into deployment/runbook documentation
+- Optional key-rotation and certificate renewal guidance for long-term governance
+
+**Business Value:**
+
+- Reduces security-team friction during onboarding and production approvals
+- Demonstrates software authenticity and tamper evidence for audit and assurance
+- Strengthens trust in bespoke automation delivered to regulated environments
+- Differentiates your automation operating model from unsigned-script delivery
+
+**Delivery Model:** Add-on service to Implement engagements or retrofit for selected existing tools
+
+**Timeline:** 2-5 business days (typical, depending on release model)
+**Investment:** £900 - £2,400
+
+**Recommended With:** [Implement](./prime-framework/implement.md) + [Measure](./prime-framework/measure.md) for security assurance and measurable adoption outcomes
 
 ---
 
