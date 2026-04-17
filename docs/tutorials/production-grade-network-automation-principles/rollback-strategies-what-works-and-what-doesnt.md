@@ -1,5 +1,5 @@
 ---
-title: Rollback Strategies: What Works and What Doesn't
+title: "Rollback Strategies: What Works and What Doesn't"
 description: Understand realistic rollback options, limits, and tradeoffs in production network automation.
 tags:
   - Production Principles
