@@ -1,5 +1,5 @@
 ---
-title: Pre-Flight Checks: Failing Fast Before Making Changes
+title: "Pre-Flight Checks: Failing Fast Before Making Changes"
 description: Use reachability, auth, read-only, and environmental checks to stop unsafe runs early and protect production.
 tags:
   - Production Principles
