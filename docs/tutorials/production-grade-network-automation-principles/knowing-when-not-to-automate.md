@@ -32,7 +32,7 @@ Evaluate candidate tasks using five questions:
 2. Is the intent explicit and machine-evaluable?
 3. Can failure be detected quickly and safely?
 4. Is rollback or containment realistic?
-5. Is organizational ownership clear end to end?
+5. Is organisational ownership clear end to end?
 
 If most answers are "no", do not automate yet.
 

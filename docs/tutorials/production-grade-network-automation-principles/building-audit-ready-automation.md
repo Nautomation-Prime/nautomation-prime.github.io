@@ -42,7 +42,7 @@ Store in machine-readable structured format.
 Recommended artifact set:
 
 - `run_manifest.json`
-- `target_results.jsonl`
+- `target_results.json`
 - `pre_state/` and `post_state/` snapshots
 - `plan.json`
 - `approval_record.json` (when required)
