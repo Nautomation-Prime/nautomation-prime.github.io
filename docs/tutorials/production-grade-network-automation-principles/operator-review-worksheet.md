@@ -111,4 +111,4 @@ Store completed worksheets with run artifacts so review decisions are traceable 
 
 - Series Index: [Production-Grade Network Automation Principles](./index.md)
 - Previous: [Implementation Roadmap (30/60/90 Days)](./implementation-roadmap-30-60-90-days.md)
-- Next: [Executive Summary for Leadership](./executive-summary.md)
+- Next: [End of series](../index.md)
