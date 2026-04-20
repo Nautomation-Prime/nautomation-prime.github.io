@@ -1,6 +1,6 @@
 ---
 title: Cisco IOS-XE Compliance Audit
-description: Comprehensive deep dive into Cisco IOS-XE Compliance Auditor, including policy-driven checks, remediation lifecycle workflow, interactive operations modes, and multi-format reporting.
+description: Current-state deep dive into Cisco IOS-XE Compliance Auditor, including split config directories, governed remediation workflows, operator tooling, and multi-format reporting.
 tags:
   - Deep Dive
   - Compliance Audit
@@ -18,7 +18,7 @@ tags:
 ## "Policy-Driven Compliance, Engineered for Real Networks."
 
 !!! info "Version Alignment"
-  This deep dive reflects the **current main branch state (April 2026)** of Cisco IOS-XE Compliance Auditor (package version `4.0`) and includes the remediation lifecycle workflow, ROI reporting, guided interactive mode (`--interactive`), full-screen TUI mode (`--tui`), and CLI option discovery (`--list-options`).
+  This deep dive reflects the **current main branch state (April 2026)** of Cisco IOS-XE Compliance Auditor and includes the split configuration model, governed remediation lifecycle workflow, severity/tag filtering, guided interactive mode (`--interactive`), full-screen TUI mode (`--tui`), and CLI option discovery (`--list-options`).
 
 The **Cisco IOS-XE Compliance Audit** tool is a role-aware, policy-driven audit framework for Cisco switching and routing estates. It connects to devices (directly or through a jump host), collects operational and configuration state, classifies every interface by intent, runs 90+ toggleable compliance checks, and generates actionable reports with remediation commands.
 
@@ -47,7 +47,7 @@ This auditor solves that with:
 - **Remediation lifecycle workflow**: Review packs, approvals, change-ticket linkage, expiry control, and guarded apply operations
 - **Bulk operations**: `--remediation-approve-all` and `--remediation-apply-all` for scalable change windows
 - **ROI reporting**: Optional estimated time/value saved in console, JSON, and HTML outputs
-- **Offline mode**: Validate policies against saved command outputs without live SSH
+- **Scoped execution**: Categories, severity, and tags help teams phase adoption safely on live estates
 
 ---
 
@@ -63,7 +63,7 @@ The auditor uses concurrent workers, optional jump-host access, fallback parsing
 
 ### 3. Policy Before Code
 
-Audit standards live in `compliance_config.yaml`, not hidden in Python conditionals. Teams can evolve policy without rewriting tooling.
+Audit standards live in a **split YAML config directory** under `compliance_audit/compliance_config/`, not hidden in Python conditionals. Teams can evolve audit settings, connection details, role classification, and individual policy domains without rewriting tooling.
 
 ### 4. Actionable Outcomes
 
@@ -76,21 +76,30 @@ A failed finding includes remediation intent, and the tool can compile per-devic
 ```text
 Cisco-Compliance-Audit/
 ├── compliance_audit/
-│   ├── __init__.py             # Package exports + version (v4.0)
+│   ├── __init__.py             # Package exports + version
 │   ├── __main__.py             # CLI entry point (python -m compliance_audit)
 │   ├── auditor.py              # Orchestrator, threading, run pipeline
 │   ├── collector.py            # Command collection + parsing (Genie + fallback)
 │   ├── port_classifier.py      # Interface intent classification
 │   ├── compliance_engine.py    # 90+ checks across policy categories
-│   ├── report.py               # Rich console + HTML + JSON + CSV + delta + remediation
+│   ├── report.py               # Rich console + HTML + JSON + CSV reports
 │   ├── credentials.py          # Keyring/env/prompt credential chain
 │   ├── jump_manager.py         # Paramiko jump host channeling
 │   ├── netmiko_utils.py        # Netmiko connection wrappers
 │   ├── hostname_parser.py      # Role extraction from naming convention
 │   ├── config_loader.py        # YAML loader and inventory resolution
 │   ├── remediation_workflow.py # Review-pack lifecycle (list/approve/reject/apply)
-│   ├── compliance_config.yaml  # Compliance policy and runtime settings
+│   ├── compliance_config/
+│   │   ├── audit_settings.yaml
+│   │   ├── connection.yaml
+│   │   ├── classification.yaml
+│   │   ├── management_plane.yaml
+│   │   ├── control_plane.yaml
+│   │   ├── data_plane.yaml
+│   │   └── role_specific.yaml
 │   └── devices.yaml            # Inventory (can be overridden)
+├── configs/                    # Optional per-site config directories
+├── inventories/                # Optional per-site device inventories
 ├── requirements.txt
 ├── README.md
 └── LICENSE
@@ -110,8 +119,8 @@ graph TD
     H --> I[compliance_engine.py run enabled checks]
     I --> J[report.py outputs]
     J --> K[Console summary]
-    J --> L[HTML/JSON/CSV]
-    J --> M[Remediation + delta]
+    J --> L[HTML/JSON/CSV reports]
+    J --> M[Remediation scripts + review packs]
 ```
 
 ---
@@ -141,17 +150,23 @@ pip install -r requirements.txt
 ## 🚀 Quick Start
 
 ```bash
-# Single device
-python -m compliance_audit --device GB-SITE1-001ASW001:10.1.1.1
+# Audit a single device
+python -m compliance_audit --device ZZ-LAB1-001ASW001:192.0.2.61
 
-# Entire inventory from devices.yaml
+# Audit all devices in devices.yaml
 python -m compliance_audit
 
-# Site-specific policy file
-python -m compliance_audit -c configs/site_london.yaml
+# Use a site-specific config directory
+python -m compliance_audit -c configs/site_alpha
 
-# Override inventory path
-python -m compliance_audit -i inventories/site_london_devices.yaml
+# Use a different device inventory
+python -m compliance_audit -i inventories/site_alpha_devices.yaml
+
+# Filter to high-severity findings
+python -m compliance_audit --min-severity high
+
+# Filter to CIS or PCI-tagged findings
+python -m compliance_audit --tags cis pci
 
 # List remediation review packs
 python -m compliance_audit --remediation-list pending
@@ -159,8 +174,8 @@ python -m compliance_audit --remediation-list pending
 # Approve all pending packs for a change ticket
 python -m compliance_audit --remediation-approve-all --approver "john.doe" --ticket-id "CHG0012345"
 
-# Dry-run apply across all approved packs
-python -m compliance_audit --remediation-apply-all --apply-dry-run
+# Apply one approved remediation pack
+python -m compliance_audit --remediation-apply PACK_ID
 
 # Guided interactive wizard
 python -m compliance_audit --interactive
@@ -180,7 +195,7 @@ python -m compliance_audit --list-options
 python -m compliance_audit [-h] [-c CONFIG] [-d DEVICE] [-i INVENTORY]
                            [--no-jump] [--categories CAT [CAT ...]]
                            [-o OUTPUT_DIR] [--fail-threshold PCT]
-                           [--dry-run DIR] [--csv] [--no-csv] [-v]
+                           [--csv] [--no-csv] [-v]
                            [--remediation-list [STATUS]]
                            [--remediation-approve PACK_ID]
                            [--remediation-approve-all]
@@ -188,7 +203,7 @@ python -m compliance_audit [-h] [-c CONFIG] [-d DEVICE] [-i INVENTORY]
                            [--remediation-apply PACK_ID]
                            [--remediation-apply-all]
                            [--approver NAME] [--ticket-id ID] [--reason TEXT]
-                           [--expires-hours HOURS] [--apply-dry-run]
+                           [--expires-hours HOURS]
                            [--allow-high-risk] [--interactive] [--tui]
                            [--list-options]
 ```
@@ -196,12 +211,11 @@ python -m compliance_audit [-h] [-c CONFIG] [-d DEVICE] [-i INVENTORY]
 Most useful real-world options:
 
 - `--categories management_plane control_plane` to run scoped audits
-- `--dry-run ./saved_outputs` for validation in change windows and CI
 - `--fail-threshold 80` for pipeline quality gates
 - `--csv` / `--no-csv` for explicit report behaviour
 - `--remediation-list pending` to view queued review packs
 - `--remediation-approve PACK_ID --approver NAME --ticket-id CHG_ID` for approval control
-- `--remediation-apply PACK_ID --apply-dry-run` before any production push
+- `--remediation-apply PACK_ID` to execute an approved remediation pack
 - `--remediation-apply-all` for approved bulk operations
 - `--interactive` for guided operator workflows
 - `--tui` for full-screen operational runs and live UX
@@ -214,74 +228,75 @@ Most useful real-world options:
 
 Key enhancements reflected in this deep dive update:
 
-1. **Enterprise remediation lifecycle**: Review packs are generated, tracked, and governed through approval and apply states.
-2. **Ticket-aware approvals**: Optional enforcement of change ticket IDs during approvals.
-3. **Risk controls**: High-risk command blocks are denied by default unless explicitly allowed.
-4. **Preflight drift and identity checks**: Apply paths can verify findings still fail and target hostname matches expected identity.
-5. **Bulk lifecycle operations**: Approve-all and apply-all workflows for large estates.
-6. **ROI instrumentation**: Optional effort/value estimation embedded in reports.
-7. **Guided operator mode**: `--interactive` adds menu-driven execution for day-to-day workflows.
-8. **Full-screen operations UI**: `--tui` provides a richer terminal experience for live runs.
-9. **Discoverable CLI options**: `--list-options` prints a complete options table for faster operator onboarding.
-10. **Expanded runbook assets**: Repository runbook documentation now includes command-first operating guidance across markdown, HTML, and text formats.
+1. **Split config directories**: Policy is organised into focused YAML files under `compliance_config/`, not a single monolithic config file.
+2. **Separate device inventories**: Inventory can move independently of policy through `devices.yaml` or `-i` overrides.
+3. **Per-check metadata and filtering**: Severity, tags, role scope, and exclusion patterns support safer phased adoption.
+4. **Enterprise remediation lifecycle**: Review packs are generated, tracked, and governed through approval and apply states.
+5. **Ticket-aware approvals and expiry**: Change metadata and approval windows are built into the workflow.
+6. **Risk controls**: High-risk command blocks, checksum checks, drift checks, and hostname validation reduce apply risk.
+7. **Bulk lifecycle operations**: Approve-all and apply-all workflows support larger estates.
+8. **ROI instrumentation**: Optional effort/value estimation is embedded in console, JSON, and HTML outputs.
+9. **Operator-focused execution modes**: `--interactive`, `--tui`, and `--list-options` improve day-to-day usability.
+10. **Expanded runbook assets**: Repository runbook documentation is now available in markdown, HTML, and plain text formats.
 
 ---
 
 ## ⚙️ Configuration Model
 
-The tool is centred around a primary YAML policy file and a separate inventory file.
+The current repository uses a **directory of focused YAML files** rather than a single monolithic policy file. That split is one of the biggest improvements in the current code line: teams can change connection settings, classification rules, or one policy domain without editing unrelated controls.
 
-### 1. Audit Settings
+| File | Purpose | Typical change cadence |
+| --- | --- | --- |
+| `audit_settings.yaml` | Concurrency, report outputs, timeouts, ROI, reference VLANs, remediation policy | Per run or per environment |
+| `connection.yaml` | SSH device type, jump-host behaviour, retries, credential backend | Per environment |
+| `classification.yaml` | Hostname role codes, endpoint patterns, `inventory_file` path | Rarely |
+| `devices.yaml` | Default device inventory | Per run |
+| `management_plane.yaml` | SSH, AAA, NTP, logging, SNMP, VTY, banner checks | When policy changes |
+| `control_plane.yaml` | STP, VTP, DHCP snooping, DAI, UDLD, errdisable controls | When policy changes |
+| `data_plane.yaml` | Access, trunk, and unused-port checks | When policy changes |
+| `role_specific.yaml` | Core, access, SD-WAN, and industrial role logic | When policy changes |
 
-Examples include:
+### Multiple Config Directories
 
-- `max_workers`
-- `collect_timeout`
-- `output_dir`
-- `html_report`, `json_report`, `csv_report`
-- `parking_vlan`, `native_vlan`
+Per-site or per-environment policy is now a first-class pattern:
 
-These govern runtime behaviour and report generation, not compliance logic itself.
+```bash
+cp -r compliance_audit/compliance_config configs/site_alpha
+cp -r compliance_audit/compliance_config configs/site_beta
 
-### 2. Connection Settings
-
-Controls transport behaviour:
-
-- Jump-host usage
-- Device type
-- Credential backend mode
-- Retry and timeout tuning
-
-### 3. Inventory
-
-Device list is maintained separately from policy, which is essential at scale.
-
-```yaml
-devices:
-  - hostname: GB-SITE1-001ASW001
-    ip: 10.1.1.1
-  - hostname: GB-SITE1-001CSW001
-    ip: 10.1.1.2
+python -m compliance_audit -c configs/site_alpha
+python -m compliance_audit -c configs/site_beta
 ```
 
-### 4. Classification Settings
+Each config directory is self-contained. The device inventory stays separate and can be referenced from `classification.yaml` or overridden at run time:
 
-- Hostname role-code mapping
-- Endpoint-neighbour signature patterns
+```yaml
+# configs/site_alpha/classification.yaml
+inventory_file: "../inventories/site_alpha_devices.yaml"
+```
 
-These values drive trunk direction inference and role-specific checks.
+```bash
+python -m compliance_audit -c configs/site_alpha -i inventories/site_alpha_devices.yaml
+```
 
-### 5. Compliance Policy
+### Per-Check Metadata
 
-Every check follows the same pattern:
+Every check remains policy-driven, but the current model is richer than simple on/off toggles:
 
 ```yaml
 some_check_name:
   enabled: true
-  # check-specific parameters
+  severity: high
+  tags: [cis, pci]
+  applies_to_roles:
+    - access_switch
+  exclude_hostnames:
+    - ".*-LEGACY-.*"
+  exclude_interfaces:
+    - "GigabitEthernet0/0"
 ```
 
-This allows governance teams to tailor standards without code edits.
+That metadata powers scoped enforcement, filtered reporting, and safer exception handling without code forks.
 
 ---
 
@@ -609,25 +624,28 @@ lines.extend(["end", "write memory", "!"])
 
 ---
 
-## 10) Delta Reporting for Continuous Compliance
+## 10) Reporting Layers and Operator Outputs
 
-The report layer compares the current JSON with the previous baseline.
+The reporting pipeline keeps terminal output compact while pushing detail into HTML, CSV, JSON, and remediation artefacts.
 
 ```python
-baseline = load_baseline(latest_previous_json)
-delta = compute_delta(baseline, current_result)
-save_delta_report(delta, hostname, output_dir)
-print_delta_summary(delta, hostname)
+render_console_summary(results)
+write_html_reports(results)
+write_json_reports(results, enabled=audit_settings.json_report)
+write_csv_report(results, enabled=audit_settings.csv_report)
+write_remediation_artifacts(results, enabled=remediation.generate_script)
 ```
 
 ### Why this design
 
-- Compliance is a trend, not a one-time score.
-- Delta outputs make improvements and regressions visible and measurable.
+- Operators need a quick score table during the run.
+- Audit evidence needs portable artefacts after the run.
+- Remediation output should be generated from the same finding model, not a separate toolchain.
 
-### Governance benefit
+### Operational benefit
 
-- Teams can prove that remediation work actually reduced risk over time.
+- Live runs stay readable.
+- Post-run evidence is consistent across manual review, spreadsheets, and downstream automation.
 
 ---
 
@@ -652,23 +670,24 @@ if not creds:
 
 ---
 
-## 12) Offline Mode as a First-Class Engineering Path
+## 12) Live Collection as the Single Execution Path
 
-Dry-run mode reads command outputs from files and runs the same engine path.
+The current tool path assumes live collection against reachable devices rather than replaying saved command outputs.
 
 ```python
-if dry_run_dir:
-  collector = OfflineCollector(dry_run_dir)
-else:
-  collector = DataCollector(live_connection)
-
+collector = DataCollector(live_connection)
 data = collector.collect(hostname, ip)
 ```
 
 ### Why this design
 
-- Reduces risk in policy development.
-- Enables repeatable testing and CI validation.
+- Findings stay tied to current device state.
+- Audit and remediation workflows operate against the same live evidence path.
+- Operators do not need to maintain parallel saved-output fixtures for production use.
+
+### Operational implication
+
+- Safer rollout now comes from scoped live runs, approval gates, and immediate post-change re-audits.
 - Decouples standards engineering from live network access constraints.
 
 ---
@@ -681,7 +700,7 @@ If you are building your own automation framework, these patterns are worth copy
 - **Normalised finding model** consumed by all report channels
 - **Signal fusion** for topology-aware decisions
 - **Structured-first, fallback-second parsing** for robustness
-- **Delta tracking** to measure posture changes over time
+- **Per-check metadata and filtered outputs** for safer, phased adoption
 - **Separation of orchestration, collection, classification, evaluation, reporting**
 
 These are the reasons this implementation scales beyond a lab script into a platform pattern.
@@ -1061,17 +1080,17 @@ Important implementation detail:
 
 ---
 
-## 📈 Baseline and Delta Tracking
+## 🧭 Operator Experience and Workflow Control
 
-The reporting pipeline can compare current results against the most recent baseline JSON for the same device.
+The current code line is built for both scripted execution and day-to-day operations. Operators can choose the interface that matches the moment:
 
-This gives change visibility such as:
+- `--interactive` for guided prompts and command previews
+- `--tui` for a full-screen terminal workflow
+- `--list-options` for a complete, discoverable CLI table
+- `--categories`, `--min-severity`, and `--tags` for scoped execution
+- `--fail-threshold` for CI gates and pre-change quality checks
 
-- New failures introduced
-- Failures resolved
-- Score movement over time
-
-For teams running continuous compliance, this is essential for proving improvement rather than just generating snapshots.
+That mix matters because compliance tooling only sticks when it works equally well for operators, automation pipelines, and change-control processes.
 
 ---
 
@@ -1089,28 +1108,16 @@ Enable-secret support is environment-driven when required for privileged workflo
 
 ---
 
-## 🧪 Dry-Run Mode for Safer Testing
+## 🧪 Safe Validation in Live Runs
 
-Use `--dry-run` to validate policies against saved command outputs.
+With replay-based and non-executing apply stages removed, safer validation now depends on narrowing live scope and using governance controls intentionally.
 
-This is useful for:
+Recommended patterns:
 
-- CI pipelines
-- Pre-production policy tuning
-- Reproducible bug reports
-- Secure environments where live device access is restricted
-
-Expected structure:
-
-```text
-saved_outputs/
-  HOST_A/
-    show_running-config.txt
-    show_version.txt
-    show_interfaces.txt
-    show_etherchannel_summary.txt
-    ...
-```
+- Start with a single device using `--device`
+- Limit execution with `--categories`, `--min-severity`, or `--tags`
+- Review remediation packs before any apply action
+- Re-run the audit immediately after implementation to confirm outcomes
 
 ---
 
@@ -1152,11 +1159,11 @@ Common issues and high-confidence fixes:
 
 Recommended phased adoption:
 
-1. **Start in dry-run mode** with saved outputs
+1. **Start with a single device or narrow category scope**
 2. **Run management-plane only** to validate baseline policy assumptions
 3. **Enable full categories** and review false positives with operations
 4. **Adopt fail thresholds** in CI/CD or pre-change validation
-5. **Track deltas weekly** and measure risk reduction trendlines
+5. **Introduce scoped filtering and governed remediation** once baseline policy is trusted
 
 ---
 
@@ -1190,7 +1197,7 @@ Need a compact printable version?
 2. Confirm target findings moved from FAIL or WARN to PASS.
 3. Confirm no new failures were introduced in adjacent controls.
 4. Review consolidated HTML dashboard for cross-device regressions.
-5. Validate score movement and delta summary for each changed device.
+5. Validate consolidated reports and remediation status for each changed device.
 
 ### Phase 4: Evidence and Governance Closure
 
@@ -1203,11 +1210,11 @@ Need a compact printable version?
 !!! success "Fast Pass Criteria"
   1. No critical FAIL findings in changed scope.
   2. No unexpected score regressions on unaffected devices.
-  3. Delta report shows resolved findings greater than or equal to new failures.
+  3. Applied packs show successful status, or any exceptions are documented.
   4. Change record contains complete evidence package.
 
-!!! note "v4.0 Operational Shift"
-  In addition to command-level remediation scripts, the current v4.0 code line now includes governed remediation lifecycle operations plus two premium operator experiences (`--interactive` and `--tui`). For day-to-day operations, use the one-page runbook linked above.
+!!! note "Current Operational Model"
+  In addition to command-level remediation scripts, the current code line includes governed remediation lifecycle operations, scoped filtering, and two operator-focused experiences (`--interactive` and `--tui`). For day-to-day execution, use the one-page runbook linked above.
 
 ---
 

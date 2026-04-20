@@ -68,12 +68,12 @@ Welcome to the **Nautomation Prime Script Library**. Here you'll find open-sourc
 
 **Features:**
 
-- Policy-as-code YAML configuration for easy governance customization
+- Split YAML config directories plus separate inventory for reusable policy
 - Role-aware port classification (uplink, downlink, access, routed, unused)
 - 90+ toggleable checks across management, control, and data planes
 - Multi-format reporting (HTML dashboards, JSON, CSV, remediation scripts)
-- Delta tracking for continuous compliance trending
-- Dry-run mode for safe policy validation and CI/CD integration
+- Severity/tag filtering with a governed remediation lifecycle
+- Interactive operator modes with approval-governed change execution
 - Jump host / bastion support for restricted environments
 - Concurrent device auditing for large-scale operations
 
