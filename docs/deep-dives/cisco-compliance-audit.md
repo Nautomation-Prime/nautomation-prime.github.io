@@ -75,31 +75,57 @@ A failed finding includes remediation intent, and the tool can compile per-devic
 
 ```text
 Cisco-Compliance-Audit/
+├── .env.example                    # Credential variables template — copy to .env
+├── VERSION.txt                     # Canonical version number
 ├── compliance_audit/
-│   ├── __init__.py             # Package exports + version
-│   ├── __main__.py             # CLI entry point (python -m compliance_audit)
-│   ├── auditor.py              # Orchestrator, threading, run pipeline
-│   ├── collector.py            # Command collection + parsing (Genie + fallback)
-│   ├── port_classifier.py      # Interface intent classification
-│   ├── compliance_engine.py    # 90+ checks across policy categories
-│   ├── report.py               # Rich console + HTML + JSON + CSV reports
-│   ├── credentials.py          # Keyring/env/prompt credential chain
-│   ├── jump_manager.py         # Paramiko jump host channeling
-│   ├── netmiko_utils.py        # Netmiko connection wrappers
-│   ├── hostname_parser.py      # Role extraction from naming convention
-│   ├── config_loader.py        # YAML loader and inventory resolution
-│   ├── remediation_workflow.py # Review-pack lifecycle (list/approve/reject/apply)
-│   ├── compliance_config/
+│   ├── __about__.py                # Package metadata (name, author, licence)
+│   ├── __init__.py                 # Package exports and dynamic version
+│   ├── __main__.py                 # CLI entry point (python -m compliance_audit)
+│   ├── compliance_config/          # ★ Compliance policy (split YAML files)
 │   │   ├── audit_settings.yaml
 │   │   ├── connection.yaml
 │   │   ├── classification.yaml
 │   │   ├── management_plane.yaml
 │   │   ├── control_plane.yaml
-│   │   ├── data_plane.yaml
-│   │   └── role_specific.yaml
-│   └── devices.yaml            # Inventory (can be overridden)
-├── configs/                    # Optional per-site config directories
-├── inventories/                # Optional per-site device inventories
+│   │   └── data_plane.yaml
+│   ├── devices/
+│   │   └── devices.yaml            # ★ Device inventory
+│   ├── auditor.py                  # Orchestrator (concurrent via ThreadPoolExecutor)
+│   ├── cli_discovery.py            # CLI option table helper
+│   ├── collector.py                # Data collection + Genie/TextFSM parsing
+│   ├── compliance_engine.py        # All compliance checks
+│   ├── credentials.py              # Credential handler (.env / keyring / env / prompt)
+│   ├── hostname_parser.py          # Hostname naming convention parser
+│   ├── interactive_cli.py          # Guided wizard CLI (questionary)
+│   ├── jump_manager.py             # SSH jump host via Paramiko
+│   ├── logging_setup.py            # Logging bootstrap
+│   ├── netmiko_utils.py            # Netmiko connection wrapper
+│   ├── port_classifier.py          # Interface role classification + EtherChannel detection
+│   ├── remediation.py              # Remediation script generation
+│   ├── remediation_cli.py          # Remediation CLI helpers
+│   ├── remediation_workflow.py     # Approval lifecycle workflow
+│   ├── report.py                   # Rich console + interactive HTML + JSON + CSV reports
+│   ├── textual_app.py              # Full-screen 3-screen Textual TUI
+│   └── version.py                  # Version reader (reads VERSION.txt)
+├── assets/
+│   └── config_files/
+│       └── logging.conf
+├── docs/
+│   ├── RUNBOOK.html                # Operator runbook (rendered HTML)
+│   └── RUNBOOK.md                  # Operator runbook (Markdown source)
+├── logs/                           # Runtime log files
+├── reports/                        # Default report output directory
+├── scripts/
+│   └── render_runbook.py
+├── tests/
+│   ├── test_annotate_findings.py
+│   ├── test_hostname_parser.py
+│   ├── test_inventory.py
+│   └── test_remediation_workflow.py
+├── run.bat                         # Windows daily launcher
+├── run.sh                          # Linux/WSL daily launcher
+├── setup.bat                       # Windows first-time setup (portable Python 3.12)
+├── setup.sh                        # Linux/WSL first-time setup
 ├── requirements.txt
 ├── README.md
 └── LICENSE
@@ -132,10 +158,13 @@ graph TD
 - Privileged access for command collection
 - Dependencies from `requirements.txt`
 
-!!! warning "Windows + PyATS/Genie"
-    Native Windows is not the recommended runtime for full Genie parsing support. Use **WSL** on Windows for production runs.
+!!! tip "Windows — portable launcher available"
+    Run `setup.bat` once (or double-click it) — it downloads a portable Python 3.12 runtime and installs all dependencies automatically. No system Python required. Use `run.bat` as your daily launcher after that.
 
-Install pattern:
+!!! note "Windows + PyATS/Genie"
+    Full Genie structured parsing is most reliable on Linux/macOS or WSL. On native Windows the tool falls back to TextFSM parsing automatically, which covers the majority of checks. For production estates requiring full Genie coverage, use WSL or a Linux host.
+
+Install pattern (Linux/macOS/WSL):
 
 ```bash
 git clone https://github.com/Nautomation-Prime/Cisco-Compliance-Audit.git
@@ -143,6 +172,16 @@ cd Cisco-Compliance-Audit
 python3 -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
+```
+
+Install pattern (Windows — portable launcher):
+
+```batch
+# First-time setup
+setup.bat
+
+# Daily use
+run.bat
 ```
 
 ---
@@ -254,7 +293,6 @@ The current repository uses a **directory of focused YAML files** rather than a 
 | `management_plane.yaml` | SSH, AAA, NTP, logging, SNMP, VTY, banner checks | When policy changes |
 | `control_plane.yaml` | STP, VTP, DHCP snooping, DAI, UDLD, errdisable controls | When policy changes |
 | `data_plane.yaml` | Access, trunk, and unused-port checks | When policy changes |
-| `role_specific.yaml` | Core, access, SD-WAN, and industrial role logic | When policy changes |
 
 ### Multiple Config Directories
 
@@ -651,14 +689,19 @@ write_remediation_artifacts(results, enabled=remediation.generate_script)
 
 ## 11) Credential Chain and Operator Experience
 
-Credential handling follows a strict lookup order: keyring, environment variables, then prompt.
+Credential handling follows a strict lookup order: `.env` file, keyring, environment variables, then prompt.
 
 ```python
-if store == "keyring":
+# 1. .env file (copy .env.example → .env, fill values)
+creds = from_dotenv()  # SWITCH_USER / SWITCH_PASS etc.
+if not creds:
+  # 2. OS keyring (optional, requires keyring library)
   creds = from_keyring()
 if not creds:
+  # 3. Environment variables
   creds = from_env([("SWITCH_USER", "SWITCH_PASS"), ...])
 if not creds:
+  # 4. Interactive prompt
   creds = prompt_user()
 ```
 

@@ -58,7 +58,7 @@ The entire application is now a **proper Python package** (`cdp_audit/`) with:
 
 Configuration migrated from hardcoded Python to **human-readable YAML**. Network engineers can customise worker threads, timeouts, and credential targets **without touching Python code**. Version control tracks configuration changes. Rollbacks are simple: `git revert`.
 
-The `config_loader.py` module provides a clean interface between YAML configuration and Python code, with type safety and validation built in.
+Configuration is loaded directly from `config.yaml` with environment variable override support, keeping all settings out of code and in version-controlled YAML.
 
 ### **Principle 3: Production-Hardened Design**
 
@@ -68,7 +68,7 @@ The new modular structure makes these patterns **easier to implement and maintai
 
 - Validators run before discovery starts (fail-fast)
 - Logging is centralised in `logging_setup.py`
-- Configuration access is centralised in `app_config.py`
+- Configuration loading handles YAML + environment variable priority automatically
 - Each module handles its own error scenarios
 
 ### **Principle 4: Vendor-Neutral Foundation**
@@ -84,26 +84,25 @@ Built on industry-standard libraries: **Netmiko** (SSH connection handling), **P
 ├── cdp_audit/                   # Main Python package
 │   ├── __init__.py              # Package initialisation and version
 │   ├── __main__.py              # Package entry point (python -m cdp_audit)
-│   ├── app_config.py            # Centralised configuration access
 │   ├── cli.py                   # Command-line interface and main flow
 │   ├── credentials.py           # Credential management (Cred Manager integration)
 │   ├── discovery.py             # Network discovery engine (threading, CDP crawl)
 │   ├── excel_reporter.py        # Excel report generation (template-driven)
 │   ├── logging_setup.py         # Logging configuration bootstrap
 │   └── validators.py            # Pre-flight validation (templates, config)
-├── ProgramFiles/
+├── assets/
 │   ├── textfsm/
 │   │   ├── cisco_ios_show_cdp_neighbors_detail.textfsm
 │   │   └── cisco_ios_show_version.textfsm
 │   └── config_files/
-│       ├── config_loader.py     # YAML config loader class
-│       ├── config.py            # Backward compatibility wrapper
 │       ├── 1 - CDP Network Audit _ Template.xlsx
 │       └── logging.conf         # Optional logging configuration
 ├── config.yaml                  # Main configuration file (YAML)
+├── pyproject.toml               # Package metadata
 ├── requirements.txt             # Python dependencies
-├── run.bat                      # Windows launcher script
-└── portable_env/                # Portable Python environment (optional)
+├── run.bat                      # Windows daily launcher (activates venv, runs tool)
+├── setup.bat                    # Windows first-time setup (downloads portable Python 3.12)
+└── VERSION.txt                  # Canonical version number
 ```
 
 > **Key Architectural Change:** Migrated from monolithic `main.py` to a **modular package structure** (`cdp_audit/`) with separation of concerns, enabling easier testing, maintenance, and team collaboration.
@@ -114,7 +113,7 @@ Built on industry-standard libraries: **Netmiko** (SSH connection handling), **P
 
 ## 📦 Requirements
 
-- **Python:** 3.8+
+- **Python:** 3.7+
 - **Python packages:** `pandas`, `openpyxl`, `textfsm`, `paramiko`, `netmiko`, `pyyaml`
 - **(Windows only, optional)** `pywin32` for Windows Credential Manager integration
 
@@ -141,10 +140,10 @@ This tool has been tested and verified on the following Cisco IOS and IOS-XE pla
 ### Required Support Files
 
 - **TextFSM templates:**
-  - `ProgramFiles/textfsm/cisco_ios_show_cdp_neighbors_detail.textfsm`
-  - `ProgramFiles/textfsm/cisco_ios_show_version.textfsm`
+  - `assets/textfsm/cisco_ios_show_cdp_neighbors_detail.textfsm`
+  - `assets/textfsm/cisco_ios_show_version.textfsm`
 - **Excel template:**
-  - `ProgramFiles/config_files/1 - CDP Network Audit _ Template.xlsx`
+  - `assets/config_files/1 - CDP Network Audit _ Template.xlsx`
 
 The `validators.py` module validates presence of these files at startup and exits if any are missing.
 
@@ -158,7 +157,7 @@ The tool uses a **modern, layered configuration system** with three configuratio
 
 **All default settings are defined in a human-readable YAML file** at the project root.
 
-The `config.yaml` file provides version-control-friendly configuration that **non-programmers can edit**. Settings are loaded by `ProgramFiles/config_files/config_loader.py`, which provides the `Config` class with type-safe property accessors and validation.
+The `config.yaml` file provides version-control-friendly configuration that **non-programmers can edit**. Settings are loaded by `config.yaml` at startup. Environment variables can override any YAML value at runtime for per-session customisation.
 
 **Network Connection Settings:**
 
@@ -178,9 +177,9 @@ network:
 
 ```yaml
 credentials:
-  cred_target: "MyApp/ADM"         # Primary credential target (Windows Credential Manager)
-  alt_creds: "MyApp/Answer"        # Fallback credential target
-    cdp_fallback_username: "answer"  # Fallback username (customisable)
+  cred_target: "CiscoAudit/Primary"    # Primary credential target (Windows Credential Manager)
+  alt_creds: "CiscoAudit/Answer"       # Fallback credential target
+  cdp_fallback_username: "answer"      # Fallback username (customisable)
 ```
 
 **File Paths (Auto-Resolved from Project Root):**
@@ -188,10 +187,10 @@ credentials:
 ```yaml
 file_paths:
   base_dir: "."  # Project root
-  cdp_template: "ProgramFiles/textfsm/cisco_ios_show_cdp_neighbors_detail.textfsm"
-  ver_template: "ProgramFiles/textfsm/cisco_ios_show_version.textfsm"
-  excel_template: "ProgramFiles/config_files/1 - CDP Network Audit _ Template.xlsx"
-  logging_config: "ProgramFiles/config_files/logging.conf"
+  cdp_template: "assets/textfsm/cisco_ios_show_cdp_neighbors_detail.textfsm"
+  ver_template: "assets/textfsm/cisco_ios_show_version.textfsm"
+  excel_template: "assets/config_files/1 - CDP Network Audit _ Template.xlsx"
+  logging_config: "assets/config_files/logging.conf"
 ```
 
 **Excel Report Customisation:**
@@ -234,9 +233,9 @@ Environment variables **override** config.yaml settings at runtime:
 | `CDP_LIMIT` | Max concurrent worker threads | 10 |
 | `CDP_TIMEOUT` | SSH/auth/read timeouts (seconds) | 10 |
 | `CDP_JUMP_SERVER` | Jump host (IP/hostname). Empty = direct | `""` |
-| `CDP_PRIMARY_CRED_TARGET` | CredMan target for primary creds | `MyApp/ADM` |
-| `CDP_ANSWER_CRED_TARGET` | CredMan target for fallback creds | `MyApp/Answer` |
-| `LOGGING_CONFIG` | Path to INI logging config | `ProgramFiles/config_files/logging.conf` |
+| `CDP_PRIMARY_CRED_TARGET` | CredMan target for primary creds | `CiscoAudit/Primary` |
+| `CDP_ANSWER_CRED_TARGET` | CredMan target for fallback creds | `CiscoAudit/Answer` |
+| `LOGGING_CONFIG` | Path to INI logging config | `assets/config_files/logging.conf` |
 
 **Example (Windows PowerShell):**
 
@@ -245,8 +244,8 @@ Environment variables **override** config.yaml settings at runtime:
 $env:CDP_LIMIT = "20"                   # Use 20 concurrent workers
 $env:CDP_TIMEOUT = "15"                 # 15-second timeouts
 $env:CDP_JUMP_SERVER = "bastion.corp.local"  # Use this jump server
-$env:CDP_PRIMARY_CRED_TARGET = "MyApp/NetworkAdmin"
-$env:CDP_ANSWER_CRED_TARGET = "MyApp/LocalAdmin"
+$env:CDP_PRIMARY_CRED_TARGET = "CiscoAudit/NetworkAdmin"
+$env:CDP_ANSWER_CRED_TARGET = "CiscoAudit/LocalAdmin"
 ```
 
 **When to Use Environment Variables:**
@@ -256,36 +255,35 @@ $env:CDP_ANSWER_CRED_TARGET = "MyApp/LocalAdmin"
 - **CI/CD Pipelines**: Dynamic configuration from build systems
 - **Per-Instance Customisation**: Running multiple instances with different settings
 
-### Layer 3: Config Loader (`config_loader.py`)
+### Layer 3: Configuration Resolution
 
-The `Config` class handles all configuration access with validation:
+The tool resolves configuration in priority order — environment variables override `config.yaml` defaults. This two-layer model means persistent settings live in version-controlled YAML, while per-run overrides or CI/CD secrets use environment variables without touching the file.
 
-**Key Features:**
+**Resolution behaviour:**
 
-- **Automatic Search**: Looks for `config.yaml` in project root, module directory, and current directory
-- **Environment Variable Priority**: Env vars override YAML settings
-- **Type Conversion**: Automatically converts strings to int/bool/Path
-- **Default Values**: Provides sensible defaults if YAML keys missing
-- **Validation**: Fails fast if config file is malformed or missing required files
-- **Property-Based Access**: Use `config.JUMP_HOST` instead of dict lookups
+- **`config.yaml` searched** in the project root at startup; fails fast if missing or malformed
+- **Environment variables** checked after YAML load; any matching key overrides the YAML value
+- **Type conversion** handles int/bool/Path automatically so callers receive usable objects
+- **Default values** protect against missing optional keys
 
-**Example Usage in Code:**
+**Usage pattern in modules:**
 
 ```python
-from cdp_audit.app_config import config
+import os
+from pathlib import Path
+import yaml
 
-# Access configuration values
-jump_host = config.JUMP_HOST           # "192.0.2.10" or env override
-timeout = config.DEFAULT_TIMEOUT        # 10 or env override
-cdp_template = config.CDP_TEMPLATE      # Path object, validated
+# Load base config
+with open("config.yaml") as f:
+    cfg = yaml.safe_load(f)
 
-# Config loader has already validated these exist
-print(f"Using jump host: {jump_host}")
-print(f"Timeout: {timeout} seconds")
+# Environment variables override YAML for runtime flexibility
+jump_host = os.getenv("CDP_JUMP_SERVER", cfg["network"]["jump_host"])
+timeout = int(os.getenv("CDP_TIMEOUT", cfg["network"]["default_timeout"]))
 ```
 
 !!! tip "Best Practice: Configuration Priority"
-    Use **config.yaml** for persistent organizational defaults that should be version-controlled. Use **environment variables** for runtime-specific overrides (testing, different environments) or secrets that shouldn't be committed to Git.
+    Use **config.yaml** for persistent organisational defaults that should be version-controlled. Use **environment variables** for runtime-specific overrides (testing, different environments) or secrets that shouldn't be committed to Git.
 
 ---
 
@@ -302,14 +300,6 @@ The tool operates as a **modular Python package** with eight primary modules, ea
 | **`excel_reporter.py`** | Professional, templated report generation | Maintains business branding and formatting |
 | **`validators.py`** | Pre-flight checks for templates and configuration | Catches problems early; prevents mid-run failures |
 | **`logging_setup.py`** | Logging configuration bootstrap | Consistent logging across all modules |
-| **`app_config.py`** | Centralised configuration access point | Single source of truth for config values |
-
-**Additional Support Modules:**
-
-| Module | Responsibility | Location |
-| :--- | :--- | :--- |
-| **`config_loader.py`** | YAML configuration loading and validation | `ProgramFiles/config_files/` |
-| **`config.py`** | Backward compatibility wrapper | `ProgramFiles/config_files/` |
 
 ### Architectural Principles
 
@@ -325,27 +315,19 @@ The tool operates as a **modular Python package** with eight primary modules, ea
 ```mermaid
 graph LR
     Main[__main__.py] --> CLI[cli.py]
-    CLI --> Config[app_config.py]
+    CLI --> YAML[config.yaml]
+    CLI --> ENV[Environment Variables]
     CLI --> Validators[validators.py]
     CLI --> Credentials[credentials.py]
     CLI --> Discovery[discovery.py]
     CLI --> Reporter[excel_reporter.py]
-    
-    Config --> Loader[config_loader.py]
-    Loader --> YAML[config.yaml]
-    Loader --> ENV[Environment Variables]
-    
-    Validators --> Config
-    Credentials --> Config
-    Discovery --> Config
-    Reporter --> Config
-    
+
     Discovery --> Netmiko[Netmiko/Paramiko]
     Reporter --> Excel[openpyxl/pandas]
-    
+
     style Main fill:#e1f5ff
     style CLI fill:#e1f5ff
-    style Config fill:#fff4e6
+    style YAML fill:#fff4e6
     style Discovery fill:#c8e6c9
     style Reporter fill:#f3e5f5
 ```
@@ -354,7 +336,7 @@ graph LR
 
 1. **`__main__.py`** is invoked by `python -m cdp_audit`
 2. **`__main__.py`** calls `cli.main()` to start the application
-3. **`cli.py`** loads configuration via **`app_config.py`**
+3. **`cli.py`** loads configuration from **`config.yaml`** (with environment variable overrides)
 4. **`validators.py`** performs pre-flight checks (templates exist, Excel valid)
 5. **`credentials.py`** collects and validates authentication credentials
 6. **`discovery.py`** executes threaded network crawling
@@ -375,11 +357,19 @@ Uses `cdp_audit/__main__.py` as the entry point, which calls `cli.main()`.
 
 **2. Via Windows Launcher (Easiest for Non-Developers):**
 
+On first use, run `setup.bat` once. It downloads a portable Python 3.12 runtime and installs all dependencies automatically — no system Python required.
+
+```batch
+setup.bat
+```
+
+For all subsequent runs, use `run.bat` as the daily launcher:
+
 ```batch
 run.bat
 ```
 
-Validates environment, activates portable venv, runs the package via `python -m cdp_audit`.
+Activates the portable environment and runs the package via `python -m cdp_audit`.
 
 **3. Direct CLI Module Execution (Development/Debug):**
 
@@ -406,8 +396,8 @@ This module handles all credential management with secure OS integration.
 
 The tool supports a **primary credential** and a **fully customisable fallback credential**:
 
-- **Primary credentials** (used for jump and device): Read from Windows Credential Manager if present (default target `MyApp/ADM`), else prompted. You can optionally save what you type back to Credential Manager.
-- **Fallback credentials** (device hop only, jump still uses primary): **Username is fully customisable via config.yaml** (default: `answer`). Password is read from Credential Manager (default target `MyApp/Answer`) or prompted; you may choose to save it.
+- **Primary credentials** (used for jump and device): Read from Windows Credential Manager if present (default target `CiscoAudit/Primary`), else prompted. You can optionally save what you type back to Credential Manager.
+- **Fallback credentials** (device hop only, jump still uses primary): **Username is fully customisable via config.yaml** (default: `answer`). Password is read from Credential Manager (default target `CiscoAudit/Answer`) or prompted; you may choose to save it.
 
 > **Note:** On non-Windows platforms, prompts are used (no Credential Manager).
 >
@@ -443,26 +433,30 @@ class CredentialManager:
     
     def __init__(self):
         """Initialise credential manager with config values."""
-        from cdp_audit.app_config import config
+        import os
+        import yaml
+        from pathlib import Path
         
-        # Read from environment variables (override) or config.yaml (default)
-        self.primary_target = os.getenv("CDP_PRIMARY_CRED_TARGET", config.CRED_TARGET)
-        self.fallback_target = os.getenv("CDP_ANSWER_CRED_TARGET", config.ALT_CREDS)
-        self.fallback_username = os.getenv("CDP_FALLBACK_USERNAME", config.CDP_FALLBACK_USERNAME)
+        # Load config once; environment variables override YAML defaults
+        _cfg_path = Path(__file__).parent.parent / "config.yaml"
+        _cfg = yaml.safe_load(_cfg_path.read_text())
+        
+        self.primary_target = os.getenv("CDP_PRIMARY_CRED_TARGET", _cfg["credentials"]["cred_target"])
+        self.fallback_target = os.getenv("CDP_ANSWER_CRED_TARGET", _cfg["credentials"]["alt_creds"])
+        self.fallback_username = os.getenv("CDP_FALLBACK_USERNAME", _cfg["credentials"]["cdp_fallback_username"])
         
         self.logger = logging.getLogger(__name__)
 ```
 
 **Line-by-Line:**
 
-- Import centralised config from `app_config.py` (single source of truth)
+- Configuration is loaded from `config.yaml` — no separate config module dependency
 - Environment variables override YAML config if set (runtime flexibility)
 - Three configurable values: primary target, fallback target, and fallback username
 - Logger uses `__name__` for proper module-level logging
 
 **Why This Matters:**
 
-- **Centralised config access**: Uses `app_config.py` instead of direct Config() instantiation
 - **config.yaml**: Human-readable, persistent, version-controlled settings that match your organisation's standards
 - **Environment variables**: Runtime overrides for different environments (dev/prod) or testing
 - **Fallback username**: No longer hardcoded—customise in config.yaml to match your local accounts
@@ -701,7 +695,8 @@ import sys
 import logging
 from pathlib import Path
 from openpyxl import load_workbook
-from cdp_audit.app_config import config
+# Configuration is loaded from config.yaml at package startup
+from cdp_audit import _config as config
 
 
 def validate_textfsm_templates() -> bool:
@@ -838,7 +833,8 @@ class NetworkDiscoverer:
             credentials: Dict with primary_user, primary_pass, fallback_user, fallback_pass
             jump_host: Optional jump/bastion host IP or hostname
         """
-        from cdp_audit.app_config import config
+        # Configuration is loaded from config.yaml at package startup
+        from cdp_audit import _config as config
         
         # Configuration
         self.config = config
@@ -1572,7 +1568,8 @@ from datetime import datetime
 from typing import Dict, List
 import pandas as pd
 from openpyxl import load_workbook
-from cdp_audit.app_config import config
+# Configuration is loaded from config.yaml at package startup
+from cdp_audit import _config as config
 
 
 class ExcelReporter:
@@ -1788,7 +1785,8 @@ from cdp_audit import validators
 from cdp_audit.credentials import CredentialManager
 from cdp_audit.discovery import NetworkDiscoverer
 from cdp_audit.excel_reporter import ExcelReporter
-from cdp_audit.app_config import config
+# Configuration is loaded from config.yaml at package startup
+from cdp_audit import _config as config
 
 
 def prompt_for_inputs() -> dict:
@@ -1950,28 +1948,36 @@ if __name__ == "__main__":
 
 ---
 
-## 🛠️ Configuration Access (`app_config.py`)
+## 🛠️ Configuration Loading
 
-Centralised configuration access point for all modules.
+Configuration is loaded once at startup and passed through the application.
 
 ```python
-"""Centralised configuration access for all modules."""
+"""Configuration loading for the cdp_audit package."""
 
-from ProgramFiles.config_files.config_loader import Config
+import os
+import yaml
+from pathlib import Path
 
-# Create a single Config instance for the entire application
-config = Config()
+# Resolve config.yaml from the project root
+_base = Path(__file__).parent.parent
+_config_path = _base / "config.yaml"
 
-# This module is imported by other modules to access configuration
-# Example: from cdp_audit.app_config import config
+with open(_config_path) as f:
+    _cfg = yaml.safe_load(f)
+
+# Environment variables take priority over YAML defaults
+JUMP_HOST = os.getenv("CDP_JUMP_SERVER", _cfg["network"]["jump_host"])
+CRED_TARGET = os.getenv("CDP_PRIMARY_CRED_TARGET", _cfg["credentials"]["cred_target"])
+ALT_CREDS = os.getenv("CDP_ANSWER_CRED_TARGET", _cfg["credentials"]["alt_creds"])
 ```
 
-**Why This Module?**
+**Why This Approach?**
 
-- **Single source of truth:** All modules import from here
-- **Lazy initialisation:** Config is only loaded once
-- **Easy mocking:** Tests can replace this module to inject test config
-- **Clean imports:** `from cdp_audit.app_config import config` instead of creating Config() everywhere
+- **Single load at startup:** `config.yaml` is read once; values are module-level constants
+- **Environment variables take priority:** runtime overrides work without modifying the YAML file
+- **No hidden globals:** configuration values are explicit module attributes
+- **Easy to test:** substitute environment variables or swap `config.yaml` in test fixtures
 
 ---
 
@@ -1995,7 +2001,7 @@ def setup_logging() -> None:
     - If logging.conf exists, use it
     - Otherwise, configure basic console logging
     """
-    logging_config_path = os.getenv("LOGGING_CONFIG", "ProgramFiles/config_files/logging.conf")
+    logging_config_path = os.getenv("LOGGING_CONFIG", "assets/config_files/logging.conf")
     logging_config = Path(logging_config_path)
     
     if logging_config.exists():
@@ -2102,7 +2108,7 @@ Running CDP Network Audit...
 
 ## 🚀 How to Run (Interactive Flow)
 
-1. Ensure templates and Excel file exist under `ProgramFiles/...` (see above).
+1. Ensure templates and Excel file exist under `assets/...` (see above).
 2. (Optional) Customise `config.yaml` with your organisation's defaults.
 3. (Optional) Set environment variables as needed for runtime overrides.
 4. Run:
@@ -2183,23 +2189,24 @@ An output file named `<site_name>_CDP_Network_Audit_<timestamp>.xlsx` is created
 # Clean imports from package modules
 from cdp_audit.credentials import CredentialManager
 from cdp_audit.discovery import NetworkDiscoverer
-from cdp_audit.app_config import config
 ```
 
 Each module has a single responsibility. Changes to one don't affect others.
 
-### Pattern 2: Centralised Configuration
+### Pattern 2: Configuration via YAML + Environment Variables
 
 ```python
-# All modules import from app_config
-from cdp_audit.app_config import config
+import os, yaml
+from pathlib import Path
 
-# Single source of truth
-jump_host = config.JUMP_HOST
-timeout = config.DEFAULT_TIMEOUT
+_cfg = yaml.safe_load((Path(__file__).parent.parent / "config.yaml").read_text())
+
+# Environment variable overrides YAML default at runtime
+jump_host = os.getenv("CDP_JUMP_SERVER", _cfg["network"]["jump_host"])
+timeout = int(os.getenv("CDP_TIMEOUT", _cfg["network"]["default_timeout"]))
 ```
 
-Configuration is centralised and consistent across all modules.
+Configuration is loaded from YAML with environment variable override support. No separate config singleton required.
 
 ### Pattern 3: Thread-Safe Data Accumulation
 
@@ -2317,22 +2324,22 @@ Enter one or more seed device IPs or hostnames (comma-separated): 192.0.2.11, co
 Collecting primary credentials (used for jump and devices)...
 Enter primary username: netadmin
 Enter primary password: ********
-Store credentials in Credential Manager as 'MyApp/ADM'? [y/N]: y
-✓ Credentials saved to Credential Manager: MyApp/ADM
+Store credentials in Credential Manager as 'CiscoAudit/Primary'? [y/N]: y
+✓ Credentials saved to Credential Manager: CiscoAudit/Primary
 
 Collecting fallback credentials (username: answer)...
 Using fallback username from config: answer
 Enter 'answer' password: ********
-Store credentials in Credential Manager as 'MyApp/Answer'? [y/N]: y
-✓ Credentials saved to Credential Manager: MyApp/Answer
+Store credentials in Credential Manager as 'CiscoAudit/Answer'? [y/N]: y
+✓ Credentials saved to Credential Manager: CiscoAudit/Answer
 
 Use jump host '192.0.2.10'? [Y/n]: 
 
 === Running Pre-Flight Validation ===
 
-✓ CDP Template found: ProgramFiles/textfsm/cisco_ios_show_cdp_neighbors_detail.textfsm
-✓ Version Template found: ProgramFiles/textfsm/cisco_ios_show_version.textfsm
-✓ Excel template valid: ProgramFiles/config_files/1 - CDP Network Audit _ Template.xlsx
+✓ CDP Template found: assets/textfsm/cisco_ios_show_cdp_neighbors_detail.textfsm
+✓ Version Template found: assets/textfsm/cisco_ios_show_version.textfsm
+✓ Excel template valid: assets/config_files/1 - CDP Network Audit _ Template.xlsx
 
 ✓ All validation checks passed
 
