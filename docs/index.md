@@ -144,6 +144,25 @@ For organisations ready to redesign their automation program:
 
 ---
 
+## 🏢 Are You a Small or Medium Business?
+
+Not every organisation needs a 12-week engagement. If you're an SMB with a Cisco network, a small team, and repetitive manual tasks eating your engineers' time — we have fixed-price packages designed specifically for you.
+
+| What You Need | Package | From |
+| :------------- | :------- | :---- |
+| Understand what's worth automating | [Automation Opportunity Assessment](./smb/packages/automation-assessment.md) | £99 |
+| Automated compliance auditing | [Switch Audit & Compliance Pack](./smb/packages/switch-audit-pack.md) | £750 |
+| Safe fleet-wide IOS-XE upgrades | [IOS-XE Upgrade Automation Pack](./smb/packages/ios-xe-upgrade-pack.md) | £1,200 |
+| New switches that configure themselves | [Zero-Touch Provisioning Setup](./smb/packages/ztp-setup.md) | £1,500 |
+| A specific task automated to fixed scope | [Custom Script Build](./smb/packages/custom-script-build.md) | £800 |
+| Ongoing backups, audits, and reports | [Automation-as-a-Service](./smb/packages/automation-as-a-service.md) | £300/mo |
+
+Enterprise-grade quality. Fixed price. No long-term contracts.
+
+[**Explore SMB Packages →**](./smb/index.md){.md-button .md-button--primary}
+
+---
+
 ## 📅 Typical PRIME Framework Engagement Timeline
 
 Wondering what an engagement looks like? Here's how we structure automation transformations:

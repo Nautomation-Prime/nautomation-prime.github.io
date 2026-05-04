@@ -10,6 +10,13 @@ tags:
 
 ## Enterprise Network Automation Services
 
+!!! tip "Looking for SMB-friendly packages?"
+    If you're a small or medium business looking for fixed-price, fast-turnaround automation — rather than a full enterprise engagement — visit our **[SMB Automation Packages](./smb/index.md)** section.
+
+    Packages start from £99 with no long-term commitments.
+
+    [**Explore SMB Packages →**](./smb/index.md)
+
 ## Transform Network Operations with Proven Methodology
 
 At Nautomation Prime, we help enterprise organisations deliver strategic network automation through the **[PRIME Framework](./prime-framework/index.md)**—a proven 5-stage methodology focused on measurable business value, production-grade quality, and sustainable organizational capability.

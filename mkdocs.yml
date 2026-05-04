@@ -188,7 +188,17 @@ nav:
       - Cisco IOS XE ZTP: coming-soon/cisco-ios-xe-ztp.md
       - IOS XE Upgrade Orchestrator: coming-soon/ios-xe-upgrade-orchestrator.md
       - ZTP Automation Platform: coming-soon/ztp-automation-platform.md
-  - Services:
+  - For Small & Medium Businesses:
+      - smb/index.md
+      - smb/services.md
+      - Automation Packages:
+          - Automation Opportunity Assessment: smb/packages/automation-assessment.md
+          - Switch Audit & Compliance Pack: smb/packages/switch-audit-pack.md
+          - IOS-XE Upgrade Automation Pack: smb/packages/ios-xe-upgrade-pack.md
+          - Zero-Touch Provisioning Setup: smb/packages/ztp-setup.md
+          - Custom Script Build: smb/packages/custom-script-build.md
+          - Automation-as-a-Service: smb/packages/automation-as-a-service.md
+  - Enterprise Services:
       - services.md
       - how-we-work.md
   - PRIME Framework:
