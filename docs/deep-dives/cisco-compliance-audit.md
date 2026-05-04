@@ -1214,9 +1214,9 @@ Recommended phased adoption:
 
 Use this as a single operational workflow that combines all five spotlight controls.
 
-Need a compact printable version?
+Need a compact printable version? The runbook lives in the repository itself:
 
-- [Open the one-page runbook](./cisco-compliance-audit-runbook.md)
+- [Open the runbook on GitHub](https://github.com/Nautomation-Prime/Cisco-Compliance-Audit/blob/main/docs/RUNBOOK.md)
 
 ### Phase 1: Pre-Change Validation
 

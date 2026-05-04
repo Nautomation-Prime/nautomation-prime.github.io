@@ -77,7 +77,7 @@ Welcome to the **Nautomation Prime Script Library**. Here you'll find open-sourc
 - Jump host / bastion support for restricted environments
 - Concurrent device auditing for large-scale operations
 
-[📖 View Deep Dive Documentation](../deep-dives/cisco-compliance-audit.md) | [🗒️ Runbook](../deep-dives/cisco-compliance-audit-runbook.md) | [:material-github: GitHub Repository](https://github.com/Nautomation-Prime/Cisco-Compliance-Audit)
+[📖 View Deep Dive Documentation](../deep-dives/cisco-compliance-audit.md) | [🗒️ Runbook](https://github.com/Nautomation-Prime/Cisco-Compliance-Audit/blob/main/docs/RUNBOOK.md) | [:material-github: GitHub Repository](https://github.com/Nautomation-Prime/Cisco-Compliance-Audit)
 
 ---
 
@@ -220,7 +220,7 @@ For issues, feature requests, or questions about any script:
 | :--- | :--- |
 | **Network Discovery** | [📖 CDP Network Audit Deep Dive](../deep-dives/cdp-audit.md) • [💾 Script](https://github.com/Nautomation-Prime/Cisco_CDP_Network_Audit) |
 | **Port & Interface Health** | [📖 Access Switch Audit Deep Dive](../deep-dives/access-switch-audit.md) • [💾 Script](https://github.com/Nautomation-Prime/Access_Switch_Audit) |
-| **Compliance & Governance** | [📖 Cisco Compliance Audit Deep Dive](../deep-dives/cisco-compliance-audit.md) • [🗒️ Runbook](../deep-dives/cisco-compliance-audit-runbook.md) • [💾 Script](https://github.com/Nautomation-Prime/Cisco-Compliance-Audit) |
+| **Compliance & Governance** | [📖 Cisco Compliance Audit Deep Dive](../deep-dives/cisco-compliance-audit.md) • [🗒️ Runbook](https://github.com/Nautomation-Prime/Cisco-Compliance-Audit/blob/main/docs/RUNBOOK.md) • [💾 Script](https://github.com/Nautomation-Prime/Cisco-Compliance-Audit) |
 | **Configuration Management** | [🎓 Configuration Backup (Beginner)](../tutorials/beginner/multi-device-config-backup.md) • [🎓 Enterprise Backup with Nornir (Intermediate)](../tutorials/intermediate/enterprise-config-backup-nornir.md) |
 | **Data Collection & Reporting** | [🎓 Show Commands to Excel (Beginner)](../tutorials/beginner/netmiko-show-command-to-excel.md) • [🎓 Multi-Device Collection (Beginner)](../tutorials/beginner/multi-device-show-command.md) |
 | **Automation Frameworks** | [🎓 Nornir Fundamentals](../tutorials/intermediate/nornir-fundamentals.md) • [📖 Advanced Patterns](../tutorials/intermediate/advanced-nornir-patterns.md) |
