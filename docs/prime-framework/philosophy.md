@@ -8,26 +8,52 @@ tags:
   - Methodology
 ---
 
+<div class="np-hero" markdown>
+
+<p class="np-eyebrow">Principles before process</p>
+
 ## The PRIME Philosophy
 
-## Why Philosophy Matters Before Process
+The PRIME Philosophy defines how Nautomation Prime thinks, builds, measures, documents, and hands over automation. Before there is a framework, there are principles: transparency, measurability, ownership, safety, and empowerment.
 
-Most automation vendors sell you a **methodology**—a process to follow. "Here are the steps. Trust us."
+<div class="np-action-row" markdown>
 
-We start differently: **with principles**.
+[See the PRIME Framework](./index.md){.md-button .md-button--primary}
+[How We Work](../how-we-work.md){.md-button}
+[Request Discovery Call](../contact.md){.md-button}
 
-Before we write a single line of code, before we design a workflow, we agree on what matters. These principles shape every decision, every line of documentation, every conversation with your team.
+</div>
 
-If you understand our philosophy, you'll understand why the [PRIME Framework](./index.md) works the way it does.
+<ul class="np-signal-list">
+  <li>No black boxes</li>
+  <li>ROI must be provable</li>
+  <li>Safety over haste</li>
+  <li>Ownership over dependency</li>
+</ul>
 
-!!! info "Five Core Principles"
-    Our philosophy rests on five interconnected principles that appear throughout all we deliver:
-  
-    1. **Transparency** — No black boxes, full understanding
-    2. **Measurability** — Data-driven decisions, proven ROI
-    3. **Ownership** — Your team owns the automation
-    4. **Safety** — Production-grade reliability, not shortcuts
-    5. **Empowerment** — Understanding, not dependency
+</div>
+
+## Why philosophy comes before methodology
+
+<div class="grid cards" markdown>
+
+-   ### No black-box delivery
+
+  Principles make it clear from the start that automation must be understandable, auditable, and transferable.
+
+-   ### No unproven ROI
+
+  Philosophy forces us to define what value means before delivery starts, not after the money is spent.
+
+-   ### No consultant dependency by default
+
+  Ownership is treated as part of the outcome, not an optional extra after implementation.
+
+-   ### No unsafe shortcuts
+
+  Safety is not something added after a script works. It shapes the workflow before the first change is made.
+
+</div>
 
 ---
 
@@ -255,6 +281,24 @@ But if you believe automation should be **transparent, measurable, owned by your
 - **Understand why these principles matter?** → [Production-Grade Network Automation Principles](../tutorials/production-grade-network-automation-principles/index.md)
 - **Ready to apply this approach?** → [How We Work](../how-we-work.md)
 - **Explore the first stage?** → [Pinpoint: Identify High-Impact Opportunities](./pinpoint.md)
+
+---
+
+<div class="np-cta-strip" markdown>
+
+### Want these principles applied to a real engagement?
+
+If the philosophy resonates, the next step is not to guess at a solution. It is to define the problem, the business case, and the safest delivery path before implementation begins.
+
+<div class="np-action-row" markdown>
+
+[Request Discovery Call](../contact.md){.md-button .md-button--primary}
+[View Services](../services.md){.md-button}
+[How We Work](../how-we-work.md){.md-button}
+
+</div>
+
+</div>
 
 ---
 

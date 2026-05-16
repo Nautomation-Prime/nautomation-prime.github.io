@@ -69,7 +69,7 @@ I realized: **Delivering scripts isn't enough. Sustainable automation requires a
 
 ## My Background
 
-### Enterprise Network Engineering (10+ Years)
+description: Meet Christopher Davies, founder of Nautomation Prime. CCNP-certified, founder-led, and focused on transparent Cisco automation your team can understand and own.
 
 I cut my teeth in **hands-on network operations** at diverse organisations:
 
@@ -77,43 +77,63 @@ I cut my teeth in **hands-on network operations** at diverse organisations:
 - **Involve Visual Collaboration** — System Infrastructure Specialist
 - **Autonet Insurance** — Network & Collaboration Engineer
 - **Vendor Support & Troubleshooting**
+<div class="np-hero" markdown>
 
-  - Proactive monitoring of enterprise networks across multiple UK dairy sites using SolarWinds Orion, Cisco DNAC and Netbox
-  - Ground-up implementation of Cisco DNAC for network visibility and automation
-  - Designed and executed site-wide wireless upgrades using Ekahau AI Pro
-  - Managed tens of thousands of network devices across multiple data centers
-  - Collaborated with engineers to deploy Python scripts for automatic configuration of 200+ switches during network upgrades across UK courts, prisons, and probation offices
-  - Delivered NHS integration enabling video conferencing across health systems (Cisco networking, Dell Hyper-V, Pexip VoIP)
-  - Ensured 99.9% uptime for mission-critical collaboration infrastructure
-  - Led migration from on-premises Mitel telephony to cloud-based Cisco Catalyst platforms
-  - Designed and deployed multi-site SD-WAN/MPLS hybrid connectivity architecture
-  - Managed complex network upgrades across rapid-expansion deployments
-  - Root cause analysis across Cisco routing, switching, wireless, voice, and security platforms
+<p class="np-eyebrow">Founder-led Cisco automation, education, and delivery</p>
 
-**What this taught me:**  
-Real networks are ugly. Legacy, hybrid, edge-case-ridden. The solutions that work aren't the "perfect" ones—they're the ones pragmatic enough to handle reality.
+## Christopher Davies
 
-### Cisco Certifications
+I'm the founder of Nautomation Prime and a CCNP-certified network engineer focused on transparent, production-grade Cisco automation. After 10+ years in enterprise infrastructure, I built this practice to help teams move from brittle scripts and black-box delivery to automation they can understand, trust, and own.
 
-- **CCNP Enterprise** — Professional-level routing and switching design
-- **CCNP Automation** — Network automation and orchestration
-- **CCNP Collaboration** — Advanced unified communications architecture
-- **CCDA** — Cisco design methodology
+<div class="np-action-row" markdown>
 
-**What these taught me:**  
-The fundamentals never change. Mastering layer 3 matters as much as Python syntax.
+[Contact & Discovery](./contact.md){.md-button .md-button--primary}
+[Explore Services](./services.md){.md-button}
+[How We Work](./how-we-work.md){.md-button}
+[About Nautomation Prime](./about.md){.md-button}
 
-### Python Automation & Network Automation
+</div>
 
-After years of clicking GUIs and running CLI commands 500 times, I taught myself Python. Today:
+<div class="np-founder-metrics">
+  <div>
+    <strong>10+ years</strong>
+    Enterprise network engineering and automation delivery
+  </div>
+  <div>
+    <strong>CCNP-led</strong>
+    Senior Cisco background across infrastructure and automation
+  </div>
+  <div>
+    <strong>Founder-led</strong>
+    Direct context, delivery, and accountability from first conversation to handover
+  </div>
+</div>
 
-- **Netmiko, Nornir, NAPALM** — Multi-threaded, vendor-neutral automation at scale
-- **pytest & unit testing** — Reliable automation that doesn't break
-- **CI/CD pipelines** — Automation that evolves sustainably
+</div>
 - **Secure credential management** — Zero hardcoded passwords
 
 **What this taught me:**  
 Network automation is a *team sport*. If only one person understands the code, you've failed. Documentation and transparency should be first-class requirements.
+
+<div class="grid cards" markdown>
+
+-   ### Direct founder access
+
+    You work with the person responsible for the thinking, design, and delivery, not a sales layer followed by a hand-off chain.
+
+-   ### Enterprise reality, not lab-only theory
+
+    My approach is shaped by live environments, legacy constraints, compliance pressure, and real operational risk.
+
+-   ### No black-box automation
+
+    The goal is sustainable capability, not dependence on the original author or consultant.
+
+-   ### Education plus delivery
+
+    Nautomation Prime exists to teach, build, and hand over, not just ship scripts and disappear.
+
+</div>
 
 ---
 
@@ -144,17 +164,59 @@ Throughout my career, I've seen automation fail because teams don't understand t
 
 ---
 
+## Beyond Work
+
+### Life in Staffordshire
+
+I'm based in Leek, Staffordshire, where I live with my wife and son. Family is everything to me—they're the reason I work the way I do and the support system that keeps me grounded when things get challenging.
+
+I have Ménière's disease and coeliac disease, which brings its own set of daily challenges. But I've learned that limitations don't have to define you—they just require better planning, clearer systems, and support from people who matter. My family makes all the difference.
+
+### What Drives Me
+
+If you've taken the 16personalities test, I'm an **INFJ-A** (Advocate). After reading their analysis, it's eerily accurate: I'm driven by purpose, I value authenticity over surface-level interactions, and I genuinely want to help people succeed—not just sell them something.
+
+That's probably why I'm obsessed with transparency in automation. I can't stand the idea of someone running a script they don't understand on their production network. It feels wrong. If you're going to trust automation, you should **understand** it.
+
+I'm also quite introverted, which surprises some people in consulting. But introversion doesn't mean I don't care about people—it means I care deeply about meaningful work and genuine connections over small talk and sales pitches.
+
+### When I'm Not Automating Networks
+
+**Music** is a constant in my life. My taste is eclectic—spanning decades and genres—but I'm very particular about what I love. If it resonates, it stays on repeat. If it doesn't, it's skipped immediately.
+
+**Nature and the outdoors** recharge me. The less man-made, the better. Give me forests, hills, and open countryside over cities any day. There's something about being surrounded by natural complexity that puts human-created systems into perspective. I take my DSLR camera along to capture those moments—there's a satisfaction in framing a shot properly, getting the light right, preserving something beautiful.
+
+**Precision shooting** is another interest of mine. It keeps me grounded in patience, safety, and repeatable performance.
+
+**Tea.** Proper tea. I import varieties from China and India as directly from the tea farms as possible because I'm particular about quality. There's a ritual to a good cup of tea—choosing the right leaves, the right temperature, the right timing. It's a small thing, but it matters. (You might notice a pattern here: I care about doing things *properly*.)
+
+### Why This Work Matters to Me
+
+Network automation isn't just a career—it's something I genuinely enjoy. It gives my life purpose.
+
+I've always believed that if you're going to spend a third of your life working, it should be in something you love. And I love solving problems. I love teaching people. I love seeing teams go from "we can't do this" to "we built that ourselves."
+
+That's why I built Nautomation Prime. It's not about selling scripts—it's about empowering engineers to solve their own problems. If I can help someone feel the same satisfaction I get from automation, then the work has meaning beyond the invoice.
+
+---
+
 ## Let's Work Together
 
-Whether you're:
+<div class="np-cta-strip" markdown>
 
-- **Starting automation** — I can help you build the right roadmap (not just "automate everything")
-- **Improving existing automation** — I can help you understand and maintain what you have
-- **Scaling across your organisation** — I can help you build sustainable, team-owned capability
+### Need founder-led help with a real automation challenge?
 
-**[Book a Discovery Call](./contact.md)** (30-60 minutes, free, no obligation)
+Whether you're starting automation, rescuing inherited scripts, or trying to build sustainable capability across a larger estate, the next step is a short discovery conversation.
 
-**[Explore the PRIME Framework](./prime-framework/index.md)** to understand how we deliver sustainable automation
+<div class="np-action-row" markdown>
+
+[Book a Discovery Call](./contact.md){.md-button .md-button--primary}
+[Explore Services](./services.md){.md-button}
+[How We Work](./how-we-work.md){.md-button}
+
+</div>
+
+</div>
 
 ---
 

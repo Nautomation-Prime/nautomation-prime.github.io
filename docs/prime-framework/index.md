@@ -8,22 +8,53 @@ tags:
   - Consulting
 ---
 
+<div class="np-hero" markdown>
+
+<p class="np-eyebrow">Methodology for measurable, team-owned Cisco automation delivery</p>
+
 ## The PRIME Framework
 
-## "A Proven Methodology for Network Automation Excellence"
+The PRIME Framework is Nautomation Prime's five-stage delivery model for turning operational pain points into production-grade automation, measurable ROI, and real team ownership. It exists to stop organisations automating the wrong things, shipping brittle scripts, and ending up dependent on the original author.
 
-The **PRIME Framework** is Nautomation Prime's systematic approach to transforming network operations through intelligent Python automation. This five-stage methodology ensures every automation project delivers measurable value while maintaining production safety and transparency.
+<div class="np-action-row" markdown>
 
-!!! success "Proven Track Record"
-    Organisations using the PRIME Framework achieve:
+[Request Discovery Call](../contact.md){.md-button .md-button--primary}
+[View Services](../services.md){.md-button}
+[How We Work](../how-we-work.md){.md-button}
+[Read the Philosophy](./philosophy.md){.md-button}
 
-    - **6-12 month payback** on automation investments
-    - **60-80% reduction** in manual configuration time
-    - **Full code ownership** with zero vendor lock-in
-    - **Sustainable team capability** built through knowledge transfer
+</div>
 
-!!! info "Start with the Philosophy"
-    Before diving into the five stages, understand the **[PRIME Philosophy](./philosophy.md)**—the core principles that guide every decision we make: transparency, measurability, ownership, safety, and empowerment.
+<ul class="np-signal-list">
+  <li>Five-stage delivery model</li>
+  <li>Typical payback: 6-12 months</li>
+  <li>Safety and handover built in</li>
+  <li>Designed for team ownership</li>
+</ul>
+
+</div>
+
+## Who the framework is for
+
+<div class="grid cards" markdown>
+
+-   ### Leaders who need proof before they invest
+
+    Use the framework when leadership needs a clear business case, measured value, and visibility into what automation is actually achieving.
+
+-   ### Teams inheriting fragile scripts
+
+    Use the framework when existing automation works just enough to be risky, but nobody wants to own, change, or troubleshoot it.
+
+-   ### Engineers moving from one-off scripts to a programme
+
+    Use the framework when the goal is not just faster tasks, but a repeatable automation operating model that can scale.
+
+-   ### Organisations that cannot afford unsafe change
+
+    Use the framework when validation, rollback, governance, and gradual rollout matter as much as delivery speed.
+
+</div>
 
 ---
 
@@ -230,19 +261,27 @@ The PRIME Framework has delivered measurable improvements across enterprise netw
 
 ## 🚀 Getting Started with PRIME
 
-### Step 1: Free Discovery Call
+<div class="np-cta-strip" markdown>
 
-30-60 minute consultation to understand your challenges and automation maturity. No obligation.
+### Start with a discovery conversation, not a blind implementation
 
-[**Request Discovery Call →**](../contact.md)
+The usual entry point is a short discovery conversation to understand your environment, automation maturity, constraints, and likely ROI. If the fit is right, the next step is often [Pinpoint](./pinpoint.md), where priorities and business value are clarified before wider delivery begins.
 
-### Step 2: Pinpoint Assessment (Optional)
+<div class="np-action-row" markdown>
 
-Detailed analysis of automation opportunities specific to your infrastructure. Fixed-fee engagement.
+[Request Discovery Call](../contact.md){.md-button .md-button--primary}
+[View Services & Pricing](../services.md){.md-button}
+[See How We Work](../how-we-work.md){.md-button}
 
-### Step 3: Full Engagement
+</div>
 
-Structured project following all five stages of the PRIME Framework.
+</div>
+
+### Typical entry path
+
+1. Discovery conversation to understand operational problems and constraints.
+2. Optional [Pinpoint](./pinpoint.md) assessment to identify the highest-value opportunities.
+3. Full PRIME Framework engagement or selected stages, depending on your needs.
 
 ---
 

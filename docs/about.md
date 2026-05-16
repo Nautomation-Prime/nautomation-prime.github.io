@@ -7,19 +7,53 @@ tags:
   - Contact
 ---
 
-## Our Story
+<div class="np-hero" markdown>
 
-Nautomation Prime was founded to bridge the gap between complex Cisco infrastructure and accessible Python-driven automation. We believe network engineers deserve transparency in their automation tools—no black boxes, no mystery code, just clear, production-ready solutions explained line-by-line.
+<p class="np-eyebrow">Founder-led education, tools, and consulting for enterprise Cisco automation</p>
 
-## Business Stage Transparency
+## About Nautomation Prime
 
-Nautomation Prime is currently an early-stage, founder-led practice.
+Nautomation Prime exists to close the gap between complex Cisco infrastructure and automation teams can actually understand, trust, and own. The business brings together learning content, open-source tools, and professional services around one clear idea: no black-box delivery.
 
-To keep communication honest:
+<div class="np-action-row" markdown>
 
-- Delivery methods and technical examples are based on Christopher's enterprise engineering experience.
-- Metrics and outcomes are presented as representative unless explicitly identified as direct Nautomation Prime client results.
-- Case studies are anonymised to protect confidentiality and avoid exposing employer or client-sensitive details.
+[Explore Services](./services.md){.md-button .md-button--primary}
+[How We Work](./how-we-work.md){.md-button}
+[Meet Christopher Davies](./founder.md){.md-button}
+[Contact & Discovery](./contact.md){.md-button}
+
+</div>
+
+<ul class="np-signal-list">
+  <li>Founder-led</li>
+  <li>Enterprise Cisco focus</li>
+  <li>Education plus delivery</li>
+  <li>Ownership-first automation</li>
+</ul>
+
+</div>
+
+## What Nautomation Prime does
+
+<div class="grid cards" markdown>
+
+-   ### Learn
+
+  Tutorials, deep dives, and production-grade guidance help engineers build real Cisco automation capability.
+
+-   ### Deploy
+
+  Open-source tools and practical implementation patterns shorten the path from idea to usable automation.
+
+-   ### Transform
+
+  PRIME Framework engagements help organisations move from ad hoc scripting to measurable, governed, team-owned delivery.
+
+</div>
+
+> **Transparency note:** Nautomation Prime is an early-stage, founder-led practice. Delivery methods and technical examples are based on Christopher's enterprise engineering experience, and metrics or outcomes are presented as representative unless explicitly identified as direct Nautomation Prime client results.
+
+## Why Nautomation Prime exists
 
 ### The Birth of the PRIME Framework
 
@@ -117,8 +151,13 @@ Christopher specialises in enterprise Cisco automation, with deep expertise in P
 
 Whether you want to learn, deploy tools, or build bespoke solutions, let's talk.
 
-**[Book a Discovery Call](./contact.md)** — 30-60 minutes, free, no obligation  
-[Explore Services](./services.md) — PRIME Framework, à la carte options, pricing
+<div class="np-action-row" markdown>
+
+[Book a Discovery Call](./contact.md){.md-button .md-button--primary}
+[Explore Services](./services.md){.md-button}
+[How We Work](./how-we-work.md){.md-button}
+
+</div>
 
 ---
 
