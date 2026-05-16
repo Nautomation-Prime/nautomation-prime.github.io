@@ -139,6 +139,11 @@ For custom automation tailored to your specific topology:
 
 ---
 
+!!! success "Want this implemented in your environment?"
+    If you already know which workflow needs attention, move from learning into delivery with our [Enterprise Automation Services](services.md), the [PRIME Framework](prime-framework/index.md), or a [Discovery Call](mailto:enquiries@nautomationprime.io).
+
+---
+
 ## ❓ Frequently Asked Questions
 
 ??? question "Do I need Python installed to use Nautomation Prime tools?"
@@ -183,7 +188,7 @@ For custom automation tailored to your specific topology:
 
 ---
 
-## � Ready to Get Started?
+## Ready to Get Started?
 
 Whether you're learning automation, deploying tools, or need bespoke services—we're here to help.
 

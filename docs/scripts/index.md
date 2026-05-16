@@ -212,7 +212,12 @@ For issues, feature requests, or questions about any script:
 
 ---
 
-## � Resources by Topic
+!!! success "Need one of these patterns tailored to your environment?"
+  If you want these scripts adapted, extended, or rolled out across a live estate, review our [Enterprise Automation Services](../services.md), the [PRIME Framework](../prime-framework/index.md), or [request a Discovery Call](mailto:enquiries@nautomationprime.io).
+
+---
+
+## Resources by Topic
 
 **Quick access to find what you need:**
 
@@ -228,7 +233,7 @@ For issues, feature requests, or questions about any script:
 
 ---
 
-## �📖 The "Prime" Philosophy
+## The "Prime" Philosophy
 
 All scripts in this library adhere to three core principles:
 

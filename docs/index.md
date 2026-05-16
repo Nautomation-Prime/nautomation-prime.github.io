@@ -15,72 +15,100 @@ tags:
 
 ---
 
+<div class="np-hero" markdown>
+
+<p class="np-eyebrow">Transparent Cisco automation for teams that need ownership, not black boxes</p>
+
 ## Advanced Cisco network automation your team can actually own
 
-Nautomation Prime helps network engineering teams move from manual operations and fragile scripts to transparent, production-grade Cisco automation. Every workflow is documented, every design choice is explained, and every engagement is built to leave capability with your team.
+Nautomation Prime helps network engineering teams move from manual operations and fragile scripts to transparent, production-grade Cisco automation. Every system is explained. Every design decision is documented. Every engagement is built so your team can operate and extend the result.
+
+<div class="np-action-row" markdown>
 
 [Explore Learn](./resources.md){.md-button .md-button--primary}
 [Explore Services](./services.md){.md-button}
-[About the PRIME Framework](./prime-framework/index.md){.md-button}
-[About Nautomation Prime](./about.md){.md-button}
+[Request Discovery Call](mailto:enquiries@nautomationprime.io){.md-button}
+[Meet Christopher Davies](./founder.md){.md-button}
+
+</div>
+
+<ul class="np-signal-list">
+  <li>Enterprise Cisco focus</li>
+  <li>No black-box delivery</li>
+  <li>Capability transfer built in</li>
+</ul>
+
+</div>
 
 > **Transparency note:** Nautomation Prime is an early-stage, founder-led practice. Methods, figures, and examples across this site are grounded in Christopher's enterprise delivery experience unless explicitly labelled as a direct Nautomation Prime client engagement.
 
 ---
 
-## Built for teams that need more than a quick script
+## Why network automation efforts stall
 
 <div class="grid cards" markdown>
 
--   ### Network engineers
+-   ### The code works, but nobody owns it
 
-    Build practical Python and Cisco automation capability through tutorials, deep dives, scripts, and production-grade engineering guidance.
+    Many automation projects fail after delivery because the team inherits a black box they cannot safely change.
 
-    [Start learning](./resources.md)
+    [See the transparency model](./prime-framework/philosophy.md)
 
--   ### Infrastructure managers
+-   ### The wrong tasks get automated
 
-    Reduce repetitive work, lower change risk, and build a measurable business case for automation that leadership can understand.
+    Busy work gets scripted while higher-value operational bottlenecks and risk reduction are ignored.
 
-    [View services](./services.md)
+    [See how we prioritise work](./prime-framework/pinpoint.md)
 
--   ### Teams inheriting brittle automation
+-   ### Leadership cannot see the ROI
 
-    Replace black-box scripts with workflows your engineers can understand, support, and extend without relying on the original author.
+    Without measurable outcomes, automation stays tactical instead of becoming an investable programme.
 
-    [See how we work](./how-we-work.md)
+    [Review the measurement approach](./prime-framework/measure.md)
 
 </div>
 
 ---
 
-## Choose your path
+## Learn, deploy, or transform
 
 <div class="grid cards" markdown>
 
 -   ### Learn
 
-    Browse structured learning paths, script libraries, and deep technical walkthroughs built for real Cisco environments.
+    Build practical Cisco automation capability through tutorials, deep dives, and production-grade engineering guidance.
 
     [Go to Learn](./resources.md)
 
--   ### Services
+-   ### Deploy
 
-    Engage Nautomation Prime for bespoke delivery, PRIME Framework consulting, or SMB-friendly automation packages.
+    Use hardened scripts, implementation patterns, and deployment options to move faster without starting from zero.
 
-    [Go to Services](./services.md)
+    [Explore the script library](./scripts/index.md)
 
--   ### PRIME Framework
+-   ### Transform
 
-    Understand the methodology behind how we scope, build, measure, and hand over automation.
+    Bring in Nautomation Prime when scale, governance, ROI, or knowledge transfer matter as much as the code itself.
 
-    [Explore the framework](./prime-framework/index.md)
+    [View services](./services.md)
 
--   ### About
+</div>
 
-    Review founder background, operating approach, and the principles behind the brand.
+---
 
-    [Learn about us](./about.md)
+<div class="np-cta-strip" markdown>
+
+### Need structured delivery, not just documentation?
+
+If you already know the problem and need an implementation partner, start with the services offering rather than piecing the whole solution together from scratch.
+
+<div class="np-action-row" markdown>
+
+[View Services](./services.md){.md-button .md-button--primary}
+[Request Discovery Call](mailto:enquiries@nautomationprime.io){.md-button}
+[Compare SMB Packages](./smb/index.md){.md-button}
+
+</div>
 
 </div>
 
@@ -90,22 +118,77 @@ Nautomation Prime helps network engineering teams move from manual operations an
 
 Comparable enterprise environments have seen results such as:
 
-- **Reduced VLAN provisioning time** from 15 minutes to 30 seconds per VLAN
-- **Automated IOS-XE upgrades** across 200+ devices with rollback safeguards
-- **Eliminated 90% of manual compliance checks** through continuous auditing
-- **Rebuilt inherited automation in portable Python** so internal teams retained ownership
+<div class="grid cards" markdown>
+
+-   ### 60x faster VLAN provisioning
+
+    Reduced a comparable manual workflow from 15 minutes to 30 seconds per VLAN.
+
+-   ### 200+ device IOS-XE upgrades
+
+    Automated upgrade execution with rollback safeguards and staged validation.
+
+-   ### 90 percent fewer manual compliance checks
+
+    Replaced repetitive audit effort with continuous, structured verification.
+
+-   ### Team-owned Python automation
+
+    Rebuilt inherited black-box tooling into transparent, maintainable workflows.
+
+</div>
 
 [See how we deliver these outcomes →](./how-we-work.md) | [Review the measurement model →](./prime-framework/measure.md)
 
 ---
 
-## Learn first. Bring us in when scale, governance, or ROI matters.
+## No black-box automation
 
-Teaching is a core part of the business model, not an afterthought. Use the learning content to build capability, use the deep dives to study real design decisions, and use the service pages when you need help applying those patterns across a live estate.
+<div class="grid cards" markdown>
 
-- New to network automation? Start with [Getting Started](./getting-started.md) and the [Tutorials](./tutorials/index.md).
-- Want production patterns? Explore [Deep Dives](./deep-dives/index.md) and [Production-Grade Network Automation Principles](./tutorials/production-grade-network-automation-principles/index.md).
-- Need implementation support? Review [Services](./services.md), [SMB Packages](./smb/index.md), and [How We Work](./how-we-work.md).
+-   ### Every system explained
+
+    Tutorials, deep dives, and delivered solutions are written for comprehension, not mystique.
+
+-   ### Every design decision documented
+
+    Logging, runbooks, validation strategy, and design rationale are treated as part of the deliverable.
+
+-   ### Every engagement ends with ownership
+
+    The PRIME Framework is designed to leave your team with capability, not dependency.
+
+</div>
+
+---
+
+<div class="np-founder-panel" markdown>
+
+### Built by Christopher Davies
+
+Christopher Davies is a CCNP-certified network engineer with 10+ years in enterprise infrastructure and automation. His background spans large-scale Cisco delivery, critical infrastructure environments, and production automation that has to survive real-world operational constraints.
+
+<div class="np-founder-metrics">
+  <div>
+    <strong>10+ years</strong>
+    Enterprise network engineering and automation delivery
+  </div>
+  <div>
+    <strong>CCNP-led</strong>
+    Enterprise, Automation, and Collaboration certification background
+  </div>
+  <div>
+    <strong>Production focus</strong>
+    Upgrades, audits, compliance, and capability transfer across live estates
+  </div>
+</div>
+
+<div class="np-section-link-row">
+  <a href="./founder.md">Read Christopher's story</a>
+  <a href="./about.md">About Nautomation Prime</a>
+</div>
+
+</div>
 
 ---
 
@@ -115,6 +198,7 @@ Whether you're assessing automation opportunities, rebuilding inherited scripts,
 
 [Request Discovery Call](mailto:enquiries@nautomationprime.io){.md-button .md-button--primary}
 [Compare Services](./services.md){.md-button}
+[Start with Getting Started](./getting-started.md){.md-button}
 
 ---
 
