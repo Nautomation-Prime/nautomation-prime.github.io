@@ -251,4 +251,8 @@ Regardless of which package you choose:
 
 Not sure which package fits your situation? [Send us an email](mailto:enquiries@nautomationprime.io) with a brief description of what you're trying to solve — we'll suggest the right starting point at no charge.
 
+<div class="np-action-row" markdown>
+
 [**Email Us →**](mailto:enquiries@nautomationprime.io){.md-button .md-button--primary} [**Book an Assessment →**](./packages/automation-assessment.md){.md-button}
+
+</div>

@@ -21,7 +21,11 @@ If your engineers are still spending hours on manual switch upgrades, repetitive
 
 No long-term contracts. No 6-month engagements. No black-box code.
 
+<div class="np-action-row" markdown>
+
 [**📋 Start With an Assessment — From £99**](./packages/automation-assessment.md){.md-button .md-button--primary} [**View All Packages →**](./services.md){.md-button}
+
+</div>
 
 ---
 
