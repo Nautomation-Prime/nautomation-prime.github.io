@@ -15,233 +15,111 @@ tags:
 
 ---
 
-## Welcome
+## Advanced Cisco network automation your team can actually own
 
-### 🚀 Enterprise-Grade Cisco Automation — Delivered Transparently, Built to Last
+Nautomation Prime helps network engineering teams move from manual operations and fragile scripts to transparent, production-grade Cisco automation. Every workflow is documented, every design choice is explained, and every engagement is built to leave capability with your team.
 
-**For Network Infrastructure Managers:** We rescue and design automation so your team owns it completely, your leadership can prove ROI, and it survives infrastructure changes—without vendor lock-in or reliance on consultants.
-
-Most network automation projects fail within 6 months. Not because the code breaks—but because nobody understands it, leadership can't prove ROI, and when requirements change, the whole thing collapses.
-
-**Nautomation Prime is different.** We deliver hardened, production-ready Cisco automation with zero black-box code. Every line explained. Every design decision documented. Every project structured for sustainable ROI and team empowerment.
+[Explore Learn](./resources.md){.md-button .md-button--primary}
+[Explore Services](./services.md){.md-button}
+[About the PRIME Framework](./prime-framework/index.md){.md-button}
+[About Nautomation Prime](./about.md){.md-button}
 
 > **Transparency note:** Nautomation Prime is an early-stage, founder-led practice. Methods, figures, and examples across this site are grounded in Christopher's enterprise delivery experience unless explicitly labelled as a direct Nautomation Prime client engagement.
 
-[**📞 Request Discovery Call**](mailto:enquiries@nautomationprime.io){.md-button .md-button--primary}
+---
 
-**[Explore Services](./services.md){.md-button}** | **[About the PRIME Framework](./prime-framework/index.md){.md-button}**
+## Built for teams that need more than a quick script
+
+<div class="grid cards" markdown>
+
+-   ### Network engineers
+
+    Build practical Python and Cisco automation capability through tutorials, deep dives, scripts, and production-grade engineering guidance.
+
+    [Start learning](./resources.md)
+
+-   ### Infrastructure managers
+
+    Reduce repetitive work, lower change risk, and build a measurable business case for automation that leadership can understand.
+
+    [View services](./services.md)
+
+-   ### Teams inheriting brittle automation
+
+    Replace black-box scripts with workflows your engineers can understand, support, and extend without relying on the original author.
+
+    [See how we work](./how-we-work.md)
+
+</div>
 
 ---
 
-## Giving With Integrity
+## Choose your path
 
-We are building Nautomation Prime to create value beyond technology delivery.
+<div class="grid cards" markdown>
 
-As the business grows, a percentage of revenue will be donated to carefully vetted charities that demonstrate transparency, responsible spending, ethical governance, and measurable community impact.
+-   ### Learn
 
-No blind giving. No checkbox charity. No tolerance for wasteful models.
+    Browse structured learning paths, script libraries, and deep technical walkthroughs built for real Cisco environments.
 
-**[Read Our Full Giving Policy ->](./charity.md)**
+    [Go to Learn](./resources.md)
 
----
+-   ### Services
 
-## ✅ Real-World Outcomes From Enterprise Delivery Experience
+    Engage Nautomation Prime for bespoke delivery, PRIME Framework consulting, or SMB-friendly automation packages.
 
-**Representative outcomes from comparable enterprise environments:**
+    [Go to Services](./services.md)
 
-- **Reduced VLAN provisioning time** from 15 minutes to 30 seconds (per VLAN) — *60x faster*
-- **Automated IOS-XE upgrades** across 200+ devices with automatic rollback safety — *zero manual intervention*
-- **Eliminated 90% of manual compliance checks** through continuous auditing — *compliance at scale*
-- **Removed vendor lock-in** by rebuilding legacy proprietary automation in portable Python — *owned by your team*
+-   ### PRIME Framework
 
-**[See how we deliver these outcomes →](./how-we-work.md)** | **[ROI Measurement Framework →](./prime-framework/measure.md)**
+    Understand the methodology behind how we scope, build, measure, and hand over automation.
 
----
+    [Explore the framework](./prime-framework/index.md)
 
-!!! tip "New: Code-Signing for Delivered Python Automation"
-    Need stronger software supply-chain assurance?
+-   ### About
 
-    We now offer optional **code-signing and software integrity controls** for delivered Python automation tools, giving your security team cryptographic proof of publisher authenticity and tamper evidence.
+    Review founder background, operating approach, and the principles behind the brand.
 
-    **[Explore this service →](./services.md#code-signing-software-integrity-new)**
+    [Learn about us](./about.md)
+
+</div>
 
 ---
 
-### 🎯 How We Deliver: The PRIME Framework
+## Representative outcomes from enterprise delivery experience
 
-Our proven **5-stage methodology** ensures your automation delivers measurable value:
+Comparable enterprise environments have seen results such as:
 
-**[Pinpoint](./prime-framework/pinpoint.md)** (identify high-impact opportunities) → **[Re-engineer](./prime-framework/re-engineer.md)** (scalable workflows) → **[Implement](./prime-framework/implement.md)** (production-grade code) → **[Measure](./prime-framework/measure.md)** (concrete ROI) → **[Empower](./prime-framework/empower.md)** (team ownership)
+- **Reduced VLAN provisioning time** from 15 minutes to 30 seconds per VLAN
+- **Automated IOS-XE upgrades** across 200+ devices with rollback safeguards
+- **Eliminated 90% of manual compliance checks** through continuous auditing
+- **Rebuilt inherited automation in portable Python** so internal teams retained ownership
 
-**[Learn the complete PRIME Framework →](./prime-framework/index.md)**
-
----
-
-## 🛠️ The PRIME Philosophy
-
-Every tool and guide is built on **five core principles** that ensure your automation is transparent, measurable, owned, safe, and empowering:
-
-1. **🔍 Transparency Over Obscurity** — Every line explained, every decision documented
-2. **📊 Measurability Over Assumptions** — Data-driven decisions, proven ROI
-3. **👤 Ownership Over Dependency** — Your team owns and controls the automation
-4. **🛡️ Safety Over Speed** — Production-grade validation, rollback, and error handling
-5. **💪 Empowerment Over "Magic Buttons"** — Understanding, not black-box automation
-
-**[Read the complete PRIME Philosophy →](./prime-framework/philosophy.md)**
+[See how we deliver these outcomes →](./how-we-work.md) | [Review the measurement model →](./prime-framework/measure.md)
 
 ---
 
-## 🎯 How Philosophy + Framework Work Together
+## Learn first. Bring us in when scale, governance, or ROI matters.
 
-**The PRIME Philosophy** defines **HOW** we build automation (our engineering values).
+Teaching is a core part of the business model, not an afterthought. Use the learning content to build capability, use the deep dives to study real design decisions, and use the service pages when you need help applying those patterns across a live estate.
 
-**The PRIME Framework** defines **WHAT** we deliver (our service methodology).
-
-| Philosophy Principle | Framework Application |
-| :--- | :--- |
-| **🔍 Transparency Over Obscurity** | Implement with line-by-line documentation; Empower teams with detailed knowledge transfer so they understand every decision |
-| **📊 Measurability Over Assumptions** | Pinpoint opportunities using data (not guesswork); Measure ROI with concrete metrics (not "it feels faster") |
-| **👤 Ownership Over Dependency** | Empower teams to maintain and extend automation independently—no vendor lock-in |
-| **🛡️ Safety Over Speed** | Re-engineer workflows with validation checkpoints; Implement with pre-flight checks, rollback mechanisms, and post-change verification |
-| **💪 Empowerment Over "Magic Buttons"** | Empower teams with understanding and control, not black-box automation they can't troubleshoot |
-
-**In practice:** The Philosophy ensures every line of code in the Framework is transparent, measurable, owned, safe, and empowering. The Framework ensures every automation project delivers measurable ROI, team capability, and sustainable value.
-
-**[Learn more about the Philosophy →](./prime-framework/philosophy.md)** | **[Learn about the PRIME Framework →](./prime-framework/index.md)**
+- New to network automation? Start with [Getting Started](./getting-started.md) and the [Tutorials](./tutorials/index.md).
+- Want production patterns? Explore [Deep Dives](./deep-dives/index.md) and [Production-Grade Network Automation Principles](./tutorials/production-grade-network-automation-principles/index.md).
+- Need implementation support? Review [Services](./services.md), [SMB Packages](./smb/index.md), and [How We Work](./how-we-work.md).
 
 ---
 
-## 📈 Choose Your Path
+## Ready to move from experimentation to delivery?
 
-Whether you're learning, deploying, or transforming your entire automation program—we have resources and services for every stage.
+Whether you're assessing automation opportunities, rebuilding inherited scripts, or planning a broader network transformation, Nautomation Prime offers structured support without black-box delivery.
 
-### 🎓 **Learn — Build Your Capabilities**
-
-- **[Tutorials](./tutorials/index.md)** — Step-by-step practical scripts (beginner to expert)
-    - Start here: [Show Command to Excel](./tutorials/beginner/netmiko-show-command-to-excel.md) — Your first Netmiko script
-- **[Deep Dives](./deep-dives/index.md)** — Production code walkthroughs with line-by-line explanations
-    - Featured: [CDP Network Audit](./deep-dives/cdp-audit.md) — Multi-threaded discovery with security patterns
-- **[Production-Grade Principles](./tutorials/production-grade-network-automation-principles/index.md)** — Enterprise patterns, governance, and implementation guidance
-
-### 🚀 **Deploy — Use Pre-Built Tools**
-
-- **[Script Library](./scripts/index.md)** — Production-ready, hardened automation (open-source)
-    - Available: CDP Network Audit, Access Switch Audit
-    - Coming Soon: IOS-XE Upgrade Orchestrator, Zero Touch Provisioning (ZTP)
-- **[Docker Containers](./services.md#scheduled-docker-containers)** — Daily audits and reporting, no manual intervention
-- **[Zero-Install Bundles](./services.md#zero-install-portable-bundles)** — Portable executables for Windows/Linux, no Python required
-
-### 🛠️ **Transform — Bespoke Services & PRIME Engagements**
-
-For organisations ready to redesign their automation program:
-
-- **[PRIME Framework Engagements](./prime-framework/index.md)** — 8–12 week transformations with measurable ROI
-    - Typical outcomes: 6–12 month payback, 60%+ efficiency gains, team ownership
-- **[Bespoke Solutions](./services.md)** — Custom automation for your topology and compliance requirements
-    - Zero Trust architecture, ISE automation, bulk provisioning, compliance auditing
-
-**[Explore Services](./services.md)** | **[Compare Service Tiers](./services.md)**
+[Request Discovery Call](mailto:enquiries@nautomationprime.io){.md-button .md-button--primary}
+[Compare Services](./services.md){.md-button}
 
 ---
 
-## 🏢 Are You a Small or Medium Business?
+## Giving with integrity
 
-Not every organisation needs a 12-week engagement. If you're an SMB with a Cisco network, a small team, and repetitive manual tasks eating your engineers' time — we have fixed-price packages designed specifically for you.
+We are building Nautomation Prime to create value beyond technology delivery. As the business grows, a percentage of revenue will be donated to carefully vetted charities that demonstrate transparency, responsible spending, ethical governance, and measurable community impact.
 
-| What You Need | Package | From |
-| :------------- | :------- | :---- |
-| Understand what's worth automating | [Automation Opportunity Assessment](./smb/packages/automation-assessment.md) | £99 |
-| Automated compliance auditing | [Switch Audit & Compliance Pack](./smb/packages/switch-audit-pack.md) | £750 |
-| Safe fleet-wide IOS-XE upgrades | [IOS-XE Upgrade Automation Pack](./smb/packages/ios-xe-upgrade-pack.md) | £1,200 |
-| New switches that configure themselves | [Zero-Touch Provisioning Setup](./smb/packages/ztp-setup.md) | £1,500 |
-| A specific task automated to fixed scope | [Custom Script Build](./smb/packages/custom-script-build.md) | £800 |
-| Ongoing backups, audits, and reports | [Automation-as-a-Service](./smb/packages/automation-as-a-service.md) | £300/mo |
-
-Enterprise-grade quality. Fixed price. No long-term contracts.
-
-[**Explore SMB Packages →**](./smb/index.md){.md-button .md-button--primary}
-
----
-
-## 📅 Typical PRIME Framework Engagement Timeline
-
-Wondering what an engagement looks like? Here's how we structure automation transformations:
-
-| Phase | Weeks | What We Do | Your Team Does |
-| :------ | :-----: | ----------- | ---------------- |
-| **Pinpoint** | 1–2 | Workshops, data gathering, gap analysis | Participate in 3–4 workshops, provide network data |
-| **Re-engineer** | 3–4 | Architecture design, safety model, testing strategy | Review designs, approve approaches |
-| **Implement** | 5–8 | Code development, pilot testing, staged rollout | Test pilots, validate on production-like labs |
-| **Measure** | 9–10 | ROI reporting, performance dashboards, KPI baseline | Approve metrics, review business case |
-| **Empower** | 10–12 | Knowledge transfer, handoff docs, team training | Attend training, take ownership |
-
-**Expected Outcome:** Your team owns production automation with 6–12 month payback, 60%+ operational efficiency gains, and sustainable scaling.
-
-**[Ready to start? Request a Discovery Call](mailto:enquiries@nautomationprime.io){.md-button .md-button--primary}**
-
----
-
-## 💰 Typical Investment
-
-## **Full PRIME Framework Engagement: £12,000 – £28,000**
-
-Covers complete end-to-end delivery from opportunity discovery to team empowerment (6–12 weeks, typical).
-
-**À La Carte Services:** Pinpoint (£2,500–£4,000) • Re-engineer (£3,000–£6,000) • Implement (£6,000–£18,000) • Measure (£2,000–£3,500) • Empower (custom)
-
-**Timeline to ROI Payback: 6–12 months** (then pure savings thereafter)
-
-[Get detailed pricing and options →](./services.md) | [Request Discovery Call](mailto:enquiries@nautomationprime.io)
-
----
-
-## 🚀 Quick Navigation
-
-**[Tutorials](./tutorials/index.md)** — Learn hands-on automation  
-**[Deep Dives](./deep-dives/index.md)** — Study production code  
-**[Scripts](./scripts/index.md)** — Deploy ready-made tools  
-**[Services](./services.md)** — Bespoke solutions  
-**[Production-Grade Principles](./tutorials/production-grade-network-automation-principles/index.md)** — Enterprise patterns & operating guidance  
-**[PRIME Framework](./prime-framework/index.md)** — Our methodology
-
----
-
-## 🏆 Why Choose Nautomation Prime?
-
-Founded by a **CCNP-certified Senior Network Engineer** with **10+ years** in enterprise infrastructure and large-scale automation (200+ device upgrades, NHS systems, critical infrastructure hardening).
-
-**Built from battle-tested experience, not theory.**
-
-### What Sets Us Apart
-
-- **🔍 Transparent Code** — Every line explained. No black boxes. You understand and own your automation.
-- **📊 Proven Methodology** — PRIME Framework built on 10+ years of enterprise deployments. It works at scale.
-- **👥 Team Empowerment** — We build YOUR capability, not create dependency. After engagement, you own and extend the solution.
-- **📈 Measurable ROI** — Concrete metrics: hours saved, risk reduced, capital freed. Not "it feels faster."
-- **🛡️ Production Grade** — Hardened error handling, security-first credential management, enterprise-scale parallelization.
-- **🔐 Software Integrity Option** — Optional code-signing for delivered automation packages to support enterprise security assurance.
-
-**[Learn our philosophy + 10-year track record →](./about.md)**
-
----
-
-## Next Steps
-
-- **🏢 For Infrastructure Managers & Leaders:**
-    - [**Schedule a Discovery Call**](mailto:enquiries@nautomationprime.io) → Discuss your automation challenges and ROI goals (30 min, no commitment)
-    - [**View Services & Pricing**](./services.md) → See PRIME engagements, Docker containers, custom solutions
-    - [**Review how we work**](./how-we-work.md) → See delivery structure, governance, and measurable outcomes
-- **👨‍💻 For Engineers & Technical Teams:**
-    - [**Getting Started Guide**](./getting-started.md) → Understand philosophy, pathways, and prerequisites
-    - [**Learn by Building**](./tutorials/index.md) → Hands-on tutorials from beginner to expert
-    - [**Study Production Code**](./deep-dives/index.md) → Deep dives into hardened automation patterns
-    - [**Explore Scripts**](./scripts/index.md) → Open-source, documented automation tools
-    - [**Production-Grade Principles**](./tutorials/production-grade-network-automation-principles/index.md) → 14-part guidance on safe enterprise automation
-- **❓ Still Have Questions?**
-    - [FAQ & Common Scenarios](./getting-started.md#frequently-asked-questions)
-    - [About & Track Record](./about.md)
-    - [Contact us](mailto:enquiries@nautomationprime.io) or [Connect on LinkedIn](https://www.linkedin.com/company/nautomationprime)
-
----
-
-> **Mission:** To empower network engineers through the **[PRIME Framework](./prime-framework/index.md)**—delivering automation with measurable ROI, production-grade quality, and sustainable team capability built on the **[Prime Philosophy](./prime-framework/philosophy.md)** of transparency, reliability, and pragmatism.
+[Read the giving policy →](./charity.md)

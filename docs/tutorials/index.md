@@ -126,3 +126,6 @@ All tutorials assume you have:
 - **[Getting Started](../getting-started.md)** — New to Nautomation Prime? Start here
 
 ---
+
+!!! tip "Need help applying this beyond the lab?"
+  If you're moving from tutorials to governed production automation, review our [Enterprise Automation Services](../services.md) or the [PRIME Framework](../prime-framework/index.md).

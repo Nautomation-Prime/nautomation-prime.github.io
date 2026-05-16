@@ -1,14 +1,19 @@
 ---
-title: Resources
-description: Comprehensive guide to all Nautomation Prime learning materials, scripts, and automation tools organized by skill level and use case.
+title: Learn Cisco Network Automation
+description: Structured learning hub for Cisco network automation tutorials, deep dives, scripts, and production-grade guidance.
 ---
 
-## Resources
+## Learn Cisco Network Automation
 
-Your complete guide to network automation tools, tutorials, and deep dives. Whether you're building your first Python script or orchestrating enterprise automation, find exactly what you need.
+This is the main learning hub for Nautomation Prime. Whether you're building your first Python script or designing production-grade Cisco automation, start here and follow the path that matches your current level.
 
-!!! info "Navigation Guide"
-    All content is **tagged by skill level** (Beginner, Intermediate, Expert) and **organized by use case**. Start with your skill level above, or jump to a specific learning path based on your needs.
+[Start with Getting Started](getting-started.md){.md-button .md-button--primary}
+[Browse Tutorials](tutorials/index.md){.md-button}
+[Study Deep Dives](deep-dives/index.md){.md-button}
+[Explore Scripts](scripts/index.md){.md-button}
+
+!!! info "How to use this page"
+    Start with your current level, then move into the linked tutorials, deep dives, and scripts. If you already know the technical problem you need to solve, jump straight to the use-case shortcuts below.
 
 ## Learning Paths by Skill Level
 
@@ -158,6 +163,12 @@ Understand the philosophy and methodology behind Nautomation Prime.
     - **New to Python?** → [Start Here](getting-started.md) for environment setup
     - **Know Python, new to networking automation?** → [Beginner tutorials](tutorials/beginner/index.md)
     - **Why Nornir won't work for me?** → It will—see [Why Nornir?](tutorials/intermediate/why-nornir.md)
+
+---
+
+## When learning turns into delivery
+
+If you need help applying these patterns across a live Cisco estate, review our [Enterprise Automation Services](services.md), the [SMB packages](smb/index.md), or the [PRIME Framework](prime-framework/index.md).
     - **Building enterprise solutions?** → [Advanced Nornir Patterns](tutorials/intermediate/advanced-nornir-patterns.md)
     - **Need validation after changes?** → [PyATS Fundamentals](tutorials/intermediate/pyats-fundamentals.md)
     - **Want our core principles?** → [PRIME Philosophy](prime-framework/philosophy.md)

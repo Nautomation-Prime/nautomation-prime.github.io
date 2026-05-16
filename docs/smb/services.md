@@ -63,7 +63,7 @@ This assessment answers those questions before you commit to anything.
 
 ---
 
-## Switch Audit & Compliance Pack
+## Switch Audit & Compliance Pack {#switch-audit--compliance-pack}
 
 **Stop manually checking devices against your security baseline.**
 
