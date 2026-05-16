@@ -1,6 +1,6 @@
 ---
 title: Enterprise Automation Services
-description: Proven 5-stage methodology for network automation success. From opportunity discovery to team empowerment, delivering measurable ROI and sustainable capability.
+description: Enterprise Cisco automation consulting, implementation, and capability transfer for teams that need measurable ROI, production-grade delivery, and zero black-box dependency.
 tags:
   - Services
   - PRIME Framework
@@ -8,72 +8,192 @@ tags:
   - Custom Automation
 ---
 
-## Enterprise Network Automation Services
+<div class="np-hero" markdown>
 
-!!! tip "Looking for SMB-friendly packages?"
-    If you're a small or medium business looking for fixed-price, fast-turnaround automation — rather than a full enterprise engagement — visit our **[SMB Automation Packages](./smb/index.md)** section.
+<p class="np-eyebrow">Enterprise Cisco automation consulting, implementation, and capability transfer</p>
 
-    Packages start from £99 with no long-term commitments.
+## Transform network operations without creating another black box
 
-    [**Explore SMB Packages →**](./smb/index.md)
+Nautomation Prime helps enterprise Cisco teams move from manual workflows, inherited scripts, and stalled automation efforts to production-grade delivery with measurable ROI and documented handover. The outcome is not just working code, but an automation operating model your team can run, trust, and extend.
 
-## Transform Network Operations with Proven Methodology
+<div class="np-action-row" markdown>
 
-At Nautomation Prime, we help enterprise organisations deliver strategic network automation through the **[PRIME Framework](./prime-framework/index.md)**—a proven 5-stage methodology focused on measurable business value, production-grade quality, and sustainable organizational capability.
+[Request Discovery Call](mailto:enquiries@nautomationprime.io){.md-button .md-button--primary}
+[Compare Engagement Options](#enterprise-service-offerings){.md-button}
+[See Investment Ranges](#typical-investment-ranges){.md-button}
+[Explore SMB Packages](./smb/index.md){.md-button}
 
-!!! abstract "Transparency Note: Business Stage and Evidence Base"
-    Nautomation Prime is an early-stage, founder-led practice.
+</div>
 
-    Figures, outcomes, and examples on this page are based on Christopher Davies' enterprise delivery experience unless explicitly identified as direct Nautomation Prime client results.
+<ul class="np-signal-list">
+  <li>Enterprise Cisco focus</li>
+  <li>Founder-led delivery</li>
+  <li>6-12 month typical payback</li>
+  <li>Ownership built into handover</li>
+</ul>
 
-    Representative outcomes from comparable enterprise environments include:
+</div>
 
-    - **6-12 month payback period** on automation investments
-    - **60-80% reduction** in manual configuration time
-    - **95%+ configuration accuracy** through automated validation
-    - **Zero vendor lock-in** with full code ownership and transfer
+> **Transparency note:** Nautomation Prime is an early-stage, founder-led practice. Figures, outcomes, and examples on this page are based on Christopher Davies' enterprise delivery experience unless explicitly identified as direct Nautomation Prime client results.
+
+---
+
+## Who this is for
+
+<div class="grid cards" markdown>
+
+-   ### Infrastructure leaders under pressure to prove ROI
+
+    Use automation to reduce operational drag, lower change risk, and give leadership concrete evidence of value.
+
+    [See how value is measured](./prime-framework/measure.md)
+
+-   ### Network teams inheriting brittle scripts
+
+    Replace undocumented one-off tooling with transparent systems your engineers can actually operate and extend.
+
+    [See engagement tracks](#engagement-tracks-by-technical-capability)
+
+-   ### Security and compliance-conscious organisations
+
+    Build automation with auditability, rollback, validation, and optional code-signing already considered.
+
+    [Review security assurance](#security-compliance-assurance)
+
+-   ### Teams that need help without long-term dependency
+
+    Work with a founder-led specialist who prioritises handover, knowledge transfer, and sustainable team capability.
+
+    [See how engagements work](./how-we-work.md)
+
+</div>
+
+---
+
+## Choose the right engagement model
+
+<div class="grid cards" markdown>
+
+-   ### Full PRIME Framework engagement
+
+    Best for organisations that need strategy, design, implementation, measurement, and capability transfer handled as one programme.
+
+    **Typical investment:** £12,000 - £28,000
+
+    [See the full engagement](#enterprise-service-offerings)
+
+-   ### Individual PRIME stages
+
+    Bring Nautomation Prime in where you need leverage most: opportunity discovery, workflow design, implementation, ROI tracking, or team empowerment.
+
+    [Jump to a la carte services](#individual-services)
+
+-   ### SMB automation packages
+
+    If you need fixed-price, fast-turnaround work rather than a full enterprise engagement, use the SMB package route instead.
+
+    [Explore SMB packages](./smb/index.md)
+
+</div>
+
+---
+
+## Representative enterprise outcomes
+
+<div class="grid cards" markdown>
+
+-   ### 6-12 month payback
+
+    Comparable enterprise environments often recover the investment within the first year when scope and adoption are disciplined.
+
+-   ### 60-80 percent less manual effort
+
+    Repetitive workflows are redesigned first, then automated with validation and operational safeguards.
+
+-   ### 95 percent plus validated accuracy
+
+    Automated checks reduce drift, cut human error, and improve change confidence across the estate.
+
+-   ### Zero vendor lock-in
+
+    Delivered automation is documented, transferred, and structured so your team retains control after handover.
+
+</div>
+
+---
+
+<div class="np-founder-panel" markdown>
+
+### Work directly with Christopher Davies
+
+Nautomation Prime is founder-led. You work directly with Christopher Davies, a CCNP-certified network engineer with 10+ years in enterprise infrastructure and automation delivery across real operational environments, not a hand-off chain of junior consultants.
+
+<div class="np-founder-metrics">
+  <div>
+    <strong>10+ years</strong>
+    Enterprise Cisco infrastructure and automation delivery
+  </div>
+  <div>
+    <strong>CCNP-led</strong>
+    Senior network engineering background with automation specialism
+  </div>
+  <div>
+    <strong>Founder-led</strong>
+    Direct delivery, direct accountability, direct context retention
+  </div>
+</div>
+
+<div class="np-section-link-row">
+  <a href="./founder.md">Meet Christopher Davies</a>
+  <a href="./about.md">About Nautomation Prime</a>
+  <a href="./how-we-work.md">Review the delivery model</a>
+</div>
+
+</div>
+
+---
+
+<div class="np-cta-strip" markdown>
+
+### Do we need Python skills before we engage?
+
+No. Engagements can be structured for operational ownership, code-level ownership, or a hybrid path that builds capability over time. Your team does not need to start as Python developers to get value from the work.
+
+<div class="np-section-link-row">
+  <a href="#engagement-tracks-by-technical-capability">See engagement tracks</a>
+  <a href="./tutorials/index.md">Browse learning content</a>
+</div>
+
+</div>
 
 ---
 
 ## Enterprise Challenges We Solve
 
-### Strategic Business Drivers
-
-| Challenge | PRIME Framework Solution |
+| Challenge | PRIME Framework Response |
 | :---------- | :------------------------ |
-| **Operational Scale** — Manual processes can't scale with business growth | Data-driven [Pinpoint](./prime-framework/pinpoint.md) analysis identifies highest-impact automation opportunities |
-| **Change Risk** — Configuration errors cause outages and SLA breaches | Production-grade [Implement](./prime-framework/implement.md) with pre-flight validation and automatic rollback |
-| **Audit & Compliance** — Manual compliance verification is time-consuming and error-prone | Automated Golden Config auditing with complete audit trails and exception reporting |
-| **Skills Gap** — Difficulty hiring or retaining network automation expertise | [Empower](./prime-framework/empower.md) stage builds internal capability with comprehensive knowledge transfer |
-| **ROI Uncertainty** — Leadership demands proof of automation value | [Measure](./prime-framework/measure.md) stage delivers concrete metrics and executive reporting |
-| **Technical Debt** — Inherited scripts are undocumented and unmodifiable | [PRIME Philosophy](./prime-framework/philosophy.md) ensures transparent, maintainable, production-grade code |
+| **Operational Scale** — Manual processes cannot keep up with business growth | Data-driven [Pinpoint](./prime-framework/pinpoint.md) analysis identifies the highest-value automation opportunities |
+| **Change Risk** — Configuration mistakes create outages and SLA impact | Production-grade [Implement](./prime-framework/implement.md) adds validation, rollback, and staged deployment patterns |
+| **Audit & Compliance** — Manual verification is slow and inconsistent | Automated governance and reporting provide repeatable evidence and exception handling |
+| **Skills Gap** — Hiring and retaining automation expertise is difficult | [Empower](./prime-framework/empower.md) builds internal capability with structured transfer and support |
+| **ROI Uncertainty** — Leadership needs proof, not enthusiasm | [Measure](./prime-framework/measure.md) instruments value and produces executive-ready reporting |
+| **Technical Debt** — Inherited scripts are hard to trust or modify | The [PRIME Philosophy](./prime-framework/philosophy.md) keeps delivery transparent, maintainable, and auditable |
 
 ---
 
-### Why Automation Projects Fail
+## Why automation programmes stall
 
-Across enterprise environments we have worked in, three critical failure patterns appear repeatedly:
+Across enterprise environments we have worked in, the same three patterns appear repeatedly:
 
-**❌ Tactical Execution Without Strategic Planning**
-    - Automating low-value, high-effort tasks instead of high-ROI opportunities
-    - No formal ROI analysis or executive buy-in
-    - Automation efforts not aligned with business objectives
-
-**❌ "Script First, Think Later" Approach**
-    - Automating inefficient workflows without process re-engineering
-    - Prototype code deployed to production without proper testing
-    - No consideration for error handling, rollback, or audit requirements
-
-**❌ Build-and-Abandon Delivery**
-    - Consultant delivers code and leaves immediately
-    - No documentation, knowledge transfer, or team capability building
-    - Organisation becomes dependent on original author for any modifications
+- **Tactical execution without strategic planning** — Teams automate low-value work, skip ROI analysis, and fail to align delivery with business priorities.
+- **Script first, think later** — Fragile prototypes get pushed into production without proper workflow redesign, testing, rollback, or governance.
+- **Build-and-abandon delivery** — Code is delivered, but the team is not prepared to understand, maintain, or extend it after handover.
 
 ---
 
-### The PRIME Framework Difference
+## Why the PRIME Framework works
 
-**A methodology designed to prevent failure and ensure sustainable success:**
+The PRIME Framework is designed to prevent those failure modes:
 
 ✅ **[Pinpoint](./prime-framework/pinpoint.md)** — Identify opportunities with proven ROI through data-driven analysis  
 ✅ **[Re-engineer](./prime-framework/re-engineer.md)** — Optimise workflows for scalability before any code is written  
@@ -81,23 +201,7 @@ Across enterprise environments we have worked in, three critical failure pattern
 ✅ **[Measure](./prime-framework/measure.md)** — Track performance and demonstrate quantifiable business value  
 ✅ **[Empower](./prime-framework/empower.md)** — Transfer knowledge and build sustainable long-term team capability
 
-**[Learn about the PRIME Framework →](./prime-framework/index.md)**
-
-!!! question "Does my team need Python knowledge?"
-    **No.** We offer three [engagement tracks](#engagement-tracks-by-technical-capability) tailored to your team's skill level:
-
-    - **Operational Ownership** — No Python required, automation delivered as operational tools
-    - **Code-Level Ownership** — Python-capable teams gain full modification autonomy
-    - **Hybrid Approach** — Gradual skill building from operations to code mastery
-
-    [See engagement tracks →](#engagement-tracks-by-technical-capability)
-
----
-
-!!! success "Confidentiality & Ownership Guarantee"
-    **All bespoke automation projects are developed exclusively for the commissioning client.**
-
-    Custom scripts are never published, reused, or shared with third parties. Clients receive full ownership rights or an exclusive licence as defined in the project agreement. Non-disclosure agreements (NDAs) are standard for all engagements.
+**All bespoke automation projects are developed exclusively for the commissioning client.** Custom scripts are never published, reused, or shared with third parties. Clients receive full ownership rights or an exclusive licence as defined in the project agreement, and NDAs are standard for engagements.
 
 ---
 
@@ -1116,7 +1220,13 @@ The PRIME Framework provides the proven methodology, production-grade quality, a
 
 #### Option 1: Schedule a Discovery Call
 
-**[Request Free Consultation](mailto:enquiries@nautomationprime.io)**
+<div class="np-action-row" markdown>
+
+[Request Free Consultation](mailto:enquiries@nautomationprime.io){.md-button .md-button--primary}
+[See Investment Ranges](#typical-investment-ranges){.md-button}
+[Explore the PRIME Framework](./prime-framework/index.md){.md-button}
+
+</div>
 
 - No obligation, no sales pressure
 - 30-60 minute discussion of your specific challenges
@@ -1144,4 +1254,9 @@ Browse our [educational content](./tutorials/index.md) and [deep dives](./deep-d
 
 **Transform your network operations. Build lasting capability. Achieve measurable results.**
 
-**[Begin with a discovery call →](mailto:enquiries@nautomationprime.io)**
+<div class="np-action-row" markdown>
+
+[Begin with a discovery call](mailto:enquiries@nautomationprime.io){.md-button .md-button--primary}
+[Review how we work](./how-we-work.md){.md-button}
+
+</div>
