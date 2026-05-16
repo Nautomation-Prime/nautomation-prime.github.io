@@ -196,9 +196,13 @@ Christopher Davies is a CCNP-certified network engineer with 10+ years in enterp
 
 Whether you're assessing automation opportunities, rebuilding inherited scripts, or planning a broader network transformation, Nautomation Prime offers structured support without black-box delivery.
 
+<div class="np-action-row" markdown>
+
 [Request Discovery Call](mailto:enquiries@nautomationprime.io){.md-button .md-button--primary}
 [Compare Services](./services.md){.md-button}
 [Start with Getting Started](./getting-started.md){.md-button}
+
+</div>
 
 ---
 
