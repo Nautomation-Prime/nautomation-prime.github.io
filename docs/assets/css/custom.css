@@ -39,8 +39,9 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    padding-top: 0.8em;
-    padding-bottom: 0.8em;
+    min-height: 3.5rem;
+    padding-top: 0.95em;
+    padding-bottom: 0.95em;
     line-height: 1.2;
     text-align: center;
 }
