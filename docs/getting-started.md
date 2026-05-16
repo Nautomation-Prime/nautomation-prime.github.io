@@ -69,7 +69,7 @@ We deliver automation projects through the **[PRIME Framework](prime-framework/i
 - Optional code-signing and software integrity controls for delivered Python automation
 - Deployment options (standard scripts, portable bundles, Docker containers)
 
-**[View Services](services.md)** | **[Code-Signing Service](services.md#code-signing-software-integrity-new)** | **[Request Discovery Call](mailto:enquiries@nautomationprime.io)**
+**[View Services](services.md)** | **[Code-Signing Service](services.md#code-signing-software-integrity-new)** | **[Request Discovery Call](contact.md)**
 
 ---
 
@@ -114,7 +114,7 @@ We deliver automation projects through the **[PRIME Framework](prime-framework/i
 
 For structured automation projects with proven ROI:
 
-1. **[Request Discovery Call](mailto:enquiries@nautomationprime.io)**—free 30-60 minute discussion
+1. **[Request Discovery Call](contact.md)**—free 30-60 minute discussion
 2. Receive [Pinpoint stage](prime-framework/pinpoint.md) roadmap with ROI calculations
 3. Choose full [PRIME Framework](prime-framework/index.md) or individual stages (à la carte)
 4. Deliverables: Production code, documentation, ROI metrics, team capability
@@ -194,7 +194,7 @@ Whether you're learning automation, deploying tools, or need bespoke services—
 
 ### For Custom Automation & Services
 
-**[Book a Discovery Call](mailto:enquiries@nautomationprime.io)** (Free, 30-60 minutes)
+**[Book a Discovery Call](contact.md)** (Free, 30-60 minutes)
 
 No obligation. We'll discuss your goals, timeline, and answer any questions about the PRIME Framework.
 

@@ -522,7 +522,7 @@ For Organisations with existing automation needing ROI proof:
 - **[PRIME Framework Overview](./index.md)** — See how all five stages work together
 - **[Previous Stage: Implement](./implement.md)** — Building the automation we're now measuring
 - **[Next Stage: Empower](./empower.md)** — Knowledge transfer and capability building
-- **[Request Discovery Call](mailto:enquiries@nautomationprime.io)** — Discuss your automation needs
+- **[Request Discovery Call](../contact.md)** — Discuss your automation needs
 
 ---
 

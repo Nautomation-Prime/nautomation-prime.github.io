@@ -18,7 +18,7 @@ Nautomation Prime helps enterprise Cisco teams move from manual workflows, inher
 
 <div class="np-action-row" markdown>
 
-[Request Discovery Call](mailto:enquiries@nautomationprime.io){.md-button .md-button--primary}
+[Request Discovery Call](./contact.md){.md-button .md-button--primary}
 [Compare Engagement Options](#enterprise-service-offerings){.md-button}
 [See Investment Ranges](#typical-investment-ranges){.md-button}
 [Explore SMB Packages](./smb/index.md){.md-button}
@@ -281,7 +281,7 @@ Our flagship service delivers the complete journey: from identifying the right o
 
 **Ideal For:** Organisations seeking strategic, sustainable automation with proven methodology and measurable business outcomes
 
-**[Request Discovery Call](mailto:enquiries@nautomationprime.io)** to discuss your automation requirements.
+**[Request Discovery Call](./contact.md)** to discuss your automation requirements.
 
 ---
 
@@ -530,7 +530,7 @@ The PRIME Framework adapts to your team's Python knowledge. Choose the track tha
 - Team skill levels vary (some Python-capable, others not)
 - You prefer gradual capability building over immediate deep-dive training
 
-**Still unsure?** [Request a discovery call](mailto:enquiries@nautomationprime.io) to discuss which track fits your organisation.
+**Still unsure?** [Request a discovery call](./contact.md) to discuss which track fits your organisation.
 
 ---
 
@@ -896,7 +896,7 @@ Ready to transform your network operations with proven automation methodology?
 
 ### Step 1: Discovery & Assessment (Free, No Obligation)
 
-**[Request a Discovery Call](mailto:enquiries@nautomationprime.io)**
+**[Request a Discovery Call](./contact.md)**
 
 **Initial Consultation (30-60 minutes):**
 
@@ -1222,7 +1222,7 @@ The PRIME Framework provides the proven methodology, production-grade quality, a
 
 <div class="np-action-row" markdown>
 
-[Request Free Consultation](mailto:enquiries@nautomationprime.io){.md-button .md-button--primary}
+[Request Free Consultation](./contact.md){.md-button .md-button--primary}
 [See Investment Ranges](#typical-investment-ranges){.md-button}
 [Explore the PRIME Framework](./prime-framework/index.md){.md-button}
 
@@ -1256,7 +1256,7 @@ Browse our [educational content](./tutorials/index.md) and [deep dives](./deep-d
 
 <div class="np-action-row" markdown>
 
-[Begin with a discovery call](mailto:enquiries@nautomationprime.io){.md-button .md-button--primary}
+[Begin with a discovery call](./contact.md){.md-button .md-button--primary}
 [Review how we work](./how-we-work.md){.md-button}
 
 </div>

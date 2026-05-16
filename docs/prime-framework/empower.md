@@ -500,7 +500,7 @@ For Organisations with existing automation needing knowledge transfer:
 - **[Previous Stage: Measure](./measure.md)** — Proving the value we've delivered
 - **[Beginner Tutorials](../tutorials/beginner/index.md)** — Start building Python skills
 - **[Services](../services.md)** — Explore engagement options
-- **[Request Discovery Call](mailto:enquiries@nautomationprime.io)** — Discuss your automation needs
+- **[Request Discovery Call](../contact.md)** — Discuss your automation needs
 
 ---
 

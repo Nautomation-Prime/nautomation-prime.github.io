@@ -234,7 +234,7 @@ The PRIME Framework has delivered measurable improvements across enterprise netw
 
 30-60 minute consultation to understand your challenges and automation maturity. No obligation.
 
-[**Request Discovery Call →**](mailto:enquiries@nautomationprime.io)
+[**Request Discovery Call →**](../contact.md)
 
 ### Step 2: Pinpoint Assessment (Optional)
 

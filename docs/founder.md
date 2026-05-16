@@ -152,7 +152,7 @@ Whether you're:
 - **Improving existing automation** — I can help you understand and maintain what you have
 - **Scaling across your organisation** — I can help you build sustainable, team-owned capability
 
-**[Book a Discovery Call](mailto:enquiries@nautomationprime.io)** (30-60 minutes, free, no obligation)
+**[Book a Discovery Call](./contact.md)** (30-60 minutes, free, no obligation)
 
 **[Explore the PRIME Framework](./prime-framework/index.md)** to understand how we deliver sustainable automation
 

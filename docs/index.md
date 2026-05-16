@@ -27,7 +27,7 @@ Nautomation Prime helps network engineering teams move from manual operations an
 
 [Explore Learn](./resources.md){.md-button .md-button--primary}
 [Explore Services](./services.md){.md-button}
-[Request Discovery Call](mailto:enquiries@nautomationprime.io){.md-button}
+[Request Discovery Call](./contact.md){.md-button}
 [Meet Christopher Davies](./founder.md){.md-button}
 
 </div>
@@ -105,7 +105,7 @@ If you already know the problem and need an implementation partner, start with t
 <div class="np-action-row" markdown>
 
 [View Services](./services.md){.md-button .md-button--primary}
-[Request Discovery Call](mailto:enquiries@nautomationprime.io){.md-button}
+[Request Discovery Call](./contact.md){.md-button}
 [Compare SMB Packages](./smb/index.md){.md-button}
 
 </div>
@@ -198,7 +198,7 @@ Whether you're assessing automation opportunities, rebuilding inherited scripts,
 
 <div class="np-action-row" markdown>
 
-[Request Discovery Call](mailto:enquiries@nautomationprime.io){.md-button .md-button--primary}
+[Request Discovery Call](./contact.md){.md-button .md-button--primary}
 [Compare Services](./services.md){.md-button}
 [Start with Getting Started](./getting-started.md){.md-button}
 

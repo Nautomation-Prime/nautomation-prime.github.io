@@ -9,6 +9,7 @@ strict: true
 
 theme:
   name: material
+  custom_dir: overrides
   favicon: assets/favicon.ico
   language: en
   features:
@@ -190,6 +191,7 @@ nav:
   - Services:
     - Overview: services.md
     - How We Work: how-we-work.md
+    - Contact & Discovery: contact.md
     - For Small & Medium Businesses:
       - smb/index.md
       - smb/services.md

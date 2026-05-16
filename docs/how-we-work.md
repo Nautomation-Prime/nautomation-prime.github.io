@@ -8,13 +8,52 @@ tags:
   - How To Work With Us
 ---
 
-## How Nautomation Prime Delivers Automation
+<div class="np-hero" markdown>
 
-We deliver network automation through a **proven 5-stage methodology** called the **PRIME Framework**. Each stage builds on the previous one, ensuring measurable value, sustainable capability, and zero black-box code.
+<p class="np-eyebrow">Founder-led delivery from discovery to handover</p>
 
-Every engagement is guided by our **[PRIME Philosophy](./prime-framework/philosophy.md)**—core principles of transparency, measurability, ownership, safety, and empowerment.
+## See exactly what a PRIME Framework engagement looks like
 
-This is how it works.
+This page shows how Nautomation Prime takes a network automation engagement from first conversation to team ownership. The goal is not just to deliver working code, but to build a delivery path your team can understand, approve, and sustain after handover.
+
+<div class="np-action-row" markdown>
+
+[Request Discovery Call](./contact.md){.md-button .md-button--primary}
+[View Services](./services.md){.md-button}
+[See Investment Ranges](./services.md#typical-investment-ranges){.md-button}
+
+</div>
+
+<ul class="np-signal-list">
+  <li>Typical engagement: 6-12 weeks</li>
+  <li>Staged rollout, not blind deployment</li>
+  <li>ROI tracking built in</li>
+  <li>Knowledge transfer included</li>
+</ul>
+
+</div>
+
+## What to expect from working together
+
+<div class="grid cards" markdown>
+
+-   ### Structured discovery first
+
+  We start by clarifying the operational problem, constraints, risks, and business case before any build work begins.
+
+-   ### Safety before speed
+
+  Workflow design, validation, rollback, and pilot thinking are built in before production rollout.
+
+-   ### Measured delivery
+
+  Success is tracked with actual before-and-after metrics, not vague claims that automation "feels faster".
+
+-   ### Ownership at the end
+
+  The process includes documentation, workshops, and support so your team can run and extend the automation with confidence.
+
+</div>
 
 ---
 
@@ -45,7 +84,7 @@ We sit with your network operations team and document:
 - Current operational workflows
 - Pain points and frustration areas
 - Time spent on each task (daily/weekly/monthly)
-- Constraints and constraints (compliance, legacy systems, team skills)
+- Constraints and dependencies (compliance, legacy systems, team skills)
 - Success criteria (how will we know this worked?)
 
 #### 2. Time-Motion Analysis (1–2 weeks background work)
@@ -464,28 +503,29 @@ You own the automation completely:
 
 ---
 
-## Let's Work Together
+## Ready to start the process?
 
-Ready to transform your network operations?
+<div class="np-cta-strip" markdown>
 
-### Step 1: Free Discovery Call
+### Start with a discovery conversation, not a hard sell
 
-**[Book a Discovery Call](mailto:enquiries@nautomationprime.io)** — 30–60 minutes, no obligation
+The first step is a low-pressure conversation about your operational bottlenecks, constraints, likely ROI, and whether the PRIME Framework is the right fit. If it is not, that will be made clear early.
 
-We'll discuss:
+<div class="np-action-row" markdown>
 
-- Your operational pain points
-- What you want to automate
-- How the PRIME Framework specifically applies to your situation
-- Timeline and investment expectations
+[Book a Discovery Call](./contact.md){.md-button .md-button--primary}
+[View Services](./services.md){.md-button}
+[Contact & Discovery](./contact.md#what-to-include-in-your-message){.md-button}
 
-### Step 2: Pinpoint Engagement
+</div>
 
-If we're a good fit, we deliver a prioritized automation roadmap with ROI projections—**even if you don't proceed further.**
+</div>
 
-### Step 3: Let's Build
+### Typical next steps
 
-Choose full PRIME Framework or individual stages. We'll deliver sustainable automation capability.
+1. Discovery conversation to understand your environment and goals.
+2. If the fit is right, a paid [Pinpoint](./prime-framework/pinpoint.md) engagement defines priorities and ROI.
+3. From there, proceed with the full PRIME Framework or the specific stages you need.
 
 ---
 

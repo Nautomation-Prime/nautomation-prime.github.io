@@ -572,7 +572,7 @@ For Organisations with designs but need development help:
 - **[Previous Stage: Re-engineer](./re-engineer.md)** — Design blueprints implemented here
 - **[Next Stage: Measure](./measure.md)** — Tracking performance and ROI
 - **[View Tutorials](../tutorials/index.md)** — Learn implementation techniques
-- **[Request Discovery Call](mailto:enquiries@nautomationprime.io)** — Discuss your automation needs
+- **[Request Discovery Call](../contact.md)** — Discuss your automation needs
 
 ---
 

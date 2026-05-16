@@ -1,0 +1,19 @@
+{#-
+  This file extends the default Material content partial so we can inject
+  a shared conversion CTA after tutorial and deep-dive article pages.
+-#}
+{% include "partials/tags.html" %}
+{% include "partials/actions.html" %}
+{% if "<h1" not in page.content %}
+  <h1>{{ page.title | d(config.site_name, true)}}</h1>
+{% endif %}
+{{ page.content }}
+{% if page and page.file and page.file.src_path %}
+  {% set src = page.file.src_path %}
+  {% if ((src.startswith("tutorials/") and not src.endswith("/index.md")) or (src.startswith("deep-dives/") and not src.endswith("/index.md"))) %}
+    {% include "partials/learning-cta.html" %}
+  {% endif %}
+{% endif %}
+{% include "partials/source-file.html" %}
+{% include "partials/feedback.html" %}
+{% include "partials/comments.html" %}

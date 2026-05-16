@@ -117,7 +117,7 @@ Christopher specialises in enterprise Cisco automation, with deep expertise in P
 
 Whether you want to learn, deploy tools, or build bespoke solutions, let's talk.
 
-**[Book a Discovery Call](mailto:enquiries@nautomationprime.io)** — 30-60 minutes, free, no obligation  
+**[Book a Discovery Call](./contact.md)** — 30-60 minutes, free, no obligation  
 [Explore Services](./services.md) — PRIME Framework, à la carte options, pricing
 
 ---
