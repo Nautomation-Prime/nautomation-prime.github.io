@@ -7,10 +7,14 @@ description: Structured learning hub for Cisco network automation tutorials, dee
 
 This is the main learning hub for Nautomation Prime. Whether you're building your first Python script or designing production-grade Cisco automation, start here and follow the path that matches your current level.
 
+<div class="np-action-row" markdown>
+
 [Start with Getting Started](getting-started.md){.md-button .md-button--primary}
 [Browse Tutorials](tutorials/index.md){.md-button}
 [Study Deep Dives](deep-dives/index.md){.md-button}
 [Explore Scripts](scripts/index.md){.md-button}
+
+</div>
 
 !!! info "How to use this page"
     Start with your current level, then move into the linked tutorials, deep dives, and scripts. If you already know the technical problem you need to solve, jump straight to the use-case shortcuts below.
