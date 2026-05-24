@@ -17,6 +17,9 @@ tags:
 
 ### "Production-Ready Python Automation, Built for Scale."
 
+!!! info "Version Alignment"
+    This deep dive reflects the **current released state (May 2026)** of CDP Network Audit and aligns with the modular package structure, YAML configuration model, two-tier credential workflow, jump-host support, threaded discovery engine, and template-driven Excel reporting path.
+
 A **modular, enterprise-grade** network discovery utility that crawls Cisco network topologies via **Cisco Discovery Protocol (CDP)**. It connects (optionally through an SSH jump/bastion host), collects `show cdp neighbors detail` and `show version`, parses outputs with **TextFSM**, enriches with **DNS resolution**, and writes structured **Excel reports** from pre-formatted templates.
 
 **What's New:** The tool has undergone a **complete architectural restructure** — migrated from a monolithic script to a **modular Python package** with YAML-based configuration, dedicated modules for each concern, and enhanced maintainability for enterprise deployments.

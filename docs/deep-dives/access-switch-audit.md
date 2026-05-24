@@ -14,6 +14,9 @@ tags:
 
 ### "Enterprise Port Intelligence, Distilled to Pure Python."
 
+!!! info "Version Alignment"
+    This deep dive reflects the **current released state (May 2026)** of Access Switch Audit and aligns with the modular package structure, YAML configuration model, threaded collection workflow, bastion-handling path, stale-port logic, and Excel reporting behaviour described in the current tool release.
+
 A modular Python utility that connects to Cisco switches (optionally through an SSH jump host), collects comprehensive interface details, PoE information, and neighbour presence, then exports a professional, filters-only Excel workbook with a SUMMARY sheet and one sheet per device. Built for production reliability with **YAML-based configuration**, **intelligent fallback parsing**, and **customisable credential management**.
 
 [:material-github: View Source Code on GitHub](https://github.com/Nautomation-Prime/Access_Switch_Audit){ .md-button .md-button--primary }
