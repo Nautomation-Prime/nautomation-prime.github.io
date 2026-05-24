@@ -2198,11 +2198,11 @@ The repository includes a **professional Windows batch launcher** (`run.bat`) th
 
 ### Using run.bat
 
-## Option 1: Double-click
+### Option 1: Double-click
 
 Simply double-click `run.bat` in Windows Explorer to launch the tool with default behaviour.
 
-## Option 2: Command Line
+### Option 2: Command Line
 
 ```cmd
 run.bat

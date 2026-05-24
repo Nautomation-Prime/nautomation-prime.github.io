@@ -111,7 +111,7 @@ This tool is built on industry-standard Python libraries: **Netmiko** (multi-dev
 
 The tool has been restructured into a **professional modular package** (v2.0), separating concerns and following enterprise Python best practices:
 
-    ```text
+```text
     .
     ├── switch_audit/           # Main package (modular design)
     │   ├── __init__.py
@@ -135,7 +135,7 @@ The tool has been restructured into a **professional modular package** (v2.0), s
     ├── requirements.txt       # Python dependencies
     ├── MIGRATION.md           # Migration guide for v2.0
     └── README.md
-    ```
+```
 
 > **V2.0 Architecture:** The restructure separates the monolithic `main.py` (1,300+ lines) into focused modules with single responsibilities. This improves maintainability, testability, and extensibility.
 >
@@ -177,9 +177,9 @@ Each module in the `switch_audit/` package has a specific, well-defined role:
   - `pywin32` (Windows only; used for Windows Credential Manager integration)
 
 Install with pip:
-    ```bash
+```bash
     pip install netmiko paramiko pandas openpyxl pywin32
-    ```
+```
 
 ### Optional but Recommended
 
@@ -200,44 +200,44 @@ All configurable settings are centralised in `config.yaml` at the project root. 
 **Key Configuration Categories:**
 
 **1. Network Settings:**
-    ```yaml
+```yaml
     network:
     jump_host: "jump-gateway.example.com"  # Default bastion/jump host
     device_type: "cisco_ios"                # Netmiko device type
     ssh_port: 22                            # SSH port
     read_timeout: 30                        # Command read timeout
-    ```
+```
 
 **2. Credential Settings:**
-    ```yaml
+```yaml
     credentials:
     cred_target: "MyApp/ADM"  # Windows Credential Manager target
     enable_target: ""          # Optional enable secret target
-    ```
+```
 
 **3. Performance & Concurrency:**
-    ```yaml
+```yaml
     concurrency:
     default_workers: 10        # Max concurrent device sessions
     retry_attempts: 3          # Connection retry count
     retry_base_wait: 2         # Base wait time for exponential backoff
-    ```
+```
 
 **4. Excel Output:**
-    ```yaml
+```yaml
     output:
     default_filename: "audit.xlsx"  # Default output filename
 
     excel_formatting:
     min_column_width: 10
     max_column_width: 50
-    ```
+```
 
 **5. Stale Port Detection:**
-    ```yaml
+```yaml
     stale_detection:
     default_stale_days: 30  # Days threshold for stale ports
-    ```
+```
 
 ### Why YAML Configuration?
 
@@ -254,10 +254,10 @@ All configurable settings are centralised in `config.yaml` at the project root. 
 
 Specific settings can be overridden at runtime via environment variables (primarily for the jump host):
 
-    ```powershell
+```powershell
     # Override jump host at runtime
     $env:JUMP_HOST = "temp-bastion.example.com"
-    ```
+```
 
 > **Best Practice:** Use `config.yaml` for organisational defaults; use CLI arguments (`--direct`, `--workers`, etc.) for per-run overrides.
 
@@ -284,9 +284,9 @@ Simply double-click `run.bat` in Windows Explorer to launch the tool with defaul
 
 ### Option 2: Command Line (Default Behaviour)
 
-    ```cmd
+```cmd
     run.bat
-    ```
+```
 
 This runs the Access Switch Audit using `python -m switch_audit` with all default settings from `config.yaml`.
 
@@ -312,7 +312,7 @@ This runs the Access Switch Audit using `python -m switch_audit` with all defaul
 
 ### Example Output
 
-    ```
+```
     ================================================================================
                     ACCESS SWITCH AUDIT TOOL
     ================================================================================
@@ -336,7 +336,7 @@ This runs the Access Switch Audit using `python -m switch_audit` with all defaul
     [SUCCESS] Script completed successfully
 
     ================================================================================
-    ```
+```
 
 ---
 
@@ -359,15 +359,15 @@ Use `python -m switch_audit` with arguments when you need to:
 
 You can pass arguments to `run.bat` and they will be forwarded to the Python script:
 
-    ```cmd
+```cmd
     run.bat --devices my-switches.txt --output custom-audit.xlsx --workers 5
-    ```
+```
 
 ### Method 2: Direct Python Execution (New in v2.0)
 
 Activate the virtual environment and run the package as a module:
 
-    ```bash
+```bash
     # Windows (recommended)
     portable_env\Scripts\activate
     python -m switch_audit --devices my-switches.txt --output audit-report.xlsx
@@ -378,7 +378,7 @@ Activate the virtual environment and run the package as a module:
 
     # Backward compatibility (legacy mode)
     python main.py --devices my-switches.txt --output audit-report.xlsx
-    ```
+```
 
 ### Available Command-Line Arguments
 
@@ -393,9 +393,9 @@ Activate the virtual environment and run the package as a module:
 
 **Example: Custom audit with direct connections:**
 
-    ```bash
+```bash
     python -m switch_audit --devices critical-switches.txt --output critical-audit.xlsx --direct --debug
-    ```
+```
 
 ---
 
@@ -599,14 +599,14 @@ If you're upgrading from the older monolithic version, see the **MIGRATION.md** 
     - **Backward Compatible**: `python main.py --devices devices.txt`
 
 **3. Updated Imports (for developers)**
-    ```python
+```python
     # Configuration loader:
     from assets.config_files.config_loader import Config
 
     # Package imports:
     from switch_audit.credentials import get_secret_with_fallback
     from switch_audit.app_config import config  # Singleton wrapper
-    ```
+```
 
 ### Benefits of v2.0 Restructure
 
@@ -637,7 +637,7 @@ For end users, the tool works identically. All CLI arguments, configuration opti
 
 ### Parsing Strategy: TextFSM + Custom Fallback
 
-    ```python
+```python
     def get_interfaces_via_show_interfaces(conn) -> List[Dict[str, Any]]:
         """
         Use TextFSM to parse 'show interfaces' for all ports.
@@ -650,7 +650,7 @@ For end users, the tool works identically. All CLI arguments, configuration opti
             return []
         except Exception:
             return []  # Graceful degradation
-    ```
+```
 
 **Why This Approach:**
 
@@ -662,7 +662,7 @@ For end users, the tool works identically. All CLI arguments, configuration opti
 
 This is the **authoritative source** for port mode and VLAN classification.
 
-    ```python
+```python
     def parse_show_interfaces_status(output: str) -> List[Dict[str, str]]:
         """
         Robust fixed-width parser for 'show interfaces status'.
@@ -671,18 +671,18 @@ This is the **authoritative source** for port mode and VLAN classification.
         - Variable column widths
         - Missing/malformed data
         """
-    ```
+```
 
 **Step 1: Identify Header Row**
-    ```python
+```python
     def is_header(ln: str) -> bool:
         return ("Port" in ln and "Status" in ln and "Vlan" in ln and "Speed" in ln)
-    ```
+```
 
 **Why:** Header detection must be flexible. Different IOS versions capitalize differently.
 
 **Step 2: Extract Column Positions**
-    ```python
+```python
     def _find_columns(header_line: str) -> Dict[str, slice]:
         """
         Calculate exact character positions for each column.
@@ -695,7 +695,7 @@ This is the **authoritative source** for port mode and VLAN classification.
             end = header_line.find(tokens[i+1]) if i+1 < len(tokens) else len(header_line)
             positions[tok.lower()] = slice(start, end)
         return positions
-    ```
+```
 
 **Why This Matters:**
 
@@ -704,7 +704,7 @@ This is the **authoritative source** for port mode and VLAN classification.
 - Slice objects provide clean substring extraction
 
 **Step 3: Parse Data Rows**
-    ```python
+```python
     for line in lines:
         if line.startswith(("--", "Port")) or not line.strip():
             continue  # Skip separators and empty lines
@@ -723,7 +723,7 @@ This is the **authoritative source** for port mode and VLAN classification.
             record['status'] = 'disabled'
         elif 'err' in status_raw:
             record['status'] = 'err-disabled'
-    ```
+```
 
 **Why Status Normalisation:**
 
@@ -733,7 +733,7 @@ This is the **authoritative source** for port mode and VLAN classification.
 
 ### Port Mode Classification
 
-    ```python
+```python
     # Determine mode from VLAN column
     vlan_value = record.get('vlan', '').lower()
 
@@ -743,7 +743,7 @@ This is the **authoritative source** for port mode and VLAN classification.
         mode = 'routed'
     else:
         mode = 'access'  # Default assumption
-    ```
+```
 
 **Why This Logic:**
 
@@ -767,7 +767,7 @@ This is the **authoritative source** for port mode and VLAN classification.
 
 ### Interface Name Normalisation
 
-    ```python
+```python
     def normalize_ifname(ifname: str) -> Tuple[str, str]:
         """
         Normalise interface names to canonical short and long forms.
@@ -794,7 +794,7 @@ This is the **authoritative source** for port mode and VLAN classification.
         }.get(short_prefix, prefix_raw)
         
         return (f"{short_prefix}{rest}", f"{long_prefix}{rest}")
-    ```
+```
 
 **Why This Matters:**
 
@@ -804,7 +804,7 @@ This is the **authoritative source** for port mode and VLAN classification.
 
 ### Alias-Based Lookup
 
-    ```python
+```python
     def all_aliases(ifname: str) -> List[str]:
         """
         Return all possible alias strings for an interface.
@@ -818,7 +818,7 @@ This is the **authoritative source** for port mode and VLAN classification.
         if alias in poe_map:
             poe_data = poe_map[alias]
             break
-    ```
+```
 
 **Why Multiple Aliases:**
 
@@ -847,32 +847,32 @@ This is the **authoritative source** for port mode and VLAN classification.
 
 ### Conservative Detection Strategy
 
-    ```python
+```python
     def _categorize_port(row: Dict[str, Any], stale_days: int) -> str:
         """
         Classify port as: active, stale, or available.
         Uses conservative logic to minimise false positives.
         """
-    ```
+```
 
 **Rule 1: Only Classify Access Ports**
-    ```python
+```python
     mode = row.get('Mode', '')
     if mode != 'access':
         return 'active'  # Trunk and routed ports are infrastructure
-    ```
+```
 
 **Why:** Trunk and routed ports connect switches to each other. They should never be flagged as stale.
 
 **Rule 2: Connected Ports — Check Activity**
-    ```python
+```python
     status = row.get('Status', '')
     if status == 'connected':
         last_input_secs = row.get('Last Input Seconds')
         if last_input_secs and last_input_secs >= (stale_days * 86400):
             return 'stale'
         return 'active'
-    ```
+```
 
 **Why:**
 
@@ -881,7 +881,7 @@ This is the **authoritative source** for port mode and VLAN classification.
 - Likely a powered-off device or misconfigured endpoint
 
 **Rule 3: Disconnected Ports — Check for Indicators**
-    ```python
+```python
     if status in ('notconnect', 'disabled', 'err-disabled'):
         # Conservative: require BOTH conditions to flag as stale
         has_poe = row.get('PoE Power (W)')
@@ -899,7 +899,7 @@ This is the **authoritative source** for port mode and VLAN classification.
             return 'stale'
         
         return 'available'  # May be in use (PoE or neighbour present)
-    ```
+```
 
 **Why This Conservative Approach:**
 
@@ -921,7 +921,7 @@ This is the **authoritative source** for port mode and VLAN classification.
 
 ### Time Parsing: Handling Cisco Duration Formats
 
-    ```python
+```python
     def _parse_last_input_seconds(s: str) -> float | None:
         """
         Parse Cisco 'Last input' timer into seconds.
@@ -948,7 +948,7 @@ This is the **authoritative source** for port mode and VLAN classification.
             
             days = y * 365 + w * 7 + d
             return days * 86400 + h * 3600 + m_val * 60 + s_val
-    ```
+```
 
 **Why Multiple Format Support:**
 
@@ -971,11 +971,11 @@ The script retrieves device credentials using `switch_audit/credentials.py`:
 >
 > **Configuration:** Credential Manager targets are set in `config.yaml` under the `credentials` section:
 >
-    ```yaml
+```yaml
     credentials:
     cred_target: "MyApp/ADM"  # Primary credential target
     enable_target: ""          # Optional enable secret target
-    ```
+```
 
 ---
 
@@ -986,16 +986,16 @@ The script retrieves device credentials using `switch_audit/credentials.py`:
 - `--direct` will skip the jump host entirely and attempt direct SSH connections
 
 Example configuration in `config.yaml`:
-    ```yaml
+```yaml
     network:
     jump_host: "jump-gateway.example.com"  # or "" to disable by default
-    ```
+```
 
 The `JumpManager` (now in `switch_audit/jump_manager.py`) maintains a persistent SSH session to the bastion and proxies device connections through it.
 
 **How JumpManager Works:**
 
-    ```python
+```python
     class JumpManager:
         def __init__(self, jump_host: str, username: str, password: str):
             self.jump_host = jump_host
@@ -1021,7 +1021,7 @@ The `JumpManager` (now in `switch_audit/jump_manager.py`) maintains a persistent
                 (target_ip, target_port),
                 ('localhost', 0)
             )
-    ```
+```
 
 **Why direct-tcpip Channel:**
 
@@ -1036,13 +1036,13 @@ The `JumpManager` (now in `switch_audit/jump_manager.py`) maintains a persistent
 
 Provide a plain-text file with one device per line. Lines that are blank or start with `#` are ignored.
 
-    ```text
+```text
     # devices.txt
     192.0.2.11
     192.0.2.12  # inline comments are not parsed; this whole token must be a host/IP only
     core-switch-01
     access-sw-22
-    ```
+```
 
 > **Note:** Hostnames must be resolvable from the machine (or via the jump host, depending on your SSH setup).
 
@@ -1055,7 +1055,7 @@ Provide a plain-text file with one device per line. Lines that are blank or star
 3. (Optional) Configure `config.yaml` with your `jump_host` and other settings.
 4. Run the audit:
 
-        ```bash
+```bash
         # Using jump host from config.yaml
         python -m switch_audit --devices devices.txt --output access_port_audit.xlsx
 
@@ -1064,7 +1064,7 @@ Provide a plain-text file with one device per line. Lines that are blank or star
 
         # Verbose debugging
         python -m switch_audit --debug -d devices.txt
-        ```
+```
 
 ---
 
@@ -1072,14 +1072,14 @@ Provide a plain-text file with one device per line. Lines that are blank or star
 
 `switch_audit` exposes the following command-line options:
 
-    ```text
+```text
     --devices, -d    (required)  Path to the devices file (one IP/hostname per line; '#' comments allowed)
     --output,  -o    (optional)  Output Excel file name. Default: audit.xlsx
     --workers, -w    (optional)  Max concurrent device sessions (threads). Default: 10
     --stale-days     (optional)  Days threshold for stale access ports. 0 disables stale flagging. Default: 30
     --direct         (optional)  Connect directly (do not use jump host)
     --debug          (optional)  Enable verbose logging/prints
-    ```
+```
 
 ### Required vs Optional
 
@@ -1088,7 +1088,7 @@ Provide a plain-text file with one device per line. Lines that are blank or star
 
 **Usage Examples:**
 
-    ```bash
+```bash
     # Standard audit with jump host
     python -m switch_audit --devices devices.txt --output report.xlsx
 
@@ -1100,7 +1100,7 @@ Provide a plain-text file with one device per line. Lines that are blank or star
 
     # Using the launcher
     run.bat --devices devices.txt --output audit.xlsx
-    ```
+```
 
 ---
 
@@ -1114,13 +1114,13 @@ Provide a plain-text file with one device per line. Lines that are blank or star
 
 ### Thread-Safe Architecture
 
-    ```python
+```python
     # Thread-safe accumulators (protected by locks)
     self.device_records = []       # Parsed results: one row per device
     self.interface_details = []    # Detailed per-interface data
     self.failed_devices = {}       # {ip: error_message}
     self.progress_lock = threading.Lock()  # Protects shared state
-    ```
+```
 
 **Why Thread Locks Matter:**
 
@@ -1147,7 +1147,7 @@ For each device, the tool collects five commands in sequence:
 
 ### The Intelligence Layer: Port Classification
 
-    ```python
+```python
     def classify_port(interface_record):
         """
         Assign a port to one of three categories:
@@ -1155,7 +1155,7 @@ For each device, the tool collects five commands in sequence:
         - 'trunk': Multiple VLANs, typically uplinks
         - 'routed': No VLAN (layer 3), typically inter-device links
         """
-    ```
+```
 
 **Classification Logic:**
 
@@ -1292,9 +1292,9 @@ That is the exact conservative logic described in the stale-detection section ab
 
 The script prints an event-driven progress bar like:
 
-    ```
+```
     Progress: [██████████░░░░░░░░░░░░] 12/30 started: 15/30
-    ```
+```
 
 On completion, the Excel workbook is written to the filename you specify (default `audit.xlsx`).
 
@@ -1331,7 +1331,7 @@ On completion, the Excel workbook is written to the filename you specify (defaul
 
 **Example config.yaml for Enterprise:**
 
-    ```yaml
+```yaml
     network:
     jump_host: "bastion.corp.example.com"
     read_timeout: 45  # Slower WAN links
@@ -1352,7 +1352,7 @@ On completion, the Excel workbook is written to the filename you specify (defaul
     excel_formatting:
     min_column_width: 12
     max_column_width: 60
-    ```
+```
 
 ---
 
@@ -1388,7 +1388,7 @@ This tool has been tested and verified on the following Cisco IOS and IOS-XE pla
 
 ## ✅ Examples
 
-    ```bash
+```bash
     # Basic, with jump host (new modular entry point)
     python -m switch_audit -d devices.txt -o audit.xlsx
 
@@ -1400,7 +1400,7 @@ This tool has been tested and verified on the following Cisco IOS and IOS-XE pla
 
     # Backward compatibility (legacy mode)
     python main.py --devices devices.txt --output audit.xlsx
-    ```
+```
 
 ---
 
@@ -1420,8 +1420,6 @@ A: Only for access ports and when `--stale-days > 0`. Connected ports are flagge
 
 **Q: What changed in v2.0?**  
 A: The monolithic `main.py` was restructured into a professional Python package (`switch_audit/`) with modular components. The functionality is identical, but the code is now organised following enterprise best practices. See MIGRATION.md for details.
-
----
 
 ---
 
@@ -1447,7 +1445,7 @@ After studying this code, you should understand:
 
 ### Pattern 1: Modular Package Structure
 
-    ```python
+```python
     # Entry point (__main__.py)
     from .cli import main
     if __name__ == "__main__":
@@ -1461,11 +1459,11 @@ After studying this code, you should understand:
     from .excel_reporter import ExcelReporter
     reporter = ExcelReporter()
     reporter.generate(results)
-    ```
+```
 
 ### Pattern 2: Configuration Singleton
 
-    ```python
+```python
     # app_config.py - Single source of truth
     from assets.config_files.config_loader import Config
     config = Config()
@@ -1473,49 +1471,49 @@ After studying this code, you should understand:
     # Used throughout application
     from .app_config import config
     workers = config.default_workers
-    ```
+```
 
 ### Pattern 3: Graceful Degradation
 
-    ```python
+```python
     try:
         data = parse_with_textfsm(output)  # Preferred method
     except:
         data = parse_with_custom_logic(output)  # Fallback
-    ```
+```
 
 ### Pattern 4: Multi-Key Lookup
 
-    ```python
+```python
     for alias in all_aliases(interface_name):
         if alias in poe_map:
             poe_data = poe_map[alias]
             break
-    ```
+```
 
 ### Pattern 5: Thread-Safe Accumulation
 
-    ```python
+```python
     with lock:
         results.append(new_data)  # Atomic operation
-    ```
+```
 
 ### Pattern 6: Conservative Classification
 
-    ```python
+```python
     if condition_A and condition_B:  # Both must be true
         mark_as_risky()
     else:
         mark_as_safe()  # Default to safe
-    ```
+```
 
 ### Pattern 7: Type-Safe Configuration
 
-    ```python
+```python
     @property
     def default_workers(self) -> int:
         return self._get_nested("concurrency", "default_workers", default=10)
-    ```
+```
 
 ---
 

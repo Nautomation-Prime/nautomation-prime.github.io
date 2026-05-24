@@ -30,6 +30,17 @@ If your team needs "complete transparency", this guide is built for exactly that
 
 ---
 
+## 🧭 How to Read This Deep Dive
+
+This page is written as a tutorial for engineers who want to understand both the output and the code structure behind it. Read it using four lenses:
+
+- **What the tool does** from workbook ingest through rendered configuration output
+- **Why the implementation is split this way** across CLI, workbook, rendering, and pack layers
+- **How to run and validate it safely** with repeatable commands and review steps
+- **Where to customise behaviour** without breaking the stable core engine
+
+---
+
 ## ✨ Why This Tool Matters
 
 Most configuration-generation projects become brittle because they mix customer policy directly into Python logic. Cisco Config Generator avoids that trap:
@@ -689,6 +700,15 @@ After completing this tutorial, an engineer should be able to:
 - Troubleshoot common generation failures quickly
 - Use headless mode for CI/CD pipelines and repeatable generation jobs
 - Validate rendered output in a lab before production deployment
+
+---
+
+## Related Resources
+
+- [Technical Deep Dives](./index.md) — Browse the full set of code-first walkthroughs
+- [Cisco IOS-XE Compliance Audit Deep Dive](./cisco-compliance-audit.md) — Learn how generated standards are later audited and governed
+- [Access Switch Port Audit Deep Dive](./access-switch-audit.md) — Study parallel collection, enrichment, and Excel reporting patterns
+- [PRIME Framework](../prime-framework/index.md) — See the operating model behind the tool design choices
 
 ---
 

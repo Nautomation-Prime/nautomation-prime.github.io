@@ -379,13 +379,13 @@ That metadata powers scoped enforcement, filtered reporting, and safer exception
 
 ## 🧠 Core Engine Concepts
 
-## 1) Structured Collection First
+### 1) Structured Collection First
 
 `collector.py` gathers key show commands and parses them into structured models (Genie preferred, with fallback behaviour when unavailable).
 
 This provides stable inputs for compliance checks and avoids fragile single-line CLI scraping.
 
-## 2) Parse Running Config Into Queryable Sections
+### 2) Parse Running Config Into Queryable Sections
 
 The running config is transformed into:
 
@@ -395,7 +395,7 @@ The running config is transformed into:
 
 This gives the engine consistent helpers for checks like "present globally" vs "present on interface".
 
-## 3) Classify Every Interface by Intent
+### 3) Classify Every Interface by Intent
 
 `port_classifier.py` combines signals from:
 
@@ -407,7 +407,7 @@ This gives the engine consistent helpers for checks like "present globally" vs "
 
 Result: checks are applied to the right interfaces for the right reasons.
 
-## 4) Execute Enabled Checks by Category
+### 4) Execute Enabled Checks by Category
 
 `compliance_engine.py` runs check families only when enabled:
 
@@ -428,7 +428,7 @@ This section is the "under the hood" explanation many engineers ask for: not jus
   Snippets below are intentionally simplified to focus on the design pattern.
   They represent the production structure and decision logic used by the project.
 
-## 1) CLI Entry Point and Exit Behaviour
+### 1) CLI Entry Point and Exit Behaviour
 
 The entrypoint keeps the interface thin and delegates implementation detail to the orchestrator.
 
@@ -468,7 +468,7 @@ def main() -> None:
 
 ---
 
-## 2) Orchestrator Pattern and Concurrency Safety
+### 2) Orchestrator Pattern and Concurrency Safety
 
 The orchestrator builds per-device jobs and executes them with a thread pool.
 
@@ -503,7 +503,7 @@ with ThreadPoolExecutor(max_workers=max_workers) as executor:
 
 ---
 
-## 3) ParsedConfig Model: Avoid Regex Chaos
+### 3) ParsedConfig Model: Avoid Regex Chaos
 
 Instead of scanning full running config text repeatedly, the parser creates queryable sections.
 
@@ -531,7 +531,7 @@ class ParsedConfig:
 
 ---
 
-## 4) Signal Fusion for Port Classification
+### 4) Signal Fusion for Port Classification
 
 The classifier does not trust a single signal. It combines STP, CDP/LLDP, EtherChannel, and interface metadata.
 
@@ -557,7 +557,7 @@ assign_final_roles(ports)
 
 ---
 
-## 5) Policy-Driven Check Execution
+### 5) Policy-Driven Check Execution
 
 Checks are method-based, but all enablement is policy-driven.
 
@@ -588,7 +588,7 @@ for category, fn in checks:
 
 ---
 
-## 6) Finding Model: Standardised Audit Currency
+### 6) Finding Model: Standardised Audit Currency
 
 Every check emits a normalised finding object.
 
@@ -611,7 +611,7 @@ Finding(
 
 ---
 
-## 7) Direction-Aware Guard Logic (Critical Example)
+### 7) Direction-Aware Guard Logic (Critical Example)
 
 This is a signature implementation detail and a strong example of policy with topology context.
 
@@ -642,7 +642,7 @@ else:
 
 ---
 
-## 8) Native VLAN Validation with Structured-Then-Fallback Logic
+### 8) Native VLAN Validation with Structured-Then-Fallback Logic
 
 The trunk native VLAN check attempts structured data first, then falls back to interface config parsing.
 
@@ -674,7 +674,7 @@ else:
 
 ---
 
-## 9) Remediation Script Generation Strategy
+### 9) Remediation Script Generation Strategy
 
 The remediation builder only includes FAIL findings with remediation commands and then organises commands by scope.
 
@@ -701,7 +701,7 @@ lines.extend(["end", "write memory", "!"])
 
 ---
 
-## 10) Reporting Layers and Operator Outputs
+### 10) Reporting Layers and Operator Outputs
 
 The reporting pipeline keeps terminal output compact while pushing detail into HTML, CSV, JSON, and remediation artefacts.
 
@@ -726,7 +726,7 @@ write_remediation_artifacts(results, enabled=remediation.generate_script)
 
 ---
 
-## 11) Credential Chain and Operator Experience
+### 11) Credential Chain and Operator Experience
 
 Credential handling follows a strict lookup order: `.env` file, keyring, environment variables, then prompt.
 
@@ -752,7 +752,7 @@ if not creds:
 
 ---
 
-## 12) Live Collection as the Single Execution Path
+### 12) Live Collection as the Single Execution Path
 
 The current tool path assumes live collection against reachable devices rather than replaying saved command outputs.
 
@@ -774,7 +774,7 @@ data = collector.collect(hostname, ip)
 
 ---
 
-## 13) Design Principles You Can Reuse in Other Automation Projects
+### 13) Design Principles You Can Reuse in Other Automation Projects
 
 If you are building your own automation framework, these patterns are worth copying:
 
@@ -1467,6 +1467,15 @@ Need a compact printable version? The runbook lives in the repository itself:
 
 !!! note "Current Operational Model"
   In addition to command-level remediation scripts, the current code line includes governed remediation lifecycle operations, scoped filtering, and two operator-focused experiences (`--interactive` and `--tui`). For day-to-day execution, use the one-page runbook linked above.
+
+---
+
+## Related Resources
+
+- [Technical Deep Dives](./index.md) — Compare this platform pattern with the rest of the portfolio
+- [Cisco Config Generator Deep Dive](./cisco-config-generator.md) — See how intent, policy, and templates are modelled before audit time
+- [CDP Network Audit Deep Dive](./cdp-audit.md) — Study crawl control, fallback parsing, and topology reporting patterns
+- [PRIME Framework](../prime-framework/index.md) — Review the operational principles behind the governance model
 
 ---
 
