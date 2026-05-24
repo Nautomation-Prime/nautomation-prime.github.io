@@ -11,7 +11,7 @@ tags:
 
 ## Technical Deep Dives
 
-## "Engineering Transparency into Every Line of Code."
+### "Engineering Transparency into Every Line of Code."
 
 Welcome to the **Nautomation Prime** Technical Library. These are not just scripts; they are educational blueprints designed to bridge the gap between complex Cisco infrastructure and hardened Python automation.
 
@@ -26,6 +26,7 @@ Our Deep Dives are built for engineers who refuse to treat automation as a "blac
 | **[CDP Network Audit](./cdp-audit.md)** | A threaded discovery utility that crawls Cisco networks via CDP with two-tier authentication and jump server support. | Thread-Safety, Two-Tier Auth, Jump-Hosts, DNS Enrichment, TextFSM |
 | **[Access Switch Port Audit](./access-switch-audit.md)** | Parallel port health collection across your access layer, exported to Excel. | Multi-threaded Collection, Stale Detection, PoE Intelligence |
 | **[Cisco IOS-XE Compliance Audit](./cisco-compliance-audit.md)** | A policy-driven, role-aware compliance platform with 90+ checks, trunk-intent classification, remediation generation, and multi-format reporting. | Governance as Code, Role-Aware Checks, Split Config Directories, Remediation at Scale |
+| **[Cisco Config Generator](./cisco-config-generator.md)** | Excel intent-to-config generation for Cisco IOS-XE access estates with pack-based templating and a portable runtime. | Intent Modelling, Jinja2 Templates, Pack Architecture, TUI and Headless Execution |
 | **[Coming Soon: IOS-XE Software Upgrade Orchestrator](../coming-soon/ios-xe-upgrade-orchestrator.md)** *(Design & Planning Phase)* | Automated, intelligent firmware management for Cisco IOS-XE devices. Includes comprehensive design covering Python integration with Catalyst Centre, Ansible, and Nornir. | Pre-Flight Validation, Binary Verification, Stack-Aware Orchestration, Rollback Capability, Framework Integration |
 | **[Coming Soon: Zero Touch Provisioning (ZTP)](../coming-soon/cisco-ios-xe-ztp.md)** *(Testing & Validation Phase)* | Production-ready Day 0 provisioning for Cisco Catalyst switches running IOS-XE. Serial-based configuration lookup, retry logic with exponential backoff, and structured JSON logging to Graylog/Syslog. | Template-Based Config, DHCP Integration, Remote Logging, Structured Logging |
 
@@ -51,6 +52,12 @@ Each Deep Dive is structured as:
 - **The Why** — Design decisions and architectural choices
 - **The How** — Line-by-line walkthroughs of critical functions
 - **The What** — Design patterns and security considerations
+
+Where the tool complexity justifies it, we also include:
+
+- **The Run Path** — Exactly how to execute the tool with working commands
+- **The Failure Modes** — What usually breaks and how to diagnose it
+- **The Safe Change Points** — Where to customise behaviour without undermining reliability
 
 Read these alongside the raw source code on GitHub. Whether deploying bespoke solutions or understanding Python at scale with Cisco hardware, start here.
 

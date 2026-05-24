@@ -182,6 +182,7 @@ nav:
       - Access Switch Audit: deep-dives/access-switch-audit.md
       - CDP Audit: deep-dives/cdp-audit.md
       - Cisco Compliance Audit: deep-dives/cisco-compliance-audit.md
+      - Cisco Config Generator: deep-dives/cisco-config-generator.md
     - Scripts: scripts/index.md
     - Coming Soon:
       - coming-soon/index.md

@@ -15,13 +15,24 @@ tags:
 
 ## Deep Dive: CDP Network Audit Tool
 
-## "Production-Ready Python Automation, Built for Scale."
+### "Production-Ready Python Automation, Built for Scale."
 
 A **modular, enterprise-grade** network discovery utility that crawls Cisco network topologies via **Cisco Discovery Protocol (CDP)**. It connects (optionally through an SSH jump/bastion host), collects `show cdp neighbors detail` and `show version`, parses outputs with **TextFSM**, enriches with **DNS resolution**, and writes structured **Excel reports** from pre-formatted templates.
 
 **What's New:** The tool has undergone a **complete architectural restructure** — migrated from a monolithic script to a **modular Python package** with YAML-based configuration, dedicated modules for each concern, and enhanced maintainability for enterprise deployments.
 
 [:material-github: View Source Code on GitHub](https://github.com/Nautomation-Prime/Cisco_CDP_Network_Audit){ .md-button .md-button--primary }
+
+---
+
+## 🧭 How to Read This Deep Dive
+
+This guide is written as a transparent engineering walkthrough, not just a feature summary. As you read, use this structure:
+
+- **What the tool does** at each stage of execution
+- **Why the design exists** in its current form
+- **How to run and validate it** with working commands and expected outputs
+- **Where to customise it safely** without breaking production behaviour
 
 ---
 

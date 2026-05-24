@@ -20,6 +20,17 @@ A modular Python utility that connects to Cisco switches (optionally through an 
 
 ---
 
+## 🧭 How to Read This Deep Dive
+
+This guide is intended to show not only what the tool produces, but why the code is shaped the way it is. Read it using four lenses:
+
+- **What happens** during collection, enrichment, and reporting
+- **Why each design choice exists** in production terms
+- **How to run it safely** using real commands and expected outcomes
+- **Where to modify it** without destabilising the broader workflow
+
+---
+
 !!! success "What's New in Version 2.0"
     **The Access Switch Audit tool has been restructured into a professional Python package!**
 
@@ -30,7 +41,7 @@ A modular Python utility that connects to Cisco switches (optionally through an 
     - **Better Maintainability:** Each module has a single, well-defined responsibility
     - **Enhanced Extensibility:** Easy to add new features, output formats, or device types
     - **Improved Testing:** Isolated components can be unit tested independently
-    - **New Entry Point:** Use `python -m switch_audit` instead of `python main.py`
+    - **New Entry Point:** Use `python -m switch_audit` as the standard launch method
     
     **For End Users:** Everything works the same! All CLI arguments, configuration options, and output formats are identical.
     
@@ -92,13 +103,11 @@ The tool has been restructured into a **professional modular package** (v2.0), s
     │   ├── formatters.py      # Excel formatting and interface name normalisation
     │   ├── validators.py      # Input validation functions
     │   └── app_config.py      # Configuration access wrapper
-    ├── ProgramFiles/
+    ├── assets/
     │   └── config_files/
-    │       ├── __init__.py
     │       └── config_loader.py  # YAML configuration loader
     ├── config.yaml            # User-editable configuration
     ├── devices.txt            # Device list (one IP/hostname per line)
-    ├── main_new.py            # Backward compatibility entry point
     ├── main.py                # Legacy entry point (deprecated)
     ├── run.bat                # Windows launcher script
     ├── requirements.txt       # Python dependencies
@@ -108,7 +117,7 @@ The tool has been restructured into a **professional modular package** (v2.0), s
 
 > **V2.0 Architecture:** The restructure separates the monolithic `main.py` (1,300+ lines) into focused modules with single responsibilities. This improves maintainability, testability, and extensibility.
 >
-> **Backward Compatibility:** The old `main.py` remains for reference, and `main_new.py` provides a compatibility shim. New users should use `python -m switch_audit`.
+> **Backward Compatibility:** The old `main.py` remains for reference. New users should use `python -m switch_audit`.
 
 ### Module Responsibilities (v2.0)
 
@@ -131,7 +140,7 @@ Each module in the `switch_audit/` package has a specific, well-defined role:
 
 | Module | Purpose |
 | :--- | :--- |
-| **`ProgramFiles/config_files/config_loader.py`** | YAML configuration loader with type-safe property accessors and validation |
+| **`assets/config_files/config_loader.py`** | YAML configuration loader with type-safe property accessors and validation |
 
 ---
 
@@ -164,7 +173,7 @@ The tool uses a **modern YAML-based configuration system** with centralised mana
 
 ### YAML Configuration File (config.yaml)
 
-All configurable settings are centralised in `config.yaml` at the project root. The configuration is loaded via `ProgramFiles/config_files/config_loader.py` and accessed throughout the application via the `app_config.py` singleton wrapper.
+All configurable settings are centralised in `config.yaml` at the project root. The configuration is loaded via `assets/config_files/config_loader.py` and accessed throughout the application via the `app_config.py` singleton wrapper.
 
 **Key Configuration Categories:**
 
@@ -228,7 +237,7 @@ Specific settings can be overridden at runtime via environment variables (primar
     $env:JUMP_HOST = "temp-bastion.example.com"
     ```
 
-> **Best Practice:** Use `config.yaml` for organizational defaults; use CLI arguments (`--direct`, `--workers`, etc.) for per-run overrides.
+> **Best Practice:** Use `config.yaml` for organisational defaults; use CLI arguments (`--direct`, `--workers`, etc.) for per-run overrides.
 
 ---
 
@@ -264,7 +273,7 @@ This runs the Access Switch Audit using `python -m switch_audit` with all defaul
 1. **Validates the environment:**
    - Checks that the `portable_env` virtual environment exists
    - Verifies Python executable is present
-   - Confirms `main.py` exists
+    - Confirms `switch_audit` package files are present
    - Validates `config.yaml` and `devices.txt` are present
 
 2. **Provides clear feedback:**
@@ -345,8 +354,8 @@ Activate the virtual environment and run the package as a module:
     source portable_env/bin/activate
     python -m switch_audit --devices my-switches.txt --output audit-report.xlsx
 
-    # Backward compatibility (still works)
-    python main_new.py --devices my-switches.txt --output audit-report.xlsx
+    # Backward compatibility (legacy mode)
+    python main.py --devices my-switches.txt --output audit-report.xlsx
     ```
 
 ### Available Command-Line Arguments
@@ -403,7 +412,7 @@ The v2.0 restructure transformed the tool from a monolithic script into a **prof
 
 **3. Configuration Centralisation:**
 
-- All config in `ProgramFiles/config_files/config_loader.py`
+- All config in `assets/config_files/config_loader.py`
 - Accessed via singleton pattern in `app_config.py`
 - Environment variables override YAML settings
 - Type-safe property accessors
@@ -437,22 +446,20 @@ If you're upgrading from the older monolithic version, see the **MIGRATION.md** 
 
 **1. Modular Package Design**
     - Code separated into focused modules (cli.py, device_auditor.py, excel_reporter.py, etc.)
-    - `Modules/` directory components moved to `switch_audit/` package
-    - Config loader relocated to `ProgramFiles/config_files/`
+    - Core components moved into the `switch_audit/` package
+    - Config loader centralised under `assets/config_files/`
 
 **2. New Entry Point**
     - **Old**: `python main.py --devices devices.txt`
     - **New**: `python -m switch_audit --devices devices.txt` (recommended)
-    - **Backward Compatible**: `python main_new.py --devices devices.txt`
+    - **Backward Compatible**: `python main.py --devices devices.txt`
 
 **3. Updated Imports (for developers)**
     ```python
-    # Old imports:
-    from Modules.config_loader import Config
-    from Modules.credentials import get_secret_with_fallback
+    # Configuration loader:
+    from assets.config_files.config_loader import Config
 
-    # New imports:
-    from ProgramFiles.config_files.config_loader import Config
+    # Package imports:
     from switch_audit.credentials import get_secret_with_fallback
     from switch_audit.app_config import config  # Singleton wrapper
     ```
@@ -1207,8 +1214,8 @@ This tool has been tested and verified on the following Cisco IOS and IOS-XE pla
     # Conservative concurrency, higher stale threshold, verbose
     python -m switch_audit -w 4 --stale-days 90 --debug -d devices.txt -o siteA.xlsx
 
-    # Backward compatibility (still works)
-    python main_new.py --devices devices.txt --output audit.xlsx
+    # Backward compatibility (legacy mode)
+    python main.py --devices devices.txt --output audit.xlsx
     ```
 
 ---
@@ -1276,7 +1283,7 @@ After studying this code, you should understand:
 
     ```python
     # app_config.py - Single source of truth
-    from ProgramFiles.config_files.config_loader import Config
+    from assets.config_files.config_loader import Config
     config = Config()
 
     # Used throughout application

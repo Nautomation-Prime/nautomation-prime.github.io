@@ -15,16 +15,27 @@ tags:
 
 ## Deep Dive: Cisco IOS-XE Compliance Audit
 
-## "Policy-Driven Compliance, Engineered for Real Networks."
+### "Policy-Driven Compliance, Engineered for Real Networks."
 
 !!! info "Version Alignment"
-  This deep dive reflects the **current main branch state (April 2026)** of Cisco IOS-XE Compliance Auditor and includes the split configuration model, governed remediation lifecycle workflow, severity/tag filtering, guided interactive mode (`--interactive`), full-screen TUI mode (`--tui`), and CLI option discovery (`--list-options`).
+  This deep dive reflects the **current main branch state (May 2026)** of Cisco IOS-XE Compliance Auditor and includes the split configuration model, governed remediation lifecycle workflow, severity/tag filtering, guided interactive mode (`--interactive`), full-screen TUI mode (`--tui`), and CLI option discovery (`--list-options`).
 
 The **Cisco IOS-XE Compliance Audit** tool is a role-aware, policy-driven audit framework for Cisco switching and routing estates. It connects to devices (directly or through a jump host), collects operational and configuration state, classifies every interface by intent, runs 90+ toggleable compliance checks, and generates actionable reports with remediation commands.
 
 This is one of the most comprehensive projects in the Nautomation Prime ecosystem, and this guide is intentionally thorough so your team can move from "we ran a script" to "we can defend every check and every result."
 
 [:material-github: View Source Code on GitHub](https://github.com/Nautomation-Prime/Cisco-Compliance-Audit){ .md-button .md-button--primary }
+
+---
+
+## 🧭 How to Read This Deep Dive
+
+This page is deliberately written as an operational tutorial, not a marketing overview. Use it to understand:
+
+- **What the auditor collects and evaluates**
+- **Why policy, classification, and remediation are separated**
+- **How to execute and scope the tool safely** on real estates
+- **Where to change policy or behaviour** without introducing governance drift
 
 ---
 
@@ -76,7 +87,7 @@ A failed finding includes remediation intent, and the tool can compile per-devic
 ```text
 Cisco-Compliance-Audit/
 ├── .env.example                    # Credential variables template — copy to .env
-├── VERSION.txt                     # Canonical version number
+├── pyproject.toml                  # Canonical package metadata and version
 ├── compliance_audit/
 │   ├── __about__.py                # Package metadata (name, author, licence)
 │   ├── __init__.py                 # Package exports and dynamic version
@@ -106,7 +117,7 @@ Cisco-Compliance-Audit/
 │   ├── remediation_workflow.py     # Approval lifecycle workflow
 │   ├── report.py                   # Rich console + interactive HTML + JSON + CSV reports
 │   ├── textual_app.py              # Full-screen 3-screen Textual TUI
-│   └── version.py                  # Version reader (reads VERSION.txt)
+│   └── version.py                  # Version reader (pyproject.toml)
 ├── assets/
 │   └── config_files/
 │       └── logging.conf
@@ -201,6 +212,10 @@ python -m compliance_audit -c configs/site_alpha
 # Use a different device inventory
 python -m compliance_audit -i inventories/site_alpha_devices.yaml
 
+# Audit only devices from one or more site groups
+python -m compliance_audit --site site_lab
+python -m compliance_audit --site site_lab site_brn
+
 # Filter to high-severity findings
 python -m compliance_audit --min-severity high
 
@@ -231,8 +246,10 @@ python -m compliance_audit --list-options
 ## 🧭 CLI Reference (Operationally Important Flags)
 
 ```text
-python -m compliance_audit [-h] [-c CONFIG] [-d DEVICE] [-i INVENTORY]
-                           [--no-jump] [--categories CAT [CAT ...]]
+python -m compliance_audit [-h] [--version] [-c CONFIG] [-d DEVICE] [-i INVENTORY]
+                           [--site SITE [SITE ...]] [--no-jump]
+                           [--categories CAT [CAT ...]]
+                           [--tags TAG [TAG ...]] [--min-severity LEVEL]
                            [-o OUTPUT_DIR] [--fail-threshold PCT]
                            [--csv] [--no-csv] [-v]
                            [--remediation-list [STATUS]]
@@ -276,7 +293,7 @@ Key enhancements reflected in this deep dive update:
 7. **Bulk lifecycle operations**: Approve-all and apply-all workflows support larger estates.
 8. **ROI instrumentation**: Optional effort/value estimation is embedded in console, JSON, and HTML outputs.
 9. **Operator-focused execution modes**: `--interactive`, `--tui`, and `--list-options` improve day-to-day usability.
-10. **Expanded runbook assets**: Repository runbook documentation is now available in markdown, HTML, and plain text formats.
+10. **Expanded runbook assets**: Repository runbook documentation is available in markdown and HTML formats.
 
 ---
 
