@@ -1222,6 +1222,130 @@ That mix matters because compliance tooling only sticks when it works equally we
 
 ---
 
+## 🧵 Interactive Modes, Remediation Workflow, and Testability
+
+The core engine walkthrough above explains how the auditor reasons about devices. The missing production lesson is how the outer execution modes are kept aligned so the tool does not fragment into separate behaviours over time.
+
+### 1. All Operator Interfaces Terminate in the Same Audit Engine
+
+The current `__main__.py` routes several operator experiences:
+
+- direct CLI execution
+- `--interactive` guided wizard mode
+- `--tui` full-screen Textual mode
+- remediation lifecycle commands
+- `--list-options` discovery mode
+
+The important design choice is that these do **not** implement separate audit engines. Both the guided CLI and the TUI eventually hand work to `run_audit(...)`.
+
+Why this matters:
+
+- feature drift between CLI and TUI is reduced
+- fixes to filtering, reporting, and concurrency land in one shared path
+- operational training is easier because different interfaces still drive the same underlying behaviour
+
+That is a repeatable engineering pattern: multiple operator entry points are fine, but they should converge on one core execution path.
+
+### 2. The TUI Is a Shell Around the Core Engine, Not a Parallel Product
+
+`textual_app.py` is careful about its boundaries.
+
+The setup screen gathers:
+
+- config directory
+- inventory path or device overrides
+- category scope and output override
+- username and password
+
+The audit screen then starts the real work in a background thread, injects credentials into the environment for the worker lifecycle, and calls `run_audit(...)`. Log output is routed through a dedicated `TUILogHandler` and Textual message bus so worker-thread logs can be rendered safely in the interface.
+
+Why this matters:
+
+- the UI remains responsive while live audits are running
+- log transport is thread-safe rather than relying on ad hoc print calls
+- the statistics panel is derived from real result objects, not guessed state
+
+This is a production-quality terminal UI pattern: use the UI for collection, progress, and visibility, but keep policy logic and network collection in shared backend modules.
+
+### 3. The Interactive CLI Is Built for Explainability, Not Just Convenience
+
+`interactive_cli.py` does more than prompt for flags. It builds an `AuditWizardConfig`, shows the equivalent CLI command preview, and then still calls `run_audit(...)` with the selected options.
+
+Why this matters:
+
+- operators can learn the non-interactive command form while using the wizard
+- the guided mode becomes training material, not a separate opaque workflow
+- the preview makes execution intent reviewable before the run starts
+
+That is very aligned with PRIME philosophy: convenience should increase transparency, not replace it.
+
+### 4. Remediation Workflow Is Governed State, Not Just Generated Text
+
+The remediation lifecycle is one of the clearest examples of deliberate production design in the whole codebase.
+
+`generate_review_pack(...)` converts FAIL findings into a structured review artifact containing:
+
+- device identity
+- finding list
+- grouped commands
+- per-command risk labels
+- script checksum
+- lifecycle metadata
+
+That data is then persisted through `ReviewStore`, a SQLite-backed state store. Approval and rejection update the same durable record instead of relying on loose files and human memory.
+
+When `apply_approved_pack(...)` runs, it enforces several gates before touching a device:
+
+- pack status must be approved
+- approval must not be expired
+- checksum must still match
+- high-risk packs are blocked unless explicitly allowed
+- optional Linux-only runtime enforcement can be applied
+- optional hostname matching prevents applying to the wrong prompt
+- preflight drift checking confirms the approved findings still exist
+- post-check verification measures what was actually resolved
+
+Why this matters:
+
+- remediation becomes auditable and reviewable
+- stale or modified scripts are caught before implementation
+- the apply path behaves more like governed change control than like a quick push script
+
+That is a major lesson for anyone building automation for production networks: the harder part is often not generating commands, but governing when those commands are still safe to use.
+
+### 5. Bulk Apply and Post-Remediation Reporting Reuse Existing Layers
+
+`apply_all_approved_packs(...)` does not invent a new execution model. It sequences approved packs through the same controlled apply path, then optionally produces consolidated post-remediation reports.
+
+Because post-check reporting reuses collection, classification, engine, and report modules, the audit evidence after implementation is derived from the same logic as the baseline assessment.
+
+Why this matters:
+
+- pre-change and post-change evidence stay comparable
+- success is measured by re-audit, not by assuming the command was accepted
+- governance features scale beyond one-device manual workflows
+
+### 6. Testability Is an Outcome of the Architecture
+
+The repository already carries targeted tests for hostname parsing, inventory handling, finding annotation, and remediation workflow behaviour. That is possible because the code is split into narrow, composable units instead of one large script.
+
+Practical examples of testable boundaries include:
+
+- `_annotate_findings(...)` for severity, tags, and include/exclude policy behaviour
+- inventory normalisation and deduplication in the orchestrator
+- `ParsedConfig` helpers for global, line, and interface section queries
+- remediation review-pack state transitions and checksum logic
+
+Why this matters:
+
+- extensions can be verified at the abstraction boundary where they live
+- regressions are easier to isolate than in end-to-end-only test suites
+- the code teaches a useful pattern: separate policy evaluation, transport, parsing, and reporting so each can be tested with intent
+
+If you extend this tool, the right habit is to add the YAML change, the engine or workflow change, and the smallest targeted test that proves the new behaviour. That is how the project stays explainable as it grows.
+
+---
+
 ## 🔐 Credential Strategy
 
 Credential lookup order is intentionally practical:

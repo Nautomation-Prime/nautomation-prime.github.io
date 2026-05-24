@@ -124,6 +124,174 @@ graph TD
 
 ---
 
+## 🧬 Code Walkthrough: What the Python Layers Actually Do
+
+This is the part that turns the generator from a useful tool into a reusable engineering pattern. The value is not only that it emits `.cfg` files, but that the code is split so each layer does one job clearly and predictably.
+
+### 1. Entry Layer: `__main__.py` and `cli.py`
+
+The package entry point is intentionally minimal: `__main__.py` imports `main()` from `cli.py` and exits. That tells you immediately where real control flow starts.
+
+`cli.py` then owns only process concerns:
+
+- parsing `--pack`, `--workbook`, `--output`, `--no-tui`, and `--version`
+- deciding whether to launch the Textual interface or the headless execution path
+- requiring `--workbook` only when running without the TUI
+- routing both modes into the same orchestration layer
+
+Why this matters:
+
+- the CLI stays thin and testable
+- interactive mode and automation mode do not diverge into separate products
+- exit behaviour is explicit and suitable for both operators and pipelines
+
+That split is a strong production pattern: argument handling should decide **how** the tool starts, not **how** network intent is interpreted.
+
+### 2. TUI Layer: Operator UX Without Engine Sprawl
+
+The Textual app in `tui/app.py` is deliberately a front end, not a second implementation of the generator.
+
+Before it runs anything expensive, it performs cheap operator-facing checks:
+
+- workbook path present
+- workbook file exists
+- selected output path resolved
+
+When the operator presses **Run**, the app starts a background thread and calls `_run_orchestrator(...)` rather than running the build directly on the UI thread. Log updates and status changes are pushed back into the interface with `call_from_thread(...)`.
+
+Why this design matters:
+
+- the terminal UI stays responsive while configs are being built
+- progress messages can stream live without corrupting the UI state
+- validation failures are caught separately from unexpected exceptions, so the operator sees actionable workbook issues instead of a generic crash
+
+This is a reusable pattern for any production automation tool with a terminal UI: the UI should gather intent, validate local inputs, launch the worker safely, and report progress. It should not become the business-logic layer.
+
+### 3. Workbook Loader: Excel Becomes Typed Intent Once
+
+The workbook loader is where the loose, human-edited spreadsheet is converted into structured Python objects.
+
+The important helpers are small but intentional:
+
+- `_header_map(...)` normalises column names so sheet parsing does not depend on fragile manual indexing
+- `_validate_required_headers(...)` fails fast if a required workbook column is missing
+- `_parse_int_cell(...)` raises row-aware and field-aware errors instead of vague conversion failures
+- `_cell_value(...)` and `_list_field(...)` centralise common coercion behaviour
+
+The sheet loaders then each do one domain job:
+
+- `_load_devices(...)`
+- `_load_vlans(...)`
+- `_load_interfaces(...)`
+- `_load_global_settings(...)`
+- `_load_feature_selection(...)`
+- `_load_acls(...)`
+
+Finally, `load_workbook(...)` assembles those pieces into one `Intent` object.
+
+Why this design matters:
+
+- Excel ambiguity is resolved once, near the input boundary
+- downstream code works with structured data instead of reopening spreadsheets repeatedly
+- error messages stay anchored to the operator's real artefact: workbook sheet, row, and column
+
+That is a core production-grade lesson: turn messy human input into stable internal models as early as possible.
+
+### 4. Hardware Expansion: Omitted Ports Still Become Explicit State
+
+One of the most important design decisions lives in `_expand_interfaces_from_hardware(...)`.
+
+The generator does **not** assume that only workbook rows matter. Instead, it builds the full port inventory from:
+
+- the selected device model
+- the selected uplink module
+- the hardware catalogue
+- the available port profiles
+
+It then applies a strict merge policy:
+
+1. build the expected inventory for that hardware profile
+2. preserve any explicit workbook override for a matching interface
+3. create an `unused` interface object for every omitted port
+4. keep out-of-inventory rows rather than silently deleting them
+
+Why this design matters:
+
+- operators can document only the exceptions instead of every port manually
+- generated output stays deterministic because every interface is accounted for
+- shutdown/unused intent is enforced by construction rather than by hope
+
+This is exactly the sort of design choice that separates a demo generator from a delivery-safe one. Missing workbook rows are not treated as "unknown"; they are normalised into a governed default state.
+
+### 5. Rendering Engine: Templates Stay Declarative, Python Owns Validation
+
+The rendering engine is intentionally tiny:
+
+- `create_jinja_env(...)` builds a Jinja environment with `FileSystemLoader`
+- `render_template(...)` renders a named template with a prepared context
+
+The most important line is the use of `StrictUndefined`.
+
+That means if a template references a value that is not present in the context, rendering fails immediately instead of silently producing a partial or broken configuration.
+
+Why this design matters:
+
+- template mistakes are caught during generation, not during change implementation
+- pack authors cannot accidentally rely on undefined variables
+- the logic boundary remains clean: Python validates and assembles context; Jinja formats output
+
+This is a textbook production choice. Silent template fallback is convenient in prototypes and dangerous in real delivery tooling.
+
+### 6. Pack and Orchestrator Boundary: Customer Variation Lives in Data
+
+Both the CLI path and the TUI path resolve the selected pack, load pack settings, construct an `Orchestrator`, and call `run()`.
+
+The orchestrator is given the minimum runtime contract it needs:
+
+- `pack_path`
+- `workbook_path`
+- `output_dir`
+- optional progress callback
+
+It then returns the written output paths.
+
+Why this design matters:
+
+- the same engine is reused whether the operator clicks through the TUI or runs headless in a script
+- customer-specific behaviour stays in YAML and templates under `packs/`
+- the Python core remains stable while packs vary per customer or per standard
+
+This is the PRIME philosophy in code form: policy and site variation belong in governed data, not in customer-specific Python forks.
+
+### 7. Failure Model and Safe Extension Path
+
+The current code shape makes failure handling and extension more predictable than they would be in a monolithic generator.
+
+Failure handling is layered:
+
+- workbook/path issues are caught near the operator boundary
+- validation issues are surfaced as structured `ValidationError` messages
+- template/context mismatches fail during rendering rather than producing silent output drift
+- unexpected exceptions are logged as tool errors rather than being confused with workbook mistakes
+
+Safe extension points are also clear:
+
+- change **templates** when output syntax or style changes
+- change **pack YAML** when hardware, defaults, or feature mapping changes
+- change **workbook content** when site intent changes
+- change **Python loaders/models** only when you are introducing a genuinely new intent field or runtime behaviour
+
+In practical terms, if you want to add a new per-port intent value, the clean path is:
+
+1. add it to the workbook schema
+2. parse it in the loader
+3. carry it through the intent model and template context
+4. render it in the correct Jinja template
+
+What you should not do is hide business logic directly inside a template. That makes the pack harder to reason about, harder to test, and easier to break silently.
+
+---
+
 ## 📦 Requirements and Installation Paths
 
 ### Standard Operator Workflow (Windows)

@@ -460,6 +460,128 @@ The v2.0 restructure transformed the tool from a monolithic script into a **prof
 
 ---
 
+## 🧬 End-to-End Code Path: From CLI Flag to Workbook Row
+
+The architecture table above explains the modules. This section explains the runtime hand-off between them, which is the more useful lesson if you want to build your own production-grade audit tool.
+
+### 1. `cli.py` Owns Orchestration, Not Parsing
+
+The CLI layer handles process-level concerns:
+
+- parse flags such as `--tui`, `--direct`, `--workers`, `--stale-days`, and `--output`
+- validate the target workbook filename
+- determine whether to use the configured jump host
+- acquire credentials and validate the device list
+- build an event queue for progress reporting
+- submit one `audit_device(...)` job per target via `ThreadPoolExecutor`
+
+The key pattern is the event-driven wrapper around each worker. `_worker_wrapper(...)` emits `start` and `done` events into a queue so progress display is separated from the actual audit logic.
+
+Why this matters:
+
+- progress reporting stays accurate without contaminating collection code
+- CLI argument handling does not become the place where parsing decisions live
+- concurrency can be tuned without rewriting the device audit engine
+
+### 2. Transport Complexity Is Isolated in the Connection Layer
+
+The audit engine does not talk to Paramiko or Netmiko directly in scattered places. That complexity is pushed into `jump_manager.py` and `netmiko_utils.py`.
+
+`JumpManager` keeps a persistent bastion SSH session and opens `direct-tcpip` channels for each downstream device. `connect_to_device(...)` then hands that channel to Netmiko and strips kwargs that some Netmiko variants do not accept.
+
+Why this matters:
+
+- connection quirks are isolated from business logic
+- the device auditor can think in terms of "give me a connection" instead of "how do I tunnel this socket"
+- direct and jump-host modes share the same audit path once the connection is established
+
+This is a strong production pattern: transport plumbing should be replaceable without rewriting the logic that interprets device state.
+
+### 3. `audit_device(...)` Is the Real Collection Engine
+
+The core runtime pattern is:
+
+1. attempt connection, with exponential backoff retries
+2. enter the jump context when required
+3. once connected, hand off to `_audit_connected_device(...)`
+4. always disconnect cleanly in `finally`
+
+Inside `_audit_connected_device(...)`, the command order is deliberate:
+
+- discover hostname
+- enter enable mode if required
+- collect `show version` for IOS and hardware context
+- collect `show interfaces` for detailed counters and activity data
+- collect `show interfaces status` for mode, VLAN, and status correction
+- collect `show power inline` for PoE enrichment
+- collect LLDP and CDP neighbour data
+- normalise and merge everything into one per-interface record set
+- calculate stale flags and summary totals
+
+Why this matters:
+
+- later enrichment depends on earlier normalisation work
+- command responsibilities stay distinct instead of being treated as interchangeable text blobs
+- every summary row is built from the same deterministic record pipeline
+
+### 4. Parsing Is Layered Because Real CLI Output Is Messy
+
+This tool demonstrates a production reality that many tutorials skip: no single parser strategy is reliable enough on its own.
+
+Examples from the code:
+
+- `_parse_hardware_from_version(...)` tries TextFSM first, then falls back to regex patterns
+- `parse_show_interfaces_status(...)` uses a custom fixed-width parser that does not depend on external templates
+- `parse_show_power_inline(...)` stores PoE data under short, long, and raw interface aliases to improve match rates
+- neighbour collection normalises interface names before attempting correlation
+
+Why this matters:
+
+- the tool degrades gracefully when TextFSM templates are absent or incomplete
+- different Cisco output variations do not immediately break the audit
+- cross-command joins work because alias handling is treated as a first-class problem
+
+That is one of the strongest learning points in the whole page: resilience often comes from combining multiple parsers, not from betting everything on one perfect parser.
+
+### 5. Reporting Is Deterministic and Failure-Tolerant
+
+`ExcelReporter.save_to_excel(...)` sorts results, writes the `SUMMARY` sheet first, appends a `TOTAL` row, and then creates one worksheet per device.
+
+Crucially, even failed devices are still represented. When there is no detailed dataset, the reporter creates a small placeholder sheet containing the error text rather than silently dropping that device from the workbook.
+
+Formatting is then centralised in `formatters.py`:
+
+- safe sheet naming and uniqueness handling
+- filters and frozen headers
+- conditional formatting for status, PoE, stale ports, and error counters
+- interface alias helpers reused by the audit pipeline
+
+Why this matters:
+
+- every requested device remains visible in the final artefact
+- worksheet behaviour stays consistent regardless of data volume
+- report logic and data-collection logic remain separate concerns
+
+### 6. Failure Model and Safe Extension Points
+
+The runtime failure model is intentionally conservative:
+
+- connection issues are retried with exponential backoff
+- per-device failures do not abort the full run
+- exhausted retries return an error summary row instead of an untracked omission
+- jump connections and device sessions are always cleaned up
+
+The safe places to extend behaviour are also clear:
+
+- adjust parsing and stale logic in `device_auditor.py`
+- adjust transport behaviour in `jump_manager.py` or `netmiko_utils.py`
+- adjust workbook structure and formatting in `excel_reporter.py` and `formatters.py`
+- adjust operator defaults in configuration loading, not in collection code
+
+What you should avoid is editing `cli.py` when the real change belongs in parsing or reporting. The CLI should stay an orchestration layer, not a dumping ground for business logic.
+
+---
+
 ## 🔄 Migration Guide (v1.0 → v2.0)
 
 If you're upgrading from the older monolithic version, see the **MIGRATION.md** file in the repository for detailed migration instructions.

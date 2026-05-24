@@ -422,6 +422,126 @@ Directly calls the CLI module (useful for debugging).
 
 ---
 
+## 🧬 End-to-End Runtime Path: What Actually Happens in Code
+
+The module deep dives below explain each file in isolation. This section explains the more important production lesson: how those files cooperate during a real run.
+
+### 1. Startup Guardrails Run Before Any Crawl Begins
+
+The current entry path is intentionally strict:
+
+1. `__main__.py` calls `cli.main()`
+2. `cli.py` configures logging
+3. `validators.py` checks that the TextFSM templates and Excel template exist
+4. `validate_excel_template(...)` confirms the workbook shape is usable
+5. only then does the TUI launch
+
+Why this matters:
+
+- missing support files fail immediately instead of ten minutes into a discovery run
+- packaging issues are separated from network issues
+- the UI is treated as an operator shell, not as the place where core validation logic is hidden
+
+That is a production-grade choice. Expensive threaded work should never be the first place you discover a missing template.
+
+### 2. Discovery State Is Explicit and Thread-Safe
+
+`NetworkDiscoverer` does not rely on vague shared globals. Its constructor creates explicit state buckets for different operational concerns:
+
+- `visited` and `enqueued` to prevent queue loops
+- `cdp_neighbour_details` for final report rows
+- `device_inventory` for per-device metadata from `show version`
+- `authentication_errors` and `connection_errors` for separate error reporting
+- `hostnames` and `dns_ip` for post-crawl DNS enrichment
+- `visited_lock`, `data_lock`, and `host_queue` for concurrency control
+
+Why this matters:
+
+- deduplication logic stays separate from reporting logic
+- worker threads can run safely without corrupting shared collections
+- every output sheet has a deliberate source of truth in the Python state model
+
+This is exactly how production automation avoids becoming "a pile of lists and side effects".
+
+### 3. Command Collection Uses Tiered Fallback, Not Blind Optimism
+
+The most important runtime logic sits in `run_device_commands(...)`.
+
+That path does more than log in and issue two commands:
+
+- it tries primary credentials first and fallback credentials only when authentication fails
+- it prepares the terminal session with paging and width commands
+- it collects `show cdp neighbors detail`
+- it checks whether that output looks truncated by comparing `Device ID:` counts with `show cdp neighbors`
+- when detail output appears incomplete, it falls back to `show cdp entry * protocol` and `show cdp entry * version`
+- it normalises those fallback blocks into structured neighbour rows before continuing
+
+Why this matters:
+
+- the tool is defending against real device behaviour, not idealised lab output
+- topology gaps are less likely to be caused by partial CLI output
+- the fallback logic is contained inside the discovery engine rather than leaking into the reporting layer
+
+This is one of the best reusable lessons in the codebase: if a command is operationally important, assume you will eventually meet a platform or line-card behaviour that returns incomplete data.
+
+### 4. Queue Expansion Is Conservative by Design
+
+`parse_outputs_and_enqueue_neighbors(...)` is not just a parser. It is also the boundary where the tool decides which discovered neighbours deserve more crawl budget.
+
+The method enriches every neighbour row with local device context, appends it to the report dataset, and only queues a neighbour when all of these are true:
+
+- there is a management IP
+- the IP is not already visited
+- the IP is not already enqueued
+- CDP capabilities indicate a switch, not a host
+
+Why this matters:
+
+- the crawl expands toward network infrastructure rather than end hosts
+- duplicate queue churn is reduced
+- the decision logic is centralised in one place, making heuristic changes safe and reviewable
+
+If you want different crawl behaviour, this is the correct extension point. Do not bury queueing rules in worker logic or Excel code.
+
+### 5. Reporting Preserves a Governed Excel Contract
+
+`ExcelReporter.save_to_excel(...)` follows a clear, repeatable reporting pipeline:
+
+- build DataFrames from the collected Python state
+- clone the approved workbook template
+- stamp metadata cells such as site name, date, time, and seeds
+- overlay data into the existing sheets without destroying formatting
+- post-format freeze panes and autofit columns
+
+Why this matters:
+
+- the template remains the source of truth for layout and branding
+- Python owns data placement, not visual design
+- report structure stays stable even while discovery logic evolves
+
+That separation is why the tool can behave like an engineering product instead of a one-off export script.
+
+### 6. Failure Paths and Safe Change Points
+
+The runtime has a deliberately layered failure model:
+
+- startup validation failures stop execution before the TUI session begins
+- authentication failures are recorded separately from connection failures
+- workers always call `task_done()` so the queue cannot hang silently
+- Netmiko sessions and jump-host resources are cleaned up in `finally` blocks
+- DNS enrichment is best-effort after discovery rather than a hard dependency for crawl success
+
+The safest places to extend the tool are equally clear:
+
+- change startup checks in `validators.py`
+- change crawl heuristics in `parse_outputs_and_enqueue_neighbors(...)`
+- change retry and timeout behaviour in configuration and discovery runtime settings
+- change workbook layout behaviour in `excel_reporter.py`
+
+What you should not do is mix those concerns together. Discovery decides what the network is, validators decide whether prerequisites are safe, and Excel code decides how results are presented.
+
+---
+
 ## 🔐 Credentials Model (`credentials.py`)
 
 This module handles all credential management with secure OS integration.
