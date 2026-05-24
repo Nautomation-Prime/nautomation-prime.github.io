@@ -42,6 +42,26 @@ This separation means you can change site standards quickly without rewriting co
 
 ---
 
+## 🎯 PRIME Philosophy in Practice
+
+### 1. Transparency by Design
+
+Workbook input, template selection, and rendered output are all traceable. Nothing important is hidden behind opaque generation steps.
+
+### 2. Hardened for Delivery
+
+Validation happens before rendering, which reduces the chance of bad intent becoming bad production configuration.
+
+### 3. Policy Before Python
+
+Customer-specific behaviour belongs in packs, YAML, and templates. The engine stays stable while delivery standards evolve.
+
+### 4. Reusable Engineering
+
+One codebase can serve multiple estates because intent, policy, and rendering layers are cleanly separated.
+
+---
+
 ## 🧭 Tutorial Roadmap
 
 Follow this page in order for a practical, end-to-end understanding:
@@ -165,12 +185,41 @@ In the UI:
 3. Run generation.
 4. Review output summary.
 
+### TUI Preview
+
+![Cisco Config Generator TUI](https://raw.githubusercontent.com/Nautomation-Prime/Cisco-Config-Generator/main/assets/tui_screenshot.png)
+
+Why this matters: the TUI gives operators a guided execution path, which reduces avoidable CLI mistakes during day-to-day use.
+
 ### Step 4: Verify generated files
 
 Expected result:
 
 - Per-device files in `output\`
 - File naming pattern: `output\<hostname>.cfg`
+
+### Rendered Output Callout
+
+For the workbook example later in this guide, the generated artefact should conceptually look like this:
+
+```text
+output/
+└── BRN1-ACC-01.cfg
+
+! Base Configuration
+hostname BRN1-ACC-01
+...
+
+! Access Port Configuration
+interface GigabitEthernet1/0/10
+ description Finance desk phone + PC
+ switchport mode access
+ switchport access vlan 20
+ switchport voice vlan 30
+ ...
+```
+
+The exact lines vary with workbook values, feature toggles, and selected pack, but the file-per-device pattern is stable.
 
 ### Step 5: Run headless mode (automation path)
 
@@ -229,6 +278,83 @@ The workbook is the source-of-truth input model.
 If an interface is not explicitly listed in the Interfaces sheet, the generator still derives full interface inventory from hardware definitions and treats omitted ports as unused/shutdown according to pack defaults.
 
 Why this is important: you can model intent by exception instead of maintaining thousands of spreadsheet rows.
+
+### Workbook-to-Config Mapping Flow
+
+This is the core data path inside the tool:
+
+```mermaid
+graph LR
+  A[Devices sheet] --> G[Workbook validation]
+  B[Global Settings sheet] --> G
+  C[VLANs sheet] --> G
+  D[Interfaces sheet] --> G
+  E[ACLs sheet] --> G
+  F[Feature Selection sheet] --> G
+
+  G --> H[Per-device context objects]
+  H --> I[template_map.yaml chooses render order]
+  I --> J[Jinja2 templates from packs/default/templates]
+  J --> K[Rendered config fragments]
+  K --> L[output/hostname.cfg]
+```
+
+Why this matters: each stage has a clear responsibility. If output is wrong, you can trace whether the problem came from workbook input, validation, context building, template selection, or the template itself.
+
+### Worked Example: One Workbook Row to Cisco CLI
+
+The example below uses the **current default pack** and the `interfaces_access.j2` template.
+
+#### Example workbook inputs
+
+**Devices sheet**
+
+| Hostname | Model | Uplink Module |
+| :--- | :--- | :--- |
+| `BRN1-ACC-01` | `C9200-24P` | `C9200-NM-4X` |
+
+**Interfaces sheet**
+
+| Device | Interface | Profile | Description | Access VLAN | Voice VLAN |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| `BRN1-ACC-01` | `GigabitEthernet1/0/10` | `access-voip` | `Finance desk phone + PC` | `20` | `30` |
+
+#### How the generator interprets it
+
+- `Profile = access-voip` maps to `template_hint: interfaces_access` in `port_profiles.yaml`
+- `interfaces_access` maps to `interfaces_access.j2` in `template_map.yaml`
+- `access-voip` sets `qos_trust_dscp: true`, so the QoS line is rendered
+- `Access VLAN` and `Voice VLAN` become `iface.access_vlan` and `iface.voice_vlan` in template context
+
+#### Rendered CLI from the default template
+
+```text
+interface GigabitEthernet1/0/10
+ description Finance desk phone + PC
+ switchport mode access
+ switchport access vlan 20
+ switchport voice vlan 30
+ switchport nonegotiate
+ load-interval 30
+ auto qos trust dscp
+ storm-control broadcast level 1.00 0.70
+ storm-control multicast level 1.00 0.70
+ spanning-tree portfast
+ spanning-tree guard root
+ spanning-tree bpduguard enable
+ no shutdown
+```
+
+#### Why this example is useful
+
+It shows the exact separation of concerns:
+
+- The **workbook** defines intent
+- The **port profile** chooses behaviour class
+- The **template map** chooses the render path
+- The **Jinja template** emits the final IOS-XE syntax
+
+That separation is what makes the tool explainable, testable, and safe to extend.
 
 ---
 
@@ -393,144 +519,6 @@ After completing this tutorial, an engineer should be able to:
 - Extend packs without editing core engine logic
 - Run both interactive and headless execution modes
 - Troubleshoot common generation failures quickly
-- Apply safe operational controls before production rollout
-
----
-
-> **Mission Fit:** This deep dive embodies the PRIME principles by making design decisions explicit, operational behaviour testable, and extension paths controlled.
-
-- Reads intent from an Excel workbook and validates structure before rendering
-- Generates one `.cfg` output per device based on model, uplink module, and selected features
-- Supports both interactive execution (`run.bat`) and headless automation (`--no-tui`)
-- Uses a pack model (`packs/<name>/`) to separate customer policy and templates from the engine
-- Ships with first-run setup (`setup.bat`) that installs a self-contained Python runtime
-- Provides a test suite for workbook parsing and rendering validation
-
----
-
-## 🎯 PRIME Philosophy in Practice
-
-### 1. Transparency by Design
-
-The data flow is explicit and auditable: workbook rows become typed models, models feed template context, and templates render deterministic CLI output.
-
-### 2. Hardened for Delivery
-
-Validation is front-loaded so malformed intent is caught before any config is generated. This reduces failed change windows caused by bad source data.
-
-### 3. Policy Before Python
-
-Customer and site standards live in pack YAML and template files, not in hardcoded Python branches. Teams can tailor implementation details without forking the engine.
-
-### 4. Reusable Engineering
-
-One core engine can be reused across many customer environments by switching packs, workbook content, and feature toggles.
-
----
-
-## 🧱 Project Architecture
-
-```text
-Cisco-Config-Generator/
-├─ cisco_config_generator/   # Core Python package
-│  ├─ workbook/              # Workbook parsing and validation
-│  ├─ rendering/             # Jinja2 rendering and output writer
-│  └─ tui/                   # Interactive Textual UI
-├─ packs/                    # Customer packs (YAML + templates)
-├─ scripts/                  # Utilities (e.g. workbook generation)
-├─ assets/                   # Sample and generated workbooks
-├─ output/                   # Generated configuration files
-├─ tests/                    # pytest suite
-├─ setup.bat                 # First-time setup (portable Python runtime)
-└─ run.bat                   # Daily launcher
-```
-
-Core pipeline:
-
-```text
-Excel intent -> Python core -> Jinja2 templates -> per-device .cfg files
-```
-
----
-
-## 📦 Requirements
-
-- Windows 10/11 (64-bit) for the packaged launcher workflow
-- Internet access for initial setup only (`setup.bat`)
-- No system Python required for normal use
-
-Developer mode is also supported via a standard virtual environment and editable install.
-
----
-
-## 🚀 Quick Start
-
-```batch
-:: 1) First-time setup (downloads portable Python + dependencies)
-setup.bat
-
-:: 2) Launch the interactive tool
-run.bat
-```
-
-Headless mode:
-
-```batch
-python_runtime\python.exe -m cisco_config_generator --no-tui --workbook assets\workbook_template.xlsx
-```
-
-Generate a blank workbook template:
-
-```batch
-python_runtime\python.exe scripts\generate_workbook.py
-```
-
-Run tests:
-
-```batch
-python_runtime\python.exe -m pytest tests/ -v
-```
-
----
-
-## ⚙️ CLI Reference (Core Flags)
-
-```text
-run.bat [OPTIONS]
-python_runtime\python.exe -m cisco_config_generator [OPTIONS]
-
-Options:
-  -p, --pack TEXT       Pack name (folder under packs/) or full path  [default: default]
-  -w, --workbook PATH   Path to the intent workbook (.xlsx)
-  -o, --output TEXT     Directory to write generated config files      [default: output]
-  --no-tui              Run headless without the interactive TUI
-  --version             Print version and exit
-```
-
----
-
-## 🧩 Workbook and Pack Model
-
-Workbook sheets cover devices, global settings, VLANs, interfaces, ACLs, and feature toggles. Packs define reusable templates and defaults:
-
-```text
-packs/default/
-├─ settings.yaml
-├─ hardware_catalog.yaml
-├─ port_profiles.yaml
-├─ template_map.yaml
-├─ features.yaml
-└─ templates/
-```
-
-This split keeps intent data, policy, and rendering logic clearly separated.
-
----
-
-## ✅ Operational Notes
-
-- Start with `assets/sample_intent.xlsx` to validate your process before creating a new workbook
-- Keep pack changes in version control to preserve audit trails
 - Use headless mode for CI/CD pipelines and repeatable generation jobs
 - Validate rendered output in a lab before production deployment
 

@@ -36,6 +36,29 @@ This guide is written as a transparent engineering walkthrough, not just a featu
 
 ---
 
+## 🗺️ Tutorial Roadmap
+
+This deep dive is easiest to absorb in this order:
+
+1. Read the highlights and architecture sections to understand the system boundary.
+2. Review configuration, credentials, and validation to understand startup behaviour.
+3. Walk through discovery, reporting, CLI, and logging modules to understand execution flow.
+4. Use the quick-start, interactive flow, and example session sections to run it end to end.
+5. Finish with errors, performance, customisation points, and learning outcomes to understand safe operational use.
+
+---
+
+## 🔍 Transparency Contract
+
+This guide explicitly covers:
+
+- What the tool collects and why those commands are chosen
+- How configuration, credentials, and templates shape runtime behaviour
+- Where the main failure modes appear and how they are reported
+- Which sections of the codebase are safe to customise without changing core discovery logic
+
+---
+
 ## ✨ Highlights
 
 - **Modular Python package** — Clean separation of concerns with `cdp_audit/` package structure
@@ -2190,6 +2213,42 @@ An output file named `<site_name>_CDP_Network_Audit_<timestamp>.xlsx` is created
 
 > **Note:** The template governs formatting/filters/charts (if any). The writer appends data starting at the appropriate row offsets to preserve the layout.
 
+### Worked Example: From Two Seeds to One Audit Workbook
+
+The following flow uses documentation-only addressing so you can understand the mechanics without relying on production data.
+
+**Operator inputs:**
+
+```text
+Site name: HQ-Campus
+Seed devices: 192.0.2.11, core-sw-1
+Jump server: bastion.company.com
+```
+
+**Expected output artefact:**
+
+```text
+HQ-Campus_CDP_Network_Audit.xlsx
+```
+
+**Example Audit row:**
+
+| LOCAL_HOST | LOCAL_IP | LOCAL_PORT | DESTINATION_HOST | REMOTE_PORT | MANAGEMENT_IP | PLATFORM |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| `CORE-SW-01` | `192.0.2.11` | `Gi1/0/48` | `DIST-SW-01` | `Gi1/0/1` | `192.0.2.21` | `C9300-48P` |
+
+**Why this row exists:**
+
+- `show cdp neighbors detail` exposed a switch neighbour with a management IP
+- The neighbour passed the crawl heuristics, so it was eligible for discovery
+- The audit writer appended the relationship into the `Audit` sheet using the workbook template's predefined layout
+
+**What to verify after the run:**
+
+- The workbook has all four sheets (`Audit`, `DNS Resolved`, `Authentication Errors`, `Connection Errors`)
+- Metadata cells are stamped with the supplied site and seed details
+- The row count in `Audit` is consistent with the final `CDP entries:` summary from the console session
+
 ---
 
 ## 🔑 Key Design Patterns
@@ -2513,7 +2572,7 @@ excel:
 
 ---
 
-## � Related Resources
+## Related Resources
 
 **Get Started Now:**
 
@@ -2531,9 +2590,9 @@ excel:
 
 ---
 
-## �📋 License
+## Licence
 
-GNU General Public License v3.0
+MIT License
 
 ## 👤 Author
 

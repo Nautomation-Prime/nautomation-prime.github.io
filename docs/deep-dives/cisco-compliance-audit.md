@@ -39,6 +39,28 @@ This page is deliberately written as an operational tutorial, not a marketing ov
 
 ---
 
+## 🗺️ Tutorial Roadmap
+
+For a full understanding, read this guide in sequence:
+
+1. Start with the problem statement, architecture, and quick-start sections.
+2. Move into configuration, engine concepts, and code walkthrough sections to understand how findings are produced.
+3. Review reporting, operator workflow, remediation, and troubleshooting sections to understand day-two operations.
+4. Finish with rollout guidance and runbook summary for production use.
+
+---
+
+## 🔍 Transparency Contract
+
+This page is designed to make four things explicit:
+
+- What state is collected from devices and how it becomes findings
+- Why classification, policy, and remediation are separate layers
+- How to scope execution safely on live estates
+- Where to extend checks or policy without introducing audit drift
+
+---
+
 ## ✨ Why This Tool Matters
 
 Most compliance scripts fail in production because they are:
@@ -280,7 +302,7 @@ Most useful real-world options:
 
 ---
 
-## 🆕 Current-State Enhancements (April 2026)
+## 🆕 Current-State Enhancements (May 2026)
 
 Key enhancements reflected in this deep dive update:
 
@@ -1137,6 +1159,52 @@ Important implementation detail:
 - Commands are grouped globally and per-interface
 - Duplicates are removed
 - Port-channel members are remediated at the logical Port-channel where appropriate
+
+### Worked Example: From Policy to Finding to Remediation Intent
+
+This is the most important transparency chain in the entire auditor: one policy rule becomes one finding, which can then become one remediation action.
+
+**1. Policy snippet**
+
+```yaml
+bpdu_guard:
+  enabled: true
+  severity: high
+  tags: [layer2-security, stp, cis, pci]
+```
+
+**2. Narrow execution example**
+
+```bash
+python -m compliance_audit --device ZZ-LAB1-001ASW001:192.0.2.61 --categories data_plane --tags stp
+```
+
+**3. Example finding in JSON output**
+
+```json
+{
+  "check": "bpdu_guard",
+  "status": "FAIL",
+  "detail": "GigabitEthernet1/0/5: BPDU guard missing (access port)",
+  "severity": "high",
+  "tags": ["layer2-security", "stp", "cis", "pci"],
+  "remediation": "spanning-tree bpduguard enable"
+}
+```
+
+**4. Resulting remediation intent**
+
+```text
+interface GigabitEthernet1/0/5
+ spanning-tree bpduguard enable
+```
+
+Why this example matters:
+
+- The **YAML policy** controls whether the check runs and how it is classified
+- The **engine** evaluates the live interface state against that policy
+- The **report** preserves the result as a structured artifact
+- The **remediation workflow** can then group and govern the corrective command
 
 ---
 

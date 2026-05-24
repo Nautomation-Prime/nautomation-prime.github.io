@@ -31,6 +31,28 @@ This guide is intended to show not only what the tool produces, but why the code
 
 ---
 
+## 🗺️ Tutorial Roadmap
+
+Read this guide in the following order:
+
+1. Start with tool purpose, architecture, and configuration so the execution model is clear.
+2. Review launcher usage, CLI arguments, and technical architecture to understand the operator path.
+3. Study parsing, enrichment, stale logic, and Excel output sections to see how raw CLI becomes report data.
+4. Finish with logging, extension, examples, FAQs, and learning outcomes to understand operational boundaries.
+
+---
+
+## 🔍 Transparency Contract
+
+This guide is written to make the following explicit:
+
+- What each collection stage gathers and how those data sources are fused
+- Why stale-port logic is intentionally conservative
+- How launcher, CLI, and report generation behave in real usage
+- Where you can customise behaviour without breaking the broader audit flow
+
+---
+
 !!! success "What's New in Version 2.0"
     **The Access Switch Audit tool has been restructured into a professional Python package!**
 
@@ -256,11 +278,11 @@ The repository includes a **professional Windows batch launcher** (`run.bat`) th
 
 ### Using run.bat
 
-## **Option 1: Double-click**
+### Option 1: Double-click
 
 Simply double-click `run.bat` in Windows Explorer to launch the tool with default behaviour.
 
-## **Option 2: Command Line (Default Behaviour)**
+### Option 2: Command Line (Default Behaviour)
 
     ```cmd
     run.bat
@@ -888,7 +910,7 @@ The `JumpManager` (now in `switch_audit/jump_manager.py`) maintains a persistent
 
 ---
 
-## �️ Device List File
+## Device List File
 
 Provide a plain-text file with one device per line. Lines that are blank or start with `#` are ignored.
 
@@ -960,7 +982,7 @@ Provide a plain-text file with one device per line. Lines that are blank or star
 
 ---
 
-## �🔌 PortAuditor: The Threaded Collection Engine
+## PortAuditor: The Threaded Collection Engine
 
 ### Why Parallel Port Auditing is Essential
 
@@ -1098,6 +1120,46 @@ Columns typically include (when available):
   - `PoE Power (W)` > 0 → green
   - `Stale (≥N d)` = TRUE → red
 
+### Worked Example: From One Device to Report Rows
+
+Use documentation-only addressing here as a validation pattern:
+
+```text
+devices.txt
+192.0.2.11
+```
+
+```bash
+python -m switch_audit --devices devices.txt --output access_port_audit.xlsx
+```
+
+**Example SUMMARY row:**
+
+| Device | Mgmt IP | Total Ports (phy) | Access Ports | Trunk Ports | Connected | Not Connected | Admin Down |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| `BRN1-ACC-01` | `192.0.2.11` | `28` | `24` | `4` | `18` | `6` | `4` |
+
+**Example per-interface row (healthy access port):**
+
+| Interface | Description | Status | Mode | VLAN | PoE Power (W) | LLDP/CDP Neighbour | Stale |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| `GigabitEthernet1/0/10` | `Finance Desk` | `connected` | `access` | `20` | `6.3` | `False` | `False` |
+
+**Example per-interface row (stale candidate):**
+
+| Interface | Description | Status | Mode | VLAN | PoE Power (W) | LLDP/CDP Neighbour | Stale |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| `GigabitEthernet1/0/24` | `` | `notconnect` | `access` | `999` | `` | `False` | `True` |
+
+**Why the second row is flagged stale:**
+
+- The port is an **access** port
+- Status is **notconnect**
+- There is **no PoE draw**
+- There is **no LLDP/CDP neighbour**
+
+That is the exact conservative logic described in the stale-detection section above.
+
 ---
 
 ## ⚙️ Performance & Concurrency
@@ -1116,7 +1178,7 @@ On completion, the Excel workbook is written to the filename you specify (defaul
 
 ---
 
-## � Logging, Debug, and Errors
+## Logging, Debug, and Errors
 
 - Add `--debug` to surface additional prints (e.g., enable mode attempts, jump host info, file counts)
 - Per-device errors are captured into the device's summary row (and a minimal sheet may be created with the error text so the workbook always reflects all devices)
@@ -1261,7 +1323,7 @@ After studying this code, you should understand:
 
 ### Key Code Patterns Demonstrated
 
-## **Pattern 1: Modular Package Structure**
+### Pattern 1: Modular Package Structure
 
     ```python
     # Entry point (__main__.py)
@@ -1279,7 +1341,7 @@ After studying this code, you should understand:
     reporter.generate(results)
     ```
 
-## **Pattern 2: Configuration Singleton**
+### Pattern 2: Configuration Singleton
 
     ```python
     # app_config.py - Single source of truth
@@ -1291,7 +1353,7 @@ After studying this code, you should understand:
     workers = config.default_workers
     ```
 
-## Pattern 3: Graceful Degradation**
+### Pattern 3: Graceful Degradation
 
     ```python
     try:
@@ -1300,7 +1362,7 @@ After studying this code, you should understand:
         data = parse_with_custom_logic(output)  # Fallback
     ```
 
-## **Pattern 4: Multi-Key Lookup**
+### Pattern 4: Multi-Key Lookup
 
     ```python
     for alias in all_aliases(interface_name):
@@ -1309,14 +1371,14 @@ After studying this code, you should understand:
             break
     ```
 
-## **Pattern 5: Thread-Safe Accumulation**
+### Pattern 5: Thread-Safe Accumulation
 
     ```python
     with lock:
         results.append(new_data)  # Atomic operation
     ```
 
-## **Pattern 6: Conservative Classification**
+### Pattern 6: Conservative Classification
 
     ```python
     if condition_A and condition_B:  # Both must be true
@@ -1325,7 +1387,7 @@ After studying this code, you should understand:
         mark_as_safe()  # Default to safe
     ```
 
-## **Pattern 7: Type-Safe Configuration**
+### Pattern 7: Type-Safe Configuration
 
     ```python
     @property
@@ -1347,7 +1409,7 @@ Consistent with the **Nautomation Prime** delivery model, this tool is available
 
 ---
 
-## � Related Resources
+## Related Resources
 
 **Get Started Now:**
 
@@ -1365,9 +1427,9 @@ Consistent with the **Nautomation Prime** delivery model, this tool is available
 
 ---
 
-## �📋 Licence
+## Licence
 
-GNU General Public Licence v3.0
+MIT License
 
 ## 👤 Author
 
