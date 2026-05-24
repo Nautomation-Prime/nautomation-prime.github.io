@@ -1032,23 +1032,27 @@ The `JumpManager` (now in `switch_audit/jump_manager.py`) maintains a persistent
 
 ---
 
-## Device List File
+## 🧾 Direct Execution Inputs and Examples
+
+The launcher and advanced operator paths above are the best way to start using the tool. This shorter section exists for engineers reading the code walkthroughs who want the minimum artefacts and commands required by the direct module path.
+
+### Device List File
 
 Provide a plain-text file with one device per line. Lines that are blank or start with `#` are ignored.
 
 ```text
-    # devices.txt
-    192.0.2.11
-    192.0.2.12  # inline comments are not parsed; this whole token must be a host/IP only
-    core-switch-01
-    access-sw-22
+# devices.txt
+192.0.2.11
+192.0.2.12  # inline comments are not parsed; this whole token must be a host/IP only
+core-switch-01
+access-sw-22
 ```
 
 > **Note:** Hostnames must be resolvable from the machine (or via the jump host, depending on your SSH setup).
 
 ---
 
-## 🚀 Quick Start
+### Minimal Direct Run
 
 1. Install dependencies (see Requirements).
 2. Create `devices.txt` with your targets (see Device list file).
@@ -1056,29 +1060,29 @@ Provide a plain-text file with one device per line. Lines that are blank or star
 4. Run the audit:
 
 ```bash
-        # Using jump host from config.yaml
-        python -m switch_audit --devices devices.txt --output access_port_audit.xlsx
+# Using jump host from config.yaml
+python -m switch_audit --devices devices.txt --output access_port_audit.xlsx
 
-        # Direct connections (no bastion), 5 workers, different stale threshold
-        python -m switch_audit --direct -w 5 --stale-days 60 -d devices.txt -o results.xlsx
+# Direct connections (no bastion), 5 workers, different stale threshold
+python -m switch_audit --direct -w 5 --stale-days 60 -d devices.txt -o results.xlsx
 
-        # Verbose debugging
-        python -m switch_audit --debug -d devices.txt
+# Verbose debugging
+python -m switch_audit --debug -d devices.txt
 ```
 
 ---
 
-## 🧭 CLI Reference
+### Direct CLI Reference
 
 `switch_audit` exposes the following command-line options:
 
 ```text
-    --devices, -d    (required)  Path to the devices file (one IP/hostname per line; '#' comments allowed)
-    --output,  -o    (optional)  Output Excel file name. Default: audit.xlsx
-    --workers, -w    (optional)  Max concurrent device sessions (threads). Default: 10
-    --stale-days     (optional)  Days threshold for stale access ports. 0 disables stale flagging. Default: 30
-    --direct         (optional)  Connect directly (do not use jump host)
-    --debug          (optional)  Enable verbose logging/prints
+--devices, -d    (required)  Path to the devices file (one IP/hostname per line; '#' comments allowed)
+--output,  -o    (optional)  Output Excel file name. Default: audit.xlsx
+--workers, -w    (optional)  Max concurrent device sessions (threads). Default: 10
+--stale-days     (optional)  Days threshold for stale access ports. 0 disables stale flagging. Default: 30
+--direct         (optional)  Connect directly (do not use jump host)
+--debug          (optional)  Enable verbose logging/prints
 ```
 
 ### Required vs Optional
@@ -1089,17 +1093,17 @@ Provide a plain-text file with one device per line. Lines that are blank or star
 **Usage Examples:**
 
 ```bash
-    # Standard audit with jump host
-    python -m switch_audit --devices devices.txt --output report.xlsx
+# Standard audit with jump host
+python -m switch_audit --devices devices.txt --output report.xlsx
 
-    # Direct connections, custom workers
-    python -m switch_audit --devices devices.txt --direct --workers 20
+# Direct connections, custom workers
+python -m switch_audit --devices devices.txt --direct --workers 20
 
-    # Debug mode with custom stale threshold
-    python -m switch_audit --devices devices.txt --stale-days 60 --debug
+# Debug mode with custom stale threshold
+python -m switch_audit --devices devices.txt --stale-days 60 --debug
 
-    # Using the launcher
-    run.bat --devices devices.txt --output audit.xlsx
+# Using the launcher
+run.bat --devices devices.txt --output audit.xlsx
 ```
 
 ---

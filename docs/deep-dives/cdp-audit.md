@@ -2212,7 +2212,7 @@ This runs the CDP Network Audit with all default settings from `config.yaml`.
 
 ### What the Launcher Does
 
-1 **Validates the environment:**
+1. **Validates the environment:**
     - Checks that the `portable_env` virtual environment exists
     - Verifies Python executable is present
     - Confirms `cdp_audit` package exists
@@ -2271,7 +2271,7 @@ Running CDP Network Audit...
 python -m cdp_audit
 ```
 
-1. Follow prompts:
+5. Follow prompts:
     - Site name (used in the output filename)
     - Seed devices (comma-separated IPv4 / resolvable hostnames)
     - Primary credentials (reads from CredMan if present; else prompts; optional save)
