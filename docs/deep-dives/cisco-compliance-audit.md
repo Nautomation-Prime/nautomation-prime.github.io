@@ -18,7 +18,7 @@ tags:
 ### "Policy-Driven Compliance, Engineered for Real Networks."
 
 !!! info "Version Alignment"
-  This deep dive reflects the **current main branch state (May 2026)** of Cisco IOS-XE Compliance Auditor and includes the split configuration model, governed remediation lifecycle workflow, severity/tag filtering, guided interactive mode (`--interactive`), full-screen TUI mode (`--tui`), and CLI option discovery (`--list-options`).
+    This deep dive reflects the **current main branch state (May 2026)** of Cisco IOS-XE Compliance Auditor and includes the split configuration model, governed remediation lifecycle workflow, severity/tag filtering, guided interactive mode (`--interactive`), full-screen TUI mode (`--tui`), and CLI option discovery (`--list-options`).
 
 The **Cisco IOS-XE Compliance Audit** tool is a role-aware, policy-driven audit framework for Cisco switching and routing estates. It connects to devices (directly or through a jump host), collects operational and configuration state, classifies every interface by intent, runs 90+ toggleable compliance checks, and generates actionable reports with remediation commands.
 

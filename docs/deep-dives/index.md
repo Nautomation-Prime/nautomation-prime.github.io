@@ -15,20 +15,37 @@ tags:
 
 Welcome to the **Nautomation Prime** Technical Library. These are not just scripts; they are educational blueprints designed to bridge the gap between complex Cisco infrastructure and hardened Python automation.
 
-Our Deep Dives are built for engineers who refuse to treat automation as a "black box." Each guide provides a comprehensive, line-by-line breakdown of production-ready logic, focusing on security, scalability, and error handling.
+Our Deep Dives are built for engineers who refuse to treat automation as a "black box." Each guide is written as a practical tutorial that explains the real code paths, the design trade-offs, the likely failure modes, and the safest places to extend behaviour.
+
+If you are choosing where to start, use this page as a route map rather than a simple list. The four current Deep Dives are designed to teach complementary patterns:
+
+- **Cisco Config Generator** teaches intent modelling, validation-first workflow, and template-driven rendering
+- **CDP Network Audit** teaches threaded discovery, crawl control, and template-governed reporting
+- **Access Switch Port Audit** teaches multi-source data fusion, conservative stale-port logic, and workbook production
+- **Cisco IOS-XE Compliance Audit** teaches policy-as-data, role-aware evaluation, and governed remediation lifecycle design
 
 ---
 
-## 🔍 Available Deep Dives
+## 🔍 Choose Your Deep Dive
 
-| Resource | Description | Focus Areas |
+| Resource | Best Starting Point For | What You Will Learn |
 | :--- | :--- | :--- |
-| **[CDP Network Audit](./cdp-audit.md)** | A threaded discovery utility that crawls Cisco networks via CDP with two-tier authentication and jump server support. | Thread-Safety, Two-Tier Auth, Jump-Hosts, DNS Enrichment, TextFSM |
-| **[Access Switch Port Audit](./access-switch-audit.md)** | Parallel port health collection across your access layer, exported to Excel. | Multi-threaded Collection, Stale Detection, PoE Intelligence |
-| **[Cisco IOS-XE Compliance Audit](./cisco-compliance-audit.md)** | A policy-driven, role-aware compliance platform with 90+ checks, trunk-intent classification, remediation generation, and multi-format reporting. | Governance as Code, Role-Aware Checks, Split Config Directories, Remediation at Scale |
-| **[Cisco Config Generator](./cisco-config-generator.md)** | Excel intent-to-config generation for Cisco IOS-XE access estates with pack-based templating and a portable runtime. | Intent Modelling, Jinja2 Templates, Pack Architecture, TUI and Headless Execution |
+| **[Cisco Config Generator](./cisco-config-generator.md)** | Engineers who want to understand how operational intent becomes deterministic Cisco configuration output. | Workbook design, pack architecture, validation-first processing, Jinja2 rendering, TUI versus headless execution |
+| **[CDP Network Audit](./cdp-audit.md)** | Engineers who want to learn threaded discovery and topology crawling without hiding the failure paths. | Queue control, two-tier authentication, jump-host traversal, fallback parsing, Excel reporting contracts |
+| **[Access Switch Port Audit](./access-switch-audit.md)** | Engineers who want to understand how multiple CLI data sources become one trustworthy interface report. | Interface normalisation, PoE enrichment, stale-port risk logic, bastion handling, workbook formatting patterns |
+| **[Cisco IOS-XE Compliance Audit](./cisco-compliance-audit.md)** | Engineers who want a full platform example for policy-driven audit and governed remediation. | Split YAML policy model, classification logic, finding lifecycle, operator UX modes, approval and apply safeguards |
 | **[Coming Soon: IOS-XE Software Upgrade Orchestrator](../coming-soon/ios-xe-upgrade-orchestrator.md)** *(Design & Planning Phase)* | Automated, intelligent firmware management for Cisco IOS-XE devices. Includes comprehensive design covering Python integration with Catalyst Centre, Ansible, and Nornir. | Pre-Flight Validation, Binary Verification, Stack-Aware Orchestration, Rollback Capability, Framework Integration |
 | **[Coming Soon: Zero Touch Provisioning (ZTP)](../coming-soon/cisco-ios-xe-ztp.md)** *(Testing & Validation Phase)* | Production-ready Day 0 provisioning for Cisco Catalyst switches running IOS-XE. Serial-based configuration lookup, retry logic with exponential backoff, and structured JSON logging to Graylog/Syslog. | Template-Based Config, DHCP Integration, Remote Logging, Structured Logging |
+
+---
+
+## 🧭 Suggested Reading Paths
+
+Choose the path that best matches what you are trying to learn:
+
+1. **From intent to governance**: Start with [Cisco Config Generator](./cisco-config-generator.md), move to [Access Switch Port Audit](./access-switch-audit.md), then finish with [Cisco IOS-XE Compliance Audit](./cisco-compliance-audit.md).
+2. **From discovery to audit**: Start with [CDP Network Audit](./cdp-audit.md), continue to [Access Switch Port Audit](./access-switch-audit.md), then move into [Cisco IOS-XE Compliance Audit](./cisco-compliance-audit.md).
+3. **Fastest route to production-grade patterns**: Read [Cisco Config Generator](./cisco-config-generator.md) for data modelling, [CDP Network Audit](./cdp-audit.md) for concurrency, and [Cisco IOS-XE Compliance Audit](./cisco-compliance-audit.md) for governance and remediation control.
 
 ---
 
@@ -58,6 +75,10 @@ Where the tool complexity justifies it, we also include:
 - **The Run Path** — Exactly how to execute the tool with working commands
 - **The Failure Modes** — What usually breaks and how to diagnose it
 - **The Safe Change Points** — Where to customise behaviour without undermining reliability
+
+Across the four current flagship guides, you should now expect an additional layer as well:
+
+- **The Real Runtime Path** — How modules cooperate during a live run, where control actually changes hands, and why the boundaries were designed that way
 
 Read these alongside the raw source code on GitHub. Whether deploying bespoke solutions or understanding Python at scale with Cisco hardware, start here.
 
