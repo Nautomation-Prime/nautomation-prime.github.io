@@ -80,12 +80,12 @@ Across the four current flagship guides, you should now expect an additional lay
 
 - **The Real Runtime Path** — How modules cooperate during a live run, where control actually changes hands, and why the boundaries were designed that way
 
-Read these alongside the raw source code on GitHub. Whether deploying bespoke solutions or understanding Python at scale with Cisco hardware, start here.
+Read these to understand exactly how each premium tool works before you buy it as-is or commission a customised build. Whether deploying bespoke solutions or understanding Python at scale with Cisco hardware, start here.
 
 ---
 
-!!! tip "Need these patterns implemented in a live estate?"
-  If you want help applying these designs across production Cisco environments, explore our [Enterprise Automation Services](../services.md) or review [How We Work](../how-we-work.md).
+!!! tip "Want one of these tools in your environment?"
+  Each tool is available to **buy as-is** or **customised to your estate**. [Request a tool or a quote](../contact.md), explore our [Enterprise Automation Services](../services.md), or review [How We Work](../how-we-work.md).
 
 ---
 

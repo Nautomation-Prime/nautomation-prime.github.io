@@ -26,7 +26,14 @@ If your team needs "complete transparency", this guide is built for exactly that
 - **How** to run or verify it in practice
 - **Where** to customise safely
 
-[:material-github: View Source Code on GitHub](https://github.com/Nautomation-Prime/Cisco-Config-Generator){ .md-button .md-button--primary }
+!!! abstract "Premium tool — buy ready-to-run or have it customised"
+    The **Cisco Config Generator** is a production-grade Nautomation Prime tool. This deep dive shows exactly how it works; the tool itself is a premium product, available on request rather than as a free download.
+
+    - **Buy as-is (unmodified) — £595:** the production-ready Python core and Jinja2 templates, delivered with a setup runbook and licensed for use in your environment.
+    - **Customised to your estate — £1,500–£4,000:** bespoke packs, templates, and validation rules built around your platforms, naming conventions, and standards.
+
+[Request this tool](../contact.md){ .md-button .md-button--primary }
+[Explore Services](../services.md){ .md-button }
 
 ---
 
@@ -366,7 +373,7 @@ In the UI:
 
 ### TUI Preview
 
-![Cisco Config Generator TUI](https://raw.githubusercontent.com/Nautomation-Prime/Cisco-Config-Generator/main/assets/tui_screenshot.png)
+_The interactive TUI walks operators through pack selection, workbook selection, generation, and a final output summary on a single guided screen._
 
 Why this matters: the TUI gives operators a guided execution path, which reduces avoidable CLI mistakes during day-to-day use.
 

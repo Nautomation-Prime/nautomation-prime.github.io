@@ -24,7 +24,14 @@ The **Cisco IOS-XE Compliance Audit** tool is a role-aware, policy-driven audit 
 
 This is one of the most comprehensive projects in the Nautomation Prime ecosystem, and this guide is intentionally thorough so your team can move from "we ran a script" to "we can defend every check and every result."
 
-[:material-github: View Source Code on GitHub](https://github.com/Nautomation-Prime/Cisco-Compliance-Audit){ .md-button .md-button--primary }
+!!! abstract "Premium tool — buy ready-to-run or have it customised"
+    The **Cisco IOS-XE Compliance Audit** tool is a production-grade Nautomation Prime tool — the most comprehensive in the catalogue. This deep dive shows exactly how it works; the tool itself is a premium product, available on request rather than as a free download.
+
+    - **Buy as-is (unmodified) — £1,495:** the full auditor with its policy packs and multi-format reporting, delivered with a setup runbook and licensed for use in your environment.
+    - **Customised to your estate — £3,500–£8,000:** bespoke policy model, role classification, remediation workflow, and reporting aligned to your governance and change process.
+
+[Request this tool](../contact.md){ .md-button .md-button--primary }
+[Explore Services](../services.md){ .md-button }
 
 ---
 
@@ -200,7 +207,7 @@ graph TD
 Install pattern (Linux/macOS/WSL):
 
 ```bash
-git clone https://github.com/Nautomation-Prime/Cisco-Compliance-Audit.git
+# The licensed Cisco IOS-XE Compliance Audit package is provided on purchase
 cd Cisco-Compliance-Audit
 python3 -m venv .venv
 source .venv/bin/activate
@@ -1423,9 +1430,7 @@ Recommended phased adoption:
 
 Use this as a single operational workflow that combines all five spotlight controls.
 
-Need a compact printable version? The runbook lives in the repository itself:
-
-- [Open the runbook on GitHub](https://github.com/Nautomation-Prime/Cisco-Compliance-Audit/blob/main/docs/RUNBOOK.md)
+Need a compact printable version? A full `RUNBOOK.md` is included with the licensed package.
 
 ### Phase 1: Pre-Change Validation
 

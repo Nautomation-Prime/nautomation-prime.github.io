@@ -20,7 +20,7 @@ tags:
 
 ## Executive Summary
 
-An end-to-end production-grade Cisco ZTP solution built in Python for enterprise rollouts. This is the fully managed, paid platform version of our upcoming free ZTP script, with a configuration builder, data validation, and lifecycle tracking.
+An end-to-end production-grade Cisco ZTP solution built in Python for enterprise rollouts. This is the fully managed platform version of our upcoming standalone ZTP script (available as a premium tool), with a configuration builder, data validation, and lifecycle tracking.
 
 ---
 

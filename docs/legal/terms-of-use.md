@@ -25,9 +25,9 @@ These may be freely shared, adapted, and republished—with attribution to Nauto
 
 ## 2. Code Licensing
 
-Code available in public repositories under the Nautomation Prime GitHub organisation is licenced under the **Apache License 2.0**, unless stated otherwise.
+The code examples and snippets published in our tutorials, technical deep dives, and on this website are licenced under the **Apache License 2.0**, unless stated otherwise.
 
-Code snippets and examples on this website follow the **same license as the repository they relate to** (typically **Apache License 2.0**).
+Our packaged automation **tools** are premium products supplied under a **commercial licence** when purchased—either as-is (unmodified) or customised to your environment. Licensed source is included for your team to audit and maintain, but the tools are not open-source and may not be redistributed.
 
 Bespoke code delivered to clients is licenced under either:
 

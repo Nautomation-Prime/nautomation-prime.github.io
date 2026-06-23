@@ -1007,12 +1007,12 @@ As a specialized practice, you receive dedicated principal engineer engagement t
 - Documentation adhering to enterprise standards
 - Security scanning (secrets detection, dependency vulnerabilities)
 
-#### Open Source Commitment
+#### Community & Transparency Commitment
 
 While bespoke client work remains confidential, we contribute to the network automation community through:
 
 - Educational content via [tutorials](./tutorials/index.md), [deep dives](./deep-dives/index.md), and structured implementation guides
-- Open-source tool development (MIT/Apache 2.0 licensed)
+- Premium tools delivered with licensed source so your team can audit and maintain them
 - Knowledge sharing through [deep-dive technical articles](./deep-dives/index.md)
 
 This commitment to transparency strengthens the ecosystem while protecting client confidentiality.

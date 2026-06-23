@@ -1,6 +1,6 @@
 ---
 title: About Nautomation Prime
-description: Learn about Nautomation Prime's mission to provide transparent, production-ready Cisco automation. Education, open-source tools, and professional services.
+description: Learn about Nautomation Prime's mission to provide transparent, production-ready Cisco automation. Education, premium automation tools, and professional services.
 tags:
   - About
   - Company
@@ -13,7 +13,7 @@ tags:
 
 ## About Nautomation Prime
 
-Nautomation Prime exists to close the gap between complex Cisco infrastructure and automation teams can actually understand, trust, and own. The business brings together learning content, open-source tools, and professional services around one clear idea: no black-box delivery.
+Nautomation Prime exists to close the gap between complex Cisco infrastructure and automation teams can actually understand, trust, and own. The business brings together learning content, premium automation tools, and professional services around one clear idea: no black-box delivery.
 
 <div class="np-action-row" markdown>
 
@@ -43,7 +43,7 @@ Nautomation Prime exists to close the gap between complex Cisco infrastructure a
 
 -   ### Deploy
 
-  Open-source tools and practical implementation patterns shorten the path from idea to usable automation.
+  Premium, production-ready tools and practical implementation patterns shorten the path from idea to usable automation.
 
 -   ### Transform
 
@@ -94,7 +94,7 @@ The framework is built on the **[PRIME Philosophy](./prime-framework/philosophy.
 
 ## What We Do
 
-We provide education, open-source tools, and professional services—all guided by the **[PRIME Framework](./prime-framework/index.md)** and **Prime Philosophy**.
+We provide education, premium automation tools, and professional services—all guided by the **[PRIME Framework](./prime-framework/index.md)** and **Prime Philosophy**.
 
 ### 🎓 Education & Tutorials
 
@@ -106,16 +106,16 @@ Free, comprehensive guides that teach network automation through real-world Cisc
 
 Every script is explained line-by-line, every design decision documented.
 
-### 🛠️ Open-Source Tools
+### 🛠️ Premium Automation Tools
 
-Production-hardened Python scripts for common network automation tasks:
+Production-hardened Python tools for common network automation tasks, available to buy as-is or customised to your environment:
 
 - [CDP Network Audit](./deep-dives/cdp-audit.md)
 - [Access Switch Port Audit](./deep-dives/access-switch-audit.md)
 - [Zero Touch Provisioning (ZTP)](./coming-soon/cisco-ios-xe-ztp.md) — Coming Soon
 - [IOS-XE Upgrade Orchestrator](./coming-soon/ios-xe-upgrade-orchestrator.md) — Coming Soon
 
-All tools are available on GitHub under MIT license.
+Each tool can be purchased on request, with optional customisation — see the [Script Library](./scripts/index.md) for pricing and details.
 
 ### 💼 Professional Services via PRIME Framework
 
@@ -174,9 +174,9 @@ Our tools and guides leverage industry-standard Python libraries:
 
 ---
 
-## Open Source Commitment
+## Licensing & Community Commitment
 
-We balance **proprietary methodology protection** with **community-driven education**:
+We balance **proprietary methodology and product protection** with **community-driven education**:
 
 ### 🔒 PRIME Framework & Philosophy (All Rights Reserved)
 
@@ -186,15 +186,14 @@ Our methodology is proprietary. The PRIME Framework and Philosophy represent our
 
 Tutorials, guides, and technical deep dives are licensed under Creative Commons Attribution. Share them freely in courses, blogs, and educational settings—just credit Nautomation Prime.
 
-### 💻 Code & Scripts (Apache License 2.0)
+### 💻 Premium Tools (Commercial Licence)
 
-All public repositories are licensed under **Apache License 2.0**, ensuring:
+Our automation tools are premium products. Buy a tool as-is (unmodified) under a commercial licence, or commission a customised build for your environment. Licensed source is included so your team can audit, learn from, and maintain what they run:
 
-- Source code transparency
-- Explicit patent rights protection
-- Community contributions welcome
-- Free for educational and commercial use
-- Permissive redistribution and modification rights
+- Full source transparency for the tools you licence
+- Buy as-is or customised to your estate
+- Setup runbook and documentation included
+- Direct support from the engineer who built it
 
 Bespoke client code is licenced under **Apache 2.0** or **MIT** as agreed during engagement.
 
@@ -216,9 +215,9 @@ Explore our [Technical Deep Dives](deep-dives/index.md) for comprehensive guides
 
 Need bespoke automation? [Contact us](services.md) to discuss your requirements.
 
-### Contribute
+### Feedback & Support
 
-Found a bug or have a feature request? Open an issue on our [GitHub organisation](https://github.com/Nautomation-Prime).
+Found a bug, need support, or have a feature request for one of our tools? [Get in touch](contact.md)—we read every message.
 
 ---
 
