@@ -68,18 +68,17 @@ We believe transparency and education strengthen the entire automation community
 
 ---
 
-## 3. Public GitHub Repositories (Apache License 2.0)
+## 3. Code Examples & Snippets (Apache License 2.0)
 
-Code published in public Nautomation Prime GitHub repositories is licensed under:
+The illustrative code examples and snippets we publish for teaching are licensed under:
 
 ### **Apache License 2.0**
 
 This includes:
 
-- Network automation scripts and utilities
-- Python tools and libraries
-- Code examples tied to those repositories
+- Code examples tied to our tutorials and technical deep dives
 - Code snippets on nautomationprime.io
+- Standalone utility examples published purely for education
 
 ### Apache 2.0 Permissions
 
@@ -95,9 +94,22 @@ This includes:
 ⚠️ Include NOTICE file with attribution  
 ⚠️ No warranty provided  
 
+> **Note:** This covers teaching examples and snippets only. Our complete automation **tools** (for example the CDP Network Audit, Access Switch Port Audit, Cisco Config Generator, and Cisco IOS-XE Compliance Audit) are premium products — see Section 4 below.
+
 ---
 
-## 4. Bespoke / Consulting Work
+## 4. Premium Tools (Commercial Licence)
+
+Our packaged automation tools are commercial products, not free downloads. When purchased they are provided under a **commercial licence**:
+
+- Buy a tool **as-is (unmodified)** under a one-time commercial licence, or
+- Commission a **customised build** tailored to your environment
+
+Licensed source is included with each tool so your team can audit, learn from, and maintain what they run—but the tools are **not** offered under an open-source licence and may not be redistributed. [Request a tool or a quote](../contact.md) to discuss licensing and customisation.
+
+---
+
+## 5. Bespoke / Consulting Work
 
 For paid or commissioned automation projects, code is provided under a **custom agreement** tailored to the client, typically:
 
@@ -109,7 +121,7 @@ The specific license is negotiated during the project engagement.
 
 ---
 
-## 5. Summary Table
+## 6. Summary Table
 
 | Content | License | Use Rights |
 | :--- | :--- | :--- |
@@ -118,13 +130,13 @@ The specific license is negotiated during the project engagement.
 | Brand Assets & Logos | All Rights Reserved | View only; no use without permission |
 | Tutorials & Guides | CC-BY 4.0 | Share, adapt, distribute (with attribution) |
 | Technical Deep Dives | CC-BY 4.0 | Share, adapt, distribute (with attribution) |
-| Code & Scripts (GitHub) | MIT License | Use, modify, distribute (with attribution) |
-| Code Examples on Site | MIT License | Use, modify, distribute (with attribution) |
+| Teaching Code Examples & Snippets | Apache 2.0 | Use, modify, distribute (with attribution) |
+| Premium Automation Tools | Commercial Licence | Purchased; licensed source included; no redistribution |
 | Consulting Deliverables | Custom | Per agreement |
 
 ---
 
-## 6. Quick Reference: What Can I Do With This?
+## 7. Quick Reference: What Can I Do With This?
 
 ### The Tutorial Says "Show Command to Excel" — Can I use it in my course?
 
@@ -137,16 +149,15 @@ The specific license is negotiated during the project engagement.
 
 Just credit Nautomation Prime and link back if possible.
 
-### The CDP Network Audit Script — Can I modify it for our environment?
+### The CDP Network Audit Tool — Can I get it for our environment?
 
-**Yes!** Code is MIT licensed. You can:
+**Yes.** It's a premium tool. When you purchase it you can:
 
-- Install and run it as-is
-- Modify it to fit your network
-- Distribute your version
-- Use it commercially
+- Buy it as-is (unmodified) under a commercial licence
+- Have it customised to your network as a bespoke engagement
+- Audit and maintain it using the licensed source included
 
-Just include the MIT license and credit Nautomation Prime.
+The tool is not open-source and may not be redistributed. [Request the tool or a quote](../contact.md) to get started.
 
 ### The PRIME Framework — Can I use it in my consulting practice?
 
@@ -160,7 +171,7 @@ To use the PRIME Framework officially, contact us for a partnership or licensing
 
 ---
 
-## 7. Questions?
+## 8. Questions?
 
 For licensing questions, permissions requests, or commercial inquiries:
 

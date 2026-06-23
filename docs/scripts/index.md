@@ -1,11 +1,10 @@
 ---
 title: Script Library
-description: Production-ready Python automation tools for Cisco infrastructure. Open-source scripts with comprehensive documentation and GitHub repositories.
+description: Premium, production-ready Python automation tools for Cisco infrastructure. Buy them ready-to-run or have them customised to your environment.
 tags:
   - Scripts
   - Tools
-  - Open Source
-  - GitHub
+  - Premium Tools
   - Production Ready
 ---
 
@@ -13,7 +12,10 @@ tags:
 
 ### Production-Ready Automation for Cisco Infrastructure
 
-Welcome to the **Nautomation Prime Script Library**. Here you'll find open-source, hardened Python automation tools designed for enterprise Cisco deployments.
+Welcome to the **Nautomation Prime Script Library**. Here you'll find production-grade, hardened Python automation tools designed for enterprise Cisco deployments.
+
+!!! abstract "Premium tools — available on request"
+    These tools are premium Nautomation Prime products, not free downloads. Each one can be **bought as-is (unmodified)** for a one-time licence, or **customised to your estate** as a focused bespoke engagement. Indicative prices are shown per tool below — [request a tool or a quote](../contact.md) to get started.
 
 !!! warning "Python Prerequisite"
     This site focuses on applying Python to network automation. We assume familiarity with core Python concepts (variables, functions, loops, exceptions, and file I/O). If you're new to Python, complete a fundamentals course first, then return here.
@@ -24,7 +26,7 @@ Welcome to the **Nautomation Prime Script Library**. Here you'll find open-sourc
 
 ### CDP Network Audit Tool
 
-**Status:** ✅ Available  
+**Status:** 💼 Premium — available on request
 **Description:** A threaded discovery utility that starts from seed Cisco devices and crawls the network using Cisco Discovery Protocol (CDP), producing structured Excel reports with professional formatting.
 
 **Features:**
@@ -40,13 +42,15 @@ Welcome to the **Nautomation Prime Script Library**. Here you'll find open-sourc
 - Comprehensive error tracking (authentication failures, connection errors)
 - Extensive customisation options (credentials, paths, Excel formatting, DNS, logging, and more)
 
-[📖 View Deep Dive Documentation](../deep-dives/cdp-audit.md) | [:material-github: GitHub Repository](https://github.com/Nautomation-Prime/Cisco_CDP_Network_Audit)
+**Pricing:** £795 as-is (unmodified) · £2,000–£5,000 customised
+
+[📖 View Deep Dive Documentation](../deep-dives/cdp-audit.md) | [💬 Request this tool](../contact.md)
 
 ---
 
 ### Access Switch Port Audit Tool
 
-**Status:** ✅ Available
+**Status:** 💼 Premium — available on request
 **Description:** A production-hardened collector designed to map interface health and utilisation across your access layer.
 
 **Features:**
@@ -57,13 +61,15 @@ Welcome to the **Nautomation Prime Script Library**. Here you'll find open-sourc
 - Professional Excel workbooks with automated conditional formatting
 - Full Jump-Host (Bastion) integration for restricted environments
 
-[📖 View Deep Dive Documentation](../deep-dives/access-switch-audit.md) | [:material-github: GitHub Repository](https://github.com/Nautomation-Prime/Access_Switch_Audit)
+**Pricing:** £795 as-is (unmodified) · £2,000–£5,000 customised
+
+[📖 View Deep Dive Documentation](../deep-dives/access-switch-audit.md) | [💬 Request this tool](../contact.md)
 
 ---
 
 ### Cisco IOS-XE Compliance Audit
 
-**Status:** ✅ Available
+**Status:** 💼 Premium — available on request
 **Description:** A policy-driven compliance auditor with 90+ role-aware checks, automated remediation generation, and multi-format reporting for enterprise Cisco switches.
 
 **Features:**
@@ -77,7 +83,29 @@ Welcome to the **Nautomation Prime Script Library**. Here you'll find open-sourc
 - Jump host / bastion support for restricted environments
 - Concurrent device auditing for large-scale operations
 
-[📖 View Deep Dive Documentation](../deep-dives/cisco-compliance-audit.md) | [🗒️ Runbook](https://github.com/Nautomation-Prime/Cisco-Compliance-Audit/blob/main/docs/RUNBOOK.md) | [:material-github: GitHub Repository](https://github.com/Nautomation-Prime/Cisco-Compliance-Audit)
+**Pricing:** £1,495 as-is (unmodified) · £3,500–£8,000 customised
+
+[📖 View Deep Dive Documentation](../deep-dives/cisco-compliance-audit.md) | [💬 Request this tool](../contact.md)
+
+---
+
+### Cisco Config Generator
+
+**Status:** 💼 Premium — available on request  
+**Description:** Turns structured Excel intent into per-device Cisco IOS-XE configuration files using a reusable Python core and Jinja2 templates, with a validation-first workflow and a pack architecture that keeps customer rules in data and templates rather than hardcoded logic.
+
+**Features:**
+
+- Intent modelling via a structured Excel workbook
+- Validation-first processing before any rendering
+- Template-driven Jinja2 rendering with a reusable core engine
+- Pack architecture that separates policy-as-data from logic
+- Dual execution modes (interactive TUI and headless CLI)
+- Deterministic per-device Cisco IOS-XE configuration output
+
+**Pricing:** £595 as-is (unmodified) · £1,500–£4,000 customised
+
+[📖 View Deep Dive Documentation](../deep-dives/cisco-config-generator.md) | [💬 Request this tool](../contact.md)
 
 ---
 
@@ -109,7 +137,7 @@ Ready to build custom solutions:
 
 1. Review all [Deep Dives](../deep-dives/index.md) for architectural patterns
 2. Study [Cisco Compliance Audit Deep Dive](../deep-dives/cisco-compliance-audit.md) — policy-driven compliance with remediation generation
-3. Customize scripts for your environment (GitHub repositories include full source)
+3. Purchase a tool and customise it for your environment (licensed source included)
 4. Integrate with [PRIME Framework](../prime-framework/index.md) methodology
 5. Contact us for [consulting services](../services.md) on bespoke automation
 
@@ -168,12 +196,11 @@ Ready to build custom solutions:
 
 ### Installation & Setup
 
-Each script repository includes detailed installation instructions in its README. Typical workflow:
+Each tool is delivered as a licensed package with a setup runbook. Typical workflow once you have the package:
 
 ```bash
-# Clone the repository
-git clone https://github.com/Nautomation-Prime/<script-name>
-cd <script-name>
+# Unpack the licensed tool package
+cd <tool-name>
 
 # Install dependencies
 pip install -r requirements.txt
@@ -192,7 +219,7 @@ Scripts use your operating system's native credential manager for secure authent
 
 Credentials are never stored in plaintext files or hardcoded in scripts.
 
-See each repository's README for platform-specific instructions.
+See the setup runbook included with each tool for platform-specific instructions.
 
 ### Configuration
 
@@ -207,7 +234,7 @@ All scripts follow the **Nautomation Prime** philosophy of transparency and secu
 For issues, feature requests, or questions about any script:  
 
 - Check the **Deep Dives** documentation for detailed explanations.  
-- Open an issue on the respective GitHub repository.  
+- [Request a tool, a quote, or post-purchase support](../contact.md) for licensing and customisation.  
 - Contact us via [email](mailto:enquiries@nautomationprime.io) or [LinkedIn](https://www.linkedin.com/company/nautomationprime) for consulting services.  
 
 ---
@@ -223,9 +250,9 @@ For issues, feature requests, or questions about any script:
 
 | Topic | Resources |
 | :--- | :--- |
-| **Network Discovery** | [📖 CDP Network Audit Deep Dive](../deep-dives/cdp-audit.md) • [💾 Script](https://github.com/Nautomation-Prime/Cisco_CDP_Network_Audit) |
-| **Port & Interface Health** | [📖 Access Switch Audit Deep Dive](../deep-dives/access-switch-audit.md) • [💾 Script](https://github.com/Nautomation-Prime/Access_Switch_Audit) |
-| **Compliance & Governance** | [📖 Cisco Compliance Audit Deep Dive](../deep-dives/cisco-compliance-audit.md) • [🗒️ Runbook](https://github.com/Nautomation-Prime/Cisco-Compliance-Audit/blob/main/docs/RUNBOOK.md) • [💾 Script](https://github.com/Nautomation-Prime/Cisco-Compliance-Audit) |
+| **Network Discovery** | [📖 CDP Network Audit Deep Dive](../deep-dives/cdp-audit.md) • [💬 Request the tool](../contact.md) |
+| **Port & Interface Health** | [📖 Access Switch Audit Deep Dive](../deep-dives/access-switch-audit.md) • [💬 Request the tool](../contact.md) |
+| **Compliance & Governance** | [📖 Cisco Compliance Audit Deep Dive](../deep-dives/cisco-compliance-audit.md) • [💬 Request the tool](../contact.md) |
 | **Configuration Management** | [🎓 Configuration Backup (Beginner)](../tutorials/beginner/multi-device-config-backup.md) • [🎓 Enterprise Backup with Nornir (Intermediate)](../tutorials/intermediate/enterprise-config-backup-nornir.md) |
 | **Data Collection & Reporting** | [🎓 Show Commands to Excel (Beginner)](../tutorials/beginner/netmiko-show-command-to-excel.md) • [🎓 Multi-Device Collection (Beginner)](../tutorials/beginner/multi-device-show-command.md) |
 | **Automation Frameworks** | [🎓 Nornir Fundamentals](../tutorials/intermediate/nornir-fundamentals.md) • [📖 Advanced Patterns](../tutorials/intermediate/advanced-nornir-patterns.md) |

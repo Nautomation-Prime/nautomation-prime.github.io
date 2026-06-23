@@ -18,7 +18,7 @@ Welcome! This guide will help you understand what Nautomation Prime offers and h
 
 - **[Tutorials](tutorials/index.md)** — Step-by-step practical guides for learning automation skills
 - **[Deep Dives](deep-dives/index.md)** — Production-ready scripts explained line-by-line
-- **[Script Library](scripts/index.md)** — Open-source automation tools for common tasks
+- **[Script Library](scripts/index.md)** — Premium automation tools for common tasks
 - **[PRIME Framework Services](prime-framework/index.md)** — Proven 5-stage methodology for automation projects
 - **[Professional Services](services.md)** — Custom automation tailored to your topology
 
@@ -48,7 +48,7 @@ Start with our **[Tutorials](tutorials/index.md)**. We provide hands-on, step-by
 
 ### I want to use pre-built scripts
 
-Check out our **[Script Library](scripts/index.md)**. Each script comes with documentation and GitHub repositories for easy deployment.
+Check out our **[Script Library](scripts/index.md)**. Each tool comes with full documentation and a setup runbook, and can be purchased as-is or customised to your environment.
 
 **Popular Scripts:**
 
@@ -104,11 +104,11 @@ We deliver automation projects through the **[PRIME Framework](prime-framework/i
 
 ## 🛠️ Common Tasks
 
-### Deploy the CDP Network Audit Tool
+### Get the CDP Network Audit Tool
 
-1. Visit the [CDP Audit GitHub repository](https://github.com/Nautomation-Prime/Cisco_CDP_Network_Audit)
-2. Read the [Deep Dive guide](deep-dives/cdp-audit.md) for understanding the architecture
-3. Follow the README for installation and usage
+1. Read the [Deep Dive guide](deep-dives/cdp-audit.md) to see exactly how it works
+2. [Request the tool](contact.md) — buy it as-is or have it customised to your estate
+3. Receive the licensed package and setup runbook on purchase
 
 ### Request Custom Automation (PRIME Framework)
 
@@ -178,9 +178,9 @@ For custom automation tailored to your specific topology:
 
     Our scripts primarily target Cisco devices (IOS, IOS-XE, NX-OS, IOS-XR) but the underlying libraries (Netmiko, Nornir, NAPALM) support many vendors including Juniper, Arista, Palo Alto Networks, F5, and more. The patterns and techniques we teach are transferable across vendors.
 
-??? question "Can I use your code in my own projects?"
+??? question "Can I customise the tools for my own environment?"
 
-    Yes! Our open-source scripts are available under permissive licenses. Check each repository for specific licensing terms. We encourage you to learn from, modify, and build upon our code for your own automation projects.
+    Yes. Each tool can be bought as-is or customised to your environment, and is delivered with licensed source so your team can audit, learn from, and adapt it. [Request a tool or a quote](contact.md) to discuss licensing and customisation.
 
 ??? question "What's included in the PRIME Framework?"
 

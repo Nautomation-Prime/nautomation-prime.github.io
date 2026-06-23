@@ -8,75 +8,6 @@ tags:
   - Team
 ---
 
-## Beyond Work
-
-### Life in Staffordshire
-
-I'm based in Leek, Staffordshire, where I live with my wife and son. Family is everything to me—they're the reason I work the way I do and the support system that keeps me grounded when things get challenging.
-
-I have Ménière's disease and coeliac disease, which brings its own set of daily challenges. But I've learned that limitations don't have to define you—they just require better planning, clearer systems, and support from people who matter. My family makes all the difference.
-
-### What Drives Me
-
-If you've taken the 16personalities test, I'm an **INFJ-A** (Advocate). After reading their analysis, it's eerily accurate: I'm driven by purpose, I value authenticity over surface-level interactions, and I genuinely want to help people succeed—not just sell them something.
-
-That's probably why I'm obsessed with transparency in automation. I can't stand the idea of someone running a script they don't understand on their production network. It feels wrong. If you're going to trust automation, you should **understand** it.
-
-I'm also quite introverted, which surprises some people in consulting. But introversion doesn't mean I don't care about people—it means I care deeply about meaningful work and genuine connections over small talk and sales pitches.
-
-### When I'm Not Automating Networks
-
-**Music** is a constant in my life. My taste is eclectic—spanning decades and genres—but I'm very particular about what I love. If it resonates, it stays on repeat. If it doesn't, it's skipped immediately.
-
-**Nature and the outdoors** recharge me. The less man-made, the better. Give me forests, hills, and open countryside over cities any day. There's something about being surrounded by natural complexity that puts human-created systems into perspective. I take my DSLR camera along to capture those moments—there's a satisfaction in framing a shot properly, getting the light right, preserving something beautiful.
-
-**Precision shooting** is another interest of mine. It keeps me grounded in patience, safety, and repeatable performance.
-
-**Tea.** Proper tea. I import varieties from China and India as directly from the tea farms as possible because I'm particular about quality. There's a ritual to a good cup of tea—choosing the right leaves, the right temperature, the right timing. It's a small thing, but it matters. (You might notice a pattern here: I care about doing things *properly*.)
-
-### Why This Work Matters to Me
-
-Network automation isn't just a career—it's something I genuinely enjoy. It gives my life purpose.
-
-I've always believed that if you're going to spend a third of your life working, it should be in something you love. And I love solving problems. I love teaching people. I love seeing teams go from "we can't do this" to "we built that ourselves."
-
-That's why I built Nautomation Prime. It's not about selling scripts—it's about empowering engineers to solve their own problems. If I can help someone feel the same satisfaction I get from automation, then the work has meaning beyond the invoice.
-
----
-
-## Why I Built Nautomation Prime
-
-My name is **Christopher Davies**, and I've spent the last 10+ years building network infrastructure at scale. This is why I founded Nautomation Prime—and why I'm obsessed with transparency in automation.
-
----
-
-## The Problem I Saw
-
-Over a decade in enterprise networking, I noticed a pattern that frustrated me:
-
-**Organisations would invest £15,000–£25,000 in a "network automation solution," deploy it... and six months later, nobody was using it.**
-
-Not because the code was bad. Sometimes it was brilliant code. But:
-
-- **Nobody in the organisation understood how it worked.** When the original engineer left, the solution became a black box.
-- **The wrong things got automated.** Teams automated easy tasks instead of painful ones, and then couldn't figure out *what to automate next*.
-- **Nobody could measure the business value.** "Is this saving time? How much?" The answer was usually "...we think so?"
-- **The company was locked in to the original consultants.** Any change required going back to expensive external help.
-
-I realized: **Delivering scripts isn't enough. Sustainable automation requires a structured methodology that builds organizational capability, not dependence.**
-
----
-
-## My Background
-
-description: Meet Christopher Davies, founder of Nautomation Prime. CCNP-certified, founder-led, and focused on transparent Cisco automation your team can understand and own.
-
-I cut my teeth in **hands-on network operations** at diverse organisations:
-
-- **Muller UK & Ireland** - Network Operations Senior Analyst
-- **Involve Visual Collaboration** — System Infrastructure Specialist
-- **Autonet Insurance** — Network & Collaboration Engineer
-- **Vendor Support & Troubleshooting**
 <div class="np-hero" markdown>
 
 <p class="np-eyebrow">Founder-led Cisco automation, education, and delivery</p>
@@ -110,10 +41,81 @@ I'm the founder of Nautomation Prime and a CCNP-certified network engineer focus
 </div>
 
 </div>
+
+## Why I Built Nautomation Prime
+
+My name is **Christopher Davies**, and I've spent the last 10+ years building network infrastructure at scale. This is why I founded Nautomation Prime—and why I'm obsessed with transparency in automation.
+
+---
+
+## The Problem I Saw
+
+Over a decade in enterprise networking, I noticed a pattern that frustrated me:
+
+**Organisations would invest £15,000–£25,000 in a "network automation solution," deploy it... and six months later, nobody was using it.**
+
+Not because the code was bad. Sometimes it was brilliant code. But:
+
+- **Nobody in the organisation understood how it worked.** When the original engineer left, the solution became a black box.
+- **The wrong things got automated.** Teams automated easy tasks instead of painful ones, and then couldn't figure out *what to automate next*.
+- **Nobody could measure the business value.** "Is this saving time? How much?" The answer was usually "...we think so?"
+- **The company was locked in to the original consultants.** Any change required going back to expensive external help.
+
+I realized: **Delivering scripts isn't enough. Sustainable automation requires a structured methodology that builds organizational capability, not dependence.**
+
+---
+
+## My Background
+
+### Enterprise Network Engineering (10+ Years)
+
+I cut my teeth in **hands-on network operations** at diverse organisations:
+
+- **Muller UK & Ireland** - Network Operations Senior Analyst
+- **Involve Visual Collaboration** — System Infrastructure Specialist
+- **Autonet Insurance** — Network & Collaboration Engineer
+- **Vendor Support & Troubleshooting**
+
+  - Proactive monitoring of enterprise networks across multiple UK dairy sites using SolarWinds Orion, Cisco DNAC and Netbox
+  - Ground-up implementation of Cisco DNAC for network visibility and automation
+  - Designed and executed site-wide wireless upgrades using Ekahau AI Pro
+  - Managed tens of thousands of network devices across multiple data centers
+  - Collaborated with engineers to deploy Python scripts for automatic configuration of 200+ switches during network upgrades across UK courts, prisons, and probation offices
+  - Delivered NHS integration enabling video conferencing across health systems (Cisco networking, Dell Hyper-V, Pexip VoIP)
+  - Ensured 99.9% uptime for mission-critical collaboration infrastructure
+  - Led migration from on-premises Mitel telephony to cloud-based Cisco Catalyst platforms
+  - Designed and deployed multi-site SD-WAN/MPLS hybrid connectivity architecture
+  - Managed complex network upgrades across rapid-expansion deployments
+  - Root cause analysis across Cisco routing, switching, wireless, voice, and security platforms
+
+**What this taught me:**  
+Real networks are ugly. Legacy, hybrid, edge-case-ridden. The solutions that work aren't the "perfect" ones—they're the ones pragmatic enough to handle reality.
+
+### Cisco Certifications
+
+- **CCNP Enterprise** — Professional-level routing and switching design
+- **CCNP Automation** — Network automation and orchestration
+- **CCNP Collaboration** — Advanced unified communications architecture
+- **CCDA** — Cisco design methodology
+
+**What these taught me:**  
+The fundamentals never change. Mastering layer 3 matters as much as Python syntax.
+
+### Python Automation & Network Automation
+
+After years of clicking GUIs and running CLI commands 500 times, I taught myself Python. Today:
+
+- **Netmiko, Nornir, NAPALM** — Multi-threaded, vendor-neutral automation at scale
+- **pytest & unit testing** — Reliable automation that doesn't break
+- **CI/CD pipelines** — Automation that evolves sustainably
 - **Secure credential management** — Zero hardcoded passwords
 
 **What this taught me:**  
 Network automation is a *team sport*. If only one person understands the code, you've failed. Documentation and transparency should be first-class requirements.
+
+---
+
+## Why Work With Me
 
 <div class="grid cards" markdown>
 
@@ -160,7 +162,7 @@ Throughout my career, I've seen automation fail because teams don't understand t
 - **Line-by-line documentation** — Every decision explained, not just every line
 - **Verbose logging** — When something breaks, the logs tell the story
 - **Runbooks & knowledge transfer** — Your team owns the solution when we walk away
-- **Open-source commitment** — We publish educational tools so the community benefits
+- **Open educational content** — We publish in-depth guides and tutorials so the community benefits
 
 ---
 

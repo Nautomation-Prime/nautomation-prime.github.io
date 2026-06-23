@@ -19,7 +19,14 @@ tags:
 
 A modular Python utility that connects to Cisco switches (optionally through an SSH jump host), collects comprehensive interface details, PoE information, and neighbour presence, then exports a professional, filters-only Excel workbook with a SUMMARY sheet and one sheet per device. Built for production reliability with **YAML-based configuration**, **intelligent fallback parsing**, and **customisable credential management**.
 
-[:material-github: View Source Code on GitHub](https://github.com/Nautomation-Prime/Access_Switch_Audit){ .md-button .md-button--primary }
+!!! abstract "Premium tool — buy ready-to-run or have it customised"
+    The **Access Switch Port Audit** tool is a production-grade Nautomation Prime tool. This deep dive shows exactly how it works; the tool itself is a premium product, available on request rather than as a free download.
+
+    - **Buy as-is (unmodified) — £795:** the modular Python package and Excel reporting, delivered with a setup runbook and licensed for use in your environment.
+    - **Customised to your estate — £2,000–£5,000:** tailored classification, PoE and stale-port logic, bastion handling, and workbook formatting for your access layer.
+
+[Request this tool](../contact.md){ .md-button .md-button--primary }
+[Explore Services](../services.md){ .md-button }
 
 ---
 
@@ -72,7 +79,7 @@ This guide is written to make the following explicit:
     
     **For Developers:** See the [Migration Guide](#migration-guide-v10-v20) for updated import paths and structure details.
     
-    📖 Full details in [MIGRATION.md](https://github.com/Nautomation-Prime/Access_Switch_Audit/blob/main/MIGRATION.md)
+    📖 Full details are in the `MIGRATION.md` guide included with the licensed package.
 
 ---
 
@@ -1532,7 +1539,7 @@ Consistent with the **Nautomation Prime** delivery model, this tool is available
 
 - **Scheduled Docker Appliance:** A pre-built container designed for autonomous execution and periodic port auditing.
 
-- **Source Code:** Full access to customise parsing logic, add vendor-specific commands, or integrate with your CMDB.
+- **Licensed source:** Customise parsing logic, add vendor-specific commands, or integrate with your CMDB — the full source is included when you purchase the tool.
 
 ---
 
@@ -1541,7 +1548,7 @@ Consistent with the **Nautomation Prime** delivery model, this tool is available
 **Get Started Now:**
 
 - [📖 Script Library](../scripts/index.md) — Find the Access Switch Audit tool and other automation scripts
-- [:material-github: GitHub Repository](https://github.com/Nautomation-Prime/Access_Switch_Audit) — Source code, issues, and contributions
+- [💬 Request this tool](../contact.md) — Buy it as-is or discuss customisation for your estate
 
 **Learn More:**
 
@@ -1556,7 +1563,7 @@ Consistent with the **Nautomation Prime** delivery model, this tool is available
 
 ## Licence
 
-MIT License
+Premium tool — supplied under a commercial licence on purchase (buy as-is or customised to your environment). Not open-source; redistribution is not permitted. See [Licensing](../legal/licensing.md) for details.
 
 ## 👤 Author
 

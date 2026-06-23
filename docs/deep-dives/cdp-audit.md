@@ -24,7 +24,14 @@ A **modular, enterprise-grade** network discovery utility that crawls Cisco netw
 
 **What's New:** The tool has undergone a **complete architectural restructure** — migrated from a monolithic script to a **modular Python package** with YAML-based configuration, dedicated modules for each concern, and enhanced maintainability for enterprise deployments.
 
-[:material-github: View Source Code on GitHub](https://github.com/Nautomation-Prime/Cisco_CDP_Network_Audit){ .md-button .md-button--primary }
+!!! abstract "Premium tool — buy ready-to-run or have it customised"
+    The **CDP Network Audit** tool is a production-grade Nautomation Prime tool. This deep dive shows exactly how it works; the tool itself is a premium product, available on request rather than as a free download.
+
+    - **Buy as-is (unmodified) — £795:** the modular Python package and Excel templates, delivered with a setup runbook and licensed for use in your environment.
+    - **Customised to your estate — £2,000–£5,000:** tailored discovery, jump-host, credential, and reporting behaviour for your topology and operating model.
+
+[Request this tool](../contact.md){ .md-button .md-button--primary }
+[Explore Services](../services.md){ .md-button }
 
 ---
 
@@ -2638,12 +2645,13 @@ Consistent with the **Nautomation Prime** delivery model, this tool is available
 
 ---
 
-## 📁 Repository & Downloads
+## 📦 Get This Tool
 
-Ready to audit your own network? Access the hardened source code and pre-configured templates below.
+The CDP Network Audit tool is a premium Nautomation Prime product. On purchase you receive the complete, production-ready package — modular source, TextFSM templates, and the Excel master — delivered with a setup runbook and licensed for your environment.
 
-- **[:material-github: View Full Repository](https://github.com/Nautomation-Prime/Cisco_CDP_Network_Audit)**: Access the code, TextFSM templates, and Excel master.
-- **[:material-download: Download Latest Release](https://github.com/Nautomation-Prime/Cisco_CDP_Network_Audit/archive/refs/heads/main.zip)**: Get a clean ZIP of the production-ready files.
+- **Buy as-is (unmodified) — £795**, or have it **customised to your estate (£2,000–£5,000)**.
+
+[Request this tool or a quote](../contact.md){ .md-button .md-button--primary }
 
 ---
 
@@ -2660,7 +2668,7 @@ Ready to audit your own network? Access the hardened source code and pre-configu
 
 ## 🎬 Next Steps
 
-1. **Clone the repository:** `git clone https://github.com/Nautomation-Prime/Cisco_CDP_Network_Audit`
+1. **Open the delivered package:** unzip the licensed `cdp_audit` package and `cd` into it
 2. **Install dependencies:** `pip install -r requirements.txt`
 3. **Customise config.yaml** to match your environment:
    - Set `jump_host` under `network` section
@@ -2700,7 +2708,7 @@ excel:
 **Get Started Now:**
 
 - [📖 Script Library](../scripts/index.md) — Find the CDP Network Audit tool and other automation scripts
-- [:material-github: GitHub Repository](https://github.com/Nautomation-Prime/Cisco_CDP_Network_Audit) — Source code, issues, and contributions
+- [💬 Request this tool](../contact.md) — Buy it as-is or discuss customisation for your estate
 
 **Learn More:**
 
@@ -2715,7 +2723,7 @@ excel:
 
 ## Licence
 
-MIT License
+Premium tool — supplied under a commercial licence on purchase (buy as-is or customised to your environment). Not open-source; redistribution is not permitted. See [Licensing](../legal/licensing.md) for details.
 
 ## 👤 Author
 
