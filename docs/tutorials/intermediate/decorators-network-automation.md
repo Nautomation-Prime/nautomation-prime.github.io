@@ -786,7 +786,7 @@ perf = PerformanceMonitor()
 @perf.monitor
 def apply_config_task(task: Task) -> Result:
     """Nornir task with automatic retry, audit logging, and performance tracking."""
-    device = task.host.get_connection("netmiko", task.nornir.ssh)
+    device = task.host.get_connection("netmiko", task.nornir.config)
     
     config_commands = [
         "interface Gi0/0/1",

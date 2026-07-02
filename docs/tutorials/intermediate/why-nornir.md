@@ -282,11 +282,10 @@ for device in devices:
 You write:
 
 ```python
-@task
 def backup_config(task):
     # This function runs once per device, in parallel
     config = task.run(netmiko_task, ...)
-    return result
+    return Result(host=task.host, result=config.result)
 ```
 
 #### 2. **Inventory** (not hardcoded or CSV)
@@ -363,9 +362,9 @@ Nornir Instance
   ├── Inventory Manager
   │   └── Loads devices from YAML/Netbox/API
   ├── Task Registry
-  │   └── backup_config @task
-  │   └── validate_config @task
-  │   └── compare_configs @task
+  │   └── backup_config()    # plain task function
+  │   └── validate_config()  # plain task function
+  │   └── compare_configs()  # plain task function
   └── Runner
       ├── Parallel task execution (connection pool)
       ├── Middleware pipeline
@@ -643,7 +642,7 @@ In [Tutorial #2: Nornir Fundamentals](./nornir-fundamentals.md), we'll:
 
 1. Install Nornir and dependencies
 2. Create your first inventory file
-3. Write your first `@task` function
+3. Write your first Nornir task function
 4. Run it against 5+ devices in parallel
 5. See the performance benefit firsthand
 

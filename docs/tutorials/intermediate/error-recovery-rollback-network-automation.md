@@ -595,7 +595,7 @@ def deploy_with_rollback(task: Task) -> Result:
     """
     try:
         # Get device connection
-        device = task.host.get_connection("netmiko")
+        device = task.host.get_connection("netmiko", task.nornir.config)
         
         # Initialize rollback manager
         rollback = RollbackManager(device)

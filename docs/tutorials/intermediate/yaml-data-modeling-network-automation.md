@@ -557,6 +557,7 @@ Use Nornir inventory from YAML files
 """
 
 from nornir import InitNornir
+from nornir.core.filter import F
 
 # Initialize Nornir with config file
 nr = InitNornir(config_file="nornir_config.yaml")

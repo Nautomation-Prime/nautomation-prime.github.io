@@ -28,7 +28,7 @@ By the end of this tutorial, you'll understand:
 
 - ✅ Nornir installation and project structure
 - ✅ Inventory files (YAML-based device management)
-- ✅ Writing `@task` functions (the core of Nornir)
+- ✅ Writing Nornir **task functions** (the core of Nornir)
 - ✅ Running tasks against multiple devices in parallel
 - ✅ Processing results from parallel executions
 - ✅ Logging that works in parallel environments
@@ -87,7 +87,6 @@ from nornir import InitNornir
 from nornir.core.task import Task, Result
 from nornir_netmiko.tasks import netmiko_send_command
 
-@task
 def ping_device(task: Task) -> Result:
     """
     Ping a device and return result
@@ -102,7 +101,7 @@ def ping_device(task: Task) -> Result:
     
     return Result(
         host=task.host,
-        result=result[task.host.name].result
+        result=result.result
     )
 
 # Initialize Nornir
@@ -144,6 +143,7 @@ Create `inventory/groups.yaml`:
 ```yaml
 ---
 ios_devices:
+  platform: cisco_ios
   username: admin
   password: your_password
 ```
@@ -152,8 +152,10 @@ Create `nornir_config.yaml`:
 
 ```yaml
 ---
-core:
-  num_workers: 3
+runner:
+  plugin: threaded
+  options:
+    num_workers: 3
 inventory:
   plugin: SimpleInventory
   options:
@@ -187,7 +189,7 @@ python minimal_example.py
 
 **What just happened:** All 3 devices ran in parallel. You can feel the difference if you time it (`time python minimal_example.py` on Linux/Mac, `Measure-Command { python minimal_example.py }` in PowerShell). With a sequential script, it would take 3x longer.
 
-**Key insight:** The `@task` decorator with `num_workers: 3` handled all the parallelization automatically. You focused on the logic, Nornir handled the concurrency.
+**Key insight:** Nornir ran your plain task function across all devices with `num_workers: 3`, handling the parallelization automatically. You focused on the logic, Nornir handled the concurrency.
 
 ## 📊 Understanding Task Execution Flow in Nornir
 
@@ -243,7 +245,7 @@ my-nornir-automation/
 │   ├── groups.yaml         # ← Device groupings
 │   └── hosts.yaml          # ← Your device list
 ├── tasks/
-│   └── backup.py           # ← Your @task functions
+│   └── backup.py           # ← Your Nornir task functions
 └── configs/                # ← Where backups will be stored
     └── (created at runtime)
 ```
@@ -258,8 +260,10 @@ This file tells Nornir how to initialize:
 
 ```yaml
 ---
-core:
-  num_workers: 10                # How many tasks run in parallel
+runner:
+  plugin: threaded
+  options:
+    num_workers: 10                # How many tasks run in parallel
 inventory:
   plugin: SimpleInventory        # Use file-based inventory
   options:
@@ -298,9 +302,11 @@ Group your devices by type or role:
 ```yaml
 ---
 ios_devices:
+  platform: cisco_ios
   username: admin
   password: ""                   # Will be overridden at runtime
 ios_routers:
+  platform: cisco_ios
   username: admin
   password: ""
 ```
@@ -378,7 +384,6 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
-@task
 def backup_running_config(task: Task) -> Result:
     """
     Backup the running configuration from a device
@@ -443,7 +448,6 @@ def backup_running_config(task: Task) -> Result:
             failed=True
         )
 
-@task  
 def save_config_to_file(task: Task, config_data: dict, backup_dir: str = "configs") -> Result:
     """
     Save configuration to a timestamped file
@@ -744,14 +748,13 @@ Backed Up Devices:
 
 Let's break down the key Nornir concepts:
 
-### The @task Decorator
+### The Task Function
 
 ```python
-@task
 def backup_running_config(task: Task) -> Result:
 ```
 
-**What it does:** Tells Nornir this is a task function.
+**What it does:** A Nornir task is just a plain function whose first parameter is a `Task` object. You hand the function to `nr.run(task=...)` — there is **no special decorator** (Nornir has no `@task`).
 
 **How it works:**
 
@@ -760,7 +763,7 @@ def backup_running_config(task: Task) -> Result:
 - `task.run()` executes other tasks or plugins
 - `Result` is what you return
 
-**Why:** The decorator abstracts away threading/async complexity. You just write a normal function.
+**Why:** Nornir handles the threading/async complexity for you. You just write a normal function that accepts a `Task` and returns a `Result`.
 
 ---
 
@@ -771,7 +774,7 @@ task.host.name           # Device name from inventory (e.g., "router1")
 task.host.hostname       # Device IP/DNS (e.g., "10.1.1.1")
 task.host.username       # Device username
 task.host.password       # Device password
-task.host. data          # Custom data from inventory
+task.host.data           # Custom data from inventory
 task.host.groups         # Groups this device belongs to
 ```
 
@@ -900,8 +903,10 @@ core-router1:
 ### Running Tasks on Specific Groups
 
 ```python
+from nornir.core.filter import F
+
 # Only run on ios_routers
-filtered_inventory = nornir.filter(group="ios_routers")
+filtered_inventory = nornir.filter(F(groups__contains="ios_routers"))
 results = filtered_inventory.run(task=backup_running_config)
 ```
 
@@ -962,8 +967,10 @@ Sometimes you want to run sequentially (e.g., upgrades where order matters):
 
 ```python
 # In nornir_config.yaml
-core:
-  num_workers: 1  # ← Serial execution instead of parallel
+runner:
+  plugin: threaded
+  options:
+    num_workers: 1  # ← Serial execution instead of parallel
 ```
 
 ---
@@ -1001,7 +1008,6 @@ pip install nornir-netmiko
 **Check:** Your task function signature:
 
 ```python
-@task
 def my_task(task: Task) -> Result:  # ← Must match this
 ```
 
@@ -1092,8 +1098,10 @@ ulimit -n
 **Solution:** Reduce `num_workers` in `nornir_config.yaml`:
 
 ```yaml
-core:
-  num_workers: 10  # ← Start conservative, increase in small steps
+runner:
+  plugin: threaded
+  options:
+    num_workers: 10  # ← Start conservative, increase in small steps
 ```
 
 ### Issue 5: "Failed to acquire lock on device" or similar errors
@@ -1147,7 +1155,6 @@ for host in nr.inventory.hosts.values():
 from nornir import InitNornir
 from nornir.core.task import Task, Result
 
-@task
 def test_connectivity(task: Task) -> Result:
     """Try to connect to device, return success/failure"""
     try:
@@ -1174,7 +1181,7 @@ if failed > 0:
     print("\nFailed devices:")
     for device, result in results.items():
         if result.failed:
-            print(f"  - {device}: {result[device].result}")
+            print(f"  - {device}: {result.result}")
 ```
 
 ### Test 3: Test Command Execution
@@ -1187,7 +1194,6 @@ from nornir import InitNornir
 from nornir.core.task import Task, Result
 from nornir_netmiko.tasks import netmiko_send_command
 
-@task
 def test_commands(task: Task) -> Result:
     """Run a simple show command"""
     result = task.run(
@@ -1195,14 +1201,14 @@ def test_commands(task: Task) -> Result:
         command_string="show version | include Cisco"
     )
     
-    output = result[task.host.name].result
+    output = result.result
     return Result(host=task.host, result=output)
 
 nr = InitNornir(config_file="nornir_config.yaml")
 results = nr.run(task=test_commands)
 
 for device, result_obj in results.items():
-    output = result_obj[device].result[:50] + "..."  # First 50 chars
+    output = result_obj.result[:50] + "..."  # First 50 chars
     print(f"{device}: {output}")
 ```
 
@@ -1246,15 +1252,19 @@ for host in nr.inventory.hosts.values():
 **Bad:**
 
 ```yaml
-core:
-  num_workers: 500  # If you have 500 devices!
+runner:
+  plugin: threaded
+  options:
+    num_workers: 500  # If you have 500 devices!
 ```
 
 **Good:**
 
 ```yaml
-core:
-  num_workers: 20  # Conservative, increase if needed
+runner:
+  plugin: threaded
+  options:
+    num_workers: 20  # Conservative, increase if needed
 ```
 
 **Rule of thumb:** Start with 10, then increase in small steps while watching runtime and failures. If runtime keeps dropping without more timeouts, you can add workers. If timeouts or failures rise, you have exceeded what the network/devices can handle—back off.
@@ -1316,7 +1326,6 @@ logger.info(f"Device {task.host.name}: Starting backup")
 **Bad:**
 
 ```python
-@task
 def backup_config(task: Task) -> Result:
     # ... get config ...
     result = Result(host=task.host, result={'config': config})
@@ -1328,7 +1337,6 @@ def backup_config(task: Task) -> Result:
 **Good:**
 
 ```python
-@task
 def backup_config(task: Task) -> Result:
     # ... get config ...
     
@@ -1365,7 +1373,7 @@ my-nornir-automation/
 │   ├── groups.yaml
 │   └── hosts.yaml
 │
-├── tasks/                  # Your @task functions
+├── tasks/                  # Your Nornir task functions
 │   ├── __init__.py
 │   ├── backup.py
 │   ├── discovery.py

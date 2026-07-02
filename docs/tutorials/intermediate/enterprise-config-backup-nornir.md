@@ -152,7 +152,6 @@ from nornir_netmiko.tasks import netmiko_send_command
 from datetime import datetime
 import os
 
-@task
 def get_config(task: Task) -> Result:
     """Step 1: Get the config"""
     result = task.run(
@@ -166,7 +165,6 @@ def get_config(task: Task) -> Result:
         result={'config': config, 'timestamp': datetime.now()}
     )
 
-@task
 def save_to_file(task: Task, config_data: dict) -> Result:
     """Step 2: Save it to disk"""
     device_name = task.host.name
@@ -199,7 +197,7 @@ print("✓ Step 2: Saving to filesystem...")
 # For each device, save its config
 for device_name, result_obj in results1.items():
     if not result_obj.failed:
-        config_data = result_obj[device_name].result
+        config_data = result_obj.result
         # Save this device's config
         save_task = nr.filter(name=device_name)
         save_task.run(task=save_to_file, config_data=config_data)
@@ -320,7 +318,6 @@ logger = logging.getLogger(__name__)
 # TASK 1: Retrieve Configuration
 # ============================================================================
 
-@task
 def backup_config(task: Task) -> Result:
     """
     Retrieve running configuration from device
@@ -377,15 +374,15 @@ def backup_config(task: Task) -> Result:
 # TASK 2: Save Configuration and Log to Database
 # ============================================================================
 
-@task
 def save_config(task: Task, config_data: dict, backup_dir: str = "configs", db_file: str = "backup.db") -> Result:
     """
     Save configuration to file and database
     Tracks: size, hash, timestamp, change status
     """
     device_name = task.host.name
+    this_config = config_data.get(device_name)
     
-    if not config_data.get('success'):
+    if not this_config or not this_config.get('success'):
         logger.warning(f"[{device_name}] Skipping save (config retrieval failed)")
         return Result(
             host=task.host,
@@ -401,7 +398,7 @@ def save_config(task: Task, config_data: dict, backup_dir: str = "configs", db_f
         filepath = os.path.join(backup_dir, filename)
         
         with open(filepath, 'w') as f:
-            f.write(config_data['config'])
+            f.write(this_config['config'])
         
         file_size = os.path.getsize(filepath)
         
@@ -422,13 +419,13 @@ def save_config(task: Task, config_data: dict, backup_dir: str = "configs", db_f
         if previous:
             # Compare with previous
             previous_hash = previous[1]
-            changed = (previous_hash != config_data['hash'])
+            changed = (previous_hash != this_config['hash'])
         
         # Insert new backup record
         cursor.execute('''
             INSERT INTO backups (device_name, config_size, config_hash, changed, status, filepath)
             VALUES (?, ?, ?, ?, ?, ?)
-        ''', (device_name, file_size, config_data['hash'], changed, 'success', filepath))
+        ''', (device_name, file_size, this_config['hash'], changed, 'success', filepath))
         
         backup_id = cursor.lastrowid
         conn.commit()
@@ -460,13 +457,21 @@ def save_config(task: Task, config_data: dict, backup_dir: str = "configs", db_f
 # TASK 3: Detect Changes
 # ============================================================================
 
-@task
-def detect_changes(task: Task, current_config: str, db_file: str = "backup.db") -> Result:
+def detect_changes(task: Task, current_config: dict, db_file: str = "backup.db") -> Result:
     """
     Compare current config with previous backup
     Calculate added/removed lines
     """
     device_name = task.host.name
+    this_config = current_config.get(device_name)
+    
+    if not this_config:
+        logger.warning(f"[{device_name}] Skipping change detection (no config)")
+        return Result(
+            host=task.host,
+            result={'success': False, 'reason': 'config_retrieval_failed'},
+            failed=True
+        )
     
     try:
         conn = sqlite3.connect(db_file)
@@ -504,7 +509,7 @@ def detect_changes(task: Task, current_config: str, db_file: str = "backup.db") 
         
         # Compare configs
         previous_lines = previous_config.splitlines()
-        current_lines = current_config.splitlines()
+        current_lines = this_config.splitlines()
         
         # Calculate difference
         differ = difflib.unified_diff(previous_lines, current_lines, lineterm='')
@@ -547,8 +552,7 @@ def detect_changes(task: Task, current_config: str, db_file: str = "backup.db") 
 # TASK 4: Compliance Checking
 # ============================================================================
 
-@task
-def compliance_check(task: Task, config: str, db_file: str = "backup.db") -> Result:
+def compliance_check(task: Task, config: dict, db_file: str = "backup.db") -> Result:
     """
     Check for common compliance issues:
     - Missing banner
@@ -557,7 +561,7 @@ def compliance_check(task: Task, config: str, db_file: str = "backup.db") -> Res
     etc.
     """
     device_name = task.host.name
-    config_lower = config.lower()
+    config_lower = (config.get(device_name) or "").lower()
     
     issues = []
     score = 100
@@ -618,7 +622,6 @@ def compliance_check(task: Task, config: str, db_file: str = "backup.db") -> Res
 # TASK 5: Generate Summary Report
 # ============================================================================
 
-@task
 def generate_report(task: Task, all_results: dict) -> Result:
     """
     Generate text report of backup operation
@@ -1139,7 +1142,6 @@ result2 = nr.run(compliance_check)   # Device drops ✗ Pipeline aborts
 **Solution:** Add error recovery in each task:
 
 ```python
-@task
 def compliance_check(task: Task, config: str) -> Result:
     try:
         # Your checks
@@ -1271,7 +1273,7 @@ COMPLIANCE_CHECKS = {
 }
 
 def compliance_check(task: Task, config: str) -> Result:
-    device_type = task.host.group[0]  # Get device type
+    device_type = str(task.host.groups[0])  # Get device type (group name)
     checks = COMPLIANCE_CHECKS.get(device_type, {})
     
     # Apply only relevant checks
@@ -1288,13 +1290,15 @@ def compliance_check(task: Task, config: str) -> Result:
 **Solution:** Process results in batches:
 
 ```python
+from nornir.core.filter import F
+
 # Instead of:
 all_results = nr.run(backup_config)
 process_all(all_results)  # ← Load everything at once
 
 # Use:
 for batch_of_devices in chunked(nr.inventory.hosts, chunk_size=100):
-    filtered = nr.filter(name__in=batch_of_devices)
+    filtered = nr.filter(F(name__in=batch_of_devices))
     results = filtered.run(backup_config)
     
     # Process batch immediately, then free memory
@@ -1503,6 +1507,7 @@ Usage: python backup.py --help
 import argparse
 import sys
 from nornir import InitNornir
+from nornir.core.filter import F
 from tasks.enterprise_backup import backup_config
 
 def main():
@@ -1567,9 +1572,9 @@ def main():
         if args.host:
             nr = nr.filter(name=args.host)
         elif args.group:
-            nr = nr.filter(group=args.group)
+            nr = nr.filter(F(groups__contains=args.group))
         elif args.filter:
-            nr = nr.filter(func=lambda h: args.filter.lower() in h.name.lower())
+            nr = nr.filter(filter_func=lambda h: args.filter.lower() in h.name.lower())
         
         # Show what will run
         if args.dry_run:
@@ -1690,8 +1695,10 @@ parser.set_defaults(**config['defaults'])
 ### Test with Limited Devices
 
 ```python
+from nornir.core.filter import F
+
 # Filter to specific group in main.py
-filtered = nornir.filter(group="ios_devices")
+filtered = nornir.filter(F(groups__contains="ios_devices"))
 filtered.run(backup_config, ...)
 ```
 
@@ -2053,7 +2060,6 @@ from nornir import InitNornir
 from nornir.core.task import Task, Result
 from nornir_netmiko.tasks import netmiko_send_command
 
-@task
 def backup_via_bastion(task: Task) -> Result:
     """Backup config through bastion host"""
     
@@ -2063,7 +2069,7 @@ def backup_via_bastion(task: Task) -> Result:
         command_string="show running-config"
     )
     
-    return Result(host=task.host, result=result[task.host.name].result)
+    return Result(host=task.host, result=result.result)
 
 # In inventory/hosts.yaml
 # No special config needed - SSH just uses the proxy!
@@ -2087,20 +2093,20 @@ For finer control, use Netmiko's built-in proxy configuration:
 # inventory/hosts.yaml
 router1:
   hostname: 10.1.1.1
+  platform: cisco_ios
   groups:
     - ios_devices
   data:
-    device_type: cisco_ios
     proxy_jump: bastion.example.com  # ← Bastion address
     proxy_user: netadmin              # ← Bastion username
     proxy_key_file: ~/.ssh/bastion_key
 
 switch1:
   hostname: 10.1.1.2
+  platform: cisco_ios
   groups:
     - ios_devices
   data:
-    device_type: cisco_ios
     proxy_jump: bastion.example.com
     proxy_user: netadmin
     proxy_key_file: ~/.ssh/bastion_key
@@ -2111,7 +2117,6 @@ switch1:
 ```python
 from nornir.core.task import Task, Result
 
-@task
 def backup_with_proxy(task: Task) -> Result:
     """Backup through proxy/bastion"""
     
@@ -2127,7 +2132,7 @@ def backup_with_proxy(task: Task) -> Result:
         # Netmiko handles proxy via paramiko
     )
     
-    return Result(host=task.host, result=result[task.host.name].result)
+    return Result(host=task.host, result=result.result)
 ```
 
 ### Pattern 3: SSH Tunneling (Maximum Flexibility)
@@ -2182,7 +2187,6 @@ def ssh_tunnel(bastion_host, bastion_user, target_host, target_port=22, local_po
         print(f"Closed tunnel: localhost:{local_port}")
 
 # Usage in tasks:
-@task
 def backup_via_tunnel(task: Task) -> Result:
     """Backup device via SSH tunnel through bastion"""
     
@@ -2287,7 +2291,6 @@ from nornir import InitNornir
 from nornir.core.task import Task, Result
 import paramiko
 
-@task
 def test_bastion_path(task: Task) -> Result:
     """Verify connectivity through bastion"""
     
@@ -2321,7 +2324,7 @@ results = nr.run(task=test_bastion_path)
 
 for device, result in results.items():
     status = "✓" if not result.failed else "✗"
-    print(f"{device}: {status} {result[device].result['status']}")
+    print(f"{device}: {status} {result.result['status']}")
 ```
 
 ### Gotchas & Solutions

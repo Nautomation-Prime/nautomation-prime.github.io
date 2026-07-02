@@ -334,7 +334,7 @@ op_logger = OperationLogger(logger)
 def deploy_with_logging(task: Task) -> Result:
     """Nornir task with structured logging."""
     with op_logger.operation("device_deployment", device=task.host.name):
-        device = task.host.get_connection("netmiko")
+        device = task.host.get_connection("netmiko", task.nornir.config)
         
         with op_logger.operation("get_current_state", device=task.host.name):
             current_config = device.send_command("show running-config")

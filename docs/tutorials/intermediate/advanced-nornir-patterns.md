@@ -99,7 +99,9 @@ from nornir.core.inventory import (
     Groups,
     Hosts,
     Defaults,
+    ParentGroups,
 )
+from nornir.core.plugins.inventory import InventoryPluginRegister
 import requests
 from typing import Any, Dict, Optional
 
@@ -170,9 +172,9 @@ class NetboxInventory:
             hosts[name] = Host(
                 name=name,
                 hostname=ip,
-                groups=[groups[site]],
+                platform=nornir_device_type,
+                groups=ParentGroups([groups[site]]),
                 data={
-                    'device_type': nornir_device_type,
                     'netbox_id': device['id'],
                     'device_type_model': device_type,
                     'serial': device.get('serial_number', ''),
@@ -185,9 +187,13 @@ class NetboxInventory:
             defaults=defaults
         )
 
+# Register the plugin so Nornir can resolve it by name from the config file.
+# This runs on import, so import this module before calling InitNornir().
+InventoryPluginRegister.register("NetboxInventory", NetboxInventory)
+
 # Usage in nornir_config.yaml:
 # inventory:
-#   plugin: plugins.netbox_inventory.NetboxInventory
+#   plugin: NetboxInventory
 #   options:
 #     nb_url: ${NETBOX_URL}
 #     nb_token: ${NETBOX_TOKEN}
@@ -197,19 +203,31 @@ class NetboxInventory:
 
 ### Using the Plugin
 
-Update your `nornir_config.yaml`:
+Update your `nornir_config.yaml` (reference the plugin by its **registered name**, not a dotted path):
 
 ```yaml
 ---
-core:
-  num_workers: 10
+runner:
+  plugin: threaded
+  options:
+    num_workers: 10
 inventory:
-  plugin: plugins.netbox_inventory.NetboxInventory
+  plugin: NetboxInventory
   options:
     nb_url: "https://netbox.yourcompany.com/api/"
     nb_token: "${NETBOX_API_TOKEN}"
     filters:
       site: "New York"  # Optional filter
+```
+
+Then import the plugin module before initialising Nornir so its
+`InventoryPluginRegister.register(...)` call runs:
+
+```python
+import plugins.netbox_inventory  # noqa: F401  (registers "NetboxInventory")
+from nornir import InitNornir
+
+nr = InitNornir(config_file="nornir_config.yaml")
 ```
 
 **Benefits:**
@@ -345,7 +363,6 @@ def retry_on_failure(max_retries: int = 3, backoff_factor: float = 2.0):
     Decorator for automatic retry with exponential backoff
     
     Usage:
-        @task
         @retry_on_failure(max_retries=3, backoff_factor=2.0)
         def my_task(task):
             # This will retry 3 times if it fails
@@ -393,7 +410,6 @@ def retry_on_failure(max_retries: int = 3, backoff_factor: float = 2.0):
     return decorator
 
 # Usage:
-@task
 @retry_on_failure(max_retries=3, backoff_factor=1.5)
 def resilient_backup(task: Task) -> Result:
     # This automatically retries on failure
@@ -429,7 +445,6 @@ State management across multi-step workflows
 from nornir.core.task import Task, Result
 from nornir_netmiko.tasks import netmiko_send_command
 
-@task
 def step1_backup(task: Task) -> Result:
     """First step: backup config"""
     result = task.run(netmiko_send_command, command_string="show running-config")
@@ -443,10 +458,10 @@ def step1_backup(task: Task) -> Result:
         }
     )
 
-@task
-def step2_validate(task: Task, config: str) -> Result:
+def step2_validate(task: Task, config_dict: dict) -> Result:
     """Second step: validate config"""
-    # 'config' passed from previous step
+    # Nornir passes the same dict to every host, so extract this host's config
+    config = config_dict[task.host.name]
     is_valid = len(config) > 100
     
     return Result(
@@ -469,7 +484,7 @@ def main():
     
     validate_results = nornir.run(
         task=step2_validate,
-        config=config_data
+        config_dict=config_data
     )
 ```
 
@@ -495,7 +510,6 @@ VENDOR_CONFIGS = {
     'paloalto_panos': 'show config running',
 }
 
-@task
 def backup_multivendor(task: Task) -> Result:
     """Backup any vendor device"""
     
@@ -567,7 +581,7 @@ def backup_large_network():
     for i in range(0, total_devices, batch_size):
         # Process one batch
         device_names = list(nornir.inventory.hosts.keys())[i:i+batch_size]
-        batch = nornir.filter(func=lambda h: h.name in device_names)
+        batch = nornir.filter(filter_func=lambda h: h.name in device_names)
         
         results = batch.run(task=backup_config)
         
@@ -913,7 +927,7 @@ class BenchmarkRunner:
         nr = InitNornir(config_file="nornir_config.yaml")
         
         if workers:
-            nr.config.core.num_workers = workers
+            nr.runner.num_workers = workers
         
         # Baseline memory
         mem_start = self.memory_usage()
@@ -938,7 +952,7 @@ class BenchmarkRunner:
             'memory_used_mb': mem_end - mem_start,
             'memory_peak_mb': mem_end,
             'devices_per_second': len(results) / (time_end - time_start),
-            'workers': nr.config.core.num_workers,
+            'workers': nr.runner.num_workers,
         }
         
         return self.metrics[task_name]

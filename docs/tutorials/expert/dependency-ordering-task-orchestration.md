@@ -272,6 +272,7 @@ for task, result in results.items():
 # src/nornir_orchestration.py
 from nornir import InitNornir
 from nornir.core.task import Task, Result
+from nornir.core.filter import F
 
 def orchestrate_multisite_deployment():
     """Orchestrate deployment across multiple sites."""
@@ -308,7 +309,7 @@ def orchestrate_multisite_deployment():
         print(f"\nDeploying site: {site}")
         
         # Filter inventory to this site's devices
-        site_inventory = nr.filter(name__in=config["devices"])
+        site_inventory = nr.filter(F(name__in=config["devices"]))
         
         # Deploy to site
         site_results = site_inventory.run(
