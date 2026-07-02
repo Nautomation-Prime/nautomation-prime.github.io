@@ -374,7 +374,7 @@ Learn:
 
 - Nornir installation and project structure
 - Inventory management (YAML format)
-- Task creation and the `@task` decorator
+- Task creation with plain Nornir task functions
 - Running tasks against devices
 - Result processing and filtering
 - Logging at enterprise scale

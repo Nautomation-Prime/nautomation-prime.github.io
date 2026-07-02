@@ -3532,7 +3532,7 @@ def example_with_logging():
 
 ### Reporting Framework
 
-```python
+````python
 # reporting.py
 from typing import Dict, List
 from datetime import datetime
@@ -3597,47 +3597,47 @@ class ReportGenerator:
 - {('Review failed devices for common patterns' if total != successful else 'All devices updated successfully')}
 - Monitor devices for 24 hours post-change
 - Update documentation with new configurations
-
-```python
-with open(filename, 'w') as f:
-    f.write(content)
-
-def generate_technical_report(self):
-    """Detailed technical report"""
-    filename = self.output_dir / f"{self.deployment.deployment_id}_technical.txt"
-    # Implementation similar to executive but with more technical detail
-    pass
-
-def generate_csv_report(self):
-    """CSV format for spreadsheet analysis"""
-    filename = self.output_dir / f"{self.deployment.deployment_id}.csv"
-    
-    with open(filename, 'w', newline='') as f:
-        writer = csv.writer(f)
-        writer.writerow([
-            'Device',
-            'Status',
-            'Execution Time',
-            'Retry Count',
-            'Error'
-        ])
+"""
         
-        for device, change in self.deployment.change_records.items():
-            writer.writerow([
-                device,
-                change.state.value,
-                f"{change.execution_time:.2f}",
-                change.retry_count,
-                change.error or 'N/A'
-            ])
-
-def generate_json_report(self):
-    """JSON format for API consumption"""
-    filename = self.output_dir / f"{self.deployment.deployment_id}.json"
+        with open(filename, 'w') as f:
+            f.write(content)
     
-    with open(filename, 'w') as f:
-        json.dump(self.deployment.to_dict(), f, indent=2)
-```
+    def generate_technical_report(self):
+        """Detailed technical report"""
+        filename = self.output_dir / f"{self.deployment.deployment_id}_technical.txt"
+        # Implementation similar to executive but with more technical detail
+        pass
+    
+    def generate_csv_report(self):
+        """CSV format for spreadsheet analysis"""
+        filename = self.output_dir / f"{self.deployment.deployment_id}.csv"
+        
+        with open(filename, 'w', newline='') as f:
+            writer = csv.writer(f)
+            writer.writerow([
+                'Device',
+                'Status',
+                'Execution Time',
+                'Retry Count',
+                'Error'
+            ])
+            
+            for device, change in self.deployment.change_records.items():
+                writer.writerow([
+                    device,
+                    change.state.value,
+                    f"{change.execution_time:.2f}",
+                    change.retry_count,
+                    change.error or 'N/A'
+                ])
+    
+    def generate_json_report(self):
+        """JSON format for API consumption"""
+        filename = self.output_dir / f"{self.deployment.deployment_id}.json"
+        
+        with open(filename, 'w') as f:
+            json.dump(self.deployment.to_dict(), f, indent=2)
+````
 
 ### Key Takeaways - Error Handling
 

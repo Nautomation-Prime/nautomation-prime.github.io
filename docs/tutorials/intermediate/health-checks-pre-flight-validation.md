@@ -346,7 +346,7 @@ def preflight_validation(task: Task) -> Result:
     Nornir task: Validate device before deployment.
     """
     try:
-        device = task.host.get_connection("netmiko")
+        device = task.host.get_connection("netmiko", task.nornir.config)
         checker = DeviceHealthChecker(device)
         backup = ConfigurationBackup(device)
         

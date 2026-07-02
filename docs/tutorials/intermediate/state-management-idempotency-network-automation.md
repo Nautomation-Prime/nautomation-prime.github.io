@@ -432,7 +432,7 @@ from idempotent_operations import IdempotentOperations
 
 def ensure_vlans(task: Task) -> Result:
     """Nornir task: Ensure VLANs exist (idempotent)."""
-    device = task.host.get_connection("netmiko")
+    device = task.host.get_connection("netmiko", task.nornir.config)
     ops = IdempotentOperations()
     
     # Get VLAN configuration from inventory or task data

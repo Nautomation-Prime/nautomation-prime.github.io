@@ -361,8 +361,8 @@ For deploying across multiple devices simultaneously:
 
 ```python
 from nornir import InitNornir
-from nornir.plugins.tasks.networking import netmiko_send_config
-from nornir.plugins.functions.text import print_result
+from nornir_netmiko.tasks import netmiko_send_config
+from nornir_utils.plugins.functions import print_result
 from pyats.topology import loader
 
 # Initialize Nornir
@@ -381,9 +381,9 @@ def parallel_deploy_and_validate(nr, testbed, vlan_config):
     Then validate in parallel
     """
     
-    from nornir.core.task import Task
-    from nornir.plugins.tasks.networking import netmiko_send_config
-    from nornir.plugins.functions.text import print_result
+    from nornir.core.task import Task, Result
+    from nornir_netmiko.tasks import netmiko_send_config
+    from nornir_utils.plugins.functions import print_result
     
     # Task 1: Deploy configuration in parallel
     def deploy_vlans(task):
@@ -424,7 +424,7 @@ def parallel_deploy_and_validate(nr, testbed, vlan_config):
                 validation_results['failed'] += 1
         
         device.disconnect()
-        task.result = validation_results
+        return Result(host=task.host, result=validation_results)
     
     # Execute deployment
     print("=" * 60)

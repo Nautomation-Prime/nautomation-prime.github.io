@@ -481,11 +481,12 @@ class VaultManager:
 Dynamic credential injection with vault manager:
 
 ```python
+import asyncio
 from nornir import InitNornir
 from nornir.core.task import Task, Result
 from nornir.core.inventory import Host
 
-async def set_credentials_from_vault(task: Task) -> Result:
+def set_credentials_from_vault(task: Task) -> Result:
     """
     Nornir task: Inject credentials from vault
     """
@@ -495,11 +496,11 @@ async def set_credentials_from_vault(task: Task) -> Result:
         return Result(host=task.host, failed=True, result="No vault manager configured")
     
     try:
-        # Retrieve credentials
-        device_creds = await vault_manager.get_secret(
+        # Retrieve credentials (bridge the async vault API from this sync task)
+        device_creds = asyncio.run(vault_manager.get_secret(
             f"network/credentials/{task.host.name}",
             key='all'
-        )
+        ))
         
         # Update host credentials
         task.host.username = device_creds.get('username')
