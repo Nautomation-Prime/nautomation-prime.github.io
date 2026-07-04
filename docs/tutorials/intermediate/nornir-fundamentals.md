@@ -454,7 +454,10 @@ def save_config_to_file(task: Task, config_data: dict, backup_dir: str = "config
     
     Args:
         task: Nornir task object
-        config_data: Dictionary with config, size, status from previous task
+        config_data: Dictionary mapping host name -> that host's backup result
+                     (config, size, status) from the previous task. Nornir passes
+                     the SAME kwargs to every host, so we look up this host's own
+                     entry via task.host.name.
         backup_dir: Directory to save configs
         
     Returns:
@@ -466,15 +469,18 @@ def save_config_to_file(task: Task, config_data: dict, backup_dir: str = "config
         # Create config directory if it doesn't exist
         os.makedirs(backup_dir, exist_ok=True)
         
+        # Pull out THIS host's result from the map of all results
+        host_config = config_data.get(device_name, {})
+        
         # Only save if we have valid config
-        if config_data.get('status') != 'success':
-            logger.warning(f"⚠ {device_name}: Skipping save (status: {config_data.get('status')})")
+        if host_config.get('status') != 'success':
+            logger.warning(f"⚠ {device_name}: Skipping save (status: {host_config.get('status')})")
             return Result(
                 host=task.host,
                 result={
                     'filename': None,
                     'path': None,
-                    'status': config_data.get('status')
+                    'status': host_config.get('status')
                 },
                 failed=True
             )
@@ -486,7 +492,7 @@ def save_config_to_file(task: Task, config_data: dict, backup_dir: str = "config
         
         # Write config to file
         with open(filepath, 'w') as f:
-            f.write(config_data['config'])
+            f.write(host_config['config'])
         
         file_size = os.path.getsize(filepath)
         logger.info(f"✓ {device_name}: Saved to {filepath} ({file_size:,} bytes)")
