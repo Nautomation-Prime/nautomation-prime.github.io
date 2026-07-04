@@ -114,6 +114,9 @@ flowchart TD
 # src/credentials.py
 import os
 
+class CredentialsNotFoundError(Exception):
+    pass
+
 def get_device_credentials(device_name):
     """Get credentials from environment variables."""
     username = os.getenv(f"DEVICE_{device_name.upper()}_USERNAME")
@@ -667,6 +670,7 @@ def get_tacacs_credentials(username, password, device_ip):
 # tests/test_credential_management.py
 import pytest
 from unittest.mock import MagicMock, patch
+from hvac.exceptions import InvalidPath
 from src.vault_client import VaultClient, CredentialsNotFoundError
 
 class TestVaultClient:
@@ -694,7 +698,7 @@ class TestVaultClient:
         mock_client = MagicMock()
         mock_client.is_authenticated.return_value = True
         mock_client.secrets.kv.read_secret_version.side_effect = \
-            MagicMock(side_effect=Exception("InvalidPath"))
+            InvalidPath("secret not found")
         mock_hvac_client.return_value = mock_client
         
         vault = VaultClient(vault_addr="http://localhost:8200", vault_token="token")
@@ -762,6 +766,13 @@ admin_token = "hvs.CAwEB_secret_admin_token_xyzabc"
 
 ```python
 # All credential retrievals should be logged
+import logging
+import os
+from datetime import datetime, timezone
+from vault_client import VaultClient
+
+logger = logging.getLogger(__name__)
+
 def get_device_credentials(device_name):
     """
     Retrieve credentials (with audit logging).
@@ -777,10 +788,11 @@ def get_device_credentials(device_name):
         extra={
             "device": device_name,
             "user": os.getenv("USER"),
-            "timestamp": datetime.utcnow().isoformat()
+            "timestamp": datetime.now(timezone.utc).isoformat()
         }
     )
     
+    vault = VaultClient()
     return vault.get_device_credentials(device_name)
 ```
 

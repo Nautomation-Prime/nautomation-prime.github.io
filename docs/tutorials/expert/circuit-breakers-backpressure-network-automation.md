@@ -86,7 +86,9 @@ class CircuitBreaker:
     Circuit breaker for preventing cascade failures.
     
     Usage:
-        breaker = CircuitBreaker(failure_threshold=5)
+        breaker = CircuitBreaker(
+            CircuitBreakerConfig(failure_threshold=5)
+        )
         
         for device in devices:
             try:
@@ -146,7 +148,10 @@ class CircuitBreaker:
             self.last_failure_time = datetime.utcnow()
             self.success_count = 0
             
-            if self.failure_count >= self.config.failure_threshold:
+            if (
+                self.state == CircuitState.HALF_OPEN
+                or self.failure_count >= self.config.failure_threshold
+            ):
                 self.state = CircuitState.OPEN
                 print(f"✗ Circuit '{self.config.name}' opened (threshold hit)")
     
@@ -229,7 +234,7 @@ Fast deployment to fast-failing devices overwhelms systems.
 
 ```python
 # ❌ BAD - No rate limiting
-for device in 100_devices:
+for device in devices_100:
     spawn_thread(configure, device)  # All 100 at once!
     # SSHd can't handle load → all timeout
 ```
@@ -255,7 +260,7 @@ for device in devices:
 ```python
 # src/backpressure_manager.py
 from concurrent.futures import ThreadPoolExecutor, as_completed
-from circuit_breaker import CircuitBreaker, CircuitBreakerOpen
+from circuit_breaker import CircuitBreaker, CircuitBreakerConfig, CircuitBreakerOpen
 
 class BackpressureManager:
     """Manage concurrency with circuit breaker protection."""
@@ -280,6 +285,11 @@ class BackpressureManager:
         Returns:
             dict: Results organized by outcome
         """
+        self.results = {
+            "success": [],
+            "failed": [],
+            "circuit_open": []
+        }
         futures = {}
         
         # Submit all tasks (executor will queue them)

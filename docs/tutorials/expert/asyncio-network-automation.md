@@ -65,7 +65,7 @@ from dataclasses import dataclass
 from enum import Enum
 import time
 
-from scrapli.async_driver import AsyncScrapli
+from scrapli.driver.generic import AsyncGenericDriver
 from scrapli.exceptions import ScrapliException
 
 logger = logging.getLogger(__name__)
@@ -206,13 +206,14 @@ class AsyncConnectionPool:
             'port': device.port,
             'auth_username': device.username,
             'auth_password': device.password,
+            'auth_strict_key': False,
             'timeout_socket': device.timeout,
             'timeout_transport': device.timeout,
             'timeout_ops': device.timeout,
         }
         
         start = time.time()
-        async with AsyncScrapli(**device_dict) as conn:
+        async with AsyncGenericDriver(**device_dict) as conn:
             result = await asyncio.wait_for(
                 conn.send_command(command),
                 timeout=device.timeout
@@ -298,7 +299,7 @@ class AsyncConnectionPool:
                 results = await asyncio.gather(*tasks)
         else:
             tasks = [
-                self._execute_with_semaphore(device, command)
+                asyncio.create_task(self._execute_with_semaphore(device, command))
                 for device in devices
             ]
             try:
@@ -311,7 +312,19 @@ class AsyncConnectionPool:
                 for task in tasks:
                     if not task.done():
                         task.cancel()
-                results = [r for r in results if r]
+                await asyncio.gather(*tasks, return_exceptions=True)
+                results = []
+                for task in tasks:
+                    if task.done() and not task.cancelled():
+                        try:
+                            results.append(task.result())
+                        except Exception as e:
+                            results.append({
+                                'device': 'unknown',
+                                'status': 'error',
+                                'error': str(e),
+                                'duration': 0
+                            })
         
         return results
     
@@ -412,7 +425,10 @@ class CircuitBreaker:
         self.failure_count += 1
         self.last_failure_time = datetime.now()
         
-        if self.failure_count >= self.failure_threshold:
+        if (
+            self.state == CircuitState.HALF_OPEN
+            or self.failure_count >= self.failure_threshold
+        ):
             self.state = CircuitState.OPEN
             logger.warning(f"Circuit breaker OPEN - {self.failure_count} failures detected")
     
@@ -629,7 +645,7 @@ async def main():
         # Start telemetry collection
         collector = AsyncTelemetryCollector(max_concurrent=100)
         for device in devices[:10]:  # Collect from subset
-            await task_manager.create_task(
+            task_manager.create_task(
                 f"telemetry-{device.host}",
                 collector.collect_device_metrics(device, ["cpu", "memory"], interval=30)
             )
@@ -693,7 +709,7 @@ async def test_connection_pool_success():
         for i in range(3)
     ]
     
-    with patch('scrapli.async_driver.AsyncScrapli') as mock_ssh:
+    with patch('scrapli.driver.generic.AsyncGenericDriver') as mock_ssh:
         mock_instance = AsyncMock()
         mock_instance.send_command = AsyncMock(
             return_value=AsyncMock(result="show version output")
@@ -712,7 +728,8 @@ async def test_circuit_breaker_opens():
     
     for _ in range(3):
         with pytest.raises(RuntimeError):
-            await breaker.call(AsyncMock(side_effect=RuntimeError("Device error")))
+            failing_call = AsyncMock(side_effect=RuntimeError("Device error"))
+            await breaker.call(failing_call())
     
     assert breaker.state == CircuitState.OPEN
 

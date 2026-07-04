@@ -93,7 +93,7 @@ class VaultBackend(Enum):
 @dataclass
 class CacheEntry:
     """Cached credential entry with TTL"""
-    secret: Dict[str, Any]
+    secret: Any
     expiry: datetime
     
     def is_expired(self) -> bool:
@@ -183,7 +183,7 @@ class HashiCorpVaultBackend(BaseVaultBackend):
         try:
             self.client.secrets.kv.v2.create_or_update_secret(
                 path=path,
-                secret_data=secret
+                secret=secret
             )
             logger.info(f"Stored secret in Vault: {path}")
         
@@ -218,7 +218,7 @@ class HashiCorpVaultBackend(BaseVaultBackend):
     async def delete_secret(self, path: str) -> None:
         """Delete secret from Vault"""
         try:
-            self.client.secrets.kv.v2.delete_secret_version_by_path(path=path)
+            self.client.secrets.kv.v2.delete_latest_version_of_secret(path=path)
             logger.info(f"Deleted secret: {path}")
         
         except Exception as e:
@@ -610,11 +610,10 @@ class VaultSSHSecrets:
         """
         try:
             # Generate dynamic SSH secret
-            ssh_cred = self.vault.backend.client.secrets.ssh.generate_credentials(
-                role=role,
+            ssh_cred = self.vault.backend.client.secrets.ssh.generate_ssh_credentials(
+                name=role,
                 ip=ip_address,
-                username='automation',
-                ttl=f"{ttl}s"
+                username='automation'
             )
             
             return {

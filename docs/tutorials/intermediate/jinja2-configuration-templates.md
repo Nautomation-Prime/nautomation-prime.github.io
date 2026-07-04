@@ -605,7 +605,7 @@ ip access-list standard {{ acl.name }}
 {% elif acl.type == 'extended' %}
 ip access-list extended {{ acl.name }}
 {% for rule in acl.rules %}
- {{ rule.action }} {{ rule.protocol }} {{ rule.source }} {{ rule.destination }}{% if rule.port %} eq {{ rule.port }}{% endif %}
+ {{ rule.action }} {{ rule.protocol }} {{ rule.source }} {{ rule.destination }}{{ ' eq ' ~ rule.port if rule.port is defined else '' }}
 {% endfor %}
 {% endif %}
 !
@@ -614,10 +614,10 @@ ip access-list extended {{ acl.name }}
 ! Apply ACLs to interfaces
 {% for interface, config in interface_acls.items() %}
 interface {{ interface }}
-{% if config.inbound %}
+{% if config.inbound is defined %}
  ip access-group {{ config.inbound }} in
 {% endif %}
-{% if config.outbound %}
+{% if config.outbound is defined %}
  ip access-group {{ config.outbound }} out
 {% endif %}
 !
@@ -1202,7 +1202,9 @@ hostname {{ hostname }}
 interface {{ undefined_variable }}
 ```
 
-**Error:** `UndefinedError: 'undefined_variable' is undefined`
+**Default behaviour:** Jinja2 renders missing variables as empty strings, which can hide mistakes.
+If you enable `StrictUndefined` (recommended during testing), this raises
+`UndefinedError: 'undefined_variable' is undefined`.
 
 **Solutions:**
 
@@ -1215,17 +1217,13 @@ interface {{ interface_name | default('GigabitEthernet0/0') }}
 interface {{ interface_name }}
 {% endif %}
 
-{# Option 3: Configure Jinja2 to ignore undefined #}
+{# Option 3: Configure Jinja2 to fail fast on undefined variables #}
 ```
 
 ```python
-from jinja2 import Environment, Undefined
+from jinja2 import Environment, StrictUndefined
 
-class SilentUndefined(Undefined):
-    def _fail_with_undefined_error(self, *args, **kwargs):
-        return ''
-
-env = Environment(undefined=SilentUndefined)
+env = Environment(undefined=StrictUndefined)
 ```
 
 ---

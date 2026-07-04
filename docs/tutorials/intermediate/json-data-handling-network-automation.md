@@ -4,7 +4,7 @@ description: Master JSON for network automation - REST API interactions, structu
 tags:
   - Intermediate
   - JSON
-    - Data Modelling
+  - Data Modelling
   - APIs
   - REST
   - Structured Logging
@@ -124,7 +124,6 @@ JSON is a **lightweight data-interchange format** that's easy for humans to read
 **Same data in both formats:**
 
 ```json
-// JSON
 {
   "device": {
     "hostname": "router1",
@@ -429,10 +428,10 @@ print(pretty)
 **Output:**
 
 ```
-Compact (54 bytes):
+Compact (57 bytes):
 {"hostname":"router1","ip":"10.1.1.1","vlans":[10,20,30]}
 
-Pretty (89 bytes):
+Pretty (88 bytes):
 {
   "hostname": "router1",
   "ip": "10.1.1.1",
@@ -674,8 +673,12 @@ class JSONFormatter(logging.Formatter):
         # Add custom fields if present
         if hasattr(record, 'device'):
             log_data['device'] = record.device
+        if hasattr(record, 'ip'):
+            log_data['ip'] = record.ip
         if hasattr(record, 'duration'):
             log_data['duration_ms'] = record.duration
+        if hasattr(record, 'device_count'):
+            log_data['device_count'] = record.device_count
 
         return json.dumps(log_data)
 
@@ -747,7 +750,7 @@ if __name__ == "__main__":
 ```json
 {"timestamp": "2026-03-12T11:45:23.456789Z", "level": "INFO", "logger": "network_automation", "message": "Starting network backup job", "function": "main", "line": 78, "device_count": 3}
 {"timestamp": "2026-03-12T11:45:23.457123Z", "level": "INFO", "logger": "network_automation", "message": "Starting backup for router1", "function": "backup_device_config", "line": 44, "device": "router1", "ip": "10.1.1.1"}
-{"timestamp": "2026-03-12T11:45:25.458456Z", "level": "INFO", "logger": "network_automation", "message": "Backup completed for router1", "function": "backup_device_config", "line": 55, "device": "router1", "duration": 2001.5}
+{"timestamp": "2026-03-12T11:45:25.458456Z", "level": "INFO", "logger": "network_automation", "message": "Backup completed for router1", "function": "backup_device_config", "line": 55, "device": "router1", "duration_ms": 2001.5}
 ```
 
 **Why structured JSON logging:**
@@ -1169,9 +1172,9 @@ import math
 
 data = {'value': math.nan}
 
-# This will fail
+# This will fail in strict JSON mode
 try:
-    json.dumps(data)
+    json.dumps(data, allow_nan=False)
 except ValueError as e:
     print(f"Error: {e}")
 

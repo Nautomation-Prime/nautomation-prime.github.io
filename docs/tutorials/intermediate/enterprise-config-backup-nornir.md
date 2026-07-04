@@ -1028,8 +1028,8 @@ conn.close()
 ```python
 # You can chain tasks or run them in series
 result1 = task.run(backup_config,      ...  )
-result2 = task.run(save_config,        data=result1.result)
-result3 = task.run(detect_changes,     config=result1.result['config'])
+result2 = task.run(save_config,        data=result1[0].result)
+result3 = task.run(detect_changes,     config=result1[0].result['config'])
 ```
 
 ### Database Integration
@@ -1171,14 +1171,14 @@ def compliance_check(task: Task, config: str) -> Result:
 1. **Use connection timeout (simplest fix):**
 
    ```python
-   conn = sqlite3.connect("backup.db", timeout=30.0)  # Wait 30 seconds if locked
+conn = sqlite3.connect("backup.db", timeout=30.0)  # Wait 30 seconds if locked
    ```
 
 2. **Use PostgreSQL for multi-process writes (best for scale):**
 
    ```python
-   import psycopg2
-   conn = psycopg2.connect("dbname=backup user=admin password=secret host=localhost")
+import psycopg2
+conn = psycopg2.connect("dbname=backup user=admin password=secret host=localhost")
    ```
 
 3. **Single writer approach (middle ground):**
@@ -1279,6 +1279,7 @@ def compliance_check(task: Task, config: str) -> Result:
     # Apply only relevant checks
     for check_key, (issue, penalty) in checks.items():
         # ... rest of logic
+        pass
 ```
 
 ### Gotcha 6: Running Out of Memory with Large Configs
@@ -1609,7 +1610,7 @@ def main():
             print(f"✗ Failed: {failed}/{len(results)}")
             for host, result in results.items():
                 if result.failed:
-                    print(f"  - {host}: {result[host].exception}")
+                    print(f"  - {host}: {result[0].exception}")
         
         return 0 if failed == 0 else 1
         
@@ -1892,6 +1893,7 @@ open(LOCK_FILE, 'w').close()
 
 try:
     # ... run backup ...
+    pass
 finally:
     os.remove(LOCK_FILE)
 ```
@@ -2069,7 +2071,7 @@ def backup_via_bastion(task: Task) -> Result:
         command_string="show running-config"
     )
     
-    return Result(host=task.host, result=result.result)
+    return Result(host=task.host, result=result[0].result)
 
 # In inventory/hosts.yaml
 # No special config needed - SSH just uses the proxy!
@@ -2089,7 +2091,7 @@ ssh admin@10.1.1.1
 
 For finer control, use Netmiko's built-in proxy configuration:
 
-```python
+```yaml
 # inventory/hosts.yaml
 router1:
   hostname: 10.1.1.1
@@ -2132,7 +2134,7 @@ def backup_with_proxy(task: Task) -> Result:
         # Netmiko handles proxy via paramiko
     )
     
-    return Result(host=task.host, result=result.result)
+    return Result(host=task.host, result=result[0].result)
 ```
 
 ### Pattern 3: SSH Tunneling (Maximum Flexibility)
@@ -2324,7 +2326,7 @@ results = nr.run(task=test_bastion_path)
 
 for device, result in results.items():
     status = "✓" if not result.failed else "✗"
-    print(f"{device}: {status} {result.result['status']}")
+    print(f"{device}: {status} {result[0].result['status']}")
 ```
 
 ### Gotchas & Solutions

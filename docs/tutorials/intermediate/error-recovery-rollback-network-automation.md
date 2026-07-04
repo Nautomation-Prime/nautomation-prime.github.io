@@ -121,8 +121,9 @@ Step 4b: Rollback to Pre-State
 ```python
 # src/state_management.py
 import json
-from datetime import datetime
+from datetime import datetime, timezone
 from netmiko import ConnectHandler
+from pathlib import Path
 
 class DeviceStateManager:
     """Capture and compare device states."""
@@ -157,7 +158,7 @@ class DeviceStateManager:
             ]
         
         state = {
-            "timestamp": datetime.utcnow().isoformat(),
+            "timestamp": datetime.now(timezone.utc).isoformat(),
             "device": self.device.host,
             "outputs": {}
         }
@@ -222,6 +223,7 @@ class DeviceStateManager:
         if not state:
             raise ValueError(f"State '{state_name}' not found")
         
+        Path(filename).parent.mkdir(parents=True, exist_ok=True)
         with open(filename, 'w') as f:
             json.dump(state, f, indent=2)
         
@@ -416,7 +418,11 @@ def validate_vlans_created(device, expected_vlans: List[int]) -> ValidationResul
     
     missing = []
     for vlan_id in expected_vlans:
-        if f"VLAN{vlan_id:04d}" not in output:
+        vlan_exists = any(
+            line.split() and line.split()[0] == str(vlan_id)
+            for line in output.splitlines()
+        )
+        if not vlan_exists:
             missing.append(vlan_id)
     
     if missing:
@@ -465,7 +471,7 @@ class RollbackManager:
         """
         print("Step 1: Capturing pre-change configuration...")
         self.state_manager.capture_state("pre_change")
-        self.state_manager.save_state_to_file("pre_change", "/tmp/pre_change.json")
+        self.state_manager.save_state_to_file("pre_change", "pre_change.json")
         
         print("\nStep 2: Applying configuration changes...")
         try:
@@ -515,8 +521,17 @@ class RollbackManager:
         
         # For full rollback, reload from backup or use NVRAM
         print("Reloading from startup configuration...")
-        self.device.send_command("reload")
-        self.device.send_command("yes")  # Confirm reload
+        output = self.device.send_command_timing(
+            "reload",
+            strip_prompt=False,
+            strip_command=False
+        )
+        if "confirm" in output.lower() or "proceed" in output.lower():
+            self.device.send_command_timing(
+                "yes",
+                strip_prompt=False,
+                strip_command=False
+            )
         
         # Wait for reload (in production, use proper wait logic)
         import time

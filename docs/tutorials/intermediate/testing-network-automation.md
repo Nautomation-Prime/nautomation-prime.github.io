@@ -119,7 +119,10 @@ Your decorators handle critical concerns (retry, logging, rate limiting). If a d
 ```python
 # src/decorators.py
 import functools
+import logging
 import time
+
+logger = logging.getLogger(__name__)
 
 def retry(max_attempts=3, delay=1, backoff=2, exceptions=(Exception,)):
     """Retry decorator with exponential backoff."""
@@ -137,11 +140,24 @@ def retry(max_attempts=3, delay=1, backoff=2, exceptions=(Exception,)):
                     current_delay *= backoff
         return wrapper
     return decorator
+
+def log_audit(action):
+    """Log before and after an audited operation."""
+    def decorator(func):
+        @functools.wraps(func)
+        def wrapper(*args, **kwargs):
+            logger.info("Starting action", extra={"action": action})
+            result = func(*args, **kwargs)
+            logger.info("Completed action", extra={"action": action})
+            return result
+        return wrapper
+    return decorator
 ```
 
 ```python
 # tests/test_decorators.py
 import pytest
+import time
 from unittest.mock import MagicMock, patch
 from src.decorators import retry
 
@@ -186,7 +202,7 @@ class TestRetryDecorator:
         """Verify backoff multiplier is applied correctly."""
         attempts = []
         
-        @retry(max_attempts=3, delay=1, backoff=2, delay_override=0)
+        @retry(max_attempts=3, delay=0, backoff=2)
         def fails_twice():
             attempts.append(time.time() if attempts else 0)
             if len(attempts) < 3:
@@ -197,7 +213,7 @@ class TestRetryDecorator:
         with patch('time.sleep') as mock_sleep:
             @retry(max_attempts=3, delay=1, backoff=2)
             def fails_twice_with_sleep():
-                if len(mock_sleep.call_count) < 2:
+                if mock_sleep.call_count < 2:
                     raise ConnectionError()
                 return "success"
             
@@ -444,8 +460,8 @@ class TestDecoratorIntegration:
                 ip="10.0.0.1"
             )
     
-    @patch('src.decorators.logging.Logger')
-    def test_audit_logging_decorator_logs_attempts(self, mock_logger, mock_device):
+    @patch('src.decorators.logger')
+    def test_audit_logging_decorator_logs_attempts(self, mock_logger):
         """Verify audit logging captures operations."""
         from src.decorators import log_audit
         
@@ -489,11 +505,12 @@ def mock_device():
 def mock_device_with_output():
     """Mock device that returns realistic output."""
     device = MagicMock()
-    device.send_command = MagicMock(side_effect={
+    responses = {
         "show ip route": "10.0.0.0/8 via 192.168.1.1",
         "show running-config": "hostname R1\nip domain-name example.com",
         "show interfaces brief": "Gi0/0/1 YES manual up 10.0.0.1",
-    }.get)
+    }
+    device.send_command = MagicMock(side_effect=lambda command, **kwargs: responses.get(command))
     return device
 
 @pytest.fixture
@@ -665,11 +682,13 @@ def test_retry_raises_after_max_attempts_exhausted():
 @patch('src.device_ops.configure_interface')
 def test_something(mock_configure):
     # This defeats the purpose of testing
+    pass
 
 # ✅ GOOD - Mock Netmiko (external), test your code
 @patch('netmiko.ConnectHandler')
 def test_configure():
     # Test your logic with real mocking
+    pass
 ```
 
 ### 5. Parametrize Tests to Reduce Duplication

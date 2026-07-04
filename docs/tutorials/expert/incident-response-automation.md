@@ -45,7 +45,7 @@ tags:
 ```python
 # src/incident_detector.py
 from dataclasses import dataclass
-from typing import Dict, List, Set, Callable
+from typing import Any, Dict, List, Set, Callable
 from datetime import datetime
 from enum import Enum
 import json
@@ -71,7 +71,7 @@ class Incident:
     name: str
     severity: SeverityLevel
     device: str
-    symptoms: Dict[str, any]
+    symptoms: Dict[str, Any]
     detected_at: datetime
     remediation_type: RemediationType
     likely_causes: List[str]
@@ -233,7 +233,7 @@ detector.register_pattern(
 ```python
 # src/remediation.py
 from dataclasses import dataclass
-from typing import Callable, Dict, any
+from typing import Any, Callable, Dict
 from datetime import datetime
 from incident_detector import Incident, RemediationType
 
@@ -286,7 +286,7 @@ class RemediationRunbook:
         if reversible:
             self.rollback_actions.insert(0, action)
     
-    async def execute(self, incident: Incident) -> Dict[str, any]:
+    async def execute(self, incident: Incident) -> Dict[str, Any]:
         """
         Execute all remediation actions.
         
@@ -563,15 +563,18 @@ class AdaptiveRemediationEngine:
 
 ```python
 # ✅ GOOD - Clear separation
-case SeverityLevel.LOW:
-    await automatic_remediation.execute(incident)
+async def handle_incident(incident):
+    match incident.severity:
+        case SeverityLevel.LOW:
+            await automatic_remediation.execute(incident)
 
-case SeverityLevel.CRITICAL:
-    await escalate_to_noc(incident)
+        case SeverityLevel.CRITICAL:
+            await escalate_to_noc(incident)
 
 # ❌ BAD - Auto-fix critical issues
-if incident.severity == SeverityLevel.CRITICAL:
-    await automatic_fix(incident)  # Too risky!
+async def auto_fix_critical(incident):
+    if incident.severity == SeverityLevel.CRITICAL:
+        await automatic_fix(incident)  # Too risky!
 ```
 
 ### 2. Always Validate Before and After
@@ -621,16 +624,18 @@ async def fix_issue():
 
 ```python
 # ✅ GOOD - Record all activity
-tracker.record_incident(incident)
-result = await remediation.execute(incident)
-tracker.record_remediation(incident.id, result)
+async def track_and_learn(incident):
+    tracker.record_incident(incident)
+    result = await remediation.execute(incident)
+    tracker.record_remediation(incident.id, result)
 
-# Analyze and improve
-mttr = tracker.get_mttr()
-print(f"MTTR: {mttr:.1f} minutes")
+    # Analyze and improve
+    mttr = tracker.get_mttr()
+    print(f"MTTR: {mttr:.1f} minutes")
 
 # ❌ BAD - Silent failures
-await remediation.execute(incident)  # No record of what happened
+async def silent_remediation(incident):
+    await remediation.execute(incident)  # No record of what happened
 ```
 
 ---
@@ -640,8 +645,10 @@ await remediation.execute(incident)  # No record of what happened
 ```python
 # src/automation_engine.py
 import asyncio
+from datetime import datetime
+from typing import List
 from netmiko import ConnectHandler
-from incident_detector import PatternMatcher
+from incident_detector import Incident, PatternMatcher, RemediationType, SeverityLevel
 from remediation import RemediationRunbook
 from incident_tracker import IncidentTracker
 

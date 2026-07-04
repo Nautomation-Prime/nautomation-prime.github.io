@@ -41,6 +41,7 @@ Pilots check instruments before takeoff. Network operators should validate befor
 # src/health_checks.py
 from dataclasses import dataclass
 from enum import Enum
+import re
 
 class HealthStatus(Enum):
     """Device health status."""
@@ -66,8 +67,8 @@ class DeviceHealthChecker:
     def check_device_reachable(self) -> HealthCheckResult:
         """Check if device responds to ping/SSH."""
         try:
-            output = self.device.send_command("ping -c 1 8.8.8.8")
-            if "100%" in output or "0% packet loss" in output:
+            output = self.device.send_command("ping 8.8.8.8 repeat 1")
+            if "100 percent" in output or "100%" in output or "0% packet loss" in output:
                 return HealthCheckResult(
                     check_name="device_reachable",
                     status=HealthStatus.HEALTHY,
@@ -127,9 +128,11 @@ class DeviceHealthChecker:
             # Look for CPU usage line
             for line in output.split('\n'):
                 if 'CPU utilization' in line:
-                    # Parse CPU percentage
-                    cpu_str = line.split()[-3]  # Simplified
-                    cpu_percent = float(cpu_str.rstrip('%'))
+                    # Parse first CPU percentage (e.g. "5%/0%" or "7%;")
+                    match = re.search(r"(\d+(?:\.\d+)?)%", line)
+                    if not match:
+                        continue
+                    cpu_percent = float(match.group(1))
                     
                     if cpu_percent < max_percent:
                         return HealthCheckResult(
@@ -283,14 +286,16 @@ else:
 ```python
 # src/config_backup.py
 import json
-from datetime import datetime
+from datetime import datetime, timezone
+from pathlib import Path
 
 class ConfigurationBackup:
     """Backup device configuration before changes."""
     
-    def __init__(self, device, backup_dir="/tmp/config_backups"):
+    def __init__(self, device, backup_dir="config_backups"):
         self.device = device
-        self.backup_dir = backup_dir
+        self.backup_dir = Path(backup_dir)
+        self.backup_dir.mkdir(parents=True, exist_ok=True)
         self.backup_file = None
     
     def backup_running_config(self):
@@ -299,8 +304,8 @@ class ConfigurationBackup:
             config = self.device.send_command("show running-config")
             
             # Create backup file
-            timestamp = datetime.utcnow().strftime("%Y%m%d_%H%M%S")
-            filename = f"{self.backup_dir}/{self.device.host}_{timestamp}.cfg"
+            timestamp = datetime.now(timezone.utc).strftime("%Y%m%d_%H%M%S")
+            filename = self.backup_dir / f"{self.device.host}_{timestamp}.cfg"
             
             with open(filename, 'w') as f:
                 f.write(config)
@@ -309,7 +314,7 @@ class ConfigurationBackup:
             
             return {
                 "status": "success",
-                "filename": filename,
+                "filename": str(filename),
                 "lines": len(config.split('\n'))
             }
         
@@ -510,10 +515,11 @@ class SanityTests:
 
 ```python
 # ✅ GOOD
-if checker.is_healthy(results):
-    deploy()
-else:
-    return False  # Stop immediately
+def deploy_if_healthy(checker, results):
+    if checker.is_healthy(results):
+        deploy()
+    else:
+        return False  # Stop immediately
 
 # ❌ BAD - Deploying despite critical issues
 if has_critical_issues(results):

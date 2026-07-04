@@ -404,6 +404,9 @@ def capture_baseline(device):
     Capture network state BEFORE automation runs
     This becomes our "truth" for comparison later
     """
+    routes = device.parse('show ip route')
+    bgp = device.parse('show ip bgp summary')
+    
     # Create dictionary to store baseline measurements
     baseline = {
         # Count how many VLANs exist right now
@@ -411,17 +414,17 @@ def capture_baseline(device):
         # Explanation: device.parse() returns dict, ['vlans'] is the vlans section
         # len() counts how many VLAN IDs (keys in the vlans dictionary)
         
-        # Store the routing table before changes
-        'routes': device.parse('show ip route')['route'],
-        # Again using dictionary access to extract 'route' section from parsed output
+        # Store the IPv4 routing table before changes
+        'routes': routes['vrf']['default']['address_family']['ipv4']['routes'],
+        # Navigate Genie route structure: vrf → address_family → routes
         
         # Count how many interfaces are operationally up
         'interfaces_up': count_up_interfaces(device),
         # Helper function to count up interfaces (defined below)
         
         # Store BGP neighbor information
-        'bgp_neighbors': device.parse('show ip bgp summary')['device']['bgp_id'],
-        # Navigating multiple levels: dict['device'] → dict['bgp_id']
+        'bgp_neighbors': bgp['vrf']['default']['neighbor'],
+        # Navigating Genie BGP structure: vrf → neighbor
     }
     return baseline
     # Return dict for comparison after automation runs
@@ -514,11 +517,13 @@ def validate_automation(device, baseline):
     Capture network state AFTER automation and compare to baseline
     Returns validation results showing what passed/failed
     """
+    routes = device.parse('show ip route')
+    
     # Capture state after automation
     after = {
         # Same measurements as baseline
         'vlan_count': len(device.parse('show vlan')['vlans']),
-        'routes': device.parse('show ip route')['route'], 
+        'routes': routes['vrf']['default']['address_family']['ipv4']['routes'], 
         'interfaces_up': count_up_interfaces(device),
         # Now we can compare these to baseline values
     }
@@ -526,8 +531,8 @@ def validate_automation(device, baseline):
     # Assert expectations — if these fail, automation failed
     
     # Check 1: Did we create 2 new VLANs?
+    # Expected 2 more VLANs than baseline
     assert after['vlan_count'] == baseline['vlan_count'] + 2, \
-        # Expected 2 more VLANs than baseline
         f"VLAN count mismatch! " \
         f"Expected {baseline['vlan_count'] + 2}, " \
         f"got {after['vlan_count']}"
@@ -544,8 +549,8 @@ def validate_automation(device, baseline):
     # Check VLAN 101 exists
     
     # Check 3: Did any interfaces go down unexpectedly?
+    # Should have same number of up interfaces
     assert after['interfaces_up'] == baseline['interfaces_up'], \
-        # Should have same number of up interfaces
         f"Interfaces went down! " \
         f"Before: {baseline['interfaces_up']}, " \
         f"After: {after['interfaces_up']}"

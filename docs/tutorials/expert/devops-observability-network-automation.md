@@ -110,6 +110,8 @@ logger.info("automation_started", change_id="CHG0001", devices=5)
 ## Part 3: Prometheus Metrics
 
 ```python
+import os
+
 from prometheus_client import Counter, Histogram, start_http_server
 
 automation_runs = Counter(
@@ -124,7 +126,8 @@ automation_duration = Histogram(
     buckets=(1, 5, 10, 30, 60, 300)
 )
 
-start_http_server(8000)
+metrics_port = int(os.environ.get("METRICS_PORT", "8000"))
+start_http_server(metrics_port)
 automation_runs.labels(status='success').inc()
 automation_duration.observe(15.5)
 ```

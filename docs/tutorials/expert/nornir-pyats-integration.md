@@ -562,7 +562,7 @@ class ConfigurationManager:
                 command_string="show running-config",
                 name=f"{device_name}: Capture pre-change config"
             )
-            change.pre_config = pre_config_result.result
+            change.pre_config = pre_config_result[0].result
             
             # Step 2: Execute configuration changes (with retries)
             if self.dry_run:
@@ -596,7 +596,7 @@ class ConfigurationManager:
                 command_string="show running-config",
                 name=f"{device_name}: Capture post-change config"
             )
-            change.post_config = post_config_result.result
+            change.post_config = post_config_result[0].result
             
             # Step 4: Execute validation commands
             if validation_commands:
@@ -627,7 +627,7 @@ class ConfigurationManager:
                 host=task.host,
                 result={
                     'changed': True,
-                    'config_output': config_result.result,
+                    'config_output': config_result[0].result,
                     'change_record': change,
                 },
                 changed=True
@@ -736,13 +736,13 @@ class ConfigurationManager:
                 # Store validation output in metadata
                 if 'validations' not in change.metadata:
                     change.metadata['validations'] = {}
-                change.metadata['validations'][cmd] = result.result
+                change.metadata['validations'][cmd] = result[0].result
                 
                 logger.info(
                     "validation_executed",
                     device=task.host.name,
                     command=cmd,
-                    output_length=len(result.result)
+                    output_length=len(result[0].result)
                 )
                 
             except Exception as e:
@@ -2072,8 +2072,8 @@ class OrchestrationEngine:
             results[host_name] = result[host_name]
             
             # Store change record
-            if hasattr(result[host_name].result, 'get'):
-                change_record = result[host_name].result.get('change_record')
+            if hasattr(result[host_name][0].result, 'get'):
+                change_record = result[host_name][0].result.get('change_record')
                 if change_record:
                     deployment.change_records[host_name] = change_record
             
@@ -2112,8 +2112,8 @@ class OrchestrationEngine:
                     results[host_name] = result
                     
                     # Store change record
-                    if hasattr(result.result, 'get'):
-                        change_record = result.result.get('change_record')
+                    if hasattr(result[0].result, 'get'):
+                        change_record = result[0].result.get('change_record')
                         if change_record:
                             deployment.change_records[host_name] = change_record
                     
@@ -4277,7 +4277,7 @@ class TestOrchestrationEngine:
         assert deployment.phase in [DeploymentPhase.COMPLETE, DeploymentPhase.FAILED]
     
     def test_preflight_validation(self, engine):
-        \"\"\"Test pre-flight validation logic\"\"\"
+        """Test pre-flight validation logic"""
         # This would test the pre-flight validation
         pass
 
@@ -4288,14 +4288,14 @@ class TestIntegration:
     
     @pytest.mark.integration
     def test_full_deployment_workflow(self):
-        \"\"\"Test complete deployment workflow\"\"\"
+        """Test complete deployment workflow"""
         # This would run against actual lab devices
         pass
 
 
 # Smoke Tests
 def test_imports():
-    \"\"\"Verify all modules import correctly\"\"\"
+    """Verify all modules import correctly"""
     from orchestrator.integration import OrchestrationEngine
     from validation.pyats_validator import PyATSValidator
     from tasks.config_management import ConfigurationManager
@@ -4340,7 +4340,7 @@ from error_handling import ErrorRegistry, configure_structured_logging
 
 
 def setup_logging(log_level: str = 'INFO'):
-    \"\"\"Configure comprehensive logging\"\"\"
+    """Configure comprehensive logging"""
     configure_structured_logging(
         log_dir='./logs',
         log_level=log_level,
@@ -4349,7 +4349,7 @@ def setup_logging(log_level: str = 'INFO'):
 
 
 def parse_arguments():
-    \"\"\"Parse command line arguments\"\"\"
+    """Parse command line arguments"""
     parser = argparse.ArgumentParser(
         description='Network Automation Orchestration System'
     )
@@ -4413,7 +4413,7 @@ def parse_arguments():
 
 
 def main():
-    \"\"\"Main orchestration workflow\"\"\"
+    """Main orchestration workflow"""
     
     # Parse arguments
     args = parse_arguments()
@@ -4570,14 +4570,14 @@ def main():
         )
         
         # Print summary to console
-        print(f\"\\n{'='*70}\")
-        print(f\"Deployment Complete: {deployment.deployment_id}\")
-        print(f\"{'='*70}\")
-        print(f\"Status: {deployment.phase.value}\")
-        print(f\"Success: {success_count}/{len(target_devices)} devices\")
-        print(f\"Execution Time: {execution_time:.2f}s\")
-        print(f\"Reports: ./reports/{deployment.deployment_id}_*.\\*\")
-        print(f\"{'='*70}\\n\")
+        print(f"\n{'='*70}")
+        print(f"Deployment Complete: {deployment.deployment_id}")
+        print(f"{'='*70}")
+        print(f"Status: {deployment.phase.value}")
+        print(f"Success: {success_count}/{len(target_devices)} devices")
+        print(f"Execution Time: {execution_time:.2f}s")
+        print(f"Reports: ./reports/{deployment.deployment_id}_*.*")
+        print(f"{'='*70}\n")
         
         # Exit code based on success
         sys.exit(0 if deployment.phase == DeploymentPhase.COMPLETE else 1)

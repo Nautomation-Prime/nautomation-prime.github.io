@@ -182,6 +182,8 @@ def backup_device_config(device, backup_dir):
     try:
         print(f"  Connecting to {hostname} ({device_type})...")
         connection = ConnectHandler(**device)
+        if device.get('secret'):
+            connection.enable()
         
         # Get running configuration
         print(f"    Retrieving running configuration...")
@@ -457,11 +459,13 @@ device_type = device['device_type']
 try:
     print(f"  Connecting to {hostname} ({device_type})...")
     connection = ConnectHandler(**device)
+    if device.get('secret'):
+        connection.enable()
 ```
 
 **What it does**: Stores device info and connects.
 
-**Why**: Same pattern as Tutorial #2. We display the device_type so users know what they're connecting to.
+**Why**: Same pattern as Tutorial #2. We display the device_type so users know what they're connecting to. If an enable secret is provided, `connection.enable()` enters privileged EXEC mode before reading the running configuration.
 
 ---
 
@@ -742,9 +746,9 @@ Failed Backups: 0/3
 ======================================================================
 
 Backed Up Devices:
-  ✓ 10.1.1.1: 192-168-1-1_running-config.txt (45,234 bytes)
-  ✓ 10.1.1.2: 192-168-1-2_running-config.txt (38,912 bytes)
-  ✓ 10.1.1.10: 192-168-1-10_running-config.txt (62,148 bytes)
+  ✓ 10.1.1.1: 10-1-1-1_running-config.txt (45,234 bytes)
+  ✓ 10.1.1.2: 10-1-1-2_running-config.txt (38,912 bytes)
+  ✓ 10.1.1.10: 10-1-1-10_running-config.txt (62,148 bytes)
 ```
 
 ---
@@ -757,9 +761,9 @@ After running, you'll see this directory structure:
 backups/
 └── 20260215_143022/
     ├── backup_manifest.xlsx
-    ├── 192-168-1-1_running-config.txt
-    ├── 192-168-1-2_running-config.txt
-    └── 192-168-1-10_running-config.txt
+    ├── 10-1-1-1_running-config.txt
+    ├── 10-1-1-2_running-config.txt
+    └── 10-1-1-10_running-config.txt
 ```
 
 Each `.txt` file contains the full running configuration from that device!
@@ -1030,6 +1034,16 @@ def backup_to_sftp(config, hostname, sftp_host, sftp_user, sftp_pass):
 Compare current config with previous backup:
 
 ```python
+import glob
+import os
+
+def find_latest_backup(hostname, base_dir='backups'):
+    """Find the most recent backup file for a device"""
+    safe_hostname = hostname.replace('.', '-')
+    pattern = os.path.join(base_dir, '*', f'{safe_hostname}_running-config.txt')
+    backups = glob.glob(pattern)
+    return max(backups) if backups else None
+
 def config_changed(hostname, current_config):
     """Check if config differs from last backup"""
     latest_backup = find_latest_backup(hostname)

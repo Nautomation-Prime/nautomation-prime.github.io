@@ -62,27 +62,19 @@ print(json.dumps(vlan_output, indent=2))
   "vlans": {
     "1": {
       "name": "default",
-      "status": "active",
-      "interfaces": {
-        "Ethernet1/1": {
-          "interface_mode": "routed"
-        },
-        "Ethernet1/2": {
-          "interface_mode": "static_access"
-        }
-      }
+      "state": "active",
+      "interfaces": [
+        "Ethernet1/1",
+        "Ethernet1/2"
+      ]
     },
     "10": {
       "name": "DATA",
-      "status": "active",
-      "interfaces": {
-        "Ethernet1/3": {
-          "interface_mode": "static_access"
-        },
-        "Ethernet1/4": {
-          "interface_mode": "static_access"
-        }
-      }
+      "state": "active",
+      "interfaces": [
+        "Ethernet1/3",
+        "Ethernet1/4"
+      ]
     }
   }
 }
@@ -104,16 +96,16 @@ vlans = device.parse('show vlan')
 # vlans['vlans']['10'] gives us VLAN 10's data
 
 vlan_10 = vlans['vlans']['10']
-# vlan_10 now contains: {'name': 'DATA', 'status': 'active', 'interfaces': {...}}
+# vlan_10 now contains: {'name': 'DATA', 'state': 'active', 'interfaces': [...]}
 
 # Access VLAN 10 properties
 print(vlan_10['name'])  
 # Returns: "DATA" — the VLAN name
 
-print(vlan_10['status'])
+print(vlan_10['state'])
 # Returns: "active" — whether VLAN is active or suspended
 
-print(list(vlan_10['interfaces'].keys()))
+print(vlan_10['interfaces'])
 # Returns: ['Ethernet1/3', 'Ethernet1/4'] — list of interface names in this VLAN
 ```
 
@@ -142,35 +134,36 @@ assert 'Ethernet1/3' in vlan_10_ports, "Ethernet1/3 not in VLAN 10!"
 # Parse show ip route command
 routes = device.parse('show ip route')
 
-# Dictionary structure varies by OS, but generally:
-# routes['route'] contains the routing table (dict of prefixes)
+# IOS/IOS-XE Genie route output is nested by VRF and address family:
+# routes['vrf']['default']['address_family']['ipv4']['routes']
 # Each prefix maps to route information (next hops, metrics, protocols)
 
 # Navigate routing table
-# routes['route'] is dict where keys are IP prefixes (like "10.0.0.0/24")
+# route_table is dict where keys are IP prefixes (like "10.0.0.0/24")
+route_table = routes['vrf']['default']['address_family']['ipv4']['routes']
 
-for prefix, route_data in routes['route'].items():
+for prefix, route_data in route_table.items():
     # prefix examples: "10.0.0.0/24", "192.168.1.0/24"
     # route_data is dict with next hop, metric, and protocol info
     
     print(f"{prefix}: {route_data}")
     # Output example:
-    # 10.0.0.0/24: {'': [{'metric': '0', 'next_hop': {'192.168.1.1': {...}}}]}
+    # 10.0.0.0/24: {'metric': 0, 'next_hop': {'next_hop_list': {...}}, ...}
 ```
 
 **How to use in validation:**
 
 ```python
 # Check if specific route exists
-if '10.0.0.0/24' in routes['route']:
+if '10.0.0.0/24' in route_table:
     print("✅ Route to 10.0.0.0/24 exists")
 else:
     print("❌ Route to 10.0.0.0/24 missing!")
 
 # Check route metric (hop count)
-route_data = routes['route']['10.0.0.0/24']
-metric = route_data['']['[0]']['metric']  # Navigate nested structure
-assert metric == '0', f"Expected metric 0, got {metric}"
+route_data = route_table['10.0.0.0/24']
+metric = route_data['metric']
+assert metric == 0, f"Expected metric 0, got {metric}"
 ```
 
 ---
@@ -232,24 +225,24 @@ assert output_errors == 0, f"Ethernet1/1 has output errors: {output_errors}"
 bgp = device.parse('show ip bgp summary')
 
 # Navigate nested structure: device → bgp_id → neighbors
-# bgp['device']['bgp_id'] gives dict of BGP instances
-# bgp['device']['bgp_id']['65000']['neighbors'] has neighbor info
+# bgp['vrf']['default']['neighbor'] gives dict of BGP neighbors
 
-neighbors = bgp['device']['bgp_id']['65000']['neighbors']
-# '65000' is the BGP AS number (your network's AS)
+neighbors = bgp['vrf']['default']['neighbor']
+# Use a different VRF name if you're validating non-default VRFs
 
 # Iterate through BGP neighbors
 for neighbor_ip, neighbor_data in neighbors.items():
     # neighbor_ip examples: "10.0.0.1", "192.168.1.1"
-    # neighbor_data contains: state, received/sent prefixes, uptime
+    # neighbor_data contains per-address-family data
+    af_data = neighbor_data['address_family']['ipv4 unicast']
     
-    state = neighbor_data['state']
-    # State values: 'up', 'down', 'idle', 'active', 'opensent', 'openconfirm'
+    state_or_prefixes = af_data['state_pfxrcd']
+    # Established peers show a prefix count; down peers show states like 'Idle' or 'Active'
     
-    print(f"Neighbor {neighbor_ip}: {state}")
+    print(f"Neighbor {neighbor_ip}: {state_or_prefixes}")
     # Output examples:
-    # Neighbor 10.0.0.1: up
-    # Neighbor 10.0.0.2: up
+    # Neighbor 10.0.0.1: 100
+    # Neighbor 10.0.0.2: 42
 ```
 
 **How to use in validation:**
@@ -263,34 +256,22 @@ for neighbor_ip in required_neighbors:
     assert neighbor_ip in neighbors, \
         f"BGP neighbor {neighbor_ip} not in summary!"
     
-    # Check neighbor is in 'up' state (established)
-    state = neighbors[neighbor_ip]['state']
-    assert state == 'up', \
-        f"BGP neighbor {neighbor_ip} not up! State: {state}"
+    # Check neighbor is established (state_pfxrcd is a prefix count)
+    af_data = neighbors[neighbor_ip]['address_family']['ipv4 unicast']
+    state_or_prefixes = af_data['state_pfxrcd']
+    assert state_or_prefixes.isdigit(), \
+        f"BGP neighbor {neighbor_ip} not established! State: {state_or_prefixes}"
 ```
 
 ### Finding Available Parsers
 
 Not all commands are available. Check which ones Cisco supports:
 
-```bash
-# List all available parsers
-from genie.libs.parser.utils.common import ParserLookup
-from pyats.topology import loader
+# Verify that Genie has a parser for a command on your device
+pyats parse "show vlan" --testbed-file testbed.yaml --devices switch-01
 
-testbed = loader.load('testbed.yaml')
-device = testbed.devices['switch-01']
-
-# Get available commands for this device
-lookup = ParserLookup(device.os)
-for command in sorted(lookup.keys()):
-    if 'vlan' in command.lower():
-        print(command)
-
-# Output examples:
-# show vlan
-# show vlan access-log
-# show vlan id
+# Try command variants if needed
+pyats parse "show vlan id 10" --testbed-file testbed.yaml --devices switch-01
 ```
 
 Or visit [Cisco's Parser Index](https://pubhub.devnetcloud.com/media/genie-feature-browser/docs/#/parsers) for the full list.
@@ -327,11 +308,9 @@ def test_access_port_compliance(device):
     # For each VLAN in required config, validate all ports are there
     for vlan_id, required_ports in required_config.items():
         # Get actual ports in this VLAN from device parsing
-        actual_ports = list(vlan_data['vlans'][vlan_id]['interfaces'].keys())
+        actual_ports = vlan_data['vlans'][vlan_id]['interfaces']
         # vlan_data['vlans'][vlan_id] gets VLAN's dict
-        # ['interfaces'] gets the interfaces dict for this VLAN
-        # .keys() gets interface names
-        # list() converts to list
+        # ['interfaces'] gets the list of interface names in this VLAN
         
         # Validate: all required ports are actually there
         for port in required_ports:
@@ -477,13 +456,14 @@ def test_critical_routes(device):
         '172.16.0.0/12',   # WAN network
     ]
     
-    available_routes = list(routes['route'].keys())
+    route_table = routes['vrf']['default']['address_family']['ipv4']['routes']
+    available_routes = list(route_table.keys())
     
     for required in required_routes:
         assert required in available_routes, \
             f"Critical route {required} not found in routing table!"
         
-        route_info = routes['route'][required]
+        route_info = route_table[required]
         print(f"✅ Route {required} exists")
     
     print("✅ Routing validation passed")
@@ -496,33 +476,34 @@ def test_critical_routes(device):
 ```python
 def test_bgp_neighbors(device):
     """
-    Validate: All BGP neighbors are in 'Established' state
+    Validate: All BGP neighbors are established
     """
     
     bgp = device.parse('show ip bgp summary')
     
     # Get neighbors
-    neighbors = bgp['device']['bgp_id']['65000']['neighbors']
+    neighbors = bgp['vrf']['default']['neighbor']
     
-    required_states = {
-        '10.0.1.1': 'Established',     # Primary ISP peer
-        '10.0.2.1': 'Established',     # Secondary ISP peer
-        '192.168.1.2': 'Established',  # Internal peer
+    required_neighbors = {
+        '10.0.1.1': 'ipv4 unicast',     # Primary ISP peer
+        '10.0.2.1': 'ipv4 unicast',     # Secondary ISP peer
+        '192.168.1.2': 'ipv4 unicast',  # Internal peer
     }
     
-    for neighbor_ip, expected_state in required_states.items():
+    for neighbor_ip, address_family in required_neighbors.items():
         actual_neighbor = neighbors.get(neighbor_ip, {})
-        actual_state = actual_neighbor.get('state', 'Down')
+        af_data = actual_neighbor.get('address_family', {}).get(address_family, {})
+        state_or_prefixes = af_data.get('state_pfxrcd', 'Down')
         
-        assert actual_state == expected_state, \
-            f"BGP neighbor {neighbor_ip}: expected {expected_state}, got {actual_state}"
+        assert state_or_prefixes.isdigit(), \
+            f"BGP neighbor {neighbor_ip}: not established, got {state_or_prefixes}"
         
         # Check message counts
-        messages_received = actual_neighbor.get('msg_rcvd', 0)
+        messages_received = af_data.get('msg_rcvd', 0)
         assert messages_received > 0, \
             f"BGP neighbor {neighbor_ip}: no messages received!"
         
-        print(f"✅ BGP neighbor {neighbor_ip}: {actual_state} ({messages_received} messages)")
+        print(f"✅ BGP neighbor {neighbor_ip}: {state_or_prefixes} prefixes ({messages_received} messages)")
     
     print("✅ BGP validation passed")
 ```
@@ -594,7 +575,7 @@ def test_with_graceful_fallback(device):
     
     # Optional: validate BGP only if available
     if bgp_data:
-        neighbors = bgp_data['device']['bgp_id']['65000']['neighbors']
+        neighbors = bgp_data['vrf']['default']['neighbor']
         assert len(neighbors) > 0, "BGP neighbors not established"
     
     print("✅ Validation passed")
@@ -604,7 +585,7 @@ def test_with_graceful_fallback(device):
 
 Always use vault encryption:
 
-```python
+```yaml
 # testbed.yaml
 testbed:
   name: "Production"
@@ -651,7 +632,7 @@ from pyats.topology import loader
 def testbed():
     return loader.load('testbed.yaml')
 
-@pytest.mark.parameterise('device_name', ['switch-01', 'switch-02', 'switch-03'])
+@pytest.mark.parametrize('device_name', ['switch-01', 'switch-02', 'switch-03'])
 def test_vlan_on_all_switches(testbed, device_name):
     """
     Run the same test on all switches

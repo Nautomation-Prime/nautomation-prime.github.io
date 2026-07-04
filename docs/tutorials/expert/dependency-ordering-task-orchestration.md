@@ -39,7 +39,7 @@ tags:
 ```python
 # src/task_orchestrator.py
 from dataclasses import dataclass
-from typing import Dict, List, Set, Callable
+from typing import Any, Dict, List, Set, Callable
 from enum import Enum
 
 class TaskStatus(Enum):
@@ -59,7 +59,7 @@ class Task:
     kwargs: dict = None
     dependencies: List[str] = None
     status: TaskStatus = TaskStatus.PENDING
-    result: any = None
+    result: Any = None
     error: str = None
     
     def __post_init__(self):
@@ -99,8 +99,20 @@ class TaskOrchestrator:
         )
         self.tasks[name] = task
     
+    def _validate_dependencies(self) -> None:
+        """Ensure all dependencies reference known tasks."""
+        missing = {
+            dep
+            for task in self.tasks.values()
+            for dep in task.dependencies
+            if dep not in self.tasks
+        }
+        if missing:
+            raise ValueError(f"Unknown task dependencies: {sorted(missing)}")
+     
     def validate_dag(self) -> bool:
         """Check for cycles in dependency graph."""
+        self._validate_dependencies()
         visited = set()
         rec_stack = set()
         
@@ -179,6 +191,11 @@ class TaskOrchestrator:
             if deps_failed:
                 task.status = TaskStatus.SKIPPED
                 print(f"⏭ Skipping '{task_name}' (depends on failed: {deps_failed})")
+                results[task_name] = {
+                    "status": task.status.value,
+                    "result": task.result,
+                    "error": task.error
+                }
                 continue
             
             task.status = TaskStatus.RUNNING
@@ -375,7 +392,7 @@ for task in tasks:
 ```python
 # src/parallel_subtasks.py
 from concurrent.futures import ThreadPoolExecutor
-from typing import List
+from typing import List, Callable
 
 class ParallelTask:
     """Task that can execute sub-tasks in parallel."""

@@ -80,9 +80,9 @@ Let's do some math:
 **Parallel approach (Nornir):**
 
 ```text
-6 seconds × 10 concurrent connections = 0.6 seconds per "round"
+6 seconds per round (10 devices run at the same time)
 300 ÷ 10 = 30 rounds
-30 × 0.6 = 18 seconds (worst case, can be faster with optimisation)
+30 × 6 = 180 seconds (about 3 minutes)
 ```
 
 **Real-world result:** The same job takes 30 minutes with your current script but only 2-3 minutes with Nornir.
@@ -214,6 +214,7 @@ for device in devices:
     # Collect config
     # Save file
     # Move to next device (don't start next until this is done)
+    pass
 ```
 
 This is **sequential iteration**. It's simple, it's clear, it's great for learning—but it's a dead-end for enterprise scale.
@@ -260,7 +261,7 @@ def backup_with_threading(devices):
 4. **Credentials** — Thread-safe password management gets complex
 5. **Scalability** — Creating 500 threads crashes Python
 
-**Nornir doesn't use threading**. It uses **async I/O** (via `asyncio`), which allows true concurrent operations *without* the GIL limitations.
+**Nornir uses a controlled worker pool** (the default threaded runner) for network I/O. The GIL does not block this use case because SSH/API calls spend most of their time waiting on the network, so worker threads can overlap device operations safely.
 
 ---
 
@@ -565,29 +566,28 @@ In real organisations, here's what happens:
 
 ## 🔍 Under the Hood: Why Nornir Works
 
-Nornir uses **asyncio** (Python's asynchronous I/O library) under the hood:
+Nornir's default **threaded runner** uses a bounded worker pool:
 
 ```python
-# Parallel execution with asyncio (simplified)
-import asyncio
+# Parallel execution with a worker pool (simplified)
+from concurrent.futures import ThreadPoolExecutor
 
-async def backup_device(device):
-    # While this device waits for SSH, other devices run
-    await asyncio.sleep(3)  # Simulates network I/O
+
+def backup_device(device):
+    # While this device waits for SSH, other workers run
     return f"Backed up {device}"
 
-async def backup_all(devices):
-    # Create tasks for all devices (don't wait yet)
-    tasks = [backup_device(d) for d in devices]
-    # Now run ALL tasks concurrently
-    results = await asyncio.gather(*tasks)
+
+def backup_all(devices, workers=10):
+    with ThreadPoolExecutor(max_workers=workers) as executor:
+        results = list(executor.map(backup_device, devices))
     return results
 
-# All 4 devices run in ~3 seconds (parallel)
-# Not 12 seconds (sequential)
+# Up to 10 devices run at once
+# Nornir provides this scheduling and result aggregation for you
 ```
 
-**Nornir abstracts this complexity**, so you write simple task functions and Nornir handles the async execution automatically.
+**Nornir abstracts this complexity**, so you write simple task functions and Nornir handles controlled parallel execution automatically.
 
 ---
 

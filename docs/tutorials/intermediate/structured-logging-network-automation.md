@@ -76,7 +76,7 @@ tags:
 import json
 import logging
 import sys
-from datetime import datetime
+from datetime import datetime, timezone
 from typing import Any, Dict
 import uuid
 
@@ -108,7 +108,7 @@ class StructuredLogger:
     def _add_context(self, extra: Dict[str, Any]) -> Dict[str, Any]:
         """Add standard context to log entry."""
         return {
-            "timestamp": datetime.utcnow().isoformat(),
+            "timestamp": datetime.now(timezone.utc).isoformat(),
             "correlation_id": self.correlation_id,
             **extra
         }
@@ -269,6 +269,7 @@ for device in devices:
 ```python
 # src/contextual_logging.py
 from contextlib import contextmanager
+from structured_logger import StructuredLogger
 
 class OperationLogger:
     """Logger with automatic operation context."""
@@ -451,6 +452,8 @@ metrics.log_throughput(
 ```python
 # src/elasticsearch_logger.py
 import json
+import logging
+from datetime import datetime, timezone
 from elasticsearch import Elasticsearch
 from structured_logger import StructuredLogger
 
@@ -475,13 +478,12 @@ class ElasticsearchHandler(logging.Handler):
             log_data = json.loads(self.format(record))
             
             # Add timestamp for Elasticsearch
-            log_data["@timestamp"] = log_data.get("timestamp", datetime.utcnow().isoformat())
+            log_data["@timestamp"] = log_data.get("timestamp", datetime.now(timezone.utc).isoformat())
             
             # Send to Elasticsearch
             self.es.index(
-                index=f"{self.index_name}-{datetime.utcnow():%Y.%m.%d}",
-                doc_type="_doc",
-                body=log_data
+                index=f"{self.index_name}-{datetime.now(timezone.utc):%Y.%m.%d}",
+                document=log_data
             )
         except Exception as e:
             self.handleError(record)
@@ -545,6 +547,8 @@ GET network-automation-*/_search
 
 ```python
 # src/audit_logger.py
+import json
+import logging
 from structured_logger import StructuredLogger
 
 class AuditLogger:

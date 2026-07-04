@@ -104,7 +104,8 @@ class NetBoxInventoryManager:
         verify_ssl: bool = True,
         cache_ttl: int = 3600
     ):
-        self.api = pynetbox.api(netbox_url, token=netbox_token, verify_ssl=verify_ssl)
+        self.api = pynetbox.api(netbox_url, token=netbox_token)
+        self.api.http_session.verify = verify_ssl
         self.cache_ttl = cache_ttl
         self.cache: Dict[str, Any] = {}
         self.cache_time: Dict[str, float] = {}
@@ -266,8 +267,12 @@ Integrate change tickets with network automation:
 ```python
 import requests
 import json
+import logging
 from enum import Enum
 from datetime import datetime, timedelta
+from typing import Dict, Any, Optional
+
+logger = logging.getLogger(__name__)
 
 class ChangeState(Enum):
     """ServiceNow change states"""
@@ -345,7 +350,14 @@ class ServiceNowChangeManager:
                 return None
             
             data = response.json()
-            change_number = data['result'][0]['number']
+            result = data.get('result', {})
+            if isinstance(result, list):
+                result = result[0] if result else {}
+            change_number = result.get('number')
+            
+            if not change_number:
+                logger.error(f"Change request response did not include a number: {data}")
+                return None
             
             logger.info(f"Created change request: {change_number}")
             return change_number
@@ -362,6 +374,11 @@ class ServiceNowChangeManager:
     ) -> bool:
         """Update change request status"""
         try:
+            change = self.get_change_details(change_number)
+            if not change or not change.get('sys_id'):
+                logger.error(f"Could not find change request: {change_number}")
+                return False
+            
             payload = {
                 'state': state.value,
                 'work_notes': work_notes
@@ -370,7 +387,7 @@ class ServiceNowChangeManager:
             headers = {'Content-Type': 'application/json'}
             
             response = requests.patch(
-                f"{self.base_url}/table/change_request?sysparm_query=number={change_number}",
+                f"{self.base_url}/table/change_request/{change['sys_id']}",
                 auth=self.auth,
                 json=payload,
                 headers=headers,
@@ -391,10 +408,15 @@ class ServiceNowChangeManager:
     def add_work_notes(self, change_number: str, notes: str) -> bool:
         """Add work notes to change request"""
         try:
+            change = self.get_change_details(change_number)
+            if not change or not change.get('sys_id'):
+                logger.error(f"Could not find change request: {change_number}")
+                return False
+            
             payload = {'work_notes': notes}
             
             response = requests.patch(
-                f"{self.base_url}/table/change_request?sysparm_query=number={change_number}",
+                f"{self.base_url}/table/change_request/{change['sys_id']}",
                 auth=self.auth,
                 json=payload,
                 verify=False
@@ -435,7 +457,10 @@ Intent-based networking and device provisioning:
 
 ```python
 from dnacentersdk import DNACenterAPI
-from typing import List
+import logging
+from typing import Any, Dict, List, Optional
+
+logger = logging.getLogger(__name__)
 
 class DNACenterIntegration:
     """
@@ -544,7 +569,11 @@ Centralized playbook execution with Ansible Web X (AWX):
 
 ```python
 import requests
-from typing import Dict, List
+import json
+import logging
+from typing import Any, Dict, Optional
+
+logger = logging.getLogger(__name__)
 
 class AWXIntegration:
     """AWX (Ansible Web X) integration for playbook execution"""
@@ -592,7 +621,7 @@ class AWXIntegration:
                 return None
             
             job_id = response.json()['job']
-            logger.info(f\"Launched AWX job: {job_id}\")
+            logger.info(f"Launched AWX job: {job_id}")
             
             return job_id
         
@@ -601,10 +630,10 @@ class AWXIntegration:
             return None
     
     def get_job_status(self, job_id: int) -> Optional[Dict[str, Any]]:
-        \"\"\"Get AWX job execution status\"\"\"
+        """Get AWX job execution status"""
         try:
             response = requests.get(
-                f\"{self.awx_url}/api/v2/jobs/{job_id}/\",
+                f"{self.tower_url}/api/v2/jobs/{job_id}/",
                 auth=self.auth,
                 verify=False
             )
@@ -707,7 +736,7 @@ class NetworkAutomationOrchestrator:
             result['change_number'] = change_id
             
             # Step 3: Deploy via AWX
-            logger.info(\"Step 3: Deploying configuration via AWX\")
+            logger.info("Step 3: Deploying configuration via AWX")
             extra_vars['devices'] = [d.name for d in devices]
             extra_vars['change_number'] = change_id
             
@@ -720,7 +749,7 @@ class NetworkAutomationOrchestrator:
                 self.snow.update_change_status(
                     change_id,
                     ChangeState.CLOSED_FAILED,
-                    work_notes=\"AWX deployment failed\"
+                    work_notes="AWX deployment failed"
                 )
                 result['errors'].append("Failed to launch Ansible job")
                 return result

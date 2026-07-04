@@ -74,13 +74,14 @@ testbed = loader.load('testbed.yaml')
 # Device credentials from vault (encrypted)
 device = testbed.devices['switch-01']
 device.connect(via='cli')
+creds = device.credentials['default']
 
 # Netmiko for configuration (faster, simpler syntax)
 net_connect = ConnectHandler(
     device_type='cisco_ios',
-    host=device.ip,
-    username=device.username,
-    password=device.password,
+    host=device.connections.cli.ip,
+    username=creds.username,
+    password=creds.password,
 )
 
 # PyATS for validation (structured parsing)

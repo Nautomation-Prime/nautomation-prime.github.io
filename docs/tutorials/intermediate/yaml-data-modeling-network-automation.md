@@ -96,15 +96,14 @@ devices = {
 Write this YAML file:
 
 ```yaml
-devices:
-  router1:
-    ip: 10.1.1.1
-    username: admin
-    device_type: cisco_ios
-  router2:
-    ip: 10.1.1.2
-    username: admin
-    device_type: cisco_ios
+router1:
+  ip: 10.1.1.1
+  username: admin
+  device_type: cisco_ios
+router2:
+  ip: 10.1.1.2
+  username: admin
+  device_type: cisco_ios
 ```
 
 **Result:** Cleaner, more readable, editable without Python knowledge.
@@ -1212,6 +1211,16 @@ production:
   data:
     backup_schedule: "daily"
     monitoring: true
+```
+
+### inventory/defaults.yaml
+
+```yaml
+---
+# Default values applied to all devices
+data:
+  auth_timeout: 10
+  read_timeout: 30
 ```
 
 ### scripts/load_inventory.py

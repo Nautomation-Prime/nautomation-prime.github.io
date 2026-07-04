@@ -150,7 +150,8 @@ class NetboxInventory:
         
         for device in devices:
             name = device['name']
-            ip = device.get('primary_ip', {}).get('address', '').split('/')[0]
+            primary_ip = device.get('primary_ip') or {}
+            ip = primary_ip.get('address', name).split('/')[0]
             device_type = device.get('device_type', {}).get('model', '').lower()
             site = device.get('site', {}).get('name', 'unknown')
             
@@ -245,7 +246,7 @@ nr = InitNornir(config_file="nornir_config.yaml")
 
 **Gotcha 1B: Missing "primary_ip" in Netbox**
     - **Root cause:** Device added to Netbox but IP not assigned
-    - **Solution:** Add fallback: `ip = device.get('primary_ip', {}).get('address', device['name'])`
+    - **Solution:** Add fallback: `ip = (device.get('primary_ip') or {}).get('address', device['name'])`
 
 **Gotcha 1C: Device types don't map correctly**
     - **Root cause:** Netbox device type names don't match vendor expectations
@@ -269,8 +270,9 @@ Create `middleware/example_middleware.py`:
 Nornir middleware for logging, metrics, and validation
 """
 
+from nornir import InitNornir
 from nornir.core.inventory import Host
-from nornir.core.task import Task, Result
+from nornir.core.task import Task, AggregatedResult, MultiResult
 import logging
 import time
 
@@ -280,12 +282,11 @@ logger = logging.getLogger(__name__)
 # PRE-TASK MIDDLEWARE: Validation and setup
 # =====================================================================
 
-def validate_device(task: Task) -> None:
+def validate_device(host: Host) -> None:
     """
-    Pre-flight check before each task
+    Pre-flight check before each host runs the task
     Validate device is reachable
     """
-    host = task.host
     logger.debug(f"[Pre-task] Validating {host.name}")
     
     # Example: Check if device credentials are set
@@ -298,41 +299,57 @@ def validate_device(task: Task) -> None:
 # POST-TASK MIDDLEWARE: Logging and metrics
 # =====================================================================
 
-def log_results(task: Task, result: Result) -> None:
+def log_results(host: Host, result: MultiResult) -> None:
     """
     Post-task logging and metrics
     """
-    host = task.host
     status = "✓ Success" if not result.failed else "✗ Failed"
     
     logger.info(f"[Post-task] {host.name}: {status}")
     
     if result.failed:
-        logger.error(f"[Error] {host.name}: {result.exception}")
+        logger.error(f"[Error] {host.name}: {result[0].exception}")
 
-def alert_on_failure(task: Task, result: Result) -> None:
+def alert_on_failure(host: Host, result: MultiResult) -> None:
     """
     Alert (send Slack/email) if task fails
     """
     if result.failed:
         # Example: Send Slack notification
-        # send_slack_alert(f"Task failed on {task.host.name}")
-        logger.warning(f"Alert: Task failed on {task.host.name}")
+        # send_slack_alert(f"Task failed on {host.name}")
+        logger.warning(f"Alert: Task failed on {host.name}")
+
+class LoggingProcessor:
+    """Nornir 3 processor for validation, logging, and alerts."""
+
+    def task_started(self, task: Task) -> None:
+        pass
+
+    def task_completed(self, task: Task, result: AggregatedResult) -> None:
+        pass
+
+    def task_instance_started(self, task: Task, host: Host) -> None:
+        validate_device(host)
+
+    def task_instance_completed(self, task: Task, host: Host, result: MultiResult) -> None:
+        log_results(host, result)
+        alert_on_failure(host, result)
+
+    def subtask_instance_started(self, task: Task, host: Host) -> None:
+        pass
+
+    def subtask_instance_completed(self, task: Task, host: Host, result: MultiResult) -> None:
+        pass
 
 # =====================================================================
 # Using Middleware in Nornir
 # =====================================================================
 
-# In your main.py:
-from nornir.core.task import Task
-
 def main():
     nornir = InitNornir(config_file="nornir_config.yaml")
     
     # Register middleware (runs on ALL tasks)
-    nornir.config.hooks['task_start'] = [validate_device]
-    nornir.config.hooks['task_ok'] = [log_results]
-    nornir.config.hooks['task_failed'] = [log_results, alert_on_failure]
+    nornir = nornir.with_processors([LoggingProcessor()])
     
     # Now all tasks get pre/post processing automatically
     results = nornir.run(task=my_task)
@@ -718,8 +735,8 @@ def test_compliance_check():
         mock_task.host.name = "test"
         
         # Example assertions (call the real function in your test suite)
-        result_good = compliance_check(mock_task, compliant_config)
-        result_bad = compliance_check(mock_task, non_compliant_config)
+        result_good = compliance_check(mock_task, {"test": compliant_config})
+        result_bad = compliance_check(mock_task, {"test": non_compliant_config})
         
         assert result_good.result['score'] > result_bad.result['score']
         assert result_bad.result['score'] < 70
@@ -1115,10 +1132,10 @@ save_benchmark_history(benchmark_results)
 
 ```python
 # Before addition
-devices: 500, duration: 50s, throughput: 10 dev/sec
+before = {"devices": 500, "duration": "50s", "throughput": "10 dev/sec"}
 
 # After addition
-devices: 600, duration: 55s, throughput: 10.9 dev/sec
+after = {"devices": 600, "duration": "55s", "throughput": "10.9 dev/sec"}
 
 # Analysis: Throughput stayed same → network is bottleneck, not code
 ```

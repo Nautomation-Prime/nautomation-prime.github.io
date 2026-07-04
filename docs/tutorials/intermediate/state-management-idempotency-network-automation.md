@@ -113,7 +113,12 @@ class IdempotentOperations:
         # Check if VLAN already exists
         output = device.send_command(f"show vlan id {vlan_id}")
         
-        if f"VLAN{vlan_id:04d}" in output:
+        vlan_exists = any(
+            line.split() and line.split()[0] == str(vlan_id)
+            for line in output.splitlines()
+        )
+        
+        if vlan_exists:
             # VLAN exists, verify name matches
             if vlan_name in output:
                 return OperationResult(
@@ -323,7 +328,7 @@ class StateDrivenConfigurator:
         vlans = {}
         
         for line in output.split('\n'):
-            if line.strip() and 'VLAN' in line:
+            if line.split() and line.split()[0].isdigit():
                 parts = line.split()
                 vlan_id = parts[0]
                 vlan_name = parts[1] if len(parts) > 1 else ""
@@ -513,10 +518,12 @@ ensure_vlan_exists(device, 100)  # Did something happen?
 # ✅ GOOD - Single responsibility
 def ensure_vlan_exists(device, vlan_id, vlan_name):
     # Only concerned with VLAN existence
+    pass
 
 # ❌ BAD - Too much responsibility
 def configure_vlan_and_interfaces_and_bgp(device, vlan_id):
     # Does too many things, hard to reason about
+    pass
 ```
 
 ### 4. Test Idempotency Explicitly
