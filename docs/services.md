@@ -70,6 +70,44 @@ Nautomation Prime helps enterprise Cisco teams move from manual workflows, inher
 
 ---
 
+## Why Nautomation Prime?
+
+Nautomation Prime does not sell locked-down scripts. We deliver transparent Python automation your team can own, understand, and extend — with bespoke options when your environment needs more than an off-the-shelf tool.
+
+The code is open by design. That is the point. So what are you actually paying for?
+
+<div class="grid cards" markdown>
+
+-   ### :material-lock-open-outline: You own the code outright
+
+    No hidden modules, encrypted payloads, or vendor dependency. What we deliver is yours — immediately, unconditionally, and permanently.
+
+-   ### :material-magnify: You can inspect everything
+
+    Architecture, logic, assumptions, and workflows are open to your team from day one. No black boxes, no trust required.
+
+-   ### :material-cart-outline: Buy ready-made tools
+
+    Pre-built, hardened automation for common Cisco problems. Reviewed, tested, and documented — ready to deploy without starting from scratch.
+
+-   ### :material-tune: Commission bespoke versions
+
+    When your environment, naming conventions, governance requirements, or workflows need more than a standard tool, we build exactly what your estate needs.
+
+-   ### :material-head-lightbulb-outline: You are paying for expertise, not secrecy
+
+    The value is in the design, testing, documentation, integration, and knowledge transfer — not in keeping the code opaque. You would pay a structural engineer for design and delivery, not for hiding the blueprints.
+
+-   ### :material-account-group-outline: Your team can extend it
+
+    Solutions are written so internal engineers can read, modify, and build on them. The goal is to leave your team more capable than when we started.
+
+</div>
+
+> **Standard tools are available to purchase directly.** Bespoke versions cost more because they are scoped, designed, adapted to your environment, tested against your constraints, and handed over with full documentation and support.
+
+---
+
 ## Choose the right engagement model
 
 <div class="grid cards" markdown>
