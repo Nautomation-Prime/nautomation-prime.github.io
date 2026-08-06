@@ -17,12 +17,13 @@ Welcome to the **Nautomation Prime** Technical Library. These are not just scrip
 
 Our Deep Dives are built for engineers who refuse to treat automation as a "black box." Each guide is written as a practical tutorial that explains the real code paths, the design trade-offs, the likely failure modes, and the safest places to extend behaviour.
 
-If you are choosing where to start, use this page as a route map rather than a simple list. The four current Deep Dives are designed to teach complementary patterns:
+If you are choosing where to start, use this page as a route map rather than a simple list. The five current Deep Dives are designed to teach complementary patterns:
 
 - **Cisco Config Generator** teaches intent modelling, validation-first workflow, and template-driven rendering
 - **CDP Network Audit** teaches threaded discovery, crawl control, and template-governed reporting
 - **Access Switch Port Audit** teaches multi-source data fusion, conservative stale-port logic, and workbook production
 - **Cisco IOS-XE Compliance Audit** teaches policy-as-data, role-aware evaluation, and governed remediation lifecycle design
+- **IOS-XE Software Upgrade Orchestrator** teaches durable state machines, canary/topology-aware rollout, and post-upgrade health-gated commit control
 
 ---
 
@@ -34,7 +35,7 @@ If you are choosing where to start, use this page as a route map rather than a s
 | **[CDP Network Audit](./cdp-audit.md)** | Engineers who want to learn threaded discovery and topology crawling without hiding the failure paths. | Queue control, two-tier authentication, jump-host traversal, fallback parsing, Excel reporting contracts |
 | **[Access Switch Port Audit](./access-switch-audit.md)** | Engineers who want to understand how multiple CLI data sources become one trustworthy interface report. | Interface normalisation, PoE enrichment, stale-port risk logic, bastion handling, workbook formatting patterns |
 | **[Cisco IOS-XE Compliance Audit](./cisco-compliance-audit.md)** | Engineers who want a full platform example for policy-driven audit and governed remediation. | Split YAML policy model, classification logic, finding lifecycle, operator UX modes, approval and apply safeguards |
-| **[Coming Soon: IOS-XE Software Upgrade Orchestrator](../coming-soon/ios-xe-upgrade-orchestrator.md)** *(Design & Planning Phase)* | Automated, intelligent firmware management for Cisco IOS-XE devices. Includes comprehensive design covering Python integration with Catalyst Centre, Ansible, and Nornir. | Pre-Flight Validation, Binary Verification, Stack-Aware Orchestration, Rollback Capability, Framework Integration |
+| **[IOS-XE Software Upgrade Orchestrator](./ios-xe-upgrade-orchestrator.md)** | Engineers who need a transparent, recovery-safe model for disruptive IOS-XE upgrades at scale. | Durable state, lock fencing, canary + redundancy-aware batching, install/activate/commit/cleanup gates, Genie comparison policy |
 | **[Coming Soon: Zero Touch Provisioning (ZTP)](../coming-soon/cisco-ios-xe-ztp.md)** *(Testing & Validation Phase)* | Production-ready Day 0 provisioning for Cisco Catalyst switches running IOS-XE. Serial-based configuration lookup, retry logic with exponential backoff, and structured JSON logging to Graylog/Syslog. | Template-Based Config, DHCP Integration, Remote Logging, Structured Logging |
 
 ---

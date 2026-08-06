@@ -58,23 +58,6 @@ An end-to-end enterprise-grade Cisco ZTP solution built in Python. This managed 
 
 ---
 
-### [IOS-XE Software Upgrade Orchestrator](ios-xe-upgrade-orchestrator.md)
-
-A comprehensive Python-based orchestration framework for automating Cisco IOS-XE software upgrades across diverse platforms. This design document covers:
-
-- End-to-end upgrade workflows (discovery, validation, execution, rollback)
-- Platform-specific considerations (ISSU, dual SUPs, StackWise Virtual)
-- Fault tolerance and error handling strategies
-- **Integration with Cisco Catalyst Center, Ansible, and Nornir** - Detailed analysis of when and why to use Python alongside these popular platforms
-- Excel-based inventory management and existing automation tool integration
-- Security, compliance, and audit trail requirements
-
-**Unique Feature:** This design includes in-depth comparisons explaining why Python orchestration **complements** (not replaces) tools like Catalyst Center and Ansible, with decision matrices and real-world use cases.
-
-**Status:** :fontawesome-solid-drafting-compass: Design & Planning Phase
-
----
-
 ## Stay Updated
 
 These projects will be promoted to the [Script Library](../scripts/index.md) once implementation is complete and thoroughly tested. Check back regularly for updates!

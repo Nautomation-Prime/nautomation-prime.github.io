@@ -183,11 +183,11 @@ nav:
       - CDP Audit: deep-dives/cdp-audit.md
       - Cisco Compliance Audit: deep-dives/cisco-compliance-audit.md
       - Cisco Config Generator: deep-dives/cisco-config-generator.md
+      - IOS XE Upgrade Orchestrator: deep-dives/ios-xe-upgrade-orchestrator.md
     - Scripts: scripts/index.md
     - Coming Soon:
       - coming-soon/index.md
       - Cisco IOS XE ZTP: coming-soon/cisco-ios-xe-ztp.md
-      - IOS XE Upgrade Orchestrator: coming-soon/ios-xe-upgrade-orchestrator.md
       - ZTP Automation Platform: coming-soon/ztp-automation-platform.md
   - Services:
     - Overview: services.md
@@ -234,4 +234,3 @@ plugins:
       fallback_to_build_date: true
       enable_git_follow: false  # Disable to avoid quirks with new files
       strict: false  # Don't show warnings for files without git logs
-
