@@ -119,7 +119,7 @@ Upcoming solutions in design and development.
 
 - [ZTP Automation Platform](coming-soon/ztp-automation-platform.md) — End-to-end enterprise ZTP solution with Excel-driven config builder, Jinja2 templates, and Day 0/Day N workflows
 - [Cisco IOS-XE Zero Touch Provisioning](coming-soon/cisco-ios-xe-ztp.md) — Free ZTP script for Day 0 provisioning at scale
-- [IOS-XE Software Upgrade Orchestrator](coming-soon/ios-xe-upgrade-orchestrator.md) — End-to-end upgrade orchestration and validation
+- [IOS-XE Software Upgrade Orchestrator](deep-dives/ios-xe-upgrade-orchestrator.md) — End-to-end upgrade orchestration and validation
 - [Coming Soon Roadmap](coming-soon/index.md) — Full list of projects in development
 
 ---
