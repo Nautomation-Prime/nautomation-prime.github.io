@@ -1,0 +1,13 @@
+# Keep GitHub's automatic Jekyll Pages build from processing the MkDocs source tree.
+# The production site is published from the generated gh-pages branch by MkDocs.
+exclude:
+  - docs/
+  - overrides/
+  - scripts/
+  - site/
+  - .venv/
+  - .github/
+  - mkdocs.yml
+  - requirements.txt
+  - LICENSE
+  - .markdownlintrc.json
