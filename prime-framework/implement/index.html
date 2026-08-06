@@ -1,0 +1,2900 @@
+
+<!DOCTYPE html>
+
+<html class="no-js" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<meta content="Stage 3 of the PRIME Framework - Building production-ready, maintainable automation guided by Prime Philosophy principles." name="description"/>
+<meta content="Christopher Davies" name="author"/>
+<link href="https://www.nautomationprime.io/prime-framework/implement/" rel="canonical"/>
+<link href="../re-engineer/" rel="prev"/>
+<link href="../measure/" rel="next"/>
+<link href="../../assets/favicon.ico" rel="icon"/>
+<meta content="mkdocs-1.6.1, mkdocs-material-9.7.7" name="generator"/>
+<title>Implement - Nautomation Prime</title>
+<link href="../../assets/stylesheets/main.ec1eaa64.min.css" rel="stylesheet"/>
+<link href="../../assets/stylesheets/palette.ab4e12ef.min.css" rel="stylesheet"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&amp;display=fallback" rel="stylesheet"/>
+<style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+<link href="../../assets/css/custom.css" rel="stylesheet"/>
+<script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+</head>
+<body data-md-color-accent="blue" data-md-color-primary="blue" data-md-color-scheme="default" dir="ltr">
+<input autocomplete="off" class="md-toggle" data-md-toggle="drawer" id="__drawer" type="checkbox"/>
+<input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
+<label class="md-overlay" for="__drawer"></label>
+<div data-md-component="skip">
+<a class="md-skip" href="#implement-solutions">
+          Skip to content
+        </a>
+</div>
+<div data-md-component="announce">
+</div>
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+<nav aria-label="Header" class="md-header__inner md-grid">
+<a aria-label="Nautomation Prime" class="md-header__button md-logo" data-md-component="logo" href="../.." title="Nautomation Prime">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"></path></svg>
+</a>
+<label class="md-header__button md-icon" for="__drawer">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"></path></svg>
+</label>
+<div class="md-header__title" data-md-component="header-title">
+<div class="md-header__ellipsis">
+<div class="md-header__topic">
+<span class="md-ellipsis">
+            Nautomation Prime
+          </span>
+</div>
+<div class="md-header__topic" data-md-component="header-topic">
+<span class="md-ellipsis">
+            
+              Implement
+            
+          </span>
+</div>
+</div>
+</div>
+<label class="md-header__button md-icon" for="__search">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
+</label>
+<div class="md-search" data-md-component="search" role="dialog">
+<label class="md-search__overlay" for="__search"></label>
+<div class="md-search__inner" role="search">
+<form class="md-search__form" name="search">
+<input aria-label="Search" autocapitalize="off" autocomplete="off" autocorrect="off" class="md-search__input" data-md-component="search-query" name="query" placeholder="Search" required="" spellcheck="false" type="text"/>
+<label class="md-search__icon md-icon" for="__search">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"></path></svg>
+</label>
+<nav aria-label="Search" class="md-search__options">
+<a aria-label="Share" class="md-search__icon md-icon" data-clipboard="" data-clipboard-text="" data-md-component="search-share" href="javascript:void(0)" tabindex="-1" title="Share">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"></path></svg>
+</a>
+<button aria-label="Clear" class="md-search__icon md-icon" tabindex="-1" title="Clear" type="reset">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg>
+</button>
+</nav>
+<div class="md-search__suggest" data-md-component="search-suggest"></div>
+</form>
+<div class="md-search__output">
+<div class="md-search__scrollwrap" data-md-scrollfix="" tabindex="0">
+<div class="md-search-result" data-md-component="search-result">
+<div class="md-search-result__meta">
+            Initializing search
+          </div>
+<ol class="md-search-result__list" role="presentation"></ol>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="md-header__source">
+<a class="md-source" data-md-component="source" href="https://github.com/Nautomation-Prime" title="Go to repository">
+<div class="md-source__icon md-icon">
+<svg viewbox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"></path></svg>
+</div>
+<div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+</div>
+</nav>
+<nav aria-label="Tabs" class="md-tabs" data-md-component="tabs">
+<div class="md-grid">
+<ul class="md-tabs__list">
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../..">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../../resources/">
+          
+  
+  
+    
+  
+  Learn
+
+        </a>
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../../services/">
+          
+  
+  
+    
+  
+  Services
+
+        </a>
+</li>
+<li class="md-tabs__item md-tabs__item--active">
+<a class="md-tabs__link" href="../">
+          
+  
+  
+    
+  
+  PRIME Framework
+
+        </a>
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../../about/">
+          
+  
+  
+    
+  
+  About
+
+        </a>
+</li>
+</ul>
+</div>
+</nav>
+</header>
+<div class="md-container" data-md-component="container">
+<main class="md-main" data-md-component="main">
+<div class="md-main__inner md-grid">
+<div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation">
+<div class="md-sidebar__scrollwrap">
+<div class="md-sidebar__inner">
+<nav aria-label="Navigation" class="md-nav md-nav--primary md-nav--lifted" data-md-level="0">
+<label class="md-nav__title" for="__drawer">
+<a aria-label="Nautomation Prime" class="md-nav__button md-logo" data-md-component="logo" href="../.." title="Nautomation Prime">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"></path></svg>
+</a>
+    Nautomation Prime
+  </label>
+<div class="md-nav__source">
+<a class="md-source" data-md-component="source" href="https://github.com/Nautomation-Prime" title="Go to repository">
+<div class="md-source__icon md-icon">
+<svg viewbox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"></path></svg>
+</div>
+<div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+</div>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../..">
+<span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_2" type="checkbox"/>
+<div class="md-nav__link md-nav__container">
+<a class="md-nav__link" href="../../scripts/">
+<span class="md-ellipsis">
+    
+  
+    Learn
+  
+
+    
+  </span>
+</a>
+<label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-expanded="false" aria-labelledby="__nav_2_label" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_2">
+<span class="md-nav__icon md-icon"></span>
+            
+  
+    Learn
+  
+
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../resources/">
+<span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../getting-started/">
+<span class="md-ellipsis">
+    
+  
+    Getting Started
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_2_3" type="checkbox"/>
+<div class="md-nav__link md-nav__container">
+<a class="md-nav__link" href="../../tutorials/">
+<span class="md-ellipsis">
+    
+  
+    Tutorials
+  
+
+    
+  </span>
+</a>
+<label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="0">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-expanded="false" aria-labelledby="__nav_2_3_label" class="md-nav" data-md-level="2">
+<label class="md-nav__title" for="__nav_2_3">
+<span class="md-nav__icon md-icon"></span>
+            
+  
+    Tutorials
+  
+
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_2_3_2" type="checkbox"/>
+<div class="md-nav__link md-nav__container">
+<a class="md-nav__link" href="../../tutorials/beginner/">
+<span class="md-ellipsis">
+    
+  
+    Beginner Tutorials
+  
+
+    
+  </span>
+</a>
+<label class="md-nav__link" for="__nav_2_3_2" id="__nav_2_3_2_label" tabindex="0">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-expanded="false" aria-labelledby="__nav_2_3_2_label" class="md-nav" data-md-level="3">
+<label class="md-nav__title" for="__nav_2_3_2">
+<span class="md-nav__icon md-icon"></span>
+            
+  
+    Beginner Tutorials
+  
+
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../tutorials/beginner/multi-device-config-backup/">
+<span class="md-ellipsis">
+    
+  
+    Multi-Device Config Backup
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../tutorials/beginner/multi-device-show-command/">
+<span class="md-ellipsis">
+    
+  
+    Multi-Device Show Command
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../tutorials/beginner/netmiko-show-command-to-excel/">
+<span class="md-ellipsis">
+    
+  
+    Netmiko Show Command to Excel
+  
+
+    
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_2_3_3" type="checkbox"/>
+<div class="md-nav__link md-nav__container">
+<a class="md-nav__link" href="../../tutorials/intermediate/">
+<span class="md-ellipsis">
+    
+  
+    Intermediate Tutorials
+  
+
+    
+  </span>
+</a>
+<label class="md-nav__link" for="__nav_2_3_3" id="__nav_2_3_3_label" tabindex="0">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-expanded="false" aria-labelledby="__nav_2_3_3_label" class="md-nav" data-md-level="3">
+<label class="md-nav__title" for="__nav_2_3_3">
+<span class="md-nav__icon md-icon"></span>
+            
+  
+    Intermediate Tutorials
+  
+
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../tutorials/intermediate/yaml-data-modeling-network-automation/">
+<span class="md-ellipsis">
+    
+  
+    YAML Data Modelling
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../tutorials/intermediate/json-data-handling-network-automation/">
+<span class="md-ellipsis">
+    
+  
+    JSON Data Handling
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../tutorials/intermediate/jinja2-configuration-templates/">
+<span class="md-ellipsis">
+    
+  
+    Jinja2 Configuration Templates
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../tutorials/intermediate/decorators-network-automation/">
+<span class="md-ellipsis">
+    
+  
+    Decorators for Network Automation
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../tutorials/intermediate/pyats-fundamentals/">
+<span class="md-ellipsis">
+    
+  
+    PyATS Fundamentals
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../tutorials/intermediate/pyats-network-validation/">
+<span class="md-ellipsis">
+    
+  
+    PyATS Network Validation
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../tutorials/intermediate/building-reliable-automation-with-pyats/">
+<span class="md-ellipsis">
+    
+  
+    Building Reliable Automation with PyATS
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../tutorials/intermediate/why-nornir/">
+<span class="md-ellipsis">
+    
+  
+    Why Nornir
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../tutorials/intermediate/nornir-fundamentals/">
+<span class="md-ellipsis">
+    
+  
+    Nornir Fundamentals
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../tutorials/intermediate/enterprise-config-backup-nornir/">
+<span class="md-ellipsis">
+    
+  
+    Enterprise Config Backup Nornir
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../tutorials/intermediate/advanced-nornir-patterns/">
+<span class="md-ellipsis">
+    
+  
+    Advanced Nornir Patterns
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../tutorials/intermediate/testing-network-automation/">
+<span class="md-ellipsis">
+    
+  
+    Testing Network Automation Scripts
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../tutorials/intermediate/credential-management-network-automation/">
+<span class="md-ellipsis">
+    
+  
+    Credential Management for Network Automation
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../tutorials/intermediate/error-recovery-rollback-network-automation/">
+<span class="md-ellipsis">
+    
+  
+    Error Recovery and Rollback
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../tutorials/intermediate/state-management-idempotency-network-automation/">
+<span class="md-ellipsis">
+    
+  
+    State Management and Idempotency
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../tutorials/intermediate/structured-logging-network-automation/">
+<span class="md-ellipsis">
+    
+  
+    Structured Logging for Network Automation
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../tutorials/intermediate/health-checks-pre-flight-validation/">
+<span class="md-ellipsis">
+    
+  
+    Health Checks and Pre-Flight Validation
+  
+
+    
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_2_3_4" type="checkbox"/>
+<div class="md-nav__link md-nav__container">
+<a class="md-nav__link" href="../../tutorials/expert/">
+<span class="md-ellipsis">
+    
+  
+    Expert Tutorials
+  
+
+    
+  </span>
+</a>
+<label class="md-nav__link" for="__nav_2_3_4" id="__nav_2_3_4_label" tabindex="0">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-expanded="false" aria-labelledby="__nav_2_3_4_label" class="md-nav" data-md-level="3">
+<label class="md-nav__title" for="__nav_2_3_4">
+<span class="md-nav__icon md-icon"></span>
+            
+  
+    Expert Tutorials
+  
+
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../tutorials/expert/circuit-breakers-backpressure-network-automation/">
+<span class="md-ellipsis">
+    
+  
+    Circuit Breakers and Backpressure
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../tutorials/expert/dependency-ordering-task-orchestration/">
+<span class="md-ellipsis">
+    
+  
+    Dependency Management and Task Orchestration
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../tutorials/expert/incident-response-automation/">
+<span class="md-ellipsis">
+    
+  
+    Incident Response Automation
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../tutorials/expert/nornir-pyats-integration/">
+<span class="md-ellipsis">
+    
+  
+    Nornir + PyATS Integration
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../tutorials/expert/asyncio-network-automation/">
+<span class="md-ellipsis">
+    
+  
+    Asyncio for Network Automation
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../tutorials/expert/secure-credential-vaulting/">
+<span class="md-ellipsis">
+    
+  
+    Secure Credential Vaulting
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../tutorials/expert/devops-observability-network-automation/">
+<span class="md-ellipsis">
+    
+  
+    DevOps &amp; Observability
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../tutorials/expert/tool-ecosystem-integration/">
+<span class="md-ellipsis">
+    
+  
+    Tool Ecosystem Integration
+  
+
+    
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_2_4" type="checkbox"/>
+<div class="md-nav__link md-nav__container">
+<a class="md-nav__link" href="../../tutorials/production-grade-network-automation-principles/">
+<span class="md-ellipsis">
+    
+  
+    Production-Grade Network Automation Principles
+  
+
+    
+  </span>
+</a>
+<label class="md-nav__link" for="__nav_2_4" id="__nav_2_4_label" tabindex="0">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-expanded="false" aria-labelledby="__nav_2_4_label" class="md-nav" data-md-level="2">
+<label class="md-nav__title" for="__nav_2_4">
+<span class="md-nav__icon md-icon"></span>
+            
+  
+    Production-Grade Network Automation Principles
+  
+
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../tutorials/production-grade-network-automation-principles/validating-device-identity-before-automation-runs/">
+<span class="md-ellipsis">
+    
+  
+    Validating Device Identity Before Automation Runs
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../tutorials/production-grade-network-automation-principles/pre-flight-checks-failing-fast-before-making-changes/">
+<span class="md-ellipsis">
+    
+  
+    Pre-Flight Checks - Failing Fast Before Making Changes
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../tutorials/production-grade-network-automation-principles/trust-boundaries-around-your-source-of-truth/">
+<span class="md-ellipsis">
+    
+  
+    Trust Boundaries Around Your Source of Truth
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../tutorials/production-grade-network-automation-principles/detecting-and-handling-configuration-drift-safely/">
+<span class="md-ellipsis">
+    
+  
+    Detecting and Handling Configuration Drift Safely
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../tutorials/production-grade-network-automation-principles/real-world-idempotency-in-network-automation/">
+<span class="md-ellipsis">
+    
+  
+    Real-World Idempotency in Network Automation
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../tutorials/production-grade-network-automation-principles/scoping-automation-to-reduce-blast-radius/">
+<span class="md-ellipsis">
+    
+  
+    Scoping Automation to Reduce Blast Radius
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../tutorials/production-grade-network-automation-principles/designing-automation-that-can-safely-fail/">
+<span class="md-ellipsis">
+    
+  
+    Designing Automation That Can Safely Fail
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../tutorials/production-grade-network-automation-principles/rollback-strategies-what-works-and-what-doesnt/">
+<span class="md-ellipsis">
+    
+  
+    Rollback Strategies - What Works and What Doesn't
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../tutorials/production-grade-network-automation-principles/separating-read-and-write-phases/">
+<span class="md-ellipsis">
+    
+  
+    Separating Read and Write Phases in Automation Workflows
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../tutorials/production-grade-network-automation-principles/making-automation-output-operator-friendly/">
+<span class="md-ellipsis">
+    
+  
+    Making Automation Output Operator-Friendly
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../tutorials/production-grade-network-automation-principles/building-audit-ready-automation/">
+<span class="md-ellipsis">
+    
+  
+    Building Audit-Ready Automation
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../tutorials/production-grade-network-automation-principles/secrets-and-credentials-in-enterprise-automation/">
+<span class="md-ellipsis">
+    
+  
+    Secrets and Credentials in Enterprise Automation
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../tutorials/production-grade-network-automation-principles/human-in-the-loop-automation-design/">
+<span class="md-ellipsis">
+    
+  
+    Human-in-the-Loop Automation Design
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../tutorials/production-grade-network-automation-principles/knowing-when-not-to-automate/">
+<span class="md-ellipsis">
+    
+  
+    Knowing When Not to Automate
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../tutorials/production-grade-network-automation-principles/executive-summary/">
+<span class="md-ellipsis">
+    
+  
+    Executive Summary for Leadership
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../tutorials/production-grade-network-automation-principles/program-charter/">
+<span class="md-ellipsis">
+    
+  
+    Program Charter for Production-Grade Automation
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../tutorials/production-grade-network-automation-principles/enterprise-control-matrix/">
+<span class="md-ellipsis">
+    
+  
+    Enterprise Control Matrix
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../tutorials/production-grade-network-automation-principles/implementation-roadmap-30-60-90-days/">
+<span class="md-ellipsis">
+    
+  
+    Implementation Roadmap (30/60/90 Days)
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../tutorials/production-grade-network-automation-principles/operator-review-worksheet/">
+<span class="md-ellipsis">
+    
+  
+    Operator Review Worksheet
+  
+
+    
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_2_5" type="checkbox"/>
+<div class="md-nav__link md-nav__container">
+<a class="md-nav__link" href="../../deep-dives/">
+<span class="md-ellipsis">
+    
+  
+    Deep Dives
+  
+
+    
+  </span>
+</a>
+<label class="md-nav__link" for="__nav_2_5" id="__nav_2_5_label" tabindex="0">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-expanded="false" aria-labelledby="__nav_2_5_label" class="md-nav" data-md-level="2">
+<label class="md-nav__title" for="__nav_2_5">
+<span class="md-nav__icon md-icon"></span>
+            
+  
+    Deep Dives
+  
+
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../deep-dives/access-switch-audit/">
+<span class="md-ellipsis">
+    
+  
+    Access Switch Audit
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../deep-dives/cdp-audit/">
+<span class="md-ellipsis">
+    
+  
+    CDP Audit
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../deep-dives/cisco-compliance-audit/">
+<span class="md-ellipsis">
+    
+  
+    Cisco Compliance Audit
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../deep-dives/cisco-config-generator/">
+<span class="md-ellipsis">
+    
+  
+    Cisco Config Generator
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../deep-dives/ios-xe-upgrade-orchestrator/">
+<span class="md-ellipsis">
+    
+  
+    IOS XE Upgrade Orchestrator
+  
+
+    
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_2_7" type="checkbox"/>
+<div class="md-nav__link md-nav__container">
+<a class="md-nav__link" href="../../coming-soon/">
+<span class="md-ellipsis">
+    
+  
+    Coming Soon
+  
+
+    
+  </span>
+</a>
+<label class="md-nav__link" for="__nav_2_7" id="__nav_2_7_label" tabindex="0">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-expanded="false" aria-labelledby="__nav_2_7_label" class="md-nav" data-md-level="2">
+<label class="md-nav__title" for="__nav_2_7">
+<span class="md-nav__icon md-icon"></span>
+            
+  
+    Coming Soon
+  
+
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../coming-soon/cisco-ios-xe-ztp/">
+<span class="md-ellipsis">
+    
+  
+    Cisco IOS XE ZTP
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../coming-soon/ztp-automation-platform/">
+<span class="md-ellipsis">
+    
+  
+    ZTP Automation Platform
+  
+
+    
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_3" type="checkbox"/>
+<label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+<span class="md-ellipsis">
+    
+  
+    Services
+  
+
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_3_label" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_3">
+<span class="md-nav__icon md-icon"></span>
+            
+  
+    Services
+  
+
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../services/">
+<span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../how-we-work/">
+<span class="md-ellipsis">
+    
+  
+    How We Work
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../contact/">
+<span class="md-ellipsis">
+    
+  
+    Contact &amp; Discovery
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_3_4" type="checkbox"/>
+<div class="md-nav__link md-nav__container">
+<a class="md-nav__link" href="../../smb/">
+<span class="md-ellipsis">
+    
+  
+    For Small &amp; Medium Businesses
+  
+
+    
+  </span>
+</a>
+<label class="md-nav__link" for="__nav_3_4" id="__nav_3_4_label" tabindex="0">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-expanded="false" aria-labelledby="__nav_3_4_label" class="md-nav" data-md-level="2">
+<label class="md-nav__title" for="__nav_3_4">
+<span class="md-nav__icon md-icon"></span>
+            
+  
+    For Small &amp; Medium Businesses
+  
+
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../smb/services/">
+<span class="md-ellipsis">
+    
+  
+    SMB Automation Packages
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_3_4_3" type="checkbox"/>
+<label class="md-nav__link" for="__nav_3_4_3" id="__nav_3_4_3_label" tabindex="0">
+<span class="md-ellipsis">
+    
+  
+    Automation Packages
+  
+
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_3_4_3_label" class="md-nav" data-md-level="3">
+<label class="md-nav__title" for="__nav_3_4_3">
+<span class="md-nav__icon md-icon"></span>
+            
+  
+    Automation Packages
+  
+
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../smb/packages/automation-assessment/">
+<span class="md-ellipsis">
+    
+  
+    Automation Opportunity Assessment
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../smb/packages/switch-audit-pack/">
+<span class="md-ellipsis">
+    
+  
+    Switch Audit &amp; Compliance Pack
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../smb/packages/ios-xe-upgrade-pack/">
+<span class="md-ellipsis">
+    
+  
+    IOS-XE Upgrade Automation Pack
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../smb/packages/ztp-setup/">
+<span class="md-ellipsis">
+    
+  
+    Zero-Touch Provisioning Setup
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../smb/packages/custom-script-build/">
+<span class="md-ellipsis">
+    
+  
+    Custom Script Build
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../smb/packages/automation-as-a-service/">
+<span class="md-ellipsis">
+    
+  
+    Automation-as-a-Service
+  
+
+    
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+<input checked="" class="md-nav__toggle md-toggle" id="__nav_4" type="checkbox"/>
+<div class="md-nav__link md-nav__container">
+<a class="md-nav__link" href="../">
+<span class="md-ellipsis">
+    
+  
+    PRIME Framework
+  
+
+    
+  </span>
+</a>
+<label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-expanded="true" aria-labelledby="__nav_4_label" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_4">
+<span class="md-nav__icon md-icon"></span>
+            
+  
+    PRIME Framework
+  
+
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../philosophy/">
+<span class="md-ellipsis">
+    
+  
+    Prime Philosophy
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../pinpoint/">
+<span class="md-ellipsis">
+    
+  
+    Pinpoint
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../re-engineer/">
+<span class="md-ellipsis">
+    
+  
+    Re-Engineer
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item md-nav__item--active">
+<input class="md-nav__toggle md-toggle" id="__toc" type="checkbox"/>
+<label class="md-nav__link md-nav__link--active" for="__toc">
+<span class="md-ellipsis">
+    
+  
+    Implement
+  
+
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<a class="md-nav__link md-nav__link--active" href="./">
+<span class="md-ellipsis">
+    
+  
+    Implement
+  
+
+    
+  </span>
+</a>
+<nav aria-label="Table of contents" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#implement-solutions">
+<span class="md-ellipsis">
+      
+        Implement Solutions
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#stage-3-of-the-prime-framework">
+<span class="md-ellipsis">
+      
+        Stage 3 of the PRIME Framework
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#objective">
+<span class="md-ellipsis">
+      
+        🎯 Objective
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#what-happens-during-implement">
+<span class="md-ellipsis">
+      
+        ⚙️ What Happens During Implement
+      
+    </span>
+</a>
+<nav aria-label="⚙️ What Happens During Implement" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#1-development-environment-setup">
+<span class="md-ellipsis">
+      
+        1. Development Environment Setup
+      
+    </span>
+</a>
+<nav aria-label="1. Development Environment Setup" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#local-development-standards">
+<span class="md-ellipsis">
+      
+        Local Development Standards
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#source-control">
+<span class="md-ellipsis">
+      
+        Source Control
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#2-implementation-guided-by-prime-philosophy">
+<span class="md-ellipsis">
+      
+        2. Implementation Guided by PRIME Philosophy
+      
+    </span>
+</a>
+<nav aria-label="2. Implementation Guided by PRIME Philosophy" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#principle-1-transparency-over-obscurity">
+<span class="md-ellipsis">
+      
+        🔍 Principle 1: Transparency Over Obscurity
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#principle-2-safety-over-speed">
+<span class="md-ellipsis">
+      
+        �️ Principle 2: Safety Over Speed
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#principle-3-empowerment-through-documentation">
+<span class="md-ellipsis">
+      
+        � Principle 3: Empowerment Through Documentation
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#3-code-structure-standards">
+<span class="md-ellipsis">
+      
+        3. Code Structure Standards
+      
+    </span>
+</a>
+<nav aria-label="3. Code Structure Standards" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#main-script-template">
+<span class="md-ellipsis">
+      
+        Main Script Template
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#4-testing-strategy">
+<span class="md-ellipsis">
+      
+        4. Testing Strategy
+      
+    </span>
+</a>
+<nav aria-label="4. Testing Strategy" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#lab-testing">
+<span class="md-ellipsis">
+      
+        Lab Testing
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#staging-environment">
+<span class="md-ellipsis">
+      
+        Staging Environment
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#5-documentation-standards">
+<span class="md-ellipsis">
+      
+        5. Documentation Standards
+      
+    </span>
+</a>
+<nav aria-label="5. Documentation Standards" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#readmemd">
+<span class="md-ellipsis">
+      
+        README.md
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#usage">
+<span class="md-ellipsis">
+      
+        Usage
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#configuration">
+<span class="md-ellipsis">
+      
+        Configuration
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#troubleshooting">
+<span class="md-ellipsis">
+      
+        Troubleshooting
+      
+    </span>
+</a>
+<nav aria-label="Troubleshooting" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#inline-comments">
+<span class="md-ellipsis">
+      
+        Inline Comments
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#deliverable-production-ready-automation">
+<span class="md-ellipsis">
+      
+        📊 Deliverable: Production-Ready Automation
+      
+    </span>
+</a>
+<nav aria-label="📊 Deliverable: Production-Ready Automation" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#1-tested-python-scripts">
+<span class="md-ellipsis">
+      
+        1. Tested Python Scripts
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#2-supporting-files">
+<span class="md-ellipsis">
+      
+        2. Supporting Files
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#3-documentation">
+<span class="md-ellipsis">
+      
+        3. Documentation
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#4-test-results">
+<span class="md-ellipsis">
+      
+        4. Test Results
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#why-implement-with-prime-philosophy-matters">
+<span class="md-ellipsis">
+      
+        💡 Why Implement with Prime Philosophy Matters
+      
+    </span>
+</a>
+<nav aria-label="💡 Why Implement with Prime Philosophy Matters" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#long-term-maintainability">
+<span class="md-ellipsis">
+      
+        Long-Term Maintainability
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#operational-confidence">
+<span class="md-ellipsis">
+      
+        Operational Confidence
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#what-happens-next">
+<span class="md-ellipsis">
+      
+        🚀 What Happens Next
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#implement-checklist">
+<span class="md-ellipsis">
+      
+        📋 Implement Checklist
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#engagement-options">
+<span class="md-ellipsis">
+      
+        💼 Engagement Options
+      
+    </span>
+</a>
+<nav aria-label="💼 Engagement Options" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#implementation-as-part-of-full-prime-engagement">
+<span class="md-ellipsis">
+      
+        Implementation as Part of Full PRIME Engagement
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#standalone-implementation-service">
+<span class="md-ellipsis">
+      
+        Standalone Implementation Service
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#learn-more">
+<span class="md-ellipsis">
+      
+        🎓 Learn More
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../measure/">
+<span class="md-ellipsis">
+    
+  
+    Measure
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../empower/">
+<span class="md-ellipsis">
+    
+  
+    Empower
+  
+
+    
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_5" type="checkbox"/>
+<label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+<span class="md-ellipsis">
+    
+  
+    About
+  
+
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_5_label" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_5">
+<span class="md-nav__icon md-icon"></span>
+            
+  
+    About
+  
+
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../about/">
+<span class="md-ellipsis">
+    
+  
+    About Nautomation Prime
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../founder/">
+<span class="md-ellipsis">
+    
+  
+    Founder
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../charity/">
+<span class="md-ellipsis">
+    
+  
+    Giving With Integrity
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_5_4" type="checkbox"/>
+<label class="md-nav__link" for="__nav_5_4" id="__nav_5_4_label" tabindex="0">
+<span class="md-ellipsis">
+    
+  
+    Legal
+  
+
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_5_4_label" class="md-nav" data-md-level="2">
+<label class="md-nav__title" for="__nav_5_4">
+<span class="md-nav__icon md-icon"></span>
+            
+  
+    Legal
+  
+
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../legal/brand/">
+<span class="md-ellipsis">
+    
+  
+    Brand &amp; Logo Usage
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../legal/disclaimer/">
+<span class="md-ellipsis">
+    
+  
+    Disclaimer
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../legal/licensing/">
+<span class="md-ellipsis">
+    
+  
+    Licensing
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../legal/privacy-policy/">
+<span class="md-ellipsis">
+    
+  
+    Privacy Policy
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../legal/terms-of-use/">
+<span class="md-ellipsis">
+    
+  
+    Terms of Use
+  
+
+    
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</div>
+</div>
+</div>
+<div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc">
+<div class="md-sidebar__scrollwrap">
+<div class="md-sidebar__inner">
+<nav aria-label="Table of contents" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#implement-solutions">
+<span class="md-ellipsis">
+      
+        Implement Solutions
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#stage-3-of-the-prime-framework">
+<span class="md-ellipsis">
+      
+        Stage 3 of the PRIME Framework
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#objective">
+<span class="md-ellipsis">
+      
+        🎯 Objective
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#what-happens-during-implement">
+<span class="md-ellipsis">
+      
+        ⚙️ What Happens During Implement
+      
+    </span>
+</a>
+<nav aria-label="⚙️ What Happens During Implement" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#1-development-environment-setup">
+<span class="md-ellipsis">
+      
+        1. Development Environment Setup
+      
+    </span>
+</a>
+<nav aria-label="1. Development Environment Setup" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#local-development-standards">
+<span class="md-ellipsis">
+      
+        Local Development Standards
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#source-control">
+<span class="md-ellipsis">
+      
+        Source Control
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#2-implementation-guided-by-prime-philosophy">
+<span class="md-ellipsis">
+      
+        2. Implementation Guided by PRIME Philosophy
+      
+    </span>
+</a>
+<nav aria-label="2. Implementation Guided by PRIME Philosophy" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#principle-1-transparency-over-obscurity">
+<span class="md-ellipsis">
+      
+        🔍 Principle 1: Transparency Over Obscurity
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#principle-2-safety-over-speed">
+<span class="md-ellipsis">
+      
+        �️ Principle 2: Safety Over Speed
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#principle-3-empowerment-through-documentation">
+<span class="md-ellipsis">
+      
+        � Principle 3: Empowerment Through Documentation
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#3-code-structure-standards">
+<span class="md-ellipsis">
+      
+        3. Code Structure Standards
+      
+    </span>
+</a>
+<nav aria-label="3. Code Structure Standards" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#main-script-template">
+<span class="md-ellipsis">
+      
+        Main Script Template
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#4-testing-strategy">
+<span class="md-ellipsis">
+      
+        4. Testing Strategy
+      
+    </span>
+</a>
+<nav aria-label="4. Testing Strategy" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#lab-testing">
+<span class="md-ellipsis">
+      
+        Lab Testing
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#staging-environment">
+<span class="md-ellipsis">
+      
+        Staging Environment
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#5-documentation-standards">
+<span class="md-ellipsis">
+      
+        5. Documentation Standards
+      
+    </span>
+</a>
+<nav aria-label="5. Documentation Standards" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#readmemd">
+<span class="md-ellipsis">
+      
+        README.md
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#usage">
+<span class="md-ellipsis">
+      
+        Usage
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#configuration">
+<span class="md-ellipsis">
+      
+        Configuration
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#troubleshooting">
+<span class="md-ellipsis">
+      
+        Troubleshooting
+      
+    </span>
+</a>
+<nav aria-label="Troubleshooting" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#inline-comments">
+<span class="md-ellipsis">
+      
+        Inline Comments
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#deliverable-production-ready-automation">
+<span class="md-ellipsis">
+      
+        📊 Deliverable: Production-Ready Automation
+      
+    </span>
+</a>
+<nav aria-label="📊 Deliverable: Production-Ready Automation" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#1-tested-python-scripts">
+<span class="md-ellipsis">
+      
+        1. Tested Python Scripts
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#2-supporting-files">
+<span class="md-ellipsis">
+      
+        2. Supporting Files
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#3-documentation">
+<span class="md-ellipsis">
+      
+        3. Documentation
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#4-test-results">
+<span class="md-ellipsis">
+      
+        4. Test Results
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#why-implement-with-prime-philosophy-matters">
+<span class="md-ellipsis">
+      
+        💡 Why Implement with Prime Philosophy Matters
+      
+    </span>
+</a>
+<nav aria-label="💡 Why Implement with Prime Philosophy Matters" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#long-term-maintainability">
+<span class="md-ellipsis">
+      
+        Long-Term Maintainability
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#operational-confidence">
+<span class="md-ellipsis">
+      
+        Operational Confidence
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#what-happens-next">
+<span class="md-ellipsis">
+      
+        🚀 What Happens Next
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#implement-checklist">
+<span class="md-ellipsis">
+      
+        📋 Implement Checklist
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#engagement-options">
+<span class="md-ellipsis">
+      
+        💼 Engagement Options
+      
+    </span>
+</a>
+<nav aria-label="💼 Engagement Options" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#implementation-as-part-of-full-prime-engagement">
+<span class="md-ellipsis">
+      
+        Implementation as Part of Full PRIME Engagement
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#standalone-implementation-service">
+<span class="md-ellipsis">
+      
+        Standalone Implementation Service
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#learn-more">
+<span class="md-ellipsis">
+      
+        🎓 Learn More
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</div>
+</div>
+</div>
+<div class="md-content" data-md-component="content">
+<article class="md-content__inner md-typeset">
+<nav class="md-tags">
+<span class="md-tag">Development</span>
+<span class="md-tag">Implement</span>
+<span class="md-tag">PRIME Framework</span>
+<span class="md-tag">Prime Philosophy</span>
+</nav>
+<h1>Implement</h1>
+<h2 id="implement-solutions">Implement Solutions<a class="headerlink" href="#implement-solutions" title="Anchor link to this section">¶</a></h2>
+<h2 id="stage-3-of-the-prime-framework">Stage 3 of the PRIME Framework<a class="headerlink" href="#stage-3-of-the-prime-framework" title="Anchor link to this section">¶</a></h2>
+<blockquote>
+<p><strong>"Code is a liability, not an asset. The Implement stage focuses on building <em>just enough</em> automation—maintainable, documented, and built to last."</strong></p>
+</blockquote>
+<div class="admonition success">
+<p class="admonition-title">Stage Outcome</p>
+<p><strong>Deliverable:</strong> Production-ready Python scripts with line-by-line documentation, comprehensive error handling, and pre/post-flight validation.</p>
+<p><strong>Typical Result:</strong> Hardened automation that runs reliably in production, with complete audit trails and the ability for your team to modify and extend it independently.</p>
+<pre class="mermaid"><code>graph LR
+    A[🛠️ Setup] --&gt; B[📝 Code]
+    B --&gt; C[✅ Test]
+    C --&gt; D[📦 Deploy]
+
+    style A fill:#50C878
+    style B fill:#60D388
+    style C fill:#70DE98
+    style D fill:#80E9A8
+</code></pre>
+</div>
+<p><strong>Prime Terminology Used:</strong> Prime Agents development, Prime Philosophy principles, Prime Efficiency Stack</p>
+<hr/>
+<h2 id="objective">🎯 Objective<a class="headerlink" href="#objective" title="Anchor link to this section">¶</a></h2>
+<p>Transform designs from the <a href="../re-engineer/">Re-engineer</a> stage into production-ready automation that aligns with the <a href="../philosophy/">PRIME Philosophy</a>.</p>
+<hr/>
+<h2 id="what-happens-during-implement">⚙️ What Happens During Implement<a class="headerlink" href="#what-happens-during-implement" title="Anchor link to this section">¶</a></h2>
+<h3 id="1-development-environment-setup">1. Development Environment Setup<a class="headerlink" href="#1-development-environment-setup" title="Anchor link to this section">¶</a></h3>
+<p>Before writing code, we establish consistent tooling:</p>
+<h4 id="local-development-standards">Local Development Standards<a class="headerlink" href="#local-development-standards" title="Anchor link to this section">¶</a></h4>
+<p><strong>Python Environment:</strong></p>
+<pre class="highlight"><code>```text
+Python 3.9+ (avoid cutting edge, prefer stability)
+Virtual environment (venv or conda)
+requirements.txt with pinned versions
+```</code></pre>
+<p><strong>Essential Libraries:</strong></p>
+<pre class="highlight"><code>```python
+netmiko==4.1.2      # SSH connections
+textfsm==1.1.3      # Output parsing
+jinja2==3.1.2       # Config templating
+pandas==2.0.3       # Data manipulation
+openpyxl==3.1.2     # Excel reporting
+pyyaml==6.0.1       # Config files
+python-dotenv==1.0.0 # Environment variables
+```</code></pre>
+<p><strong>Code Quality Tools:</strong></p>
+<pre class="highlight"><code>```text
+black                # Code formatting
+pylint               # Linting
+pytest               # Testing
+```</code></pre>
+<h4 id="source-control">Source Control<a class="headerlink" href="#source-control" title="Anchor link to this section">¶</a></h4>
+<p>All automation projects use Git from day one:</p>
+<pre class="highlight"><code>```text
+automation-project/
+├── .gitignore       # Exclude credentials, outputs
+├── README.md        # Project documentation
+├── requirements.txt # Dependencies
+├── config/          # YAML configs (NOT in git)
+├── templates/       # Jinja2 templates
+├── scripts/         # Python scripts
+├── tests/           # Unit tests
+└── outputs/         # Generated reports (NOT in git)
+```</code></pre>
+<hr/>
+<h3 id="2-implementation-guided-by-prime-philosophy">2. Implementation Guided by PRIME Philosophy<a class="headerlink" href="#2-implementation-guided-by-prime-philosophy" title="Anchor link to this section">¶</a></h3>
+<p>Every line of code reflects our five core principles. Here are key implementation patterns:</p>
+<div class="admonition warning">
+<p class="admonition-title">Production Safety is Non-Negotiable</p>
+<p>Most scripts fail in production because they were written for happy-path scenarios. We build every script assuming:</p>
+<ul>
+<li>Connection timeouts will happen</li>
+<li>Authentication will fail on some devices</li>
+<li>Config tasks will raise exceptions</li>
+<li>Partially-completed operations must be detected</li>
+<li>Human visibility into failures is essential</li>
+</ul>
+<p>These aren't edge cases—they're baseline requirements.</p>
+</div>
+<h4 id="principle-1-transparency-over-obscurity">🔍 Principle 1: Transparency Over Obscurity<a class="headerlink" href="#principle-1-transparency-over-obscurity" title="Anchor link to this section">¶</a></h4>
+<p><strong>What This Means in Practice:</strong></p>
+<p>❌ <strong>Avoid:</strong> Over-engineering  </p>
+<pre class="highlight"><code>```python
+# DON'T: Abstract factory pattern for 2 device types
+class DeviceFactory:
+    @staticmethod
+    def create_device(device_type):
+        if device_type == "cisco_ios":
+            return CiscoIOSDevice()
+        elif device_type == "cisco_nxos":
+            return CiscoNXOSDevice()
+```</code></pre>
+<p>✅ <strong>Prefer:</strong> Simple, direct solutions  </p>
+<pre class="highlight"><code>```python
+# DO: Simple conditional logic
+device_type = "cisco_ios" if "IOS" in version else "cisco_nxos"
+connection = ConnectHandler(device_type=device_type, **device)
+```</code></pre>
+<p><strong>When to Choose Pragmatic:</strong></p>
+<ul>
+<li>You're solving a single use case (don't abstract prematurely)</li>
+<li>The "perfect" solution adds 40% complexity for 5% benefit</li>
+<li>The simpler approach will work for 12-24 months</li>
+</ul>
+<p><strong>When to Add Complexity:</strong></p>
+<ul>
+<li>You're solving the same problem the 3<sup>rd</sup> time (DRY principle)</li>
+<li>Complexity reduction elsewhere outweighs local increase</li>
+<li>Scalability requirements are certain, not speculative</li>
+</ul>
+<hr/>
+<h4 id="principle-2-safety-over-speed">�️ Principle 2: Safety Over Speed<a class="headerlink" href="#principle-2-safety-over-speed" title="Anchor link to this section">¶</a></h4>
+<p><strong>What This Means in Practice:</strong></p>
+<p>✅ <strong>Verbose Logging:</strong></p>
+<pre class="highlight"><code>```python
+# Track progress for multi-device operations
+logger.info(f"Starting VLAN provisioning for {len(devices)} devices")
+
+for device in devices:
+    logger.info(f"Connecting to {device['hostname']} ({device['ip']})")
+    try:
+        connection = ConnectHandler(**device)
+        logger.info(f"✓ Connected to {device['hostname']}")
+
+        output = connection.send_config_set(config_commands)
+        logger.info(f"✓ Config applied to {device['hostname']}")
+
+        # Validation
+        verify = connection.send_command("show vlan brief")
+        if new_vlan_id in verify:
+            logger.info(f"✓ VLAN {new_vlan_id} verified on {device['hostname']}")
+        else:
+            logger.warning(f"✗ VLAN {new_vlan_id} NOT found on {device['hostname']}")
+
+    except NetmikoTimeoutException:
+        logger.error(f"✗ Timeout connecting to {device['hostname']}")
+        failed_devices.append(device['hostname'])
+    except NetmikoAuthenticationException:
+        logger.error(f"✗ Authentication failed for {device['hostname']}")
+        failed_devices.append(device['hostname'])
+
+logger.info(f"Completed: {len(devices) - len(failed_devices)}/{len(devices)} successful")
+```</code></pre>
+<p><strong>Output Example:</strong></p>
+<pre class="highlight"><code>```text
+2024-01-15 10:30:22 INFO Starting VLAN provisioning for 12 devices
+2024-01-15 10:30:23 INFO Connecting to SW-ACCESS-01 (192.168.1.10)
+2024-01-15 10:30:24 INFO ✓ Connected to SW-ACCESS-01
+2024-01-15 10:30:26 INFO ✓ Config applied to SW-ACCESS-01
+2024-01-15 10:30:27 INFO ✓ VLAN 150 verified on SW-ACCESS-01
+2024-01-15 10:30:27 INFO Connecting to SW-ACCESS-02 (192.168.1.11)
+...
+2024-01-15 10:31:45 INFO Completed: 11/12 successful
+```</code></pre>
+<p>✅ <strong>Human-Readable Output:</strong></p>
+<pre class="highlight"><code>```python
+# Generate Excel reports, not just terminal output
+df = pd.DataFrame(results)
+df.to_excel("vlan_provisioning_report.xlsx", index=False)
+
+# Include summary statistics
+summary = {
+    "Total Devices": len(devices),
+    "Successful": len(success_devices),
+    "Failed": len(failed_devices),
+    "Duration": f"{duration:.1f} seconds"
+}
+```</code></pre>
+<hr/>
+<h4 id="principle-3-empowerment-through-documentation">� Principle 3: Empowerment Through Documentation<a class="headerlink" href="#principle-3-empowerment-through-documentation" title="Anchor link to this section">¶</a></h4>
+<p><strong>What This Means in Practice:</strong></p>
+<p>✅ <strong>Validate Before Changing:</strong></p>
+<pre class="highlight"><code>```python
+# PRE-FLIGHT CHECKS
+def pre_flight_checks(device):
+    """
+    Verify device is safe to modify.
+    Returns (bool, str): (is_safe, failure_reason)
+    """
+    # Check reachability
+    if not ping_device(device['ip']):
+        return False, "Device unreachable"
+
+    # Verify no existing config session
+    output = send_command("show configuration sessions")
+    if "Session" in output:
+        return False, "Active config session detected"
+
+    # Check VLAN ID isn't already used
+    vlans = send_command("show vlan brief")
+    if new_vlan_id in parse_vlans(vlans):
+        return False, f"VLAN {new_vlan_id} already exists"
+
+    return True, "All checks passed"
+
+# Only proceed if safe
+is_safe, reason = pre_flight_checks(device)
+if not is_safe:
+    logger.warning(f"Skipping {device['hostname']}: {reason}")
+    continue
+```</code></pre>
+<p>✅ <strong>Verify After Changing:</strong></p>
+<pre class="highlight"><code>```python
+# POST-FLIGHT VALIDATION
+def verify_vlan_creation(connection, vlan_id, vlan_name):
+    """
+    Confirm VLAN was actually created.
+    """
+    output = connection.send_command("show vlan brief")
+
+    if str(vlan_id) in output and vlan_name in output:
+        return True
+    else:
+        # VLAN creation failed - trigger rollback
+        logger.error(f"VLAN {vlan_id} not found after creation")
+        rollback_vlan(connection, vlan_id)
+        return False
+```</code></pre>
+<p>✅ <strong>Automatic Rollback:</strong></p>
+<pre class="highlight"><code>```python
+# CHECKPOINT BEFORE CHANGE
+checkpoint_name = f"before_vlan_{vlan_id}_{timestamp}"
+connection.send_command(f"archive config")
+
+try:
+    # Apply change
+    connection.send_config_set(config_commands)
+
+    # Verify
+    if not verify_vlan_creation(connection, vlan_id, vlan_name):
+        raise ValidationError("VLAN verification failed")
+
+except Exception as e:
+    logger.error(f"Change failed: {e}. Rolling back...")
+    connection.send_command(f"configure replace flash:checkpoint")
+    raise
+```</code></pre>
+<hr/>
+<h3 id="3-code-structure-standards">3. Code Structure Standards<a class="headerlink" href="#3-code-structure-standards" title="Anchor link to this section">¶</a></h3>
+<p>All implemented automation follows a consistent structure:</p>
+<h4 id="main-script-template">Main Script Template<a class="headerlink" href="#main-script-template" title="Anchor link to this section">¶</a></h4>
+<pre class="highlight"><code>```python
+#!/usr/bin/env python3
+"""
+VLAN Provisioning Automation
+
+Description:
+    Provisions VLANs across multiple access switches with validation.
+
+Usage:
+    python provision_vlan.py --vlan 150 --name "Guest_WiFi"
+
+Author: Nautomation Prime
+Created: 2024-01-15
+"""
+
+import logging
+from netmiko import ConnectHandler, NetmikoTimeoutException
+import pandas as pd
+from datetime import datetime
+
+# ============================================================================
+# CONFIGURATION
+# ============================================================================
+
+# Logging setup
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s - %(levelname)s - %(message)s',
+    handlers=[
+        logging.FileHandler('vlan_provisioning.log'),
+        logging.StreamHandler()
+    ]
+)
+logger = logging.getLogger(__name__)
+
+# ============================================================================
+# CORE FUNCTIONS
+# ============================================================================
+
+def load_device_inventory(csv_file):
+    """Load device list from CSV file."""
+    pass
+
+def pre_flight_checks(connection, vlan_id):
+    """Validate device is safe to modify."""
+    pass
+
+def apply_vlan_config(connection, vlan_id, vlan_name):
+    """Apply VLAN configuration to device."""
+    pass
+
+def verify_vlan_creation(connection, vlan_id):
+    """Verify VLAN was successfully created."""
+    pass
+
+def generate_report(results, output_file):
+    """Create Excel report of provisioning results."""
+    pass
+
+# ============================================================================
+# MAIN EXECUTION
+# ============================================================================
+
+def main():
+    """Main automation workflow."""
+    logger.info("=== VLAN Provisioning Started ===")
+
+    # Load devices
+    devices = load_device_inventory("inventory.csv")
+    logger.info(f"Loaded {len(devices)} devices from inventory")
+
+    # Results tracking
+    results = []
+
+    # Process each device
+    for device in devices:
+        result = process_device(device)
+        results.append(result)
+
+    # Generate report
+    generate_report(results, "vlan_report.xlsx")
+
+    logger.info("=== VLAN Provisioning Completed ===")
+
+if __name__ == "__main__":
+    main()
+```</code></pre>
+<hr/>
+<h3 id="4-testing-strategy">4. Testing Strategy<a class="headerlink" href="#4-testing-strategy" title="Anchor link to this section">¶</a></h3>
+<p>All automation is tested before production deployment:</p>
+<h4 id="lab-testing">Lab Testing<a class="headerlink" href="#lab-testing" title="Anchor link to this section">¶</a></h4>
+<p><strong>Requirements:</strong><br/>
+Minimum 3 lab devices matching production platforms</p>
+<p><strong>Test Cases:</strong></p>
+<ul>
+<li>✅ Normal operation (happy path)</li>
+<li>✅ Device unreachable</li>
+<li>✅ Invalid credentials</li>
+<li>✅ Config rejected (syntax error)</li>
+<li>✅ Partial failure (some devices succeed, others fail)</li>
+<li>✅ Network interruption mid-execution</li>
+</ul>
+<h4 id="staging-environment">Staging Environment<a class="headerlink" href="#staging-environment" title="Anchor link to this section">¶</a></h4>
+<p>For high-risk changes:</p>
+<ol>
+<li><strong>Dry-run mode</strong> — Validate without applying</li>
+<li><strong>Pilot group</strong> — 2-3 production devices, off-hours</li>
+<li><strong>Phased rollout</strong> — 25% → 50% → 100% over days</li>
+</ol>
+<hr/>
+<h3 id="5-documentation-standards">5. Documentation Standards<a class="headerlink" href="#5-documentation-standards" title="Anchor link to this section">¶</a></h3>
+<p>Every script includes:</p>
+<h4 id="readmemd">README.md<a class="headerlink" href="#readmemd" title="Anchor link to this section">¶</a></h4>
+<pre class="highlight"><code>```markdown
+# VLAN Provisioning Automation
+
+## Purpose
+Provisions VLANs to access switches with pre-flight validation.
+
+## Prerequisites
+
+- Python 3.9+
+- Network connectivity to devices
+- Credentials in `.env` file
+
+## Installation
+```bash
+pip install -r requirements.txt
+```</code></pre>
+<h2 id="usage">Usage<a class="headerlink" href="#usage" title="Anchor link to this section">¶</a></h2>
+<pre class="highlight"><code>```bash
+python provision_vlan.py --vlan 150 --name "Guest_WiFi"
+```</code></pre>
+<h2 id="configuration">Configuration<a class="headerlink" href="#configuration" title="Anchor link to this section">¶</a></h2>
+<p>Edit <code>inventory.csv</code> with target devices.</p>
+<h2 id="troubleshooting">Troubleshooting<a class="headerlink" href="#troubleshooting" title="Anchor link to this section">¶</a></h2>
+<ul>
+<li><strong>"Device unreachable"</strong> — Verify ICMP/SSH connectivity</li>
+<li><strong>"Authentication failed"</strong> — Check credentials in <code>.env</code></li>
+</ul>
+<h3 id="inline-comments">Inline Comments<a class="headerlink" href="#inline-comments" title="Anchor link to this section">¶</a></h3>
+<p>Focus on <strong>why</strong>, not <strong>what</strong>:</p>
+<pre class="highlight"><code>```python
+# DON'T: State the obvious
+x = x + 1  # Increment x
+
+# DO: Explain the reasoning
+x = x + 1  # Account for 1-based VLAN IDs in UI vs 0-based array
+```</code></pre>
+<hr/>
+<h2 id="deliverable-production-ready-automation">📊 Deliverable: Production-Ready Automation<a class="headerlink" href="#deliverable-production-ready-automation" title="Anchor link to this section">¶</a></h2>
+<p>At the end of the Implement stage, you receive:</p>
+<h3 id="1-tested-python-scripts">1. Tested Python Scripts<a class="headerlink" href="#1-tested-python-scripts" title="Anchor link to this section">¶</a></h3>
+<ul>
+<li>Fully functional automation</li>
+<li>Error handling for all failure modes</li>
+<li>Logging throughout execution</li>
+<li>Command-line arguments or config files</li>
+</ul>
+<h3 id="2-supporting-files">2. Supporting Files<a class="headerlink" href="#2-supporting-files" title="Anchor link to this section">¶</a></h3>
+<ul>
+<li><strong>requirements.txt</strong> — Pinned dependencies</li>
+<li><strong>inventory.csv</strong> — Device list template</li>
+<li><strong>config_templates/</strong> — Jinja2 templates</li>
+<li><strong>.env.example</strong> — Environment variable template</li>
+</ul>
+<h3 id="3-documentation">3. Documentation<a class="headerlink" href="#3-documentation" title="Anchor link to this section">¶</a></h3>
+<ul>
+<li><strong>README.md</strong> — Installation, usage, troubleshooting</li>
+<li><strong>CHANGELOG.md</strong> — Version history</li>
+<li><strong>Inline comments</strong> — Explaining complex logic</li>
+</ul>
+<h3 id="4-test-results">4. Test Results<a class="headerlink" href="#4-test-results" title="Anchor link to this section">¶</a></h3>
+<ul>
+<li>Lab test report</li>
+<li>Pilot deployment summary (if applicable)</li>
+<li>Known limitations documented</li>
+</ul>
+<hr/>
+<h2 id="why-implement-with-prime-philosophy-matters">💡 Why Implement with Prime Philosophy Matters<a class="headerlink" href="#why-implement-with-prime-philosophy-matters" title="Anchor link to this section">¶</a></h2>
+<h3 id="long-term-maintainability">Long-Term Maintainability<a class="headerlink" href="#long-term-maintainability" title="Anchor link to this section">¶</a></h3>
+<p>Code written with Pragmatic/Transparent/Reliable principles:</p>
+<ul>
+<li><strong>6 months later:</strong> You (or teammate) can understand and modify</li>
+<li><strong>12 months later:</strong> Still works without updates (stable dependencies)</li>
+<li><strong>24 months later:</strong> Easy to extend for new use cases</li>
+</ul>
+<h3 id="operational-confidence">Operational Confidence<a class="headerlink" href="#operational-confidence" title="Anchor link to this section">¶</a></h3>
+<p>When automation runs in production:</p>
+<ul>
+<li><strong>Transparency:</strong> Logs show exactly what happened</li>
+<li><strong>Reliability:</strong> Pre/post-flight checks catch issues early</li>
+<li><strong>Pragmatic:</strong> Simple code means faster troubleshooting</li>
+</ul>
+<hr/>
+<h2 id="what-happens-next">🚀 What Happens Next<a class="headerlink" href="#what-happens-next" title="Anchor link to this section">¶</a></h2>
+<p>After implementation, proceed to <a href="../measure/">Stage 4: Measure</a> to track performance and ROI.</p>
+<hr/>
+<h2 id="implement-checklist">📋 Implement Checklist<a class="headerlink" href="#implement-checklist" title="Anchor link to this section">¶</a></h2>
+<p>Before deploying to production:</p>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input disabled="" type="checkbox"/><span class="task-list-indicator"></span></label> Code follows Prime Philosophy principles</li>
+<li class="task-list-item"><label class="task-list-control"><input disabled="" type="checkbox"/><span class="task-list-indicator"></span></label> All error conditions handled gracefully</li>
+<li class="task-list-item"><label class="task-list-control"><input disabled="" type="checkbox"/><span class="task-list-indicator"></span></label> Logging provides visibility into execution</li>
+<li class="task-list-item"><label class="task-list-control"><input disabled="" type="checkbox"/><span class="task-list-indicator"></span></label> Pre-flight and post-flight validation implemented</li>
+<li class="task-list-item"><label class="task-list-control"><input disabled="" type="checkbox"/><span class="task-list-indicator"></span></label> Rollback mechanism tested</li>
+<li class="task-list-item"><label class="task-list-control"><input disabled="" type="checkbox"/><span class="task-list-indicator"></span></label> Lab testing completed for all scenarios</li>
+<li class="task-list-item"><label class="task-list-control"><input disabled="" type="checkbox"/><span class="task-list-indicator"></span></label> Documentation complete (README + inline comments)</li>
+<li class="task-list-item"><label class="task-list-control"><input disabled="" type="checkbox"/><span class="task-list-indicator"></span></label> Credentials secured (not hardcoded)</li>
+<li class="task-list-item"><label class="task-list-control"><input disabled="" type="checkbox"/><span class="task-list-indicator"></span></label> Pilot deployment successful (if high-risk)</li>
+<li class="task-list-item"><label class="task-list-control"><input disabled="" type="checkbox"/><span class="task-list-indicator"></span></label> Handoff training scheduled (if external development)</li>
+</ul>
+<hr/>
+<h2 id="engagement-options">💼 Engagement Options<a class="headerlink" href="#engagement-options" title="Anchor link to this section">¶</a></h2>
+<h3 id="implementation-as-part-of-full-prime-engagement">Implementation as Part of Full PRIME Engagement<a class="headerlink" href="#implementation-as-part-of-full-prime-engagement" title="Anchor link to this section">¶</a></h3>
+<p>Included as Stage 3 when you engage for the complete framework. Typically 2-6 weeks per automation (depending on complexity from Re-engineer phase).</p>
+<h3 id="standalone-implementation-service">Standalone Implementation Service<a class="headerlink" href="#standalone-implementation-service" title="Anchor link to this section">¶</a></h3>
+<p>For Organisations with designs but need development help:</p>
+<p><strong>Pricing:</strong> £120-£150/hour or fixed-fee based on Re-engineer specs</p>
+<p><strong>Includes:</strong></p>
+<ul>
+<li>Production-ready Python scripts</li>
+<li>Comprehensive testing</li>
+<li>Full documentation</li>
+<li>Knowledge transfer session</li>
+</ul>
+<hr/>
+<h2 id="learn-more">🎓 Learn More<a class="headerlink" href="#learn-more" title="Anchor link to this section">¶</a></h2>
+<ul>
+<li><strong><a href="../">PRIME Framework Overview</a></strong> — See how all five stages work together</li>
+<li><strong><a href="../re-engineer/">Previous Stage: Re-engineer</a></strong> — Design blueprints implemented here</li>
+<li><strong><a href="../measure/">Next Stage: Measure</a></strong> — Tracking performance and ROI</li>
+<li><strong><a href="../../tutorials/">View Tutorials</a></strong> — Learn implementation techniques</li>
+<li><strong><a href="../../contact/">Request Discovery Call</a></strong> — Discuss your automation needs</li>
+</ul>
+<hr/>
+<blockquote>
+<p><strong>Mission:</strong> To empower network engineers through the <strong><a href="../">PRIME Framework</a></strong>—delivering automation with measurable ROI, production-grade quality, and sustainable team capability built on the <strong><a href="../philosophy/">PRIME Philosophy</a></strong> of transparency, measurability, ownership, safety, and empowerment.</p>
+</blockquote>
+<hr/>
+<p><a href="../re-engineer/">← Previous: Re-engineer</a> | <a href="../">Back to PRIME Framework</a> | <a href="../measure/">Next: Measure →</a></p>
+<aside class="md-source-file">
+<span class="md-source-file__fact">
+<span class="md-icon" title="Last update">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"></path></svg>
+</span>
+<span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="May 16, 2026 17:53:43 UTC">May 16, 2026</span>
+</span>
+</aside>
+</article>
+</div>
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+</div>
+<button class="md-top md-icon" data-md-component="top" hidden="" type="button">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"></path></svg>
+  Back to top
+</button>
+</main>
+<footer class="md-footer">
+<div class="md-footer-meta md-typeset">
+<div class="md-footer-meta__inner md-grid">
+<div class="md-copyright">
+<div class="md-copyright__highlight">
+      © 2026 Christopher Davies T/A Nautomation Prime — Not affiliated with Cisco Systems, Inc.<br/> Empowering Network Automation Professionals · Built with Material for MkDocs
+
+    </div>
+</div>
+<div class="md-social">
+<a class="md-social__link" href="https://www.linkedin.com/company/nautomationprime" rel="noopener" target="_blank" title="LinkedIn">
+<svg viewbox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3M135.4 416H69V202.2h66.5V416zM102.2 96a38.5 38.5 0 1 1 0 77 38.5 38.5 0 1 1 0-77m282.1 320h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9z"></path></svg>
+</a>
+<a class="md-social__link" href="https://github.com/Nautomation-Prime" rel="noopener" target="_blank" title="GitHub">
+<svg viewbox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"></path></svg>
+</a>
+<a class="md-social__link" href="mailto:enquiries@nautomationprime.io" rel="noopener" target="_blank" title="Contact Nautomation Prime">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="m20 8-8 5-8-5V6l8 5 8-5m0-2H4c-1.11 0-2 .89-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2"></path></svg>
+</a>
+</div>
+</div>
+</div>
+</footer>
+</div>
+<div class="md-dialog" data-md-component="dialog">
+<div class="md-dialog__inner md-typeset"></div>
+</div>
+<div class="md-consent" data-md-component="consent" hidden="" id="__consent">
+<div class="md-consent__overlay"></div>
+<aside class="md-consent__inner">
+<form class="md-consent__form md-grid md-typeset" name="consent">
+<h4>Cookie consent</h4>
+<p>We use cookies to recognize your repeated visits and preferences, as well as to measure the effectiveness of our documentation and whether users find what they're searching for. With your consent, you're helping us to make our documentation better.</p>
+<input class="md-toggle" id="__settings" type="checkbox"/>
+<div class="md-consent__settings">
+<ul class="task-list">
+<li class="task-list-item">
+<label class="task-list-control">
+<input checked="" name="github" type="checkbox"/>
+<span class="task-list-indicator"></span>
+      GitHub
+    </label>
+</li>
+</ul>
+</div>
+<div class="md-consent__controls">
+<button class="md-button md-button--primary">Accept</button>
+<label class="md-button" for="__settings">Manage settings</label>
+</div>
+</form>
+</aside>
+</div>
+<script>var consent=__md_get("__consent");if(consent)for(var input of document.forms.consent.elements)input.name&&(input.checked=consent[input.name]||!1);else"file:"!==location.protocol&&setTimeout((function(){document.querySelector("[data-md-component=consent]").hidden=!1}),250);var form=document.forms.consent;for(var action of["submit","reset"])form.addEventListener(action,(function(e){if(e.preventDefault(),"reset"===e.type)for(var n of document.forms.consent.elements)n.name&&(n.checked=!1);__md_set("__consent",Object.fromEntries(Array.from(new FormData(form).keys()).map((function(e){return[e,!0]})))),location.hash="",location.reload()}))</script>
+<script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.tracking", "navigation.indexes", "content.code.copy", "content.code.annotate", "content.tooltips", "search.share", "search.suggest", "search.highlight", "search.stemmer", "announce.dismiss"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+<script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+<script type="module">import mermaid from "https://unpkg.com/mermaid@10.4.0/dist/mermaid.esm.min.mjs";
+window.mermaidConfig = {default: {
+    startOnLoad: false
+}};</script></body>
+</html>

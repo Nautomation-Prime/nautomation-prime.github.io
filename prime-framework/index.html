@@ -1,0 +1,2540 @@
+
+<!DOCTYPE html>
+
+<html class="no-js" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<meta content="A proven methodology for transforming network operations through intelligent Python automation. Five stages from identifying inefficiencies to empowering teams." name="description"/>
+<meta content="Christopher Davies" name="author"/>
+<link href="https://www.nautomationprime.io/prime-framework/" rel="canonical"/>
+<link href="../smb/packages/automation-as-a-service/" rel="prev"/>
+<link href="philosophy/" rel="next"/>
+<link href="../assets/favicon.ico" rel="icon"/>
+<meta content="mkdocs-1.6.1, mkdocs-material-9.7.7" name="generator"/>
+<title>The PRIME Framework - Nautomation Prime</title>
+<link href="../assets/stylesheets/main.ec1eaa64.min.css" rel="stylesheet"/>
+<link href="../assets/stylesheets/palette.ab4e12ef.min.css" rel="stylesheet"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&amp;display=fallback" rel="stylesheet"/>
+<style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+<link href="../assets/css/custom.css" rel="stylesheet"/>
+<script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+</head>
+<body data-md-color-accent="blue" data-md-color-primary="blue" data-md-color-scheme="default" dir="ltr">
+<input autocomplete="off" class="md-toggle" data-md-toggle="drawer" id="__drawer" type="checkbox"/>
+<input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
+<label class="md-overlay" for="__drawer"></label>
+<div data-md-component="skip">
+<a class="md-skip" href="#the-prime-framework">
+          Skip to content
+        </a>
+</div>
+<div data-md-component="announce">
+</div>
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+<nav aria-label="Header" class="md-header__inner md-grid">
+<a aria-label="Nautomation Prime" class="md-header__button md-logo" data-md-component="logo" href=".." title="Nautomation Prime">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"></path></svg>
+</a>
+<label class="md-header__button md-icon" for="__drawer">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"></path></svg>
+</label>
+<div class="md-header__title" data-md-component="header-title">
+<div class="md-header__ellipsis">
+<div class="md-header__topic">
+<span class="md-ellipsis">
+            Nautomation Prime
+          </span>
+</div>
+<div class="md-header__topic" data-md-component="header-topic">
+<span class="md-ellipsis">
+            
+              The PRIME Framework
+            
+          </span>
+</div>
+</div>
+</div>
+<label class="md-header__button md-icon" for="__search">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
+</label>
+<div class="md-search" data-md-component="search" role="dialog">
+<label class="md-search__overlay" for="__search"></label>
+<div class="md-search__inner" role="search">
+<form class="md-search__form" name="search">
+<input aria-label="Search" autocapitalize="off" autocomplete="off" autocorrect="off" class="md-search__input" data-md-component="search-query" name="query" placeholder="Search" required="" spellcheck="false" type="text"/>
+<label class="md-search__icon md-icon" for="__search">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"></path></svg>
+</label>
+<nav aria-label="Search" class="md-search__options">
+<a aria-label="Share" class="md-search__icon md-icon" data-clipboard="" data-clipboard-text="" data-md-component="search-share" href="javascript:void(0)" tabindex="-1" title="Share">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"></path></svg>
+</a>
+<button aria-label="Clear" class="md-search__icon md-icon" tabindex="-1" title="Clear" type="reset">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg>
+</button>
+</nav>
+<div class="md-search__suggest" data-md-component="search-suggest"></div>
+</form>
+<div class="md-search__output">
+<div class="md-search__scrollwrap" data-md-scrollfix="" tabindex="0">
+<div class="md-search-result" data-md-component="search-result">
+<div class="md-search-result__meta">
+            Initializing search
+          </div>
+<ol class="md-search-result__list" role="presentation"></ol>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="md-header__source">
+<a class="md-source" data-md-component="source" href="https://github.com/Nautomation-Prime" title="Go to repository">
+<div class="md-source__icon md-icon">
+<svg viewbox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"></path></svg>
+</div>
+<div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+</div>
+</nav>
+<nav aria-label="Tabs" class="md-tabs" data-md-component="tabs">
+<div class="md-grid">
+<ul class="md-tabs__list">
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="..">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../resources/">
+          
+  
+  
+    
+  
+  Learn
+
+        </a>
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../services/">
+          
+  
+  
+    
+  
+  Services
+
+        </a>
+</li>
+<li class="md-tabs__item md-tabs__item--active">
+<a class="md-tabs__link" href="./">
+          
+  
+  
+    
+  
+  PRIME Framework
+
+        </a>
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../about/">
+          
+  
+  
+    
+  
+  About
+
+        </a>
+</li>
+</ul>
+</div>
+</nav>
+</header>
+<div class="md-container" data-md-component="container">
+<main class="md-main" data-md-component="main">
+<div class="md-main__inner md-grid">
+<div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation">
+<div class="md-sidebar__scrollwrap">
+<div class="md-sidebar__inner">
+<nav aria-label="Navigation" class="md-nav md-nav--primary md-nav--lifted" data-md-level="0">
+<label class="md-nav__title" for="__drawer">
+<a aria-label="Nautomation Prime" class="md-nav__button md-logo" data-md-component="logo" href=".." title="Nautomation Prime">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"></path></svg>
+</a>
+    Nautomation Prime
+  </label>
+<div class="md-nav__source">
+<a class="md-source" data-md-component="source" href="https://github.com/Nautomation-Prime" title="Go to repository">
+<div class="md-source__icon md-icon">
+<svg viewbox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"></path></svg>
+</div>
+<div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+</div>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="..">
+<span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_2" type="checkbox"/>
+<div class="md-nav__link md-nav__container">
+<a class="md-nav__link" href="../scripts/">
+<span class="md-ellipsis">
+    
+  
+    Learn
+  
+
+    
+  </span>
+</a>
+<label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-expanded="false" aria-labelledby="__nav_2_label" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_2">
+<span class="md-nav__icon md-icon"></span>
+            
+  
+    Learn
+  
+
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../resources/">
+<span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../getting-started/">
+<span class="md-ellipsis">
+    
+  
+    Getting Started
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_2_3" type="checkbox"/>
+<div class="md-nav__link md-nav__container">
+<a class="md-nav__link" href="../tutorials/">
+<span class="md-ellipsis">
+    
+  
+    Tutorials
+  
+
+    
+  </span>
+</a>
+<label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="0">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-expanded="false" aria-labelledby="__nav_2_3_label" class="md-nav" data-md-level="2">
+<label class="md-nav__title" for="__nav_2_3">
+<span class="md-nav__icon md-icon"></span>
+            
+  
+    Tutorials
+  
+
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_2_3_2" type="checkbox"/>
+<div class="md-nav__link md-nav__container">
+<a class="md-nav__link" href="../tutorials/beginner/">
+<span class="md-ellipsis">
+    
+  
+    Beginner Tutorials
+  
+
+    
+  </span>
+</a>
+<label class="md-nav__link" for="__nav_2_3_2" id="__nav_2_3_2_label" tabindex="0">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-expanded="false" aria-labelledby="__nav_2_3_2_label" class="md-nav" data-md-level="3">
+<label class="md-nav__title" for="__nav_2_3_2">
+<span class="md-nav__icon md-icon"></span>
+            
+  
+    Beginner Tutorials
+  
+
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../tutorials/beginner/multi-device-config-backup/">
+<span class="md-ellipsis">
+    
+  
+    Multi-Device Config Backup
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../tutorials/beginner/multi-device-show-command/">
+<span class="md-ellipsis">
+    
+  
+    Multi-Device Show Command
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../tutorials/beginner/netmiko-show-command-to-excel/">
+<span class="md-ellipsis">
+    
+  
+    Netmiko Show Command to Excel
+  
+
+    
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_2_3_3" type="checkbox"/>
+<div class="md-nav__link md-nav__container">
+<a class="md-nav__link" href="../tutorials/intermediate/">
+<span class="md-ellipsis">
+    
+  
+    Intermediate Tutorials
+  
+
+    
+  </span>
+</a>
+<label class="md-nav__link" for="__nav_2_3_3" id="__nav_2_3_3_label" tabindex="0">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-expanded="false" aria-labelledby="__nav_2_3_3_label" class="md-nav" data-md-level="3">
+<label class="md-nav__title" for="__nav_2_3_3">
+<span class="md-nav__icon md-icon"></span>
+            
+  
+    Intermediate Tutorials
+  
+
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../tutorials/intermediate/yaml-data-modeling-network-automation/">
+<span class="md-ellipsis">
+    
+  
+    YAML Data Modelling
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../tutorials/intermediate/json-data-handling-network-automation/">
+<span class="md-ellipsis">
+    
+  
+    JSON Data Handling
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../tutorials/intermediate/jinja2-configuration-templates/">
+<span class="md-ellipsis">
+    
+  
+    Jinja2 Configuration Templates
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../tutorials/intermediate/decorators-network-automation/">
+<span class="md-ellipsis">
+    
+  
+    Decorators for Network Automation
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../tutorials/intermediate/pyats-fundamentals/">
+<span class="md-ellipsis">
+    
+  
+    PyATS Fundamentals
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../tutorials/intermediate/pyats-network-validation/">
+<span class="md-ellipsis">
+    
+  
+    PyATS Network Validation
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../tutorials/intermediate/building-reliable-automation-with-pyats/">
+<span class="md-ellipsis">
+    
+  
+    Building Reliable Automation with PyATS
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../tutorials/intermediate/why-nornir/">
+<span class="md-ellipsis">
+    
+  
+    Why Nornir
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../tutorials/intermediate/nornir-fundamentals/">
+<span class="md-ellipsis">
+    
+  
+    Nornir Fundamentals
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../tutorials/intermediate/enterprise-config-backup-nornir/">
+<span class="md-ellipsis">
+    
+  
+    Enterprise Config Backup Nornir
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../tutorials/intermediate/advanced-nornir-patterns/">
+<span class="md-ellipsis">
+    
+  
+    Advanced Nornir Patterns
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../tutorials/intermediate/testing-network-automation/">
+<span class="md-ellipsis">
+    
+  
+    Testing Network Automation Scripts
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../tutorials/intermediate/credential-management-network-automation/">
+<span class="md-ellipsis">
+    
+  
+    Credential Management for Network Automation
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../tutorials/intermediate/error-recovery-rollback-network-automation/">
+<span class="md-ellipsis">
+    
+  
+    Error Recovery and Rollback
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../tutorials/intermediate/state-management-idempotency-network-automation/">
+<span class="md-ellipsis">
+    
+  
+    State Management and Idempotency
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../tutorials/intermediate/structured-logging-network-automation/">
+<span class="md-ellipsis">
+    
+  
+    Structured Logging for Network Automation
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../tutorials/intermediate/health-checks-pre-flight-validation/">
+<span class="md-ellipsis">
+    
+  
+    Health Checks and Pre-Flight Validation
+  
+
+    
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_2_3_4" type="checkbox"/>
+<div class="md-nav__link md-nav__container">
+<a class="md-nav__link" href="../tutorials/expert/">
+<span class="md-ellipsis">
+    
+  
+    Expert Tutorials
+  
+
+    
+  </span>
+</a>
+<label class="md-nav__link" for="__nav_2_3_4" id="__nav_2_3_4_label" tabindex="0">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-expanded="false" aria-labelledby="__nav_2_3_4_label" class="md-nav" data-md-level="3">
+<label class="md-nav__title" for="__nav_2_3_4">
+<span class="md-nav__icon md-icon"></span>
+            
+  
+    Expert Tutorials
+  
+
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../tutorials/expert/circuit-breakers-backpressure-network-automation/">
+<span class="md-ellipsis">
+    
+  
+    Circuit Breakers and Backpressure
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../tutorials/expert/dependency-ordering-task-orchestration/">
+<span class="md-ellipsis">
+    
+  
+    Dependency Management and Task Orchestration
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../tutorials/expert/incident-response-automation/">
+<span class="md-ellipsis">
+    
+  
+    Incident Response Automation
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../tutorials/expert/nornir-pyats-integration/">
+<span class="md-ellipsis">
+    
+  
+    Nornir + PyATS Integration
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../tutorials/expert/asyncio-network-automation/">
+<span class="md-ellipsis">
+    
+  
+    Asyncio for Network Automation
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../tutorials/expert/secure-credential-vaulting/">
+<span class="md-ellipsis">
+    
+  
+    Secure Credential Vaulting
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../tutorials/expert/devops-observability-network-automation/">
+<span class="md-ellipsis">
+    
+  
+    DevOps &amp; Observability
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../tutorials/expert/tool-ecosystem-integration/">
+<span class="md-ellipsis">
+    
+  
+    Tool Ecosystem Integration
+  
+
+    
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_2_4" type="checkbox"/>
+<div class="md-nav__link md-nav__container">
+<a class="md-nav__link" href="../tutorials/production-grade-network-automation-principles/">
+<span class="md-ellipsis">
+    
+  
+    Production-Grade Network Automation Principles
+  
+
+    
+  </span>
+</a>
+<label class="md-nav__link" for="__nav_2_4" id="__nav_2_4_label" tabindex="0">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-expanded="false" aria-labelledby="__nav_2_4_label" class="md-nav" data-md-level="2">
+<label class="md-nav__title" for="__nav_2_4">
+<span class="md-nav__icon md-icon"></span>
+            
+  
+    Production-Grade Network Automation Principles
+  
+
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../tutorials/production-grade-network-automation-principles/validating-device-identity-before-automation-runs/">
+<span class="md-ellipsis">
+    
+  
+    Validating Device Identity Before Automation Runs
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../tutorials/production-grade-network-automation-principles/pre-flight-checks-failing-fast-before-making-changes/">
+<span class="md-ellipsis">
+    
+  
+    Pre-Flight Checks - Failing Fast Before Making Changes
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../tutorials/production-grade-network-automation-principles/trust-boundaries-around-your-source-of-truth/">
+<span class="md-ellipsis">
+    
+  
+    Trust Boundaries Around Your Source of Truth
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../tutorials/production-grade-network-automation-principles/detecting-and-handling-configuration-drift-safely/">
+<span class="md-ellipsis">
+    
+  
+    Detecting and Handling Configuration Drift Safely
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../tutorials/production-grade-network-automation-principles/real-world-idempotency-in-network-automation/">
+<span class="md-ellipsis">
+    
+  
+    Real-World Idempotency in Network Automation
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../tutorials/production-grade-network-automation-principles/scoping-automation-to-reduce-blast-radius/">
+<span class="md-ellipsis">
+    
+  
+    Scoping Automation to Reduce Blast Radius
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../tutorials/production-grade-network-automation-principles/designing-automation-that-can-safely-fail/">
+<span class="md-ellipsis">
+    
+  
+    Designing Automation That Can Safely Fail
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../tutorials/production-grade-network-automation-principles/rollback-strategies-what-works-and-what-doesnt/">
+<span class="md-ellipsis">
+    
+  
+    Rollback Strategies - What Works and What Doesn't
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../tutorials/production-grade-network-automation-principles/separating-read-and-write-phases/">
+<span class="md-ellipsis">
+    
+  
+    Separating Read and Write Phases in Automation Workflows
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../tutorials/production-grade-network-automation-principles/making-automation-output-operator-friendly/">
+<span class="md-ellipsis">
+    
+  
+    Making Automation Output Operator-Friendly
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../tutorials/production-grade-network-automation-principles/building-audit-ready-automation/">
+<span class="md-ellipsis">
+    
+  
+    Building Audit-Ready Automation
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../tutorials/production-grade-network-automation-principles/secrets-and-credentials-in-enterprise-automation/">
+<span class="md-ellipsis">
+    
+  
+    Secrets and Credentials in Enterprise Automation
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../tutorials/production-grade-network-automation-principles/human-in-the-loop-automation-design/">
+<span class="md-ellipsis">
+    
+  
+    Human-in-the-Loop Automation Design
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../tutorials/production-grade-network-automation-principles/knowing-when-not-to-automate/">
+<span class="md-ellipsis">
+    
+  
+    Knowing When Not to Automate
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../tutorials/production-grade-network-automation-principles/executive-summary/">
+<span class="md-ellipsis">
+    
+  
+    Executive Summary for Leadership
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../tutorials/production-grade-network-automation-principles/program-charter/">
+<span class="md-ellipsis">
+    
+  
+    Program Charter for Production-Grade Automation
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../tutorials/production-grade-network-automation-principles/enterprise-control-matrix/">
+<span class="md-ellipsis">
+    
+  
+    Enterprise Control Matrix
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../tutorials/production-grade-network-automation-principles/implementation-roadmap-30-60-90-days/">
+<span class="md-ellipsis">
+    
+  
+    Implementation Roadmap (30/60/90 Days)
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../tutorials/production-grade-network-automation-principles/operator-review-worksheet/">
+<span class="md-ellipsis">
+    
+  
+    Operator Review Worksheet
+  
+
+    
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_2_5" type="checkbox"/>
+<div class="md-nav__link md-nav__container">
+<a class="md-nav__link" href="../deep-dives/">
+<span class="md-ellipsis">
+    
+  
+    Deep Dives
+  
+
+    
+  </span>
+</a>
+<label class="md-nav__link" for="__nav_2_5" id="__nav_2_5_label" tabindex="0">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-expanded="false" aria-labelledby="__nav_2_5_label" class="md-nav" data-md-level="2">
+<label class="md-nav__title" for="__nav_2_5">
+<span class="md-nav__icon md-icon"></span>
+            
+  
+    Deep Dives
+  
+
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../deep-dives/access-switch-audit/">
+<span class="md-ellipsis">
+    
+  
+    Access Switch Audit
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../deep-dives/cdp-audit/">
+<span class="md-ellipsis">
+    
+  
+    CDP Audit
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../deep-dives/cisco-compliance-audit/">
+<span class="md-ellipsis">
+    
+  
+    Cisco Compliance Audit
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../deep-dives/cisco-config-generator/">
+<span class="md-ellipsis">
+    
+  
+    Cisco Config Generator
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../deep-dives/ios-xe-upgrade-orchestrator/">
+<span class="md-ellipsis">
+    
+  
+    IOS XE Upgrade Orchestrator
+  
+
+    
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_2_7" type="checkbox"/>
+<div class="md-nav__link md-nav__container">
+<a class="md-nav__link" href="../coming-soon/">
+<span class="md-ellipsis">
+    
+  
+    Coming Soon
+  
+
+    
+  </span>
+</a>
+<label class="md-nav__link" for="__nav_2_7" id="__nav_2_7_label" tabindex="0">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-expanded="false" aria-labelledby="__nav_2_7_label" class="md-nav" data-md-level="2">
+<label class="md-nav__title" for="__nav_2_7">
+<span class="md-nav__icon md-icon"></span>
+            
+  
+    Coming Soon
+  
+
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../coming-soon/cisco-ios-xe-ztp/">
+<span class="md-ellipsis">
+    
+  
+    Cisco IOS XE ZTP
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../coming-soon/ztp-automation-platform/">
+<span class="md-ellipsis">
+    
+  
+    ZTP Automation Platform
+  
+
+    
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_3" type="checkbox"/>
+<label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+<span class="md-ellipsis">
+    
+  
+    Services
+  
+
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_3_label" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_3">
+<span class="md-nav__icon md-icon"></span>
+            
+  
+    Services
+  
+
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../services/">
+<span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../how-we-work/">
+<span class="md-ellipsis">
+    
+  
+    How We Work
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../contact/">
+<span class="md-ellipsis">
+    
+  
+    Contact &amp; Discovery
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_3_4" type="checkbox"/>
+<div class="md-nav__link md-nav__container">
+<a class="md-nav__link" href="../smb/">
+<span class="md-ellipsis">
+    
+  
+    For Small &amp; Medium Businesses
+  
+
+    
+  </span>
+</a>
+<label class="md-nav__link" for="__nav_3_4" id="__nav_3_4_label" tabindex="0">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-expanded="false" aria-labelledby="__nav_3_4_label" class="md-nav" data-md-level="2">
+<label class="md-nav__title" for="__nav_3_4">
+<span class="md-nav__icon md-icon"></span>
+            
+  
+    For Small &amp; Medium Businesses
+  
+
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../smb/services/">
+<span class="md-ellipsis">
+    
+  
+    SMB Automation Packages
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_3_4_3" type="checkbox"/>
+<label class="md-nav__link" for="__nav_3_4_3" id="__nav_3_4_3_label" tabindex="0">
+<span class="md-ellipsis">
+    
+  
+    Automation Packages
+  
+
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_3_4_3_label" class="md-nav" data-md-level="3">
+<label class="md-nav__title" for="__nav_3_4_3">
+<span class="md-nav__icon md-icon"></span>
+            
+  
+    Automation Packages
+  
+
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../smb/packages/automation-assessment/">
+<span class="md-ellipsis">
+    
+  
+    Automation Opportunity Assessment
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../smb/packages/switch-audit-pack/">
+<span class="md-ellipsis">
+    
+  
+    Switch Audit &amp; Compliance Pack
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../smb/packages/ios-xe-upgrade-pack/">
+<span class="md-ellipsis">
+    
+  
+    IOS-XE Upgrade Automation Pack
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../smb/packages/ztp-setup/">
+<span class="md-ellipsis">
+    
+  
+    Zero-Touch Provisioning Setup
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../smb/packages/custom-script-build/">
+<span class="md-ellipsis">
+    
+  
+    Custom Script Build
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../smb/packages/automation-as-a-service/">
+<span class="md-ellipsis">
+    
+  
+    Automation-as-a-Service
+  
+
+    
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+<input checked="" class="md-nav__toggle md-toggle" id="__nav_4" type="checkbox"/>
+<div class="md-nav__link md-nav__container">
+<a class="md-nav__link md-nav__link--active" href="./">
+<span class="md-ellipsis">
+    
+  
+    PRIME Framework
+  
+
+    
+  </span>
+</a>
+<label class="md-nav__link md-nav__link--active" for="__nav_4" id="__nav_4_label" tabindex="">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-expanded="true" aria-labelledby="__nav_4_label" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_4">
+<span class="md-nav__icon md-icon"></span>
+            
+  
+    PRIME Framework
+  
+
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="philosophy/">
+<span class="md-ellipsis">
+    
+  
+    Prime Philosophy
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="pinpoint/">
+<span class="md-ellipsis">
+    
+  
+    Pinpoint
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="re-engineer/">
+<span class="md-ellipsis">
+    
+  
+    Re-Engineer
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="implement/">
+<span class="md-ellipsis">
+    
+  
+    Implement
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="measure/">
+<span class="md-ellipsis">
+    
+  
+    Measure
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="empower/">
+<span class="md-ellipsis">
+    
+  
+    Empower
+  
+
+    
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_5" type="checkbox"/>
+<label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+<span class="md-ellipsis">
+    
+  
+    About
+  
+
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_5_label" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_5">
+<span class="md-nav__icon md-icon"></span>
+            
+  
+    About
+  
+
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../about/">
+<span class="md-ellipsis">
+    
+  
+    About Nautomation Prime
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../founder/">
+<span class="md-ellipsis">
+    
+  
+    Founder
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../charity/">
+<span class="md-ellipsis">
+    
+  
+    Giving With Integrity
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_5_4" type="checkbox"/>
+<label class="md-nav__link" for="__nav_5_4" id="__nav_5_4_label" tabindex="0">
+<span class="md-ellipsis">
+    
+  
+    Legal
+  
+
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_5_4_label" class="md-nav" data-md-level="2">
+<label class="md-nav__title" for="__nav_5_4">
+<span class="md-nav__icon md-icon"></span>
+            
+  
+    Legal
+  
+
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../legal/brand/">
+<span class="md-ellipsis">
+    
+  
+    Brand &amp; Logo Usage
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../legal/disclaimer/">
+<span class="md-ellipsis">
+    
+  
+    Disclaimer
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../legal/licensing/">
+<span class="md-ellipsis">
+    
+  
+    Licensing
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../legal/privacy-policy/">
+<span class="md-ellipsis">
+    
+  
+    Privacy Policy
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../legal/terms-of-use/">
+<span class="md-ellipsis">
+    
+  
+    Terms of Use
+  
+
+    
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</div>
+</div>
+</div>
+<div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc">
+<div class="md-sidebar__scrollwrap">
+<div class="md-sidebar__inner">
+<nav aria-label="Table of contents" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#the-prime-framework">
+<span class="md-ellipsis">
+      
+        The PRIME Framework
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#who-the-framework-is-for">
+<span class="md-ellipsis">
+      
+        Who the framework is for
+      
+    </span>
+</a>
+<nav aria-label="Who the framework is for" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#leaders-who-need-proof-before-they-invest">
+<span class="md-ellipsis">
+      
+        Leaders who need proof before they invest
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#teams-inheriting-fragile-scripts">
+<span class="md-ellipsis">
+      
+        Teams inheriting fragile scripts
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#engineers-moving-from-one-off-scripts-to-a-programme">
+<span class="md-ellipsis">
+      
+        Engineers moving from one-off scripts to a programme
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#organisations-that-cannot-afford-unsafe-change">
+<span class="md-ellipsis">
+      
+        Organisations that cannot afford unsafe change
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#why-a-framework">
+<span class="md-ellipsis">
+      
+        🎯 Why a Framework?
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#the-five-stages">
+<span class="md-ellipsis">
+      
+        📐 The Five Stages
+      
+    </span>
+</a>
+<nav aria-label="📐 The Five Stages" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#p-pinpoint-inefficiencies">
+<span class="md-ellipsis">
+      
+        P — Pinpoint Inefficiencies
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#r-re-engineer-workflows">
+<span class="md-ellipsis">
+      
+        R — Re-engineer Workflows
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#i-implement-targeted-automations">
+<span class="md-ellipsis">
+      
+        I — Implement Targeted Automations
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#m-measure-results-and-refine">
+<span class="md-ellipsis">
+      
+        M — Measure Results and Refine
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#e-empower-teams-with-ongoing-support">
+<span class="md-ellipsis">
+      
+        E — Empower Teams with Ongoing Support
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#why-this-framework-works">
+<span class="md-ellipsis">
+      
+        🔄 Why This Framework Works
+      
+    </span>
+</a>
+<nav aria-label="🔄 Why This Framework Works" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#1-starts-with-value-not-technology">
+<span class="md-ellipsis">
+      
+        1. Starts with Value, Not Technology
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#2-emphasizes-design-over-quick-fixes">
+<span class="md-ellipsis">
+      
+        2. Emphasizes Design Over Quick Fixes
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#3-prioritises-production-safety">
+<span class="md-ellipsis">
+      
+        3. Prioritises Production Safety
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#4-proves-return-on-investment">
+<span class="md-ellipsis">
+      
+        4. Proves Return on Investment
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#5-builds-capability-not-dependency">
+<span class="md-ellipsis">
+      
+        5. Builds Capability, Not Dependency
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#framework-philosophy">
+<span class="md-ellipsis">
+      
+        🎓 Framework + Philosophy
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#framework-in-practice">
+<span class="md-ellipsis">
+      
+        💼 Framework in Practice
+      
+    </span>
+</a>
+<nav aria-label="💼 Framework in Practice" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#typical-timeline-medium-complexity-project">
+<span class="md-ellipsis">
+      
+        Typical Timeline (Medium Complexity Project)
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#investment-by-stage">
+<span class="md-ellipsis">
+      
+        Investment by Stage
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#proven-results">
+<span class="md-ellipsis">
+      
+        📊 Proven Results
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#getting-started-with-prime">
+<span class="md-ellipsis">
+      
+        🚀 Getting Started with PRIME
+      
+    </span>
+</a>
+<nav aria-label="🚀 Getting Started with PRIME" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#start-with-a-discovery-conversation-not-a-blind-implementation">
+<span class="md-ellipsis">
+      
+        Start with a discovery conversation, not a blind implementation
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#typical-entry-path">
+<span class="md-ellipsis">
+      
+        Typical entry path
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#deep-dive-individual-stages">
+<span class="md-ellipsis">
+      
+        🔍 Deep Dive: Individual Stages
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#prime-framework-vs-traditional-automation">
+<span class="md-ellipsis">
+      
+        🆚 PRIME Framework vs. Traditional Automation
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#prime-terminology">
+<span class="md-ellipsis">
+      
+        🎨 Prime Terminology
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#case-study-examples">
+<span class="md-ellipsis">
+      
+        📊 Case Study Examples
+      
+    </span>
+</a>
+<nav aria-label="📊 Case Study Examples" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#case-study-1-access-layer-vlan-provisioning-prime-automationtm">
+<span class="md-ellipsis">
+      
+        Case Study 1: Access Layer VLAN Provisioning → Prime Automation™
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#case-study-2-compliance-audit-automation-prime-efficiency-stack">
+<span class="md-ellipsis">
+      
+        Case Study 2: Compliance Audit Automation → Prime Efficiency Stack
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#experience-the-prime-framework">
+<span class="md-ellipsis">
+      
+        🎬 Experience the PRIME Framework
+      
+    </span>
+</a>
+<nav aria-label="🎬 Experience the PRIME Framework" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#visual-overview">
+<span class="md-ellipsis">
+      
+        Visual Overview
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#additional-case-studies">
+<span class="md-ellipsis">
+      
+        📖 Additional Case Studies
+      
+    </span>
+</a>
+<nav aria-label="📖 Additional Case Studies" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#case-study-3-ios-xe-upgrade-orchestration-prime-agents-intelligence">
+<span class="md-ellipsis">
+      
+        Case Study 3: IOS-XE Upgrade Orchestration → Prime Agents Intelligence
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#frequently-asked-questions">
+<span class="md-ellipsis">
+      
+        💡 Frequently Asked Questions
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#ready-to-transform-your-network-operations">
+<span class="md-ellipsis">
+      
+        🌟 Ready to Transform Your Network Operations?
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</div>
+</div>
+</div>
+<div class="md-content" data-md-component="content">
+<article class="md-content__inner md-typeset">
+<nav class="md-tags">
+<span class="md-tag">Consulting</span>
+<span class="md-tag">Methodology</span>
+<span class="md-tag">Network Automation</span>
+<span class="md-tag">PRIME Framework</span>
+</nav>
+<h1>The PRIME Framework</h1>
+<div class="np-hero">
+<p class="np-eyebrow">Methodology for measurable, team-owned Cisco automation delivery</p>
+<h2 id="the-prime-framework">The PRIME Framework<a class="headerlink" href="#the-prime-framework" title="Anchor link to this section">¶</a></h2>
+<p>The PRIME Framework is Nautomation Prime's five-stage delivery model for turning operational pain points into production-grade automation, measurable ROI, and real team ownership. It exists to stop organisations automating the wrong things, shipping brittle scripts, and ending up dependent on the original author.</p>
+<div class="np-action-row">
+<p><a class="md-button md-button--primary" href="../contact/">Request Discovery Call</a>
+<a class="md-button" href="../services/">View Services</a>
+<a class="md-button" href="../how-we-work/">How We Work</a>
+<a class="md-button" href="philosophy/">Read the Philosophy</a></p>
+</div>
+<ul class="np-signal-list">
+<li>Five-stage delivery model</li>
+<li>Typical payback: 6-12 months</li>
+<li>Safety and handover built in</li>
+<li>Designed for team ownership</li>
+</ul>
+</div>
+<h2 id="who-the-framework-is-for">Who the framework is for<a class="headerlink" href="#who-the-framework-is-for" title="Anchor link to this section">¶</a></h2>
+<div class="grid cards">
+<ul>
+<li>
+<h3 id="leaders-who-need-proof-before-they-invest">Leaders who need proof before they invest<a class="headerlink" href="#leaders-who-need-proof-before-they-invest" title="Anchor link to this section">¶</a></h3>
+<p>Use the framework when leadership needs a clear business case, measured value, and visibility into what automation is actually achieving.</p>
+</li>
+<li>
+<h3 id="teams-inheriting-fragile-scripts">Teams inheriting fragile scripts<a class="headerlink" href="#teams-inheriting-fragile-scripts" title="Anchor link to this section">¶</a></h3>
+<p>Use the framework when existing automation works just enough to be risky, but nobody wants to own, change, or troubleshoot it.</p>
+</li>
+<li>
+<h3 id="engineers-moving-from-one-off-scripts-to-a-programme">Engineers moving from one-off scripts to a programme<a class="headerlink" href="#engineers-moving-from-one-off-scripts-to-a-programme" title="Anchor link to this section">¶</a></h3>
+<p>Use the framework when the goal is not just faster tasks, but a repeatable automation operating model that can scale.</p>
+</li>
+<li>
+<h3 id="organisations-that-cannot-afford-unsafe-change">Organisations that cannot afford unsafe change<a class="headerlink" href="#organisations-that-cannot-afford-unsafe-change" title="Anchor link to this section">¶</a></h3>
+<p>Use the framework when validation, rollback, governance, and gradual rollout matter as much as delivery speed.</p>
+</li>
+</ul>
+</div>
+<hr/>
+<h2 id="why-a-framework">🎯 Why a Framework?<a class="headerlink" href="#why-a-framework" title="Anchor link to this section">¶</a></h2>
+<p>Network automation isn't just about writing scripts—it's about <strong>transforming operations</strong>. Too many automation projects fail because they:</p>
+<ul>
+<li>❌ Automate the wrong things (busy work instead of bottlenecks)</li>
+<li>❌ Lack production safety (untested code hits critical infrastructure)</li>
+<li>❌ Create new technical debt (unmaintainable "black box" scripts)</li>
+<li>❌ Don't measure impact (no ROI visibility)</li>
+<li>❌ Fail to transfer knowledge (dependency on one person)</li>
+</ul>
+<p>The PRIME Framework addresses all of these challenges with a structured, proven approach.</p>
+<hr/>
+<h2 id="the-five-stages">📐 The Five Stages<a class="headerlink" href="#the-five-stages" title="Anchor link to this section">¶</a></h2>
+<pre class="mermaid"><code>%%{init: {'theme':'base', 'themeVariables': {'fontSize':'18px'}}}%%
+graph LR
+    P[Pinpoint]
+    R[Re-engineer]
+    I[Implement]
+    M[Measure]
+    E[Empower]
+    P --&gt; R
+    R --&gt; I
+    I --&gt; M
+    M --&gt; E
+    style P fill:#4A90E2
+    style R fill:#7B68EE
+    style I fill:#50C878
+    style M fill:#FFB347
+    style E fill:#FF6B9D
+</code></pre>
+<h3 id="p-pinpoint-inefficiencies"><a href="pinpoint/"><strong>P</strong> — Pinpoint</a> Inefficiencies<a class="headerlink" href="#p-pinpoint-inefficiencies" title="Anchor link to this section">¶</a></h3>
+<p><strong>Objective:</strong> Identify high-impact automation opportunities</p>
+<p><strong>What Happens:</strong></p>
+<ul>
+<li>Workflow analysis and time-motion studies</li>
+<li>Identification of repetitive manual tasks</li>
+<li>Risk assessment of error-prone processes</li>
+<li>ROI estimation for potential automations</li>
+</ul>
+<p><strong>Deliverable:</strong> prioritised automation roadmap with estimated savings</p>
+<hr/>
+<h3 id="r-re-engineer-workflows"><a href="re-engineer/"><strong>R</strong> — Re-engineer</a> Workflows<a class="headerlink" href="#r-re-engineer-workflows" title="Anchor link to this section">¶</a></h3>
+<p><strong>Objective:</strong> Design optimised processes before automating</p>
+<p><strong>What Happens:</strong></p>
+<ul>
+<li>Process redesign (don't automate bad workflows!)</li>
+<li>Architecture planning for scalability</li>
+<li>Safety mechanism design (pre-flight checks, rollback capability)</li>
+<li>Integration planning with existing tools</li>
+</ul>
+<p><strong>Deliverable:</strong> Technical design documents and workflow diagrams</p>
+<hr/>
+<h3 id="i-implement-targeted-automations"><a href="implement/"><strong>I</strong> — Implement</a> Targeted Automations<a class="headerlink" href="#i-implement-targeted-automations" title="Anchor link to this section">¶</a></h3>
+<p><strong>Objective:</strong> Build production-ready automation following the <a href="philosophy/">PRIME Philosophy</a></p>
+<p><strong>What Happens:</strong></p>
+<ul>
+<li>Development of hardened Python scripts</li>
+<li>Line-by-line documentation for transparency</li>
+<li>Comprehensive error handling and validation</li>
+<li>Testing in lab/staging environment</li>
+</ul>
+<p><strong>Deliverable:</strong> Production-ready code with full documentation</p>
+<hr/>
+<h3 id="m-measure-results-and-refine"><a href="measure/"><strong>M</strong> — Measure</a> Results and Refine<a class="headerlink" href="#m-measure-results-and-refine" title="Anchor link to this section">¶</a></h3>
+<p><strong>Objective:</strong> Prove value and continuously improve</p>
+<p><strong>What Happens:</strong></p>
+<ul>
+<li>Metrics collection (time saved, errors eliminated)</li>
+<li>Performance monitoring and optimisation</li>
+<li>User feedback gathering</li>
+<li>Iterative refinement based on real-world usage</li>
+</ul>
+<p><strong>Deliverable:</strong> ROI reports and optimised automation</p>
+<hr/>
+<h3 id="e-empower-teams-with-ongoing-support"><a href="empower/"><strong>E</strong> — Empower</a> Teams with Ongoing Support<a class="headerlink" href="#e-empower-teams-with-ongoing-support" title="Anchor link to this section">¶</a></h3>
+<p><strong>Objective:</strong> Ensure long-term success and self-sufficiency</p>
+<p><strong>What Happens:</strong></p>
+<ul>
+<li>Knowledge transfer and training</li>
+<li>Documentation and runbooks</li>
+<li>Ongoing support window</li>
+<li>Capability building for internal teams</li>
+</ul>
+<p><strong>Deliverable:</strong> Self-sufficient teams with transferable skills</p>
+<hr/>
+<h2 id="why-this-framework-works">🔄 Why This Framework Works<a class="headerlink" href="#why-this-framework-works" title="Anchor link to this section">¶</a></h2>
+<h3 id="1-starts-with-value-not-technology">1. <strong>Starts with Value, Not Technology</strong><a class="headerlink" href="#1-starts-with-value-not-technology" title="Anchor link to this section">¶</a></h3>
+<p>The "Pinpoint" stage ensures we're solving real problems, not automating for automation's sake. Every project begins with a business case.</p>
+<h3 id="2-emphasizes-design-over-quick-fixes">2. <strong>Emphasizes Design Over Quick Fixes</strong><a class="headerlink" href="#2-emphasizes-design-over-quick-fixes" title="Anchor link to this section">¶</a></h3>
+<p>The "Re-engineer" stage prevents the common mistake of automating broken workflows. We optimise first, then automate.</p>
+<h3 id="3-prioritises-production-safety">3. <strong>Prioritises Production Safety</strong><a class="headerlink" href="#3-prioritises-production-safety" title="Anchor link to this section">¶</a></h3>
+<p>The "Implement" stage isn't just coding—it's building with enterprise-grade error handling, validation, and transparency.</p>
+<h3 id="4-proves-return-on-investment">4. <strong>Proves Return on Investment</strong><a class="headerlink" href="#4-proves-return-on-investment" title="Anchor link to this section">¶</a></h3>
+<p>The "Measure" stage provides concrete evidence of value, justifying continued investment in automation.</p>
+<h3 id="5-builds-capability-not-dependency">5. <strong>Builds Capability, Not Dependency</strong><a class="headerlink" href="#5-builds-capability-not-dependency" title="Anchor link to this section">¶</a></h3>
+<p>The "Empower" stage ensures clients aren't dependent on external consultants—they gain skills and confidence.</p>
+<hr/>
+<h2 id="framework-philosophy">🎓 Framework + Philosophy<a class="headerlink" href="#framework-philosophy" title="Anchor link to this section">¶</a></h2>
+<p>The PRIME Framework is how we <strong>deliver</strong> automation projects. The <strong><a href="philosophy/">PRIME Philosophy</a></strong> defines <strong>how we think and build</strong>:</p>
+<p><strong>Core Principles:</strong></p>
+<ul>
+<li><strong>Transparency Over Obscurity</strong> — Every line of code explained, no black boxes</li>
+<li><strong>Measurability Over Assumptions</strong> — Data-driven decisions, proven ROI</li>
+<li><strong>Ownership Over Dependency</strong> — Your team owns the automation, not us</li>
+<li><strong>Safety Over Speed</strong> — Production-grade reliability, not quick hacks</li>
+<li><strong>Empowerment Over Magic Buttons</strong> — Understanding, not mysterious automation</li>
+</ul>
+<p><strong><a href="philosophy/">Read the full Philosophy →</a></strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">PRIME Stage</th>
+<th style="text-align: left;">Philosophy Application</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>Pinpoint</strong></td>
+<td style="text-align: left;">Vendor-neutral analysis (no tool lock-in)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Re-engineer</strong></td>
+<td style="text-align: left;">Production-hardened design from the start</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Implement</strong></td>
+<td style="text-align: left;">Line-by-line transparency in all code</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Measure</strong></td>
+<td style="text-align: left;">Honest, documented results</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Empower</strong></td>
+<td style="text-align: left;">Knowledge transfer, not gatekeeping</td>
+</tr>
+</tbody>
+</table>
+<p>Together, they ensure <strong>value, quality, and sustainability</strong>.</p>
+<hr/>
+<h2 id="framework-in-practice">💼 Framework in Practice<a class="headerlink" href="#framework-in-practice" title="Anchor link to this section">¶</a></h2>
+<h3 id="typical-timeline-medium-complexity-project">Typical Timeline (Medium Complexity Project)<a class="headerlink" href="#typical-timeline-medium-complexity-project" title="Anchor link to this section">¶</a></h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Stage</th>
+<th style="text-align: center;">Duration</th>
+<th style="text-align: left;">Key Milestone</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Pinpoint</td>
+<td style="text-align: center;">1 week</td>
+<td style="text-align: left;">Automation roadmap approved</td>
+</tr>
+<tr>
+<td style="text-align: left;">Re-engineer</td>
+<td style="text-align: center;">1-2 weeks</td>
+<td style="text-align: left;">Technical design signed off</td>
+</tr>
+<tr>
+<td style="text-align: left;">Implement</td>
+<td style="text-align: center;">2-4 weeks</td>
+<td style="text-align: left;">Code delivered &amp; tested</td>
+</tr>
+<tr>
+<td style="text-align: left;">Measure</td>
+<td style="text-align: center;">2-4 weeks</td>
+<td style="text-align: left;">ROI demonstrated</td>
+</tr>
+<tr>
+<td style="text-align: left;">Empower</td>
+<td style="text-align: center;">1-2 weeks</td>
+<td style="text-align: left;">Team trained &amp; autonomous</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Total:</strong> 7-13 weeks for most projects</p>
+<h3 id="investment-by-stage">Investment by Stage<a class="headerlink" href="#investment-by-stage" title="Anchor link to this section">¶</a></h3>
+<p>Projects are priced as fixed-fee engagements based on scope and complexity. You can engage for:</p>
+<ul>
+<li><strong>Full Framework</strong> (all five stages) — Recommended for maximum value and sustainable ROI</li>
+<li><strong>Selected Stages</strong> (e.g., Implement + Empower) — When design documentation already exists</li>
+<li><strong>Pinpoint Assessment Only</strong> — Understand opportunities before committing to full engagement</li>
+</ul>
+<p><strong>See <a href="../services/">Services &amp; Pricing</a> for detailed engagement models and cost estimates.</strong></p>
+<div class="admonition info">
+<p class="admonition-title">Flexible Engagement Models</p>
+<p>We work with your timeline and budget. Most projects complete in 7-13 weeks. We can structure payment around project milestones to align with your financial planning.</p>
+</div>
+<hr/>
+<h2 id="proven-results">📊 Proven Results<a class="headerlink" href="#proven-results" title="Anchor link to this section">¶</a></h2>
+<p>The PRIME Framework has delivered measurable improvements across enterprise networks:</p>
+<div class="admonition success">
+<p class="admonition-title">Framework Outcomes</p>
+<ul>
+<li><strong>65% average time savings</strong> on repetitive tasks (VLAN provisioning, config audits)</li>
+<li><strong>90% error reduction</strong> in configuration changes</li>
+<li><strong>6-12 month payback period</strong> on automation investments</li>
+<li><strong>Proven knowledge transfer success</strong> — teams become self-sufficient and extend automation independently</li>
+</ul>
+</div>
+<hr/>
+<h2 id="getting-started-with-prime">🚀 Getting Started with PRIME<a class="headerlink" href="#getting-started-with-prime" title="Anchor link to this section">¶</a></h2>
+<div class="np-cta-strip">
+<h3 id="start-with-a-discovery-conversation-not-a-blind-implementation">Start with a discovery conversation, not a blind implementation<a class="headerlink" href="#start-with-a-discovery-conversation-not-a-blind-implementation" title="Anchor link to this section">¶</a></h3>
+<p>The usual entry point is a short discovery conversation to understand your environment, automation maturity, constraints, and likely ROI. If the fit is right, the next step is often <a href="pinpoint/">Pinpoint</a>, where priorities and business value are clarified before wider delivery begins.</p>
+<div class="np-action-row">
+<p><a class="md-button md-button--primary" href="../contact/">Request Discovery Call</a>
+<a class="md-button" href="../services/">View Services &amp; Pricing</a>
+<a class="md-button" href="../how-we-work/">See How We Work</a></p>
+</div>
+</div>
+<h3 id="typical-entry-path">Typical entry path<a class="headerlink" href="#typical-entry-path" title="Anchor link to this section">¶</a></h3>
+<ol>
+<li>Discovery conversation to understand operational problems and constraints.</li>
+<li>Optional <a href="pinpoint/">Pinpoint</a> assessment to identify the highest-value opportunities.</li>
+<li>Full PRIME Framework engagement or selected stages, depending on your needs.</li>
+</ol>
+<hr/>
+<h2 id="deep-dive-individual-stages">🔍 Deep Dive: Individual Stages<a class="headerlink" href="#deep-dive-individual-stages" title="Anchor link to this section">¶</a></h2>
+<p>Explore each stage in detail:</p>
+<ol>
+<li><strong><a href="pinpoint/">Pinpoint Inefficiencies</a></strong> — How we identify the right automation targets</li>
+<li><strong><a href="re-engineer/">Re-engineer Workflows</a></strong> — optimising processes before coding</li>
+<li><strong><a href="implement/">Implement Automations</a></strong> — Building production-ready solutions</li>
+<li><strong><a href="measure/">Measure &amp; Refine</a></strong> — Proving value and continuous improvement</li>
+<li><strong><a href="empower/">Empower Teams</a></strong> — Knowledge transfer and long-term success</li>
+</ol>
+<hr/>
+<h2 id="prime-framework-vs-traditional-automation">🆚 PRIME Framework vs. Traditional Automation<a class="headerlink" href="#prime-framework-vs-traditional-automation" title="Anchor link to this section">¶</a></h2>
+<p>How does the PRIME Framework compare to typical automation approaches?</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Aspect</th>
+<th style="text-align: left;">Traditional Approach</th>
+<th style="text-align: left;">PRIME Framework</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>Discovery</strong></td>
+<td style="text-align: left;">"What do you want automated?"</td>
+<td style="text-align: left;"><strong>Pinpoint:</strong> Data-driven ROI analysis, prioritisation matrix</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Planning</strong></td>
+<td style="text-align: left;">Jump straight to coding</td>
+<td style="text-align: left;"><strong>Re-engineer:</strong> Workflow optimisation, architecture design, safety planning</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Development</strong></td>
+<td style="text-align: left;">Quick scripts, minimal testing</td>
+<td style="text-align: left;"><strong>Implement:</strong> Production-hardened with Prime Philosophy principles</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Validation</strong></td>
+<td style="text-align: left;">"It works on my laptop"</td>
+<td style="text-align: left;"><strong>Measure:</strong> Metrics collection, ROI proof, continuous improvement</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Sustainability</strong></td>
+<td style="text-align: left;">Vendor lock-in, no documentation</td>
+<td style="text-align: left;"><strong>Empower:</strong> Knowledge transfer, team capability building</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Typical Outcome</strong></td>
+<td style="text-align: left;">Script that works once, breaks later</td>
+<td style="text-align: left;"><strong>Prime Automation™</strong> — sustainable, measurable, team-owned</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Business Value</strong></td>
+<td style="text-align: left;">Unknown/untracked</td>
+<td style="text-align: left;">Proven ROI (typically 6-12 month payback)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>The difference:</strong> Traditional automation delivers code. PRIME Framework delivers <strong>capability</strong>.</p>
+<hr/>
+<h2 id="prime-terminology">🎨 Prime Terminology<a class="headerlink" href="#prime-terminology" title="Anchor link to this section">¶</a></h2>
+<p>Throughout our framework and services, you'll encounter these unique terms:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Term</th>
+<th style="text-align: left;">Definition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>Prime Automation™</strong></td>
+<td style="text-align: left;">Automation built following the PRIME Framework—characterized by measurable ROI, production safety, and team empowerment</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Prime Workflows</strong></td>
+<td style="text-align: left;">Re-engineered operational processes optimised for automation (not just automated existing workflows)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Prime Agents</strong></td>
+<td style="text-align: left;">Python scripts developed with autonomous decision-making capability (pre-flight checks, validation, rollback)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Prime Efficiency Stack</strong></td>
+<td style="text-align: left;">The technology foundation (Netmiko, Nornir, TextFSM, Jinja2) used across all implementations</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Prime Overwatch™</strong></td>
+<td style="text-align: left;">Continuous monitoring and metrics collection (Measure stage) for automation performance</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Prime Capability</strong></td>
+<td style="text-align: left;">The end goal of the Empower stage—teams that can maintain, modify, and extend automation independently</td>
+</tr>
+</tbody>
+</table>
+<p>These aren't just buzzwords—they represent specific approaches that differentiate our methodology.</p>
+<hr/>
+<h2 id="case-study-examples">📊 Case Study Examples<a class="headerlink" href="#case-study-examples" title="Anchor link to this section">¶</a></h2>
+<h3 id="case-study-1-access-layer-vlan-provisioning-prime-automationtm">Case Study 1: Access Layer VLAN Provisioning → Prime Automation™<a class="headerlink" href="#case-study-1-access-layer-vlan-provisioning-prime-automationtm" title="Anchor link to this section">¶</a></h3>
+<p><strong>Client:</strong> UK financial services firm, 300+ access switches<br/>
+<strong>Challenge:</strong> Manual VLAN adds taking 15 mins/switch, high error rate<br/>
+<strong>PRIME Stages:</strong></p>
+<ul>
+<li><strong>Pinpoint:</strong> Identified 200+ VLAN changes/year = 50 hours wasted</li>
+<li><strong>Re-engineer:</strong> Designed <strong>Prime Workflows</strong> with templated provisioning + approval gates</li>
+<li><strong>Implement:</strong> <strong>Prime Agent</strong> using Jinja2 templates with pre/post-flight validation</li>
+<li><strong>Measure:</strong> <strong>Prime Overwatch</strong> tracked 2 mins/change average, error-free operations over 6 months</li>
+<li><strong>Empower:</strong> Team achieved <strong>Prime Capability</strong>—now extends scripts for SVI creation</li>
+</ul>
+<p><strong>ROI:</strong> £12,500/year savings, 6-month payback</p>
+<hr/>
+<h3 id="case-study-2-compliance-audit-automation-prime-efficiency-stack">Case Study 2: Compliance Audit Automation → Prime Efficiency Stack<a class="headerlink" href="#case-study-2-compliance-audit-automation-prime-efficiency-stack" title="Anchor link to this section">¶</a></h3>
+<p><strong>Client:</strong> Healthcare provider, 150 Cisco devices, quarterly PCI-DSS audits<br/>
+<strong>Challenge:</strong> Manual config review taking 40 hours per quarter<br/>
+<strong>PRIME Stages:</strong></p>
+<ul>
+<li><strong>Pinpoint:</strong> Compliance checking identified as most time-intensive task</li>
+<li><strong>Re-engineer:</strong> Defined "golden config" standards in YAML, created <strong>Prime Workflows</strong></li>
+<li><strong>Implement:</strong> <strong>Prime Agent</strong> built on <strong>Prime Efficiency Stack</strong> (Netmiko + TextFSM + pandas)</li>
+<li><strong>Measure:</strong> <strong>Prime Overwatch</strong> showed 97% reduction in audit time (40h → 1h)</li>
+<li><strong>Empower:</strong> Security team gained <strong>Prime Capability</strong> to maintain golden configs</li>
+</ul>
+<p><strong>ROI:</strong> £8,000/year savings, increased compliance confidence, 3x coverage</p>
+<hr/>
+<h2 id="experience-the-prime-framework">🎬 Experience the PRIME Framework<a class="headerlink" href="#experience-the-prime-framework" title="Anchor link to this section">¶</a></h2>
+<h3 id="visual-overview">Visual Overview<a class="headerlink" href="#visual-overview" title="Anchor link to this section">¶</a></h3>
+<pre class="mermaid"><code>%%{init: {'theme':'base', 'themeVariables': {'fontSize':'20px'}}}%%
+graph TD
+    A[Your Network Operations] --&gt;|Inefficient Manual Work| B{PRIME Framework}
+    B --&gt;|Stage 1| C[Pinpoint: Discover ROI Opportunities]
+    B --&gt;|Stage 2| D[Re-engineer: optimise Workflows]
+    B --&gt;|Stage 3| E[Implement: Build Prime Agents]
+    B --&gt;|Stage 4| F[Measure: Prime Overwatch]
+    B --&gt;|Stage 5| G[Empower: Prime Capability]
+
+    C --&gt; H[Prime Automation™]
+    D --&gt; H
+    E --&gt; H
+    F --&gt; H
+    G --&gt; H
+
+    H --&gt; I[Measurable ROI]
+    H --&gt; J[Team Independence]
+    H --&gt; K[Sustainable Growth]
+
+    style B fill:#4A90E2
+    style H fill:#50C878
+    style I fill:#FFB347
+    style J fill:#FFB347
+    style K fill:#FFB347
+</code></pre>
+<hr/>
+<h2 id="additional-case-studies">📖 Additional Case Studies<a class="headerlink" href="#additional-case-studies" title="Anchor link to this section">¶</a></h2>
+<h3 id="case-study-3-ios-xe-upgrade-orchestration-prime-agents-intelligence">Case Study 3: IOS-XE Upgrade Orchestration → Prime Agents Intelligence<a class="headerlink" href="#case-study-3-ios-xe-upgrade-orchestration-prime-agents-intelligence" title="Anchor link to this section">¶</a></h3>
+<p><strong>Client:</strong> Retail chain, 200+ branch routers requiring IOS-XE 17.x upgrade<br/>
+<strong>Challenge:</strong> Manual upgrades took 1 hour/device, required site visits, unpredictable failures<br/>
+<strong>PRIME Stages:</strong></p>
+<ul>
+<li><strong>Pinpoint:</strong> 200 devices × 1 hour = 200 hours effort, travel costs £15k, compliance deadline</li>
+<li><strong>Re-engineer:</strong> Designed <strong>Prime Workflows</strong> with staged rollouts (10% → 25% → 50% → 100%)</li>
+<li><strong>Implement:</strong> <strong>Prime Agent</strong> with autonomous pre-flight checks (CPU, memory, disk space, MD5 verification)</li>
+<li><strong>Measure:</strong> <strong>Prime Overwatch</strong> tracked success rate (192/200 successful, 8 skipped due to hardware constraints)</li>
+<li><strong>Empower:</strong> Network team achieved <strong>Prime Capability</strong>—now handles firmware updates independently</li>
+</ul>
+<p><strong>ROI:</strong> £22,000 saved (160 hours + travel elimination), 96% success rate, no network downtime incidents</p>
+<hr/>
+<h2 id="frequently-asked-questions">💡 Frequently Asked Questions<a class="headerlink" href="#frequently-asked-questions" title="Anchor link to this section">¶</a></h2>
+<details class="question">
+<summary>Do I need all five stages?</summary>
+<p><strong>For best results, yes.</strong> The stages are sequential and build on each other. However, if you have existing design documentation, we can start at the "Implement" stage.</p>
+<p>If you're unsure about ROI, start with just the "Pinpoint" stage as a standalone assessment.</p>
+</details>
+<details class="question">
+<summary>How is this different from other consultancies?</summary>
+<p>Most consultancies jump straight to implementation without understanding workflows ("Implement-first"). Others provide strategy without execution ("PowerPoint automation").</p>
+<p>PRIME Framework combines <strong>both strategy and execution</strong> with a proven structure.</p>
+</details>
+<details class="question">
+<summary>Can I implement the framework myself?</summary>
+<p>Absolutely! The framework isn't proprietary—it's a best-practice methodology. Our <a href="../tutorials/">Tutorials</a> and <a href="../deep-dives/">Deep Dives</a> give you the technical skills to follow the PRIME Framework internally.</p>
+</details>
+<details class="question">
+<summary>What if my team is new to Python?</summary>
+<p><strong>You can still use the PRIME Framework.</strong> We offer different engagement tracks:</p>
+<p><strong>Track 1: Operational Ownership (No Python Required)</strong></p>
+<ul>
+<li>We deliver production-ready automation with comprehensive user documentation</li>
+<li>Focus: Your team learns to <strong>operate</strong> the automation effectively</li>
+<li>Empowerment: Understanding what automation does, when to run it, how to interpret results</li>
+<li>Outcome: Reliable automation that reduces manual work, owned operationally by your team</li>
+</ul>
+<p><strong>Track 2: Code-Level Ownership (Python Knowledge Helpful)</strong></p>
+<ul>
+<li>We deliver code with line-by-line technical documentation</li>
+<li>Focus: Your team learns to <strong>modify and extend</strong> automation</li>
+<li>Empowerment: Training includes Python fundamentals, code walkthroughs, modification workshops</li>
+<li>Outcome: Full autonomy—your team writes new automation independently</li>
+</ul>
+<p><strong>Track 3: Hybrid (Recommended for Growing Teams)</strong></p>
+<ul>
+<li>Operational ownership initially, with gradual code-level capability building</li>
+<li>Focus: Start using automation immediately, build Python skills over time</li>
+<li>Empowerment: Phased training—operations first, code literacy second, modification third</li>
+<li>Outcome: Progressive independence as team skills develop</li>
+</ul>
+<p>See <a href="../services/#engagement-tracks-by-technical-capability">Services: Engagement Tracks</a> for detailed breakdowns.</p>
+<p>We also offer <a href="../tutorials/beginner/">beginner tutorials</a> to help your team build Python foundational skills.</p>
+</details>
+<details class="question">
+<summary>How do you handle failed automations?</summary>
+<p>The "Measure" stage includes failure analysis and remediation. If automation doesn't deliver expected value, we refine iteratively. The fixed-fee model means we're incentivized to deliver working solutions.</p>
+</details>
+<hr/>
+<h2 id="ready-to-transform-your-network-operations">🌟 Ready to Transform Your Network Operations?<a class="headerlink" href="#ready-to-transform-your-network-operations" title="Anchor link to this section">¶</a></h2>
+<p>The PRIME Framework takes the guesswork out of network automation. Whether you're just starting your automation journey or scaling existing efforts, this proven methodology delivers results.</p>
+<p><strong>Next Steps:</strong></p>
+<ul>
+<li><strong><a href="philosophy/">Understand our principles</a></strong> — Read the PRIME Philosophy</li>
+<li><strong><a href="mailto:enquiries@nautomationprime.io">Request a free discovery call</a></strong> to discuss your needs</li>
+<li><strong><a href="../services/">Explore our services</a></strong> to see engagement options and pricing</li>
+<li><strong><a href="../tutorials/">Learn the foundations</a></strong> with free tutorials</li>
+<li><strong><a href="../deep-dives/">Study production tools</a></strong> to see the framework in action</li>
+</ul>
+<hr/>
+<blockquote>
+<p><strong>Mission:</strong> To empower network engineers through the <strong><a href="./">PRIME Framework</a></strong>—delivering automation with measurable ROI, production-grade quality, and sustainable team capability built on the <strong><a href="philosophy/">PRIME Philosophy</a></strong> of transparency, measurability, ownership, safety, and empowerment.</p>
+</blockquote>
+<aside class="md-source-file">
+<span class="md-source-file__fact">
+<span class="md-icon" title="Last update">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"></path></svg>
+</span>
+<span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="May 16, 2026 18:34:51 UTC">May 16, 2026</span>
+</span>
+</aside>
+</article>
+</div>
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+</div>
+<button class="md-top md-icon" data-md-component="top" hidden="" type="button">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"></path></svg>
+  Back to top
+</button>
+</main>
+<footer class="md-footer">
+<div class="md-footer-meta md-typeset">
+<div class="md-footer-meta__inner md-grid">
+<div class="md-copyright">
+<div class="md-copyright__highlight">
+      © 2026 Christopher Davies T/A Nautomation Prime — Not affiliated with Cisco Systems, Inc.<br/> Empowering Network Automation Professionals · Built with Material for MkDocs
+
+    </div>
+</div>
+<div class="md-social">
+<a class="md-social__link" href="https://www.linkedin.com/company/nautomationprime" rel="noopener" target="_blank" title="LinkedIn">
+<svg viewbox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3M135.4 416H69V202.2h66.5V416zM102.2 96a38.5 38.5 0 1 1 0 77 38.5 38.5 0 1 1 0-77m282.1 320h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9z"></path></svg>
+</a>
+<a class="md-social__link" href="https://github.com/Nautomation-Prime" rel="noopener" target="_blank" title="GitHub">
+<svg viewbox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"></path></svg>
+</a>
+<a class="md-social__link" href="mailto:enquiries@nautomationprime.io" rel="noopener" target="_blank" title="Contact Nautomation Prime">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="m20 8-8 5-8-5V6l8 5 8-5m0-2H4c-1.11 0-2 .89-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2"></path></svg>
+</a>
+</div>
+</div>
+</div>
+</footer>
+</div>
+<div class="md-dialog" data-md-component="dialog">
+<div class="md-dialog__inner md-typeset"></div>
+</div>
+<div class="md-consent" data-md-component="consent" hidden="" id="__consent">
+<div class="md-consent__overlay"></div>
+<aside class="md-consent__inner">
+<form class="md-consent__form md-grid md-typeset" name="consent">
+<h4>Cookie consent</h4>
+<p>We use cookies to recognize your repeated visits and preferences, as well as to measure the effectiveness of our documentation and whether users find what they're searching for. With your consent, you're helping us to make our documentation better.</p>
+<input class="md-toggle" id="__settings" type="checkbox"/>
+<div class="md-consent__settings">
+<ul class="task-list">
+<li class="task-list-item">
+<label class="task-list-control">
+<input checked="" name="github" type="checkbox"/>
+<span class="task-list-indicator"></span>
+      GitHub
+    </label>
+</li>
+</ul>
+</div>
+<div class="md-consent__controls">
+<button class="md-button md-button--primary">Accept</button>
+<label class="md-button" for="__settings">Manage settings</label>
+</div>
+</form>
+</aside>
+</div>
+<script>var consent=__md_get("__consent");if(consent)for(var input of document.forms.consent.elements)input.name&&(input.checked=consent[input.name]||!1);else"file:"!==location.protocol&&setTimeout((function(){document.querySelector("[data-md-component=consent]").hidden=!1}),250);var form=document.forms.consent;for(var action of["submit","reset"])form.addEventListener(action,(function(e){if(e.preventDefault(),"reset"===e.type)for(var n of document.forms.consent.elements)n.name&&(n.checked=!1);__md_set("__consent",Object.fromEntries(Array.from(new FormData(form).keys()).map((function(e){return[e,!0]})))),location.hash="",location.reload()}))</script>
+<script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.tracking", "navigation.indexes", "content.code.copy", "content.code.annotate", "content.tooltips", "search.share", "search.suggest", "search.highlight", "search.stemmer", "announce.dismiss"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+<script src="../assets/javascripts/bundle.d7400e89.min.js"></script>
+<script type="module">import mermaid from "https://unpkg.com/mermaid@10.4.0/dist/mermaid.esm.min.mjs";
+window.mermaidConfig = {default: {
+    startOnLoad: false
+}};</script></body>
+</html>
