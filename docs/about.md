@@ -113,7 +113,7 @@ Production-hardened Python tools for common network automation tasks, available 
 - [CDP Network Audit](./deep-dives/cdp-audit.md)
 - [Access Switch Port Audit](./deep-dives/access-switch-audit.md)
 - [Zero Touch Provisioning (ZTP)](./coming-soon/cisco-ios-xe-ztp.md) — Coming Soon
-- [IOS-XE Upgrade Orchestrator](./coming-soon/ios-xe-upgrade-orchestrator.md) — Coming Soon
+- [IOS-XE Upgrade Orchestrator](./deep-dives/ios-xe-upgrade-orchestrator.md) — Deep Dive
 
 Each tool can be purchased on request, with optional customisation — see the [Script Library](./scripts/index.md) for pricing and details.
 
