@@ -402,7 +402,7 @@ Portfolio ROI:         56% (Year 1)
 - Success rate by time of day
 - Performance vs. SLA targets
 - Failure root cause analysis
-- optimisation recommendations
+- Optimisation recommendations
 
 #### Operations Report (NetOps Team)
 
@@ -443,7 +443,7 @@ At the end of the Measure stage, you receive:
 ### 4. Continuous Improvement Plan
 
 - Identified bottlenecks
-- optimisation roadmap
+- Optimisation roadmap
 - Enhancement backlog
 
 ---
@@ -503,7 +503,7 @@ Included as Stage 4 when you engage for the complete framework. Typically ongoin
 
 ### Standalone Measurement Service
 
-For Organisations with existing automation needing ROI proof:
+For organisations with existing automation needing ROI proof:
 
 **Fixed Fee:** £2,000 - £3,500
 

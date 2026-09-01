@@ -322,7 +322,7 @@ We help establish internal momentum:
 
 #### Automation Guild (Optional)
 
-For Organisations with multiple network engineers:
+For organisations with multiple network engineers:
 
 **Structure:**
 
@@ -411,7 +411,7 @@ With empowerment:
 
 - ✅ Team autonomy (independent capability)
 - ✅ Resilience (knowledge distributed across team)
-- ✅ Evolution (automation grows with Organisation)
+- ✅ Evolution (automation grows with the organisation)
 
 ### ROI Multiplication
 
@@ -434,7 +434,7 @@ After completing all five stages:
 **Level 2: Repeatable** — PRIME Framework, documented processes  
 **Level 3: Defined** — Automation portfolio, governance established  
 **Level 4: Managed** — Metrics-driven, continuous improvement  
-**Level 5: optimising** — Innovation, AI-assisted, strategic enabler
+**Level 5: Optimising** — Innovation, AI-assisted, strategic enabler
 
 **Post-PRIME, you're at Level 2-3.**
 
@@ -452,7 +452,7 @@ After completing all five stages:
 
 - Consistent code standards (established)
 - Shared libraries (extract common functions)
-- Git repository Organisation
+- Git repository organisation
 - CI/CD for testing (advanced)
 
 ---
@@ -481,7 +481,7 @@ Included as Stage 5 when you engage for the complete framework. Typically 2-4 we
 
 ### Standalone Empowerment Service
 
-For Organisations with existing automation needing knowledge transfer:
+For organisations with existing automation needing knowledge transfer:
 
 **Fixed Fee:** £3,000 - £5,000 (depending on complexity)
 
@@ -506,7 +506,7 @@ For Organisations with existing automation needing knowledge transfer:
 
 ## 🎉 Congratulations
 
-By completing the PRIME Framework—**Pinpoint, Re-engineer, Implement, Measure, Empower**—your Organisation has:
+By completing the PRIME Framework—**Pinpoint, Re-engineer, Implement, Measure, Empower**—your organisation has:
 
 ✅ **Identified high-value automation opportunities** (Pinpoint)  
 ✅ **Designed optimised, scalable workflows** (Re-engineer)  

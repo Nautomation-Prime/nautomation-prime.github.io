@@ -301,11 +301,11 @@ Our flagship service delivers the complete journey: from identifying the right o
 - **Sustainable Capability** — Your team gains autonomy; no long-term vendor dependency
 - **Proven Methodology** — De-risked approach based on successful enterprise deployments
 
-**Deliverables Across All 5 Stages:**
+**Deliverables Across All Five Stages:**
 
 | Stage | Duration | Key Deliverables |
 | :------ | :--------- | :---------------- |
-| **[Pinpoint](./prime-framework/pinpoint.md)** | 1-2 weeks | Discovery workshop, ROI analysis, prioritized automation roadmap, executive summary |
+| **[Pinpoint](./prime-framework/pinpoint.md)** | 1-2 weeks | Discovery workshop, ROI analysis, prioritised automation roadmap, executive summary |
 | **[Re-engineer](./prime-framework/re-engineer.md)** | 1-2 weeks | Workflow optimisation, technical architecture design, safety & validation plans |
 | **[Implement](./prime-framework/implement.md)** | 2-6 weeks | Production-ready Python automation, comprehensive testing, documentation |
 | **[Measure](./prime-framework/measure.md)** | 3-6 months | Performance instrumentation, ROI tracking, executive reporting dashboard |
@@ -335,7 +335,7 @@ If you already have automation plans or internal capability, we offer individual
 
 - Discovery workshop with network operations team
 - Time-motion study of operational workflows
-- Prioritized automation roadmap with ROI calculations
+- Prioritised automation roadmap with ROI calculations
 - Executive summary and technical feasibility notes
 
 **Timeline:** 1-2 weeks  
@@ -541,7 +541,7 @@ The PRIME Framework adapts to your team's Python knowledge. Choose the track tha
 
 **Recommended Path:**
 
-1. Complete PRIME engagement (all 5 stages with operational focus)
+1. Complete PRIME engagement (all five stages with operational focus)
 2. Team members complete [Intermediate Tutorials](tutorials/intermediate/index.md) at own pace
 3. Quarterly "office hours" sessions for code questions and modification guidance
 4. After 6-12 months, team operates independently
@@ -671,7 +671,7 @@ Through the PRIME Framework, we've delivered measurable value across diverse ent
 
 - Store network provisioning and standardisation
 - PCI-DSS compliance automation for payment networks
-- Centralized configuration management across distributed locations
+- Centralised configuration management across distributed locations
 
 ---
 
@@ -811,7 +811,7 @@ These are **indicative ranges**—actual quotes provided after discovery call.
 **For You:**
 
 - **Measurable value** from Pinpoint stage—you know the ROI before committing
-- **Optimized workflows** from Re-engineer—not just faster bad processes
+- **Optimised workflows** from Re-engineer—not just faster bad processes
 - **Production-grade reliability** from Implement—no "prototype" code
 - **Proven results** from Measure—concrete metrics and executive reports
 - **Long-term capability** from Empower—team independence, not vendor lock-in
@@ -826,7 +826,7 @@ These are **indicative ranges**—actual quotes provided after discovery call.
 
 ### The PRIME Framework Process
 
-Our 5-stage methodology ensures maximum value and sustainable success:
+Our five-stage methodology ensures maximum value and sustainable success:
 
 **Stage 1: [Pinpoint](./prime-framework/pinpoint.md)** (Week 1)  
 Discovery workshop → ROI analysis → Automation roadmap
@@ -857,7 +857,7 @@ Knowledge transfer → Documentation → Team capability building
 
 **Pinpoint Stage Deliverables:**
 
-✅ Prioritized automation roadmap with quantified ROI for each opportunity  
+✅ Prioritised automation roadmap with quantified ROI for each opportunity  
 ✅ Executive summary suitable for leadership presentation  
 ✅ Technical feasibility assessment  
 ✅ Risk analysis and mitigation strategies
@@ -962,7 +962,7 @@ We'll explore:
 **Detailed Proposal Includes:**
 
 - Project scope aligned to PRIME Framework methodology
-- Timeline with milestones for all 5 stages
+- Timeline with milestones for all five stages
 - Fixed-fee quote with deliverables breakdown
 - Risk assessment and mitigation strategies
 - Team requirements and engagement model
@@ -971,7 +971,7 @@ We'll explore:
 
 - Discovery workshop with your network operations team (delivered remotely or on-site)
 - Time-motion analysis of current workflows
-- Prioritized automation roadmap with ROI calculations for each opportunity
+- Prioritised automation roadmap with ROI calculations for each opportunity
 - Technical feasibility assessment
 - Executive summary for leadership approval
 

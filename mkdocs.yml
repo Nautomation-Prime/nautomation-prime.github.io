@@ -205,9 +205,9 @@ nav:
         - Automation-as-a-Service: smb/packages/automation-as-a-service.md
   - PRIME Framework:
       - prime-framework/index.md
-      - Prime Philosophy: prime-framework/philosophy.md
+      - PRIME Philosophy: prime-framework/philosophy.md
       - Pinpoint: prime-framework/pinpoint.md
-      - Re-Engineer: prime-framework/re-engineer.md
+      - Re-engineer: prime-framework/re-engineer.md
       - Implement: prime-framework/implement.md
       - Measure: prime-framework/measure.md
       - Empower: prime-framework/empower.md

@@ -131,7 +131,7 @@ Understand the philosophy and methodology behind Nautomation Prime.
 - **[PRIME Framework Overview](prime-framework/index.md)** — 5-phase enterprise automation approach
 - **[PRIME Philosophy](prime-framework/philosophy.md)** — Core principles: transparency, measurability, ownership, safety, empowerment
 - **[Pinpoint](prime-framework/pinpoint.md)** — Identify automation opportunities
-- **[Re-Engineer](prime-framework/re-engineer.md)** — Continuous improvement cycles
+- **[Re-engineer](prime-framework/re-engineer.md)** — Continuous improvement cycles
 - **[Implement](prime-framework/implement.md)** — Deploy production solutions
 - **[Measure](prime-framework/measure.md)** — Track results and ROI
 - **[Empower](prime-framework/empower.md)** — Build your team's capabilities
@@ -154,7 +154,7 @@ Understand the philosophy and methodology behind Nautomation Prime.
 
 **Understand our philosophy** → [PRIME Philosophy](prime-framework/philosophy.md)
 
-**Understand the PRIME approach** → [PRIME Framework](prime-framework/index.md)
+**Understand our delivery model** → [PRIME Framework](prime-framework/index.md)
 
 **Start from scratch** → [Start Here](getting-started.md)
 
@@ -223,7 +223,7 @@ Understand the strategic framework behind automation decisions.
 
 1. [PRIME Philosophy](prime-framework/philosophy.md) — Core principles and values that drive decisions
 2. [PRIME Framework Overview](prime-framework/index.md) — The 5-phase model
-3. Review each phase: [Pinpoint](prime-framework/pinpoint.md) → [Re-Engineer](prime-framework/re-engineer.md) → [Implement](prime-framework/implement.md) → [Measure](prime-framework/measure.md) → [Empower](prime-framework/empower.md)
+3. Review each phase: [Pinpoint](prime-framework/pinpoint.md) → [Re-engineer](prime-framework/re-engineer.md) → [Implement](prime-framework/implement.md) → [Measure](prime-framework/measure.md) → [Empower](prime-framework/empower.md)
 
 **Next:** Apply PRIME thinking to your automation initiatives
 

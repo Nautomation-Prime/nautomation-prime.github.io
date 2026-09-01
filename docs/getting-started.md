@@ -19,7 +19,7 @@ Welcome! This guide will help you understand what Nautomation Prime offers and h
 - **[Tutorials](tutorials/index.md)** — Step-by-step practical guides for learning automation skills
 - **[Deep Dives](deep-dives/index.md)** — Production-ready scripts explained line-by-line
 - **[Script Library](scripts/index.md)** — Premium automation tools for common tasks
-- **[PRIME Framework Services](prime-framework/index.md)** — Proven 5-stage methodology for automation projects
+- **[PRIME Framework Services](prime-framework/index.md)** — Proven five-stage methodology for automation projects
 - **[Professional Services](services.md)** — Custom automation tailored to your topology
 
 !!! warning "Important"
@@ -57,7 +57,7 @@ Check out our **[Script Library](scripts/index.md)**. Each tool comes with full 
 
 ### I need custom automation for my environment (Services)
 
-We deliver automation projects through the **[PRIME Framework](prime-framework/index.md)**—a proven 5-stage methodology:
+We deliver automation projects through the **[PRIME Framework](prime-framework/index.md)**—a proven five-stage methodology:
 
 **[Pinpoint](prime-framework/pinpoint.md)** → **[Re-engineer](prime-framework/re-engineer.md)** → **[Implement](prime-framework/implement.md)** → **[Measure](prime-framework/measure.md)** → **[Empower](prime-framework/empower.md)**
 
@@ -184,7 +184,7 @@ For custom automation tailored to your specific topology:
 
 ??? question "What's included in the PRIME Framework?"
 
-    The [PRIME Framework](prime-framework/index.md) is our proven 5-stage methodology: **Pinpoint** (identify opportunities), **Re-engineer** (design solutions), **Implement** (build automation), **Measure** (prove ROI), and **Empower** (transfer knowledge). Each stage delivers specific outcomes with measurable value. You can engage for the full framework or individual stages à la carte.
+    The [PRIME Framework](prime-framework/index.md) is our proven five-stage methodology: **Pinpoint** (identify opportunities), **Re-engineer** (design solutions), **Implement** (build automation), **Measure** (prove ROI), and **Empower** (transfer knowledge). Each stage delivers specific outcomes with measurable value. You can engage for the full framework or individual stages à la carte.
 
 ---
 

@@ -8,7 +8,7 @@ The following are **proprietary to Christopher Davies, Trading as Nautomation Pr
 
 ### Protected Intellectual Property
 
-- **The PRIME Framework** (Pinpoint → Re-Engineer → Implement → Measure → Empower)
+- **The PRIME Framework** (Pinpoint → Re-engineer → Implement → Measure → Empower)
 - **The PRIME Philosophy** (five core principles: transparency, measurability, ownership, safety, empowerment)
 - **Nautomation Prime branding** (logos, visual design, brand assets)
 - **Consulting methodologies** and proprietary business processes

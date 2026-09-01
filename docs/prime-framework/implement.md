@@ -1,11 +1,11 @@
 ---
 title: Implement
-description: Stage 3 of the PRIME Framework - Building production-ready, maintainable automation guided by Prime Philosophy principles.
+description: Stage 3 of the PRIME Framework - Building production-ready, maintainable automation guided by PRIME Philosophy principles.
 tags:
   - PRIME Framework
   - Implement
   - Development
-  - Prime Philosophy
+  - PRIME Philosophy
 ---
 
 ## Implement Solutions
@@ -31,7 +31,7 @@ tags:
         style D fill:#80E9A8
     ```
 
-**Prime Terminology Used:** Prime Agents development, Prime Philosophy principles, Prime Efficiency Stack
+**Prime Terminology Used:** Prime Agents development, PRIME Philosophy principles, Prime Efficiency Stack
 
 ---
 
@@ -502,7 +502,7 @@ At the end of the Implement stage, you receive:
 
 ---
 
-## 💡 Why Implement with Prime Philosophy Matters
+## 💡 Why Implement with PRIME Philosophy Matters
 
 ### Long-Term Maintainability
 
@@ -532,7 +532,7 @@ After implementation, proceed to [Stage 4: Measure](./measure.md) to track perfo
 
 Before deploying to production:
 
-- [ ] Code follows Prime Philosophy principles
+- [ ] Code follows PRIME Philosophy principles
 - [ ] All error conditions handled gracefully
 - [ ] Logging provides visibility into execution
 - [ ] Pre-flight and post-flight validation implemented
@@ -553,7 +553,7 @@ Included as Stage 3 when you engage for the complete framework. Typically 2-6 we
 
 ### Standalone Implementation Service
 
-For Organisations with designs but need development help:
+For organisations with designs but need development help:
 
 **Pricing:** £120-£150/hour or fixed-fee based on Re-engineer specs
 

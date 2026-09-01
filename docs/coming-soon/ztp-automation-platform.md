@@ -75,7 +75,7 @@ Approval workflows, evidence collection, and rollback planning so changes are me
 ## PRIME Framework Alignment
 
 - **[Pinpoint](../prime-framework/pinpoint.md)** — Define ZTP scope, device profiles, and rollout boundaries
-- **[Re-Engineer](../prime-framework/re-engineer.md)** — Improve templates, validation logic, and onboarding flow based on feedback
+- **[Re-engineer](../prime-framework/re-engineer.md)** — Improve templates, validation logic, and onboarding flow based on feedback
 - **[Implement](../prime-framework/implement.md)** — Execute Day 0 provisioning and Day N configuration delivery
 - **[Measure](../prime-framework/measure.md)** — Track success rates, validation outcomes, and time-to-provision metrics
 - **[Empower](../prime-framework/empower.md)** — Provide reusable templates, documentation, and training for teams

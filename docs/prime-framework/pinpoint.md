@@ -309,7 +309,7 @@ Included as Stage 1 when you engage for the complete framework. Typically 1 week
 **Includes:**
 
 - Discovery workshop
-- prioritised automation roadmap
+- Prioritised automation roadmap
 - ROI analysis
 - Executive summary
 - Technical feasibility notes

@@ -4633,9 +4633,9 @@ python main.py \\
 
 ---
 
-## PRIME in Action: Safety, Measurability, and Empowerment
+## The PRIME Framework in Action: Safety, Measurability, and Empowerment
 
-### How This Tutorial Embodies PRIME Principles
+### How This Tutorial Embodies the PRIME Framework
 
 **Pinpoint (Analysis & Understanding)**
     - Dynamic inventory from NetBox ensures accurate, current device data

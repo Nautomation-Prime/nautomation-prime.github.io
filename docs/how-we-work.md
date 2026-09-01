@@ -57,7 +57,7 @@ This page shows how Nautomation Prime takes a network automation engagement from
 
 ---
 
-## The 5 Stages at a Glance
+## The Five Stages at a Glance
 
 | Stage 1 | Stage 2 | Stage 3 | Stage 4 | Stage 5 |
 | :--- | :--- | :--- | :--- | :--- |
@@ -89,7 +89,7 @@ We sit with your network operations team and document:
 
 #### 2. Time-Motion Analysis (1–2 weeks background work)
 
-We analyze operational logs, ticket systems, and team feedback to build accurate time estimates.
+We analyse operational logs, ticket systems, and team feedback to build accurate time estimates.
 
 #### 3. ROI Calculation
 
@@ -102,7 +102,7 @@ We calculate the payback period for each automation opportunity:
 
 #### 4. Automated Roadmap Delivery (Week 1 conclusion)
 
-You receive a **prioritized automation roadmap** with:
+You receive a **prioritised automation roadmap** with:
 
 - Top 3–5 automation opportunities ranked by ROI
 - Timeline and effort estimates for each
@@ -115,7 +115,7 @@ You walk away with a clear roadmap of what to automate and why—**even if you d
 
 **Investment:** £2,500–£4,000
 
-**Deliverable:** Prioritized roadmap with ROI projections
+**Deliverable:** Prioritised roadmap with ROI projections
 
 **[Learn more about Pinpoint →](./prime-framework/pinpoint.md)**
 
@@ -143,7 +143,7 @@ We map the current workflow in detail:
 
 #### 2. Future State Design
 
-We design the optimized workflow:
+We design the optimised workflow:
 
 - Eliminate unnecessary steps
 - Add safety checkpoints (pre-flight, post-flight validation)
@@ -197,7 +197,7 @@ Now we build the automation—with transparency, safety, and maintainability as 
 
 #### 1. Development with Transparency
 
-We code according to the **Prime Philosophy**:
+We code according to the **PRIME Philosophy**:
 
 - **Line-by-line documentation** — Why we chose each library, why this approach, what this function does
 - **Verbose logging** — When the code runs, it tells you exactly what it's doing
@@ -434,7 +434,7 @@ Your team walks away with:
 
 ### Full PRIME Framework
 
-**All 5 stages from Pinpoint through Empower.**
+**All five stages from Pinpoint through Empower.**
 
 **Best for:** Organisations serious about sustainable automation capability
 
@@ -445,7 +445,7 @@ Your team walks away with:
 **What you get:**
 
 - Proven ROI before committing to development
-- Optimized workflows (not just faster bad processes)
+- Optimised workflows (not just faster bad processes)
 - Production-ready code with zero mystery
 - Concrete ROI metrics
 - Full team capability to extend independently

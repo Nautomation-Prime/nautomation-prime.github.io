@@ -773,10 +773,10 @@ async def benchmark_pool():
 
 ---
 
-## PRIME in Action: Safety, Observability, and Empowerment
+## The PRIME Philosophy in Action: Safety, Observability, and Empowerment
 
 - ✅ **Safety:** Circuit breakers, retries, timeouts prevent automation failures
-- ✅ **Measuring:** Prometheus metrics track performance, errors, and throughput
+- ✅ **Measurability:** Prometheus metrics track performance, errors, and throughput
 - ✅ **Observability:** Structured logging enables rapid incident response
 - ✅ **Ownership:** Clear abstractions allow teams to extend and maintain async patterns
 

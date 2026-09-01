@@ -95,7 +95,7 @@ Follow this page in order for a practical, end-to-end understanding:
 
 ## 🔍 Transparency Contract
 
-To align with Nautomation Prime principles, this deep dive explicitly covers:
+To align with the PRIME Philosophy, this deep dive explicitly covers:
 
 - System boundaries and data flow
 - Inputs, outputs, and transformation logic
@@ -279,7 +279,7 @@ Why this design matters:
 - customer-specific behaviour stays in YAML and templates under `packs/`
 - the Python core remains stable while packs vary per customer or per standard
 
-This is the PRIME philosophy in code form: policy and site variation belong in governed data, not in customer-specific Python forks.
+This is the PRIME Philosophy in code form: policy and site variation belong in governed data, not in customer-specific Python forks.
 
 ### 7. Failure Model and Safe Extension Path
 
@@ -719,4 +719,4 @@ After completing this tutorial, an engineer should be able to:
 
 ---
 
-> **Mission Fit:** This deep dive supports the PRIME framework by showing how to turn operational intent into repeatable, governable outputs without sacrificing transparency or maintainability.
+> **Mission Fit:** This deep dive supports the PRIME Framework by showing how to turn operational intent into repeatable, governable outputs without sacrificing transparency or maintainability.

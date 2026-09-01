@@ -190,7 +190,7 @@ The [PRIME Framework](./index.md) is our philosophy in action:
 | **Framework Stage** | **Philosophy in Practice** |
 | --------------------- | ---------------------------- |
 | **[Pinpoint](./pinpoint.md)** | **Measurability** — Data-driven ROI analysis, not gut-feel prioritisation |
-| **[Re-Engineer](./re-engineer.md)** | **Safety** — Fix workflows before automating; design rollback from the start |
+| **[Re-engineer](./re-engineer.md)** | **Safety** — Fix workflows before automating; design rollback from the start |
 | **[Implement](./implement.md)** | **Transparency** — Line-by-line documentation, human-readable logs |
 | **[Measure](./measure.md)** | **Measurability** — Track actual results vs. projections, prove ROI |
 | **[Empower](./empower.md)** | **Ownership & Empowerment** — Knowledge transfer, training, team capability-building |

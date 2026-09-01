@@ -84,7 +84,7 @@ This guide explicitly covers:
 
 ---
 
-## 🎯 The Nautomation Prime Philosophy in Action
+## 🎯 The PRIME Philosophy in Action
 
 Before diving into the code, understand how every design decision reflects our three core principles:
 

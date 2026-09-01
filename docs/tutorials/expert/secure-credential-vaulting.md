@@ -742,10 +742,10 @@ async def test_secret_rotation():
 
 ---
 
-## PRIME in Action: Safety, Compliance, and Ownership
+## The PRIME Philosophy in Action: Safety, Compliance, and Ownership
 
 - ✅ **Safety:** Secrets never hardcoded, automatic rotation, audit trails
-- ✅ **Measuring:** Comprehensive audit logging for compliance audits
+- ✅ **Measurability:** Comprehensive audit logging for compliance audits
 - ✅ **Ownership:** Teams control credential policies per environment
 - ✅ **Empowerment:** Clear APIs for credential retrieval across tools
 

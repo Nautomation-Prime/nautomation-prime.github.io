@@ -1284,7 +1284,7 @@ Why this matters:
 - the guided mode becomes training material, not a separate opaque workflow
 - the preview makes execution intent reviewable before the run starts
 
-That is very aligned with PRIME philosophy: convenience should increase transparency, not replace it.
+That is very aligned with PRIME Philosophy: convenience should increase transparency, not replace it.
 
 ### 4. Remediation Workflow Is Governed State, Not Just Generated Text
 

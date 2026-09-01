@@ -70,10 +70,10 @@ Not because the code broke, but because:
 
 We realized: **Delivering scripts isn't enough. Sustainable automation requires a structured methodology.**
 
-That's why we created the **PRIME Framework**—a 5-stage approach that ensures every automation project delivers:
+That's why we created the **PRIME Framework**—a five-stage approach that ensures every automation project delivers:
 
 ✅ **Measurable value** (Pinpoint opportunities based on data, not guesswork)  
-✅ **Optimized workflows** (Re-engineer processes before automating)  
+✅ **Optimised workflows** (Re-engineer processes before automating)  
 ✅ **Production-grade quality** (Implement with safety, testing, documentation)  
 ✅ **Proven ROI** (Measure performance with concrete metrics)  
 ✅ **Team capability** (Empower internal staff to maintain and extend)
@@ -94,7 +94,7 @@ The framework is built on the **[PRIME Philosophy](./prime-framework/philosophy.
 
 ## What We Do
 
-We provide education, premium automation tools, and professional services—all guided by the **[PRIME Framework](./prime-framework/index.md)** and **Prime Philosophy**.
+We provide education, premium automation tools, and professional services—all guided by the **[PRIME Framework](./prime-framework/index.md)** and **PRIME Philosophy**.
 
 ### 🎓 Education & Tutorials
 
@@ -119,7 +119,7 @@ Each tool can be purchased on request, with optional customisation — see the [
 
 ### 💼 Professional Services via PRIME Framework
 
-Structured automation delivery through a proven 5-stage methodology:
+Structured automation delivery through a proven five-stage methodology:
 
 **[Pinpoint](./prime-framework/pinpoint.md)** → **[Re-engineer](./prime-framework/re-engineer.md)** → **[Implement](./prime-framework/implement.md)** → **[Measure](./prime-framework/measure.md)** → **[Empower](./prime-framework/empower.md)**
 

@@ -104,7 +104,7 @@ graph LR
 - Risk assessment of error-prone processes
 - ROI estimation for potential automations
 
-**Deliverable:** prioritised automation roadmap with estimated savings
+**Deliverable:** Prioritised automation roadmap with estimated savings
 
 ---
 
@@ -123,7 +123,7 @@ graph LR
 
 ---
 
-### [**I** — Implement](./implement.md) Targeted Automations
+### [**I** — Implement](./implement.md) Solutions
 
 **Objective:** Build production-ready automation following the [PRIME Philosophy](./philosophy.md)
 
@@ -138,7 +138,7 @@ graph LR
 
 ---
 
-### [**M** — Measure](./measure.md) Results and Refine
+### [**M** — Measure](./measure.md) Performance
 
 **Objective:** Prove value and continuously improve
 
@@ -153,7 +153,7 @@ graph LR
 
 ---
 
-### [**E** — Empower](./empower.md) Teams with Ongoing Support
+### [**E** — Empower](./empower.md) Your Team
 
 **Objective:** Ensure long-term success and self-sufficiency
 
@@ -174,7 +174,7 @@ graph LR
 
 The "Pinpoint" stage ensures we're solving real problems, not automating for automation's sake. Every project begins with a business case.
 
-### 2. **Emphasizes Design Over Quick Fixes**
+### 2. **Emphasises Design Over Quick Fixes**
 
 The "Re-engineer" stage prevents the common mistake of automating broken workflows. We optimise first, then automate.
 
@@ -290,10 +290,10 @@ The usual entry point is a short discovery conversation to understand your envir
 Explore each stage in detail:
 
 1. **[Pinpoint Inefficiencies](./pinpoint.md)** — How we identify the right automation targets
-2. **[Re-engineer Workflows](./re-engineer.md)** — optimising processes before coding
-3. **[Implement Automations](./implement.md)** — Building production-ready solutions
-4. **[Measure & Refine](./measure.md)** — Proving value and continuous improvement
-5. **[Empower Teams](./empower.md)** — Knowledge transfer and long-term success
+2. **[Re-engineer Workflows](./re-engineer.md)** — Optimising processes before coding
+3. **[Implement Solutions](./implement.md)** — Building production-ready solutions
+4. **[Measure Performance](./measure.md)** — Proving value and continuous improvement
+5. **[Empower Your Team](./empower.md)** — Knowledge transfer and long-term success
 
 ---
 
@@ -305,7 +305,7 @@ How does the PRIME Framework compare to typical automation approaches?
 | :--- | :--- | :--- |
 | **Discovery** | "What do you want automated?" | **Pinpoint:** Data-driven ROI analysis, prioritisation matrix |
 | **Planning** | Jump straight to coding | **Re-engineer:** Workflow optimisation, architecture design, safety planning |
-| **Development** | Quick scripts, minimal testing | **Implement:** Production-hardened with Prime Philosophy principles |
+| **Development** | Quick scripts, minimal testing | **Implement:** Production-hardened with PRIME Philosophy principles |
 | **Validation** | "It works on my laptop" | **Measure:** Metrics collection, ROI proof, continuous improvement |
 | **Sustainability** | Vendor lock-in, no documentation | **Empower:** Knowledge transfer, team capability building |
 | **Typical Outcome** | Script that works once, breaks later | **Prime Automation™** — sustainable, measurable, team-owned |
@@ -321,7 +321,7 @@ Throughout our framework and services, you'll encounter these unique terms:
 
 | Term | Definition |
 | :--- | :--- |
-| **Prime Automation™** | Automation built following the PRIME Framework—characterized by measurable ROI, production safety, and team empowerment |
+| **Prime Automation™** | Automation built following the PRIME Framework—characterised by measurable ROI, production safety, and team empowerment |
 | **Prime Workflows** | Re-engineered operational processes optimised for automation (not just automated existing workflows) |
 | **Prime Agents** | Python scripts developed with autonomous decision-making capability (pre-flight checks, validation, rollback) |
 | **Prime Efficiency Stack** | The technology foundation (Netmiko, Nornir, TextFSM, Jinja2) used across all implementations |
@@ -343,7 +343,7 @@ These aren't just buzzwords—they represent specific approaches that differenti
 - **Pinpoint:** Identified 200+ VLAN changes/year = 50 hours wasted
 - **Re-engineer:** Designed **Prime Workflows** with templated provisioning + approval gates
 - **Implement:** **Prime Agent** using Jinja2 templates with pre/post-flight validation
-- **Measure:** **Prime Overwatch** tracked 2 mins/change average, error-free operations over 6 months
+- **Measure:** **Prime Overwatch™** tracked 2 mins/change average, error-free operations over 6 months
 - **Empower:** Team achieved **Prime Capability**—now extends scripts for SVI creation
 
 **ROI:** £12,500/year savings, 6-month payback
@@ -359,7 +359,7 @@ These aren't just buzzwords—they represent specific approaches that differenti
 - **Pinpoint:** Compliance checking identified as most time-intensive task
 - **Re-engineer:** Defined "golden config" standards in YAML, created **Prime Workflows**
 - **Implement:** **Prime Agent** built on **Prime Efficiency Stack** (Netmiko + TextFSM + pandas)
-- **Measure:** **Prime Overwatch** showed 97% reduction in audit time (40h → 1h)
+- **Measure:** **Prime Overwatch™** showed 97% reduction in audit time (40h → 1h)
 - **Empower:** Security team gained **Prime Capability** to maintain golden configs
 
 **ROI:** £8,000/year savings, increased compliance confidence, 3x coverage
@@ -375,9 +375,9 @@ These aren't just buzzwords—they represent specific approaches that differenti
 graph TD
     A[Your Network Operations] -->|Inefficient Manual Work| B{PRIME Framework}
     B -->|Stage 1| C[Pinpoint: Discover ROI Opportunities]
-    B -->|Stage 2| D[Re-engineer: optimise Workflows]
+    B -->|Stage 2| D[Re-engineer: Optimise Workflows]
     B -->|Stage 3| E[Implement: Build Prime Agents]
-    B -->|Stage 4| F[Measure: Prime Overwatch]
+    B -->|Stage 4| F[Measure: Prime Overwatch™]
     B -->|Stage 5| G[Empower: Prime Capability]
     
     C --> H[Prime Automation™]
@@ -410,7 +410,7 @@ graph TD
 - **Pinpoint:** 200 devices × 1 hour = 200 hours effort, travel costs £15k, compliance deadline
 - **Re-engineer:** Designed **Prime Workflows** with staged rollouts (10% → 25% → 50% → 100%)
 - **Implement:** **Prime Agent** with autonomous pre-flight checks (CPU, memory, disk space, MD5 verification)
-- **Measure:** **Prime Overwatch** tracked success rate (192/200 successful, 8 skipped due to hardware constraints)
+- **Measure:** **Prime Overwatch™** tracked success rate (192/200 successful, 8 skipped due to hardware constraints)
 - **Empower:** Network team achieved **Prime Capability**—now handles firmware updates independently
 
 **ROI:** £22,000 saved (160 hours + travel elimination), 96% success rate, no network downtime incidents
