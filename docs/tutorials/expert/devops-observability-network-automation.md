@@ -168,7 +168,6 @@ groups:
 - ✅ **Safety:** Multi-stage gates prevent production incidents
 - ✅ **Measurability:** Metrics track automation performance  
 - ✅ **Empowerment:** Teams manage deployments via GitOps
-- ✅ **Re-engineer:** Data drives continuous improvement
 
 ---
 
