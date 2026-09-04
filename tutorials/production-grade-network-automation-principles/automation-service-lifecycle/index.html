@@ -6,19 +6,19 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Design idempotent workflows for brownfield enterprise networks where partial convergence, legacy variance, and side effects are real constraints.">
+        <meta name="description" content="Treating automation as a supported service with named owners, lifecycle gates, and a retirement path — not as a script that exists until it breaks.">
       
       
         <meta name="author" content="Christopher Davies">
       
       
-        <link rel="canonical" href="https://www.nautomationprime.io/tutorials/production-grade-network-automation-principles/real-world-idempotency-in-network-automation/">
+        <link rel="canonical" href="https://www.nautomationprime.io/tutorials/production-grade-network-automation-principles/automation-service-lifecycle/">
       
       
-        <link rel="prev" href="../detecting-and-handling-configuration-drift-safely/">
+        <link rel="prev" href="../exception-and-waiver-process/">
       
       
-        <link rel="next" href="../scoping-automation-to-reduce-blast-radius/">
+        <link rel="next" href="../implementation-roadmap-30-60-90-days/">
       
       
         
@@ -29,7 +29,7 @@
     
     
       
-        <title>Real-World Idempotency in Network Automation - Nautomation Prime</title>
+        <title>Automation Service Lifecycle - Nautomation Prime</title>
       
     
     
@@ -80,7 +80,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#beyond-the-textbook-definition" class="md-skip">
+        <a href="#automation-service-lifecycle" class="md-skip">
           Skip to content
         </a>
       
@@ -116,7 +116,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Real-World Idempotency in Network Automation
+              Automation Service Lifecycle
             
           </span>
         </div>
@@ -1884,35 +1884,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Real-World Idempotency in Network Automation
-  
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../real-world-idempotency-in-network-automation/" class="md-nav__link">
         
   
   
@@ -1928,123 +1903,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#beyond-the-textbook-definition" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Beyond the Textbook Definition
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#practical-idempotency-levels" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Practical Idempotency Levels
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#declarative-vs-procedural-tradeoff" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Declarative vs Procedural Tradeoff
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#convergence-pattern" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Convergence Pattern
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#production-checklist" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Production Checklist
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#anti-patterns" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Anti-Patterns
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#key-takeaway" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Key Takeaway
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#idempotency-in-networks-is-an-operational-contract-same-intent-predictable-outcome-controlled-side-effects" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Idempotency in networks is an operational contract: same intent, predictable outcome, controlled side effects.
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#continue-the-series" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Continue the Series
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -2418,10 +2276,35 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../automation-service-lifecycle/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Automation Service Lifecycle
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -2437,6 +2320,134 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#automation-service-lifecycle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Automation Service Lifecycle
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#where-this-sits-alongside-delivery" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Where This Sits Alongside Delivery
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#three-owners-not-one" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Three Owners, Not One
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lifecycle-gates" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lifecycle Gates
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#assessment-criteria-at-g2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Assessment Criteria at G2
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-minimum-service-record" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Minimum Service Record
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#retirement" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Retirement
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#portfolio-review" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Portfolio Review
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#adopting-this-without-a-programme" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Adopting This Without a Programme
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#continue-the-series" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Continue the Series
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -4198,10 +4209,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#beyond-the-textbook-definition" class="md-nav__link">
+  <a href="#automation-service-lifecycle" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Beyond the Textbook Definition
+        Automation Service Lifecycle
       
     </span>
   </a>
@@ -4209,10 +4220,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#practical-idempotency-levels" class="md-nav__link">
+  <a href="#where-this-sits-alongside-delivery" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Practical Idempotency Levels
+        Where This Sits Alongside Delivery
       
     </span>
   </a>
@@ -4220,10 +4231,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#declarative-vs-procedural-tradeoff" class="md-nav__link">
+  <a href="#three-owners-not-one" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Declarative vs Procedural Tradeoff
+        Three Owners, Not One
       
     </span>
   </a>
@@ -4231,10 +4242,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#convergence-pattern" class="md-nav__link">
+  <a href="#lifecycle-gates" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Convergence Pattern
+        Lifecycle Gates
       
     </span>
   </a>
@@ -4242,10 +4253,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#production-checklist" class="md-nav__link">
+  <a href="#assessment-criteria-at-g2" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Production Checklist
+        Assessment Criteria at G2
       
     </span>
   </a>
@@ -4253,10 +4264,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#anti-patterns" class="md-nav__link">
+  <a href="#the-minimum-service-record" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Anti-Patterns
+        The Minimum Service Record
       
     </span>
   </a>
@@ -4264,10 +4275,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#key-takeaway" class="md-nav__link">
+  <a href="#retirement" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Key Takeaway
+        Retirement
       
     </span>
   </a>
@@ -4275,10 +4286,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#idempotency-in-networks-is-an-operational-contract-same-intent-predictable-outcome-controlled-side-effects" class="md-nav__link">
+  <a href="#portfolio-review" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Idempotency in networks is an operational contract: same intent, predictable outcome, controlled side effects.
+        Portfolio Review
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#adopting-this-without-a-programme" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Adopting This Without a Programme
       
     </span>
   </a>
@@ -4317,21 +4339,28 @@
       
       
       
-        <span class="md-tag">Brownfield</span>
+        <span class="md-tag">Enterprise</span>
       
     
       
       
       
       
-        <span class="md-tag">Idempotency</span>
+        <span class="md-tag">Governance</span>
       
     
       
       
       
       
-        <span class="md-tag">Network Automation</span>
+        <span class="md-tag">Lifecycle</span>
+      
+    
+      
+      
+      
+      
+        <span class="md-tag">Ownership</span>
       
     
       
@@ -4341,13 +4370,6 @@
         <span class="md-tag">Production Principles</span>
       
     
-      
-      
-      
-      
-        <span class="md-tag">State Management</span>
-      
-    
   </nav>
 
 
@@ -4355,77 +4377,229 @@
   
 
 
-  <h1>Real-World Idempotency in Network Automation</h1>
+  <h1>Automation Service Lifecycle</h1>
 
-<h2 id="beyond-the-textbook-definition">Beyond the Textbook Definition<a class="headerlink" href="#beyond-the-textbook-definition" title="Anchor link to this section">&para;</a></h2>
-<p>Idempotency is often simplified to "run it twice, get the same result." In enterprise networks, reality is messier.</p>
-<p>Complications include:</p>
-<ul>
-<li>Partial command support across platforms</li>
-<li>Existing hand-crafted configurations</li>
-<li>Stateful protocols converging over time</li>
-<li>Non-deterministic operational outputs</li>
-</ul>
-<p>Production idempotency means predictable convergence with bounded risk, not perfect structural symmetry.</p>
+<h2 id="automation-service-lifecycle">Automation Service Lifecycle<a class="headerlink" href="#automation-service-lifecycle" title="Anchor link to this section">&para;</a></h2>
+<p>Most automation governance stops at go-live. There is a design review, a test cycle, an approval, a deployment — and then nothing, for years, until something breaks or the person who wrote it leaves.</p>
+<p>The result is familiar: a portfolio nobody can inventory, scripts running on schedules nobody remembers setting, and credentials belonging to services whose purpose is no longer clear. Every organisation with more than about two years of automation has some of this. It is not a discipline failure so much as a framing failure — the work was treated as a project, and projects end.</p>
+<p>Automation is a <strong>service</strong>. Services have owners, reviews, and an end.</p>
 <hr />
-<h2 id="practical-idempotency-levels">Practical Idempotency Levels<a class="headerlink" href="#practical-idempotency-levels" title="Anchor link to this section">&para;</a></h2>
-<p>Use levels to set realistic expectations:</p>
-<ul>
-<li>Level 0: Blind push (not idempotent)</li>
-<li>Level 1: Diff-aware write only</li>
-<li>Level 2: Diff-aware plus post-check validation</li>
-<li>Level 3: Convergent workflow with retry, guardrails, and rollback decisions</li>
-</ul>
-<p>Most production systems should target Level 2 or 3.</p>
+<h2 id="where-this-sits-alongside-delivery">Where This Sits Alongside Delivery<a class="headerlink" href="#where-this-sits-alongside-delivery" title="Anchor link to this section">&para;</a></h2>
+<p>The <a href="../../../prime-framework/">PRIME Framework</a> describes how automation gets delivered: opportunities identified, workflows redesigned, code built, value measured, the team empowered to own it.</p>
+<p>This page describes what happens to it afterwards, and it is deliberately a separate concern. Delivery ends. Operation does not.</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>PRIME Framework</th>
+<th>Service lifecycle</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Question answered</strong></td>
+<td>How does this get built well?</td>
+<td>How does this stay worth running?</td>
+</tr>
+<tr>
+<td><strong>Ends when</strong></td>
+<td>The team owns the automation</td>
+<td>The service is retired</td>
+</tr>
+<tr>
+<td><strong>Failure mode if skipped</strong></td>
+<td>Brittle scripts, no measured value, consultant dependency</td>
+<td>Portfolio sprawl, orphaned services, unreviewed risk</td>
+</tr>
+</tbody>
+</table>
 <hr />
-<h2 id="declarative-vs-procedural-tradeoff">Declarative vs Procedural Tradeoff<a class="headerlink" href="#declarative-vs-procedural-tradeoff" title="Anchor link to this section">&para;</a></h2>
-<p>Declarative strengths:</p>
-<ul>
-<li>Clear desired end state</li>
-<li>Easier policy review</li>
-</ul>
-<p>Procedural strengths:</p>
-<ul>
-<li>Better control for stepwise safety</li>
-<li>Easier handling of platform quirks</li>
-</ul>
-<p>Real-world pattern: declarative intent with procedural execution gates.</p>
+<h2 id="three-owners-not-one">Three Owners, Not One<a class="headerlink" href="#three-owners-not-one" title="Anchor link to this section">&para;</a></h2>
+<p>The single highest-value idea here, and the cheapest to adopt: <strong>"the automation team owns it" is not an ownership model.</strong> It names a group, which means it names nobody in particular at the moment something goes wrong.</p>
+<p>Three distinct accountabilities, which may or may not be three different people:</p>
+<table>
+<thead>
+<tr>
+<th>Role</th>
+<th>Accountable for</th>
+<th>The question they answer</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Service owner</strong></td>
+<td>Value, scope, prioritisation, risk acceptance, lifecycle decisions</td>
+<td><em>Should this still exist?</em></td>
+</tr>
+<tr>
+<td><strong>Technical owner</strong></td>
+<td>Architecture, implementation quality, dependencies, technical direction</td>
+<td><em>Is this still well built?</em></td>
+</tr>
+<tr>
+<td><strong>Operational owner</strong></td>
+<td>Support, monitoring, incidents, runbooks, service reviews</td>
+<td><em>Is this healthy right now?</em></td>
+</tr>
+</tbody>
+</table>
+<p>In a small team one engineer may hold all three, and that is fine — provided it is recorded, because the day they leave you need to know there are three things to reassign rather than one.</p>
+<p>Recording them is also what makes <a href="../../../prime-framework/philosophy/">"no hero automation"</a> enforceable rather than aspirational. A named technical owner who is not the original author is the strongest evidence you have that knowledge actually transferred.</p>
 <hr />
-<h2 id="convergence-pattern">Convergence Pattern<a class="headerlink" href="#convergence-pattern" title="Anchor link to this section">&para;</a></h2>
+<h2 id="lifecycle-gates">Lifecycle Gates<a class="headerlink" href="#lifecycle-gates" title="Anchor link to this section">&para;</a></h2>
+<p>Eight decision points. The depth of evidence at each should scale with the <a href="../enterprise-control-matrix/#automation-risk-classification">risk class</a> — an R0 report does not need what an R3 change service needs, and pretending otherwise is how governance gets a reputation for obstruction.</p>
+<table>
+<thead>
+<tr>
+<th>Gate</th>
+<th>Question</th>
+<th>Evidence</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>G1 — Intake</strong></td>
+<td>Is the problem real, and is there an owner?</td>
+<td>Problem statement, affected users, current manual effort, named sponsor</td>
+</tr>
+<tr>
+<td><strong>G2 — Assessment</strong></td>
+<td>Is it valuable and feasible?</td>
+<td>Value estimate, data quality check, risk class, reusability, decision to proceed or defer</td>
+</tr>
+<tr>
+<td><strong>G3 — Design</strong></td>
+<td>Is the architecture safe and supportable?</td>
+<td>Solution design, target resolution, identity and authorisation model, failure behaviour, rollback approach</td>
+</tr>
+<tr>
+<td><strong>G4 — Build</strong></td>
+<td>Does the implementation meet standards?</td>
+<td>Peer review, tests, documentation produced alongside the code</td>
+</tr>
+<tr>
+<td><strong>G5 — Readiness</strong></td>
+<td>Can it operate safely in production?</td>
+<td>Test results, security review, monitoring and audit in place, deployment and rollback tested, owners confirmed</td>
+</tr>
+<tr>
+<td><strong>G6 — Transition</strong></td>
+<td>Has ownership actually transferred?</td>
+<td>Deployment record, handover completed, runbooks in the hands of the operational owner</td>
+</tr>
+<tr>
+<td><strong>G7 — Review</strong></td>
+<td>Is it still delivering value and still healthy?</td>
+<td>Service review against adoption, reliability, and governance measures</td>
+</tr>
+<tr>
+<td><strong>G8 — Retirement</strong></td>
+<td>Has it been safely decommissioned?</td>
+<td>Retirement record, access revoked, dependencies confirmed clear</td>
+</tr>
+</tbody>
+</table>
+<p>G2 deserves particular attention, because it is the gate teams skip. It is the only place where <strong>"no" is a good outcome</strong> — and a portfolio where nothing is ever declined at G2 is a portfolio that will need pruning at G8 instead, more expensively.</p>
+<hr />
+<h2 id="assessment-criteria-at-g2">Assessment Criteria at G2<a class="headerlink" href="#assessment-criteria-at-g2" title="Anchor link to this section">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Criterion</th>
+<th>The question</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Value</strong></td>
+<td>Will this reduce delay, manual effort, error, risk, or inconsistency by an amount worth the build?</td>
+</tr>
+<tr>
+<td><strong>Repeatability</strong></td>
+<td>Is the process stable enough to automate, or is it still changing shape monthly?</td>
+</tr>
+<tr>
+<td><strong>Data quality</strong></td>
+<td>Are the authoritative inputs available and trustworthy today?</td>
+</tr>
+<tr>
+<td><strong>Risk</strong></td>
+<td>Can the effects be bounded, tested, verified, and reversed?</td>
+</tr>
+<tr>
+<td><strong>Reusability</strong></td>
+<td>Will this serve more than one workflow or team?</td>
+</tr>
+<tr>
+<td><strong>Complexity</strong></td>
+<td>What integrations and support skills does it require, and do we have them?</td>
+</tr>
+<tr>
+<td><strong>Strategic fit</strong></td>
+<td>Does it match where the platform is going, or does it entrench something we are trying to replace?</td>
+</tr>
+<tr>
+<td><strong>Ownership</strong></td>
+<td>Can it be supported for its whole life, not just built?</td>
+</tr>
+</tbody>
+</table>
+<p>If <a href="../knowing-when-not-to-automate/">knowing when not to automate</a> is the principle, G2 is where the principle gets a decision date.</p>
+<hr />
+<h2 id="the-minimum-service-record">The Minimum Service Record<a class="headerlink" href="#the-minimum-service-record" title="Anchor link to this section">&para;</a></h2>
+<p>One record per service. A table in a wiki is enough — the point is that it exists and is findable, not that it lives in a CMDB.</p>
+<ul>
+<li><strong>Identity</strong> — name, purpose, version, lifecycle status</li>
+<li><strong>Ownership</strong> — service, technical, and operational owners</li>
+<li><strong>Scope</strong> — users, environments, sites, device roles, and explicit exclusions</li>
+<li><strong>Risk</strong> — classification and the controls that class requires</li>
+<li><strong>Implementation</strong> — repository, pipeline, artifact, dependencies</li>
+<li><strong>Operation</strong> — monitoring, support route, runbook, recovery, escalation</li>
+<li><strong>Governance</strong> — approvals, open <a href="../exception-and-waiver-process/">exceptions</a>, review history, audit location</li>
+<li><strong>Retirement</strong> — trigger conditions, replacement, archive location</li>
+</ul>
+<p>The test of this record is not completeness. It is whether an engineer who has never seen the service can answer <em>what does it do, who owns it, and what happens if it stops</em> in under five minutes.</p>
+<hr />
+<h2 id="retirement">Retirement<a class="headerlink" href="#retirement" title="Anchor link to this section">&para;</a></h2>
+<p>The stage nobody plans, and the one that quietly accumulates risk. A service that no longer runs but was never decommissioned still holds credentials, still has network access, and still appears in an audit.</p>
+<ul>
+<li>Approve the retirement decision and set an effective date</li>
+<li>Identify users, integrations, schedules, credentials, and data</li>
+<li>Communicate the replacement or the process change</li>
+<li>Disable triggers, endpoints, and access</li>
+<li>Revoke secrets and service identities</li>
+<li>Archive source, documentation, decisions, and audit records to the retention period required</li>
+<li>Confirm no dependent workflow still calls it</li>
+<li>Record completion and where residual ownership sits</li>
+</ul>
+<p>The dependency check matters more than it looks. Automation that calls other automation is common and rarely documented, and the failure mode — a scheduled job silently producing nothing after a dependency is switched off — can go unnoticed for months.</p>
+<hr />
+<h2 id="portfolio-review">Portfolio Review<a class="headerlink" href="#portfolio-review" title="Anchor link to this section">&para;</a></h2>
+<p>Individual service reviews at G7 keep each service healthy. A periodic look across the whole portfolio catches what per-service review cannot:</p>
+<ul>
+<li><strong>Duplication</strong> — two teams solving the same problem twice, usually discovered during an incident</li>
+<li><strong>Orphans</strong> — services whose named owner has changed roles or left</li>
+<li><strong>Retirement candidates</strong> — low adoption, superseded by a platform feature, or the underlying manual process no longer exists</li>
+<li><strong>Concentration risk</strong> — several critical services sharing one technical owner</li>
+<li><strong>Exception accumulation</strong> — see the <a href="../exception-and-waiver-process/">exception register</a>; repeated waivers against one control usually mean the control needs changing, not the services</li>
+</ul>
+<p>Annually is enough for most teams. The output is a list of decisions, not a report.</p>
+<hr />
+<h2 id="adopting-this-without-a-programme">Adopting This Without a Programme<a class="headerlink" href="#adopting-this-without-a-programme" title="Anchor link to this section">&para;</a></h2>
+<p>If this reads as heavier than your organisation is ready for, the useful subset is small. In order:</p>
 <ol>
-<li>Read live state</li>
-<li>Compute minimal safe diff</li>
-<li>Apply smallest viable change set</li>
-<li>Re-read verification signals</li>
-<li>Stop if convergence target met</li>
-<li>Escalate when convergence is partial or ambiguous</li>
+<li><strong>Write down three owners for every automation you currently run.</strong> Most of the value is here, and it takes an afternoon.</li>
+<li><strong>Add G2 and G7.</strong> A decision before you build, and a review afterwards.</li>
+<li><strong>Start the service record</strong> for new services only. Do not attempt to backfill the portfolio; it never finishes.</li>
+<li><strong>Add retirement</strong> the first time you switch something off, and use that as the template.</li>
 </ol>
-<p>Never assume write success equals state success.</p>
+<p>Everything else can wait until the portfolio is large enough to need it.</p>
 <hr />
-<h2 id="production-checklist">Production Checklist<a class="headerlink" href="#production-checklist" title="Anchor link to this section">&para;</a></h2>
-<ul>
-<li>Writes are diff-driven, not full-config blind pushes</li>
-<li>Post-change validation is mandatory</li>
-<li>Partial convergence states are explicitly handled</li>
-<li>Retry strategy is bounded and reason-aware</li>
-<li>Non-convergent outcomes are routed to human review</li>
-</ul>
-<hr />
-<h2 id="anti-patterns">Anti-Patterns<a class="headerlink" href="#anti-patterns" title="Anchor link to this section">&para;</a></h2>
-<ul>
-<li>Replacing full sections of config to force idempotency</li>
-<li>Treating command acceptance as successful convergence</li>
-<li>Infinite retries on unstable protocol states</li>
-<li>Ignoring platform differences in command behaviour</li>
-</ul>
-<hr />
-<h2 id="key-takeaway">Key Takeaway<a class="headerlink" href="#key-takeaway" title="Anchor link to this section">&para;</a></h2>
-<h2 id="idempotency-in-networks-is-an-operational-contract-same-intent-predictable-outcome-controlled-side-effects">Idempotency in networks is an operational contract: same intent, predictable outcome, controlled side effects.<a class="headerlink" href="#idempotency-in-networks-is-an-operational-contract-same-intent-predictable-outcome-controlled-side-effects" title="Anchor link to this section">&para;</a></h2>
 <h2 id="continue-the-series">Continue the Series<a class="headerlink" href="#continue-the-series" title="Anchor link to this section">&para;</a></h2>
 <ul>
 <li>Series Index: <a href="../">Production-Grade Network Automation Principles</a></li>
-<li>Previous: <a href="../detecting-and-handling-configuration-drift-safely/">Part 4 - Detecting and Handling Configuration Drift Safely</a></li>
-<li>Next: <a href="../scoping-automation-to-reduce-blast-radius/">Part 6 - Scoping Automation to Reduce Blast Radius</a></li>
+<li>Previous: <a href="../exception-and-waiver-process/">Exception and Waiver Process</a></li>
+<li>Next: <a href="../implementation-roadmap-30-60-90-days/">Implementation Roadmap (30/60/90 Days)</a></li>
 </ul>
 
   
@@ -4463,7 +4637,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="April 11, 2026 08:23:32 UTC">April 11, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 4, 2026 17:32:35 UTC">September 4, 2026</span>
   </span>
 
     

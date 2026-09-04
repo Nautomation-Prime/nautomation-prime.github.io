@@ -6,19 +6,19 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Design idempotent workflows for brownfield enterprise networks where partial convergence, legacy variance, and side effects are real constraints.">
+        <meta name="description" content="How to turn an existing Python automation script into a narrow, typed, governed tool an AI agent can safely call — using a real compliance audit as the worked example.">
       
       
         <meta name="author" content="Christopher Davies">
       
       
-        <link rel="canonical" href="https://www.nautomationprime.io/tutorials/production-grade-network-automation-principles/real-world-idempotency-in-network-automation/">
+        <link rel="canonical" href="https://www.nautomationprime.io/tutorials/governed-ai-network-operations/from-script-to-tool/">
       
       
-        <link rel="prev" href="../detecting-and-handling-configuration-drift-safely/">
+        <link rel="prev" href="../why-your-agent-must-not-have-execute-command/">
       
       
-        <link rel="next" href="../scoping-automation-to-reduce-blast-radius/">
+        <link rel="next" href="../agent-review-checklist/">
       
       
         
@@ -29,7 +29,7 @@
     
     
       
-        <title>Real-World Idempotency in Network Automation - Nautomation Prime</title>
+        <title>From Script to Tool - Nautomation Prime</title>
       
     
     
@@ -80,7 +80,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#beyond-the-textbook-definition" class="md-skip">
+        <a href="#from-script-to-tool" class="md-skip">
           Skip to content
         </a>
       
@@ -116,7 +116,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Real-World Idempotency in Network Automation
+              From Script to Tool
             
           </span>
         </div>
@@ -1663,8 +1663,6 @@
                 
   
   
-    
-  
   
   
     
@@ -1723,15 +1721,15 @@
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_4" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_4" >
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../" class="md-nav__link ">
+            <a href="../../production-grade-network-automation-principles/" class="md-nav__link ">
               
   
   
@@ -1755,7 +1753,7 @@
             
           </div>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_4_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_4_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_2_4">
             <span class="md-nav__icon md-icon"></span>
             
@@ -1775,7 +1773,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../validating-device-identity-before-automation-runs/" class="md-nav__link">
+      <a href="../../production-grade-network-automation-principles/validating-device-identity-before-automation-runs/" class="md-nav__link">
         
   
   
@@ -1803,7 +1801,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../pre-flight-checks-failing-fast-before-making-changes/" class="md-nav__link">
+      <a href="../../production-grade-network-automation-principles/pre-flight-checks-failing-fast-before-making-changes/" class="md-nav__link">
         
   
   
@@ -1831,7 +1829,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../trust-boundaries-around-your-source-of-truth/" class="md-nav__link">
+      <a href="../../production-grade-network-automation-principles/trust-boundaries-around-your-source-of-truth/" class="md-nav__link">
         
   
   
@@ -1859,7 +1857,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../detecting-and-handling-configuration-drift-safely/" class="md-nav__link">
+      <a href="../../production-grade-network-automation-principles/detecting-and-handling-configuration-drift-safely/" class="md-nav__link">
         
   
   
@@ -1867,6 +1865,621 @@
     
   
     Detecting and Handling Configuration Drift Safely
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../production-grade-network-automation-principles/real-world-idempotency-in-network-automation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Real-World Idempotency in Network Automation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../production-grade-network-automation-principles/scoping-automation-to-reduce-blast-radius/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Scoping Automation to Reduce Blast Radius
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../production-grade-network-automation-principles/designing-automation-that-can-safely-fail/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Designing Automation That Can Safely Fail
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../production-grade-network-automation-principles/rollback-strategies-what-works-and-what-doesnt/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Rollback Strategies - What Works and What Doesn't
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../production-grade-network-automation-principles/separating-read-and-write-phases/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Separating Read and Write Phases in Automation Workflows
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../production-grade-network-automation-principles/making-automation-output-operator-friendly/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Making Automation Output Operator-Friendly
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../production-grade-network-automation-principles/building-audit-ready-automation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Building Audit-Ready Automation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../production-grade-network-automation-principles/secrets-and-credentials-in-enterprise-automation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Secrets and Credentials in Enterprise Automation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../production-grade-network-automation-principles/human-in-the-loop-automation-design/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Human-in-the-Loop Automation Design
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../production-grade-network-automation-principles/knowing-when-not-to-automate/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Knowing When Not to Automate
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../production-grade-network-automation-principles/executive-summary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Executive Summary for Leadership
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../production-grade-network-automation-principles/program-charter/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Program Charter for Production-Grade Automation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../production-grade-network-automation-principles/enterprise-control-matrix/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Enterprise Control Matrix
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../production-grade-network-automation-principles/exception-and-waiver-process/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Exception and Waiver Process
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../production-grade-network-automation-principles/automation-service-lifecycle/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Automation Service Lifecycle
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../production-grade-network-automation-principles/implementation-roadmap-30-60-90-days/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Implementation Roadmap (30/60/90 Days)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../production-grade-network-automation-principles/operator-review-worksheet/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Operator Review Worksheet
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_5" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Governed AI for Network Operations
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2_5" id="__nav_2_5_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_5_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Governed AI for Network Operations
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ai-risk-classification/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI Risk Classification
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../why-your-agent-must-not-have-execute-command/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Why Your Agent Must Not Have an execute_command Tool
   
 
     
@@ -1901,7 +2514,7 @@
   <span class="md-ellipsis">
     
   
-    Real-World Idempotency in Network Automation
+    From Script to Tool
   
 
     
@@ -1919,7 +2532,7 @@
   <span class="md-ellipsis">
     
   
-    Real-World Idempotency in Network Automation
+    From Script to Tool
   
 
     
@@ -1943,10 +2556,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#beyond-the-textbook-definition" class="md-nav__link">
+  <a href="#from-script-to-tool" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Beyond the Textbook Definition
+        From Script to Tool
       
     </span>
   </a>
@@ -1954,10 +2567,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#practical-idempotency-levels" class="md-nav__link">
+  <a href="#what-actually-changes" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Practical Idempotency Levels
+        What Actually Changes
       
     </span>
   </a>
@@ -1965,10 +2578,82 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#declarative-vs-procedural-tradeoff" class="md-nav__link">
+  <a href="#the-five-changes" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Declarative vs Procedural Tradeoff
+        The Five Changes
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="The Five Changes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-separate-the-callable-from-the-command-line" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Separate the callable from the command line
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-make-the-input-a-schema-not-a-string" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Make the input a schema, not a string
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-enforce-scope-inside-the-function" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Enforce scope inside the function
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-return-structured-results-not-printed-output" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Return structured results, not printed output
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-categorise-the-errors" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Categorise the errors
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-you-do-not-change" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What You Do Not Change
       
     </span>
   </a>
@@ -1976,10 +2661,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#convergence-pattern" class="md-nav__link">
+  <a href="#the-shape-you-end-up-with" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Convergence Pattern
+        The Shape You End Up With
       
     </span>
   </a>
@@ -1987,43 +2672,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#production-checklist" class="md-nav__link">
+  <a href="#where-this-leaves-you" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Production Checklist
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#anti-patterns" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Anti-Patterns
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#key-takeaway" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Key Takeaway
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#idempotency-in-networks-is-an-operational-contract-same-intent-predictable-outcome-controlled-side-effects" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Idempotency in networks is an operational contract: same intent, predictable outcome, controlled side effects.
+        Where This Leaves You
       
     </span>
   </a>
@@ -2057,620 +2709,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../scoping-automation-to-reduce-blast-radius/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Scoping Automation to Reduce Blast Radius
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../designing-automation-that-can-safely-fail/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Designing Automation That Can Safely Fail
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../rollback-strategies-what-works-and-what-doesnt/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Rollback Strategies - What Works and What Doesn't
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../separating-read-and-write-phases/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Separating Read and Write Phases in Automation Workflows
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../making-automation-output-operator-friendly/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Making Automation Output Operator-Friendly
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../building-audit-ready-automation/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Building Audit-Ready Automation
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../secrets-and-credentials-in-enterprise-automation/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Secrets and Credentials in Enterprise Automation
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../human-in-the-loop-automation-design/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Human-in-the-Loop Automation Design
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../knowing-when-not-to-automate/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Knowing When Not to Automate
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../executive-summary/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Executive Summary for Leadership
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../program-charter/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Program Charter for Production-Grade Automation
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../enterprise-control-matrix/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Enterprise Control Matrix
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../exception-and-waiver-process/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Exception and Waiver Process
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../automation-service-lifecycle/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Automation Service Lifecycle
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../implementation-roadmap-30-60-90-days/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Implementation Roadmap (30/60/90 Days)
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../operator-review-worksheet/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Operator Review Worksheet
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    
-    
-      
-        
-          
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-    
-    
-    
-      
-      
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-        
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_5" >
-        
-          
-          <div class="md-nav__link md-nav__container">
-            <a href="../../governed-ai-network-operations/" class="md-nav__link ">
-              
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Governed AI for Network Operations
-  
-
-    
-  </span>
-  
-  
-
-            </a>
-            
-              
-              <label class="md-nav__link " for="__nav_2_5" id="__nav_2_5_label" tabindex="0">
-                <span class="md-nav__icon md-icon"></span>
-              </label>
-            
-          </div>
-        
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_5_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_2_5">
-            <span class="md-nav__icon md-icon"></span>
-            
-  
-    Governed AI for Network Operations
-  
-
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../governed-ai-network-operations/ai-risk-classification/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    AI Risk Classification
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../governed-ai-network-operations/why-your-agent-must-not-have-execute-command/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Why Your Agent Must Not Have an execute_command Tool
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../governed-ai-network-operations/from-script-to-tool/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    From Script to Tool
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../governed-ai-network-operations/agent-review-checklist/" class="md-nav__link">
+      <a href="../agent-review-checklist/" class="md-nav__link">
         
   
   
@@ -4198,10 +4237,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#beyond-the-textbook-definition" class="md-nav__link">
+  <a href="#from-script-to-tool" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Beyond the Textbook Definition
+        From Script to Tool
       
     </span>
   </a>
@@ -4209,10 +4248,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#practical-idempotency-levels" class="md-nav__link">
+  <a href="#what-actually-changes" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Practical Idempotency Levels
+        What Actually Changes
       
     </span>
   </a>
@@ -4220,10 +4259,82 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#declarative-vs-procedural-tradeoff" class="md-nav__link">
+  <a href="#the-five-changes" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Declarative vs Procedural Tradeoff
+        The Five Changes
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="The Five Changes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-separate-the-callable-from-the-command-line" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Separate the callable from the command line
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-make-the-input-a-schema-not-a-string" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Make the input a schema, not a string
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-enforce-scope-inside-the-function" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Enforce scope inside the function
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-return-structured-results-not-printed-output" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Return structured results, not printed output
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-categorise-the-errors" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Categorise the errors
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-you-do-not-change" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What You Do Not Change
       
     </span>
   </a>
@@ -4231,10 +4342,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#convergence-pattern" class="md-nav__link">
+  <a href="#the-shape-you-end-up-with" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Convergence Pattern
+        The Shape You End Up With
       
     </span>
   </a>
@@ -4242,43 +4353,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#production-checklist" class="md-nav__link">
+  <a href="#where-this-leaves-you" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Production Checklist
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#anti-patterns" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Anti-Patterns
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#key-takeaway" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Key Takeaway
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#idempotency-in-networks-is-an-operational-contract-same-intent-predictable-outcome-controlled-side-effects" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Idempotency in networks is an operational contract: same intent, predictable outcome, controlled side effects.
+        Where This Leaves You
       
     </span>
   </a>
@@ -4317,35 +4395,35 @@
       
       
       
-        <span class="md-tag">Brownfield</span>
+        <span class="md-tag">Enterprise</span>
       
     
       
       
       
       
-        <span class="md-tag">Idempotency</span>
+        <span class="md-tag">Governed AI</span>
       
     
       
       
       
       
-        <span class="md-tag">Network Automation</span>
+        <span class="md-tag">Python</span>
       
     
       
       
       
       
-        <span class="md-tag">Production Principles</span>
+        <span class="md-tag">Refactoring</span>
       
     
       
       
       
       
-        <span class="md-tag">State Management</span>
+        <span class="md-tag">Tool Design</span>
       
     
   </nav>
@@ -4355,77 +4433,77 @@
   
 
 
-  <h1>Real-World Idempotency in Network Automation</h1>
+  <h1>From Script to Tool</h1>
 
-<h2 id="beyond-the-textbook-definition">Beyond the Textbook Definition<a class="headerlink" href="#beyond-the-textbook-definition" title="Anchor link to this section">&para;</a></h2>
-<p>Idempotency is often simplified to "run it twice, get the same result." In enterprise networks, reality is messier.</p>
-<p>Complications include:</p>
-<ul>
-<li>Partial command support across platforms</li>
-<li>Existing hand-crafted configurations</li>
-<li>Stateful protocols converging over time</li>
-<li>Non-deterministic operational outputs</li>
-</ul>
-<p>Production idempotency means predictable convergence with bounded risk, not perfect structural symmetry.</p>
+<h2 id="from-script-to-tool">From Script to Tool<a class="headerlink" href="#from-script-to-tool" title="Anchor link to this section">&para;</a></h2>
+<p>The previous page argued that agents need narrow typed tools rather than a general command tool. The obvious next question is where those tools come from — and the answer is usually less work than teams expect, because most of it is already written.</p>
+<p>If you have production automation, you have most of a tool. What you do not have yet is the boundary around it.</p>
+<p>This page uses the <a href="../../../deep-dives/cisco-compliance-audit/">Cisco IOS-XE Compliance Audit</a> as the worked example, because it is already close: config-driven checks, a structured parser, categorised results. The refactor below applies to any script with a clear job.</p>
 <hr />
-<h2 id="practical-idempotency-levels">Practical Idempotency Levels<a class="headerlink" href="#practical-idempotency-levels" title="Anchor link to this section">&para;</a></h2>
-<p>Use levels to set realistic expectations:</p>
-<ul>
-<li>Level 0: Blind push (not idempotent)</li>
-<li>Level 1: Diff-aware write only</li>
-<li>Level 2: Diff-aware plus post-check validation</li>
-<li>Level 3: Convergent workflow with retry, guardrails, and rollback decisions</li>
-</ul>
-<p>Most production systems should target Level 2 or 3.</p>
+<h2 id="what-actually-changes">What Actually Changes<a class="headerlink" href="#what-actually-changes" title="Anchor link to this section">&para;</a></h2>
+<p>Here is the whole idea in one line, and everything else on this page follows from it:</p>
+<div class="admonition quote">
+<p class="admonition-title">The shift</p>
+<p><strong>A CLI is called by an engineer who chose the arguments. A tool is called by a model that inferred them.</strong></p>
+</div>
+<p>That single change reclassifies every input. When an engineer types <code>--site MAN-DC1</code>, they know what that site is, they meant to type it, and they will notice if the output looks wrong. When a model supplies <code>site="MAN-DC1"</code>, it inferred that value from a conversation, possibly from a user's typo, possibly from something it read in a device banner.</p>
+<p>Nothing about your check logic needs to change. Everything about how the arguments arrive does.</p>
 <hr />
-<h2 id="declarative-vs-procedural-tradeoff">Declarative vs Procedural Tradeoff<a class="headerlink" href="#declarative-vs-procedural-tradeoff" title="Anchor link to this section">&para;</a></h2>
-<p>Declarative strengths:</p>
-<ul>
-<li>Clear desired end state</li>
-<li>Easier policy review</li>
-</ul>
-<p>Procedural strengths:</p>
-<ul>
-<li>Better control for stepwise safety</li>
-<li>Easier handling of platform quirks</li>
-</ul>
-<p>Real-world pattern: declarative intent with procedural execution gates.</p>
+<h2 id="the-five-changes">The Five Changes<a class="headerlink" href="#the-five-changes" title="Anchor link to this section">&para;</a></h2>
+<h3 id="1-separate-the-callable-from-the-command-line">1. Separate the callable from the command line<a class="headerlink" href="#1-separate-the-callable-from-the-command-line" title="Anchor link to this section">&para;</a></h3>
+<p>Most scripts fuse three jobs into <code>main()</code>: parsing arguments, doing the work, and deciding an exit code. A tool needs the middle one on its own.</p>
+<p>In the compliance audit, <code>main()</code> handles CLI parsing and exit behaviour, while the orchestrator does the actual work. That separation is already most of the way there — the goal is a function you can call with values rather than with <code>sys.argv</code>, that returns a result rather than printing one and exiting.</p>
+<p>If your script cannot be imported and called without side effects, start here. This is also the point where <a href="../../production-grade-network-automation-principles/pre-flight-checks-failing-fast-before-making-changes/">never connecting to devices at import time</a> stops being a style preference and becomes structural.</p>
+<h3 id="2-make-the-input-a-schema-not-a-string">2. Make the input a schema, not a string<a class="headerlink" href="#2-make-the-input-a-schema-not-a-string" title="Anchor link to this section">&para;</a></h3>
+<p>Command-line arguments are strings by convention. Tool inputs must be typed, bounded, and rejected when unrecognised.</p>
+<p>The rule from the <a href="../why-your-agent-must-not-have-execute-command/">tool boundary</a> applies directly: anything that selects <em>what runs</em> becomes an enumeration. Anything that selects <em>what it runs against</em> becomes an identifier resolved through your source of truth. Free text survives only where it genuinely cannot affect behaviour — a ticket reference, a comment.</p>
+<p>For a compliance audit that means the check category is an enum drawn from your policy model, not a string the model composes. The set of valid categories is knowable at build time. Make the schema say so.</p>
+<h3 id="3-enforce-scope-inside-the-function">3. Enforce scope inside the function<a class="headerlink" href="#3-enforce-scope-inside-the-function" title="Anchor link to this section">&para;</a></h3>
+<p>A CLI inherits its scope from the engineer's judgement and the credential they are using. A tool cannot.</p>
+<p>Scope enforcement belongs inside the callable, before any device is contacted: is this target in the permitted set for this caller, this environment, this lifecycle state? Rejecting out-of-scope targets is not the agent's job and it is definitely not the prompt's job. It is a function that returns a decision, and it is testable.</p>
+<h3 id="4-return-structured-results-not-printed-output">4. Return structured results, not printed output<a class="headerlink" href="#4-return-structured-results-not-printed-output" title="Anchor link to this section">&para;</a></h3>
+<p>Scripts print. Tools return.</p>
+<p>This is more than formatting. Printed output forces the model to parse prose to work out what happened, which is exactly where confident misreadings come from. A structured result says what was checked, what passed, what failed, at what severity, with what evidence, and against what baseline — and the model's job becomes explaining it rather than inferring it.</p>
+<p>The compliance audit already produces categorised findings. Returning them as data rather than a report is a serialisation change, not a redesign.</p>
+<h3 id="5-categorise-the-errors">5. Categorise the errors<a class="headerlink" href="#5-categorise-the-errors" title="Anchor link to this section">&para;</a></h3>
+<p>"It failed" is not a result a model can reason about safely. The difference between <em>device unreachable</em>, <em>target not in scope</em>, <em>check unsupported on this platform</em>, and <em>authentication rejected</em> determines whether retrying is sensible, whether to escalate, and whether to tell the user something is wrong with their request rather than with the network.</p>
+<p>Give errors a category and let the agent's behaviour depend on it. This is the same reasoning as <a href="../../production-grade-network-automation-principles/designing-automation-that-can-safely-fail/">designing automation that can safely fail</a>, applied at the boundary.</p>
 <hr />
-<h2 id="convergence-pattern">Convergence Pattern<a class="headerlink" href="#convergence-pattern" title="Anchor link to this section">&para;</a></h2>
-<ol>
-<li>Read live state</li>
-<li>Compute minimal safe diff</li>
-<li>Apply smallest viable change set</li>
-<li>Re-read verification signals</li>
-<li>Stop if convergence target met</li>
-<li>Escalate when convergence is partial or ambiguous</li>
-</ol>
-<p>Never assume write success equals state success.</p>
-<hr />
-<h2 id="production-checklist">Production Checklist<a class="headerlink" href="#production-checklist" title="Anchor link to this section">&para;</a></h2>
+<h2 id="what-you-do-not-change">What You Do Not Change<a class="headerlink" href="#what-you-do-not-change" title="Anchor link to this section">&para;</a></h2>
+<p>Worth stating plainly, because "make it AI-ready" invites over-engineering:</p>
 <ul>
-<li>Writes are diff-driven, not full-config blind pushes</li>
-<li>Post-change validation is mandatory</li>
-<li>Partial convergence states are explicitly handled</li>
-<li>Retry strategy is bounded and reason-aware</li>
-<li>Non-convergent outcomes are routed to human review</li>
+<li><strong>The check logic stays as it is.</strong> If your compliance rules are correct today, they are correct when a model asks for them.</li>
+<li><strong>The parser stays as it is.</strong> Structured collection and config parsing are unaffected by who calls them.</li>
+<li><strong>The policy model stays as it is.</strong> Checks defined in configuration rather than code were already the right design, and they are what makes the enumeration in change 2 possible.</li>
 </ul>
+<p>The refactor is a boundary, not a rewrite. If it is turning into a rewrite, the script probably had a design problem that the AI work has usefully surfaced.</p>
 <hr />
-<h2 id="anti-patterns">Anti-Patterns<a class="headerlink" href="#anti-patterns" title="Anchor link to this section">&para;</a></h2>
+<h2 id="the-shape-you-end-up-with">The Shape You End Up With<a class="headerlink" href="#the-shape-you-end-up-with" title="Anchor link to this section">&para;</a></h2>
+<pre class="highlight"><code class="language-python">def check_compliance(
+    device_id: DeviceId,          # resolved through the source of truth, not a hostname string
+    category: CheckCategory,      # enumeration from the policy model
+    caller: CallerContext,        # identity and permitted scope
+) -&gt; ComplianceResult:            # structured findings, severity, evidence, baseline reference
+    """Evaluate one approved check category against one in-scope device."""</code></pre>
+<p>Four things are true of that signature that were not true of the CLI:</p>
 <ul>
-<li>Replacing full sections of config to force idempotency</li>
-<li>Treating command acceptance as successful convergence</li>
-<li>Infinite retries on unstable protocol states</li>
-<li>Ignoring platform differences in command behaviour</li>
+<li>The model cannot express an operation that does not exist</li>
+<li>The model cannot reach a device it is not permitted to reach</li>
+<li>The result cannot be misread, because it is not prose</li>
+<li>Every call can be logged with its inputs, its caller, and its outcome</li>
 </ul>
+<p>None of that depends on the model behaving well.</p>
 <hr />
-<h2 id="key-takeaway">Key Takeaway<a class="headerlink" href="#key-takeaway" title="Anchor link to this section">&para;</a></h2>
-<h2 id="idempotency-in-networks-is-an-operational-contract-same-intent-predictable-outcome-controlled-side-effects">Idempotency in networks is an operational contract: same intent, predictable outcome, controlled side effects.<a class="headerlink" href="#idempotency-in-networks-is-an-operational-contract-same-intent-predictable-outcome-controlled-side-effects" title="Anchor link to this section">&para;</a></h2>
+<h2 id="where-this-leaves-you">Where This Leaves You<a class="headerlink" href="#where-this-leaves-you" title="Anchor link to this section">&para;</a></h2>
+<p>A tool boundary is one half of a governed agent. The other half — transport, identity, authorisation, audit correlation — is a platform concern and is deliberately out of scope here, because it depends heavily on what your organisation already runs.</p>
+<p>What this refactor gives you is the part that is yours regardless of platform: capabilities that are narrow by construction, and that stay safe no matter what calls them. Build them for the agent if that is what justifies the work. You will find they also make your existing automation easier to test, reuse, and hand over.</p>
+<p>Before any of it goes near production, run the <a href="../agent-review-checklist/">Agent Review Checklist</a>.</p>
+<hr />
 <h2 id="continue-the-series">Continue the Series<a class="headerlink" href="#continue-the-series" title="Anchor link to this section">&para;</a></h2>
 <ul>
-<li>Series Index: <a href="../">Production-Grade Network Automation Principles</a></li>
-<li>Previous: <a href="../detecting-and-handling-configuration-drift-safely/">Part 4 - Detecting and Handling Configuration Drift Safely</a></li>
-<li>Next: <a href="../scoping-automation-to-reduce-blast-radius/">Part 6 - Scoping Automation to Reduce Blast Radius</a></li>
+<li>Series Index: <a href="../">Governed AI for Network Operations</a></li>
+<li>Previous: <a href="../why-your-agent-must-not-have-execute-command/">Why Your Agent Must Not Have an execute_command Tool</a></li>
+<li>Next: <a href="../agent-review-checklist/">Agent Review Checklist</a></li>
 </ul>
 
   
@@ -4463,7 +4541,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="April 11, 2026 08:23:32 UTC">April 11, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 4, 2026 17:32:35 UTC">September 4, 2026</span>
   </span>
 
     
