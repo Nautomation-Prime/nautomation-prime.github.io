@@ -6,19 +6,19 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Constrain automation by site, role, domain, and batch to reduce failure impact and improve change safety.">
+        <meta name="description" content="Ten questions to answer before an AI agent is allowed near production network operations, with the evidence each answer requires.">
       
       
         <meta name="author" content="Christopher Davies">
       
       
-        <link rel="canonical" href="https://www.nautomationprime.io/tutorials/production-grade-network-automation-principles/scoping-automation-to-reduce-blast-radius/">
+        <link rel="canonical" href="https://www.nautomationprime.io/tutorials/governed-ai-network-operations/agent-review-checklist/">
       
       
-        <link rel="prev" href="../real-world-idempotency-in-network-automation/">
+        <link rel="prev" href="../why-your-agent-must-not-have-execute-command/">
       
       
-        <link rel="next" href="../designing-automation-that-can-safely-fail/">
+        <link rel="next" href="../../../deep-dives/">
       
       
         
@@ -29,7 +29,7 @@
     
     
       
-        <title>Scoping Automation to Reduce Blast Radius - Nautomation Prime</title>
+        <title>Agent Review Checklist - Nautomation Prime</title>
       
     
     
@@ -80,7 +80,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#why-scope-is-a-safety-feature" class="md-skip">
+        <a href="#agent-review-checklist" class="md-skip">
           Skip to content
         </a>
       
@@ -116,7 +116,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Scoping Automation to Reduce Blast Radius
+              Agent Review Checklist
             
           </span>
         </div>
@@ -1663,8 +1663,6 @@
                 
   
   
-    
-  
   
   
     
@@ -1721,15 +1719,15 @@
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_4" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_4" >
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../" class="md-nav__link ">
+            <a href="../../production-grade-network-automation-principles/" class="md-nav__link ">
               
   
   
@@ -1753,7 +1751,7 @@
             
           </div>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_4_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_4_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_2_4">
             <span class="md-nav__icon md-icon"></span>
             
@@ -1773,7 +1771,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../validating-device-identity-before-automation-runs/" class="md-nav__link">
+      <a href="../../production-grade-network-automation-principles/validating-device-identity-before-automation-runs/" class="md-nav__link">
         
   
   
@@ -1801,7 +1799,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../pre-flight-checks-failing-fast-before-making-changes/" class="md-nav__link">
+      <a href="../../production-grade-network-automation-principles/pre-flight-checks-failing-fast-before-making-changes/" class="md-nav__link">
         
   
   
@@ -1829,7 +1827,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../trust-boundaries-around-your-source-of-truth/" class="md-nav__link">
+      <a href="../../production-grade-network-automation-principles/trust-boundaries-around-your-source-of-truth/" class="md-nav__link">
         
   
   
@@ -1857,7 +1855,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../detecting-and-handling-configuration-drift-safely/" class="md-nav__link">
+      <a href="../../production-grade-network-automation-principles/detecting-and-handling-configuration-drift-safely/" class="md-nav__link">
         
   
   
@@ -1885,7 +1883,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../real-world-idempotency-in-network-automation/" class="md-nav__link">
+      <a href="../../production-grade-network-automation-principles/real-world-idempotency-in-network-automation/" class="md-nav__link">
         
   
   
@@ -1893,6 +1891,563 @@
     
   
     Real-World Idempotency in Network Automation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../production-grade-network-automation-principles/scoping-automation-to-reduce-blast-radius/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Scoping Automation to Reduce Blast Radius
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../production-grade-network-automation-principles/designing-automation-that-can-safely-fail/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Designing Automation That Can Safely Fail
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../production-grade-network-automation-principles/rollback-strategies-what-works-and-what-doesnt/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Rollback Strategies - What Works and What Doesn't
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../production-grade-network-automation-principles/separating-read-and-write-phases/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Separating Read and Write Phases in Automation Workflows
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../production-grade-network-automation-principles/making-automation-output-operator-friendly/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Making Automation Output Operator-Friendly
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../production-grade-network-automation-principles/building-audit-ready-automation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Building Audit-Ready Automation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../production-grade-network-automation-principles/secrets-and-credentials-in-enterprise-automation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Secrets and Credentials in Enterprise Automation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../production-grade-network-automation-principles/human-in-the-loop-automation-design/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Human-in-the-Loop Automation Design
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../production-grade-network-automation-principles/knowing-when-not-to-automate/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Knowing When Not to Automate
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../production-grade-network-automation-principles/executive-summary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Executive Summary for Leadership
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../production-grade-network-automation-principles/program-charter/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Program Charter for Production-Grade Automation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../production-grade-network-automation-principles/enterprise-control-matrix/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Enterprise Control Matrix
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../production-grade-network-automation-principles/exception-and-waiver-process/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Exception and Waiver Process
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../production-grade-network-automation-principles/implementation-roadmap-30-60-90-days/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Implementation Roadmap (30/60/90 Days)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../production-grade-network-automation-principles/operator-review-worksheet/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Operator Review Worksheet
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_5" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Governed AI for Network Operations
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2_5" id="__nav_2_5_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_5_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Governed AI for Network Operations
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ai-risk-classification/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI Risk Classification
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../why-your-agent-must-not-have-execute-command/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Why Your Agent Must Not Have an execute_command Tool
   
 
     
@@ -1927,7 +2482,7 @@
   <span class="md-ellipsis">
     
   
-    Scoping Automation to Reduce Blast Radius
+    Agent Review Checklist
   
 
     
@@ -1945,7 +2500,7 @@
   <span class="md-ellipsis">
     
   
-    Scoping Automation to Reduce Blast Radius
+    Agent Review Checklist
   
 
     
@@ -1969,10 +2524,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#why-scope-is-a-safety-feature" class="md-nav__link">
+  <a href="#agent-review-checklist" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Why Scope Is a Safety Feature
+        Agent Review Checklist
       
     </span>
   </a>
@@ -1980,10 +2535,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#scoping-dimensions" class="md-nav__link">
+  <a href="#1-purpose-and-scope" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Scoping Dimensions
+        1) Purpose and Scope
       
     </span>
   </a>
@@ -1991,10 +2546,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#staged-rollout-pattern" class="md-nav__link">
+  <a href="#2-tool-boundary" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Staged Rollout Pattern
+        2) Tool Boundary
       
     </span>
   </a>
@@ -2002,10 +2557,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#batch-safety-controls" class="md-nav__link">
+  <a href="#3-targeting-and-scope-enforcement" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Batch Safety Controls
+        3) Targeting and Scope Enforcement
       
     </span>
   </a>
@@ -2013,10 +2568,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#production-checklist" class="md-nav__link">
+  <a href="#4-evidence-and-response-quality" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Production Checklist
+        4) Evidence and Response Quality
       
     </span>
   </a>
@@ -2024,10 +2579,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#anti-patterns" class="md-nav__link">
+  <a href="#5-change-path-if-any" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Anti-Patterns
+        5) Change Path (If Any)
       
     </span>
   </a>
@@ -2035,10 +2590,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#key-takeaway" class="md-nav__link">
+  <a href="#6-secrets-and-data-protection" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Key Takeaway
+        6) Secrets and Data Protection
       
     </span>
   </a>
@@ -2046,10 +2601,54 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#scoping-is-not-just-operational-convenience-it-is-a-primary-control-that-decides-the-size-of-your-worst-case-outcome" class="md-nav__link">
+  <a href="#7-audit-and-monitoring" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Scoping is not just operational convenience. It is a primary control that decides the size of your worst-case outcome.
+        7) Audit and Monitoring
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-failure-behaviour" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8) Failure Behaviour
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-ownership-and-support" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9) Ownership and Support
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-approval" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10) Approval
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#re-review-triggers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Re-Review Triggers
       
     </span>
   </a>
@@ -2071,561 +2670,6 @@
   
 </nav>
       
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../designing-automation-that-can-safely-fail/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Designing Automation That Can Safely Fail
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../rollback-strategies-what-works-and-what-doesnt/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Rollback Strategies - What Works and What Doesn't
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../separating-read-and-write-phases/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Separating Read and Write Phases in Automation Workflows
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../making-automation-output-operator-friendly/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Making Automation Output Operator-Friendly
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../building-audit-ready-automation/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Building Audit-Ready Automation
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../secrets-and-credentials-in-enterprise-automation/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Secrets and Credentials in Enterprise Automation
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../human-in-the-loop-automation-design/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Human-in-the-Loop Automation Design
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../knowing-when-not-to-automate/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Knowing When Not to Automate
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../executive-summary/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Executive Summary for Leadership
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../program-charter/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Program Charter for Production-Grade Automation
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../enterprise-control-matrix/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Enterprise Control Matrix
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../exception-and-waiver-process/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Exception and Waiver Process
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../implementation-roadmap-30-60-90-days/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Implementation Roadmap (30/60/90 Days)
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../operator-review-worksheet/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Operator Review Worksheet
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    
-    
-      
-        
-          
-        
-      
-        
-      
-        
-      
-        
-      
-    
-    
-    
-      
-      
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-        
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_5" >
-        
-          
-          <div class="md-nav__link md-nav__container">
-            <a href="../../governed-ai-network-operations/" class="md-nav__link ">
-              
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Governed AI for Network Operations
-  
-
-    
-  </span>
-  
-  
-
-            </a>
-            
-              
-              <label class="md-nav__link " for="__nav_2_5" id="__nav_2_5_label" tabindex="0">
-                <span class="md-nav__icon md-icon"></span>
-              </label>
-            
-          </div>
-        
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_5_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_2_5">
-            <span class="md-nav__icon md-icon"></span>
-            
-  
-    Governed AI for Network Operations
-  
-
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../governed-ai-network-operations/ai-risk-classification/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    AI Risk Classification
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../governed-ai-network-operations/why-your-agent-must-not-have-execute-command/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Why Your Agent Must Not Have an execute_command Tool
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../governed-ai-network-operations/agent-review-checklist/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Agent Review Checklist
-  
-
-    
-  </span>
-  
-  
-
-      </a>
     </li>
   
 
@@ -4138,10 +4182,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#why-scope-is-a-safety-feature" class="md-nav__link">
+  <a href="#agent-review-checklist" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Why Scope Is a Safety Feature
+        Agent Review Checklist
       
     </span>
   </a>
@@ -4149,10 +4193,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#scoping-dimensions" class="md-nav__link">
+  <a href="#1-purpose-and-scope" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Scoping Dimensions
+        1) Purpose and Scope
       
     </span>
   </a>
@@ -4160,10 +4204,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#staged-rollout-pattern" class="md-nav__link">
+  <a href="#2-tool-boundary" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Staged Rollout Pattern
+        2) Tool Boundary
       
     </span>
   </a>
@@ -4171,10 +4215,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#batch-safety-controls" class="md-nav__link">
+  <a href="#3-targeting-and-scope-enforcement" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Batch Safety Controls
+        3) Targeting and Scope Enforcement
       
     </span>
   </a>
@@ -4182,10 +4226,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#production-checklist" class="md-nav__link">
+  <a href="#4-evidence-and-response-quality" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Production Checklist
+        4) Evidence and Response Quality
       
     </span>
   </a>
@@ -4193,10 +4237,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#anti-patterns" class="md-nav__link">
+  <a href="#5-change-path-if-any" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Anti-Patterns
+        5) Change Path (If Any)
       
     </span>
   </a>
@@ -4204,10 +4248,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#key-takeaway" class="md-nav__link">
+  <a href="#6-secrets-and-data-protection" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Key Takeaway
+        6) Secrets and Data Protection
       
     </span>
   </a>
@@ -4215,10 +4259,54 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#scoping-is-not-just-operational-convenience-it-is-a-primary-control-that-decides-the-size-of-your-worst-case-outcome" class="md-nav__link">
+  <a href="#7-audit-and-monitoring" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Scoping is not just operational convenience. It is a primary control that decides the size of your worst-case outcome.
+        7) Audit and Monitoring
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-failure-behaviour" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8) Failure Behaviour
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-ownership-and-support" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9) Ownership and Support
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-approval" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10) Approval
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#re-review-triggers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Re-Review Triggers
       
     </span>
   </a>
@@ -4257,35 +4345,35 @@
       
       
       
-        <span class="md-tag">Blast Radius</span>
+        <span class="md-tag">AI Governance</span>
       
     
       
       
       
       
-        <span class="md-tag">Canary</span>
+        <span class="md-tag">Change Review</span>
       
     
       
       
       
       
-        <span class="md-tag">Deployment Strategy</span>
+        <span class="md-tag">Checklist</span>
       
     
       
       
       
       
-        <span class="md-tag">Network Automation</span>
+        <span class="md-tag">Enterprise</span>
       
     
       
       
       
       
-        <span class="md-tag">Production Principles</span>
+        <span class="md-tag">Governed AI</span>
       
     
   </nav>
@@ -4295,67 +4383,340 @@
   
 
 
-  <h1>Scoping Automation to Reduce Blast Radius</h1>
+  <h1>Agent Review Checklist</h1>
 
-<h2 id="why-scope-is-a-safety-feature">Why Scope Is a Safety Feature<a class="headerlink" href="#why-scope-is-a-safety-feature" title="Anchor link to this section">&para;</a></h2>
-<p>Even high-quality automation can fail in surprising ways. Scope controls determine whether failure is contained or widespread.</p>
-<p>A robust scoping model turns one potential enterprise outage into a manageable localised issue.</p>
+<h2 id="agent-review-checklist">Agent Review Checklist<a class="headerlink" href="#agent-review-checklist" title="Anchor link to this section">&para;</a></h2>
+<p>Use this during design review and again before production approval. It is deliberately answerable in one sitting — if a question cannot be answered in a sentence, that is the finding.</p>
+<p>Every question below has a required answer. A deviation is not a discussion; it is an <a href="../../production-grade-network-automation-principles/exception-and-waiver-process/">exception</a> with an owner, a compensating control, and an expiry date.</p>
 <hr />
-<h2 id="scoping-dimensions">Scoping Dimensions<a class="headerlink" href="#scoping-dimensions" title="Anchor link to this section">&para;</a></h2>
-<p>Apply multiple dimensions together:</p>
+<h2 id="1-purpose-and-scope">1) Purpose and Scope<a class="headerlink" href="#1-purpose-and-scope" title="Anchor link to this section">&para;</a></h2>
 <ul>
-<li>Site scope: specific campuses, DCs, or regions</li>
-<li>Role scope: access, distribution, core, WAN edge</li>
-<li>Topology scope: failure domain boundaries</li>
-<li>Population scope: percentage or fixed batch count</li>
-<li>Time scope: maintenance windows and freeze periods</li>
+<li>Agent name and owner:</li>
+<li>Documented operational purpose:</li>
+<li>Intended users and how access is granted:</li>
+<li>Sites, device roles, and environments in scope:</li>
+<li>Explicit exclusions:</li>
+<li><a href="../ai-risk-classification/">AI risk class</a> (AI-0 to AI-4):</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Question</th>
+<th>Required answer</th>
+<th>Evidence</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Does the agent have a narrow, documented purpose?</td>
+<td><strong>Yes</strong></td>
+<td>Purpose statement in the service record</td>
+</tr>
+<tr>
+<td>Is the user population defined and access controlled?</td>
+<td><strong>Yes</strong></td>
+<td>Identity group or role mapping</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="2-tool-boundary">2) Tool Boundary<a class="headerlink" href="#2-tool-boundary" title="Anchor link to this section">&para;</a></h2>
+<ul>
+<li>Enabled tools (complete list):</li>
+<li>Tools available on the platform but deliberately not enabled:</li>
+<li>Who can change the enabled set, and through what process:</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Question</th>
+<th>Required answer</th>
+<th>Evidence</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Are only approved tools enabled?</td>
+<td><strong>Yes</strong></td>
+<td>Enabled-tool inventory, reviewed</td>
+</tr>
+<tr>
+<td>Can it execute arbitrary commands, scripts, or API calls?</td>
+<td><strong>No</strong></td>
+<td>Tool schemas showing enumerations, not free text</td>
+</tr>
+<tr>
+<td>Does every tool have a strict typed input schema?</td>
+<td><strong>Yes</strong></td>
+<td>Schema definitions</td>
+</tr>
+<tr>
+<td>Are unknown parameters rejected rather than ignored?</td>
+<td><strong>Yes</strong></td>
+<td>Validation tests</td>
+</tr>
+</tbody>
+</table>
+<p>If any tool accepts free-text that reaches a device, stop here. See <a href="../why-your-agent-must-not-have-execute-command/">Why Your Agent Must Not Have an execute_command Tool</a>.</p>
+<hr />
+<h2 id="3-targeting-and-scope-enforcement">3) Targeting and Scope Enforcement<a class="headerlink" href="#3-targeting-and-scope-enforcement" title="Anchor link to this section">&para;</a></h2>
+<ul>
+<li>How a user request is resolved to a device:</li>
+<li>Source of truth used:</li>
+<li>What happens on an ambiguous or unknown target:</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Question</th>
+<th>Required answer</th>
+<th>Evidence</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Does it resolve targets through an authoritative source rather than trusting user input?</td>
+<td><strong>Yes</strong></td>
+<td>Resolution path documented</td>
+</tr>
+<tr>
+<td>Does it display the resolved target before acting?</td>
+<td><strong>Yes</strong></td>
+<td>Sample transcripts</td>
+</tr>
+<tr>
+<td>Are out-of-scope and unknown targets rejected?</td>
+<td><strong>Yes</strong></td>
+<td>Negative test results</td>
+</tr>
+<tr>
+<td>Is scope enforced in the service rather than the prompt?</td>
+<td><strong>Yes</strong></td>
+<td>Authorisation code and tests</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="4-evidence-and-response-quality">4) Evidence and Response Quality<a class="headerlink" href="#4-evidence-and-response-quality" title="Anchor link to this section">&para;</a></h2>
+<ul>
+<li>How sources are cited in responses:</li>
+<li>How uncertainty is expressed:</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Question</th>
+<th>Required answer</th>
+<th>Evidence</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Are observed facts separated from recommendations?</td>
+<td><strong>Yes</strong></td>
+<td>Sample transcripts</td>
+</tr>
+<tr>
+<td>Does every operational claim name its source and timestamp?</td>
+<td><strong>Yes</strong></td>
+<td>Sample transcripts</td>
+</tr>
+<tr>
+<td>Does the response state whether anything changed?</td>
+<td><strong>Yes</strong></td>
+<td>Sample transcripts for both read and change paths</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="5-change-path-if-any">5) Change Path (If Any)<a class="headerlink" href="#5-change-path-if-any" title="Anchor link to this section">&para;</a></h2>
+<p>Skip this section only if no enabled tool can alter device state — and confirm that by reading the tool list, not by assumption.</p>
+<ul>
+<li>Templates a proposal can be built from:</li>
+<li>Approval mechanism and approver population:</li>
+<li>Verification performed after a change:</li>
+<li>Rollback path:</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Question</th>
+<th>Required answer</th>
+<th>Evidence</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Are write controls deterministic and external to the model?</td>
+<td><strong>Yes</strong></td>
+<td>Service code and tests</td>
+</tr>
+<tr>
+<td>Is freeform generated configuration prevented from reaching a device?</td>
+<td><strong>Yes</strong></td>
+<td>Design review record</td>
+</tr>
+<tr>
+<td>Does execution require an unmodified approved artifact?</td>
+<td><strong>Yes</strong></td>
+<td>Checksum and expiry enforcement tests</td>
+</tr>
+<tr>
+<td>Is post-change verification mandatory rather than optional?</td>
+<td><strong>Yes</strong></td>
+<td>Verification code path with no bypass</td>
+</tr>
+<tr>
+<td>Is there a tested rollback or escalation path?</td>
+<td><strong>Yes</strong></td>
+<td>Rollback test evidence</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="6-secrets-and-data-protection">6) Secrets and Data Protection<a class="headerlink" href="#6-secrets-and-data-protection" title="Anchor link to this section">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Question</th>
+<th>Required answer</th>
+<th>Evidence</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Are secrets absent from prompts, instructions, schemas, code, and images?</td>
+<td><strong>Yes</strong></td>
+<td>Repository and image scan results</td>
+</tr>
+<tr>
+<td>Are credentials and sensitive configuration redacted from responses?</td>
+<td><strong>Yes</strong></td>
+<td>Redaction tests</td>
+</tr>
+<tr>
+<td>Is the operational data returned to the model minimised to what the task needs?</td>
+<td><strong>Yes</strong></td>
+<td>Data flow review</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="7-audit-and-monitoring">7) Audit and Monitoring<a class="headerlink" href="#7-audit-and-monitoring" title="Anchor link to this section">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Question</th>
+<th>Required answer</th>
+<th>Evidence</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Is every tool invocation auditable and correlated to a user and conversation?</td>
+<td><strong>Yes</strong></td>
+<td>Audit records from a test run</td>
+</tr>
+<tr>
+<td>Are attempts to use disabled tools logged?</td>
+<td><strong>Yes</strong></td>
+<td>Log samples</td>
+</tr>
+<tr>
+<td>Is agent usage, latency, failure rate, and dependency health monitored?</td>
+<td><strong>Yes</strong></td>
+<td>Dashboard or alert definitions</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="8-failure-behaviour">8) Failure Behaviour<a class="headerlink" href="#8-failure-behaviour" title="Anchor link to this section">&para;</a></h2>
+<ul>
+<li>Behaviour on downstream timeout:</li>
+<li>Behaviour on partial failure across multiple targets:</li>
+<li>Behaviour when identity cannot be established:</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Question</th>
+<th>Required answer</th>
+<th>Evidence</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Does it fail closed on ambiguity, mismatch, or missing controls?</td>
+<td><strong>Yes</strong></td>
+<td>Negative test results</td>
+</tr>
+<tr>
+<td>Does it avoid converting uncertainty into a speculative action?</td>
+<td><strong>Yes</strong></td>
+<td>Adversarial prompt test results</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="9-ownership-and-support">9) Ownership and Support<a class="headerlink" href="#9-ownership-and-support" title="Anchor link to this section">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Question</th>
+<th>Required answer</th>
+<th>Evidence</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Is ownership defined for the service, its technical implementation, and its operation?</td>
+<td><strong>Yes</strong></td>
+<td>Named owners in the service record</td>
+</tr>
+<tr>
+<td>Is there a support and escalation route for users?</td>
+<td><strong>Yes</strong></td>
+<td>Runbook</td>
+</tr>
+<tr>
+<td>Are documented limitations published to users?</td>
+<td><strong>Yes</strong></td>
+<td>User-facing guidance</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="10-approval">10) Approval<a class="headerlink" href="#10-approval" title="Anchor link to this section">&para;</a></h2>
+<ul>
+<li>Reviewers (security, architecture, operations):</li>
+<li>Pilot audience and duration, if applicable:</li>
+<li>Open exceptions and their expiry dates:</li>
+</ul>
+<p>Outcome:</p>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Approved for production</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Approved for pilot with named users and scope</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Returned for remediation</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Rejected</li>
+</ul>
+<p>Approver name, role, and date:</p>
+<hr />
+<h2 id="re-review-triggers">Re-Review Triggers<a class="headerlink" href="#re-review-triggers" title="Anchor link to this section">&para;</a></h2>
+<p>Re-run this checklist, in full, when any of the following happen. Each can change the agent's risk class without any visible change to how it behaves day to day.</p>
+<ul>
+<li>A tool is added or its schema is widened</li>
+<li>Scope expands to new sites, device roles, or environments</li>
+<li>The underlying model or platform version changes</li>
+<li>An incident involves the agent, or a near miss is reported</li>
+<li>An exception expires</li>
+<li>Twelve months pass with none of the above</li>
 </ul>
 <hr />
-<h2 id="staged-rollout-pattern">Staged Rollout Pattern<a class="headerlink" href="#staged-rollout-pattern" title="Anchor link to this section">&para;</a></h2>
-<p>Recommended rollout sequence:</p>
-<ol>
-<li>Lab and replay test</li>
-<li>Canary set (1-3 representative devices)</li>
-<li>Small batch (5-10 percent)</li>
-<li>Incremental expansion with hold points</li>
-<li>Full rollout after success criteria are met</li>
-</ol>
-<p>Define objective promotion criteria between stages.</p>
-<hr />
-<h2 id="batch-safety-controls">Batch Safety Controls<a class="headerlink" href="#batch-safety-controls" title="Anchor link to this section">&para;</a></h2>
-<p>Every batch should include:</p>
-<ul>
-<li>Maximum device count cap</li>
-<li>Abort threshold (for example 2 critical failures)</li>
-<li>Manual confirmation between phases</li>
-<li>Cooldown period for signal observation</li>
-</ul>
-<p>This limits cascading failures under uncertain conditions.</p>
-<hr />
-<h2 id="production-checklist">Production Checklist<a class="headerlink" href="#production-checklist" title="Anchor link to this section">&para;</a></h2>
-<ul>
-<li>Rollout starts with canary targets</li>
-<li>Scope is explicit and immutable during execution</li>
-<li>Batch limits are enforced by code, not operator memory</li>
-<li>Abort thresholds are predefined and tested</li>
-<li>Post-batch health signals are reviewed before expansion</li>
-</ul>
-<hr />
-<h2 id="anti-patterns">Anti-Patterns<a class="headerlink" href="#anti-patterns" title="Anchor link to this section">&para;</a></h2>
-<ul>
-<li>One-click fleet-wide rollout for first execution</li>
-<li>Dynamic target expansion during a live run</li>
-<li>No distinction between roles or topology domains</li>
-<li>Ignoring asymmetric risk across device classes</li>
-</ul>
-<hr />
-<h2 id="key-takeaway">Key Takeaway<a class="headerlink" href="#key-takeaway" title="Anchor link to this section">&para;</a></h2>
-<h2 id="scoping-is-not-just-operational-convenience-it-is-a-primary-control-that-decides-the-size-of-your-worst-case-outcome">Scoping is not just operational convenience. It is a primary control that decides the size of your worst-case outcome.<a class="headerlink" href="#scoping-is-not-just-operational-convenience-it-is-a-primary-control-that-decides-the-size-of-your-worst-case-outcome" title="Anchor link to this section">&para;</a></h2>
 <h2 id="continue-the-series">Continue the Series<a class="headerlink" href="#continue-the-series" title="Anchor link to this section">&para;</a></h2>
 <ul>
-<li>Series Index: <a href="../">Production-Grade Network Automation Principles</a></li>
-<li>Previous: <a href="../real-world-idempotency-in-network-automation/">Part 5 - Real-World Idempotency in Network Automation</a></li>
-<li>Next: <a href="../designing-automation-that-can-safely-fail/">Part 7 - Designing Automation That Can Safely Fail</a></li>
+<li>Series Index: <a href="../">Governed AI for Network Operations</a></li>
+<li>Previous: <a href="../why-your-agent-must-not-have-execute-command/">Why Your Agent Must Not Have an execute_command Tool</a></li>
+<li>Next: <a href="../../">End of track</a></li>
 </ul>
 
   
@@ -4393,7 +4754,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="April 11, 2026 08:23:32 UTC">April 11, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 4, 2026 17:15:53 UTC">September 4, 2026</span>
   </span>
 
     
