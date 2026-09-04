@@ -125,4 +125,4 @@ Behaviour on expiry:  [ ] Fail closed   [ ] Fail loud
 
 - Series Index: [Production-Grade Network Automation Principles](./index.md)
 - Previous: [Enterprise Control Matrix](./enterprise-control-matrix.md)
-- Next: [Implementation Roadmap (30/60/90 Days)](./implementation-roadmap-30-60-90-days.md)
+- Next: [Automation Service Lifecycle](./automation-service-lifecycle.md)

@@ -89,7 +89,7 @@ This track covers how to let AI help engineers operate a network without giving 
 
 - **Focus**: Tool boundary design, AI risk classification, evidence requirements, and agent review
 - **Prerequisites**: Familiarity with the production-grade principles above; a trusted source of truth
-- **Topics**: The interpret-versus-execute boundary, why prompt instructions are not controls, narrow typed tools, AI-0 to AI-4 risk classes, and a ten-question agent review checklist
+- **Topics**: The interpret-versus-execute boundary, why prompt instructions are not controls, narrow typed tools, AI-0 to AI-4 risk classes, refactoring existing scripts into governed tools, and a ten-question agent review checklist
 
 **Start Here**: [Governed AI for Network Operations](./governed-ai-network-operations/index.md)
 

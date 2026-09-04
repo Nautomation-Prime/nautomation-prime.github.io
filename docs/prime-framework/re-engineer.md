@@ -320,7 +320,7 @@ A well-designed workflow becomes the template for future automations:
 
 - **First automation:** 4 weeks to design + implement
 - **Second automation:** 2 weeks (reuse patterns)
-- **Fifth automation:** 1 week (mostly template customization)
+- **Fifth automation:** 1 week (mostly template customisation)
 
 ### Prevents Expensive Rewrites
 

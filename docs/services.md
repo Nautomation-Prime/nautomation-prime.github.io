@@ -370,7 +370,7 @@ If you already have automation plans or internal capability, we offer individual
 **What We Build:**
 
 - **Automated Provisioning:** Bulk VLAN, SVI, and Interface configurations
-- **Fleet Upgrades:** Intelligent IOS/IOS-XE software management with Nornir parallelization
+- **Fleet Upgrades:** Intelligent IOS/IOS-XE software management with Nornir parallelisation
 - **Compliance Auditing:** "Golden Config" verification against enterprise standards
 - **API & Security Automation:** Identity Services Engine (ISE) SGT assignments, endpoint profiling
 - **Network Visibility:** Topology discovery, inventory collection, automated reporting
@@ -449,6 +449,43 @@ If you already have automation plans or internal capability, we offer individual
 **Investment:** £3,000 - £5,000
 
 **[Learn more about Empower →](./prime-framework/empower.md)**
+
+---
+
+#### AI Agent Governance Review (New)
+
+**Perfect for:** Organisations piloting or planning AI-assisted network operations who need to know whether the design is approvable before it reaches production
+
+Vendors and internal teams are building conversational agents against network infrastructure at speed. Most of them make the same structural mistake in week one: a general command tool that puts a language model in the execution path. Once that decision is made, every downstream control — approval, scope, audit, rollback — becomes advisory.
+
+This review establishes whether an agent, built or planned, can be governed.
+
+**What We Assess:**
+
+- **Tool boundary** — whether tools are narrow and typed, or whether free text reaches infrastructure
+- **Targeting and scope** — how requests resolve to devices, and whether scope is enforced in code or only in the prompt
+- **Evidence quality** — whether responses separate observed facts from recommendations, and cite sources
+- **Change path** — whether execution requires an approved, unmodified artifact, and whether verification can be bypassed
+- **Secrets and data** — exposure through prompts, schemas, logs, and responses
+- **Audit correlation** — whether every invocation traces to a user, target, and outcome
+- **Failure behaviour** — what happens on ambiguity, timeout, and identity mismatch
+- **Ownership** — who supports the agent, and who is accountable for what it does
+
+**Deliverables:**
+
+- Findings against the published [Agent Review Checklist](./tutorials/governed-ai-network-operations/agent-review-checklist.md), with evidence
+- An [AI risk class](./tutorials/governed-ai-network-operations/ai-risk-classification.md) for each agent, and the controls that class requires
+- Exception register for gaps you choose to accept, with owners and expiry dates
+- Prioritised remediation plan, sequenced by risk rather than by effort
+- Executive summary suitable for security and change governance review
+
+**Timeline:** 1-2 weeks  
+**Investment:** £3,500 - £6,500
+
+!!! tip "The method is already published"
+    We do not ask you to buy the framework. The [Governed AI for Network Operations](./tutorials/governed-ai-network-operations/index.md) track sets out the standard we assess against, in full and for free. You are engaging us to run it against your environment, argue the hard cases, and produce evidence your security team will accept.
+
+**[Read the standard first →](./tutorials/governed-ai-network-operations/index.md)**
 
 ---
 
@@ -740,14 +777,14 @@ Every engagement is guided by the [PRIME Philosophy](./prime-framework/philosoph
 
 ## **Direct Access to Senior Expertise**
 
-As a specialized consultancy, you work directly with the principal engineer throughout every engagement:
+As a specialised consultancy, you work directly with the principal engineer throughout every engagement:
 
 ✅ **No Handoffs** — Same expert from discovery through delivery  
 ✅ **No Junior Developers** — Senior-level experience on every line of code  
 ✅ **No Offshoring** — UK-based delivery with full GDPR compliance  
 ✅ **No Template Solutions** — Custom development tailored to your specific environment  
 
-## **Focused Specialization**
+## **Focused Specialisation**
 
 Unlike generalist consultancies, we maintain deep expertise in a focused technology stack:
 
@@ -766,7 +803,7 @@ Nautomation Prime operates on a **fixed-fee project basis** for PRIME Framework 
 
 **No hourly billing. No surprise invoices. No scope creep.**
 
-This model protects both parties: you gain budget certainty, and we're incentivized to deliver efficient, well-architected solutions rather than dragging out billable hours.
+This model protects both parties: you gain budget certainty, and we're incentivised to deliver efficient, well-architected solutions rather than dragging out billable hours.
 
 ---
 
@@ -778,7 +815,7 @@ Every engagement is scoped individually during the [Pinpoint](./prime-framework/
 | :--- | :--- |
 | **Device Count** | 50-device access layer vs. 500-device campus |
 | **Infrastructure Complexity** | Legacy IOS vs. modern IOS-XE, distributed topologies |
-| **Deliverable Type** | Standalone script vs. Dockerized container with dashboards |
+| **Deliverable Type** | Standalone script vs. Dockerised container with dashboards |
 | **Integration Requirements** | ISE, ServiceNow, CMDB, Netbox connections |
 | **Knowledge Transfer Depth** | Code-only vs. full team training workshops |
 
@@ -1004,17 +1041,17 @@ We'll explore:
 
 #### UK-Based Specialist Network Automation Consultancy
 
-Nautomation Prime is a boutique professional services firm specializing exclusively in Cisco network infrastructure automation using Python-driven solutions delivered through the **PRIME Framework** methodology.
+Nautomation Prime is a boutique professional services firm specialising exclusively in Cisco network infrastructure automation using Python-driven solutions delivered through the **PRIME Framework** methodology.
 
 #### Why Boutique Matters
 
-As a specialized practice, you receive dedicated principal engineer engagement throughout the project lifecycle:
+As a specialised practice, you receive dedicated principal engineer engagement throughout the project lifecycle:
 
 ✅ **Continuity**: Same technical expert from discovery through delivery—no knowledge loss  
 ✅ **Seniority**: Senior-level expertise on every line of code—no junior developers  
 ✅ **Accountability**: Direct relationship with decision-maker—no corporate bureaucracy  
 ✅ **Flexibility**: Rapid response and adaptive approach—no rigid corporate processes  
-✅ **Specialization**: Deep expertise in focused technology stack—no generalist dilution
+✅ **Specialisation**: Deep expertise in focused technology stack—no generalist dilution
 
 #### Professional Credentials
 
@@ -1105,8 +1142,8 @@ As revenue scales, a percentage is allocated to vetted charities reviewed for tr
 
     You choose between two options:
     
-    - **Full IP Transfer**: Complete ownership with perpetual rights to modify, distribute, and commercialize
-    - **Exclusive Licence**: Exclusive use rights with restrictions on commercialization (typically lower cost)
+    - **Full IP Transfer**: Complete ownership with perpetual rights to modify, distribute, and commercialise
+    - **Exclusive Licence**: Exclusive use rights with restrictions on commercialisation (typically lower cost)
     
     Custom automation is **never** published, reused, or shared with third parties. NDAs are standard for all engagements.
 
@@ -1132,7 +1169,7 @@ As revenue scales, a percentage is allocated to vetted charities reviewed for tr
     - **Track 1 & 3 clients**: Optional support contracts available
     - **Track 2 clients**: Your team modifies code independently (purpose of knowledge transfer)
     
-    Production-grade testing during the [Implement](./prime-framework/implement.md) stage minimizes post-deployment issues.
+    Production-grade testing during the [Implement](./prime-framework/implement.md) stage minimises post-deployment issues.
 
 ??? question "How do you handle credential security?"
 

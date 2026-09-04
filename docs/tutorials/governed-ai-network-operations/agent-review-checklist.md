@@ -173,5 +173,5 @@ Re-run this checklist, in full, when any of the following happen. Each can chang
 ## Continue the Series
 
 - Series Index: [Governed AI for Network Operations](./index.md)
-- Previous: [Why Your Agent Must Not Have an execute_command Tool](./why-your-agent-must-not-have-execute-command.md)
+- Previous: [From Script to Tool](./from-script-to-tool.md)
 - Next: [End of track](../index.md)

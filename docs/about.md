@@ -68,7 +68,7 @@ Not because the code broke, but because:
 - 🔻 **The "easy" automations had been built** (leaving hard, high-value work undone)
 - 🔻 **Teams didn't know what to automate next** (no roadmap)
 
-We realized: **Delivering scripts isn't enough. Sustainable automation requires a structured methodology.**
+We realised: **Delivering scripts isn't enough. Sustainable automation requires a structured methodology.**
 
 That's why we created the **PRIME Framework**—a five-stage approach that ensures every automation project delivers:
 
@@ -102,7 +102,7 @@ Free, comprehensive guides that teach network automation through real-world Cisc
 
 - **[Tutorials](./tutorials/index.md):** Step-by-step practical scripts for beginners, intermediate, and expert levels
 - **[Deep Dives](./deep-dives/index.md):** Production-grade code walkthroughs with line-by-line explanations
-- **Learning Path:** From first Netmiko script to advanced Nornir parallelization
+- **Learning Path:** From first Netmiko script to advanced Nornir parallelisation
 
 Every script is explained line-by-line, every design decision documented.
 

@@ -176,12 +176,14 @@ nav:
       - Program Charter for Production-Grade Automation: tutorials/production-grade-network-automation-principles/program-charter.md
       - Enterprise Control Matrix: tutorials/production-grade-network-automation-principles/enterprise-control-matrix.md
       - Exception and Waiver Process: tutorials/production-grade-network-automation-principles/exception-and-waiver-process.md
+      - Automation Service Lifecycle: tutorials/production-grade-network-automation-principles/automation-service-lifecycle.md
       - Implementation Roadmap (30/60/90 Days): tutorials/production-grade-network-automation-principles/implementation-roadmap-30-60-90-days.md
       - Operator Review Worksheet: tutorials/production-grade-network-automation-principles/operator-review-worksheet.md
     - Governed AI for Network Operations:
       - tutorials/governed-ai-network-operations/index.md
       - AI Risk Classification: tutorials/governed-ai-network-operations/ai-risk-classification.md
       - Why Your Agent Must Not Have an execute_command Tool: tutorials/governed-ai-network-operations/why-your-agent-must-not-have-execute-command.md
+      - From Script to Tool: tutorials/governed-ai-network-operations/from-script-to-tool.md
       - Agent Review Checklist: tutorials/governed-ai-network-operations/agent-review-checklist.md
     - Deep Dives:
       - deep-dives/index.md

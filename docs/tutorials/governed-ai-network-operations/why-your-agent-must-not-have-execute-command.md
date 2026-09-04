@@ -143,4 +143,4 @@ That containment is the entire design goal. Everything else is detail.
 
 - Series Index: [Governed AI for Network Operations](./index.md)
 - Previous: [AI Risk Classification](./ai-risk-classification.md)
-- Next: [Agent Review Checklist](./agent-review-checklist.md)
+- Next: [From Script to Tool](./from-script-to-tool.md)

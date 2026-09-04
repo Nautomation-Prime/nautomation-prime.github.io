@@ -110,7 +110,14 @@ If your source of truth is not trusted today, AI will confidently report incorre
 
 1. [AI Risk Classification](./ai-risk-classification.md) — A five-level scale for what the model is permitted to do, and how it relates to workflow risk
 2. [Why Your Agent Must Not Have an execute_command Tool](./why-your-agent-must-not-have-execute-command.md) — The single most important design decision, argued properly
-3. [Agent Review Checklist](./agent-review-checklist.md) — Ten questions to answer before an agent goes anywhere near production
+3. [From Script to Tool](./from-script-to-tool.md) — Turning automation you already have into something an agent can safely call
+4. [Agent Review Checklist](./agent-review-checklist.md) — Ten questions to answer before an agent goes anywhere near production
+
+---
+
+## Getting Help With This
+
+The standard above is free and complete — you do not need us to apply it. If you would rather have the review done with you, and the findings written up in a form your security and change governance teams will accept, that is the [AI Agent Governance Review](../../services.md#individual-services).
 
 ---
 

@@ -61,7 +61,7 @@ Not because the code was bad. Sometimes it was brilliant code. But:
 - **Nobody could measure the business value.** "Is this saving time? How much?" The answer was usually "...we think so?"
 - **The company was locked in to the original consultants.** Any change required going back to expensive external help.
 
-I realized: **Delivering scripts isn't enough. Sustainable automation requires a structured methodology that builds organizational capability, not dependence.**
+I realised: **Delivering scripts isn't enough. Sustainable automation requires a structured methodology that builds organizational capability, not dependence.**
 
 ---
 
@@ -147,7 +147,7 @@ The client loved it. We delivered the code, documentation was okay, we invoiced,
 
 **Six months later, they called back:** "Our network team says they can't modify it. Can you add a feature?"
 
-That's when I realized: **We built a solution, not capability.**
+That's when I realised: **We built a solution, not capability.**
 
 They'd gotten a tool but not the *understanding* to own it. That's when I created the **PRIME Framework**—a methodology that doesn't just deliver code, it builds organizational *capability*.
 

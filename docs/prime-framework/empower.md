@@ -447,6 +447,18 @@ Levels 4 and 5 are a governance problem before they are a technology problem. Se
 
 ---
 
+### What Happens After Empower
+
+PRIME ends when your team owns the automation. The automation does not end there — it runs for years, accumulates dependencies, and eventually should be switched off.
+
+That is a separate discipline from delivery, and skipping it is how organisations end up with a portfolio nobody can inventory: scheduled jobs whose purpose is unclear, services whose owner has left, credentials belonging to scripts that stopped being useful two years ago.
+
+The [Automation Service Lifecycle](../tutorials/production-grade-network-automation-principles/automation-service-lifecycle.md) covers what to put in place: three named owners per service rather than "the automation team", decision gates before you build and after you ship, a minimum service record, and a retirement path.
+
+If you adopt one thing from it, adopt the three owners. It takes an afternoon and it is what makes team ownership survive a resignation.
+
+---
+
 ### Scaling Automation
 
 **Next Automations:**

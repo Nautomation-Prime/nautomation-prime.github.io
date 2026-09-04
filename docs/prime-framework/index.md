@@ -466,7 +466,7 @@ graph TD
 
 ??? question "How do you handle failed automations?"
 
-    The "Measure" stage includes failure analysis and remediation. If automation doesn't deliver expected value, we refine iteratively. The fixed-fee model means we're incentivized to deliver working solutions.
+    The "Measure" stage includes failure analysis and remediation. If automation doesn't deliver expected value, we refine iteratively. The fixed-fee model means we're incentivised to deliver working solutions.
 
 ---
 
