@@ -428,15 +428,22 @@ Empowered teams:
 
 After completing all five stages:
 
-### Automation Maturity Model
+### Automation Capability Model
 
-**Level 1: Initial** — Ad-hoc scripts, no standards (you were here)  
-**Level 2: Repeatable** — PRIME Framework, documented processes  
-**Level 3: Defined** — Automation portfolio, governance established  
-**Level 4: Managed** — Metrics-driven, continuous improvement  
-**Level 5: Optimising** — Innovation, AI-assisted, strategic enabler
+Capability is not the same as effort. This ladder describes what your automation can safely *do*, and what has to be true at each level for it to stay safe.
 
-**Post-PRIME, you're at Level 2-3.**
+| Level | Capability | What must be in place |
+| :--- | :--- | :--- |
+| **0 — Manual** | Human execution throughout | Candidate tasks documented and standardised (you were here) |
+| **1 — Assisted** | Reports, dashboards and utilities | Validation, named ownership, documentation |
+| **2 — Automated** | Repeatable, defined workflows | Testing, logging, scoping, repeatability |
+| **3 — Orchestrated** | Workflows spanning multiple systems | End-to-end assurance and audit evidence |
+| **4 — AI-assisted** | Natural-language use of approved tools | Strong identity, tool allow-lists, evidence on every response |
+| **5 — Governed autonomy** | Bounded automatic action | Explicit risk acceptance, rollback, kill controls, enhanced monitoring |
+
+**Post-PRIME, you're at Level 2–3.**
+
+Levels 4 and 5 are a governance problem before they are a technology problem. See [Governed AI for Network Operations](../tutorials/governed-ai-network-operations/index.md) for what has to be true before an agent touches your estate.
 
 ---
 

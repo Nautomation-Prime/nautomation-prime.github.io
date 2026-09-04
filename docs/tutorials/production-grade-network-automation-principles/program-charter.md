@@ -89,12 +89,14 @@ Target setting guidance:
 
 ---
 
-## Control Maturity Levels
+## Control Rollout Phases
 
-- Level 1: Foundational controls (identity, pre-flight, scoped rollout)
-- Level 2: Reliability controls (idempotency, safe failure, rollback design)
-- Level 3: Governance controls (audit artifacts, secrets, approval gates)
-- Level 4: Continuous improvement (trend review, control tuning, exception reduction)
+The order in which controls are introduced. This is a delivery sequence, not a rating — for how capable your automation is, use the [Automation Capability Model](../../prime-framework/empower.md#automation-capability-model); for how risky a given workflow is, use the [risk classification](./enterprise-control-matrix.md#automation-risk-classification).
+
+- Phase 1: Foundational controls (identity, pre-flight, scoped rollout)
+- Phase 2: Reliability controls (idempotency, safe failure, rollback design)
+- Phase 3: Governance controls (audit artifacts, secrets, approval gates)
+- Phase 4: Continuous improvement (trend review, control tuning, exception reduction)
 
 ---
 

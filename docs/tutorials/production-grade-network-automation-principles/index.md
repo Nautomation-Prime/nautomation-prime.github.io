@@ -104,6 +104,12 @@ This cadence keeps controls alive as the environment changes.
 
 ---
 
+## Where to Go Next
+
+Once these controls are in place, [Governed AI for Network Operations](../governed-ai-network-operations/index.md) covers what has to be true before an AI agent is allowed to use them.
+
+---
+
 ## Core Idea
 
 Production safety is rarely one big feature. It is the accumulation of many small controls:

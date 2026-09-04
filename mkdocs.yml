@@ -178,6 +178,11 @@ nav:
       - Exception and Waiver Process: tutorials/production-grade-network-automation-principles/exception-and-waiver-process.md
       - Implementation Roadmap (30/60/90 Days): tutorials/production-grade-network-automation-principles/implementation-roadmap-30-60-90-days.md
       - Operator Review Worksheet: tutorials/production-grade-network-automation-principles/operator-review-worksheet.md
+    - Governed AI for Network Operations:
+      - tutorials/governed-ai-network-operations/index.md
+      - AI Risk Classification: tutorials/governed-ai-network-operations/ai-risk-classification.md
+      - Why Your Agent Must Not Have an execute_command Tool: tutorials/governed-ai-network-operations/why-your-agent-must-not-have-execute-command.md
+      - Agent Review Checklist: tutorials/governed-ai-network-operations/agent-review-checklist.md
     - Deep Dives:
       - deep-dives/index.md
       - Access Switch Audit: deep-dives/access-switch-audit.md

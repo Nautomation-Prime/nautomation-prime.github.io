@@ -83,6 +83,18 @@ This track focuses on how to run automation safely in enterprise production envi
 
 ---
 
+### 🤖 [Governed AI for Network Operations](./governed-ai-network-operations/index.md)
+
+This track covers how to let AI help engineers operate a network without giving a language model an execution path to your infrastructure.
+
+- **Focus**: Tool boundary design, AI risk classification, evidence requirements, and agent review
+- **Prerequisites**: Familiarity with the production-grade principles above; a trusted source of truth
+- **Topics**: The interpret-versus-execute boundary, why prompt instructions are not controls, narrow typed tools, AI-0 to AI-4 risk classes, and a ten-question agent review checklist
+
+**Start Here**: [Governed AI for Network Operations](./governed-ai-network-operations/index.md)
+
+---
+
 ## 🎯 Tutorial Philosophy
 
 Every tutorial follows these principles:
