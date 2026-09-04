@@ -86,6 +86,7 @@ Use these companion resources to convert tutorial principles into repeatable gov
 - [Executive Summary for Leadership](./executive-summary.md)
 - [Program Charter for Production-Grade Automation](./program-charter.md)
 - [Enterprise Control Matrix](./enterprise-control-matrix.md)
+- [Exception and Waiver Process](./exception-and-waiver-process.md)
 - [Implementation Roadmap (30/60/90 Days)](./implementation-roadmap-30-60-90-days.md)
 - [Operator Review Worksheet](./operator-review-worksheet.md)
 

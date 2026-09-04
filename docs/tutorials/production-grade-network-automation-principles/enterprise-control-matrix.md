@@ -36,6 +36,27 @@ Use this matrix to align the tutorial principles with operational controls, owne
 
 ---
 
+## Automation Risk Classification
+
+Not every control applies to every workflow. Classify what the automation *does*, then apply the control set for that class and everything below it.
+
+| Class | What the automation does | Examples | Controls that become mandatory |
+|---|---|---|---|
+| **R0 — Informational** | Retrieves and presents approved information | Inventory reports, interface state summaries, capacity extracts | Device identity validation (1), source-of-truth trust boundaries (3), operator-friendly output (10), audit-ready evidence (11), secrets handling (12) |
+| **R1 — Advisory** | Analyses state and proposes action, without executing any | Compliance findings, drift reports, remediation proposals | Everything in R0, plus drift classification (4) and explicit separation of observed facts from recommendations |
+| **R2 — Controlled execution** | Runs bounded activity that does not change configuration | Allow-listed diagnostics, state snapshots, path traces | Everything in R1, plus pre-flight checks (2) and safe failure design (7) |
+| **R3 — Change automation** | Changes device state | Approved template deployment, port configuration, scheduled remediation | Everything in R2, plus idempotency (5), blast-radius scoping (6), rollback strategy (8), read/write separation (9), human-in-the-loop approval (13) |
+| **R4 — High-impact or autonomous** | Acts at scale, or acts on events without a human initiating each run | Fleet-wide remediation, automatic recovery, closed-loop enforcement | Everything in R3, plus formal risk acceptance, a documented kill control, deliberately narrowed scope, enhanced monitoring, and a recorded answer to *when not to automate* (14) |
+
+### Using the classification
+
+- Classify at design time, not after the incident. The class determines how much assurance the work needs before it ships.
+- A workflow takes the class of its **highest-risk step**. A read-only report that ends by opening a change ticket is still R1, not R0.
+- Re-classify when scope changes. Widening a script from one site to the whole estate can move it from R3 to R4 without a single line of logic changing.
+- Anything above R3 should be a deliberate, approved decision with a named owner — not somewhere a workflow drifted to over time.
+
+---
+
 ## Control Quality Criteria
 
 A control is usually production-ready when it is:
@@ -67,4 +88,4 @@ A control is usually production-ready when it is:
 
 - Series Index: [Production-Grade Network Automation Principles](./index.md)
 - Previous: [Program Charter for Production-Grade Automation](./program-charter.md)
-- Next: [Implementation Roadmap (30/60/90 Days)](./implementation-roadmap-30-60-90-days.md)
+- Next: [Exception and Waiver Process](./exception-and-waiver-process.md)

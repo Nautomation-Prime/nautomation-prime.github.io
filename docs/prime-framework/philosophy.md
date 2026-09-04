@@ -125,10 +125,11 @@ We believe the opposite: **the best consulting engagement is one where you don't
 - **Training embedded in delivery** — We don't just hand over code; we ensure your team understands it
 - **Documentation for independence** — Every deliverable includes runbooks so your team can modify, troubleshoot, and extend
 - **Open-source tools only** — No proprietary platforms. Everything we build uses tools your team can learn and continue using
+- **No hero automation** — Any suitably skilled engineer must be able to support, modify, and extend the solution from its documentation and source alone. Automation only its author understands is still a dependency, whether that author is a consultant or your own senior engineer
 
 **The Test:**
 
-Six months after we leave, can your team modify the automation without calling us? If the answer is "no," we've failed.
+Six months after we leave, can your team modify the automation without calling us — and would anything stop if the engineer who wrote it moved on tomorrow? If the answer to either is "no," we've failed.
 
 ---
 
@@ -151,6 +152,7 @@ We optimise for **production safety**. Speed matters, but not at the expense of 
 - **Rollback mechanisms** — Every change includes a rollback plan (config backups, previous state snapshots)
 - **Post-change validation** — Scripts verify that changes worked as intended (using PyATS, show commands, reachability checks)
 - **Graduated rollout** — Test in lab → pilot on non-critical devices → phased production rollout
+- **Least privilege** — Automation runs with the narrowest access that will do the job. Discovery, diagnostics, change proposal, approval, execution, and rollback are separate permissions, not one all-powerful account shared by every script
 
 **The Test:**
 

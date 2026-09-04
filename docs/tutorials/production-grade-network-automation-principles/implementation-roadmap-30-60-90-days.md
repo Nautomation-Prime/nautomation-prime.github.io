@@ -127,5 +127,5 @@ Exit criteria:
 ## Continue the Series
 
 - Series Index: [Production-Grade Network Automation Principles](./index.md)
-- Previous: [Enterprise Control Matrix](./enterprise-control-matrix.md)
+- Previous: [Exception and Waiver Process](./exception-and-waiver-process.md)
 - Next: [Operator Review Worksheet](./operator-review-worksheet.md)

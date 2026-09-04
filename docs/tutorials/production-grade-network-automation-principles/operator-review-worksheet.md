@@ -53,11 +53,13 @@ Decision:
 - Rollback or containment path documented:
 - Batch strategy and abort threshold confirmed:
 
-Risk classification:
+Risk classification ([see scale](./enterprise-control-matrix.md#automation-risk-classification)):
 
-- [ ] Low
-- [ ] Medium
-- [ ] High
+- [ ] R0 — Informational
+- [ ] R1 — Advisory
+- [ ] R2 — Controlled execution
+- [ ] R3 — Change automation
+- [ ] R4 — High-impact or autonomous
 
 ---
 
