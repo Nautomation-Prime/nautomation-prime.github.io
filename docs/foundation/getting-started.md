@@ -73,6 +73,11 @@ We deliver automation projects through the **[PRIME Framework](../prime-framewor
 
 ---
 
+<div class="np-reflection" markdown>
+<p class="np-reflection-label">Between the Lines</p>
+<p>There's no prize for finishing this learning path quickly. Move at the pace that lets each concept actually land before the next one arrives—that's not a slower way to learn this, it's the only way that sticks.</p>
+</div>
+
 ## 📋 Prerequisites
 
 **Python Knowledge (Important!):**

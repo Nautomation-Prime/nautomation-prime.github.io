@@ -1102,6 +1102,11 @@ As revenue scales, a percentage is allocated to vetted charities reviewed for tr
 
 **[Read the full Giving With Integrity policy ->](./charity.md)**
 
+<div class="np-reflection" markdown>
+<p class="np-reflection-label">Between the Lines</p>
+<p>Every engagement on this page exists to buy time back for the people it touches, not just to log a faster ROI figure. That's worth saying once, on a page mostly about numbers.</p>
+</div>
+
 ---
 
 ## Frequently Asked Questions

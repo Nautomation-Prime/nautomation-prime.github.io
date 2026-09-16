@@ -186,11 +186,18 @@ I'm also quite introverted, which surprises some people in consulting. But intro
 
 **Music** is a constant in my life. My taste is eclectic—spanning decades and genres—but I'm very particular about what I love. If it resonates, it stays on repeat. If it doesn't, it's skipped immediately.
 
-**Nature and the outdoors** recharge me. The less man-made, the better. Give me forests, hills, and open countryside over cities any day. There's something about being surrounded by natural complexity that puts human-created systems into perspective. I take my DSLR camera along to capture those moments—there's a satisfaction in framing a shot properly, getting the light right, preserving something beautiful.
+**Nature and the outdoors** recharge me. The less man-made, the better. Give me forests, hills, and open countryside over cities any day. There's something about being surrounded by natural complexity that puts human-created systems into perspective. I've come to know this by its Japanese name, Shinrin-Yoku—forest bathing—which is a more deliberate practice than it sounds: no destination, no step count, just paying attention with all five senses to somewhere that was never built for a purpose. I take my DSLR camera along to capture those moments—there's a satisfaction in framing a shot properly, getting the light right, preserving something beautiful.
 
-**Precision shooting** is another interest of mine. It keeps me grounded in patience, safety, and repeatable performance.
+**Precision shooting** is another interest of mine. Breathing, stance, the same sequence every time so the outcome stops being a surprise—it keeps me grounded in patience, safety, and repeatable performance. It's not lost on me that this is also a fair description of how I write automation.
 
-**Tea.** Proper tea. I import varieties from China and India as directly from the tea farms as possible because I'm particular about quality. There's a ritual to a good cup of tea—choosing the right leaves, the right temperature, the right timing. It's a small thing, but it matters. (You might notice a pattern here: I care about doing things *properly*.)
+**Reading** is where I go when I want my head somewhere that isn't work. No notes app open next to it, nothing to action afterwards—just a book, read for its own sake. It's one of the few things I do that produces nothing measurable, which is exactly the point.
+
+**Tea.** Proper tea, brewed Gongfu style. I import varieties from China and India as directly from the tea farms as possible because I'm particular about quality, and I brew it the traditional Chinese way—small pot or gaiwan, short infusions, one after another, watching how the same leaves change across six or eight rounds instead of collapsing them into one long steep. Gongfu Cha translates roughly as "making tea with skill," not "making tea fast," and that's the whole practice in one phrase. It's a small thing, but it demands your attention for the twenty minutes it takes, and gives it back in a way a coffee machine never will. (You might notice a pattern here: I care about doing things *properly*.)
+
+<div class="np-reflection" markdown>
+<p class="np-reflection-label">Between the Lines</p>
+<p>Gongfu Cha, forest walks, a book, the range—none of them are productivity hacks. I don't do them to work better. I do them because they're proof, to myself, that a version of my day exists that has nothing to do with output.</p>
+</div>
 
 ### Why This Work Matters to Me
 
@@ -199,6 +206,12 @@ Network automation isn't just a career—it's something I genuinely enjoy. It gi
 I've always believed that if you're going to spend a third of your life working, it should be in something you love. And I love solving problems. I love teaching people. I love seeing teams go from "we can't do this" to "we built that ourselves."
 
 That's why I built Nautomation Prime. It's not about selling scripts—it's about empowering engineers to solve their own problems. If I can help someone feel the same satisfaction I get from automation, then the work has meaning beyond the invoice.
+
+### Why I Protect Time Away From Screens
+
+I've spent years around network engineers, and I've seen the version of "always on" that isn't heroic—it's just corrosive. The on-call phone that never really switches off. The sense that stopping is somehow letting people down. I don't think most people choose that life. I think most people are handed it, told it's simply how a career works, and never given a reason to question it.
+
+I can't fix that for anyone else. What I can do is refuse to run my own life that way, and build a business around the idea that automation's real job is to hand people hours back, not just to make the same treadmill faster. Gongfu Cha, Shinrin-Yoku, a book, the range on a Saturday morning—these aren't things I do *instead of* working hard. They're how I stay someone worth working with, and a reminder, every time, that the invoice was never the point.
 
 ---
 

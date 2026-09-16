@@ -43,6 +43,11 @@ Design optimised, scalable workflows and architecture **before** writing code. T
 
 ---
 
+<div class="np-reflection" markdown>
+<p class="np-reflection-label">Between the Lines</p>
+<p>The Chinese word for the tea ceremony, <em>gongfu</em> (功夫), doesn't actually mean "ceremony"—it means skill earned through patient repetition, applied to anything done properly. A process rebuilt properly, the first time, is gongfu. Automating it before that happens is just a faster way of doing it badly.</p>
+</div>
+
 ## 🚫 The Automation Trap
 
 The most common (and expensive) mistake in automation:

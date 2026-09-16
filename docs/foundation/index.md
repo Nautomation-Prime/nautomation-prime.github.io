@@ -59,6 +59,11 @@ Christopher built Nautomation Prime on the belief that automation should never b
 
 ---
 
+<div class="np-reflection" markdown>
+<p class="np-reflection-label">Between the Lines</p>
+<p>Attention is the one resource nobody can lend you more of. Free tutorials remove the cost of learning; they can't remove the requirement to sit with something long enough to actually understand it—and that part was always going to be the valuable part.</p>
+</div>
+
 ## What the Foundation offers
 
 <div class="grid cards" markdown>

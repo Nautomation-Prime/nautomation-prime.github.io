@@ -218,6 +218,13 @@ Together, they ensure **value, quality, and sustainability**.
 
 ---
 
+<div class="np-reflection" markdown>
+<p class="np-reflection-label">Between the Lines</p>
+<p>None of the five stages exist to make work feel busier. They exist so a task that used to occupy someone's evening can be handled in thirty seconds instead—which only matters if that evening then belongs to something other than the next ticket.</p>
+</div>
+
+---
+
 ## 💼 Framework in Practice
 
 ### Typical Timeline (Medium Complexity Project)

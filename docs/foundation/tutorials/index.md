@@ -106,6 +106,11 @@ Every tutorial follows these principles:
 
 ---
 
+<div class="np-reflection" markdown>
+<p class="np-reflection-label">Between the Lines</p>
+<p>Every discipline that rewards patience calls the resulting skill something different—gongfu in the tea room, muscle memory on the range, fluency in a language. In automation it just looks like code you no longer have to think hard about. It's built the same way every time: repetition, not shortcuts.</p>
+</div>
+
 ## 🚀 How to Use These Tutorials
 
 1. **Choose Your Level** — Start with beginner if you're new to network automation

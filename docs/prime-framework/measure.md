@@ -43,6 +43,11 @@ Quantify the impact of automation through systematic metrics collection, ROI tra
 
 ---
 
+<div class="np-reflection" markdown>
+<p class="np-reflection-label">Between the Lines</p>
+<p>Every measurement cuts both ways—some months the numbers vindicate the work, some months they don't. Meeting both with the same steady interest, rather than celebrating too hard or panicking, is most of what makes the Measure stage useful instead of just anxious.</p>
+</div>
+
 ## 📊 What Happens During Measure
 
 ### 1. Baseline Metrics (Before Automation)

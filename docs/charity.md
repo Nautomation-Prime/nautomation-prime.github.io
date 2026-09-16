@@ -173,6 +173,11 @@ Giving back is part of that. Not as a slogan, and not as a tax exercise, but as 
 
 If we ask clients to trust us with critical infrastructure, we should hold ourselves to the same standard in how we contribute beyond it.
 
+<div class="np-reflection" markdown>
+<p class="np-reflection-label">Between the Lines</p>
+<p>Giving, done properly, isn't rushed either. It's tempting to want the appearance of generosity immediately; the harder, better version is patient enough to check first that it actually helps.</p>
+</div>
+
 ---
 
 ## Summary

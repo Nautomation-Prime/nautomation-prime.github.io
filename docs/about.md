@@ -230,6 +230,11 @@ Found a bug, need support, or have a feature request for one of our tools? [Get 
 
 ---
 
+<div class="np-reflection" markdown>
+<p class="np-reflection-label">Between the Lines</p>
+<p>A well-built automation runs quietly enough that a team can stop thinking about it. That's also, not by accident, what a forest path or a properly brewed pot of tea is for: something done with enough care that it asks nothing further of you once it's done right.</p>
+</div>
+
 ## Legal
 
 - [Privacy Policy](legal/privacy-policy.md)

@@ -143,6 +143,11 @@ For **£99–£299**, we analyse your top 3 most time-consuming manual processes
 
 ---
 
+<div class="np-reflection" markdown>
+<p class="np-reflection-label">Between the Lines</p>
+<p>Weekends eaten by manual upgrades are the clearest version of the problem here: automation isn't about elegance, it's about getting Saturday back.</p>
+</div>
+
 ## Already Running Larger Programmes?
 
 If your organisation is ready for a broader transformation — or if you need automation across multiple teams with a formal methodology — our **[PRIME Framework Enterprise Engagement](../services.md)** may be the right fit.

@@ -260,6 +260,11 @@ For issues, feature requests, or questions about any script:
 
 ---
 
+<div class="np-reflection" markdown>
+<p class="np-reflection-label">Between the Lines</p>
+<p>A tool is only trustworthy once it produces the same careful result on the hundredth run as the first—the same standard that matters on a shooting range, in a tea ceremony, or in a script touching production. Repeatable and careful, not just fast.</p>
+</div>
+
 ## The "Prime" Philosophy
 
 All scripts in this library adhere to three core principles:

@@ -124,6 +124,11 @@ If you are not ready to contact anyone yet, start with the methodology and deliv
 
 ---
 
+<div class="np-reflection" markdown>
+<p class="np-reflection-label">Between the Lines</p>
+<p>Whatever the reason you're reaching out, it can wait until you've had a proper cup of tea first. We'll still be here in twenty minutes.</p>
+</div>
+
 ## Contact details
 
 - **Email:** [enquiries@nautomationprime.io](mailto:enquiries@nautomationprime.io)
