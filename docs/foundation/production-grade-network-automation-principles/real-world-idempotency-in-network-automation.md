@@ -88,6 +88,7 @@ Never assume write success equals state success.
 ## Key Takeaway
 
 Idempotency in networks is an operational contract: same intent, predictable outcome, controlled side effects.
+
 ---
 
 ## Continue the Series

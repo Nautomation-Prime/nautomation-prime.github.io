@@ -83,6 +83,7 @@ Phase separation improves:
 ## Key Takeaway
 
 Separating read and write phases turns automation from a script into a reliable operational system.
+
 ---
 
 ## Continue the Series

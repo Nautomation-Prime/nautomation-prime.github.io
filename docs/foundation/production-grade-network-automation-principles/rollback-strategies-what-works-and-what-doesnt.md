@@ -84,6 +84,7 @@ Automatic rollback should be policy-bounded and evidence-based.
 ## Key Takeaway
 
 Safe rollback is controlled recovery under uncertainty. Prefer recoverability and containment over blind reversion.
+
 ---
 
 ## Continue the Series

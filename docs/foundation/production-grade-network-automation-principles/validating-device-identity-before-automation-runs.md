@@ -109,6 +109,7 @@ Recommended default:
 ## Key Takeaway
 
 Identity checks are not optional hygiene. They are a critical control that prevents high-impact, wrong-target changes.
+
 ---
 
 ## Continue the Series

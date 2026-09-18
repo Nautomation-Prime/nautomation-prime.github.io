@@ -84,6 +84,7 @@ Else: create a tracked remediation task for human decision.
 ## Key Takeaway
 
 Safe drift management is a decision system, not a force-sync loop. Detection is easy; correct action selection is the real engineering work.
+
 ---
 
 ## Continue the Series

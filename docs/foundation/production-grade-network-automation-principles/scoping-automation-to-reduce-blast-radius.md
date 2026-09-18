@@ -78,6 +78,7 @@ This limits cascading failures under uncertain conditions.
 ## Key Takeaway
 
 Scoping is not just operational convenience. It is a primary control that decides the size of your worst-case outcome.
+
 ---
 
 ## Continue the Series

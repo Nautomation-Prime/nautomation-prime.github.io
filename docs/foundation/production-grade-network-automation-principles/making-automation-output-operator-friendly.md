@@ -83,6 +83,7 @@ Example:
 ## Key Takeaway
 
 Operator-friendly output reduces MTTR, improves trust, and makes automation safer to run repeatedly.
+
 ---
 
 ## Continue the Series

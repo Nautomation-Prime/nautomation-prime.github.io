@@ -86,6 +86,7 @@ Minimum controls for trusted inventory use:
 ## Key Takeaway
 
 A reliable source of truth is not just a database. It is a governance model that defines what must be trusted, what must be validated, and what must never directly drive production writes.
+
 ---
 
 ## Continue the Series
