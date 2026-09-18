@@ -112,7 +112,7 @@ A tool boundary is one half of a governed agent. The other half — transport, i
 
 What this refactor gives you is the part that is yours regardless of platform: capabilities that are narrow by construction, and that stay safe no matter what calls them. Build them for the agent if that is what justifies the work. You will find they also make your existing automation easier to test, reuse, and hand over.
 
-Before any of it goes near production, run the [Agent Review Checklist](./agent-review-checklist.md).
+One tool is a refactor. Several tools is a catalogue, and a catalogue needs deciding rather than accumulating — which is [the next page](./tool-catalogue-design.md).
 
 ---
 
@@ -120,4 +120,4 @@ Before any of it goes near production, run the [Agent Review Checklist](./agent-
 
 - Series Index: [Governed AI for Network Operations](./index.md)
 - Previous: [Why Your Agent Must Not Have an execute_command Tool](./why-your-agent-must-not-have-execute-command.md)
-- Next: [Agent Review Checklist](./agent-review-checklist.md)
+- Next: [Designing the Tool Catalogue](./tool-catalogue-design.md)

@@ -80,6 +80,12 @@ The governance framing above is restrictive on purpose, but it leaves a large an
 
 Notice what these have in common: the model is doing **retrieval, correlation, and explanation**. That is what language models are actually good at. It is also, not coincidentally, the part of an engineer's day that involves the most tab-switching and the least judgement.
 
+<div class="np-reflection" markdown>
+<p class="np-reflection-label">Between the Lines</p>
+<p>Worth sitting with for a moment: the work being handed over here is the work nobody describes fondly at the end of a career. No one remembers the afternoon they spent reconciling four dashboards to answer one question.</p>
+<p>Which raises the only question that makes any of this worth building — where do the returned hours actually go? If the honest answer is "the next four dashboards", the capability is impressive and the outcome is unchanged.</p>
+</div>
+
 ---
 
 ## What Stays Off the Table
@@ -111,7 +117,11 @@ If your source of truth is not trusted today, AI will confidently report incorre
 1. [AI Risk Classification](./ai-risk-classification.md) — A five-level scale for what the model is permitted to do, and how it relates to workflow risk
 2. [Why Your Agent Must Not Have an execute_command Tool](./why-your-agent-must-not-have-execute-command.md) — The single most important design decision, argued properly
 3. [From Script to Tool](./from-script-to-tool.md) — Turning automation you already have into something an agent can safely call
-4. [Agent Review Checklist](./agent-review-checklist.md) — Ten questions to answer before an agent goes anywhere near production
+4. [Designing the Tool Catalogue](./tool-catalogue-design.md) — The eight tool classes, the four execution patterns, and how a tool gets retired
+5. [Tool Contracts and Failure Modes](./tool-contracts-and-failure-modes.md) — Input schemas, the output contract, a nine-category error taxonomy, and the negative tests that prove the boundary holds
+6. [Agent Review Checklist](./agent-review-checklist.md) — Ten questions to answer before an agent goes anywhere near production
+
+For the coded controls behind this track, and the method for assessing yourself against them, see [Automation Standards](../standards/index.md).
 
 ---
 

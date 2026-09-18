@@ -82,6 +82,12 @@ Graceful degradation is useful only when safety invariants still hold.
 ## Key Takeaway
 
 Reliable automation is not code that never fails. It is code that fails predictably, safely, and early enough to prevent larger harm.
+
+<div class="np-reflection" markdown>
+<p class="np-reflection-label">Between the Lines</p>
+<p>The Stoics practised <em>premeditatio malorum</em> — sitting quietly, in advance, with what could go wrong. Not to catastrophise, but to take the sting out of it beforehand, so that when it arrives you are rehearsed rather than ambushed. Engineers do this instinctively for systems. Very few of us think to do it for a career.</p>
+</div>
+
 ---
 
 ## Continue the Series

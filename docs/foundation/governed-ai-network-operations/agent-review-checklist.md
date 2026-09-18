@@ -173,5 +173,5 @@ Re-run this checklist, in full, when any of the following happen. Each can chang
 ## Continue the Series
 
 - Series Index: [Governed AI for Network Operations](./index.md)
-- Previous: [From Script to Tool](./from-script-to-tool.md)
-- Next: [End of track](../index.md)
+- Previous: [Tool Contracts and Failure Modes](./tool-contracts-and-failure-modes.md)
+- Next: [Automation Standards](../standards/index.md) — the control catalogue and assessment method behind this checklist

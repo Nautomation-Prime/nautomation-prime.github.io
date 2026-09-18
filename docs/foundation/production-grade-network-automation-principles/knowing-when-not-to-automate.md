@@ -87,6 +87,12 @@ These approaches deliver value while reducing premature risk.
 ## Key Takeaway
 
 Choosing not to automate can be a mark of engineering maturity. The right decision is the one that minimises risk while preserving long-term operability.
+
+<div class="np-reflection" markdown>
+<p class="np-reflection-label">Between the Lines</p>
+<p>Japanese design has a word for it — <em>ma</em>: the interval, the deliberate empty space that gives everything around it its shape. It is not what is left over once you run out of things to add. It is chosen, and it is doing work. A decision not to automate is that kind of choice. So is an evening with nothing scheduled in it.</p>
+</div>
+
 ---
 
 ## Continue the Series

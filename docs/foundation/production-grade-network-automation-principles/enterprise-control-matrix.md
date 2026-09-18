@@ -13,6 +13,9 @@ tags:
 
 Use this matrix to align the tutorial principles with operational controls, ownership, and evidence requirements.
 
+!!! tip "Looking for stable control identifiers?"
+    This matrix maps controls to the *parts of this track*, which makes it useful during a design review and awkward to cite in a document. For codes you can reference in a design, a waiver, or a change record — `NP-CORE-02` rather than "Part 1" — use the [Automation Control Catalogue](../standards/control-catalogue.md), and the [assessment method](../standards/self-assessment.md) that goes with it.
+
 ---
 
 ## Control Mapping

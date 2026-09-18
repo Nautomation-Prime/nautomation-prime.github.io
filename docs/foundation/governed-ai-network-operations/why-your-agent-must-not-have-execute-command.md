@@ -137,6 +137,12 @@ With narrow typed tools, the answer is that a schema validation fails, or an una
 
 That containment is the entire design goal. Everything else is detail.
 
+<div class="np-reflection" markdown>
+<p class="np-reflection-label">Between the Lines</p>
+<p>Epictetus opens by dividing the world in two: what is up to us, and what is not. Everything above is an application of it. You cannot control what a model will generate, so you shape the boundary it generates into — and you stop trying to win an argument with something that holds no opinions.</p>
+<p>He thought most human unhappiness came from putting that line in the wrong place. Nineteen centuries on, a fair amount of it still does.</p>
+</div>
+
 ---
 
 ## Continue the Series

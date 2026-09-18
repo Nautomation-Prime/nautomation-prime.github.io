@@ -83,6 +83,13 @@ Human intervention should be explicit:
 ## Key Takeaway
 
 Human-in-the-loop design is about targeted control, not friction. Place humans where ambiguity and impact are highest.
+
+<div class="np-reflection" markdown>
+<p class="np-reflection-label">Between the Lines</p>
+<p>Kipling's <em>If—</em> asks you to trust yourself when everyone doubts you, and to make allowance for their doubting all the same. That is a good approval gate in a sentence: enough confidence to proceed, enough humility to want a second pair of eyes on the days it matters.</p>
+<p>The poem is about becoming a person, not designing a process. The overlap is not an accident — both are asking where your judgement belongs, and where it is better shared.</p>
+</div>
+
 ---
 
 ## Continue the Series

@@ -88,8 +88,11 @@ Use these companion resources to convert tutorial principles into repeatable gov
 - [Enterprise Control Matrix](./enterprise-control-matrix.md)
 - [Exception and Waiver Process](./exception-and-waiver-process.md)
 - [Automation Service Lifecycle](./automation-service-lifecycle.md)
+- [Remediation Packs](./remediation-packs.md)
 - [Implementation Roadmap (30/60/90 Days)](./implementation-roadmap-30-60-90-days.md)
 - [Operator Review Worksheet](./operator-review-worksheet.md)
+
+For coded control identifiers you can cite in your own documents, and a method for assessing yourself against them, see [Automation Standards](../standards/index.md).
 
 ---
 
@@ -122,3 +125,9 @@ Production safety is rarely one big feature. It is the accumulation of many smal
 - Log outcomes in a way humans can understand
 
 Teams that practice these principles usually ship slower at first, then far faster over time because incidents, rework, and operator distrust decline.
+
+<div class="np-reflection" markdown>
+<p class="np-reflection-label">Between the Lines</p>
+<p><em>Kaizen</em> — continuous small improvement — is usually explained with factories and assembly lines, which makes it easy to file under manufacturing and forget. The part that transfers is the arithmetic: a one percent change, repeated and sustained, beats a heroic push nobody can keep up.</p>
+<p>It works on control frameworks. It works just as well on the number of evenings a year you get back.</p>
+</div>

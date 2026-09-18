@@ -58,6 +58,12 @@ Every technical guide in this library adheres to three core principles:
 2. **Hardened for Production**: Our scripts include robust error handling, credential management, and "pre-flight" safety checks to protect your production environment.
 3. **Vendor-Neutral Foundations**: We leverage industry-standard libraries like **Netmiko**, **Nornir**, and **TextFSM** to ensure your skills and scripts remain portable.
 
+<div class="np-reflection" markdown>
+<p class="np-reflection-label">Between the Lines</p>
+<p>Reading code line by line feels indulgent when there is a working version to copy. It is also the only way anyone has ever actually understood anything.</p>
+<p>The tab you close without reading is not time saved. It is time deferred — usually to a worse moment, with someone waiting.</p>
+</div>
+
 ---
 
 ## 🚀 How to Use These Guides

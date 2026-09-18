@@ -80,6 +80,12 @@ Christopher built Nautomation Prime on the belief that automation should never b
 
     [Read the principles](./production-grade-network-automation-principles/index.md)
 
+-   ### Controls you can cite
+
+    The reference-grade half: a coded [control catalogue](./standards/control-catalogue.md), the [assessment method](./standards/self-assessment.md) that goes with it, the [Python engineering bar](./standards/python-engineering-standard.md), and a vendor-neutral [reference architecture](./standards/reference-architecture.md).
+
+    [Browse the standards](./standards/index.md)
+
 -   ### Free & low-cost help for charities
 
     Cisco and general networking engineering, infrastructure advice, and Python-based automation offered directly to registered UK charities and CICs, scoped and delivered under a clear, capped-liability agreement.

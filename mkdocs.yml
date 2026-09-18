@@ -183,6 +183,7 @@ nav:
       - Enterprise Control Matrix: foundation/production-grade-network-automation-principles/enterprise-control-matrix.md
       - Exception and Waiver Process: foundation/production-grade-network-automation-principles/exception-and-waiver-process.md
       - Automation Service Lifecycle: foundation/production-grade-network-automation-principles/automation-service-lifecycle.md
+      - Remediation Packs: foundation/production-grade-network-automation-principles/remediation-packs.md
       - Implementation Roadmap (30/60/90 Days): foundation/production-grade-network-automation-principles/implementation-roadmap-30-60-90-days.md
       - Operator Review Worksheet: foundation/production-grade-network-automation-principles/operator-review-worksheet.md
     - Governed AI for Network Operations:
@@ -190,7 +191,15 @@ nav:
       - AI Risk Classification: foundation/governed-ai-network-operations/ai-risk-classification.md
       - Why Your Agent Must Not Have an execute_command Tool: foundation/governed-ai-network-operations/why-your-agent-must-not-have-execute-command.md
       - From Script to Tool: foundation/governed-ai-network-operations/from-script-to-tool.md
+      - Designing the Tool Catalogue: foundation/governed-ai-network-operations/tool-catalogue-design.md
+      - Tool Contracts and Failure Modes: foundation/governed-ai-network-operations/tool-contracts-and-failure-modes.md
       - Agent Review Checklist: foundation/governed-ai-network-operations/agent-review-checklist.md
+    - Automation Standards:
+      - foundation/standards/index.md
+      - Automation Control Catalogue: foundation/standards/control-catalogue.md
+      - Assessing Yourself Against These Controls: foundation/standards/self-assessment.md
+      - Python Engineering Standard: foundation/standards/python-engineering-standard.md
+      - Governed Automation Reference Architecture: foundation/standards/reference-architecture.md
     - Deep Dives:
       - foundation/deep-dives/index.md
       - Access Switch Audit: foundation/deep-dives/access-switch-audit.md

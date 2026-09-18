@@ -181,6 +181,12 @@ If you need help applying these patterns across a live Cisco estate, review our 
 
 ---
 
+<div class="np-reflection" markdown>
+<p class="np-reflection-label">Between the Lines</p>
+<p>Japanese craft and martial traditions describe learning in three stages — <em>shu</em>, <em>ha</em>, <em>ri</em>: follow the form, break the form, leave the form behind. The order cannot be rushed, and nobody hands you the last stage as a certificate.</p>
+<p>Worth remembering on the days the ladder above looks longer than the time you have. The hours you can give it this week are the right number of hours.</p>
+</div>
+
 ## Suggested Learning Sequences
 
 ### Path 1: Foundation Builder (3 hours)
