@@ -105,6 +105,12 @@ Exit criteria:
 
 ---
 
+<div class="np-reflection" markdown>
+<p class="np-reflection-label">Between the Lines</p>
+<p>Japanese has a word, <em>yutori</em> (ゆとり) — the deliberate slack in a schedule, a room, a life. Not idleness. Room to move. A plan with none of it in looks admirably efficient right up until the first thing goes wrong, and then has nowhere to put it.</p>
+<p>Ninety days is enough for this roadmap only if you leave some in. That applies to the programme, and it applies to the people running it.</p>
+</div>
+
 ## Program Risks to Watch
 
 - Over-customised controls per team with no baseline standards

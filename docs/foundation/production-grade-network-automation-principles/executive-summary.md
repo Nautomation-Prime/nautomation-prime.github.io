@@ -13,6 +13,12 @@ tags:
 
 This page provides a concise leadership view of why production-grade automation matters, what controls are in place, and how program health is measured.
 
+<div class="np-reflection" markdown>
+<p class="np-reflection-label">Between the Lines</p>
+<p>Seneca opened <em>On the Shortness of Life</em> by refusing the usual complaint. We are not given too little time, he argued — we squander a great deal of it, and we guard our money in a way we never think to guard our hours.</p>
+<p>Every figure below is a measure of hours returned. Worth asking, before the next review, where they went. A number that only ever converts into a fuller queue has not actually bought anything.</p>
+</div>
+
 ---
 
 ## Strategic Outcomes

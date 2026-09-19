@@ -557,6 +557,12 @@ class AdaptiveRemediationEngine:
 
 ---
 
+<div class="np-reflection" markdown>
+<p class="np-reflection-label">Between the Lines</p>
+<p>"If you can keep your head when all about you / Are losing theirs and blaming it on you" is usually read as advice for the crisis itself. It is really advice for the ordinary hours beforehand.</p>
+<p>Nobody becomes calm at 3am by deciding to be. They are calm because the detection, the runbook and the rollback were written on an unremarkable Tuesday by somebody who was not panicking — which is the strongest argument for doing this work while nothing is on fire.</p>
+</div>
+
 ## Best Practices
 
 ### 1. Separate Automatic vs Manual Remediation

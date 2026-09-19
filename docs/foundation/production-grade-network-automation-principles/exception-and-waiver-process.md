@@ -65,6 +65,12 @@ An exception that has been renewed three times is not an exception. It is either
 
 ---
 
+<div class="np-reflection" markdown>
+<p class="np-reflection-label">Between the Lines</p>
+<p><em>Nemawashi</em> (根回し) translates as digging around the roots — the unhurried groundwork a Japanese team does before a decision is formally taken, so the meeting confirms a consensus rather than manufacturing one in the room.</p>
+<p>An exception raised that way is a short conversation with the people it affects. Raised the other way, it becomes an argument in a change board: the same work, done later, in public, by people with less context and less time.</p>
+</div>
+
 ## The Exception Register
 
 Waivers that live in individual tickets are waivers nobody can count. Keep a single register — a table in your program documentation is enough to start — recording every open exception with its owner, class, and expiry.

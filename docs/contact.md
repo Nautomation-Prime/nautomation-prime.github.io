@@ -127,6 +127,7 @@ If you are not ready to contact anyone yet, start with the methodology and deliv
 <div class="np-reflection" markdown>
 <p class="np-reflection-label">Between the Lines</p>
 <p>Whatever the reason you're reaching out, it can wait until you've had a proper cup of tea first. We'll still be here in twenty minutes.</p>
+<p>That isn't a throwaway line. If the first thing this work teaches you is that a message can wait twenty minutes, it has already earned most of its value.</p>
 </div>
 
 ## Contact details

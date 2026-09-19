@@ -79,6 +79,12 @@ This limits cascading failures under uncertain conditions.
 
 Scoping is not just operational convenience. It is a primary control that decides the size of your worst-case outcome.
 
+<div class="np-reflection" markdown>
+<p class="np-reflection-label">Between the Lines</p>
+<p>Kipling admired the nerve to "make one heap of all your winnings / And risk it on one turn of pitch-and-toss" — and then, pointedly, to start again at the beginning and never breathe a word about the loss.</p>
+<p>It is a fine thing to read and a poor way to run a change window. Scope exists so that a bad night costs one site rather than the estate, and so that whoever ran it still gets their weekend.</p>
+</div>
+
 ---
 
 ## Continue the Series

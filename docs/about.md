@@ -232,7 +232,8 @@ Found a bug, need support, or have a feature request for one of our tools? [Get 
 
 <div class="np-reflection" markdown>
 <p class="np-reflection-label">Between the Lines</p>
-<p>A well-built automation runs quietly enough that a team can stop thinking about it. That's also, not by accident, what a forest path or a properly brewed pot of tea is for: something done with enough care that it asks nothing further of you once it's done right.</p>
+<p>A well-built automation runs quietly enough that a team stops thinking about it—the same quality a good forest path has, where all the work that went into it is invisible and the point is that you can walk it without paying attention.</p>
+<p>Anything built that carefully is really buying someone's attention back. What they choose to spend it on is not our business, and it is the entire reason for doing the work.</p>
 </div>
 
 ## Legal

@@ -45,7 +45,8 @@ Design optimised, scalable workflows and architecture **before** writing code. T
 
 <div class="np-reflection" markdown>
 <p class="np-reflection-label">Between the Lines</p>
-<p>The Chinese word for the tea ceremony, <em>gongfu</em> (功夫), doesn't actually mean "ceremony"—it means skill earned through patient repetition, applied to anything done properly. A process rebuilt properly, the first time, is gongfu. Automating it before that happens is just a faster way of doing it badly.</p>
+<p>Traditional Japanese joinery holds without nails or glue. The strength comes from shaping each piece until it fits the one beside it—slow, exacting work that leaves nothing visible to admire once the joint is closed.</p>
+<p>Re-engineering is that stage. It produces no demo and nothing to announce, which is exactly why it gets skipped. It is also the difference between automating a process and automating a problem.</p>
 </div>
 
 ## 🚫 The Automation Trap

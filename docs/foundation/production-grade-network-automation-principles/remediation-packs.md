@@ -111,6 +111,12 @@ An approval that is not bound to a specific artifact is a general permission. Fo
 
 Expiry is the one teams resist, because it creates rework when a change slips. That rework is the control working. The state the pack was built against has a shelf life, and it is usually shorter than the approval process.
 
+<div class="np-reflection" markdown>
+<p class="np-reflection-label">Between the Lines</p>
+<p>The Stoics attached a quiet caveat to every intention — <em>fate permitting</em>. Not fatalism, and not hedging. A way of holding a plan firmly enough to act on it, and loosely enough that the world is still allowed to have changed since you made it.</p>
+<p>An approval with an expiry date is that clause written down. It says this was the right decision on Tuesday, and Tuesday is not binding on Thursday.</p>
+</div>
+
 ---
 
 ## Revalidation Before Execution

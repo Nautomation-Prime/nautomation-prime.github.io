@@ -247,6 +247,12 @@ Regardless of which package you choose:
 
 ---
 
+<div class="np-reflection" markdown>
+<p class="np-reflection-label">Between the Lines</p>
+<p><em>Mottainai</em> (もったいない) is the Japanese word for the pang you feel at waste — not only of things, but of potential that never got used for anything.</p>
+<p>It is usually said about food or materials. It applies just as well to a capable engineer spending Saturday running upgrades a script could have handled, and to the weekends that quietly disappear into work nobody will remember by Wednesday.</p>
+</div>
+
 ## Ready to Talk?
 
 Not sure which package fits your situation? [Send us an email](mailto:enquiries@nautomationprime.io) with a brief description of what you're trying to solve — we'll suggest the right starting point at no charge.

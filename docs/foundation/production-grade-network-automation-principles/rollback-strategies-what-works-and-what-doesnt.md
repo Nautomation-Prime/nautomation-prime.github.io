@@ -85,6 +85,12 @@ Automatic rollback should be policy-bounded and evidence-based.
 
 Safe rollback is controlled recovery under uncertainty. Prefer recoverability and containment over blind reversion.
 
+<div class="np-reflection" markdown>
+<p class="np-reflection-label">Between the Lines</p>
+<p><em>Kintsugi</em> is the Japanese practice of repairing broken pottery with gold, so the break becomes the most visible part of the object rather than the thing you hide. The bowl is not pretending it was never dropped.</p>
+<p>A rollback is not a confession either. The systems worth trusting are the ones that have been broken, recovered and documented — a considerably more forgiving standard than most engineers are willing to apply to themselves.</p>
+</div>
+
 ---
 
 ## Continue the Series

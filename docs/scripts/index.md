@@ -262,7 +262,8 @@ For issues, feature requests, or questions about any script:
 
 <div class="np-reflection" markdown>
 <p class="np-reflection-label">Between the Lines</p>
-<p>A tool is only trustworthy once it produces the same careful result on the hundredth run as the first—the same standard that matters on a shooting range, in a tea ceremony, or in a script touching production. Repeatable and careful, not just fast.</p>
+<p>In martial practice a <em>kata</em> is a form rehearsed until it no longer needs deciding. The value was never the movement itself; it is the attention freed up once the movement has become reliable.</p>
+<p>A script library is that idea written down. A tool is only worth having when it gives the same careful result on the hundredth run as on the first—and the reward for that is not speed. It is one less thing occupying you.</p>
 </div>
 
 ## The "Prime" Philosophy
