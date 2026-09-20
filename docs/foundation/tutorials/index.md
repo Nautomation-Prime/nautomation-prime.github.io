@@ -42,7 +42,7 @@ Ready to handle more complex scenarios and multi-device operations.
 
 - **Focus**: Multi-threading, advanced parsing, data aggregation, professional development practices
 - **Prerequisites**: Comfortable with beginner concepts, understand functions and data structures
-- **Topics**: Threading & concurrency, custom TextFSM templates, Jinja2 templating, structured logging, argparse CLIs, retry logic, code organisation
+- **Topics**: Threading & concurrency, custom TextFSM templates, Pydantic validation, Jinja2 templating, structured logging, argparse CLIs, retry logic, code organisation
 
 **New Production Patterns Available:**
 
@@ -52,6 +52,18 @@ Ready to handle more complex scenarios and multi-device operations.
 - [State Management and Idempotency](./intermediate/state-management-idempotency-network-automation.md)
 - [Structured Logging for Network Automation](./intermediate/structured-logging-network-automation.md)
 - [Health Checks and Pre-Flight Validation](./intermediate/health-checks-pre-flight-validation.md)
+
+---
+
+### 🧩 [Capstone: Build a Config Deployment Pipeline](./capstone/index.md)
+
+The bridge between intermediate and expert. Seven chapters that build **one project** combining everything the intermediate track teaches separately.
+
+- **Focus**: How the pieces join — what each stage of a pipeline refuses to pass on
+- **Prerequisites**: The data modelling quartet, plus Nornir and PyATS fundamentals
+- **You'll build**: `netpipe` — intent in YAML, validated with Pydantic, rendered with Jinja2, reviewed as a diff, gated by pre-flight checks, deployed in batches with Nornir, proven with PyATS, rolled back on failure, and recorded as an audit artefact
+
+**Start Here**: [Capstone Project Overview](./capstone/index.md)
 
 ---
 

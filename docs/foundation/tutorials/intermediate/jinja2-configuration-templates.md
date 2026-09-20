@@ -14,7 +14,7 @@ tags:
 
 ## "From Copy-Paste Configs to Data-Driven Generation — Template Everything"
 
-You've mastered YAML for data modelling and JSON for API interactions. Now it's time to learn **Jinja2**—the template engine that transforms your structured data into actual device configurations.
+You've mastered YAML for data modelling, JSON for API interactions, and Pydantic for proving that data is correct before you use it. Now it's time to learn **Jinja2**—the template engine that transforms your validated data into actual device configurations.
 
 **Why Jinja2 is essential for network automation:**
 
@@ -51,6 +51,7 @@ By the end of this tutorial, you'll understand:
 
 - ✅ **Completed [YAML Data Modelling Tutorial](./yaml-data-modeling-network-automation.md)** — Understanding structured data
 - ✅ **Completed [JSON Data Handling Tutorial](./json-data-handling-network-automation.md)** — Data serialization
+- ✅ **Completed [Pydantic Data Validation Tutorial](./pydantic-data-validation-network-automation.md)** — Validated models to render from
 - ✅ Familiarity with Cisco IOS configuration syntax
 
 ### Required Software
@@ -1419,19 +1420,19 @@ def validate_config(config):
 
 ## 🎓 Next Steps
 
-You've mastered the data modelling trilogy (YAML + JSON + Jinja2)! Now apply these skills:
+You've mastered the data modelling quartet (YAML + JSON + Pydantic + Jinja2)! Now apply these skills:
 
-1. **[Nornir Fundamentals](./nornir-fundamentals.md)** (Recommended Next)
+1. **[The Capstone Project](../capstone/index.md)** (Recommended Next)
+   - Build a complete deployment pipeline that uses all four
+   - Intent → validation → rendering → deployment → proof → audit
+
+2. **[Nornir Fundamentals](./nornir-fundamentals.md)**
    - Use YAML inventories and Jinja2 templates
    - Deploy configs at scale with parallel execution
 
-2. **[PyATS Fundamentals](./pyats-fundamentals.md)**
+3. **[PyATS Fundamentals](./pyats-fundamentals.md)**
    - Validate generated configs with PyATS
    - Ensure templates produce correct output
-
-3. **[Credential Management](./credential-management-network-automation.md)**
-   - Secure your automation workflows
-   - Manage credentials for template deployment
 
 4. **[Enterprise Config Backup with Nornir](./enterprise-config-backup-nornir.md)**
    - Compare generated configs vs running configs
@@ -1441,4 +1442,4 @@ You've mastered the data modelling trilogy (YAML + JSON + Jinja2)! Now apply the
 
 > **Remember:** Templates + Data = Scalable Configuration Management. Master Jinja2, eliminate manual configuration errors forever.
 
-[← Back to JSON Tutorial](./json-data-handling-network-automation.md) | [Continue to Nornir Fundamentals →](./nornir-fundamentals.md)
+[← Back to Pydantic Tutorial](./pydantic-data-validation-network-automation.md) | [Continue to the Capstone Project →](../capstone/index.md)

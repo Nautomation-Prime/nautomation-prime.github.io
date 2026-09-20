@@ -14,6 +14,11 @@ tags:
 
 Welcome to the expert-level tutorials for production network automation. Here you'll find in-depth guides for building, validating, and operating enterprise-grade automation solutions.
 
+!!! tip "Coming From the Intermediate Track?"
+    The [Capstone Project](../capstone/index.md) is the bridge. It combines the data modelling quartet, Nornir, PyATS and the reliability patterns into one working deployment pipeline, and each expert tutorial below extends it in a specific direction — vaulting its credentials, making it asynchronous, shipping its audit records, or sourcing its intent from NetBox.
+
+    Build the pipeline first, and these pages become changes to something you already have rather than isolated techniques.
+
 ---
 
 ## 📚 What You'll Learn

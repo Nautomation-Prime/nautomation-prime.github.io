@@ -882,6 +882,15 @@ if __name__ == "__main__":
 
 ## 🧪 JSON Schema Validation
 
+JSON Schema describes the shape of data in a **language-neutral** way. The schema is itself just JSON, which means it can be read by things that aren't your Python script: a CI linter, a vendor's API documentation, another team's service, or a YAML plugin in your operators' editors.
+
+That portability is what it's for. Use JSON Schema when the schema is a **contract** — something published, shared, or enforced outside your codebase.
+
+!!! info "Validating Data on the Way *Into* Python?"
+    JSON Schema tells you whether a dictionary is acceptable. It doesn't give you anything typed to work with afterwards — you validate a dict, and then you still have a dict.
+
+    For data entering your application, the next tutorial covers [Pydantic](./pydantic-data-validation-network-automation.md), which validates *and* hands back typed objects with attribute access, custom rules and editor autocomplete. The two are complementary, and a Pydantic model can generate a JSON Schema for you when you need the portable version as well.
+
 ### Validating JSON Structure
 
 ```python
@@ -1006,6 +1015,7 @@ Testing invalid VLAN range:
 - ✅ **Configuration validation** — Catch errors before deployment
 - ✅ **Documentation** — Schema describes expected data structure
 - ✅ **Testing** — Automated validation in CI/CD pipelines
+- ✅ **Tool-agnostic** — The same schema works in CI, in editors, and in other languages
 
 ---
 
@@ -1488,18 +1498,19 @@ if __name__ == "__main__":
 
 You've mastered JSON! Continue your data modelling journey:
 
-1. **[Jinja2 Configuration Templates](./jinja2-configuration-templates.md)** (Recommended Next)
-   - Combine YAML/JSON data with Jinja2 templates
+1. **[Pydantic Data Validation](./pydantic-data-validation-network-automation.md)** (Recommended Next)
+   - Turn loaded YAML and JSON into typed, validated Python objects
+   - Catch bad data before your automation reaches a device
+   - Encode your design rules, not just your data shapes
+
+2. **[Jinja2 Configuration Templates](./jinja2-configuration-templates.md)**
+   - Combine validated data with Jinja2 templates
    - Generate device configurations dynamically
    - Template-driven automation
 
-2. **[Nornir Fundamentals](./nornir-fundamentals.md)**
+3. **[Nornir Fundamentals](./nornir-fundamentals.md)**
    - Use JSON for result aggregation
    - Parallel execution at scale
-
-3. **[PyATS Network Validation](./pyats-network-validation.md)**
-   - Parse device output to JSON-like structures
-   - Automated validation patterns
 
 4. **[Structured Logging for Network Automation](./structured-logging-network-automation.md)**
    - Production logging patterns with JSON
@@ -1509,4 +1520,4 @@ You've mastered JSON! Continue your data modelling journey:
 
 > **Remember:** JSON is the data exchange format for modern networks. Master it for API integrations, structured logging, and data-driven automation.
 
-[← Back to YAML Tutorial](./yaml-data-modeling-network-automation.md) | [Continue to Jinja2 Tutorial →](./jinja2-configuration-templates.md)
+[← Back to YAML Tutorial](./yaml-data-modeling-network-automation.md) | [Continue to Pydantic Tutorial →](./pydantic-data-validation-network-automation.md)

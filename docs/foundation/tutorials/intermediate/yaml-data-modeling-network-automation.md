@@ -1013,6 +1013,13 @@ if __name__ == "__main__":
 python validate_yaml.py
 ```
 
+!!! info "This Catches Syntax — Not Correctness"
+    The script above proves the file *parses* and that a required key exists. That's the floor, and it's worth having, but notice what still gets through it: a `hostname` of `10.1.1.300`, a `platform` of `iso`, a VLAN ID of `5000`, or a `platfrom:` typo that quietly leaves the real field missing. Every one of those loads cleanly and fails later — often on a device, mid-change.
+
+    Hand-written checks also scale badly. Each new rule is another `if` block, and the error messages drift apart.
+
+    Two tutorials from now, [Pydantic Data Validation](./pydantic-data-validation-network-automation.md) replaces this entire script with a declarative model that checks types, ranges, IP addresses, allowed values, unknown keys and your own design rules — and hands back typed objects instead of raw dictionaries. Learn the manual version first so you know what it's doing for you.
+
 ---
 
 ## 🎓 Best Practices for Network Automation
@@ -1418,18 +1425,18 @@ You've mastered YAML! Continue your data modelling journey:
    - REST API responses and structured logging
    - When to use JSON vs YAML
 
-2. **[Jinja2 Configuration Templates](./jinja2-configuration-templates.md)**
+2. **[Pydantic Data Validation](./pydantic-data-validation-network-automation.md)**
+   - Replace hand-written checks with declarative models
+   - Prove your inventory is correct before you use it
+
+3. **[Jinja2 Configuration Templates](./jinja2-configuration-templates.md)**
    - Combine YAML data with Jinja2 templates
    - Generate device configurations dynamically
    - Template-driven automation patterns
 
-3. **[Nornir Fundamentals](./nornir-fundamentals.md)**
+4. **[Nornir Fundamentals](./nornir-fundamentals.md)**
    - Apply YAML inventory in real Nornir automation
    - Parallel execution at scale
-
-4. **[PyATS Fundamentals](./pyats-fundamentals.md)**
-   - Use YAML testbeds for network validation
-   - Enterprise testing patterns
 
 ---
 

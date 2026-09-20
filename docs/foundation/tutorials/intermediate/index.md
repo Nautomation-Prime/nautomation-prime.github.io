@@ -68,16 +68,18 @@ Before diving into specific frameworks, master the **foundational patterns** use
 
 - **[YAML Data Modelling](./yaml-data-modeling-network-automation.md)** — Human-readable configuration files, device inventories (Nornir, PyATS)
 - **[JSON Data Handling](./json-data-handling-network-automation.md)** — API interactions, structured logging, REST APIs
+- **[Pydantic Data Validation](./pydantic-data-validation-network-automation.md)** — Typed models that reject bad data before it reaches a device
 - **[Jinja2 Configuration Templates](./jinja2-configuration-templates.md)** — Generate device configs from data, eliminate copy-paste errors
 
 **Why these matter:**
 
 - ✅ **YAML** — Nornir inventories, PyATS testbeds, readable by network engineers
 - ✅ **JSON** — Every modern network API (DNA Center, Meraki, RESTCONF)
+- ✅ **Pydantic** — The gate between loading data and trusting it
 - ✅ **Jinja2** — Template-driven configuration generation at scale
 - ✅ **Separation of concerns** — Data separate from code, version control friendly
 
-These three skills form the foundation for all subsequent tutorials. Master them first.
+These four skills form the foundation for all subsequent tutorials. Master them first, then combine them in the [Capstone Project](../capstone/index.md).
 
 #### Python Patterns for Network Automation
 
@@ -197,9 +199,9 @@ pip install nornir nornir-netmiko nornir-utils netmiko pandas openpyxl pyyaml
 
 ### Foundation: Data Modelling for Network Automation
 
-Master the three essential data formats before building complex automation systems.
+Master the essential data skills before building complex automation systems: describe your intent, exchange it, prove it's correct, and turn it into configuration.
 
-#### Tutorial Series A: Data Modelling Trilogy
+#### Tutorial Series A: Data Modelling Quartet
 
 ##### A1. [YAML Data Modelling — Human-Readable Configuration](./yaml-data-modeling-network-automation.md)
 
@@ -243,7 +245,29 @@ Learn:
 
 ---
 
-##### A3. [Jinja2 Configuration Templates — Generate Configs from Data](./jinja2-configuration-templates.md)
+##### A3. [Pydantic Data Validation — Prove Your Data Before You Use It](./pydantic-data-validation-network-automation.md)
+
+**Turn loaded YAML and JSON into typed objects that cannot be wrong.**
+
+Learn:
+
+- Why a dictionary is the wrong shape to build automation on
+- `BaseModel`, field types and reading `ValidationError`
+- Network-native types: IP addresses, networks, constrained VLAN IDs
+- Nested models for devices, interfaces and VLANs
+- Custom rules with `@field_validator` and `@model_validator`
+- Rejecting unknown keys with `extra="forbid"`
+- Validating API responses, and when to use JSON Schema instead
+
+**What You'll Build:** A validating loader that refuses a malformed inventory with a report naming every problem, and hands back typed objects.
+
+**Why Now:** A1 and A2 load data; nothing yet checks it. This is the gate between "I read the file" and "I trust the file" — and A4 renders from its output.
+
+**Prerequisite:** Complete Tutorials A1 and A2
+
+---
+
+##### A4. [Jinja2 Configuration Templates — Generate Configs from Data](./jinja2-configuration-templates.md)
 
 **Transform structured data into device configurations automatically.**
 
@@ -256,11 +280,13 @@ Learn:
 - Whitespace control for clean configs
 - Multi-device configuration generation
 
-**What You'll Build:** Complete configuration generation system that produces device configs from YAML data and Jinja2 templates.
+**What You'll Build:** Complete configuration generation system that produces device configs from validated data and Jinja2 templates.
 
-**Why Now:** Combines YAML/JSON data with templates to eliminate manual configuration errors—the core pattern of scalable automation.
+**Why Now:** Combines validated data with templates to eliminate manual configuration errors—the core pattern of scalable automation.
 
-**Prerequisite:** Complete Tutorials A1 and A2
+**Prerequisite:** Complete Tutorials A1, A2 and A3
+
+**Then:** Put all four to work in the [Capstone Project](../capstone/index.md).
 
 ---
 

@@ -137,6 +137,7 @@ nav:
         - foundation/tutorials/intermediate/index.md
         - YAML Data Modelling: foundation/tutorials/intermediate/yaml-data-modeling-network-automation.md
         - JSON Data Handling: foundation/tutorials/intermediate/json-data-handling-network-automation.md
+        - Pydantic Data Validation: foundation/tutorials/intermediate/pydantic-data-validation-network-automation.md
         - Jinja2 Configuration Templates: foundation/tutorials/intermediate/jinja2-configuration-templates.md
         - Decorators for Network Automation: foundation/tutorials/intermediate/decorators-network-automation.md
         - PyATS Fundamentals: foundation/tutorials/intermediate/pyats-fundamentals.md
@@ -152,6 +153,15 @@ nav:
         - State Management and Idempotency: foundation/tutorials/intermediate/state-management-idempotency-network-automation.md
         - Structured Logging for Network Automation: foundation/tutorials/intermediate/structured-logging-network-automation.md
         - Health Checks and Pre-Flight Validation: foundation/tutorials/intermediate/health-checks-pre-flight-validation.md
+      - "Capstone: Build a Config Deployment Pipeline":
+        - foundation/tutorials/capstone/index.md
+        - "1. Intent and Repository Layout": foundation/tutorials/capstone/01-intent-and-repository-layout.md
+        - "2. Validating Intent": foundation/tutorials/capstone/02-validating-intent.md
+        - "3. Rendering Configuration": foundation/tutorials/capstone/03-rendering-configuration.md
+        - "4. Credentials and Pre-Flight": foundation/tutorials/capstone/04-credentials-and-preflight.md
+        - "5. Deploying with Nornir": foundation/tutorials/capstone/05-deploying-with-nornir.md
+        - "6. Proving the Change with PyATS": foundation/tutorials/capstone/06-proving-the-change-with-pyats.md
+        - "7. Rollback and the Audit Record": foundation/tutorials/capstone/07-rollback-and-audit.md
       - Expert Tutorials:
         - foundation/tutorials/expert/index.md
         - Circuit Breakers and Backpressure: foundation/tutorials/expert/circuit-breakers-backpressure-network-automation.md
