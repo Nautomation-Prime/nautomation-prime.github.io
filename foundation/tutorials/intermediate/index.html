@@ -432,6 +432,18 @@
 </a>
 </li>
 <li class="md-nav__item">
+<a class="md-nav__link" href="pydantic-data-validation-network-automation/">
+<span class="md-ellipsis">
+    
+  
+    Pydantic Data Validation
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
 <a class="md-nav__link" href="jinja2-configuration-templates/">
 <span class="md-ellipsis">
     
@@ -617,11 +629,11 @@
 <li class="md-nav__item md-nav__item--nested">
 <input class="md-nav__toggle md-toggle" id="__nav_3_4_4" type="checkbox"/>
 <div class="md-nav__link md-nav__container">
-<a class="md-nav__link" href="../expert/">
+<a class="md-nav__link" href="../capstone/">
 <span class="md-ellipsis">
     
   
-    Expert Tutorials
+    Capstone: Build a Config Deployment Pipeline
   
 
     
@@ -633,6 +645,120 @@
 </div>
 <nav aria-expanded="false" aria-labelledby="__nav_3_4_4_label" class="md-nav" data-md-level="3">
 <label class="md-nav__title" for="__nav_3_4_4">
+<span class="md-nav__icon md-icon"></span>
+            
+  
+    Capstone: Build a Config Deployment Pipeline
+  
+
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../capstone/01-intent-and-repository-layout/">
+<span class="md-ellipsis">
+    
+  
+    1. Intent and Repository Layout
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../capstone/02-validating-intent/">
+<span class="md-ellipsis">
+    
+  
+    2. Validating Intent
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../capstone/03-rendering-configuration/">
+<span class="md-ellipsis">
+    
+  
+    3. Rendering Configuration
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../capstone/04-credentials-and-preflight/">
+<span class="md-ellipsis">
+    
+  
+    4. Credentials and Pre-Flight
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../capstone/05-deploying-with-nornir/">
+<span class="md-ellipsis">
+    
+  
+    5. Deploying with Nornir
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../capstone/06-proving-the-change-with-pyats/">
+<span class="md-ellipsis">
+    
+  
+    6. Proving the Change with PyATS
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../capstone/07-rollback-and-audit/">
+<span class="md-ellipsis">
+    
+  
+    7. Rollback and the Audit Record
+  
+
+    
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_3_4_5" type="checkbox"/>
+<div class="md-nav__link md-nav__container">
+<a class="md-nav__link" href="../expert/">
+<span class="md-ellipsis">
+    
+  
+    Expert Tutorials
+  
+
+    
+  </span>
+</a>
+<label class="md-nav__link" for="__nav_3_4_5" id="__nav_3_4_5_label" tabindex="0">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-expanded="false" aria-labelledby="__nav_3_4_5_label" class="md-nav" data-md-level="3">
+<label class="md-nav__title" for="__nav_3_4_5">
 <span class="md-nav__icon md-icon"></span>
             
   
@@ -2023,14 +2149,14 @@
 <nav aria-label="Foundation: Data Modelling for Network Automation" class="md-nav">
 <ul class="md-nav__list">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#tutorial-series-a-data-modelling-trilogy">
+<a class="md-nav__link" href="#tutorial-series-a-data-modelling-quartet">
 <span class="md-ellipsis">
       
-        Tutorial Series A: Data Modelling Trilogy
+        Tutorial Series A: Data Modelling Quartet
       
     </span>
 </a>
-<nav aria-label="Tutorial Series A: Data Modelling Trilogy" class="md-nav">
+<nav aria-label="Tutorial Series A: Data Modelling Quartet" class="md-nav">
 <ul class="md-nav__list">
 <li class="md-nav__item">
 <a class="md-nav__link" href="#a1-yaml-data-modelling-human-readable-configuration">
@@ -2051,10 +2177,19 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#a3-jinja2-configuration-templates-generate-configs-from-data">
+<a class="md-nav__link" href="#a3-pydantic-data-validation-prove-your-data-before-you-use-it">
 <span class="md-ellipsis">
       
-        A3. Jinja2 Configuration Templates — Generate Configs from Data
+        A3. Pydantic Data Validation — Prove Your Data Before You Use It
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#a4-jinja2-configuration-templates-generate-configs-from-data">
+<span class="md-ellipsis">
+      
+        A4. Jinja2 Configuration Templates — Generate Configs from Data
       
     </span>
 </a>
@@ -2351,16 +2486,18 @@
 <ul>
 <li><strong><a href="yaml-data-modeling-network-automation/">YAML Data Modelling</a></strong> — Human-readable configuration files, device inventories (Nornir, PyATS)</li>
 <li><strong><a href="json-data-handling-network-automation/">JSON Data Handling</a></strong> — API interactions, structured logging, REST APIs</li>
+<li><strong><a href="pydantic-data-validation-network-automation/">Pydantic Data Validation</a></strong> — Typed models that reject bad data before it reaches a device</li>
 <li><strong><a href="jinja2-configuration-templates/">Jinja2 Configuration Templates</a></strong> — Generate device configs from data, eliminate copy-paste errors</li>
 </ul>
 <p><strong>Why these matter:</strong></p>
 <ul>
 <li>✅ <strong>YAML</strong> — Nornir inventories, PyATS testbeds, readable by network engineers</li>
 <li>✅ <strong>JSON</strong> — Every modern network API (DNA Center, Meraki, RESTCONF)</li>
+<li>✅ <strong>Pydantic</strong> — The gate between loading data and trusting it</li>
 <li>✅ <strong>Jinja2</strong> — Template-driven configuration generation at scale</li>
 <li>✅ <strong>Separation of concerns</strong> — Data separate from code, version control friendly</li>
 </ul>
-<p>These three skills form the foundation for all subsequent tutorials. Master them first.</p>
+<p>These four skills form the foundation for all subsequent tutorials. Master them first, then combine them in the <a href="../capstone/">Capstone Project</a>.</p>
 <h4 id="python-patterns-for-network-automation">Python Patterns for Network Automation<a class="headerlink" href="#python-patterns-for-network-automation" title="Anchor link to this section">¶</a></h4>
 <p><strong>Decorator patterns</strong>—the Python technique used throughout production automation:</p>
 <ul>
@@ -2457,8 +2594,8 @@
 <hr/>
 <h2 id="tutorial-series">📚 Tutorial Series<a class="headerlink" href="#tutorial-series" title="Anchor link to this section">¶</a></h2>
 <h3 id="foundation-data-modelling-for-network-automation">Foundation: Data Modelling for Network Automation<a class="headerlink" href="#foundation-data-modelling-for-network-automation" title="Anchor link to this section">¶</a></h3>
-<p>Master the three essential data formats before building complex automation systems.</p>
-<h4 id="tutorial-series-a-data-modelling-trilogy">Tutorial Series A: Data Modelling Trilogy<a class="headerlink" href="#tutorial-series-a-data-modelling-trilogy" title="Anchor link to this section">¶</a></h4>
+<p>Master the essential data skills before building complex automation systems: describe your intent, exchange it, prove it's correct, and turn it into configuration.</p>
+<h4 id="tutorial-series-a-data-modelling-quartet">Tutorial Series A: Data Modelling Quartet<a class="headerlink" href="#tutorial-series-a-data-modelling-quartet" title="Anchor link to this section">¶</a></h4>
 <h5 id="a1-yaml-data-modelling-human-readable-configuration">A1. <a href="yaml-data-modeling-network-automation/">YAML Data Modelling — Human-Readable Configuration</a><a class="headerlink" href="#a1-yaml-data-modelling-human-readable-configuration" title="Anchor link to this section">¶</a></h5>
 <p><strong>Learn the foundation of network automation data structures.</strong></p>
 <p>Learn:</p>
@@ -2489,7 +2626,23 @@
 <p><strong>Why Now:</strong> Modern network devices and controllers expose REST APIs that speak JSON—essential for API-driven automation.</p>
 <p><strong>Prerequisite:</strong> Complete Tutorial A1 (YAML)</p>
 <hr/>
-<h5 id="a3-jinja2-configuration-templates-generate-configs-from-data">A3. <a href="jinja2-configuration-templates/">Jinja2 Configuration Templates — Generate Configs from Data</a><a class="headerlink" href="#a3-jinja2-configuration-templates-generate-configs-from-data" title="Anchor link to this section">¶</a></h5>
+<h5 id="a3-pydantic-data-validation-prove-your-data-before-you-use-it">A3. <a href="pydantic-data-validation-network-automation/">Pydantic Data Validation — Prove Your Data Before You Use It</a><a class="headerlink" href="#a3-pydantic-data-validation-prove-your-data-before-you-use-it" title="Anchor link to this section">¶</a></h5>
+<p><strong>Turn loaded YAML and JSON into typed objects that cannot be wrong.</strong></p>
+<p>Learn:</p>
+<ul>
+<li>Why a dictionary is the wrong shape to build automation on</li>
+<li><code>BaseModel</code>, field types and reading <code>ValidationError</code></li>
+<li>Network-native types: IP addresses, networks, constrained VLAN IDs</li>
+<li>Nested models for devices, interfaces and VLANs</li>
+<li>Custom rules with <code>@field_validator</code> and <code>@model_validator</code></li>
+<li>Rejecting unknown keys with <code>extra="forbid"</code></li>
+<li>Validating API responses, and when to use JSON Schema instead</li>
+</ul>
+<p><strong>What You'll Build:</strong> A validating loader that refuses a malformed inventory with a report naming every problem, and hands back typed objects.</p>
+<p><strong>Why Now:</strong> A1 and A2 load data; nothing yet checks it. This is the gate between "I read the file" and "I trust the file" — and A4 renders from its output.</p>
+<p><strong>Prerequisite:</strong> Complete Tutorials A1 and A2</p>
+<hr/>
+<h5 id="a4-jinja2-configuration-templates-generate-configs-from-data">A4. <a href="jinja2-configuration-templates/">Jinja2 Configuration Templates — Generate Configs from Data</a><a class="headerlink" href="#a4-jinja2-configuration-templates-generate-configs-from-data" title="Anchor link to this section">¶</a></h5>
 <p><strong>Transform structured data into device configurations automatically.</strong></p>
 <p>Learn:</p>
 <ul>
@@ -2500,9 +2653,10 @@
 <li>Whitespace control for clean configs</li>
 <li>Multi-device configuration generation</li>
 </ul>
-<p><strong>What You'll Build:</strong> Complete configuration generation system that produces device configs from YAML data and Jinja2 templates.</p>
-<p><strong>Why Now:</strong> Combines YAML/JSON data with templates to eliminate manual configuration errors—the core pattern of scalable automation.</p>
-<p><strong>Prerequisite:</strong> Complete Tutorials A1 and A2</p>
+<p><strong>What You'll Build:</strong> Complete configuration generation system that produces device configs from validated data and Jinja2 templates.</p>
+<p><strong>Why Now:</strong> Combines validated data with templates to eliminate manual configuration errors—the core pattern of scalable automation.</p>
+<p><strong>Prerequisite:</strong> Complete Tutorials A1, A2 and A3</p>
+<p><strong>Then:</strong> Put all four to work in the <a href="../capstone/">Capstone Project</a>.</p>
 <hr/>
 <h3 id="foundation-python-patterns-for-network-automation">Foundation: Python Patterns for Network Automation<a class="headerlink" href="#foundation-python-patterns-for-network-automation" title="Anchor link to this section">¶</a></h3>
 <h4 id="b0-decorators-in-network-automation-build-resilient-observable-systems">B0. <a href="decorators-network-automation/">Decorators in Network Automation — Build Resilient, Observable Systems</a><a class="headerlink" href="#b0-decorators-in-network-automation-build-resilient-observable-systems" title="Anchor link to this section">¶</a></h4>
@@ -2790,7 +2944,7 @@ After mastering data modelling and Python patterns, choose your framework path:
 <span class="md-icon" title="Last update">
 <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"></path></svg>
 </span>
-<span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 11, 2026 11:08:45 UTC">September 11, 2026</span>
+<span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 20, 2026 11:07:39 UTC">September 20, 2026</span>
 </span>
 </aside>
 </article>

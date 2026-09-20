@@ -1,0 +1,6695 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Use Pydantic v2 BaseModel to turn untrusted YAML, JSON and API data into typed, validated Python objects before your automation touches a device.">
+      
+      
+        <meta name="author" content="Christopher Davies">
+      
+      
+        <link rel="canonical" href="https://www.nautomationprime.io/foundation/tutorials/intermediate/pydantic-data-validation-network-automation/">
+      
+      
+        <link rel="prev" href="../json-data-handling-network-automation/">
+      
+      
+        <link rel="next" href="../jinja2-configuration-templates/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../../assets/favicon.ico">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Pydantic Data Validation for Network Automation - Nautomation Prime</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../assets/css/custom.css">
+    
+    <script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="blue">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#pydantic-data-validation-for-network-automation" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+        <aside class="md-banner">
+          <div class="md-banner__inner md-grid md-typeset">
+            
+              <button class="md-banner__button md-icon" aria-label="Don't show this again">
+                
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+              </button>
+            
+            
+  <strong>Nautomation Prime is not yet trading.</strong>
+  This site is being built ahead of launch &mdash; the free learning content is
+  live to read, but services are not yet being supplied and no engagement or
+  charity application can be accepted today.
+  <a href="../../../../legal/foundation-status/">Read the current legal status</a>.
+
+          </div>
+          
+            <script>var el=document.querySelector("[data-md-component=announce]");if(el){var content=el.querySelector(".md-typeset");__md_hash(content.innerHTML)===__md_get("__announce")&&(el.hidden=!0)}</script>
+          
+        </aside>
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../../.." title="Nautomation Prime" class="md-header__button md-logo" aria-label="Nautomation Prime" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Nautomation Prime
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Pydantic Data Validation for Network Automation
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/Nautomation-Prime" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../getting-started/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Getting Started
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../../" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Foundation
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../services/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Services
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../prime-framework/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  PRIME Framework
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../about/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  About
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../.." title="Nautomation Prime" class="md-nav__button md-logo" aria-label="Nautomation Prime" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Nautomation Prime
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/Nautomation-Prime" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../getting-started/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Getting Started
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Foundation
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Foundation
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../charity-services/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Free & Low-Cost Services for Charities
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../resources/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Learning Hub
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_4" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tutorials
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_4" id="__nav_3_4_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Tutorials
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_4_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../beginner/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Beginner Tutorials
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_4_2" id="__nav_3_4_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_4_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_4_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Beginner Tutorials
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../beginner/multi-device-config-backup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Multi-Device Config Backup
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../beginner/multi-device-show-command/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Multi-Device Show Command
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../beginner/netmiko-show-command-to-excel/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Netmiko Show Command to Excel
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_4_3" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Intermediate Tutorials
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_4_3" id="__nav_3_4_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_4_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3_4_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Intermediate Tutorials
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../yaml-data-modeling-network-automation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    YAML Data Modelling
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../json-data-handling-network-automation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    JSON Data Handling
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Pydantic Data Validation
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Pydantic Data Validation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#pydantic-data-validation-for-network-automation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pydantic Data Validation for Network Automation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#from-hoping-your-data-is-right-to-proving-it-typed-models-at-the-boundary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        "From Hoping Your Data Is Right to Proving It — Typed Models at the Boundary"
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-youll-learn" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🎯 What You'll Learn
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#prerequisites" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📋 Prerequisites
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📋 Prerequisites">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#required-knowledge" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Required Knowledge
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#required-software" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Required Software
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#required-access" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Required Access
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-problem-what-a-dictionary-costs-you" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🔍 The Problem: What a Dictionary Costs You
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#your-first-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🧱 Your First Model
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#network-native-field-types" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🌐 Network-Native Field Types
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#nested-models" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🏗️ Nested Models
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#validating-a-yaml-inventory" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📂 Validating a YAML Inventory
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#custom-rules-with-validators" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ✍️ Custom Rules with Validators
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="✍️ Custom Rules with Validators">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#field-validators-one-field-at-a-time" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Field validators — one field at a time
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#model-validators-rules-that-span-fields" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Model validators — rules that span fields
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cross-referencing-within-the-inventory" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cross-referencing within the inventory
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#strictness-and-unknown-keys" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🔒 Strictness and Unknown Keys
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#validating-api-responses" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🌍 Validating API Responses
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#handing-a-validated-model-to-jinja2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🎨 Handing a Validated Model to Jinja2
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pydantic-or-json-schema" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ⚖️ Pydantic or JSON Schema?
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bonus-settings-and-credentials" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🔑 Bonus: Settings and Credentials
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pydantic-v2-vs-v1-what-changed" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🔄 Pydantic v2 vs v1: What Changed
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#production-patterns" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🏭 Production Patterns
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🏭 Production Patterns">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-one-models-module-imported-everywhere" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. One models module, imported everywhere
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-validate-once-at-the-edge" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Validate once, at the edge
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-collect-all-errors-then-exit" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Collect all errors, then exit
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-version-your-models-alongside-your-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Version your models alongside your data
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-test-your-models" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Test your models
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-dont-model-what-you-dont-use" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Don't model what you don't use
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#additional-resources" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📚 Additional Resources
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#key-takeaways" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🎯 Key Takeaways
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#next-steps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🎓 Next Steps
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../jinja2-configuration-templates/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Jinja2 Configuration Templates
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decorators-network-automation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Decorators for Network Automation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../pyats-fundamentals/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PyATS Fundamentals
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../pyats-network-validation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PyATS Network Validation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../building-reliable-automation-with-pyats/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Building Reliable Automation with PyATS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../why-nornir/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Why Nornir
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../nornir-fundamentals/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Nornir Fundamentals
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../enterprise-config-backup-nornir/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Enterprise Config Backup Nornir
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../advanced-nornir-patterns/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Advanced Nornir Patterns
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../testing-network-automation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Testing Network Automation Scripts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../credential-management-network-automation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Credential Management for Network Automation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../error-recovery-rollback-network-automation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Error Recovery and Rollback
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../state-management-idempotency-network-automation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    State Management and Idempotency
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../structured-logging-network-automation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Structured Logging for Network Automation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../health-checks-pre-flight-validation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Health Checks and Pre-Flight Validation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_4_4" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../capstone/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Capstone: Build a Config Deployment Pipeline
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_4_4" id="__nav_3_4_4_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_4_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_4_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Capstone: Build a Config Deployment Pipeline
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../capstone/01-intent-and-repository-layout/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1. Intent and Repository Layout
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../capstone/02-validating-intent/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2. Validating Intent
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../capstone/03-rendering-configuration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3. Rendering Configuration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../capstone/04-credentials-and-preflight/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4. Credentials and Pre-Flight
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../capstone/05-deploying-with-nornir/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5. Deploying with Nornir
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../capstone/06-proving-the-change-with-pyats/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    6. Proving the Change with PyATS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../capstone/07-rollback-and-audit/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    7. Rollback and the Audit Record
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_4_5" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../expert/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Expert Tutorials
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_4_5" id="__nav_3_4_5_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_4_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_4_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Expert Tutorials
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../expert/circuit-breakers-backpressure-network-automation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Circuit Breakers and Backpressure
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../expert/dependency-ordering-task-orchestration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Dependency Management and Task Orchestration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../expert/incident-response-automation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Incident Response Automation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../expert/nornir-pyats-integration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Nornir + PyATS Integration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../expert/asyncio-network-automation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Asyncio for Network Automation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../expert/secure-credential-vaulting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Secure Credential Vaulting
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../expert/devops-observability-network-automation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    DevOps & Observability
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../expert/tool-ecosystem-integration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tool Ecosystem Integration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_5" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../production-grade-network-automation-principles/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Production-Grade Network Automation Principles
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_5" id="__nav_3_5_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Production-Grade Network Automation Principles
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../production-grade-network-automation-principles/validating-device-identity-before-automation-runs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Validating Device Identity Before Automation Runs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../production-grade-network-automation-principles/pre-flight-checks-failing-fast-before-making-changes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Pre-Flight Checks - Failing Fast Before Making Changes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../production-grade-network-automation-principles/trust-boundaries-around-your-source-of-truth/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Trust Boundaries Around Your Source of Truth
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../production-grade-network-automation-principles/detecting-and-handling-configuration-drift-safely/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Detecting and Handling Configuration Drift Safely
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../production-grade-network-automation-principles/real-world-idempotency-in-network-automation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Real-World Idempotency in Network Automation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../production-grade-network-automation-principles/scoping-automation-to-reduce-blast-radius/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Scoping Automation to Reduce Blast Radius
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../production-grade-network-automation-principles/designing-automation-that-can-safely-fail/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Designing Automation That Can Safely Fail
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../production-grade-network-automation-principles/rollback-strategies-what-works-and-what-doesnt/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Rollback Strategies - What Works and What Doesn't
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../production-grade-network-automation-principles/separating-read-and-write-phases/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Separating Read and Write Phases in Automation Workflows
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../production-grade-network-automation-principles/making-automation-output-operator-friendly/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Making Automation Output Operator-Friendly
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../production-grade-network-automation-principles/building-audit-ready-automation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Building Audit-Ready Automation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../production-grade-network-automation-principles/secrets-and-credentials-in-enterprise-automation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Secrets and Credentials in Enterprise Automation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../production-grade-network-automation-principles/human-in-the-loop-automation-design/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Human-in-the-Loop Automation Design
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../production-grade-network-automation-principles/knowing-when-not-to-automate/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Knowing When Not to Automate
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../production-grade-network-automation-principles/executive-summary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Executive Summary for Leadership
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../production-grade-network-automation-principles/program-charter/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Program Charter for Production-Grade Automation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../production-grade-network-automation-principles/enterprise-control-matrix/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Enterprise Control Matrix
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../production-grade-network-automation-principles/exception-and-waiver-process/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Exception and Waiver Process
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../production-grade-network-automation-principles/automation-service-lifecycle/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Automation Service Lifecycle
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../production-grade-network-automation-principles/remediation-packs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Remediation Packs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../production-grade-network-automation-principles/implementation-roadmap-30-60-90-days/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Implementation Roadmap (30/60/90 Days)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../production-grade-network-automation-principles/operator-review-worksheet/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Operator Review Worksheet
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_6" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../governed-ai-network-operations/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Governed AI for Network Operations
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_6" id="__nav_3_6_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Governed AI for Network Operations
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../governed-ai-network-operations/ai-risk-classification/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI Risk Classification
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../governed-ai-network-operations/why-your-agent-must-not-have-execute-command/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Why Your Agent Must Not Have an execute_command Tool
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../governed-ai-network-operations/from-script-to-tool/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    From Script to Tool
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../governed-ai-network-operations/tool-catalogue-design/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Designing the Tool Catalogue
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../governed-ai-network-operations/tool-contracts-and-failure-modes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tool Contracts and Failure Modes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../governed-ai-network-operations/agent-review-checklist/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Agent Review Checklist
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_7" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../standards/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Automation Standards
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_7" id="__nav_3_7_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Automation Standards
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../standards/control-catalogue/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Automation Control Catalogue
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../standards/self-assessment/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Assessing Yourself Against These Controls
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../standards/python-engineering-standard/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Python Engineering Standard
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../standards/reference-architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Governed Automation Reference Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_8" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../deep-dives/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Deep Dives
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_8" id="__nav_3_8_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Deep Dives
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../deep-dives/access-switch-audit/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Access Switch Audit
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../deep-dives/cdp-audit/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CDP Audit
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../deep-dives/cisco-compliance-audit/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cisco Compliance Audit
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../deep-dives/cisco-config-generator/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cisco Config Generator
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../deep-dives/ios-xe-upgrade-orchestrator/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    IOS XE Upgrade Orchestrator
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../../scripts/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Services
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Services
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../services/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../how-we-work/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How We Work
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../contact/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Contact & Discovery
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_5" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../../coming-soon/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Coming Soon
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_5" id="__nav_4_5_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Coming Soon
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../coming-soon/cisco-ios-xe-ztp/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cisco IOS XE ZTP
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../coming-soon/ztp-automation-platform/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ZTP Automation Platform
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_6" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../../smb/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    For Small & Medium Businesses
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_6" id="__nav_4_6_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    For Small & Medium Businesses
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../smb/services/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SMB Automation Packages
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_6_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_6_3" id="__nav_4_6_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Automation Packages
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_6_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_6_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Automation Packages
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../smb/packages/automation-assessment/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Automation Opportunity Assessment
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../smb/packages/switch-audit-pack/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Switch Audit & Compliance Pack
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../smb/packages/ios-xe-upgrade-pack/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    IOS-XE Upgrade Automation Pack
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../smb/packages/ztp-setup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Zero-Touch Provisioning Setup
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../smb/packages/custom-script-build/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Custom Script Build
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../smb/packages/automation-as-a-service/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Automation-as-a-Service
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../../prime-framework/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PRIME Framework
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_5" id="__nav_5_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    PRIME Framework
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../prime-framework/philosophy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PRIME Philosophy
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../prime-framework/pinpoint/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Pinpoint
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../prime-framework/re-engineer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Re-engineer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../prime-framework/implement/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Implement
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../prime-framework/measure/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Measure
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../prime-framework/empower/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Empower
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    About
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    About
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../about/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    About Nautomation Prime
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../founder/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Founder
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../charity/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Giving With Integrity
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_6_4" id="__nav_6_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Legal
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Legal
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../legal/brand/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Brand &amp; Logo Usage
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../legal/disclaimer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Disclaimer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../legal/licensing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Licensing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../legal/privacy-policy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Privacy Policy
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../legal/terms-of-use/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Terms of Use
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../legal/foundation-status/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Nautomation Prime Foundation — Legal Status &amp; Governance
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#pydantic-data-validation-for-network-automation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pydantic Data Validation for Network Automation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#from-hoping-your-data-is-right-to-proving-it-typed-models-at-the-boundary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        "From Hoping Your Data Is Right to Proving It — Typed Models at the Boundary"
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-youll-learn" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🎯 What You'll Learn
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#prerequisites" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📋 Prerequisites
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📋 Prerequisites">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#required-knowledge" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Required Knowledge
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#required-software" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Required Software
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#required-access" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Required Access
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-problem-what-a-dictionary-costs-you" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🔍 The Problem: What a Dictionary Costs You
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#your-first-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🧱 Your First Model
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#network-native-field-types" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🌐 Network-Native Field Types
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#nested-models" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🏗️ Nested Models
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#validating-a-yaml-inventory" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📂 Validating a YAML Inventory
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#custom-rules-with-validators" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ✍️ Custom Rules with Validators
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="✍️ Custom Rules with Validators">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#field-validators-one-field-at-a-time" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Field validators — one field at a time
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#model-validators-rules-that-span-fields" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Model validators — rules that span fields
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cross-referencing-within-the-inventory" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cross-referencing within the inventory
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#strictness-and-unknown-keys" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🔒 Strictness and Unknown Keys
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#validating-api-responses" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🌍 Validating API Responses
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#handing-a-validated-model-to-jinja2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🎨 Handing a Validated Model to Jinja2
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pydantic-or-json-schema" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ⚖️ Pydantic or JSON Schema?
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bonus-settings-and-credentials" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🔑 Bonus: Settings and Credentials
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pydantic-v2-vs-v1-what-changed" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🔄 Pydantic v2 vs v1: What Changed
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#production-patterns" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🏭 Production Patterns
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🏭 Production Patterns">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-one-models-module-imported-everywhere" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. One models module, imported everywhere
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-validate-once-at-the-edge" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Validate once, at the edge
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-collect-all-errors-then-exit" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Collect all errors, then exit
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-version-your-models-alongside-your-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Version your models alongside your data
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-test-your-models" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Test your models
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-dont-model-what-you-dont-use" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Don't model what you don't use
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#additional-resources" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📚 Additional Resources
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#key-takeaways" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🎯 Key Takeaways
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#next-steps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🎓 Next Steps
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  <nav class="md-tags" >
+    
+      
+      
+      
+      
+        <span class="md-tag">Automation</span>
+      
+    
+      
+      
+      
+      
+        <span class="md-tag">Data Modelling</span>
+      
+    
+      
+      
+      
+      
+        <span class="md-tag">Intermediate</span>
+      
+    
+      
+      
+      
+      
+        <span class="md-tag">Pydantic</span>
+      
+    
+      
+      
+      
+      
+        <span class="md-tag">Tutorial</span>
+      
+    
+      
+      
+      
+      
+        <span class="md-tag">Validation</span>
+      
+    
+  </nav>
+
+
+  
+  
+
+
+  <h1>Pydantic Data Validation</h1>
+
+<h2 id="pydantic-data-validation-for-network-automation">Pydantic Data Validation for Network Automation<a class="headerlink" href="#pydantic-data-validation-for-network-automation" title="Anchor link to this section">&para;</a></h2>
+<h2 id="from-hoping-your-data-is-right-to-proving-it-typed-models-at-the-boundary">"From Hoping Your Data Is Right to Proving It — Typed Models at the Boundary"<a class="headerlink" href="#from-hoping-your-data-is-right-to-proving-it-typed-models-at-the-boundary" title="Anchor link to this section">&para;</a></h2>
+<p>You've modelled your intent in YAML and learned to exchange it as JSON. Both tutorials ended the same way: you loaded a file, got a Python dictionary back, and carried on. <strong>Pydantic</strong> is the step you're missing between "I loaded the data" and "I trust the data".</p>
+<p>A dictionary will hold anything. It will happily hold VLAN 5000, an IP address with a typo, a <code>platfrom</code> key you misspelled at 23:40 during a change window, and an <code>mtu</code> of <code>"1500 "</code> with a trailing space from a copy-paste. None of that fails when you load it. It fails later — usually on the device, usually halfway through a loop, usually after you've already configured eleven switches.</p>
+<p><strong>Why Pydantic belongs in your automation:</strong></p>
+<ul>
+<li>✅ <strong>Fail at the boundary, not on the device</strong> — Bad data is rejected before a single SSH session opens</li>
+<li>✅ <strong>Types you can rely on</strong> — <code>device.mgmt_ip</code> is an IP address object, not a string that looks like one</li>
+<li>✅ <strong>Errors an operator can act on</strong> — Pydantic names the file, the host, the field and the reason</li>
+<li>✅ <strong>Self-documenting intent</strong> — The model <em>is</em> the specification of what your data must look like</li>
+<li>✅ <strong>One tool, both formats</strong> — The same model validates a YAML inventory and a JSON API response</li>
+<li>✅ <strong>Catches typos in keys</strong> — The single highest-value check you can add to an inventory</li>
+</ul>
+<p><strong>Real-world impact:</strong> The difference between a change that fails safely in 0.2 seconds on your laptop and one that fails unsafely in 40 seconds across half a site.</p>
+<hr />
+<h2 id="what-youll-learn">🎯 What You'll Learn<a class="headerlink" href="#what-youll-learn" title="Anchor link to this section">&para;</a></h2>
+<p>By the end of this tutorial, you'll understand:</p>
+<ul>
+<li>✅ Why raw dictionaries are the wrong shape to build automation on</li>
+<li>✅ Defining models with <code>BaseModel</code> and reading <code>ValidationError</code></li>
+<li>✅ Network-native field types (IP addresses, networks, constrained integers, literals)</li>
+<li>✅ Nested models for devices, interfaces and VLANs</li>
+<li>✅ Validating a complete YAML inventory file</li>
+<li>✅ Custom rules with <code>@field_validator</code> and <code>@model_validator</code></li>
+<li>✅ Rejecting unknown keys with <code>extra="forbid"</code></li>
+<li>✅ Validating JSON API responses from a controller</li>
+<li>✅ Handing a validated model to Jinja2</li>
+<li>✅ When to reach for Pydantic and when to reach for JSON Schema</li>
+</ul>
+<hr />
+<h2 id="prerequisites">📋 Prerequisites<a class="headerlink" href="#prerequisites" title="Anchor link to this section">&para;</a></h2>
+<h3 id="required-knowledge">Required Knowledge<a class="headerlink" href="#required-knowledge" title="Anchor link to this section">&para;</a></h3>
+<ul>
+<li>✅ <strong>Completed <a href="../yaml-data-modeling-network-automation/">YAML Data Modelling</a></strong> — Structuring device intent</li>
+<li>✅ <strong>Completed <a href="../json-data-handling-network-automation/">JSON Data Handling</a></strong> — APIs and schema validation</li>
+<li>✅ Comfortable with Python classes and type hints</li>
+</ul>
+<h3 id="required-software">Required Software<a class="headerlink" href="#required-software" title="Anchor link to this section">&para;</a></h3>
+<pre class="highlight"><code class="language-bash"># Create a virtual environment
+python -m venv pydantic_venv
+source pydantic_venv/bin/activate
+# Windows PowerShell: .\pydantic_venv\Scripts\Activate.ps1
+# Windows CMD: pydantic_venv\Scripts\activate.bat
+
+# Install required packages
+pip install "pydantic&gt;=2.0" pyyaml requests jinja2</code></pre>
+<div class="admonition warning">
+<p class="admonition-title">This Tutorial Is Pydantic v2</p>
+<p>Pydantic v2 was a substantial rewrite, and a great deal of network automation content online still shows v1 syntax. If you copy an example from elsewhere and it uses <code>@validator</code>, <code>.dict()</code> or a nested <code>class Config:</code>, it is v1 and will not work here. There's a <a href="#pydantic-v2-vs-v1-what-changed">migration table</a> at the end of this tutorial.</p>
+<p>Confirm your version before you start:</p>
+<pre class="highlight"><code class="language-bash">python -c "import pydantic; print(pydantic.VERSION)"</code></pre>
+</div>
+<h3 id="required-access">Required Access<a class="headerlink" href="#required-access" title="Anchor link to this section">&para;</a></h3>
+<ul>
+<li>No device access required — every example in this tutorial runs offline</li>
+</ul>
+<hr />
+<h2 id="the-problem-what-a-dictionary-costs-you">🔍 The Problem: What a Dictionary Costs You<a class="headerlink" href="#the-problem-what-a-dictionary-costs-you" title="Anchor link to this section">&para;</a></h2>
+<p>In the YAML tutorial you wrote a validator that looked something like this:</p>
+<pre class="highlight"><code class="language-python">for host_name, host_data in hosts.items():
+    if 'hostname' not in host_data:
+        print(f"✗ Host '{host_name}' missing 'hostname' field")
+        return False</code></pre>
+<p>That's honest code and it catches a real error. But look at what it <em>doesn't</em> catch. Here's an inventory that passes it completely:</p>
+<pre class="highlight"><code class="language-yaml"># inventory.yaml — every one of these is wrong, none of them are caught
+core-sw-01:
+  hostname: 10.1.1.300          # not a valid IP — .300 doesn't exist
+  platform: ios
+  mtu: "1500 "                  # string with trailing whitespace, not an int
+  site: MAN1
+
+dist-sw-01:
+  hostname: 10.1.1.2
+  platfrom: ios                 # typo — the real platform key is missing
+  mtu: 9216
+  site: MAN1
+
+access-sw-01:
+  hostname: 10.1.1.3
+  platform: iso                 # transposed — no such platform
+  mtu: 1500
+  vlan: 5000                    # outside the valid 1–4094 range
+  site: MAN1</code></pre>
+<p>Four defects. Your check returns <code>True</code>. The script proceeds.</p>
+<p>The failures then surface in four different places at four different times: the IP fails when Netmiko tries to connect, the MTU string fails when Jinja2 renders <code>mtu 1500</code> into the config, the missing platform fails when Netmiko looks up a device driver, and VLAN 5000 fails <em>on the switch</em> — after you've already pushed to the first two devices.</p>
+<p>Every one of those is knowable before you connect to anything. That's the entire argument for Pydantic.</p>
+<hr />
+<h2 id="your-first-model">🧱 Your First Model<a class="headerlink" href="#your-first-model" title="Anchor link to this section">&para;</a></h2>
+<p>A Pydantic model is a class. The annotations are the specification.</p>
+<pre class="highlight"><code class="language-python">#!/usr/bin/env python3
+"""
+A minimal device model.
+"""
+
+from pydantic import BaseModel, ValidationError
+
+
+class Device(BaseModel):
+    name: str
+    hostname: str
+    platform: str
+    mtu: int
+
+
+# Valid data — this works
+device = Device(
+    name="core-sw-01",
+    hostname="10.1.1.1",
+    platform="ios",
+    mtu=1500,
+)
+
+print(device)
+print(device.name)     # attribute access, not device['name']
+print(device.mtu + 1)  # a real int — arithmetic just works</code></pre>
+<p><strong>Output:</strong></p>
+<pre class="highlight"><code>name='core-sw-01' hostname='10.1.1.1' platform='ios' mtu=1500
+core-sw-01
+1501</code></pre>
+<p>Now feed it something broken:</p>
+<pre class="highlight"><code class="language-python">try:
+    Device(name="core-sw-01", hostname="10.1.1.1", platform="ios", mtu="not-a-number")
+except ValidationError as e:
+    print(e)</code></pre>
+<p><strong>Output:</strong></p>
+<pre class="highlight"><code>1 validation error for Device
+mtu
+  Input should be a valid integer, unable to parse string as an integer [type=int_parsing, input_value='not-a-number', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.13/v/int_parsing</code></pre>
+<p>Three things to notice, because they're the whole value proposition:</p>
+<ol>
+<li><strong>It failed immediately</strong> — at construction, not at use.</li>
+<li><strong>It named the field</strong> — <code>mtu</code>, not "something went wrong".</li>
+<li><strong>It showed the offending value</strong> — <code>'not-a-number'</code>.</li>
+</ol>
+<div class="admonition tip">
+<p class="admonition-title">Coercion Is On by Default</p>
+<p><code>Device(..., mtu="1500")</code> succeeds and gives you <code>mtu=1500</code> as an integer. Pydantic coerces where the conversion is unambiguous and lossless. This is usually what you want with YAML, where a quoted number is a common accident. If you need to reject the string form outright, see <a href="#strictness-and-unknown-keys">strict mode</a> later on.</p>
+</div>
+<hr />
+<h2 id="network-native-field-types">🌐 Network-Native Field Types<a class="headerlink" href="#network-native-field-types" title="Anchor link to this section">&para;</a></h2>
+<p><code>str</code> and <code>int</code> are a start, but <code>hostname: str</code> still accepts <code>10.1.1.300</code>. Pydantic ships types that understand the things networks are made of.</p>
+<pre class="highlight"><code class="language-python">#!/usr/bin/env python3
+"""
+A device model using network-aware types.
+"""
+
+from typing import Annotated, Literal
+
+from pydantic import BaseModel, Field, IPvAnyAddress, IPvAnyNetwork
+
+# A VLAN ID is an integer between 1 and 4094 — say so once, reuse everywhere
+VlanId = Annotated[int, Field(ge=1, le=4094)]
+
+
+class Device(BaseModel):
+    name: Annotated[str, Field(min_length=1, max_length=63)]
+    mgmt_ip: IPvAnyAddress
+    mgmt_net: IPvAnyNetwork
+    platform: Literal["ios", "iosxe", "nxos", "iosxr"]
+    mtu: Annotated[int, Field(ge=1500, le=9216)]
+    native_vlan: VlanId
+
+
+device = Device(
+    name="core-sw-01",
+    mgmt_ip="10.1.1.1",
+    mgmt_net="10.1.1.0/24",
+    platform="iosxe",
+    mtu=9216,
+    native_vlan=999,
+)
+
+print(type(device.mgmt_ip))          # &lt;class 'ipaddress.IPv4Address'&gt;
+print(device.mgmt_ip in device.mgmt_net)   # True — real network maths</code></pre>
+<p><strong>What each type buys you:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Rejects</th>
+<th>Gives you</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>IPvAnyAddress</code></td>
+<td><code>10.1.1.300</code>, <code>not-an-ip</code></td>
+<td>An <code>ipaddress.IPv4Address</code>/<code>IPv6Address</code> object</td>
+</tr>
+<tr>
+<td><code>IPvAnyNetwork</code></td>
+<td><code>10.1.1.0/33</code>, host bits set</td>
+<td>An <code>IPv4Network</code> you can iterate and compare</td>
+</tr>
+<tr>
+<td><code>Literal[...]</code></td>
+<td><code>iso</code>, <code>IOS-XE</code>, <code>junos</code></td>
+<td>Guaranteed one of your supported platforms</td>
+</tr>
+<tr>
+<td><code>Field(ge=, le=)</code></td>
+<td>VLAN 5000, MTU 68</td>
+<td>An integer inside a range you decided</td>
+</tr>
+<tr>
+<td><code>Field(min_length=)</code></td>
+<td>Empty hostname</td>
+<td>A string with actual content</td>
+</tr>
+</tbody>
+</table>
+<p>Now try each defect from the broken inventory:</p>
+<pre class="highlight"><code class="language-python">from pydantic import ValidationError
+
+for bad in [
+    {"mgmt_ip": "10.1.1.300"},   # invalid octet
+    {"platform": "iso"},          # transposed platform
+    {"native_vlan": 5000},        # out of range
+    {"mtu": 68},                  # below the floor
+]:
+    payload = {
+        "name": "test-sw", "mgmt_ip": "10.1.1.1", "mgmt_net": "10.1.1.0/24",
+        "platform": "iosxe", "mtu": 1500, "native_vlan": 10,
+    }
+    payload.update(bad)
+    try:
+        Device(**payload)
+    except ValidationError as e:
+        print(f"{list(bad)[0]}: {e.errors()[0]['msg']}")</code></pre>
+<p><strong>Output:</strong></p>
+<pre class="highlight"><code>mgmt_ip: value is not a valid IPv4 or IPv6 address
+platform: Input should be 'ios', 'iosxe', 'nxos' or 'iosxr'
+native_vlan: Input should be less than or equal to 4094
+mtu: Input should be greater than or equal to 1500</code></pre>
+<p>All four caught, offline, in milliseconds.</p>
+<hr />
+<h2 id="nested-models">🏗️ Nested Models<a class="headerlink" href="#nested-models" title="Anchor link to this section">&para;</a></h2>
+<p>Real inventory isn't flat. A device has interfaces; interfaces have VLANs. Models nest by using one model as another's type.</p>
+<pre class="highlight"><code class="language-python">#!/usr/bin/env python3
+"""
+Nested models: a device with interfaces and VLANs.
+"""
+
+from typing import Annotated, Literal, Optional
+
+from pydantic import BaseModel, Field, IPvAnyAddress
+
+VlanId = Annotated[int, Field(ge=1, le=4094)]
+
+
+class Vlan(BaseModel):
+    id: VlanId
+    name: Annotated[str, Field(min_length=1, max_length=32)]
+
+
+class Interface(BaseModel):
+    name: str
+    description: str = ""                      # default — optional in the data
+    mode: Literal["access", "trunk", "routed", "unused"]
+    access_vlan: Optional[VlanId] = None
+    ip_address: Optional[IPvAnyAddress] = None
+    enabled: bool = True
+
+
+class Device(BaseModel):
+    name: str
+    mgmt_ip: IPvAnyAddress
+    platform: Literal["ios", "iosxe", "nxos", "iosxr"]
+    vlans: list[Vlan] = []
+    interfaces: list[Interface] = []
+
+
+device = Device(
+    name="access-sw-01",
+    mgmt_ip="10.1.1.3",
+    platform="iosxe",
+    vlans=[
+        {"id": 10, "name": "USERS"},
+        {"id": 20, "name": "VOICE"},
+    ],
+    interfaces=[
+        {"name": "GigabitEthernet1/0/1", "mode": "access", "access_vlan": 10},
+        {"name": "GigabitEthernet1/0/2", "mode": "unused", "enabled": False},
+    ],
+)
+
+print(device.vlans[0].name)              # USERS — typed all the way down
+print(len(device.interfaces))            # 2</code></pre>
+<p>Note that you passed plain dictionaries for the nested items and got back <code>Vlan</code> and <code>Interface</code> objects. Pydantic validates recursively — a bad VLAN ID three levels deep is still caught, and the error tells you exactly where it was:</p>
+<pre class="highlight"><code class="language-python">from pydantic import ValidationError
+
+try:
+    Device(
+        name="access-sw-01", mgmt_ip="10.1.1.3", platform="iosxe",
+        vlans=[{"id": 10, "name": "USERS"}, {"id": 5000, "name": "BAD"}],
+    )
+except ValidationError as e:
+    for err in e.errors():
+        print(f"  at {' -&gt; '.join(str(p) for p in err['loc'])}: {err['msg']}")</code></pre>
+<p><strong>Output:</strong></p>
+<pre class="highlight"><code>  at vlans -&gt; 1 -&gt; id: Input should be less than or equal to 4094</code></pre>
+<p><code>vlans -&gt; 1 -&gt; id</code> is a path. That's what you print to an operator.</p>
+<hr />
+<h2 id="validating-a-yaml-inventory">📂 Validating a YAML Inventory<a class="headerlink" href="#validating-a-yaml-inventory" title="Anchor link to this section">&para;</a></h2>
+<p>Now put it together on a real file. This is the pattern you'll use most.</p>
+<p><strong><code>inventory.yaml</code>:</strong></p>
+<pre class="highlight"><code class="language-yaml">site: MAN1
+devices:
+  - name: core-sw-01
+    mgmt_ip: 10.1.1.1
+    platform: iosxe
+    role: core
+    vlans:
+      - {id: 10, name: USERS}
+      - {id: 20, name: VOICE}
+
+  - name: access-sw-01
+    mgmt_ip: 10.1.1.3
+    platform: iosxe
+    role: access
+    interfaces:
+      - {name: GigabitEthernet1/0/1, mode: access, access_vlan: 10}
+      - {name: GigabitEthernet1/0/2, mode: unused, enabled: false}</code></pre>
+<p><strong><code>models.py</code>:</strong></p>
+<pre class="highlight"><code class="language-python">#!/usr/bin/env python3
+"""
+Inventory models and a loader that fails fast with readable errors.
+"""
+
+import sys
+from typing import Annotated, Literal, Optional
+
+import yaml
+from pydantic import BaseModel, ConfigDict, Field, IPvAnyAddress, ValidationError
+
+VlanId = Annotated[int, Field(ge=1, le=4094)]
+
+
+class Vlan(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+
+    id: VlanId
+    name: Annotated[str, Field(min_length=1, max_length=32)]
+
+
+class Interface(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+
+    name: str
+    description: str = ""
+    mode: Literal["access", "trunk", "routed", "unused"]
+    access_vlan: Optional[VlanId] = None
+    ip_address: Optional[IPvAnyAddress] = None
+    enabled: bool = True
+
+
+class Device(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+
+    name: str
+    mgmt_ip: IPvAnyAddress
+    platform: Literal["ios", "iosxe", "nxos", "iosxr"]
+    role: Literal["core", "distribution", "access", "edge"]
+    vlans: list[Vlan] = []
+    interfaces: list[Interface] = []
+
+
+class Inventory(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+
+    site: Annotated[str, Field(pattern=r"^[A-Z]{3}\d$")]
+    devices: Annotated[list[Device], Field(min_length=1)]
+
+
+def load_inventory(path: str) -&gt; Inventory:
+    """
+    Load and validate an inventory file.
+
+    Exits with a non-zero status and an operator-readable report if the
+    file is malformed. Returns a fully typed Inventory on success.
+    """
+    try:
+        with open(path) as handle:
+            raw = yaml.safe_load(handle)
+    except FileNotFoundError:
+        sys.exit(f"✗ Inventory not found: {path}")
+    except yaml.YAMLError as exc:
+        sys.exit(f"✗ {path} is not valid YAML:\n  {exc}")
+
+    try:
+        return Inventory.model_validate(raw)
+    except ValidationError as exc:
+        print(f"✗ {path} failed validation ({exc.error_count()} problems):\n")
+        for err in exc.errors():
+            location = " -&gt; ".join(str(part) for part in err["loc"])
+            print(f"  {location}")
+            print(f"      {err['msg']}")
+            print(f"      you supplied: {err['input']!r}\n")
+        sys.exit(1)
+
+
+if __name__ == "__main__":
+    inventory = load_inventory("inventory.yaml")
+    print(f"✓ {inventory.site}: {len(inventory.devices)} devices validated")
+    for device in inventory.devices:
+        print(f"  {device.name:&lt;16} {device.mgmt_ip}  {device.platform}")</code></pre>
+<p><strong>Output on a good file:</strong></p>
+<pre class="highlight"><code>✓ MAN1: 2 devices validated
+  core-sw-01       10.1.1.1  iosxe
+  access-sw-01     10.1.1.3  iosxe</code></pre>
+<p><strong>Output on the broken inventory from earlier:</strong></p>
+<pre class="highlight"><code>✗ inventory.yaml failed validation (4 problems):
+
+  devices -&gt; 0 -&gt; mgmt_ip
+      value is not a valid IPv4 or IPv6 address
+      you supplied: '10.1.1.300'
+
+  devices -&gt; 1 -&gt; platform
+      Field required
+      you supplied: {'name': 'dist-sw-01', 'mgmt_ip': '10.1.1.2', 'platfrom': 'ios', ...}
+
+  devices -&gt; 1 -&gt; platfrom
+      Extra inputs are not permitted
+      you supplied: 'ios'
+
+  devices -&gt; 2 -&gt; platform
+      Input should be 'ios', 'iosxe', 'nxos' or 'iosxr'
+      you supplied: 'iso'</code></pre>
+<p>Every defect, in one report, before anything connected to anything.</p>
+<hr />
+<h2 id="custom-rules-with-validators">✍️ Custom Rules with Validators<a class="headerlink" href="#custom-rules-with-validators" title="Anchor link to this section">&para;</a></h2>
+<p>Field types cover the general cases. Your naming standard and your design rules are yours, and they go in validators.</p>
+<h3 id="field-validators-one-field-at-a-time">Field validators — one field at a time<a class="headerlink" href="#field-validators-one-field-at-a-time" title="Anchor link to this section">&para;</a></h3>
+<pre class="highlight"><code class="language-python">import re
+
+from pydantic import BaseModel, field_validator
+
+HOSTNAME_PATTERN = re.compile(r"^[a-z]{3}\d-(core|dist|acc)-sw-\d{2}$")
+
+
+class Device(BaseModel):
+    name: str
+
+    @field_validator("name")
+    @classmethod
+    def enforce_naming_standard(cls, value: str) -&gt; str:
+        if not HOSTNAME_PATTERN.match(value):
+            raise ValueError(
+                f"'{value}' does not match the naming standard "
+                "&lt;site&gt;&lt;n&gt;-&lt;role&gt;-sw-&lt;nn&gt;, e.g. man1-core-sw-01"
+            )
+        return value</code></pre>
+<p>Two rules worth internalising: the method is a <code>@classmethod</code>, and you raise a plain <code>ValueError</code> — Pydantic catches it and folds it into the <code>ValidationError</code> report with the field location attached.</p>
+<p>Validators can also normalise. Returning a changed value replaces the input:</p>
+<pre class="highlight"><code class="language-python">    @field_validator("name")
+    @classmethod
+    def normalise_case(cls, value: str) -&gt; str:
+        return value.strip().lower()   # "  MAN1-Core-SW-01 " -&gt; "man1-core-sw-01"</code></pre>
+<div class="admonition warning">
+<p class="admonition-title">Order Matters</p>
+<p>Multiple validators on one field run in definition order. Put normalisation before enforcement, or you'll reject data you were about to fix.</p>
+</div>
+<h3 id="model-validators-rules-that-span-fields">Model validators — rules that span fields<a class="headerlink" href="#model-validators-rules-that-span-fields" title="Anchor link to this section">&para;</a></h3>
+<p>Some rules can't be checked one field at a time. An access port needs an access VLAN; a routed port must not have one.</p>
+<pre class="highlight"><code class="language-python">from typing import Literal, Optional
+
+from pydantic import BaseModel, model_validator
+
+
+class Interface(BaseModel):
+    name: str
+    mode: Literal["access", "trunk", "routed", "unused"]
+    access_vlan: Optional[int] = None
+    ip_address: Optional[str] = None
+
+    @model_validator(mode="after")
+    def check_mode_consistency(self):
+        if self.mode == "access" and self.access_vlan is None:
+            raise ValueError(f"{self.name}: access ports require an access_vlan")
+        if self.mode == "routed" and self.ip_address is None:
+            raise ValueError(f"{self.name}: routed ports require an ip_address")
+        if self.mode == "routed" and self.access_vlan is not None:
+            raise ValueError(f"{self.name}: routed ports cannot have an access_vlan")
+        return self</code></pre>
+<p><code>mode="after"</code> runs once every field has already been validated and converted, so you're comparing real values. Return <code>self</code>.</p>
+<p>This is where a Pydantic model starts doing something a schema can't: it encodes <em>design rules</em>, not just shapes.</p>
+<h3 id="cross-referencing-within-the-inventory">Cross-referencing within the inventory<a class="headerlink" href="#cross-referencing-within-the-inventory" title="Anchor link to this section">&para;</a></h3>
+<p>A model validator on the parent can check that children agree with each other — the check that catches the most real-world mistakes:</p>
+<pre class="highlight"><code class="language-python">class Device(BaseModel):
+    name: str
+    vlans: list[Vlan] = []
+    interfaces: list[Interface] = []
+
+    @model_validator(mode="after")
+    def interfaces_reference_declared_vlans(self):
+        declared = {vlan.id for vlan in self.vlans}
+        for interface in self.interfaces:
+            if interface.access_vlan and interface.access_vlan not in declared:
+                raise ValueError(
+                    f"{self.name}/{interface.name} uses VLAN {interface.access_vlan}, "
+                    f"which is not declared on this device (declared: {sorted(declared)})"
+                )
+        return self</code></pre>
+<p>An interface assigned to a VLAN that was never created is a genuinely common outage. It costs you nine lines to make it impossible.</p>
+<hr />
+<h2 id="strictness-and-unknown-keys">🔒 Strictness and Unknown Keys<a class="headerlink" href="#strictness-and-unknown-keys" title="Anchor link to this section">&para;</a></h2>
+<p><code>extra="forbid"</code> deserves its own section, because for inventory files it is the single highest-value setting in this tutorial.</p>
+<p>By default Pydantic <strong>ignores</strong> keys it doesn't recognise. Your <code>platfrom</code> typo silently vanishes, the real <code>platform</code> field is reported missing, and — if <code>platform</code> happened to have a default — nothing is reported at all. You'd deploy with the wrong driver and no warning.</p>
+<pre class="highlight"><code class="language-python">from pydantic import BaseModel, ConfigDict
+
+
+class Device(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+    # ...</code></pre>
+<table>
+<thead>
+<tr>
+<th>Setting</th>
+<th>Behaviour</th>
+<th>Use for</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>extra="ignore"</code> (default)</td>
+<td>Unknown keys silently dropped</td>
+<td>API responses you don't control</td>
+</tr>
+<tr>
+<td><code>extra="forbid"</code></td>
+<td>Unknown keys raise an error</td>
+<td><strong>Your own inventory and intent files</strong></td>
+</tr>
+<tr>
+<td><code>extra="allow"</code></td>
+<td>Unknown keys kept as attributes</td>
+<td>Pass-through data you must preserve</td>
+</tr>
+</tbody>
+</table>
+<p>The rule of thumb: <strong>forbid on data you author, ignore on data you receive.</strong> You want to be told about your own typos. You don't want your automation to break because a vendor added a field to an API response.</p>
+<p>For the inverse problem — a value that's the right shape but the wrong type, like <code>mtu: "1500"</code> — use strict mode where lossless coercion isn't acceptable:</p>
+<pre class="highlight"><code class="language-python">from typing import Annotated
+from pydantic import Field
+
+# Reject the string "1500"; require a real YAML integer
+mtu: Annotated[int, Field(strict=True)]</code></pre>
+<p>Use this sparingly. With YAML in particular, coercion is usually a feature.</p>
+<hr />
+<h2 id="validating-api-responses">🌍 Validating API Responses<a class="headerlink" href="#validating-api-responses" title="Anchor link to this section">&para;</a></h2>
+<p>The same model validates JSON from a controller. This is the part that pays off the JSON tutorial.</p>
+<pre class="highlight"><code class="language-python">#!/usr/bin/env python3
+"""
+Validate a controller's device inventory response.
+"""
+
+from typing import Literal
+
+import requests
+from pydantic import BaseModel, ConfigDict, Field, IPvAnyAddress, ValidationError
+
+
+class ControllerDevice(BaseModel):
+    # Controllers add fields between releases — ignore what we don't model
+    model_config = ConfigDict(extra="ignore", populate_by_name=True)
+
+    hostname: str
+    management_ip: IPvAnyAddress = Field(alias="managementIpAddress")
+    platform: str = Field(alias="platformId")
+    reachability: Literal["Reachable", "Unreachable", "Ping Reachable"]
+    uptime_seconds: int = Field(alias="upTime", default=0)
+
+
+class ControllerResponse(BaseModel):
+    model_config = ConfigDict(extra="ignore")
+
+    response: list[ControllerDevice]
+
+
+def fetch_devices(base_url: str, token: str) -&gt; list[ControllerDevice]:
+    reply = requests.get(
+        f"{base_url}/dna/intent/api/v1/network-device",
+        headers={"X-Auth-Token": token},
+        timeout=30,
+    )
+    reply.raise_for_status()
+
+    try:
+        parsed = ControllerResponse.model_validate_json(reply.text)
+    except ValidationError as exc:
+        raise RuntimeError(
+            f"Controller returned data we don't understand:\n{exc}"
+        ) from exc
+
+    return parsed.response</code></pre>
+<p>Two details doing real work here:</p>
+<p><strong><code>Field(alias=...)</code></strong> lets the API keep its <code>managementIpAddress</code> camelCase while your code uses a sane <code>management_ip</code>. The ugly naming stops at the boundary instead of spreading through your codebase. (<code>populate_by_name=True</code> means you can still construct the model with <code>management_ip=...</code> in your own tests.)</p>
+<p><strong><code>model_validate_json()</code></strong> parses and validates in one step, which is faster than <code>json.loads()</code> followed by <code>model_validate()</code> because Pydantic v2's parser is implemented in Rust.</p>
+<p>The wider point: an API response is untrusted input. A controller that returns <code>null</code> for a management IP will otherwise hand you a <code>None</code> that travels four function calls before failing somewhere unhelpful. Validate it where it arrives.</p>
+<hr />
+<h2 id="handing-a-validated-model-to-jinja2">🎨 Handing a Validated Model to Jinja2<a class="headerlink" href="#handing-a-validated-model-to-jinja2" title="Anchor link to this section">&para;</a></h2>
+<p>This is the join between this tutorial and the next one. Jinja2 renders from a validated model, not a raw dictionary.</p>
+<pre class="highlight"><code class="language-python">#!/usr/bin/env python3
+"""
+Render device configuration from a validated model.
+"""
+
+from jinja2 import Environment, FileSystemLoader, StrictUndefined
+
+from models import load_inventory
+
+env = Environment(
+    loader=FileSystemLoader("templates"),
+    trim_blocks=True,
+    lstrip_blocks=True,
+    undefined=StrictUndefined,   # unknown variable = error, not blank
+)
+
+inventory = load_inventory("inventory.yaml")
+template = env.get_template("switch.j2")
+
+for device in inventory.devices:
+    config = template.render(device=device, site=inventory.site)
+    with open(f"output/{device.name}.cfg", "w") as handle:
+        handle.write(config)
+    print(f"✓ rendered output/{device.name}.cfg")</code></pre>
+<p><strong><code>templates/switch.j2</code>:</strong></p>
+<pre class="highlight"><code class="language-jinja2">hostname {{ device.name }}
+!
+{% for vlan in device.vlans %}
+vlan {{ vlan.id }}
+ name {{ vlan.name }}
+{% endfor %}
+!
+{% for interface in device.interfaces %}
+interface {{ interface.name }}
+{% if interface.description %}
+ description {{ interface.description }}
+{% endif %}
+{% if interface.mode == 'access' %}
+ switchport mode access
+ switchport access vlan {{ interface.access_vlan }}
+{% elif interface.mode == 'unused' %}
+ description UNUSED
+ switchport mode access
+ switchport access vlan 999
+{% endif %}
+{% if not interface.enabled %}
+ shutdown
+{% else %}
+ no shutdown
+{% endif %}
+!
+{% endfor %}
+end</code></pre>
+<p>Note that the template uses <strong>attribute access</strong> — <code>device.name</code>, <code>interface.access_vlan</code> — because it's being handed objects. It reads better than <code>device['name']</code>, and combined with <code>StrictUndefined</code> a mistyped attribute in the template becomes a loud error rather than a blank line in a config file.</p>
+<div class="admonition danger">
+<p class="admonition-title">The <code>model_dump()</code> Gotcha</p>
+<p>If you need a plain dictionary — to pass to a library, or to write out as JSON — <code>model_dump()</code> returns Python objects, not JSON-safe values. An <code>IPvAnyAddress</code> field comes back as an <code>ipaddress.IPv4Address</code>, which <code>json.dumps()</code> cannot serialise.</p>
+<pre class="highlight"><code class="language-python">device.model_dump()                 # {'mgmt_ip': IPv4Address('10.1.1.1'), ...}
+device.model_dump(mode="json")      # {'mgmt_ip': '10.1.1.1', ...}  ← for JSON
+device.model_dump_json()            # '{"mgmt_ip": "10.1.1.1", ...}' ← a string</code></pre>
+<p>Rendering with Jinja2 works either way because Jinja2 calls <code>str()</code> on values. Writing JSON does not. Reach for <code>mode="json"</code>.</p>
+</div>
+<hr />
+<h2 id="pydantic-or-json-schema">⚖️ Pydantic or JSON Schema?<a class="headerlink" href="#pydantic-or-json-schema" title="Anchor link to this section">&para;</a></h2>
+<p>You learned JSON Schema in the <a href="../json-data-handling-network-automation/">JSON tutorial</a>. Both validate data, and it's fair to ask which to use. They solve adjacent problems.</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>JSON Schema</th>
+<th>Pydantic</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Written in</td>
+<td>JSON/YAML (language-neutral)</td>
+<td>Python</td>
+</tr>
+<tr>
+<td>Shareable with non-Python tools</td>
+<td>✅ Yes</td>
+<td>❌ No</td>
+</tr>
+<tr>
+<td>Gives you typed objects</td>
+<td>❌ No — validates a dict, returns nothing</td>
+<td>✅ Yes</td>
+</tr>
+<tr>
+<td>Custom logic</td>
+<td>⚠️ Limited to what the spec expresses</td>
+<td>✅ Arbitrary Python</td>
+</tr>
+<tr>
+<td>Editor autocomplete</td>
+<td>❌ No</td>
+<td>✅ Yes</td>
+</tr>
+<tr>
+<td>Publishable as a contract</td>
+<td>✅ That's its purpose</td>
+<td>✅ Via <code>model_json_schema()</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Use JSON Schema when</strong> the schema is a contract that has to be read by something other than your Python code — a CI linter, a vendor's API documentation, another team's Go service, a VS Code YAML plugin giving your operators inline hints.</p>
+<p><strong>Use Pydantic when</strong> the data is entering your application and you want to work with it afterwards. Which, in an automation script, is nearly always.</p>
+<p>You don't have to choose. A Pydantic model will generate the schema for you:</p>
+<pre class="highlight"><code class="language-python">import json
+from models import Inventory
+
+with open("inventory.schema.json", "w") as handle:
+    json.dump(Inventory.model_json_schema(), handle, indent=2)</code></pre>
+<p>Commit that file, point your editor's YAML plugin at it, and your operators get autocomplete and inline errors while they're editing the inventory — from the same model that enforces the rules at runtime. One definition, two places it pays off.</p>
+<hr />
+<h2 id="bonus-settings-and-credentials">🔑 Bonus: Settings and Credentials<a class="headerlink" href="#bonus-settings-and-credentials" title="Anchor link to this section">&para;</a></h2>
+<p><code>pydantic-settings</code> applies the same validation to configuration and environment variables, which pairs directly with the <a href="../credential-management-network-automation/">credential management tutorial</a>:</p>
+<pre class="highlight"><code class="language-bash">pip install pydantic-settings</code></pre>
+<pre class="highlight"><code class="language-python">from pydantic import SecretStr
+from pydantic_settings import BaseSettings, SettingsConfigDict
+
+
+class AutomationSettings(BaseSettings):
+    model_config = SettingsConfigDict(env_prefix="NETAUTO_", env_file=".env")
+
+    username: str
+    password: SecretStr
+    vault_url: str = "https://vault.example.internal"
+    max_workers: int = 10
+
+
+settings = AutomationSettings()   # reads NETAUTO_USERNAME, NETAUTO_PASSWORD, ...
+
+print(settings.password)                    # **********  — safe to log
+print(settings.password.get_secret_value()) # the real value, only where needed</code></pre>
+<p>A missing <code>NETAUTO_PASSWORD</code> now fails at startup with a clear message rather than producing a confusing authentication failure on device seven. And <code>SecretStr</code> means an accidental <code>print(settings)</code> or a logged traceback shows <code>**********</code> instead of your enable password.</p>
+<hr />
+<h2 id="pydantic-v2-vs-v1-what-changed">🔄 Pydantic v2 vs v1: What Changed<a class="headerlink" href="#pydantic-v2-vs-v1-what-changed" title="Anchor link to this section">&para;</a></h2>
+<p>If you find an example online that doesn't work, check it against this table.</p>
+<table>
+<thead>
+<tr>
+<th>v1</th>
+<th>v2</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>@validator("field")</code></td>
+<td><code>@field_validator("field")</code></td>
+<td>Also needs <code>@classmethod</code></td>
+</tr>
+<tr>
+<td><code>@root_validator</code></td>
+<td><code>@model_validator(mode="after")</code></td>
+<td>Return <code>self</code>, not a dict</td>
+</tr>
+<tr>
+<td><code>class Config:</code></td>
+<td><code>model_config = ConfigDict(...)</code></td>
+<td>Now an attribute</td>
+</tr>
+<tr>
+<td><code>.dict()</code></td>
+<td><code>.model_dump()</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>.json()</code></td>
+<td><code>.model_dump_json()</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>Model.parse_obj(d)</code></td>
+<td><code>Model.model_validate(d)</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>Model.parse_raw(s)</code></td>
+<td><code>Model.model_validate_json(s)</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>.schema()</code></td>
+<td><code>.model_json_schema()</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>conint(ge=1, le=4094)</code></td>
+<td><code>Annotated[int, Field(ge=1, le=4094)]</code></td>
+<td><code>conint</code> still works, <code>Annotated</code> preferred</td>
+</tr>
+<tr>
+<td><code>Optional[X]</code> implied optional</td>
+<td><code>Optional[X] = None</code> required</td>
+<td>v2 no longer infers a <code>None</code> default</td>
+</tr>
+</tbody>
+</table>
+<p>That last row catches people out most often. In v2, <code>Optional[int]</code> means "may be <code>None</code>", not "may be omitted". If the field can be left out of the data, give it a default.</p>
+<hr />
+<h2 id="production-patterns">🏭 Production Patterns<a class="headerlink" href="#production-patterns" title="Anchor link to this section">&para;</a></h2>
+<h3 id="1-one-models-module-imported-everywhere">1. One models module, imported everywhere<a class="headerlink" href="#1-one-models-module-imported-everywhere" title="Anchor link to this section">&para;</a></h3>
+<p>Define models in <code>models.py</code> and import them. The model is your data contract; having two definitions of a device is how they drift apart.</p>
+<h3 id="2-validate-once-at-the-edge">2. Validate once, at the edge<a class="headerlink" href="#2-validate-once-at-the-edge" title="Anchor link to this section">&para;</a></h3>
+<p>Validate immediately after loading a file or receiving a response. Everything downstream receives typed objects and should never re-check. If you find yourself writing <code>if device.mtu is None</code> deep in the code, the model was too loose.</p>
+<h3 id="3-collect-all-errors-then-exit">3. Collect all errors, then exit<a class="headerlink" href="#3-collect-all-errors-then-exit" title="Anchor link to this section">&para;</a></h3>
+<p>Pydantic reports every problem in one pass. Print the lot. An operator fixing four things in one edit is faster than four rounds of run-fix-run.</p>
+<h3 id="4-version-your-models-alongside-your-data">4. Version your models alongside your data<a class="headerlink" href="#4-version-your-models-alongside-your-data" title="Anchor link to this section">&para;</a></h3>
+<p>When the model gains a required field, existing inventory files become invalid. Either give the field a default or bump a <code>version</code> field in the data and handle both. Silent breakage at change time is worse than a schema you have to maintain.</p>
+<h3 id="5-test-your-models">5. Test your models<a class="headerlink" href="#5-test-your-models" title="Anchor link to this section">&para;</a></h3>
+<p>Models are logic and deserve the treatment the <a href="../testing-network-automation/">testing tutorial</a> describes:</p>
+<pre class="highlight"><code class="language-python">import pytest
+from pydantic import ValidationError
+from models import Interface
+
+
+def test_access_port_requires_vlan():
+    with pytest.raises(ValidationError, match="require an access_vlan"):
+        Interface(name="Gi1/0/1", mode="access")
+
+
+def test_routed_port_rejects_access_vlan():
+    with pytest.raises(ValidationError, match="cannot have an access_vlan"):
+        Interface(name="Gi1/0/1", mode="routed", ip_address="10.1.1.1", access_vlan=10)</code></pre>
+<p>Every rule you encode is a rule you can prove still holds.</p>
+<h3 id="6-dont-model-what-you-dont-use">6. Don't model what you don't use<a class="headerlink" href="#6-dont-model-what-you-dont-use" title="Anchor link to this section">&para;</a></h3>
+<p>It's tempting to model all sixty fields a controller returns. Model the ones you actually read, set <code>extra="ignore"</code>, and let the rest pass by. A smaller model is a smaller maintenance surface.</p>
+<hr />
+<h2 id="additional-resources">📚 Additional Resources<a class="headerlink" href="#additional-resources" title="Anchor link to this section">&para;</a></h2>
+<ul>
+<li><strong><a href="https://docs.pydantic.dev/latest/">Pydantic Documentation</a></strong> — Official v2 documentation</li>
+<li><strong><a href="https://docs.pydantic.dev/latest/migration/">Pydantic Migration Guide</a></strong> — Full v1 to v2 changes</li>
+<li><strong><a href="https://docs.pydantic.dev/latest/concepts/pydantic_settings/">pydantic-settings</a></strong> — Configuration and environment variables</li>
+<li><strong><a href="https://docs.python.org/3/library/typing.html">Python typing Documentation</a></strong> — <code>Annotated</code>, <code>Literal</code>, <code>Optional</code></li>
+<li><strong><a href="https://docs.python.org/3/library/ipaddress.html">ipaddress Module</a></strong> — What the IP field types return</li>
+</ul>
+<hr />
+<h2 id="key-takeaways">🎯 Key Takeaways<a class="headerlink" href="#key-takeaways" title="Anchor link to this section">&para;</a></h2>
+<ul>
+<li>✅ <strong>Validate at the boundary</strong> — Bad data should fail on your laptop, not on a device</li>
+<li>✅ <strong>The model is the specification</strong> — Annotations document what your data must be</li>
+<li>✅ <strong>Network types catch network errors</strong> — <code>IPvAnyAddress</code> and <code>Literal</code> reject what <code>str</code> accepts</li>
+<li>✅ <strong><code>extra="forbid"</code> on your own files</strong> — Typos in keys are the defect you'll actually hit</li>
+<li>✅ <strong>Validators encode design rules</strong> — Not just shapes, but the rules your network runs on</li>
+<li>✅ <strong>One model, two formats</strong> — The same class validates YAML intent and JSON responses</li>
+<li>✅ <strong>Errors name a path</strong> — <code>devices -&gt; 1 -&gt; platform</code> is something an operator can fix</li>
+<li>✅ <strong>Pydantic v2 syntax only</strong> — v1 examples will not run</li>
+</ul>
+<hr />
+<h2 id="next-steps">🎓 Next Steps<a class="headerlink" href="#next-steps" title="Anchor link to this section">&para;</a></h2>
+<p>You can now prove your data is correct before using it. Turn it into configuration:</p>
+<ol>
+<li><strong><a href="../jinja2-configuration-templates/">Jinja2 Configuration Templates</a></strong> (Recommended Next)</li>
+<li>Render configs from the validated models you just built</li>
+<li>
+<p>Attribute access and <code>StrictUndefined</code> for safe templates</p>
+</li>
+<li>
+<p><strong><a href="../health-checks-pre-flight-validation/">Health Checks and Pre-Flight Validation</a></strong></p>
+</li>
+<li>
+<p>Data validation is the first pre-flight gate; add the device-state ones</p>
+</li>
+<li>
+<p><strong><a href="../credential-management-network-automation/">Credential Management</a></strong></p>
+</li>
+<li>
+<p>Apply <code>pydantic-settings</code> and <code>SecretStr</code> to your secrets handling</p>
+</li>
+<li>
+<p><strong><a href="../testing-network-automation/">Testing Network Automation</a></strong></p>
+</li>
+<li>Prove your validation rules hold as the model evolves</li>
+</ol>
+<hr />
+<blockquote>
+<p><strong>Remember:</strong> A dictionary tells you what someone typed. A model tells you what's true. Automation should only ever act on the second.</p>
+</blockquote>
+<p><a href="../json-data-handling-network-automation/">← Back to JSON Tutorial</a> | <a href="../jinja2-configuration-templates/">Continue to Jinja2 Tutorial →</a></p>
+
+  
+  
+  
+    <div class="np-cta-strip">
+  <h3>Need help applying this in a live Cisco environment?</h3>
+  <p>This guide is part of the Nautomation Prime Foundation and stays free to read, share, and reuse. If you want the pattern implemented, governed, or adapted for your estate, that is paid engineering work &mdash; start a discovery conversation or review how Nautomation Prime delivers engagements. If you are a registered UK charity or CIC, there is a free and low-cost route instead.</p>
+  <div class="np-action-row">
+    <p>
+      <a class="md-button md-button--primary" href="../../../../contact/">Request Discovery Call</a>
+      <a class="md-button" href="../../../../services/">View Services</a>
+      <a class="md-button" href="../../../../foundation/charity-services/">Charity &amp; CIC Support</a>
+    </p>
+  </div>
+</div>
+  
+
+
+
+
+
+
+
+
+  
+    
+  
+  
+
+
+  <aside class="md-source-file">
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="Last update">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 20, 2026 11:07:39 UTC">September 20, 2026</span>
+  </span>
+
+    
+    
+    
+    
+  </aside>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      © 2026 Christopher Davies T/A Nautomation Prime — Not affiliated with Cisco Systems, Inc.<br> Empowering Network Automation Professionals · Built with Material for MkDocs
+
+    </div>
+  
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+    <a href="https://www.linkedin.com/company/nautomationprime" target="_blank" rel="noopener" title="LinkedIn" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3M135.4 416H69V202.2h66.5V416zM102.2 96a38.5 38.5 0 1 1 0 77 38.5 38.5 0 1 1 0-77m282.1 320h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+    <a href="https://github.com/Nautomation-Prime" target="_blank" rel="noopener" title="GitHub" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+    
+    
+    
+    
+    <a href="mailto:enquiries@nautomationprime.io" target="_blank" rel="noopener" title="Contact Nautomation Prime" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m20 8-8 5-8-5V6l8 5 8-5m0-2H4c-1.11 0-2 .89-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+      <div class="md-consent" data-md-component="consent" id="__consent" hidden>
+        <div class="md-consent__overlay"></div>
+        <aside class="md-consent__inner">
+          <form class="md-consent__form md-grid md-typeset" name="consent">
+            
+
+
+  
+
+
+<h4>Cookie consent</h4>
+<p>We use cookies to recognize your repeated visits and preferences, as well as to measure the effectiveness of our documentation and whether users find what they're searching for. With your consent, you're helping us to make our documentation better.</p>
+<input class="md-toggle" type="checkbox" id="__settings" >
+<div class="md-consent__settings">
+  <ul class="task-list">
+    
+    
+      
+    
+    
+      
+        
+  
+  
+    
+    
+  
+  <li class="task-list-item">
+    <label class="task-list-control">
+      <input type="checkbox" name="github" checked>
+      <span class="task-list-indicator"></span>
+      GitHub
+    </label>
+  </li>
+
+      
+    
+    
+  </ul>
+</div>
+<div class="md-consent__controls">
+  
+    
+      <button class="md-button md-button--primary">Accept</button>
+    
+    
+    
+  
+    
+    
+    
+      <label class="md-button" for="__settings">Manage settings</label>
+    
+  
+</div>
+          </form>
+        </aside>
+      </div>
+      <script>var consent=__md_get("__consent");if(consent)for(var input of document.forms.consent.elements)input.name&&(input.checked=consent[input.name]||!1);else"file:"!==location.protocol&&setTimeout((function(){document.querySelector("[data-md-component=consent]").hidden=!1}),250);var form=document.forms.consent;for(var action of["submit","reset"])form.addEventListener(action,(function(e){if(e.preventDefault(),"reset"===e.type)for(var n of document.forms.consent.elements)n.name&&(n.checked=!1);__md_set("__consent",Object.fromEntries(Array.from(new FormData(form).keys()).map((function(e){return[e,!0]})))),location.hash="",location.reload()}))</script>
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.tracking", "navigation.indexes", "content.code.copy", "content.code.annotate", "content.tooltips", "search.share", "search.suggest", "search.highlight", "search.stemmer", "announce.dismiss"], "search": "../../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>

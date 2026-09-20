@@ -1,0 +1,6139 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Wire verification failure to automatic rollback, emit a structured audit record of the whole change, and join every stage into one orchestrated command.">
+      
+      
+        <meta name="author" content="Christopher Davies">
+      
+      
+        <link rel="canonical" href="https://www.nautomationprime.io/foundation/tutorials/capstone/07-rollback-and-audit/">
+      
+      
+        <link rel="prev" href="../06-proving-the-change-with-pyats/">
+      
+      
+        <link rel="next" href="../../expert/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../../assets/favicon.ico">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Capstone Chapter 7: Rollback and the Audit Record - Nautomation Prime</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../assets/css/custom.css">
+    
+    <script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="blue">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#chapter-7-rollback-and-the-audit-record" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+        <aside class="md-banner">
+          <div class="md-banner__inner md-grid md-typeset">
+            
+              <button class="md-banner__button md-icon" aria-label="Don't show this again">
+                
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+              </button>
+            
+            
+  <strong>Nautomation Prime is not yet trading.</strong>
+  This site is being built ahead of launch &mdash; the free learning content is
+  live to read, but services are not yet being supplied and no engagement or
+  charity application can be accepted today.
+  <a href="../../../../legal/foundation-status/">Read the current legal status</a>.
+
+          </div>
+          
+            <script>var el=document.querySelector("[data-md-component=announce]");if(el){var content=el.querySelector(".md-typeset");__md_hash(content.innerHTML)===__md_get("__announce")&&(el.hidden=!0)}</script>
+          
+        </aside>
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../../.." title="Nautomation Prime" class="md-header__button md-logo" aria-label="Nautomation Prime" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Nautomation Prime
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Capstone Chapter 7: Rollback and the Audit Record
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/Nautomation-Prime" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../getting-started/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Getting Started
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../../" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Foundation
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../services/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Services
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../prime-framework/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  PRIME Framework
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../about/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  About
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../.." title="Nautomation Prime" class="md-nav__button md-logo" aria-label="Nautomation Prime" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Nautomation Prime
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/Nautomation-Prime" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../getting-started/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Getting Started
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Foundation
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Foundation
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../charity-services/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Free & Low-Cost Services for Charities
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../resources/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Learning Hub
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_4" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tutorials
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_4" id="__nav_3_4_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Tutorials
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_4_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../beginner/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Beginner Tutorials
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_4_2" id="__nav_3_4_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_4_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_4_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Beginner Tutorials
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../beginner/multi-device-config-backup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Multi-Device Config Backup
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../beginner/multi-device-show-command/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Multi-Device Show Command
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../beginner/netmiko-show-command-to-excel/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Netmiko Show Command to Excel
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_4_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../intermediate/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Intermediate Tutorials
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_4_3" id="__nav_3_4_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_4_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_4_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Intermediate Tutorials
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../intermediate/yaml-data-modeling-network-automation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    YAML Data Modelling
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../intermediate/json-data-handling-network-automation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    JSON Data Handling
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../intermediate/pydantic-data-validation-network-automation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Pydantic Data Validation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../intermediate/jinja2-configuration-templates/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Jinja2 Configuration Templates
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../intermediate/decorators-network-automation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Decorators for Network Automation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../intermediate/pyats-fundamentals/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PyATS Fundamentals
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../intermediate/pyats-network-validation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PyATS Network Validation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../intermediate/building-reliable-automation-with-pyats/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Building Reliable Automation with PyATS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../intermediate/why-nornir/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Why Nornir
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../intermediate/nornir-fundamentals/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Nornir Fundamentals
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../intermediate/enterprise-config-backup-nornir/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Enterprise Config Backup Nornir
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../intermediate/advanced-nornir-patterns/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Advanced Nornir Patterns
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../intermediate/testing-network-automation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Testing Network Automation Scripts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../intermediate/credential-management-network-automation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Credential Management for Network Automation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../intermediate/error-recovery-rollback-network-automation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Error Recovery and Rollback
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../intermediate/state-management-idempotency-network-automation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    State Management and Idempotency
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../intermediate/structured-logging-network-automation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Structured Logging for Network Automation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../intermediate/health-checks-pre-flight-validation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Health Checks and Pre-Flight Validation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_4_4" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Capstone: Build a Config Deployment Pipeline
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_4_4" id="__nav_3_4_4_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_4_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3_4_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Capstone: Build a Config Deployment Pipeline
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../01-intent-and-repository-layout/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1. Intent and Repository Layout
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02-validating-intent/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2. Validating Intent
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03-rendering-configuration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3. Rendering Configuration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04-credentials-and-preflight/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4. Credentials and Pre-Flight
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../05-deploying-with-nornir/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5. Deploying with Nornir
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../06-proving-the-change-with-pyats/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    6. Proving the Change with PyATS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    7. Rollback and the Audit Record
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    7. Rollback and the Audit Record
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#chapter-7-rollback-and-the-audit-record" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Chapter 7: Rollback and the Audit Record
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-happens-when-it-goes-wrong-and-what-you-can-prove-afterwards" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        "What Happens When It Goes Wrong, and What You Can Prove Afterwards"
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-youll-build" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🎯 What You'll Build
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rollback-is-harder-than-it-sounds" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ↩️ Rollback Is Harder Than It Sounds
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-rollback-module" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🔧 The Rollback Module
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-audit-record" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📋 The Audit Record
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📋 The Audit Record">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-fields-that-get-left-out-and-shouldnt-be" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The fields that get left out, and shouldn't be
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-run-command" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🔗 The run Command
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🔗 The run Command">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#three-exit-codes-not-two" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Three exit codes, not two
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-no-rollback-exists-on-purpose" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        --no-rollback exists on purpose
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#run-it" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ▶️ Run It
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tests" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🧪 Tests
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-finished-project" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📁 The Finished Project
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-you-actually-built" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🎓 What You Actually Built
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#where-to-go-next" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ➡️ Where to Go Next
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#key-takeaways" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🎯 Key Takeaways
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_4_5" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../expert/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Expert Tutorials
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_4_5" id="__nav_3_4_5_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_4_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_4_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Expert Tutorials
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../expert/circuit-breakers-backpressure-network-automation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Circuit Breakers and Backpressure
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../expert/dependency-ordering-task-orchestration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Dependency Management and Task Orchestration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../expert/incident-response-automation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Incident Response Automation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../expert/nornir-pyats-integration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Nornir + PyATS Integration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../expert/asyncio-network-automation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Asyncio for Network Automation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../expert/secure-credential-vaulting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Secure Credential Vaulting
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../expert/devops-observability-network-automation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    DevOps & Observability
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../expert/tool-ecosystem-integration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tool Ecosystem Integration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_5" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../production-grade-network-automation-principles/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Production-Grade Network Automation Principles
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_5" id="__nav_3_5_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Production-Grade Network Automation Principles
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../production-grade-network-automation-principles/validating-device-identity-before-automation-runs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Validating Device Identity Before Automation Runs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../production-grade-network-automation-principles/pre-flight-checks-failing-fast-before-making-changes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Pre-Flight Checks - Failing Fast Before Making Changes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../production-grade-network-automation-principles/trust-boundaries-around-your-source-of-truth/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Trust Boundaries Around Your Source of Truth
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../production-grade-network-automation-principles/detecting-and-handling-configuration-drift-safely/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Detecting and Handling Configuration Drift Safely
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../production-grade-network-automation-principles/real-world-idempotency-in-network-automation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Real-World Idempotency in Network Automation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../production-grade-network-automation-principles/scoping-automation-to-reduce-blast-radius/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Scoping Automation to Reduce Blast Radius
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../production-grade-network-automation-principles/designing-automation-that-can-safely-fail/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Designing Automation That Can Safely Fail
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../production-grade-network-automation-principles/rollback-strategies-what-works-and-what-doesnt/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Rollback Strategies - What Works and What Doesn't
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../production-grade-network-automation-principles/separating-read-and-write-phases/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Separating Read and Write Phases in Automation Workflows
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../production-grade-network-automation-principles/making-automation-output-operator-friendly/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Making Automation Output Operator-Friendly
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../production-grade-network-automation-principles/building-audit-ready-automation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Building Audit-Ready Automation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../production-grade-network-automation-principles/secrets-and-credentials-in-enterprise-automation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Secrets and Credentials in Enterprise Automation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../production-grade-network-automation-principles/human-in-the-loop-automation-design/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Human-in-the-Loop Automation Design
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../production-grade-network-automation-principles/knowing-when-not-to-automate/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Knowing When Not to Automate
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../production-grade-network-automation-principles/executive-summary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Executive Summary for Leadership
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../production-grade-network-automation-principles/program-charter/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Program Charter for Production-Grade Automation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../production-grade-network-automation-principles/enterprise-control-matrix/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Enterprise Control Matrix
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../production-grade-network-automation-principles/exception-and-waiver-process/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Exception and Waiver Process
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../production-grade-network-automation-principles/automation-service-lifecycle/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Automation Service Lifecycle
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../production-grade-network-automation-principles/remediation-packs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Remediation Packs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../production-grade-network-automation-principles/implementation-roadmap-30-60-90-days/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Implementation Roadmap (30/60/90 Days)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../production-grade-network-automation-principles/operator-review-worksheet/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Operator Review Worksheet
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_6" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../governed-ai-network-operations/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Governed AI for Network Operations
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_6" id="__nav_3_6_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Governed AI for Network Operations
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../governed-ai-network-operations/ai-risk-classification/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI Risk Classification
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../governed-ai-network-operations/why-your-agent-must-not-have-execute-command/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Why Your Agent Must Not Have an execute_command Tool
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../governed-ai-network-operations/from-script-to-tool/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    From Script to Tool
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../governed-ai-network-operations/tool-catalogue-design/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Designing the Tool Catalogue
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../governed-ai-network-operations/tool-contracts-and-failure-modes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tool Contracts and Failure Modes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../governed-ai-network-operations/agent-review-checklist/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Agent Review Checklist
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_7" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../standards/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Automation Standards
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_7" id="__nav_3_7_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Automation Standards
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../standards/control-catalogue/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Automation Control Catalogue
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../standards/self-assessment/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Assessing Yourself Against These Controls
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../standards/python-engineering-standard/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Python Engineering Standard
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../standards/reference-architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Governed Automation Reference Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_8" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../deep-dives/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Deep Dives
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_8" id="__nav_3_8_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Deep Dives
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../deep-dives/access-switch-audit/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Access Switch Audit
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../deep-dives/cdp-audit/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CDP Audit
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../deep-dives/cisco-compliance-audit/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cisco Compliance Audit
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../deep-dives/cisco-config-generator/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cisco Config Generator
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../deep-dives/ios-xe-upgrade-orchestrator/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    IOS XE Upgrade Orchestrator
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../../scripts/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Services
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Services
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../services/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../how-we-work/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How We Work
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../contact/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Contact & Discovery
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_5" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../../coming-soon/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Coming Soon
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_5" id="__nav_4_5_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Coming Soon
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../coming-soon/cisco-ios-xe-ztp/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cisco IOS XE ZTP
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../coming-soon/ztp-automation-platform/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ZTP Automation Platform
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_6" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../../smb/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    For Small & Medium Businesses
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_6" id="__nav_4_6_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    For Small & Medium Businesses
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../smb/services/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SMB Automation Packages
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_6_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_6_3" id="__nav_4_6_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Automation Packages
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_6_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_6_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Automation Packages
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../smb/packages/automation-assessment/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Automation Opportunity Assessment
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../smb/packages/switch-audit-pack/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Switch Audit & Compliance Pack
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../smb/packages/ios-xe-upgrade-pack/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    IOS-XE Upgrade Automation Pack
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../smb/packages/ztp-setup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Zero-Touch Provisioning Setup
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../smb/packages/custom-script-build/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Custom Script Build
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../smb/packages/automation-as-a-service/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Automation-as-a-Service
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../../prime-framework/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PRIME Framework
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_5" id="__nav_5_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    PRIME Framework
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../prime-framework/philosophy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PRIME Philosophy
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../prime-framework/pinpoint/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Pinpoint
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../prime-framework/re-engineer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Re-engineer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../prime-framework/implement/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Implement
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../prime-framework/measure/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Measure
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../prime-framework/empower/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Empower
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    About
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    About
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../about/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    About Nautomation Prime
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../founder/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Founder
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../charity/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Giving With Integrity
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_6_4" id="__nav_6_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Legal
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Legal
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../legal/brand/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Brand &amp; Logo Usage
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../legal/disclaimer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Disclaimer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../legal/licensing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Licensing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../legal/privacy-policy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Privacy Policy
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../legal/terms-of-use/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Terms of Use
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../legal/foundation-status/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Nautomation Prime Foundation — Legal Status &amp; Governance
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#chapter-7-rollback-and-the-audit-record" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Chapter 7: Rollback and the Audit Record
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-happens-when-it-goes-wrong-and-what-you-can-prove-afterwards" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        "What Happens When It Goes Wrong, and What You Can Prove Afterwards"
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-youll-build" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🎯 What You'll Build
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rollback-is-harder-than-it-sounds" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ↩️ Rollback Is Harder Than It Sounds
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-rollback-module" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🔧 The Rollback Module
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-audit-record" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📋 The Audit Record
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📋 The Audit Record">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-fields-that-get-left-out-and-shouldnt-be" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The fields that get left out, and shouldn't be
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-run-command" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🔗 The run Command
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🔗 The run Command">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#three-exit-codes-not-two" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Three exit codes, not two
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-no-rollback-exists-on-purpose" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        --no-rollback exists on purpose
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#run-it" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ▶️ Run It
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tests" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🧪 Tests
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-finished-project" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📁 The Finished Project
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-you-actually-built" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🎓 What You Actually Built
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#where-to-go-next" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ➡️ Where to Go Next
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#key-takeaways" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🎯 Key Takeaways
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  <nav class="md-tags" >
+    
+      
+      
+      
+      
+        <span class="md-tag">Audit</span>
+      
+    
+      
+      
+      
+      
+        <span class="md-tag">Capstone</span>
+      
+    
+      
+      
+      
+      
+        <span class="md-tag">Rollback</span>
+      
+    
+      
+      
+      
+      
+        <span class="md-tag">Structured Logging</span>
+      
+    
+      
+      
+      
+      
+        <span class="md-tag">Tutorial</span>
+      
+    
+  </nav>
+
+
+  
+  
+
+
+  <h1>7. Rollback and the Audit Record</h1>
+
+<h2 id="chapter-7-rollback-and-the-audit-record">Chapter 7: Rollback and the Audit Record<a class="headerlink" href="#chapter-7-rollback-and-the-audit-record" title="Anchor link to this section">&para;</a></h2>
+<p><em>Capstone chapter 7 of 7 — <a href="../">project overview</a></em></p>
+<h2 id="what-happens-when-it-goes-wrong-and-what-you-can-prove-afterwards">"What Happens When It Goes Wrong, and What You Can Prove Afterwards"<a class="headerlink" href="#what-happens-when-it-goes-wrong-and-what-you-can-prove-afterwards" title="Anchor link to this section">&para;</a></h2>
+<p>Six chapters in, the pipeline can detect a broken change. It just can't do anything about it, and it can't tell you afterwards what happened.</p>
+<p>This chapter fixes both, and then joins every stage into one command.</p>
+<hr />
+<h2 id="what-youll-build">🎯 What You'll Build<a class="headerlink" href="#what-youll-build" title="Anchor link to this section">&para;</a></h2>
+<ul>
+<li><code>netpipe/rollback.py</code> — restore from the backups chapter 5 took</li>
+<li><code>netpipe/audit.py</code> — a structured record of intent, action, proof and approval</li>
+<li><code>netpipe run</code> — validate → snapshot → preflight → deploy → verify → rollback if needed</li>
+<li>A finished pipeline</li>
+</ul>
+<p><strong>Builds on:</strong> <a href="../../intermediate/error-recovery-rollback-network-automation/">Error Recovery and Rollback</a>, <a href="../../intermediate/structured-logging-network-automation/">Structured Logging</a>, <a href="../../intermediate/state-management-idempotency-network-automation/">State Management and Idempotency</a></p>
+<hr />
+<h2 id="rollback-is-harder-than-it-sounds">↩️ Rollback Is Harder Than It Sounds<a class="headerlink" href="#rollback-is-harder-than-it-sounds" title="Anchor link to this section">&para;</a></h2>
+<p>Before the code, the caveats — because rollback is the feature most likely to be trusted more than it deserves.</p>
+<p><strong>Restoring a config file is not restoring a state.</strong> <code>configure replace</code> gets the text back. It does not un-bounce an interface, un-flush a MAC table, un-reconverge spanning tree, or bring back the BGP session that dropped while the config was wrong. The device returns to the old configuration; the network takes its own time, and sometimes doesn't.</p>
+<p><strong>Rollback can fail too.</strong> It runs over the same management path the change may have just broken. If your change took out the uplink, the rollback cannot reach the device. This is not hypothetical — it's the single most common way an automated rollback doesn't happen.</p>
+<p><strong>Some changes have no rollback.</strong> A deleted VLAN takes its MAC table with it. A regenerated crypto key is gone. Restoring the config that referenced them doesn't bring them back.</p>
+<p>So: implement rollback, use it, and never let it become the reason you skipped the review. See <a href="../../../production-grade-network-automation-principles/rollback-strategies-what-works-and-what-doesnt/">Rollback Strategies — What Works and What Doesn't</a>.</p>
+<hr />
+<h2 id="the-rollback-module">🔧 The Rollback Module<a class="headerlink" href="#the-rollback-module" title="Anchor link to this section">&para;</a></h2>
+<p><strong><code>netpipe/rollback.py</code>:</strong></p>
+<pre class="highlight"><code class="language-python">#!/usr/bin/env python3
+"""
+Restore devices from the backups taken before the change.
+"""
+
+import logging
+from dataclasses import dataclass, field
+from pathlib import Path
+
+from nornir.core.task import Result, Task
+from nornir_netmiko.tasks import netmiko_send_command, netmiko_send_config
+
+from netpipe.decorators import audited, retry
+
+logger = logging.getLogger("netpipe")
+
+
+class NoBackupError(Exception):
+    """There is nothing to roll back to."""
+
+
+@dataclass
+class RollbackOutcome:
+    restored: list[str] = field(default_factory=list)
+    failed: dict[str, str] = field(default_factory=dict)
+    no_backup: list[str] = field(default_factory=list)
+
+
+def latest_backup(device_name: str,
+                  directory: str = "artefacts/backup") -&gt; Path:
+    """Most recent backup for a device. Timestamps sort lexically."""
+    candidates = sorted(Path(directory).glob(f"{device_name}-*.cfg"))
+    if not candidates:
+        raise NoBackupError(f"no backup found for {device_name}")
+    return candidates[-1]
+
+
+@audited("rollback")
+@retry(attempts=3, base_delay=5.0)
+def task_rollback(task: Task) -&gt; Result:
+    """
+    Restore the pre-change configuration by merging the backup back in.
+
+    This is the simple case and it handles changed values correctly. It
+    cannot remove a command the change *added* — see the note below on
+    `configure replace` for that.
+    """
+    backup = latest_backup(task.host.name)
+    config = backup.read_text(encoding="utf-8")
+
+    lines = [line for line in config.splitlines()
+             if line.strip() and line.strip() not in ("!", "end")]
+
+    task.run(
+        task=netmiko_send_config,
+        config_commands=lines,
+        read_timeout=180,
+    )
+
+    task.run(
+        task=netmiko_send_command,
+        command_string="write memory",
+        read_timeout=120,
+    )
+
+    return Result(host=task.host,
+                  result=f"restored from {backup.name}",
+                  changed=True)
+
+
+def rollback(nr, targets: list[str]) -&gt; RollbackOutcome:
+    """Roll back the named devices."""
+    outcome = RollbackOutcome()
+
+    havable = []
+    for name in targets:
+        try:
+            latest_backup(name)
+            havable.append(name)
+        except NoBackupError:
+            outcome.no_backup.append(name)
+            logger.error("cannot roll back %s: no backup", name)
+
+    if not havable:
+        return outcome
+
+    scoped = nr.filter(filter_func=lambda host: host.name in havable)
+    results = scoped.run(task=task_rollback)
+
+    for name, result in results.items():
+        if result.failed:
+            outcome.failed[name] = str(result.exception)
+            logger.error("rollback FAILED for %s: %s", name, result.exception)
+        else:
+            outcome.restored.append(name)
+
+    return outcome</code></pre>
+<div class="admonition danger">
+<p class="admonition-title">A Failed Rollback Is an Incident, Not a Log Line</p>
+<p><code>outcome.failed</code> means a device is sitting in a state nobody intended and automation could not fix. That is a human problem from the moment it happens.</p>
+<p><code>netpipe</code> prints it loudly and exits non-zero. In production, this is where you page someone — the <a href="../../expert/incident-response-automation/">incident response tutorial</a> covers wiring that up. What you must not do is let it scroll past in a log.</p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title"><code>configure replace</code> Deserves a Look</p>
+<p>The code above merges the backup's lines back in, which works for additive changes and is what Netmiko does most naturally. It cannot remove a command the change <em>added</em> — merging <code>switchport access vlan 10</code> over <code>switchport access vlan 20</code> works, but merging a config that simply lacks a line won't delete that line.</p>
+<p>On IOS-XE, <code>configure replace flash:backup.cfg force</code> computes a true difference and applies it. It's the right tool, it needs the file copied to the device first (SCP), and it's worth the extra step for any change that removes configuration. Treat the merge version here as the simple case.</p>
+</div>
+<hr />
+<h2 id="the-audit-record">📋 The Audit Record<a class="headerlink" href="#the-audit-record" title="Anchor link to this section">&para;</a></h2>
+<p>The audit record answers, months later, four questions: <strong>what was intended, what was done, what was proven, and who said yes.</strong></p>
+<p><strong><code>netpipe/audit.py</code>:</strong></p>
+<pre class="highlight"><code class="language-python">#!/usr/bin/env python3
+"""
+The change record.
+"""
+
+import getpass
+import hashlib
+import json
+import platform
+import socket
+import subprocess
+from dataclasses import asdict, dataclass, field
+from datetime import datetime, timezone
+from pathlib import Path
+
+from netpipe.models import SiteIntent
+
+
+def _git_revision() -&gt; str:
+    """The commit the pipeline ran from, so the code is identifiable."""
+    try:
+        return subprocess.check_output(
+            ["git", "rev-parse", "HEAD"],
+            stderr=subprocess.DEVNULL, text=True,
+        ).strip()
+    except (subprocess.CalledProcessError, FileNotFoundError):
+        return "unknown"
+
+
+def _digest(path: Path) -&gt; str:
+    """SHA-256 of a file, so the artefact can be shown to be unmodified."""
+    return hashlib.sha256(path.read_bytes()).hexdigest()
+
+
+@dataclass
+class AuditRecord:
+    # Identity
+    change_reference: str
+    site: str
+    started_at: str
+    finished_at: str = ""
+
+    # Provenance
+    operator: str = field(default_factory=getpass.getuser)
+    host: str = field(default_factory=socket.gethostname)
+    python_version: str = field(default_factory=platform.python_version)
+    git_revision: str = field(default_factory=_git_revision)
+    intent_digest: str = ""
+
+    # What happened
+    approved: bool = False
+    dry_run: bool = False
+    devices_targeted: list[str] = field(default_factory=list)
+    devices_blocked: dict[str, str] = field(default_factory=dict)
+    devices_configured: list[str] = field(default_factory=list)
+    devices_failed: dict[str, str] = field(default_factory=dict)
+    devices_verified: list[str] = field(default_factory=list)
+    devices_rolled_back: list[str] = field(default_factory=list)
+    rollback_failures: dict[str, str] = field(default_factory=dict)
+
+    # Evidence
+    findings: list[dict] = field(default_factory=list)
+    artefacts: dict[str, str] = field(default_factory=dict)
+
+    outcome: str = "incomplete"
+
+    def conclude(self) -&gt; str:
+        """Decide the overall verdict."""
+        self.finished_at = datetime.now(timezone.utc).isoformat()
+
+        if self.dry_run:
+            self.outcome = "dry-run"
+        elif self.rollback_failures:
+            self.outcome = "rollback-failed"
+        elif self.devices_rolled_back:
+            self.outcome = "rolled-back"
+        elif self.devices_failed:
+            self.outcome = "partial-failure"
+        elif self.devices_configured and not self.devices_verified:
+            self.outcome = "unverified"
+        elif self.devices_configured:
+            self.outcome = "success"
+        else:
+            self.outcome = "no-change"
+
+        return self.outcome
+
+    def write(self, directory: str = "artefacts/audit") -&gt; Path:
+        out = Path(directory)
+        out.mkdir(parents=True, exist_ok=True)
+
+        stamp = self.started_at.replace(":", "").replace("-", "")[:15]
+        path = out / f"{self.change_reference}-{stamp}.json"
+        path.write_text(json.dumps(asdict(self), indent=2), encoding="utf-8")
+
+        return path
+
+
+def start_record(intent: SiteIntent, intent_path: str,
+                 dry_run: bool = False) -&gt; AuditRecord:
+    return AuditRecord(
+        change_reference=intent.change_reference,
+        site=intent.site,
+        started_at=datetime.now(timezone.utc).isoformat(),
+        intent_digest=_digest(Path(intent_path)),
+        devices_targeted=[device.name for device in intent.devices],
+        dry_run=dry_run,
+    )</code></pre>
+<h3 id="the-fields-that-get-left-out-and-shouldnt-be">The fields that get left out, and shouldn't be<a class="headerlink" href="#the-fields-that-get-left-out-and-shouldnt-be" title="Anchor link to this section">&para;</a></h3>
+<p>Most homegrown audit logs record which devices changed. The ones that turn out to matter later are the other three.</p>
+<p><strong><code>intent_digest</code>.</strong> The SHA-256 of the intent file at the moment it ran. Six months on, <code>intent/man1.yaml</code> has been edited eleven times, and this is the only way to establish what the change actually asked for. Without it, "here's the file" is an assertion, not evidence.</p>
+<p><strong><code>git_revision</code>.</strong> The intent says what was wanted; the revision says what code interpreted it. A template bug introduced in March and fixed in May makes an April change unexplainable without this line.</p>
+<p><strong><code>devices_blocked</code>.</strong> Devices you <em>didn't</em> touch, and why. When someone asks why switch 14 was missed, the answer is in the record rather than in somebody's memory.</p>
+<p>And <code>outcome</code> is deliberately not a boolean. <code>rolled-back</code> and <code>partial-failure</code> and <code>unverified</code> are genuinely different situations, and flattening them into <code>false</code> throws away the distinction you'll most want.</p>
+<p>See <a href="../../../production-grade-network-automation-principles/building-audit-ready-automation/">Building Audit-Ready Automation</a>.</p>
+<div class="admonition warning">
+<p class="admonition-title"><code>artefacts/</code> Is Gitignored — Audit Records Shouldn't Live There Forever</p>
+<p>Chapter 1 gitignored <code>artefacts/</code> because generated configs churn. Audit records are the exception: they're the evidence, and a laptop is not a retention policy.</p>
+<p>Ship them somewhere durable — object storage with versioning, your logging platform, or your change system as an attachment against the change reference. The <code>write()</code> method is where you add that. Also think about retention and personal data: <code>operator</code> and <code>host</code> are identifying, and your organisation may have rules about how long that's kept.</p>
+</div>
+<hr />
+<h2 id="the-run-command">🔗 The <code>run</code> Command<a class="headerlink" href="#the-run-command" title="Anchor link to this section">&para;</a></h2>
+<p>Every stage, in order, with the failure paths wired up.</p>
+<p>Add to <strong><code>netpipe/cli.py</code></strong>:</p>
+<pre class="highlight"><code class="language-python">from netpipe.audit import start_record
+from netpipe.rollback import rollback
+
+
+def cmd_run(args: argparse.Namespace) -&gt; int:
+    """The full pipeline: validate, snapshot, preflight, deploy, verify."""
+    # ── Validate ────────────────────────────────────────────────────
+    try:
+        intent = load_intent(args.intent)
+    except IntentError as exc:
+        print(f"✗ {exc}", file=sys.stderr)
+        return 1
+
+    settings = load_settings()
+    logging.basicConfig(level=settings.log_level,
+                        format="%(asctime)s %(levelname)s %(message)s")
+
+    record = start_record(intent, args.intent, dry_run=args.dry_run)
+    print(f"═══ {intent.change_reference} — {intent.site} ═══\n")
+    print(f"[1/6] validate     ✓ {len(intent.devices)} devices")
+
+    # ── Render ──────────────────────────────────────────────────────
+    try:
+        written = render_site(intent)
+    except RenderError as exc:
+        print(f"[2/6] render       ✗ {exc}", file=sys.stderr)
+        record.conclude()
+        record.write()
+        return 1
+
+    record.artefacts["candidate"] = "artefacts/candidate"
+    print(f"[2/6] render       ✓ {len(written)} configs")
+
+    # ── Pre-flight ──────────────────────────────────────────────────
+    with ThreadPoolExecutor(max_workers=settings.max_workers) as pool:
+        reports = list(pool.map(
+            lambda device: preflight_device(device, settings), intent.devices))
+
+    cleared = [r.device for r in reports if r.cleared]
+    for report in reports:
+        if not report.cleared:
+            record.devices_blocked[report.device] = ", ".join(
+                check.name for check in report.failures)
+
+    print(f"[3/6] preflight    {'✓' if cleared else '✗'} "
+          f"{len(cleared)} cleared, {len(record.devices_blocked)} blocked")
+
+    for name, reason in record.devices_blocked.items():
+        print(f"                     ✗ {name}: {reason}")
+
+    if not cleared:
+        record.conclude()
+        path = record.write()
+        print(f"\n✗ Nothing cleared pre-flight. Record: {path}")
+        return 1
+
+    # ── Snapshot ────────────────────────────────────────────────────
+    testbed = build_testbed(intent, settings)
+    before: dict[str, dict] = {}
+
+    for device in intent.devices:
+        if device.name not in cleared:
+            continue
+        try:
+            before[device.name] = snapshot(testbed, device.name, "before")
+        except Exception as exc:
+            print(f"                     ⚠ {device.name}: "
+                  f"no before-snapshot ({exc})")
+            before[device.name] = {}
+
+    record.artefacts["state_before"] = "artefacts/state"
+    print(f"[4/6] snapshot     ✓ {len(before)} captured")
+
+    # ── Approve and deploy ──────────────────────────────────────────
+    if args.dry_run:
+        print("[5/6] deploy       – dry run, nothing sent")
+        record.conclude()
+        path = record.write()
+        print(f"\nRecord: {path}")
+        return 0
+
+    if settings.require_approval:
+        print(f"\nAbout to configure {len(cleared)} device(s).")
+        answer = input(f"Type {intent.change_reference} to proceed: ").strip()
+        if answer != intent.change_reference:
+            print("✗ Not confirmed.", file=sys.stderr)
+            record.conclude()
+            record.write()
+            return 1
+
+    record.approved = True
+
+    nr = build_nornir(intent, settings)
+    outcome = deploy(nr, intent, settings, cleared)
+
+    record.devices_configured = outcome.succeeded
+    record.devices_failed = outcome.failed
+    record.artefacts["backups"] = "artefacts/backup"
+
+    print(f"[5/6] deploy       {'✓' if not outcome.failed else '✗'} "
+          f"{len(outcome.succeeded)} configured, {len(outcome.failed)} failed")
+
+    # ── Verify ──────────────────────────────────────────────────────
+    to_verify = [d for d in intent.devices if d.name in outcome.succeeded]
+    bad: list[str] = []
+
+    for device in to_verify:
+        report = verify_device(testbed, device, intent,
+                               before.get(device.name, {}))
+        record.findings.extend(
+            {"device": f.device, "severity": f.severity,
+             "subject": f.subject, "detail": f.detail}
+            for f in report.findings)
+
+        if report.passed:
+            record.devices_verified.append(device.name)
+        else:
+            bad.append(device.name)
+
+    record.artefacts["state_after"] = "artefacts/state"
+    print(f"[6/6] verify       {'✓' if not bad else '✗'} "
+          f"{len(record.devices_verified)} verified, {len(bad)} failed")
+
+    for finding in record.findings:
+        if finding["severity"] == "error":
+            print(f"                     ✗ {finding['device']}/"
+                  f"{finding['subject']}: {finding['detail']}")
+
+    # ── Roll back what failed verification ──────────────────────────
+    if bad and not args.no_rollback:
+        print(f"\n⟲ Rolling back {len(bad)} device(s)...")
+        result = rollback(nr, bad)
+
+        record.devices_rolled_back = result.restored
+        record.rollback_failures = result.failed
+
+        for name in result.restored:
+            print(f"    ✓ {name} restored")
+        for name, reason in result.failed.items():
+            print(f"    ✗ {name} ROLLBACK FAILED: {reason}")
+        for name in result.no_backup:
+            print(f"    ✗ {name} no backup available")
+
+    elif bad:
+        print(f"\n⚠ {len(bad)} device(s) failed verification. "
+              "Rollback suppressed by --no-rollback.")
+
+    # ── Conclude ────────────────────────────────────────────────────
+    verdict = record.conclude()
+    path = record.write()
+
+    print(f"\n═══ {verdict.upper()} ═══")
+    print(f"Record: {path}")
+
+    if record.rollback_failures:
+        print("\n‼ DEVICES LEFT IN AN UNINTENDED STATE — ESCALATE",
+              file=sys.stderr)
+        return 2
+
+    return 0 if verdict in ("success", "dry-run", "no-change") else 1</code></pre>
+<p>Register it:</p>
+<pre class="highlight"><code class="language-python">    run = sub.add_parser("run", parents=[common],
+                         help="the full pipeline, end to end")
+    run.add_argument("--dry-run", action="store_true",
+                     help="stop before deploying")
+    run.add_argument("--no-rollback", action="store_true",
+                     help="leave failed devices alone (investigate manually)")
+    run.set_defaults(func=cmd_run)</code></pre>
+<h3 id="three-exit-codes-not-two">Three exit codes, not two<a class="headerlink" href="#three-exit-codes-not-two" title="Anchor link to this section">&para;</a></h3>
+<p><code>0</code> success, <code>1</code> something failed and was handled, <code>2</code> a device is in an unintended state and automation gave up. A scheduler can treat <code>2</code> differently from <code>1</code>, and it should — one is a change that didn't happen, the other is a change that half happened and can't be undone.</p>
+<h3 id="-no-rollback-exists-on-purpose"><code>--no-rollback</code> exists on purpose<a class="headerlink" href="#-no-rollback-exists-on-purpose" title="Anchor link to this section">&para;</a></h3>
+<p>Automatic rollback is the right default and the wrong choice during an investigation. When you're trying to understand <em>why</em> a change broke something, restoring the previous config destroys the evidence. <code>--no-rollback</code> is for the second run, once you already know the first one failed.</p>
+<hr />
+<h2 id="run-it">▶️ Run It<a class="headerlink" href="#run-it" title="Anchor link to this section">&para;</a></h2>
+<p><strong>Dry run — the habit:</strong></p>
+<pre class="highlight"><code class="language-bash">python -m netpipe run --dry-run</code></pre>
+<pre class="highlight"><code>═══ CHG0047821 — MAN1 ═══
+
+[1/6] validate     ✓ 2 devices
+[2/6] render       ✓ 2 configs
+[3/6] preflight    ✓ 2 cleared, 0 blocked
+[4/6] snapshot     ✓ 2 captured
+[5/6] deploy       – dry run, nothing sent
+
+Record: artefacts/audit/CHG0047821-20260920T143107.json</code></pre>
+<p><strong>A change that works:</strong></p>
+<pre class="highlight"><code>═══ CHG0047821 — MAN1 ═══
+
+[1/6] validate     ✓ 2 devices
+[2/6] render       ✓ 2 configs
+[3/6] preflight    ✓ 2 cleared, 0 blocked
+[4/6] snapshot     ✓ 2 captured
+
+About to configure 2 device(s).
+Type CHG0047821 to proceed: CHG0047821
+
+[5/6] deploy       ✓ 2 configured, 0 failed
+[6/6] verify       ✓ 2 verified, 0 failed
+
+═══ SUCCESS ═══
+Record: artefacts/audit/CHG0047821-20260920T143107.json</code></pre>
+<p><strong>A change that doesn't — the pipeline doing its job:</strong></p>
+<pre class="highlight"><code>═══ CHG0047821 — MAN1 ═══
+
+[1/6] validate     ✓ 2 devices
+[2/6] render       ✓ 2 configs
+[3/6] preflight    ✗ 1 cleared, 1 blocked
+                     ✗ man1-acc-sw-02: identity
+[4/6] snapshot     ✓ 1 captured
+
+About to configure 1 device(s).
+Type CHG0047821 to proceed: CHG0047821
+
+[5/6] deploy       ✓ 1 configured, 0 failed
+[6/6] verify       ✗ 0 verified, 1 failed
+                     ✗ man1-acc-sw-01/TenGigabitEthernet1/1/1: was up
+                       before the change, now down
+
+⟲ Rolling back 1 device(s)...
+    ✓ man1-acc-sw-01 restored
+
+═══ ROLLED-BACK ═══
+Record: artefacts/audit/CHG0047821-20260920T143107.json</code></pre>
+<p>One device was never touched because it wasn't the device it claimed to be. The other was configured, broke its own uplink, was caught, and was put back. Nobody was watching.</p>
+<p><strong>The record it wrote:</strong></p>
+<pre class="highlight"><code class="language-json">{
+  "change_reference": "CHG0047821",
+  "site": "MAN1",
+  "started_at": "2026-09-20T14:31:07.221084+00:00",
+  "finished_at": "2026-09-20T14:34:52.664219+00:00",
+  "operator": "cdavies",
+  "host": "AUTO-RUNNER-01",
+  "python_version": "3.12.4",
+  "git_revision": "9f3c1ab7e4d2...",
+  "intent_digest": "7d4a1f0b8c33...",
+  "approved": true,
+  "dry_run": false,
+  "devices_targeted": ["man1-acc-sw-01", "man1-acc-sw-02"],
+  "devices_blocked": {"man1-acc-sw-02": "identity"},
+  "devices_configured": ["man1-acc-sw-01"],
+  "devices_failed": {},
+  "devices_verified": [],
+  "devices_rolled_back": ["man1-acc-sw-01"],
+  "rollback_failures": {},
+  "findings": [
+    {
+      "device": "man1-acc-sw-01",
+      "severity": "error",
+      "subject": "TenGigabitEthernet1/1/1",
+      "detail": "was up before the change, now down"
+    }
+  ],
+  "artefacts": {
+    "candidate": "artefacts/candidate",
+    "backups": "artefacts/backup",
+    "state_before": "artefacts/state",
+    "state_after": "artefacts/state"
+  },
+  "outcome": "rolled-back"
+}</code></pre>
+<p>Everything the post-incident conversation needs, written without anybody remembering to write it.</p>
+<hr />
+<h2 id="tests">🧪 Tests<a class="headerlink" href="#tests" title="Anchor link to this section">&para;</a></h2>
+<p><strong><code>tests/test_audit.py</code>:</strong></p>
+<pre class="highlight"><code class="language-python">import json
+
+import pytest
+
+from netpipe.audit import AuditRecord, start_record
+from netpipe.intent import load_intent
+from netpipe.rollback import NoBackupError, latest_backup
+
+
+@pytest.fixture
+def record():
+    return start_record(load_intent("intent/man1.yaml"), "intent/man1.yaml")
+
+
+def test_record_captures_provenance(record):
+    assert record.change_reference == "CHG0047821"
+    assert record.site == "MAN1"
+    assert len(record.intent_digest) == 64      # sha-256 hex
+    assert record.operator
+    assert record.devices_targeted == ["man1-acc-sw-01", "man1-acc-sw-02"]
+
+
+def test_digest_changes_with_the_file(tmp_path):
+    intent_file = tmp_path / "a.yaml"
+    source = load_intent("intent/man1.yaml")
+
+    intent_file.write_text("x", encoding="utf-8")
+    first = start_record(source, str(intent_file)).intent_digest
+
+    intent_file.write_text("y", encoding="utf-8")
+    second = start_record(source, str(intent_file)).intent_digest
+
+    assert first != second
+
+
+@pytest.mark.parametrize("setup,expected", [
+    (lambda r: setattr(r, "dry_run", True), "dry-run"),
+    (lambda r: None, "no-change"),
+    (lambda r: r.devices_configured.append("sw1"), "unverified"),
+    (lambda r: (r.devices_configured.append("sw1"),
+                r.devices_verified.append("sw1")), "success"),
+    (lambda r: r.devices_failed.update({"sw1": "boom"}), "partial-failure"),
+    (lambda r: r.devices_rolled_back.append("sw1"), "rolled-back"),
+    (lambda r: r.rollback_failures.update({"sw1": "unreachable"}),
+     "rollback-failed"),
+])
+def test_outcome_verdicts(record, setup, expected):
+    setup(record)
+    assert record.conclude() == expected
+
+
+def test_rollback_failure_outranks_everything(record):
+    record.devices_configured.append("sw1")
+    record.devices_verified.append("sw1")
+    record.devices_rolled_back.append("sw2")
+    record.rollback_failures["sw3"] = "unreachable"
+    assert record.conclude() == "rollback-failed"
+
+
+def test_record_writes_valid_json(record, tmp_path):
+    record.conclude()
+    path = record.write(str(tmp_path))
+
+    written = json.loads(path.read_text(encoding="utf-8"))
+    assert written["change_reference"] == "CHG0047821"
+    assert written["outcome"] == "no-change"
+
+
+def test_latest_backup_picks_the_newest(tmp_path):
+    for stamp in ("20260101T090000Z", "20260920T143107Z", "20260615T120000Z"):
+        (tmp_path / f"sw1-{stamp}.cfg").write_text("!", encoding="utf-8")
+
+    assert latest_backup("sw1", str(tmp_path)).name == "sw1-20260920T143107Z.cfg"
+
+
+def test_no_backup_is_an_explicit_error(tmp_path):
+    with pytest.raises(NoBackupError, match="no backup found for sw9"):
+        latest_backup("sw9", str(tmp_path))</code></pre>
+<p><code>test_rollback_failure_outranks_everything</code> is the one worth keeping. Verdict precedence is easy to get subtly wrong when someone adds an eighth outcome, and a change recorded as <code>success</code> while a device sits unrecoverable is the worst possible bug in an audit system.</p>
+<hr />
+<h2 id="the-finished-project">📁 The Finished Project<a class="headerlink" href="#the-finished-project" title="Anchor link to this section">&para;</a></h2>
+<pre class="highlight"><code>netpipe/
+├── .env.example
+├── .github/workflows/validate.yml
+├── requirements.txt
+├── intent/
+│   └── man1.yaml
+├── netpipe/
+│   ├── audit.py          ← the change record
+│   ├── cli.py            ← validate, plan, preflight, deploy,
+│   │                       snapshot, verify, run
+│   ├── collect.py
+│   ├── decorators.py
+│   ├── deploy.py
+│   ├── diff.py
+│   ├── intent.py
+│   ├── inventory.py
+│   ├── models.py
+│   ├── preflight.py
+│   ├── render.py
+│   ├── rollback.py       ← restore from backup
+│   ├── settings.py
+│   ├── testbed.py
+│   └── verify.py
+├── templates/
+│   └── access_switch.j2
+├── tests/                ← 57 tests, none needing a device
+└── artefacts/
+    ├── audit/  backup/  candidate/  diff/  state/</code></pre>
+<p>Around 800 lines. You can read all of it in an afternoon.</p>
+<hr />
+<h2 id="what-you-actually-built">🎓 What You Actually Built<a class="headerlink" href="#what-you-actually-built" title="Anchor link to this section">&para;</a></h2>
+<p>Look back at the arrows from <a href="../">the overview</a>. Six of the seven stages exist to refuse something:</p>
+<table>
+<thead>
+<tr>
+<th>Stage</th>
+<th>Refuses</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>validate</td>
+<td>Intent that can't be correct</td>
+</tr>
+<tr>
+<td>plan</td>
+<td>Changes nobody has looked at</td>
+</tr>
+<tr>
+<td>preflight</td>
+<td>Devices that aren't ready, or aren't the right device</td>
+</tr>
+<tr>
+<td>deploy</td>
+<td>More than one batch, once a batch has failed</td>
+</tr>
+<tr>
+<td>verify</td>
+<td>Success, when only the commands succeeded</td>
+</tr>
+<tr>
+<td>rollback</td>
+<td>Leaving a broken change in place</td>
+</tr>
+</tbody>
+</table>
+<p>The one stage that does the work — <code>netmiko_send_config</code> — is a single line.</p>
+<p>That ratio is the lesson. Sending configuration to a device has never been the difficult part of network automation; you could do it after the first beginner tutorial on this site. The difficulty, and the entire difference between a script and something you'd let run against production on a Friday, is everything arranged around that line to make it safe.</p>
+<hr />
+<h2 id="where-to-go-next">➡️ Where to Go Next<a class="headerlink" href="#where-to-go-next" title="Anchor link to this section">&para;</a></h2>
+<p><strong>Make it yours.</strong> Point it at your own intent, naming standard, VLANs and templates. The pipeline's shape doesn't change; everything inside it will.</p>
+<p><strong>Then extend it:</strong></p>
+<ul>
+<li><strong><a href="../../expert/secure-credential-vaulting/">Secure Credential Vaulting</a></strong> — Replace <code>.env</code> with Vault or AWS Secrets Manager. Only <code>load_settings()</code> changes.</li>
+<li><strong><a href="../../expert/asyncio-network-automation/">Asyncio for Network Automation</a></strong> — When batched threading stops scaling.</li>
+<li><strong><a href="../../expert/circuit-breakers-backpressure-network-automation/">Circuit Breakers and Backpressure</a></strong> — Stop hammering a device that's already failing.</li>
+<li><strong><a href="../../expert/dependency-ordering-task-orchestration/">Dependency Ordering and Task Orchestration</a></strong> — When device order matters, not just batch size.</li>
+<li><strong><a href="../../expert/devops-observability-network-automation/">DevOps and Observability</a></strong> — Ship those audit records and JSON logs somewhere that can query them.</li>
+<li><strong><a href="../../expert/incident-response-automation/">Incident Response Automation</a></strong> — Page someone on <code>rollback-failed</code> instead of printing it.</li>
+<li><strong><a href="../../expert/tool-ecosystem-integration/">Tool Ecosystem Integration</a></strong> — Source intent from NetBox; close the change in ServiceNow from the audit record.</li>
+<li><strong><a href="../../../governed-ai-network-operations/">Governed AI for Network Operations</a></strong> — <code>netpipe</code>'s subcommands are already narrow typed tools with a validation gate. That's most of what a safe AI tool boundary requires.</li>
+</ul>
+<p>And read the <a href="../../../production-grade-network-automation-principles/">Production-Grade Principles</a> track properly now. Every page in it will read differently, because you've built the thing it's describing.</p>
+<hr />
+<h2 id="key-takeaways">🎯 Key Takeaways<a class="headerlink" href="#key-takeaways" title="Anchor link to this section">&para;</a></h2>
+<ul>
+<li>✅ <strong>Rollback restores config, not state</strong> — And it can fail; plan for that</li>
+<li>✅ <strong>A failed rollback is an incident</strong> — Distinct exit code, escalation, not a log line</li>
+<li>✅ <strong>Record the intent digest and git revision</strong> — Otherwise there's no evidence, only assertions</li>
+<li>✅ <strong>Record what you skipped, and why</strong> — It's the question people actually ask later</li>
+<li>✅ <strong><code>outcome</code> is not a boolean</strong> — <code>rolled-back</code> and <code>partial-failure</code> are different problems</li>
+<li>✅ <strong><code>--no-rollback</code> for investigations</strong> — Restoring the config destroys the evidence</li>
+<li>✅ <strong>Six stages refuse, one acts</strong> — That ratio is the whole discipline</li>
+</ul>
+<hr />
+<p><a href="../06-proving-the-change-with-pyats/">← Chapter 6 — Proving the Change with PyATS</a> | <a href="../">Capstone Overview</a> | <a href="../../expert/">Expert Tutorials →</a></p>
+
+  
+  
+  
+    <div class="np-cta-strip">
+  <h3>Need help applying this in a live Cisco environment?</h3>
+  <p>This guide is part of the Nautomation Prime Foundation and stays free to read, share, and reuse. If you want the pattern implemented, governed, or adapted for your estate, that is paid engineering work &mdash; start a discovery conversation or review how Nautomation Prime delivers engagements. If you are a registered UK charity or CIC, there is a free and low-cost route instead.</p>
+  <div class="np-action-row">
+    <p>
+      <a class="md-button md-button--primary" href="../../../../contact/">Request Discovery Call</a>
+      <a class="md-button" href="../../../../services/">View Services</a>
+      <a class="md-button" href="../../../../foundation/charity-services/">Charity &amp; CIC Support</a>
+    </p>
+  </div>
+</div>
+  
+
+
+
+
+
+
+
+
+  
+    
+  
+  
+
+
+  <aside class="md-source-file">
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="Last update">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 20, 2026 11:07:39 UTC">September 20, 2026</span>
+  </span>
+
+    
+    
+    
+    
+  </aside>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      © 2026 Christopher Davies T/A Nautomation Prime — Not affiliated with Cisco Systems, Inc.<br> Empowering Network Automation Professionals · Built with Material for MkDocs
+
+    </div>
+  
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+    <a href="https://www.linkedin.com/company/nautomationprime" target="_blank" rel="noopener" title="LinkedIn" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3M135.4 416H69V202.2h66.5V416zM102.2 96a38.5 38.5 0 1 1 0 77 38.5 38.5 0 1 1 0-77m282.1 320h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+    <a href="https://github.com/Nautomation-Prime" target="_blank" rel="noopener" title="GitHub" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+    
+    
+    
+    
+    <a href="mailto:enquiries@nautomationprime.io" target="_blank" rel="noopener" title="Contact Nautomation Prime" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m20 8-8 5-8-5V6l8 5 8-5m0-2H4c-1.11 0-2 .89-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+      <div class="md-consent" data-md-component="consent" id="__consent" hidden>
+        <div class="md-consent__overlay"></div>
+        <aside class="md-consent__inner">
+          <form class="md-consent__form md-grid md-typeset" name="consent">
+            
+
+
+  
+
+
+<h4>Cookie consent</h4>
+<p>We use cookies to recognize your repeated visits and preferences, as well as to measure the effectiveness of our documentation and whether users find what they're searching for. With your consent, you're helping us to make our documentation better.</p>
+<input class="md-toggle" type="checkbox" id="__settings" >
+<div class="md-consent__settings">
+  <ul class="task-list">
+    
+    
+      
+    
+    
+      
+        
+  
+  
+    
+    
+  
+  <li class="task-list-item">
+    <label class="task-list-control">
+      <input type="checkbox" name="github" checked>
+      <span class="task-list-indicator"></span>
+      GitHub
+    </label>
+  </li>
+
+      
+    
+    
+  </ul>
+</div>
+<div class="md-consent__controls">
+  
+    
+      <button class="md-button md-button--primary">Accept</button>
+    
+    
+    
+  
+    
+    
+    
+      <label class="md-button" for="__settings">Manage settings</label>
+    
+  
+</div>
+          </form>
+        </aside>
+      </div>
+      <script>var consent=__md_get("__consent");if(consent)for(var input of document.forms.consent.elements)input.name&&(input.checked=consent[input.name]||!1);else"file:"!==location.protocol&&setTimeout((function(){document.querySelector("[data-md-component=consent]").hidden=!1}),250);var form=document.forms.consent;for(var action of["submit","reset"])form.addEventListener(action,(function(e){if(e.preventDefault(),"reset"===e.type)for(var n of document.forms.consent.elements)n.name&&(n.checked=!1);__md_set("__consent",Object.fromEntries(Array.from(new FormData(form).keys()).map((function(e){return[e,!0]})))),location.hash="",location.reload()}))</script>
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.tracking", "navigation.indexes", "content.code.copy", "content.code.annotate", "content.tooltips", "search.share", "search.suggest", "search.highlight", "search.stemmer", "announce.dismiss"], "search": "../../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>
