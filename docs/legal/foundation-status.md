@@ -2,7 +2,7 @@
 
 ## Policy Review Status
 
-- **Policy version:** 1.2
+- **Policy version:** 1.3
 - **Policy owner:** Christopher Davies (Founder, Nautomation Prime)
 - **Last reviewed:** 21 September 2026
 - **Next scheduled review:** March 2027
@@ -53,6 +53,14 @@ Because those conditions are written for incorporated bodies, and because sectio
 That confirmation is specific to the current position — a sole trader's business name. It does not carry over to incorporation. If the Foundation is later established as a company limited by guarantee, a CIC, or any other incorporated body with "Foundation" in its registered name, the sensitive-word requirements in Annex A will apply at that point and approval will be sought then. This page will be updated before any such step is announced.
 
 Two further points remain outside the scope of that confirmation. The Charity Commission operates its own naming rules and can require a change of name where one is misleading, which would become relevant on any application for registered charity status. And clearance from Companies House says nothing about trade marks: it is not confirmation that the name is free of third-party rights. Nothing on this page should be relied on as confirmation that any particular name or structure has been cleared for registration as a charity or CIC.
+
+### Trade mark position
+
+Separately from the Companies House question, a trade mark search was carried out on **21 September 2026** using the WIPO Global Brand Database, which includes the full UK Intellectual Property Office dataset (3,807,011 records, current to 20 September 2026) alongside 88 other national and regional registers.
+
+No registered trade mark or pending application was found for "Nautomation", "Nautomation Prime", or "Automation Prime" in any participating jurisdiction. A Companies House search on the same date returned one dissolved company, NAUTOMATION LTD (company number 11681966, dissolved 16 March 2024), which holds no registered trade mark.
+
+This was a word-mark search carried out as ordinary due diligence. It is **not** a professional trade mark clearance opinion: it did not cover device or logo marks, similar-mark analysis across related classes, or unregistered rights arising at common law, and no assessment has been made of whether any third party could establish a likelihood of confusion. No trade mark application has been filed, so the name "Nautomation Prime" is not currently protected by registration. Should that change, this page will be updated.
 
 ## 5. Liability for Foundation activity
 
