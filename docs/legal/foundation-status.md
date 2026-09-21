@@ -2,11 +2,11 @@
 
 ## Policy Review Status
 
-- **Policy version:** 1.1
+- **Policy version:** 1.2
 - **Policy owner:** Christopher Davies (Founder, Nautomation Prime)
-- **Last reviewed:** 12 September 2026
+- **Last reviewed:** 21 September 2026
 - **Next scheduled review:** March 2027
-- **Current status:** Pre-launch — Nautomation Prime is not yet trading. The Foundation is unregistered; registration as a charity or CIC is a stated future intention, not a current fact. The use of "Foundation" in the name is subject to the outstanding check described in section 4.
+- **Current status:** Pre-launch — Nautomation Prime is not yet trading. The Foundation is unregistered; registration as a charity or CIC is a stated future intention, not a current fact. Use of the word "Foundation" in the current sole trader business name has been confirmed with Companies House as not requiring approval (see section 4).
 
 ---
 
@@ -42,21 +42,17 @@ This is separate from the [Giving With Integrity](../charity.md) policy, under w
 
 Christopher Davies intends to formalise the Nautomation Prime Foundation as a registered charity or Community Interest Company once it reaches a scale that justifies the ongoing governance, reporting, and accounting obligations that come with either structure. Before any such registration is announced on this site, it will have already been completed and confirmed by the relevant regulator (the Charity Commission, OSCR, CCNI, or Companies House, as applicable) — this page and the Foundation pages will not describe registration as complete, in progress, or imminent until that is true.
 
-### "Foundation" is a sensitive word, and that check is outstanding
+### Use of the word "Foundation" — confirmed with Companies House
 
-"Foundation" appears on the list of sensitive words and expressions maintained by Companies House under the Company, Limited Liability Partnership and Business (Names and Trading Disclosures) Regulations 2015. The published guidance for that entry states that to use the word, a company should normally be limited by guarantee, should have a pool of money or a regular source of income to promote its objects, and should include a non-profit distribution clause in its articles of association.
+"Foundation" appears on the list of sensitive words and expressions published by Companies House in Annex A of its *Incorporation and names* guidance. The guidance for that entry states that a company using the word should normally be limited by guarantee, should have a pool of money or a regular source of income to promote its objects, and should include a non-profit distribution clause in its articles of association.
 
-That regime is not limited to registered company names. Section 1194(1) of the Companies Act 2006 provides that a person must not, without the approval of the Secretary of State, **carry on business** in the United Kingdom under a name that includes a specified word or expression. Contravention is a criminal offence under section 1194(3).
+Because those conditions are written for incorporated bodies, and because section 1194 of the Companies Act 2006 restricts the use of specified words in **business names** as well as company names, Christopher Davies put the question directly to Companies House before beginning to trade, rather than assuming an answer.
 
-Nautomation Prime is not yet trading, so that prohibition is not currently engaged. But it would be engaged by trading under a name containing "Foundation", and this site takes the position that the question must be resolved *before* trading begins rather than after. Christopher Davies is confirming the position directly with Companies House. Depending on the answer, one of the following will happen before any commercial activity starts under this name:
+**Companies House confirmed, by email on 21 September 2026, that the word "Foundation" is sensitive only in an incorporated company name.** Because it is being used here in a sole trader's business name, no letter of non-objection or other approval from Companies House is required.
 
-1. Approval is obtained for the use of "Foundation" in the business name; or
-2. The Foundation is incorporated in a form that satisfies the guidance — a company limited by guarantee with a non-profit distribution clause — which is in any case the direction of travel described above; or
-3. The name is changed to remove the sensitive word, and this site is updated accordingly.
+That confirmation is specific to the current position — a sole trader's business name. It does not carry over to incorporation. If the Foundation is later established as a company limited by guarantee, a CIC, or any other incorporated body with "Foundation" in its registered name, the sensitive-word requirements in Annex A will apply at that point and approval will be sought then. This page will be updated before any such step is announced.
 
-Until one of those is settled, "Foundation" is used on this site as a descriptive label for a body of free educational content, not as a trading name under which business is being carried on. If the outcome requires a change, it will be made and recorded here.
-
-The Charity Commission separately operates its own naming rules and can require a change of name where one is misleading. Nothing on this page should be relied on as confirmation that any particular name or structure has already been cleared for registration or for use.
+Two further points remain outside the scope of that confirmation. The Charity Commission operates its own naming rules and can require a change of name where one is misleading, which would become relevant on any application for registered charity status. And clearance from Companies House says nothing about trade marks: it is not confirmation that the name is free of third-party rights. Nothing on this page should be relied on as confirmation that any particular name or structure has been cleared for registration as a charity or CIC.
 
 ## 5. Liability for Foundation activity
 
