@@ -82,8 +82,8 @@ Notice what these have in common: the model is doing **retrieval, correlation, a
 
 <div class="np-reflection" markdown>
 <p class="np-reflection-label">Between the Lines</p>
-<p>Worth sitting with for a moment: the work being handed over here is the work nobody describes fondly at the end of a career. No one remembers the afternoon they spent reconciling four dashboards to answer one question.</p>
-<p>Which raises the only question that makes any of this worth building — where do the returned hours actually go? If the honest answer is "the next four dashboards", the capability is impressive and the outcome is unchanged.</p>
+<p>The Romans had two words where English has one. <em>Negotium</em> meant business, affairs, the day&rsquo;s demands &mdash; and it is built as a negative: <em>nec-otium</em>, not-leisure. Work was defined as the absence of the thing that mattered, never the other way round.</p>
+<p>What is being handed over on this page is pure <em>negotium</em>. Nobody remembers the afternoon they spent reconciling four dashboards to answer one question. Which leaves the only question that makes any of this worth building &mdash; where do the returned hours actually go? If the honest answer is &ldquo;the next four dashboards&rdquo;, the capability is impressive and the outcome is unchanged.</p>
 </div>
 
 ---

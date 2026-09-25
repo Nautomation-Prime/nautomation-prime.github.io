@@ -183,8 +183,8 @@ Around 800 lines of Python by the end. Small enough to read in a sitting, struct
 
 <div class="np-reflection" markdown>
 <p class="np-reflection-label">Between the Lines</p>
-<p>A pipeline is mostly refusals. Seven stages, and six of them exist to stop something — bad data, an unreviewed diff, an unreachable device, a failed push, an unproven outcome, a change nobody can account for afterwards. The stage that does the actual work is one line in the middle.</p>
-<p>That ratio feels wrong when you first build it, as though you've written a great deal of machinery to avoid doing very little. It stops feeling wrong the first night the refusals are what stand between you and an outage you'd otherwise be explaining in the morning.</p>
+<p>Odysseus wanted to hear the Sirens and knew he could not be trusted to. So he had himself lashed to the mast, stopped his crew&rsquo;s ears with wax, and ordered in advance that no later order of his was to be obeyed. The plan works precisely because it does not rely on his judgement at the moment it matters.</p>
+<p>A pipeline is mostly refusals: seven stages, and six exist to stop something &mdash; bad data, an unreviewed diff, an unreachable device, a failed push, an unproven outcome, a change nobody can account for afterwards. The stage doing the actual work is one line in the middle. That ratio feels wrong when you first build it, as though you have written a great deal of machinery to avoid doing very little. It stops feeling wrong the first night the refusals are what stand between you and an outage you would otherwise be explaining in the morning.</p>
 </div>
 
 ---

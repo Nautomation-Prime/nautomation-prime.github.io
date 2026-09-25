@@ -175,7 +175,8 @@ If we ask clients to trust us with critical infrastructure, we should hold ourse
 
 <div class="np-reflection" markdown>
 <p class="np-reflection-label">Between the Lines</p>
-<p>Giving, done properly, isn't rushed either. It's tempting to want the appearance of generosity immediately; the harder, better version is patient enough to check first that it actually helps.</p>
+<p>Maimonides set out eight degrees of charity, ranked from lowest to highest. Giving grudgingly sits at the bottom. At the top is the help that ends the need for help &mdash; a loan, a partnership, the work itself &mdash; offered so that nobody has to ask a second time.</p>
+<p>Giving, done properly, is not rushed. It is tempting to want the appearance of generosity immediately; the harder and better version is patient enough to check first that it actually helps.</p>
 </div>
 
 ---

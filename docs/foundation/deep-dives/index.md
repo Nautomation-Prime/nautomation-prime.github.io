@@ -60,8 +60,8 @@ Every technical guide in this library adheres to three core principles:
 
 <div class="np-reflection" markdown>
 <p class="np-reflection-label">Between the Lines</p>
-<p>Reading code line by line feels indulgent when there is a working version to copy. It is also the only way anyone has ever actually understood anything.</p>
-<p>The tab you close without reading is not time saved. It is time deferred — usually to a worse moment, with someone waiting.</p>
+<p>Chinese calligraphers learn by <em>l&iacute;n ti&egrave;</em> (&#33256;&#24086;) &mdash; sitting with a master&rsquo;s work and copying it stroke by stroke, for years. The aim was never another copy. It is that you cannot follow a hand that closely without eventually understanding the decisions it was making.</p>
+<p>Reading code line by line feels indulgent when there is a working version to paste. It is also the only way anyone has ever actually understood anything. The tab you close without reading is not time saved; it is time deferred, usually to a worse moment, with someone waiting.</p>
 </div>
 
 ---

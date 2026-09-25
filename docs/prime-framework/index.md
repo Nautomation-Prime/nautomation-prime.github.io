@@ -220,7 +220,8 @@ Together, they ensure **value, quality, and sustainability**.
 
 <div class="np-reflection" markdown>
 <p class="np-reflection-label">Between the Lines</p>
-<p>None of the five stages exist to make work feel busier. They exist so a task that used to occupy someone's evening can be handled in thirty seconds instead—which only matters if that evening then belongs to something other than the next ticket.</p>
+<p>Aristotle opens the <em>Nicomachean Ethics</em> by observing that every craft aims at some good, and that if the chain of means never arrives anywhere, wanting anything at all would be empty. It is a fair question to put to any method: what is it finally for?</p>
+<p>None of the five stages exist to make work feel busier. They exist so a task that used to occupy someone&rsquo;s evening can be handled in thirty seconds instead &mdash; which only matters if that evening then belongs to something other than the next ticket.</p>
 </div>
 
 ---

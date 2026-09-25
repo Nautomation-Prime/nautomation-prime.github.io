@@ -61,7 +61,8 @@ Christopher built Nautomation Prime on the belief that automation should never b
 
 <div class="np-reflection" markdown>
 <p class="np-reflection-label">Between the Lines</p>
-<p>Attention is the one resource nobody can lend you more of. Free tutorials remove the cost of learning; they can't remove the requirement to sit with something long enough to actually understand it—and that part was always going to be the valuable part.</p>
+<p>Simone Weil thought attention was not a technique but a moral act &mdash; &ldquo;the rarest and purest form of generosity&rdquo;, as she put it in a letter. She meant the kind you give another person. She also meant the kind a difficult thing demands before it will open.</p>
+<p>That is the honest limit of everything published here. Free tutorials remove the cost of learning; they cannot remove the requirement to sit with something long enough to understand it, and that part was always going to be the valuable part. Attention is the one resource nobody can lend you more of.</p>
 </div>
 
 ## What the Foundation offers

@@ -145,7 +145,8 @@ For **£99–£299**, we analyse your top 3 most time-consuming manual processes
 
 <div class="np-reflection" markdown>
 <p class="np-reflection-label">Between the Lines</p>
-<p>Weekends eaten by manual upgrades are the clearest version of the problem here: automation isn't about elegance, it's about getting Saturday back.</p>
+<p>Abraham Joshua Heschel described the Sabbath as a palace built in time rather than space &mdash; an architecture you enter by stopping. On that reading the week is not interrupted by rest. The week is arranged around it.</p>
+<p>Weekends eaten by manual upgrades are the clearest version of the problem on this page. Automation is not about elegance. It is about getting Saturday back.</p>
 </div>
 
 ## Already Running Larger Programmes?

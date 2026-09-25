@@ -1104,7 +1104,8 @@ As revenue scales, a percentage is allocated to vetted charities reviewed for tr
 
 <div class="np-reflection" markdown>
 <p class="np-reflection-label">Between the Lines</p>
-<p>Every engagement on this page exists to buy time back for the people it touches, not just to log a faster ROI figure. That's worth saying once, on a page mostly about numbers.</p>
+<p>Bertrand Russell&rsquo;s <em>In Praise of Idleness</em> made an argument that has aged strangely well: the point of doing something more efficiently is to do less of it, not to fit more in. He thought we had the reasoning backwards. He wrote it in 1932.</p>
+<p>Every engagement on this page exists to buy time back for the people it touches, not only to log a faster ROI figure. Worth saying once, on a page otherwise mostly about numbers.</p>
 </div>
 
 ---

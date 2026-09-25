@@ -22,8 +22,8 @@ Everything below is downstream of that sentence. If a requirement here does not 
 
 <div class="np-reflection" markdown>
 <p class="np-reflection-label">Between the Lines</p>
-<p>There is a quieter reading of that sentence. An engineer nobody else can replace is an engineer who cannot be ill, cannot take a holiday without a laptop, and cannot leave.</p>
-<p>Writing things down so that somebody else can pick them up gets filed under professionalism, which undersells it. It is also how you stop being the single point of failure in your own life.</p>
+<p>Cincinnatus is remembered for the part that looks like nothing. Handed absolute power over Rome, he finished the campaign in a fortnight, gave the power back, and returned to his plough. What was admired was not that he had proved indispensable. It was that he took care not to be.</p>
+<p>There is a quieter reading of the sentence above. An engineer nobody else can replace is an engineer who cannot be ill, cannot take a holiday without a laptop, and cannot leave. Writing things down so somebody else can pick them up gets filed under professionalism, which undersells it. It is also how you stop being the single point of failure in your own life.</p>
 </div>
 
 ---
