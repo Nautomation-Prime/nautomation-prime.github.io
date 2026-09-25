@@ -59,7 +59,8 @@ This page shows how Nautomation Prime takes a network automation engagement from
 
 <div class="np-reflection" markdown>
 <p class="np-reflection-label">Between the Lines</p>
-<p>A good book asks you to read the chapters in the order they were written, not skip to the ending. This process is built the same way—each stage exists because skipping it costs more later than it saves now.</p>
+<p>A good book asks you to read the chapters in the order they were written, not skip to the ending.</p>
+<p>This process is built the same way—each stage exists because skipping it costs more later than it saves now.</p>
 </div>
 
 ## The Five Stages at a Glance

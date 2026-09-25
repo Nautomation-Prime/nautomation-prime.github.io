@@ -196,7 +196,8 @@ I'm also quite introverted, which surprises some people in consulting. But intro
 
 <div class="np-reflection" markdown>
 <p class="np-reflection-label">Between the Lines</p>
-<p>Gongfu Cha, forest walks, a book, the range—none of them are productivity hacks. I don't do them to work better. I do them because they're proof, to myself, that a version of my day exists that has nothing to do with output.</p>
+<p>Gongfu Cha, forest walks, a book, the range—none of them are productivity hacks.</p>
+<p>I don't do them to work better. I do them because they're proof, to myself, that a version of my day exists that has nothing to do with output.</p>
 </div>
 
 ### Why This Work Matters to Me

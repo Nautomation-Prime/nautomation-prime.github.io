@@ -43,7 +43,8 @@ Transform designs from the [Re-engineer](./re-engineer.md) stage into production
 
 <div class="np-reflection" markdown>
 <p class="np-reflection-label">Between the Lines</p>
-<p>Precision shooting rewards the same discipline good automation code does: control your breathing, follow the same sequence every time, and the outcome stops being a surprise. Neither one is about being fast. Both are about being repeatable enough that fast becomes possible later, safely.</p>
+<p>Precision shooting rewards the same discipline good automation code does: control your breathing, follow the same sequence every time, and the outcome stops being a surprise.</p>
+<p>Neither one is about being fast. Both are about being repeatable enough that fast becomes possible later, safely.</p>
 </div>
 
 ## ⚙️ What Happens During Implement

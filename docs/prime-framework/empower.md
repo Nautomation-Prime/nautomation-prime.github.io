@@ -45,7 +45,8 @@ Transfer knowledge and build internal capability so your team can maintain, trou
 
 <div class="np-reflection" markdown>
 <p class="np-reflection-label">Between the Lines</p>
-<p>A pot of tea eventually stops needing you: the leaves have given what they had, and what's left is just water. Empower is built around the same idea—the goal was never to be needed forever, it was to leave something that keeps working once you've stepped back.</p>
+<p>A pot of tea eventually stops needing you: the leaves have given what they had, and what's left is just water.</p>
+<p>Empower is built around the same idea—the goal was never to be needed forever, it was to leave something that keeps working once you've stepped back.</p>
 </div>
 
 ## 🚀 What Happens During Empower

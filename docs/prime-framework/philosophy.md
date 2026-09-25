@@ -59,7 +59,8 @@ The PRIME Philosophy defines how Nautomation Prime thinks, builds, measures, doc
 
 <div class="np-reflection" markdown>
 <p class="np-reflection-label">Between the Lines</p>
-<p>Gongfu Cha, the traditional Chinese way of brewing tea, translates roughly as "making tea with skill" rather than "making tea fast." Nothing about it is hidden—you watch the leaf open, judge each infusion by colour and scent, and adjust the next one accordingly. That's the same instinct behind the principle below: not mystique, not haste, just a process worth watching happen.</p>
+<p>Gongfu Cha, the traditional Chinese way of brewing tea, translates roughly as "making tea with skill" rather than "making tea fast." Nothing about it is hidden—you watch the leaf open, judge each infusion by colour and scent, and adjust the next one accordingly.</p>
+<p>That is the same instinct behind the principles below: not mystique, not haste, just a process worth watching happen.</p>
 </div>
 
 ## The Five Core Principles

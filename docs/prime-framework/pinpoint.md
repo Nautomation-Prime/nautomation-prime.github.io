@@ -43,7 +43,8 @@ Identify and prioritise automation opportunities that deliver maximum value with
 
 <div class="np-reflection" markdown>
 <p class="np-reflection-label">Between the Lines</p>
-<p>Shinrin-Yoku, Japanese forest bathing, isn't about walking anywhere in particular. It's the discipline of noticing what's actually there before deciding what to do about it. Pinpoint works the same way: real numbers before any decision about what deserves automating.</p>
+<p>Shinrin-Yoku, Japanese forest bathing, isn't about walking anywhere in particular. It's the discipline of noticing what's actually there before deciding what to do about it.</p>
+<p>Pinpoint works the same way: real numbers before any decision about what deserves automating.</p>
 </div>
 
 ## 🔍 What Happens During Pinpoint

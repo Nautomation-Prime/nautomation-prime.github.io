@@ -216,5 +216,6 @@ We are building Nautomation Prime to create value beyond technology delivery. As
 
 <div class="np-reflection" markdown>
 <p class="np-reflection-label">Between the Lines</p>
-<p>A pot of tea brewed properly takes longer than a coffee pulled through a machine, and it stays interesting for eight infusions instead of one. Good automation works on the same principle: speed was never really the point. It was always about buying back a few hours nobody would have gotten back otherwise. What you do with them is the part we don't automate.</p>
+<p>A pot of tea brewed properly takes longer than a coffee pulled through a machine, and it stays interesting for eight infusions instead of one.</p>
+<p>Good automation works on the same principle: speed was never really the point. It was always about buying back a few hours nobody would have got back otherwise. What you do with them is the part we don't automate.</p>
 </div>
