@@ -19,7 +19,7 @@ All packages are fixed-scope and fixed-price. No hourly billing. No open-ended e
 
 | Package | Best For | Turnaround | Price |
 | :------- | :-------- | :--------- | :---- |
-| [Automation Opportunity Assessment](#automation-opportunity-assessment) | Teams unsure where to start | 3–5 business days | From £99 |
+| [Automation Opportunity Assessment](#automation-opportunity-assessment) | Teams unsure where to start | 3–5 business days | £249 |
 | [Switch Audit & Compliance Pack](#switch-audit--compliance-pack) | Compliance checking across Cisco fleet | 1–2 weeks | £750 – £1,500 |
 | [IOS-XE Upgrade Automation Pack](#ios-xe-upgrade-automation-pack) | Upgrading 10–200+ devices safely | 1–2 weeks | £1,200 – £2,500 |
 | [Zero-Touch Provisioning Setup](#zero-touch-provisioning-setup) | Auto-configuring new access switches | 2–3 weeks | £1,500 – £3,000 |
@@ -39,10 +39,11 @@ This assessment answers those questions before you commit to anything.
 **What's Included:**
 
 - A 45-minute remote scoping call with Christopher
-- Analysis of your top 3 most time-consuming manual network processes
+- Analysis of up to five of your most time-consuming manual network processes
 - Time-savings and ROI estimate for each
 - Prioritised recommendation: which to automate first and why
 - Written report delivered as a PDF within 3–5 business days
+- A 30-minute follow-up call to talk through the findings
 
 **What You Get Out of It:**
 
@@ -51,13 +52,7 @@ This assessment answers those questions before you commit to anything.
 - An honest assessment if automation is unlikely to help (we will say so)
 - Direct path to commissioning the right package if you choose to proceed
 
-**Pricing:**
-
-| Scope | Price |
-| :---- | :---- |
-| Up to 3 processes assessed, written report | £99 |
-| Up to 5 processes assessed, expanded report + 30-min follow-up call | £199 |
-| Up to 5 processes + informal roadmap for the next 12 months | £299 |
+**Price:** £249, fixed. If you commission a package afterwards, the fee is deducted from the package price.
 
 [**Book an Assessment →**](./packages/automation-assessment.md){.md-button .md-button--primary}
 

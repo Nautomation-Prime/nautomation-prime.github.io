@@ -51,13 +51,16 @@ For each process assessed, the report includes:
 
 ## Pricing
 
-| Tier | Scope | Price |
-| :---- | :---- | :---- |
-| **Starter** | Up to 3 processes assessed, written report | £99 |
-| **Standard** | Up to 5 processes assessed, expanded report + 30-minute follow-up call | £199 |
-| **Extended** | Up to 5 processes + informal 12-month automation roadmap | £299 |
+**£249, fixed.**
 
-All tiers include the scoping call and written PDF report.
+That covers:
+
+- The 45-minute scoping call
+- Assessment of up to five manual processes
+- The written PDF report
+- A 30-minute follow-up call to talk through the findings
+
+If you want a longer-term automation roadmap, or more than five processes assessed, we will quote that separately before any work starts.
 
 ---
 
@@ -89,7 +92,7 @@ There is no obligation to proceed with any further work.
 
 ## How to Book
 
-[Email us](mailto:enquiries@nautomationprime.io) with a brief description of your situation and which tier you'd like. We'll confirm availability and send a simple invoice before the scoping call is booked.
+[Email us](mailto:enquiries@nautomationprime.io) with a brief description of your situation. We'll confirm availability and send a simple invoice before the scoping call is booked.
 
 [**Book an Assessment →**](mailto:enquiries@nautomationprime.io?subject=Automation%20Opportunity%20Assessment){.md-button .md-button--primary} [**View All Packages →**](../services.md){.md-button}
 

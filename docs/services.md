@@ -116,7 +116,7 @@ The code is open by design. That is the point. So what are you actually paying f
 
     Best for organisations that need strategy, design, implementation, measurement, and capability transfer handled as one programme.
 
-    **Typical investment:** £12,000 - £28,000
+    **Typical investment:** £18,000 - £65,000+
 
     [See the full engagement](#enterprise-service-offerings)
 
@@ -313,7 +313,7 @@ Our flagship service delivers the complete journey: from identifying the right o
 
 **Typical Project Timeline:** 6-12 weeks for development + 3-6 months measurement phase
 
-**Investment Range:** £12,000 - £28,000 (depending on scope and complexity)
+**Investment Range:** £18,000 - £65,000+ (see [typical investment ranges](#typical-investment-ranges) for focused, complex, and enterprise programmes)
 
 **Expected ROI:** In comparable enterprise environments, payback is often 6-12 months when scope and adoption are disciplined
 
@@ -339,7 +339,7 @@ If you already have automation plans or internal capability, we offer individual
 - Executive summary and technical feasibility notes
 
 **Timeline:** 1-2 weeks  
-**Investment:** £2,500 - £4,000
+**Investment:** £3,000 - £5,000
 
 **[Learn more about Pinpoint →](./prime-framework/pinpoint.md)**
 
@@ -357,7 +357,7 @@ If you already have automation plans or internal capability, we offer individual
 - Implementation blueprints for development team
 
 **Timeline:** 1-2 weeks per automation  
-**Investment:** £3,000 - £6,000
+**Investment:** £4,000 - £7,500
 
 **[Learn more about Re-engineer →](./prime-framework/re-engineer.md)**
 
@@ -384,7 +384,7 @@ If you already have automation plans or internal capability, we offer individual
 - README with installation, usage, troubleshooting
 
 **Timeline:** 2-6 weeks (depending on complexity)  
-**Investment:** £6,000 - £18,000
+**Investment:** £8,000 - £20,000+
 
 **[Learn more about Implement →](./prime-framework/implement.md)**
 
@@ -424,12 +424,15 @@ If you already have automation plans or internal capability, we offer individual
 **Deliverables:**
 
 - Baseline metrics reconstruction
-- Instrumentation added to existing scripts
-- 3 months of performance tracking
-- Executive summary report with ROI calculation
+- Instrumentation added to the automations agreed at scoping
+- 3 months of performance tracking, with a monthly report and a 60-minute review call each month (three in total)
+- Executive summary report with ROI calculation, presented in one stakeholder session of up to 60 minutes
+- Email questions between reviews answered within two UK business days
+
+Instrumenting further automations, building additional dashboards, or extending tracking beyond three months is quoted separately.
 
 **Timeline:** 3 months (ongoing tracking)  
-**Investment:** £2,000 - £3,500
+**Investment:** £3,500 - £6,000
 
 **[Learn more about Measure →](./prime-framework/measure.md)**
 
@@ -441,12 +444,14 @@ If you already have automation plans or internal capability, we offer individual
 
 **Deliverables:**
 
-- 4 knowledge transfer sessions (architecture, code walkthrough, operations, modification)
+- 4 remote knowledge transfer sessions of up to 3 hours each, for up to 8 participants (architecture, code walkthrough, operations, modification)
 - Complete documentation package (user guide, technical reference, runbook)
-- 8 weeks of transition support
+- 8 weeks of transition support: email questions answered within one UK business day, plus four fortnightly 30-minute office-hours calls
+
+Transition support covers questions about the delivered automation and guidance on your team's own changes. New features, new device types, additional cohorts, and support beyond eight weeks are quoted separately. Support runs in UK business hours and is not an on-call or incident-response service.
 
 **Timeline:** 2-4 weeks over 3 months  
-**Investment:** £3,000 - £5,000
+**Investment:** £4,000 - £7,500
 
 **[Learn more about Empower →](./prime-framework/empower.md)**
 
@@ -801,9 +806,22 @@ Unlike generalist consultancies, we maintain deep expertise in a focused technol
 
 Nautomation Prime operates on a **fixed-fee project basis** for PRIME Framework engagements—you receive a detailed scope, deliverables list, and total cost estimate upfront.
 
-**No hourly billing. No surprise invoices. No scope creep.**
+**No hourly billing. No surprise invoices. No open-ended commitments on either side.**
 
 This model protects both parties: you gain budget certainty, and we're incentivised to deliver efficient, well-architected solutions rather than dragging out billable hours.
+
+Every quote states what is included: sessions, support periods, response times, and deliverables. Work outside that scope, such as new features, additional device types, or extra training cohorts, is quoted separately and only goes ahead with your written approval. You are never billed for anything you did not agree to.
+
+### What the Price Pays For
+
+You are not buying days of coding. You are buying a working outcome and the responsibility for getting it there:
+
+- **Design** that fits your estate, your change process, and your standards
+- **Testing** in the lab and in a controlled pilot before anything touches production
+- **Documentation** written for the engineers who will own the automation after us
+- **Integration** with the platforms you already run
+- **Knowledge transfer** so your team can operate and extend what we build
+- **Ownership** of the fixed-price risk: if the work takes longer than we estimated, that is our problem, not yours
 
 ---
 
@@ -827,17 +845,21 @@ To give you a sense of scale (all prices exclude VAT):
 
 **Full PRIME Framework Engagement:**
 
-- **Simple Automation:** £12,000 - £18,000 (e.g., VLAN provisioning with full methodology)
-- **Medium Complexity:** £18,000 - £28,000 (e.g., compliance auditing, inventory collection)
-- **Enterprise-Grade:** £28,000 - £45,000+ (e.g., IOS-XE upgrade orchestrator, ISE integration)
+| Engagement | Investment | What it looks like |
+| :--- | :--- | :--- |
+| **Focused engagement** | £18,000 - £25,000 | One well-defined automation problem in a relatively uncomplicated environment (e.g., VLAN provisioning with full methodology) |
+| **Complex engagement** | £25,000 - £40,000 | More substantial automation, with integration, governance, and knowledge transfer (e.g., compliance auditing, inventory collection) |
+| **Enterprise programme** | £40,000 - £65,000+ | Complex environment, substantial implementation, integrations, production rollout, and deeper capability transfer (e.g., IOS-XE upgrade orchestration, ISE integration) |
+
+A full engagement is priced as one programme, not as the five stages added together. Enterprise programmes have no fixed ceiling; they are scoped to the environment.
 
 **Individual Stages (À La Carte):**
 
-- **Pinpoint (Discovery):** £2,500 - £4,000
-- **Re-engineer (Design):** £3,000 - £6,000 per automation
-- **Implement (Development):** £6,000 -£18,000
-- **Measure (ROI Tracking):** £2,000 - £3,500
-- **Empower (Knowledge Transfer):** £3,000 - £5,000
+- **Pinpoint (Discovery):** £3,000 - £5,000
+- **Re-engineer (Design):** £4,000 - £7,500 per automation
+- **Implement (Development):** £8,000 - £20,000+
+- **Measure (ROI Tracking):** £3,500 - £6,000
+- **Empower (Knowledge Transfer):** £4,000 - £7,500
 
 These are **indicative ranges**—actual quotes provided after discovery call.
 
@@ -945,8 +967,8 @@ Knowledge transfer → Documentation → Team capability building
     - Runbook for incident response
     - Training materials for new team members
 
-✅ 8 weeks of dedicated transition support  
-✅ Optional quarterly "office hours" for extended guidance
+✅ 8 weeks of transition support (email within one UK business day, four fortnightly office-hours calls)  
+✅ Optional extended guidance beyond that, quoted separately
 
 ---
 
@@ -958,9 +980,9 @@ Knowledge transfer → Documentation → Team capability building
 | :---------- | :-------- |
 | **Intellectual Property** | Full IP ownership or exclusive licence (your choice) with perpetual modification rights |
 | **Confidentiality** | Bespoke code never published, reused, or shared; NDAs standard |
-| **Post-Delivery Support** | 30-day warranty for bug fixes and adjustments at no additional cost |
+| **Post-Delivery Warranty** | 30 days: defects in delivered code, measured against the agreed specification, fixed at no additional cost |
 | **Principal Engineer Access** | Direct engagement with senior expert—no outsourcing, no junior developers |
-| **Fixed-Fee Protection** | No hourly billing, no surprise invoices, no scope creep |
+| **Fixed-Fee Protection** | No hourly billing and no surprise invoices; out-of-scope work only with your written approval |
 | **Quality Assurance** | Production-grade testing before any deployment to live environment |
 
 ---
@@ -1168,7 +1190,7 @@ As revenue scales, a percentage is allocated to vetted charities reviewed for tr
 
 ??? question "What if we discover bugs after delivery?"
 
-    All engagements include **30-day post-delivery support** for bug fixes and adjustments at no additional cost.
+    All engagements include a **30-day post-delivery warranty**: defects in delivered code, measured against the agreed specification, are fixed at no additional cost. Enhancements and changes of scope are quoted separately.
     
     Beyond that period:
     
@@ -1234,9 +1256,9 @@ As revenue scales, a percentage is allocated to vetted charities reviewed for tr
     
     | Project Type | Development | Measurement | Total |
     |:------------|:------------|:------------|:------|
-    | **Simple** (VLAN automation) | 4-6 weeks | 3 months | ~4.5 months |
-    | **Medium** (compliance auditing) | 6-8 weeks | 3-6 months | ~5-6 months |
-    | **Complex** (IOS-XE upgrades) | 8-12 weeks | 6 months | ~8-9 months |
+    | **Focused** (VLAN automation) | 4-6 weeks | 3 months | ~4.5 months |
+    | **Complex** (compliance auditing) | 6-8 weeks | 3-6 months | ~5-6 months |
+    | **Enterprise programme** (IOS-XE upgrades) | 8-12 weeks | 6 months | ~8-9 months |
     
     The [Pinpoint](./prime-framework/pinpoint.md) stage provides accurate estimates based on your specific requirements.
 
@@ -1244,9 +1266,9 @@ As revenue scales, a percentage is allocated to vetted charities reviewed for tr
 
     Yes. [individual services](#individual-services) are available:
     
-    - **Pinpoint only**: Discovery and roadmap without implementation (£2,500-£4,000)
-    - **Implement only**: If you already have architecture and requirements (£6,000-£18,000)
-    - **Empower only**: Knowledge transfer for existing automation (£3,000-£5,000)
+    - **Pinpoint only**: Discovery and roadmap without implementation (£3,000-£5,000)
+    - **Implement only**: If you already have architecture and requirements (£8,000-£20,000+)
+    - **Empower only**: Knowledge transfer for existing automation (£4,000-£7,500)
     
     However, full PRIME Framework engagements deliver maximum value through integrated methodology.
 

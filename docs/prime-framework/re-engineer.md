@@ -387,7 +387,7 @@ Included as Stage 2 when you engage for the complete framework. Typically 1-2 we
 
 Sometimes clients have identified their automations but need design help:
 
-**Fixed Fee:** £3,000 - £6,000 per automation (depending on complexity)
+**Fixed Fee:** £4,000 - £7,500 per automation (depending on complexity)
 
 **Includes:**
 

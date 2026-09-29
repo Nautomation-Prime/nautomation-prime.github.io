@@ -511,15 +511,18 @@ Included as Stage 4 when you engage for the complete framework. Typically ongoin
 
 For organisations with existing automation needing ROI proof:
 
-**Fixed Fee:** £2,000 - £3,500
+**Fixed Fee:** £3,500 - £6,000
 
 **Includes:**
 
 - Baseline metrics reconstruction
-- Instrumentation added to existing scripts
+- Instrumentation added to the automations agreed at scoping
 - 3 months of performance tracking
-- Executive summary report
-- ROI calculation
+- A monthly performance report and a 60-minute review call each month (three in total)
+- Executive summary report and ROI calculation, presented in one stakeholder session of up to 60 minutes
+- Email questions between reviews answered within two UK business days
+
+**Quoted separately:** instrumenting further automations, additional dashboards or bespoke reports, fixing defects in scripts we did not write, and extending tracking beyond three months. Nothing outside the agreed scope goes ahead without your written approval.
 
 ---
 

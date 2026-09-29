@@ -119,7 +119,7 @@ You receive a **prioritised automation roadmap** with:
 
 You walk away with a clear roadmap of what to automate and why—**even if you decide not to proceed with us.**
 
-**Investment:** £2,500–£4,000
+**Investment:** £3,000–£5,000
 
 **Deliverable:** Prioritised roadmap with ROI projections
 
@@ -185,7 +185,7 @@ You receive detailed **architecture documents** that show:
 
 **You review and approve before Stage 3 begins.**
 
-**Investment:** £3,000–£6,000 per automation
+**Investment:** £4,000–£7,500 per automation
 
 **Deliverable:** Architecture blueprint + safety specifications
 
@@ -257,7 +257,7 @@ You receive:
 ✅ **Optional software integrity controls** (code-signing + signature verification guidance for client security teams)  
 ✅ **Testing results** (lab testing, pilot testing, measured outcomes)  
 
-**Investment:** £6,000–£18,000
+**Investment:** £8,000–£20,000+
 
 **Timeline:** 2–6 weeks (depending on complexity)
 
@@ -312,17 +312,18 @@ You receive a formal **ROI Report** with:
 - Time savings quantified in hours
 - Operational cost reduction (£)
 - Risk reduction (incidents prevented, compliance violations avoided)
-- ROI calculation (savings ÷ investment = payback period)
+- ROI calculation (investment ÷ annual savings = payback period)
 - Recommendations for the next automation opportunity
 
 ### Example Report
 
-**Before Automation:** VLAN provisioning took 15 minutes per VLAN (average across 2020-2023)  
-**After Automation:** Automated provisioning takes 30 seconds per VLAN
+**Before Automation:** Each VLAN change touched 20 access switches at 15 minutes per switch, so 5 hours per change (average across 2020-2023)  
+**After Automation:** Preparing, running, and reviewing the automated change takes 15 minutes
 
-**Time Savings:** 14.5 minutes per VLAN × 80 VLANs annually = 1,160 hours  
-**Cost Savings:** 1,160 hours × £25 hourly rate = £29,000  
-**ROI:** £29,000 savings ÷ £15,000 investment = 193% ROI in Year 1
+**Time Savings:** 4.75 hours per change × 120 changes annually = 570 hours  
+**Cost Savings:** 570 hours × £50 fully loaded hourly rate = £28,500 per year  
+**Payback:** £20,000 investment ÷ £28,500 annual savings = 8.4 months  
+**Year-1 Return:** (£28,500 − £20,000) ÷ £20,000 = 42.5%
 
 ### The Deliverable (Measure)
 
@@ -333,7 +334,9 @@ You receive a formal **ROI Report** suitable for:
 - Budget justification for future automation
 - Stakeholder communication
 
-**Investment:** £2,000–£3,500
+**What's included:** instrumentation of the automations agreed at scoping, a monthly report and 60-minute review call during tracking, and one stakeholder presentation of the final report. Instrumenting further automations or extending tracking is quoted separately.
+
+**Investment:** £3,500–£6,000
 
 **Timeline:** 3–6 months (ongoing measurement)
 
@@ -393,14 +396,16 @@ You receive a complete knowledge base:
 - **Architecture Diagrams** — Visual system design
 - **FAQ & Troubleshooting** — Common questions answered
 
-#### 3. 8 Weeks of Support (Post-engagement)
+#### 3. 8 Weeks of Transition Support (Post-engagement)
 
-After we step back, you can still reach out:
+After we step back, you can still reach out. Email questions are answered within one UK business day, and there are four fortnightly 30-minute office-hours calls:
 
 - Questions about the code ("Why did we do it this way?")
-- Bugs or edge cases you discover
-- Modification assistance ("How do I add support for device Y?")
+- Bugs or edge cases you discover in the delivered automation
+- Guidance on your own changes ("How would I add support for device Y?")
 - Confidence building ("Is my proposed change safe?")
+
+We will advise on your team's changes; building new features or support for new device types ourselves is quoted separately. Support runs in UK business hours and is not an on-call or incident-response service.
 
 ### The Deliverable (Empower)
 
@@ -410,9 +415,9 @@ Your team walks away with:
 ✅ **Confidence** to maintain it independently  
 ✅ **Capability** to extend it with new features  
 ✅ **Documentation** for future team members  
-✅ **Support line** for 8 weeks post-engagement  
+✅ **Transition support** for 8 weeks post-engagement  
 
-**Investment:** £3,000–£5,000
+**Investment:** £4,000–£7,500
 
 **Timeline:** 6 weeks of workshops + 8 weeks of support
 
@@ -444,7 +449,13 @@ Your team walks away with:
 
 **Best for:** Organisations serious about sustainable automation capability
 
-**Investment:** £12,000–£28,000 (depending on complexity)
+**Investment:**
+
+- **Focused engagement:** £18,000–£25,000 — one well-defined automation problem in a relatively uncomplicated environment
+- **Complex engagement:** £25,000–£40,000 — more substantial automation, with integration, governance, and knowledge transfer
+- **Enterprise programme:** £40,000–£65,000+ — complex environment, substantial implementation, integrations, production rollout, and deeper capability transfer
+
+A full engagement is priced as one programme, not as the five stages added together.
 
 **Timeline:** 6–12 weeks
 
@@ -464,11 +475,11 @@ Your team walks away with:
 
 | Stage | Investment | Timeline | Red Flag If Skipped |
 | :--- | :--- | :--- | :--- |
-| **Pinpoint Only** | £2,500–£4,000 | 1 week | You might automate the wrong thing |
-| **Re-engineer Only** | £3,000–£6,000 | 1–2 weeks | Code might be brittle/unmaintainable |
-| **Implement Only** | £6,000–£18,000 | 2–6 weeks | Team won't understand the code |
-| **Measure Only** | £2,000–£3,500 | 3–6 months | Leadership questions ROI existence |
-| **Empower Only** | £3,000–£5,000 | 6 weeks | Automation dies when consultant leaves |
+| **Pinpoint Only** | £3,000–£5,000 | 1 week | You might automate the wrong thing |
+| **Re-engineer Only** | £4,000–£7,500 | 1–2 weeks | Code might be brittle/unmaintainable |
+| **Implement Only** | £8,000–£20,000+ | 2–6 weeks | Team won't understand the code |
+| **Measure Only** | £3,500–£6,000 | 3–6 months | Leadership questions ROI existence |
+| **Empower Only** | £4,000–£7,500 | 6 weeks | Automation dies when consultant leaves |
 
 ---
 

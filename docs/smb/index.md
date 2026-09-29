@@ -23,7 +23,7 @@ No long-term contracts. No 6-month engagements. No black-box code.
 
 <div class="np-action-row" markdown>
 
-[**📋 Start With an Assessment — From £99**](./packages/automation-assessment.md){.md-button .md-button--primary} [**View All Packages →**](./services.md){.md-button}
+[**📋 Start With an Assessment — £249**](./packages/automation-assessment.md){.md-button .md-button--primary} [**View All Packages →**](./services.md){.md-button}
 
 </div>
 
@@ -93,7 +93,7 @@ All SMB packages are fixed-scope and fixed-price. You know exactly what you're g
 
 | Package | What It Solves | Price |
 | :------- | :-------------- | :---- |
-| [Automation Opportunity Assessment](./packages/automation-assessment.md) | Where to start — ROI analysis of your top 3 manual processes | From £99 |
+| [Automation Opportunity Assessment](./packages/automation-assessment.md) | Where to start — ROI analysis of up to five manual processes | £249 |
 | [Switch Audit & Compliance Pack](./packages/switch-audit-pack.md) | Automated compliance audit across your Cisco fleet | £750 – £1,500 |
 | [IOS-XE Upgrade Automation Pack](./packages/ios-xe-upgrade-pack.md) | Safe, parallelised IOS-XE upgrades with rollback | £1,200 – £2,500 |
 | [Zero-Touch Provisioning Setup](./packages/ztp-setup.md) | Auto-configure new access switches on first boot | £1,500 – £3,000 |
@@ -137,7 +137,7 @@ No surprises. No scope creep. No lock-in.
 
 If you have a sense that automation could help your team but aren't sure which process to tackle first — or what the ROI looks like — our [Automation Opportunity Assessment](./packages/automation-assessment.md) is designed exactly for that.
 
-For **£99–£299**, we analyse your top 3 most time-consuming manual processes, calculate the realistic time savings, and give you a prioritised recommendation. You can use the report to build a business case internally or commission a package directly.
+For **£249**, we analyse up to five of your most time-consuming manual processes, calculate the realistic time savings, and give you a prioritised recommendation. You can use the report to build a business case internally or commission a package directly.
 
 [**Book an Automation Opportunity Assessment →**](./packages/automation-assessment.md){.md-button .md-button--primary}
 

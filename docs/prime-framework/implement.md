@@ -561,7 +561,7 @@ Included as Stage 3 when you engage for the complete framework. Typically 2-6 we
 
 For organisations with designs but need development help:
 
-**Pricing:** £120-£150/hour or fixed-fee based on Re-engineer specs
+**Fixed Fee:** £8,000 - £20,000+, quoted against the Re-engineer specification
 
 **Includes:**
 

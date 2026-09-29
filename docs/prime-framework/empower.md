@@ -290,35 +290,41 @@ We provide pathways for continued learning:
 
 ### 4. Ongoing Support Transition
 
-Structured handoff from full support to self-sufficiency:
+A structured handoff from supported to self-sufficient, with every commitment defined up front.
 
-#### Support Tiers
+#### Included: 8 Weeks of Transition Support
 
-### Months 1-2: Full Support
+Starts after the final knowledge transfer session.
 
-- Unlimited email/Slack support
-- 4-hour response time for issues
-- Troubleshooting assistance
-- Code modification help
+- Email questions about the delivered automation, answered within one UK business day
+- Four fortnightly 30-minute office-hours calls
+- Troubleshooting assistance for defects in the delivered automation
+- Guidance and review as your team makes its first changes
 
-### Months 3-4: Guided Support**
+#### Optional: Extended Guided Transition (Months 3-6)
 
-- Email support (next business day)
-- Weekly office hours (30-min video call)
-- Review of team modifications
-- Guidance on extension projects
+Quoted separately, for teams that want a longer runway:
 
-### Months 5-6: Advisory Support**
-
-- Ad-hoc consultation (scheduled)
-- Code review on request
+- Monthly office-hours calls
+- Code review of your team's changes
 - Architecture guidance for major extensions
 
-### *Post-6 Months: Self-Sufficient + Retainer (Optional)**
+#### After That: Self-Sufficient
 
-- Team operates independently
-- Optional retainer for complex enhancements
-- Priority support if needed
+- Your team operates and extends the automation independently
+- An optional retainer is available for complex enhancements
+
+#### What Counts as Additional Work
+
+Transition support is advisory. We answer questions, fix defects in what we delivered, and review your team's changes. The following are quoted separately and only go ahead with your written approval:
+
+- New features or workflows
+- Support for new device types or platforms
+- Changes that alter the agreed scope
+- Additional training cohorts
+- Support beyond the included period
+
+Support runs in UK business hours. It is not an on-call or incident-response service; production incidents go through your own incident process.
 
 ---
 
@@ -502,20 +508,22 @@ Ensure knowledge transfer success:
 
 ### Empower as Part of Full PRIME Engagement
 
-Included as Stage 5 when you engage for the complete framework. Typically 2-4 weeks over 3 months (knowledge transfer sessions + ongoing support).
+Included as Stage 5 when you engage for the complete framework. Typically 2-4 weeks of knowledge transfer sessions, followed by 8 weeks of transition support.
 
 ### Standalone Empowerment Service
 
 For organisations with existing automation needing knowledge transfer:
 
-**Fixed Fee:** £3,000 - £5,000 (depending on complexity)
+**Fixed Fee:** £4,000 - £7,500 (depending on complexity)
 
 **Includes:**
 
-- 4 knowledge transfer sessions
+- 4 remote knowledge transfer sessions of up to 3 hours each, for up to 8 participants
 - Complete documentation package
-- 8 weeks of transition support
-- 90-day success tracking
+- 8 weeks of transition support (email within one UK business day, plus four fortnightly 30-minute office-hours calls)
+- 90-day success check-in
+
+Anything outside this is [additional work](#what-counts-as-additional-work), quoted separately.
 
 ---
 

@@ -310,7 +310,7 @@ Included as Stage 1 when you engage for the complete framework. Typically 1 week
 
 ### Standalone Pinpoint Assessment
 
-**Fixed Fee:** £2,500 - £4,000 (depending on network size)
+**Fixed Fee:** £3,000 - £5,000 (depending on network size)
 
 **Includes:**
 
