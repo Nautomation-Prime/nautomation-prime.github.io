@@ -1,6 +1,8 @@
 ---
 title: Threat and Failure Model
 description: What Trusted Automation Execution defends against, the residual risk it leaves behind, how it behaves when its own components fail, and what it explicitly does not claim to solve.
+image: assets/social/trusted-automation-execution.png
+image_alt: "Trusted Automation Execution: a reference architecture from the Nautomation Prime Foundation"
 tags:
   - Reference Architecture
   - Zero Trust

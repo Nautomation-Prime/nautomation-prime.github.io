@@ -1,6 +1,8 @@
 ---
 title: Trusted Automation Execution
 description: A reference architecture applying Zero Trust principles to privileged infrastructure automation — the trust model, its ten invariants, and why a valid credential is not evidence that the automation using it should be trusted.
+image: assets/social/trusted-automation-execution.png
+image_alt: "Trusted Automation Execution: a reference architecture from the Nautomation Prime Foundation"
 tags:
   - Reference Architecture
   - Zero Trust

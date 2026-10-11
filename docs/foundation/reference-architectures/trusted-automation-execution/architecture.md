@@ -1,6 +1,8 @@
 ---
 title: The Full Reference Architecture
 description: The Trusted Automation Execution target state, component by component — requester and workload identity, artefact trust, the policy decision, just-in-time privilege, constrained execution, independent validation, and evidence — with the reason for each.
+image: assets/social/trusted-automation-execution.png
+image_alt: "Trusted Automation Execution: a reference architecture from the Nautomation Prime Foundation"
 tags:
   - Reference Architecture
   - Zero Trust

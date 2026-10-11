@@ -1,6 +1,8 @@
 ---
 title: Proof of Concept v1
 description: The first Trusted Automation Execution proof of concept — deliberately small, built on a trusted runner, a manifest and digest, and a default-deny local policy — with its requirements, a twelve-case test matrix, and an honest account of what it does not prove.
+image: assets/social/trusted-automation-execution.png
+image_alt: "Trusted Automation Execution: a reference architecture from the Nautomation Prime Foundation"
 tags:
   - Reference Architecture
   - Zero Trust

@@ -1,6 +1,57 @@
 {% extends "base.html" %}
 
 {#-
+  Open Graph and Twitter card metadata, so links shared on LinkedIn and
+  elsewhere render a preview card rather than a bare URL.
+
+  Title and description come from each page's front matter. The image
+  defaults to the brand banner; a page can set its own with an `image:`
+  key (path relative to docs/, e.g. assets/social/my-page.png) and an
+  optional `image_alt:`. Every card is 1200x630, the size the
+  og:image:width and og:image:height tags below declare, so keep any new
+  card at that size. scripts/make_social_cards.py generates the cards in
+  docs/assets/social/; add an entry there to make a new one.
+-#}
+{% block extrahead %}
+  {{ super() }}
+  {%- if page and page.is_homepage -%}
+    {%- set og_title = config.site_name -%}
+  {%- elif page and page.meta and page.meta.title -%}
+    {%- set og_title = page.meta.title -%}
+  {%- elif page and page.title -%}
+    {%- set og_title = page.title -%}
+  {%- else -%}
+    {%- set og_title = config.site_name -%}
+  {%- endif -%}
+  {%- set og_description = page.meta.description if page and page.meta and page.meta.description else config.site_description -%}
+  {%- set og_image = config.site_url ~ (page.meta.image if page and page.meta and page.meta.image else "assets/social/default.jpg") -%}
+  {%- if page and page.meta and page.meta.image_alt -%}
+    {%- set og_image_alt = page.meta.image_alt -%}
+  {%- elif page and page.meta and page.meta.image -%}
+    {%- set og_image_alt = og_title ~ " — " ~ config.site_name -%}
+  {%- else -%}
+    {%- set og_image_alt = "Nautomation Prime — Python-driven network automation for Cisco infrastructure" -%}
+  {%- endif %}
+  <meta property="og:type" content="{{ 'website' if page and page.is_homepage else 'article' }}">
+  <meta property="og:site_name" content="{{ config.site_name|e }}">
+  <meta property="og:locale" content="en_GB">
+  <meta property="og:title" content="{{ og_title|e }}">
+  <meta property="og:description" content="{{ og_description|e }}">
+  {%- if page and page.canonical_url %}
+  <meta property="og:url" content="{{ page.canonical_url|e }}">
+  {%- endif %}
+  <meta property="og:image" content="{{ og_image|e }}">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="{{ og_image_alt|e }}">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="{{ og_title|e }}">
+  <meta name="twitter:description" content="{{ og_description|e }}">
+  <meta name="twitter:image" content="{{ og_image|e }}">
+  <meta name="twitter:image:alt" content="{{ og_image_alt|e }}">
+{% endblock %}
+
+{#-
   Site-wide pre-launch notice.
 
   Nautomation Prime is not yet trading. Much of this site is written in the

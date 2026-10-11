@@ -1,6 +1,8 @@
 ---
 title: Adoption Profiles
 description: Four ways to implement Trusted Automation Execution — Foundation, Integrated, Enterprise, and High-Assurance — graded by risk and available systems rather than organisation size, with the control progression between them and a phased roadmap.
+image: assets/social/trusted-automation-execution.png
+image_alt: "Trusted Automation Execution: a reference architecture from the Nautomation Prime Foundation"
 tags:
   - Reference Architecture
   - Zero Trust
