@@ -1346,11 +1346,11 @@
 <li class="md-nav__item md-nav__item--nested">
 <input class="md-nav__toggle md-toggle" id="__nav_3_8" type="checkbox"/>
 <div class="md-nav__link md-nav__container">
-<a class="md-nav__link" href="../../foundation/deep-dives/">
+<a class="md-nav__link" href="../../foundation/reference-architectures/">
 <span class="md-ellipsis">
     
   
-    Deep Dives
+    Reference Architectures
   
 
     
@@ -1362,6 +1362,114 @@
 </div>
 <nav aria-expanded="false" aria-labelledby="__nav_3_8_label" class="md-nav" data-md-level="2">
 <label class="md-nav__title" for="__nav_3_8">
+<span class="md-nav__icon md-icon"></span>
+            
+  
+    Reference Architectures
+  
+
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_3_8_2" type="checkbox"/>
+<div class="md-nav__link md-nav__container">
+<a class="md-nav__link" href="../../foundation/reference-architectures/trusted-automation-execution/">
+<span class="md-ellipsis">
+    
+  
+    Trusted Automation Execution
+  
+
+    
+  </span>
+</a>
+<label class="md-nav__link" for="__nav_3_8_2" id="__nav_3_8_2_label" tabindex="0">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-expanded="false" aria-labelledby="__nav_3_8_2_label" class="md-nav" data-md-level="3">
+<label class="md-nav__title" for="__nav_3_8_2">
+<span class="md-nav__icon md-icon"></span>
+            
+  
+    Trusted Automation Execution
+  
+
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../foundation/reference-architectures/trusted-automation-execution/architecture/">
+<span class="md-ellipsis">
+    
+  
+    The Full Reference Architecture
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../foundation/reference-architectures/trusted-automation-execution/threat-and-failure-model/">
+<span class="md-ellipsis">
+    
+  
+    Threat and Failure Model
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../foundation/reference-architectures/trusted-automation-execution/adoption-profiles/">
+<span class="md-ellipsis">
+    
+  
+    Adoption Profiles
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../foundation/reference-architectures/trusted-automation-execution/proof-of-concept/">
+<span class="md-ellipsis">
+    
+  
+    Proof of Concept v1
+  
+
+    
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_3_9" type="checkbox"/>
+<div class="md-nav__link md-nav__container">
+<a class="md-nav__link" href="../../foundation/deep-dives/">
+<span class="md-ellipsis">
+    
+  
+    Deep Dives
+  
+
+    
+  </span>
+</a>
+<label class="md-nav__link" for="__nav_3_9" id="__nav_3_9_label" tabindex="0">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-expanded="false" aria-labelledby="__nav_3_9_label" class="md-nav" data-md-level="2">
+<label class="md-nav__title" for="__nav_3_9">
 <span class="md-nav__icon md-icon"></span>
             
   
@@ -3763,29 +3871,28 @@
 <h2 id="architecture-overview">Architecture Overview<a class="headerlink" href="#architecture-overview" title="Anchor link to this section">¶</a></h2>
 <h3 id="high-level-workflow">High-Level Workflow<a class="headerlink" href="#high-level-workflow" title="Anchor link to this section">¶</a></h3>
 <pre class="mermaid"><code>    graph TD
-        A[Switch Powers On<br/>No Startup-Config] --&gt; B[DHCP Request]
+        A[Switch Powers On&lt;br/&gt;No Startup-Config] --&gt; B[DHCP Request]
         B --&gt; C[DHCP Server]
-        C --&gt; D[IP Address + Option 67<br/>ZTP Script URL]
+        C --&gt; D[IP Address + Option 67&lt;br/&gt;ZTP Script URL]
         D --&gt; E[Native ZTP Agent]
-        E --&gt; F[Download Python Script<br/>from HTTP Server]
+        E --&gt; F[Download Python Script&lt;br/&gt;from HTTP Server]
         F --&gt; G[Execute in Guestshell]
         G --&gt; H[Extract Serial Number]
-        H --&gt; I[Download SERIAL.cfg<br/>from HTTP Server]
-        I --&gt; J{File Transfer<br/>Successful?}
-        J --&gt;|No| K[Retry with Backoff<br/>Up to 3 Attempts]
+        H --&gt; I[Download SERIAL.cfg&lt;br/&gt;from HTTP Server]
+        I --&gt; J{File Transfer&lt;br/&gt;Successful?}
+        J --&gt;|No| K[Retry with Backoff&lt;br/&gt;Up to 3 Attempts]
         K --&gt; J
-        J --&gt;|Yes| L[Merge Config to<br/>Running-Config]
+        J --&gt;|Yes| L[Merge Config to&lt;br/&gt;Running-Config]
         L --&gt; M[Generate SSH Keys]
         M --&gt; N[Save to Startup-Config]
         N --&gt; O[Production Ready]
-        J --&gt;|Failure After 3 Retries| P[Log Error + Exit]
-</code></pre>
+        J --&gt;|Failure After 3 Retries| P[Log Error + Exit]</code></pre>
 <h3 id="component-architecture">Component Architecture<a class="headerlink" href="#component-architecture" title="Anchor link to this section">¶</a></h3>
 <pre class="mermaid"><code>    flowchart LR
         subgraph Infrastructure["Infrastructure Components"]
-            DHCP[DHCP Server<br/>Options 66/67]
-            HTTP[HTTP Server<br/>Apache/Nginx]
-            SYSLOG[Syslog/Graylog<br/>Optional]
+            DHCP[DHCP Server&lt;br/&gt;Options 66/67]
+            HTTP[HTTP Server&lt;br/&gt;Apache/Nginx]
+            SYSLOG[Syslog/Graylog&lt;br/&gt;Optional]
         end
 
         subgraph Switch["Catalyst Switch"]
@@ -3796,8 +3903,8 @@
         end
 
         subgraph HTTPServer["HTTP Server Structure"]
-            SCRIPTDIR[scripts directory<br/>day_0_provisioning.py]
-            FILESDIR[files directory<br/>SERIAL.cfg files]
+            SCRIPTDIR[scripts directory&lt;br/&gt;day_0_provisioning.py]
+            FILESDIR[files directory&lt;br/&gt;SERIAL.cfg files]
         end
 
         DHCP --&gt;|IP + Script URL| ZTP
@@ -3811,8 +3918,7 @@
 
         style Infrastructure fill:#fff4e6
         style Switch fill:#e1f5ff
-        style HTTPServer fill:#f3e5f5
-</code></pre>
+        style HTTPServer fill:#f3e5f5</code></pre>
 <hr/>
 <h2 id="detailed-workflow-stages">Detailed Workflow Stages<a class="headerlink" href="#detailed-workflow-stages" title="Anchor link to this section">¶</a></h2>
 <h3 id="stage-0-pre-execution-automatic-cisco-native-ztp">Stage 0: Pre-Execution (Automatic - Cisco Native ZTP)<a class="headerlink" href="#stage-0-pre-execution-automatic-cisco-native-ztp" title="Anchor link to this section">¶</a></h3>
@@ -5424,7 +5530,7 @@ git diff FCW2144L045.cfg</code></pre></p>
         H --&gt;|No| I{HTTP 404 error?}
         I --&gt;|Yes| J[Verify filename matches serial]
         I --&gt;|No| K{Network timeout?}
-        K --&gt;|Yes| L[Increase retry attempts<br/>Check STP convergence]
+        K --&gt;|Yes| L[Increase retry attempts&lt;br/&gt;Check STP convergence]
         K --&gt;|No| M[Check HTTP server accessibility]
 
         H --&gt;|Yes| N{Config applied successfully?}
@@ -5433,8 +5539,7 @@ git diff FCW2144L045.cfg</code></pre></p>
         P --&gt;|No| Q[Verify ip domain-name configured]
         P --&gt;|Yes| R{Config saved to startup?}
         R --&gt;|No| S[Manually: write memory]
-        R --&gt;|Yes| T[ZTP Success!]
-</code></pre>
+        R --&gt;|Yes| T[ZTP Success!]</code></pre>
 <hr/>
 <h2 id="support-and-contributions">Support and Contributions<a class="headerlink" href="#support-and-contributions" title="Anchor link to this section">¶</a></h2>
 <p><strong>Author:</strong> Christopher Davies<br/>
@@ -5538,8 +5643,5 @@ git diff FCW2144L045.cfg</code></pre></p>
 <script>var consent=__md_get("__consent");if(consent)for(var input of document.forms.consent.elements)input.name&&(input.checked=consent[input.name]||!1);else"file:"!==location.protocol&&setTimeout((function(){document.querySelector("[data-md-component=consent]").hidden=!1}),250);var form=document.forms.consent;for(var action of["submit","reset"])form.addEventListener(action,(function(e){if(e.preventDefault(),"reset"===e.type)for(var n of document.forms.consent.elements)n.name&&(n.checked=!1);__md_set("__consent",Object.fromEntries(Array.from(new FormData(form).keys()).map((function(e){return[e,!0]})))),location.hash="",location.reload()}))</script>
 <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.tracking", "navigation.indexes", "content.code.copy", "content.code.annotate", "content.tooltips", "search.share", "search.suggest", "search.highlight", "search.stemmer", "announce.dismiss"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
 <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
-<script type="module">import mermaid from "https://unpkg.com/mermaid@10.4.0/dist/mermaid.esm.min.mjs";
-window.mermaidConfig = {default: {
-    startOnLoad: false
-}};</script></body>
+</body>
 </html>

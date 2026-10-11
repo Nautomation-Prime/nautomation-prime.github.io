@@ -2049,11 +2049,11 @@
 <li class="md-nav__item md-nav__item--nested">
 <input class="md-nav__toggle md-toggle" id="__nav_3_8" type="checkbox"/>
 <div class="md-nav__link md-nav__container">
-<a class="md-nav__link" href="../../../deep-dives/">
+<a class="md-nav__link" href="../../../reference-architectures/">
 <span class="md-ellipsis">
     
   
-    Deep Dives
+    Reference Architectures
   
 
     
@@ -2065,6 +2065,114 @@
 </div>
 <nav aria-expanded="false" aria-labelledby="__nav_3_8_label" class="md-nav" data-md-level="2">
 <label class="md-nav__title" for="__nav_3_8">
+<span class="md-nav__icon md-icon"></span>
+            
+  
+    Reference Architectures
+  
+
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_3_8_2" type="checkbox"/>
+<div class="md-nav__link md-nav__container">
+<a class="md-nav__link" href="../../../reference-architectures/trusted-automation-execution/">
+<span class="md-ellipsis">
+    
+  
+    Trusted Automation Execution
+  
+
+    
+  </span>
+</a>
+<label class="md-nav__link" for="__nav_3_8_2" id="__nav_3_8_2_label" tabindex="0">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-expanded="false" aria-labelledby="__nav_3_8_2_label" class="md-nav" data-md-level="3">
+<label class="md-nav__title" for="__nav_3_8_2">
+<span class="md-nav__icon md-icon"></span>
+            
+  
+    Trusted Automation Execution
+  
+
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../reference-architectures/trusted-automation-execution/architecture/">
+<span class="md-ellipsis">
+    
+  
+    The Full Reference Architecture
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../reference-architectures/trusted-automation-execution/threat-and-failure-model/">
+<span class="md-ellipsis">
+    
+  
+    Threat and Failure Model
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../reference-architectures/trusted-automation-execution/adoption-profiles/">
+<span class="md-ellipsis">
+    
+  
+    Adoption Profiles
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../reference-architectures/trusted-automation-execution/proof-of-concept/">
+<span class="md-ellipsis">
+    
+  
+    Proof of Concept v1
+  
+
+    
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_3_9" type="checkbox"/>
+<div class="md-nav__link md-nav__container">
+<a class="md-nav__link" href="../../../deep-dives/">
+<span class="md-ellipsis">
+    
+  
+    Deep Dives
+  
+
+    
+  </span>
+</a>
+<label class="md-nav__link" for="__nav_3_9" id="__nav_3_9_label" tabindex="0">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-expanded="false" aria-labelledby="__nav_3_9_label" class="md-nav" data-md-level="2">
+<label class="md-nav__title" for="__nav_3_9">
 <span class="md-nav__icon md-icon"></span>
             
   
@@ -3511,11 +3619,11 @@ data:
 <h2 id="understanding-task-execution-flow-in-nornir">📊 Understanding Task Execution Flow in Nornir<a class="headerlink" href="#understanding-task-execution-flow-in-nornir" title="Anchor link to this section">¶</a></h2>
 <p>The diagram below shows how your tasks execute in parallel:</p>
 <pre class="mermaid"><code>flowchart TD
-  Start([Nornir.run<br/>backup_config]) --&gt; Pool["Connection Pool<br/>(up to 10 workers)"]
+  Start([Nornir.run&lt;br/&gt;backup_config]) --&gt; Pool["Connection Pool&lt;br/&gt;(up to 10 workers)"]
 
-  Pool --&gt; T1["Task Instance 1<br/>Device: router1"]
-  Pool --&gt; T2["Task Instance 2<br/>Device: switch1"]
-  Pool --&gt; T3["Task Instance 3<br/>Device: switch2"]
+  Pool --&gt; T1["Task Instance 1&lt;br/&gt;Device: router1"]
+  Pool --&gt; T2["Task Instance 2&lt;br/&gt;Device: switch1"]
+  Pool --&gt; T3["Task Instance 3&lt;br/&gt;Device: switch2"]
 
   T1 --&gt; Con1["Connect to Device"]
   T2 --&gt; Con2["Connect to Device"]
@@ -3525,23 +3633,22 @@ data:
   Con2 --&gt; Cmd2["Send Command"]
   Con3 --&gt; Cmd3["Send Command"]
 
-  Cmd1 --&gt; Result1["Return Result<br/>for router1"]
-  Cmd2 --&gt; Result2["Return Result<br/>for switch1"]
-  Cmd3 --&gt; Result3["Return Result<br/>for switch2"]
+  Cmd1 --&gt; Result1["Return Result&lt;br/&gt;for router1"]
+  Cmd2 --&gt; Result2["Return Result&lt;br/&gt;for switch1"]
+  Cmd3 --&gt; Result3["Return Result&lt;br/&gt;for switch2"]
 
   Result1 --&gt; Aggregate["Aggregate All Results"]
   Result2 --&gt; Aggregate
   Result3 --&gt; Aggregate
 
-  Aggregate --&gt; End(["Return Combined<br/>Result Object"])
+  Aggregate --&gt; End(["Return Combined&lt;br/&gt;Result Object"])
 
   style Pool fill:#ccffcc
   style T1 fill:#ffffcc
   style T2 fill:#ffffcc
   style T3 fill:#ffffcc
   style Aggregate fill:#ccffcc
-  style End fill:#ccffcc
-</code></pre>
+  style End fill:#ccffcc</code></pre>
 <p><strong>Key insight:</strong> Each task instance (T1, T2, T3) runs independently. While T1 waits for SSH, T2 and T3 are processing simultaneously.</p>
 <hr/>
 <h2 id="nornir-project-structure">🏗️ Nornir Project Structure<a class="headerlink" href="#nornir-project-structure" title="Anchor link to this section">¶</a></h2>
@@ -4682,8 +4789,5 @@ device_password = os.environ.get('DEVICE_PASSWORD')</code></pre>
 <script>var consent=__md_get("__consent");if(consent)for(var input of document.forms.consent.elements)input.name&&(input.checked=consent[input.name]||!1);else"file:"!==location.protocol&&setTimeout((function(){document.querySelector("[data-md-component=consent]").hidden=!1}),250);var form=document.forms.consent;for(var action of["submit","reset"])form.addEventListener(action,(function(e){if(e.preventDefault(),"reset"===e.type)for(var n of document.forms.consent.elements)n.name&&(n.checked=!1);__md_set("__consent",Object.fromEntries(Array.from(new FormData(form).keys()).map((function(e){return[e,!0]})))),location.hash="",location.reload()}))</script>
 <script id="__config" type="application/json">{"annotate": null, "base": "../../../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.tracking", "navigation.indexes", "content.code.copy", "content.code.annotate", "content.tooltips", "search.share", "search.suggest", "search.highlight", "search.stemmer", "announce.dismiss"], "search": "../../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
 <script src="../../../../assets/javascripts/bundle.d7400e89.min.js"></script>
-<script type="module">import mermaid from "https://unpkg.com/mermaid@10.4.0/dist/mermaid.esm.min.mjs";
-window.mermaidConfig = {default: {
-    startOnLoad: false
-}};</script></body>
+</body>
 </html>

@@ -1834,11 +1834,11 @@
 <li class="md-nav__item md-nav__item--nested">
 <input class="md-nav__toggle md-toggle" id="__nav_3_8" type="checkbox"/>
 <div class="md-nav__link md-nav__container">
-<a class="md-nav__link" href="../../../deep-dives/">
+<a class="md-nav__link" href="../../../reference-architectures/">
 <span class="md-ellipsis">
     
   
-    Deep Dives
+    Reference Architectures
   
 
     
@@ -1850,6 +1850,114 @@
 </div>
 <nav aria-expanded="false" aria-labelledby="__nav_3_8_label" class="md-nav" data-md-level="2">
 <label class="md-nav__title" for="__nav_3_8">
+<span class="md-nav__icon md-icon"></span>
+            
+  
+    Reference Architectures
+  
+
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_3_8_2" type="checkbox"/>
+<div class="md-nav__link md-nav__container">
+<a class="md-nav__link" href="../../../reference-architectures/trusted-automation-execution/">
+<span class="md-ellipsis">
+    
+  
+    Trusted Automation Execution
+  
+
+    
+  </span>
+</a>
+<label class="md-nav__link" for="__nav_3_8_2" id="__nav_3_8_2_label" tabindex="0">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-expanded="false" aria-labelledby="__nav_3_8_2_label" class="md-nav" data-md-level="3">
+<label class="md-nav__title" for="__nav_3_8_2">
+<span class="md-nav__icon md-icon"></span>
+            
+  
+    Trusted Automation Execution
+  
+
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../reference-architectures/trusted-automation-execution/architecture/">
+<span class="md-ellipsis">
+    
+  
+    The Full Reference Architecture
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../reference-architectures/trusted-automation-execution/threat-and-failure-model/">
+<span class="md-ellipsis">
+    
+  
+    Threat and Failure Model
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../reference-architectures/trusted-automation-execution/adoption-profiles/">
+<span class="md-ellipsis">
+    
+  
+    Adoption Profiles
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../reference-architectures/trusted-automation-execution/proof-of-concept/">
+<span class="md-ellipsis">
+    
+  
+    Proof of Concept v1
+  
+
+    
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_3_9" type="checkbox"/>
+<div class="md-nav__link md-nav__container">
+<a class="md-nav__link" href="../../../deep-dives/">
+<span class="md-ellipsis">
+    
+  
+    Deep Dives
+  
+
+    
+  </span>
+</a>
+<label class="md-nav__link" for="__nav_3_9" id="__nav_3_9_label" tabindex="0">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-expanded="false" aria-labelledby="__nav_3_9_label" class="md-nav" data-md-level="2">
+<label class="md-nav__title" for="__nav_3_9">
 <span class="md-nav__icon md-icon"></span>
             
   
@@ -3039,16 +3147,15 @@ CPU:  ████████████ (CPU efficiently scheduling I/O)</cod
     style F1 fill:#ccccff
     style F2 fill:#ccccff
     style F3 fill:#ccccff
-    style F4 fill:#ccccff
-</code></pre>
+    style F4 fill:#ccccff</code></pre>
 <h4 id="parallel-task-flow-nornir">Parallel Task Flow (Nornir)<a class="headerlink" href="#parallel-task-flow-nornir" title="Anchor link to this section">¶</a></h4>
 <pre class="mermaid"><code>flowchart TD
-    Start([Start Backup Job]) --&gt; Pool["Connection Pool Initialized<br/>(up to 10 workers)"]
+    Start([Start Backup Job]) --&gt; Pool["Connection Pool Initialized&lt;br/&gt;(up to 10 workers)"]
 
-    Pool --&gt; D1[Device 1:<br/>Connect + Fetch]
-    Pool --&gt; D2[Device 2:<br/>Connect + Fetch]
-    Pool --&gt; D3[Device 3:<br/>Connect + Fetch]
-    Pool --&gt; D4[Device 4:<br/>Connect + Fetch]
+    Pool --&gt; D1[Device 1:&lt;br/&gt;Connect + Fetch]
+    Pool --&gt; D2[Device 2:&lt;br/&gt;Connect + Fetch]
+    Pool --&gt; D3[Device 3:&lt;br/&gt;Connect + Fetch]
+    Pool --&gt; D4[Device 4:&lt;br/&gt;Connect + Fetch]
 
     D1 --&gt; Save[Results Aggregated]
     D2 --&gt; Save
@@ -3062,8 +3169,7 @@ CPU:  ████████████ (CPU efficiently scheduling I/O)</cod
     style D2 fill:#ffffcc
     style D3 fill:#ffffcc
     style D4 fill:#ffffcc
-    style Save fill:#ccffcc
-</code></pre>
+    style Save fill:#ccffcc</code></pre>
 <hr/>
 <h2 id="the-math-amdahls-law">🧮 The Math: Amdahl's Law<a class="headerlink" href="#the-math-amdahls-law" title="Anchor link to this section">¶</a></h2>
 <p>Why doesn't this scale infinitely? There's a mathematical ceiling:</p>
@@ -3649,8 +3755,5 @@ Nornir Power:         ████████████████ (enterpri
 <script>var consent=__md_get("__consent");if(consent)for(var input of document.forms.consent.elements)input.name&&(input.checked=consent[input.name]||!1);else"file:"!==location.protocol&&setTimeout((function(){document.querySelector("[data-md-component=consent]").hidden=!1}),250);var form=document.forms.consent;for(var action of["submit","reset"])form.addEventListener(action,(function(e){if(e.preventDefault(),"reset"===e.type)for(var n of document.forms.consent.elements)n.name&&(n.checked=!1);__md_set("__consent",Object.fromEntries(Array.from(new FormData(form).keys()).map((function(e){return[e,!0]})))),location.hash="",location.reload()}))</script>
 <script id="__config" type="application/json">{"annotate": null, "base": "../../../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.tracking", "navigation.indexes", "content.code.copy", "content.code.annotate", "content.tooltips", "search.share", "search.suggest", "search.highlight", "search.stemmer", "announce.dismiss"], "search": "../../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
 <script src="../../../../assets/javascripts/bundle.d7400e89.min.js"></script>
-<script type="module">import mermaid from "https://unpkg.com/mermaid@10.4.0/dist/mermaid.esm.min.mjs";
-window.mermaidConfig = {default: {
-    startOnLoad: false
-}};</script></body>
+</body>
 </html>

@@ -2079,11 +2079,11 @@
 <li class="md-nav__item md-nav__item--nested">
 <input class="md-nav__toggle md-toggle" id="__nav_3_8" type="checkbox"/>
 <div class="md-nav__link md-nav__container">
-<a class="md-nav__link" href="../../../deep-dives/">
+<a class="md-nav__link" href="../../../reference-architectures/">
 <span class="md-ellipsis">
     
   
-    Deep Dives
+    Reference Architectures
   
 
     
@@ -2095,6 +2095,114 @@
 </div>
 <nav aria-expanded="false" aria-labelledby="__nav_3_8_label" class="md-nav" data-md-level="2">
 <label class="md-nav__title" for="__nav_3_8">
+<span class="md-nav__icon md-icon"></span>
+            
+  
+    Reference Architectures
+  
+
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_3_8_2" type="checkbox"/>
+<div class="md-nav__link md-nav__container">
+<a class="md-nav__link" href="../../../reference-architectures/trusted-automation-execution/">
+<span class="md-ellipsis">
+    
+  
+    Trusted Automation Execution
+  
+
+    
+  </span>
+</a>
+<label class="md-nav__link" for="__nav_3_8_2" id="__nav_3_8_2_label" tabindex="0">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-expanded="false" aria-labelledby="__nav_3_8_2_label" class="md-nav" data-md-level="3">
+<label class="md-nav__title" for="__nav_3_8_2">
+<span class="md-nav__icon md-icon"></span>
+            
+  
+    Trusted Automation Execution
+  
+
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../reference-architectures/trusted-automation-execution/architecture/">
+<span class="md-ellipsis">
+    
+  
+    The Full Reference Architecture
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../reference-architectures/trusted-automation-execution/threat-and-failure-model/">
+<span class="md-ellipsis">
+    
+  
+    Threat and Failure Model
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../reference-architectures/trusted-automation-execution/adoption-profiles/">
+<span class="md-ellipsis">
+    
+  
+    Adoption Profiles
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../reference-architectures/trusted-automation-execution/proof-of-concept/">
+<span class="md-ellipsis">
+    
+  
+    Proof of Concept v1
+  
+
+    
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_3_9" type="checkbox"/>
+<div class="md-nav__link md-nav__container">
+<a class="md-nav__link" href="../../../deep-dives/">
+<span class="md-ellipsis">
+    
+  
+    Deep Dives
+  
+
+    
+  </span>
+</a>
+<label class="md-nav__link" for="__nav_3_9" id="__nav_3_9_label" tabindex="0">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-expanded="false" aria-labelledby="__nav_3_9_label" class="md-nav" data-md-level="2">
+<label class="md-nav__title" for="__nav_3_9">
 <span class="md-nav__icon md-icon"></span>
             
   
@@ -3496,29 +3604,29 @@ pip install pysqlite3-binary</code></pre>
 <p><strong>Key difference from Tutorial #2:</strong> Each device's data flows through a 5-step pipeline.</p>
 <h3 id="complete-system-diagram">Complete System Diagram<a class="headerlink" href="#complete-system-diagram" title="Anchor link to this section">¶</a></h3>
 <pre class="mermaid"><code>flowchart TD
-    Start([Enterprise Backup Job]) --&gt; Init["Initialize Nornir<br/>Load inventory"]
+    Start([Enterprise Backup Job]) --&gt; Init["Initialize Nornir&lt;br/&gt;Load inventory"]
 
-    Init --&gt; PoolIn["Connection Pool<br/>(parallel workers)"]
+    Init --&gt; PoolIn["Connection Pool&lt;br/&gt;(parallel workers)"]
 
-    PoolIn --&gt; T1["Task 1: backup_config<br/>for each device"]
+    PoolIn --&gt; T1["Task 1: backup_config&lt;br/&gt;for each device"]
 
-    T1 --&gt; T2["Task 2: save_config<br/>Write to DB &amp; filesystem"]
+    T1 --&gt; T2["Task 2: save_config&lt;br/&gt;Write to DB &amp; filesystem"]
 
-    T2 --&gt; Compare["Task 3: detect_changes<br/>Compare with previous"]
+    T2 --&gt; Compare["Task 3: detect_changes&lt;br/&gt;Compare with previous"]
 
-    Compare --&gt; Compliance["Task 4: compliance_check<br/>Security scoring"]
+    Compare --&gt; Compliance["Task 4: compliance_check&lt;br/&gt;Security scoring"]
 
-    Compliance --&gt; Report["Task 5: generate_report<br/>Summary output"]
+    Compliance --&gt; Report["Task 5: generate_report&lt;br/&gt;Summary output"]
 
     Report --&gt; Aggregate["Aggregate Results"]
 
-    Aggregate --&gt; DBLog["Log to Database<br/>backups, compliance, changes"]
+    Aggregate --&gt; DBLog["Log to Database&lt;br/&gt;backups, compliance, changes"]
 
-    DBLog --&gt; FileOut["Save Configs<br/>to Filesystem"]
+    DBLog --&gt; FileOut["Save Configs&lt;br/&gt;to Filesystem"]
 
-    FileOut --&gt; Output["Generate Report<br/>Console + File"]
+    FileOut --&gt; Output["Generate Report&lt;br/&gt;Console + File"]
 
-    Output --&gt; End(["Job Complete<br/>All devices processed"])
+    Output --&gt; End(["Job Complete&lt;br/&gt;All devices processed"])
 
     style Init fill:#ccffcc
     style PoolIn fill:#ccffcc
@@ -3529,8 +3637,7 @@ pip install pysqlite3-binary</code></pre>
     style Report fill:#ffffcc
     style Aggregate fill:#ccffcc
     style DBLog fill:#ffcccc
-    style FileOut fill:#ffcccc
-</code></pre>
+    style FileOut fill:#ffcccc</code></pre>
 <hr/>
 <h2 id="start-simple-minimal-enterprise-example">⚡ Start Simple: Minimal Enterprise Example<a class="headerlink" href="#start-simple-minimal-enterprise-example" title="Anchor link to this section">¶</a></h2>
 <p>Before building the full system above, let's start with just the filesystem version (no database). This shows the core pattern.</p>
@@ -5115,15 +5222,14 @@ for device, last_backup in cursor.fetchall():
 <h3 id="why-jump-hosts">Why Jump Hosts?<a class="headerlink" href="#why-jump-hosts" title="Anchor link to this section">¶</a></h3>
 <p><strong>Enterprise network security model:</strong></p>
 <pre class="mermaid"><code>flowchart LR
-    AutoServer["Automation<br/>Server"] --&gt;|SSH| Bastion["Bastion Host<br/>(Jump Host)"]
-    Bastion --&gt;|SSH| Router["Router<br/>10.1.1.1"]
-    Bastion --&gt;|SSH| Switch["Switch<br/>10.1.1.2"]
+    AutoServer["Automation&lt;br/&gt;Server"] --&gt;|SSH| Bastion["Bastion Host&lt;br/&gt;(Jump Host)"]
+    Bastion --&gt;|SSH| Router["Router&lt;br/&gt;10.1.1.1"]
+    Bastion --&gt;|SSH| Switch["Switch&lt;br/&gt;10.1.1.2"]
 
     style AutoServer fill:#ccffcc
     style Bastion fill:#ffff99
     style Router fill:#ccccff
-    style Switch fill:#ccccff
-</code></pre>
+    style Switch fill:#ccccff</code></pre>
 <p><strong>Benefits:</strong></p>
 <ul>
 <li>✅ Devices on internal-only networks</li>
@@ -5398,20 +5504,19 @@ logging.getLogger('paramiko').setLevel(logging.DEBUG)
 <h3 id="production-architecture">Production Architecture<a class="headerlink" href="#production-architecture" title="Anchor link to this section">¶</a></h3>
 <p><strong>Recommended setup:</strong></p>
 <pre class="mermaid"><code>flowchart TB
-    AutoServer["Automation Server<br/>(Windows/Linux)"]
+    AutoServer["Automation Server&lt;br/&gt;(Windows/Linux)"]
 
-    AutoServer --&gt;|SSH| Bastion1["Bastion1<br/>(Primary)"]
-    AutoServer --&gt;|SSH| Bastion2["Bastion2<br/>(Failover)"]
+    AutoServer --&gt;|SSH| Bastion1["Bastion1&lt;br/&gt;(Primary)"]
+    AutoServer --&gt;|SSH| Bastion2["Bastion2&lt;br/&gt;(Failover)"]
 
-    Bastion1 --&gt; NYDevices["New York<br/>Devices"]
+    Bastion1 --&gt; NYDevices["New York&lt;br/&gt;Devices"]
     Bastion2 --&gt; LADevices["LA Devices"]
 
     style AutoServer fill:#ccffcc
     style Bastion1 fill:#ffff99
     style Bastion2 fill:#ffff99
     style NYDevices fill:#ccccff
-    style LADevices fill:#ccccff
-</code></pre>
+    style LADevices fill:#ccccff</code></pre>
 <p><strong>Inventory structure:</strong></p>
 <pre class="highlight"><code class="language-yaml"># inventory/groups.yaml
 ny_devices:
@@ -5557,8 +5662,5 @@ router_la:
 <script>var consent=__md_get("__consent");if(consent)for(var input of document.forms.consent.elements)input.name&&(input.checked=consent[input.name]||!1);else"file:"!==location.protocol&&setTimeout((function(){document.querySelector("[data-md-component=consent]").hidden=!1}),250);var form=document.forms.consent;for(var action of["submit","reset"])form.addEventListener(action,(function(e){if(e.preventDefault(),"reset"===e.type)for(var n of document.forms.consent.elements)n.name&&(n.checked=!1);__md_set("__consent",Object.fromEntries(Array.from(new FormData(form).keys()).map((function(e){return[e,!0]})))),location.hash="",location.reload()}))</script>
 <script id="__config" type="application/json">{"annotate": null, "base": "../../../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.tracking", "navigation.indexes", "content.code.copy", "content.code.annotate", "content.tooltips", "search.share", "search.suggest", "search.highlight", "search.stemmer", "announce.dismiss"], "search": "../../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
 <script src="../../../../assets/javascripts/bundle.d7400e89.min.js"></script>
-<script type="module">import mermaid from "https://unpkg.com/mermaid@10.4.0/dist/mermaid.esm.min.mjs";
-window.mermaidConfig = {default: {
-    startOnLoad: false
-}};</script></body>
+</body>
 </html>

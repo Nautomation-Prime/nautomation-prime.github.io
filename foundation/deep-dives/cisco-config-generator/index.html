@@ -1343,8 +1343,116 @@
 </ul>
 </nav>
 </li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_3_8" type="checkbox"/>
+<div class="md-nav__link md-nav__container">
+<a class="md-nav__link" href="../../reference-architectures/">
+<span class="md-ellipsis">
+    
+  
+    Reference Architectures
+  
+
+    
+  </span>
+</a>
+<label class="md-nav__link" for="__nav_3_8" id="__nav_3_8_label" tabindex="0">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-expanded="false" aria-labelledby="__nav_3_8_label" class="md-nav" data-md-level="2">
+<label class="md-nav__title" for="__nav_3_8">
+<span class="md-nav__icon md-icon"></span>
+            
+  
+    Reference Architectures
+  
+
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_3_8_2" type="checkbox"/>
+<div class="md-nav__link md-nav__container">
+<a class="md-nav__link" href="../../reference-architectures/trusted-automation-execution/">
+<span class="md-ellipsis">
+    
+  
+    Trusted Automation Execution
+  
+
+    
+  </span>
+</a>
+<label class="md-nav__link" for="__nav_3_8_2" id="__nav_3_8_2_label" tabindex="0">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-expanded="false" aria-labelledby="__nav_3_8_2_label" class="md-nav" data-md-level="3">
+<label class="md-nav__title" for="__nav_3_8_2">
+<span class="md-nav__icon md-icon"></span>
+            
+  
+    Trusted Automation Execution
+  
+
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../reference-architectures/trusted-automation-execution/architecture/">
+<span class="md-ellipsis">
+    
+  
+    The Full Reference Architecture
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../reference-architectures/trusted-automation-execution/threat-and-failure-model/">
+<span class="md-ellipsis">
+    
+  
+    Threat and Failure Model
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../reference-architectures/trusted-automation-execution/adoption-profiles/">
+<span class="md-ellipsis">
+    
+  
+    Adoption Profiles
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../reference-architectures/trusted-automation-execution/proof-of-concept/">
+<span class="md-ellipsis">
+    
+  
+    Proof of Concept v1
+  
+
+    
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
 <li class="md-nav__item md-nav__item--active md-nav__item--nested">
-<input checked="" class="md-nav__toggle md-toggle" id="__nav_3_8" type="checkbox"/>
+<input checked="" class="md-nav__toggle md-toggle" id="__nav_3_9" type="checkbox"/>
 <div class="md-nav__link md-nav__container">
 <a class="md-nav__link" href="../">
 <span class="md-ellipsis">
@@ -1356,12 +1464,12 @@
     
   </span>
 </a>
-<label class="md-nav__link" for="__nav_3_8" id="__nav_3_8_label" tabindex="0">
+<label class="md-nav__link" for="__nav_3_9" id="__nav_3_9_label" tabindex="0">
 <span class="md-nav__icon md-icon"></span>
 </label>
 </div>
-<nav aria-expanded="true" aria-labelledby="__nav_3_8_label" class="md-nav" data-md-level="2">
-<label class="md-nav__title" for="__nav_3_8">
+<nav aria-expanded="true" aria-labelledby="__nav_3_9_label" class="md-nav" data-md-level="2">
+<label class="md-nav__title" for="__nav_3_9">
 <span class="md-nav__icon md-icon"></span>
             
   
@@ -3242,8 +3350,7 @@
     C --&gt; D[Build per-device context]
     D --&gt; E[Render Jinja2 templates]
     E --&gt; F[Write output/hostname.cfg]
-    F --&gt; G[Operator review and lab validation]
-</code></pre>
+    F --&gt; G[Operator review and lab validation]</code></pre>
 <h3 id="why-this-design">Why This Design<a class="headerlink" href="#why-this-design" title="Anchor link to this section">¶</a></h3>
 <ul>
 <li><strong>Pack isolation</strong> keeps customer policy modular.</li>
@@ -3547,8 +3654,7 @@ python_runtime\python.exe -m cisco_config_generator --version</code></pre>
   H --&gt; I[template_map.yaml chooses render order]
   I --&gt; J[Jinja2 templates from packs/default/templates]
   J --&gt; K[Rendered config fragments]
-  K --&gt; L[output/hostname.cfg]
-</code></pre>
+  K --&gt; L[output/hostname.cfg]</code></pre>
 <p>Why this matters: each stage has a clear responsibility. If output is wrong, you can trace whether the problem came from workbook input, validation, context building, template selection, or the template itself.</p>
 <h3 id="worked-example-one-workbook-row-to-cisco-cli">Worked Example: One Workbook Row to Cisco CLI<a class="headerlink" href="#worked-example-one-workbook-row-to-cisco-cli" title="Anchor link to this section">¶</a></h3>
 <p>The example below uses the <strong>current default pack</strong> and the <code>interfaces_access.j2</code> template.</p>
@@ -3874,8 +3980,5 @@ ACL_VTY_ACCESS  deny any</code></pre>
 <script>var consent=__md_get("__consent");if(consent)for(var input of document.forms.consent.elements)input.name&&(input.checked=consent[input.name]||!1);else"file:"!==location.protocol&&setTimeout((function(){document.querySelector("[data-md-component=consent]").hidden=!1}),250);var form=document.forms.consent;for(var action of["submit","reset"])form.addEventListener(action,(function(e){if(e.preventDefault(),"reset"===e.type)for(var n of document.forms.consent.elements)n.name&&(n.checked=!1);__md_set("__consent",Object.fromEntries(Array.from(new FormData(form).keys()).map((function(e){return[e,!0]})))),location.hash="",location.reload()}))</script>
 <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.tracking", "navigation.indexes", "content.code.copy", "content.code.annotate", "content.tooltips", "search.share", "search.suggest", "search.highlight", "search.stemmer", "announce.dismiss"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
 <script src="../../../assets/javascripts/bundle.d7400e89.min.js"></script>
-<script type="module">import mermaid from "https://unpkg.com/mermaid@10.4.0/dist/mermaid.esm.min.mjs";
-window.mermaidConfig = {default: {
-    startOnLoad: false
-}};</script></body>
+</body>
 </html>
