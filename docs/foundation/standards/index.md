@@ -61,6 +61,7 @@ Same content, different job.
 | Find out where you actually stand | [Self-Assessment](./self-assessment.md) |
 | Set the engineering bar for a team | [Python Engineering Standard](./python-engineering-standard.md) |
 | Review a solution design | [Reference Architecture](./reference-architecture.md) |
+| Design the trust boundary in front of privileged automation | [Trusted Automation Execution](../reference-architectures/trusted-automation-execution/index.md) |
 | Learn to write the code in the first place | [Tutorials](../tutorials/index.md) |
 
 The dependency runs one way: the standards pages assume you have read, or can go and read, the reasoning in the tracks. A control code without its argument is just an assertion, and assertions are the thing this site is trying to replace.

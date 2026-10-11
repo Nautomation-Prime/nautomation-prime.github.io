@@ -150,3 +150,4 @@ That containment is the entire design goal. Everything else is detail.
 - Series Index: [Governed AI for Network Operations](./index.md)
 - Previous: [AI Risk Classification](./ai-risk-classification.md)
 - Next: [From Script to Tool](./from-script-to-tool.md)
+- Related: [Trusted Automation Execution](../reference-architectures/trusted-automation-execution/index.md) — the same boundary applied to every requester, not only agents

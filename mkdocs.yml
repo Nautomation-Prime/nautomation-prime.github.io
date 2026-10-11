@@ -210,6 +210,14 @@ nav:
       - Assessing Yourself Against These Controls: foundation/standards/self-assessment.md
       - Python Engineering Standard: foundation/standards/python-engineering-standard.md
       - Governed Automation Reference Architecture: foundation/standards/reference-architecture.md
+    - Reference Architectures:
+      - foundation/reference-architectures/index.md
+      - Trusted Automation Execution:
+        - foundation/reference-architectures/trusted-automation-execution/index.md
+        - The Full Reference Architecture: foundation/reference-architectures/trusted-automation-execution/architecture.md
+        - Threat and Failure Model: foundation/reference-architectures/trusted-automation-execution/threat-and-failure-model.md
+        - Adoption Profiles: foundation/reference-architectures/trusted-automation-execution/adoption-profiles.md
+        - Proof of Concept v1: foundation/reference-architectures/trusted-automation-execution/proof-of-concept.md
     - Deep Dives:
       - foundation/deep-dives/index.md
       - Access Switch Audit: foundation/deep-dives/access-switch-audit.md

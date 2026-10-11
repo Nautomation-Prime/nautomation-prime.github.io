@@ -181,3 +181,4 @@ When reviewing a solution against this architecture, five questions do most of t
 - Previous: [Python Engineering Standard](./python-engineering-standard.md)
 - Standards Index: [Automation Standards](./index.md)
 - Related: [Automation Control Catalogue](./control-catalogue.md) · [Governed AI for Network Operations](../governed-ai-network-operations/index.md)
+- Closer in: [Trusted Automation Execution](../reference-architectures/trusted-automation-execution/index.md) — what has to be proven, and in what order, before a credential reaches the code that will use it

@@ -87,6 +87,12 @@ Christopher built Nautomation Prime on the belief that automation should never b
 
     [Browse the standards](./standards/index.md)
 
+-   ### Designs, not tutorials
+
+    Reference architectures with the reasoning behind every boundary, starting with [Trusted Automation Execution](./reference-architectures/trusted-automation-execution/index.md): Zero Trust principles applied to the automation that holds your most privileged credentials.
+
+    [Browse the architectures](./reference-architectures/index.md)
+
 -   ### Free & low-cost help for charities
 
     Cisco and general networking engineering, infrastructure advice, and Python-based automation offered directly to registered UK charities and CICs, scoped and delivered under a clear, capped-liability agreement.
