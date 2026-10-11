@@ -78,7 +78,7 @@ graph LR
 
 ## Component by Component
 
-Twenty-four components, grouped under the [eight sentences](./index.md#the-model-in-eight-sentences) from the overview, plus a ninth group for keeping trust withdrawable once it has been given.
+Twenty-four components, grouped under the [nine sentences](./index.md#the-model-in-nine-sentences) from the overview, plus a tenth group for keeping trust withdrawable once it has been given.
 
 ### 1. Prove who is asking
 
@@ -98,7 +98,7 @@ Two identities, not one. The Governed Automation Reference Architecture already 
 
 This is the [remediation pack](../../production-grade-network-automation-principles/remediation-packs.md#immutability-and-the-checksum) argument applied to code rather than to a change. A checksum over a pack proves the change is the one that was approved. A digest and a signature over the workload prove the code applying it is the one that was reviewed. Most estates have neither, and the ones that have the first rarely have the second.
 
-### 3. Prove where it came from
+### 3. Establish where it came from
 
 | Component | Why it exists | Target state |
 |---|---|---|
@@ -107,39 +107,48 @@ This is the [remediation pack](../../production-grade-network-automation-princip
 
 In most network automation the top-level script is a few hundred lines and the dependency tree is tens of thousands. Signing the script and ignoring the tree verifies the part least likely to be the problem. The [Python Engineering Standard](../../standards/python-engineering-standard.md) sets the dependency bar this component verifies.
 
-### 4. Decide whether this is allowed, now
+### 4. Decide what it may do
 
 | Component | Why it exists | Target state |
 |---|---|---|
 | **Execution gateway** — the enforcement point every privileged run must enter through | If a caller can bypass the runner and use the same credential, or reach the same target directly, the architecture is advisory rather than enforcing | A mandatory gateway that validates evidence, obtains a decision, provisions execution, and refuses bypass paths |
 | **Policy decision service** — whether this subject, workload, operation, target, and context are authorised now | Identity answers *who* and *what*. Policy answers *may this happen now?* Keeping policy outside the workload lets authorisation change without changing the code | Default deny, explicit and versioned policy, an explainable reason for every decision, and protected decision evidence where it matters |
 | **Policy context** — the facts the decision is made from | A policy engine cannot make a good decision from untrusted or stale inputs | Authoritative identity and source-of-truth data, integrity-protected context, freshness limits, and fail-closed handling when a mandatory signal is missing |
-| **Authoritative source of truth** — what a target is, who owns it, and which scope it belongs to | Text supplied by the caller must not be able to redefine what a target is, or whether it is in scope | Validated inventory with [trust boundaries](../../production-grade-network-automation-principles/trust-boundaries-around-your-source-of-truth.md), ownership, and environment classification |
 | **Human approval** — an independent human decision where risk warrants it | Zero-touch is not always the right outcome. Destructive, exceptional, or broad changes justify separation of duties and explicit review | The [risk class](#risk-classes-and-what-the-gateway-demands) decides when approval is mandatory. The approval is bound to the artefact, operation, scope, and window, never a reusable blanket permission |
 
-The source of truth sits in this group rather than with execution because it is an input to the decision. A policy that evaluates the target name a caller typed has approved a string. Whatever the runner later resolves that string to was never decided on.
+This is where *identity is not capability* is enforced. A request names the capability it wants, and policy grants or refuses that capability specifically. A verified compliance workload asking to reload a device is not a trusted workload doing something slightly unusual. It is a known workload making an unauthorised request, and the gateway has to be able to tell the difference.
 
-### 5. Grant only the authority required
+### 5. Constrain where it may do it
+
+| Component | Why it exists | Target state |
+|---|---|---|
+| **Authoritative source of truth** — what a target is, who owns it, and which scope it belongs to | Text supplied by the caller must not be able to redefine what a target is, or whether it is in scope | Validated inventory with [trust boundaries](../../production-grade-network-automation-principles/trust-boundaries-around-your-source-of-truth.md), ownership, and environment classification |
+| **Network and target enforcement** — what the workload can physically reach, not only what policy says it may target | Application policy is stronger when network reachability and target-side authorisation reinforce it. A policy bug should not mean unrestricted reach | Segmentation, management-plane restrictions, explicit egress, and target-side RBAC or ACLs |
+
+Scope is constrained twice. Logically, targets are resolved through an authoritative source before policy evaluates them: a policy that evaluates the target name a caller typed has approved a string, and whatever the runner later resolves that string to was never decided on. Physically, the workload can reach only what it was approved to touch, so a mistake in policy does not become access to the whole estate.
+
+This sentence and the one before it are separate questions, not separate moments. In the [execution lifecycle](#the-execution-lifecycle), targets are resolved at stage 5 and evaluated together with everything else at stage 6.
+
+### 6. Grant only the authority required
 
 | Component | Why it exists | Target state |
 |---|---|---|
 | **Just-in-time, scoped privilege** — authority created only after an allow, bounded in scope and lifetime | Standing credentials make the runner and the workload worth compromising. Delayed, time-bounded authority shrinks both the opportunity and the blast radius | Short-lived tokens or certificates, or brokered secrets, with narrow permissions, target restrictions, and automatic expiry or revocation where the platform supports it |
 | **Secrets handling** — credential material kept out of source, logs, and persistent workload state | Trusting the artefact does not make leaking a secret acceptable. An exposed secret lets someone skip every future policy decision | An external secrets or PAM platform, retrieval only after allow, in-memory or platform-native delivery, redaction, and rotation |
 
-Note the dependency on group 4. Retrieving secrets at runtime, the [runtime retrieval pattern](../../production-grade-network-automation-principles/secrets-and-credentials-in-enterprise-automation.md#runtime-retrieval-pattern), is necessary but not sufficient. What this architecture adds is *when*: the secret cannot be retrieved until the gateway has said yes, and [dynamic secrets](../../tutorials/expert/secure-credential-vaulting.md#dynamic-secrets-just-in-time-access) are one way to make sure it expires shortly afterwards.
+Note the dependency on groups 4 and 5. Retrieving secrets at runtime, the [runtime retrieval pattern](../../production-grade-network-automation-principles/secrets-and-credentials-in-enterprise-automation.md#runtime-retrieval-pattern), is necessary but not sufficient. What this architecture adds is *when*: the secret cannot be retrieved until the gateway has said yes, and [dynamic secrets](../../tutorials/expert/secure-credential-vaulting.md#dynamic-secrets-just-in-time-access) are one way to make sure it expires shortly afterwards.
 
-### 6. Execute within constraints
+### 7. Execute within defined boundaries
 
 | Component | Why it exists | Target state |
 |---|---|---|
 | **Isolated, ephemeral runner** — a clean, constrained environment for each run | A long-lived runner accumulates state, credentials, tools, and eventually compromise. Isolation stops one run or workload interfering with another | An ephemeral VM, container, or sandbox from a hardened base image, with a restricted filesystem, controlled egress, clean teardown, and runner attestation where available |
-| **Network and target enforcement** — what the workload can physically reach, not only what policy says it may target | Application policy is stronger when network reachability and target-side authorisation reinforce it. A policy bug should not mean unrestricted reach | Segmentation, management-plane restrictions, explicit egress, and target-side RBAC or ACLs |
 | **Pre-flight validation** — prerequisites confirmed before any write begins | An authorised change can still be unsafe when the target is unhealthy, unexpected, unreachable, or already changed | Identity, reachability, platform and version, state and capacity, window, and drift checks — see [Pre-Flight Checks](../../production-grade-network-automation-principles/pre-flight-checks-failing-fast-before-making-changes.md) |
 | **Execution safeguards** — blast radius bounded during the run | Approved automation still contains defects, and still meets production state nobody predicted | Canaries and batches, concurrency limits, [circuit breakers](../../tutorials/expert/circuit-breakers-backpressure-network-automation.md), timeouts, idempotency, dry-run where supported, stop conditions, and a chosen rollback strategy |
 
 This is the group where security and operational safety stop being separate subjects. A circuit breaker is an operational control, and it is also what stops a defective or compromised workload from reaching its fiftieth device. The [production-grade principles](../../production-grade-network-automation-principles/index.md) cover each of these in depth. The architecture's contribution is to make them conditions of execution rather than good habits.
 
-### 7. Validate independently
+### 8. Validate the resulting state independently
 
 | Component | Why it exists | Target state |
 |---|---|---|
@@ -147,7 +156,7 @@ This is the group where security and operational safety stop being separate subj
 
 Independence is the part that is easy to drop. A deployment script that runs its own checks at the end is better than one that runs none, but it shares every assumption, every parser, and every bug with the code it is checking. The capstone pipeline keeps the two apart for exactly this reason. [Proving the Change with PyATS](../../tutorials/capstone/06-proving-the-change-with-pyats.md) is built around a deploy that succeeded and an uplink that is down.
 
-### 8. Prove what happened
+### 9. Prove what happened
 
 | Component | Why it exists | Target state |
 |---|---|---|
@@ -157,7 +166,7 @@ Independence is the part that is easy to drop. A deployment script that runs its
 
 Alert on denials. A gateway that refuses quietly is half a control: the refusal protected this run, but the attempt is information, and a pattern of attempts is an investigation. [Tool Contracts and Failure Modes](../../governed-ai-network-operations/tool-contracts-and-failure-modes.md) makes the same argument for agents.
 
-### 9. Keep trust withdrawable
+### 10. Keep trust withdrawable
 
 | Component | Why it exists | Target state |
 |---|---|---|
@@ -254,7 +263,7 @@ R3 covers a wide range of change, and the form of approval should scale within i
 
 In every case the approval is a record with a named approver and an expiry, as [NP-CHG-03](../../standards/control-catalogue.md#np-chg-change-control) requires. A standard change is an approval given in advance, not an approval skipped.
 
-**Break-glass is not a class.** Emergency, destructive, or unusually sensitive authority outside these paths goes through the break-glass route described in [group 9](#9-keep-trust-withdrawable), and every use of it is reviewed afterwards.
+**Break-glass is not a class.** Emergency, destructive, or unusually sensitive authority outside these paths goes through the break-glass route described in [group 10](#10-keep-trust-withdrawable), and every use of it is reviewed afterwards.
 
 ---
 
@@ -318,12 +327,13 @@ Most of this architecture is already required, piece by piece, by the [Automatio
 | **1. Who is asking** | NP-TOOL-04, NP-EVD-01 | A workload identity distinct from the requester's, used as a policy input |
 | **2. What will run** | NP-PLAT-02, NP-PLAT-05, NP-CHG-02 | Digest and signature verified at the execution boundary on every run, not only at build or promotion |
 | **3. Where it came from** | NP-PLAT-02, NP-PLAT-04, NP-PLAT-06 | Provenance *verified* against the expected builder and inputs, not merely recorded |
-| **4. Allowed, now** | NP-CORE-01, NP-CORE-03, NP-CORE-08, NP-CHG-03, NP-TOOL-04, NP-AI-01, NP-AI-05 | One mandatory enforcement point for every requester — human, pipeline, or agent — with bypass paths closed |
-| **5. Only the authority required** | NP-PLAT-01, NP-PLAT-03 | Credentials unavailable until after an allow decision, and expiring with the run |
-| **6. Within constraints** | NP-CORE-02, NP-CORE-05, NP-CORE-06, NP-CORE-07, NP-CORE-08, NP-CHG-04, NP-CHG-06, NP-PLAT-01 | Ephemeral runners, and target-side enforcement that holds even when policy is wrong |
-| **7. Validate independently** | NP-CHG-05 | Validation performed independently of the workload, with its own result, for read-only runs as well as changes |
-| **8. What happened** | NP-EVD-01, NP-EVD-02, NP-EVD-04, NP-EVD-05, NP-TOOL-07 | The trust decision itself in the record, held where the workload cannot alter it |
-| **9. Withdrawable** | NP-GOV-01, NP-GOV-02, NP-GOV-04, NP-GOV-07, NP-TOOL-08 | Rapid revocation of a workload, publisher, or grant at the gateway, and a designed break-glass route |
+| **4. What it may do** | NP-CORE-03, NP-CORE-04, NP-CORE-08, NP-CHG-03, NP-TOOL-04, NP-AI-01, NP-AI-05 | One mandatory enforcement point for every requester — human, pipeline, or agent — with bypass paths closed |
+| **5. Where it may do it** | NP-CORE-01, NP-CORE-06, NP-TOOL-04, NP-PLAT-01 | Network and target-side enforcement that holds even when policy is wrong |
+| **6. Only the authority required** | NP-PLAT-01, NP-PLAT-03 | Credentials unavailable until after an allow decision, and expiring with the run |
+| **7. Within defined boundaries** | NP-CORE-02, NP-CORE-05, NP-CORE-06, NP-CORE-07, NP-CORE-08, NP-CHG-04, NP-CHG-06 | Ephemeral runners with clean teardown, so no run inherits another's state or credentials |
+| **8. Validate independently** | NP-CHG-05 | Validation performed independently of the workload, with its own result, for read-only runs as well as changes |
+| **9. What happened** | NP-EVD-01, NP-EVD-02, NP-EVD-04, NP-EVD-05, NP-TOOL-07 | The trust decision itself in the record, held where the workload cannot alter it |
+| **10. Withdrawable** | NP-GOV-01, NP-GOV-02, NP-GOV-04, NP-GOV-07, NP-TOOL-08 | Rapid revocation of a workload, publisher, or grant at the gateway, and a designed break-glass route |
 
 The right-hand column is what an assessment against the catalogue alone would not catch.
 

@@ -34,7 +34,7 @@ The third list matters most in practice. A trust boundary is only as good as its
 | **Policy service unavailable** | Fail closed for privileged operations, and a designed break-glass route | The availability trade-off has to be engineered deliberately |
 | **Malicious but properly approved code** | Review, separation of duties, testing, behaviour limits, validation | Approval cannot prove the absence of malicious intent or a latent vulnerability |
 
-The last row is the honest one. Every control in this architecture verifies that what runs is what was approved. None of them can verify that what was approved was a good idea. Code review, separation of duties, and [independent validation](./architecture.md#7-validate-independently) are there for that, and even together they reduce the risk rather than remove it.
+The last row is the honest one. Every control in this architecture verifies that what runs is what was approved. None of them can verify that what was approved was a good idea. Code review, separation of duties, and [independent validation](./architecture.md#8-validate-the-resulting-state-independently) are there for that, and even together they reduce the risk rather than remove it.
 
 ---
 

@@ -11,9 +11,14 @@ tags:
 
 ## Proof of Concept v1
 
+!!! info "A design, not a download"
+    This page specifies the proof of concept: what it implements, and what it has to demonstrate before it counts as working. No code or repository is published. The architecture and this specification are the published work, and nothing here should be read as a claim that these tests already pass.
+
 The first proof of concept deliberately does not try to implement the enterprise stack. Its job is narrower and more useful: prove that the [ten invariants](./index.md#ten-invariants) hold, and make the upgrade path to the [full architecture](./architecture.md) visible.
 
-It implements the [Foundation profile](./adoption-profiles.md#profile-a-foundation), and that should be said every time it is demonstrated.
+It implements the [Foundation profile](./adoption-profiles.md#profile-a-foundation), and that should be said every time it is demonstrated. The reference implementation proves the idea. The reference architecture describes where the idea can ultimately go.
+
+The repository layout below assumes Python, because this site does. Nothing in the model depends on that. The same decision belongs in front of a PowerShell script, an Ansible playbook, or a Terraform apply.
 
 !!! warning "A hash and a YAML file are not High-Assurance"
     The PoC uses a SHA-256 digest to demonstrate integrity checking. A digest proves that a file matches an expected value. It does not prove who published the file or how it was built; that needs signing and verified provenance. The PoC demonstrates the *shape* of the decision, not the strength of the target state.
@@ -48,7 +53,7 @@ trusted-automation-execution/
 └── README.md
 ```
 
-The layout is the architecture in miniature. `runner/` is the enforcement point. `policy/` and `trust/` are the decision inputs, and they sit outside `workloads/` because nothing a workload can write should be something the runner trusts. Separate directories are where that starts; file permissions on the runner host are where it is enforced. `validation/` is separate from `workloads/` for the reason the architecture gives in [Validate independently](./architecture.md#7-validate-independently): the code that makes a change does not grade it.
+The layout is the architecture in miniature. `runner/` is the enforcement point. `policy/` and `trust/` are the decision inputs, and they sit outside `workloads/` because nothing a workload can write should be something the runner trusts. Separate directories are where that starts; file permissions on the runner host are where it is enforced. `validation/` is separate from `workloads/` for the reason the architecture gives in [Validate the resulting state independently](./architecture.md#8-validate-the-resulting-state-independently): the code that makes a change does not grade it.
 
 ---
 
@@ -152,7 +157,7 @@ Each of these is a named step in the [adoption roadmap](./adoption-profiles.md#a
 
 ## When It Has Succeeded
 
-The PoC succeeds when it demonstrates, under automated test and at Foundation-profile strength, the first nine of the [ten things that must be true](./architecture.md#ten-things-that-must-be-true). The tenth — that the architecture can be implemented at lower maturity without redefining its principles — is what the PoC exists to show.
+The PoC will have succeeded when it demonstrates, under automated test and at Foundation-profile strength, the first nine of the [ten things that must be true](./architecture.md#ten-things-that-must-be-true). The tenth — that the architecture can be implemented at lower maturity without redefining its principles — is what the PoC exists to show.
 
 ---
 

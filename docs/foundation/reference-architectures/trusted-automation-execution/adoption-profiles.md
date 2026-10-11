@@ -15,6 +15,8 @@ The [full reference architecture](./architecture.md) is the destination. Very fe
 
 The profiles below keep the same trust model and the same [ten invariants](./index.md#ten-invariants), and vary how strongly each is enforced. They are graded by **risk, maturity, and the systems you already have**. "Small company" is deliberately not a profile: a small organisation running critical infrastructure may belong in High-Assurance.
 
+Progressive adoption is not foreign to Zero Trust. CISA's [Zero Trust Maturity Model](https://www.cisa.gov/resources-tools/resources/zero-trust-maturity-model) describes maturity in stages — Traditional, Initial, Advanced, Optimal — rather than as a condition you either meet or do not. The profiles take the same view of privileged automation. They are not a mapping onto CISA's stages, and a Foundation implementation is not a claim of any particular CISA maturity level.
+
 !!! warning "Profiles are not interchangeable"
     Every profile here implements the model. They do not implement it equally. A Foundation implementation is a real control and a real improvement on implicit trust, but presenting it as equivalent to High-Assurance is exactly the kind of claim this architecture exists to prevent.
 

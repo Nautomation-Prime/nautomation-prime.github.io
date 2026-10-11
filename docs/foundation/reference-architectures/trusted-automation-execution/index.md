@@ -11,14 +11,19 @@ tags:
 
 ## Trusted Automation Execution
 
+!!! quote "The core proposition"
+    **Credentials enable access. They should not, by themselves, establish trust in the automation exercising that access.**
+
 Most privileged automation is trusted for one reason: it has the credentials.
 
 The script lives on the automation server. The server holds a service account. The service account can reach every device in the estate. Whatever runs there runs with that authority, whether it is the version that was reviewed last month, a copy someone edited at 2am, or something that was never reviewed at all.
 
-!!! quote "The central question"
+Protecting passwords, keys, and tokens is essential, and the [secrets and credentials](../../production-grade-network-automation-principles/secrets-and-credentials-in-enterprise-automation.md) principle covers it. But it answers only one question: *can this workload authenticate?* There is another question, and it should be asked first.
+
+!!! question "The central question"
     **Your automation has valid credentials. But should you trust the automation itself?**
 
-Protecting passwords, keys, and tokens is essential, and the [secrets and credentials](../../production-grade-network-automation-principles/secrets-and-credentials-in-enterprise-automation.md) principle covers it. But it answers only one question: *can this workload authenticate?* This architecture asks a different one:
+Answering it means being able to say:
 
 > Why should **this** automation artefact, requested by **this** identity, in **this** context, be permitted to exercise **this** capability against **these** resources — **now**?
 
@@ -47,7 +52,45 @@ If holding the credential is the practical gate to execution, **authentication a
 - the target is one it was approved to touch
 - this is a time it was approved to act
 
-Trusted Automation Execution replaces that implicit assumption with **explicit trust decisions, made before privilege is exercised**, by something other than the workload being constrained.
+Trusted Automation Execution replaces that implicit assumption with **explicit trust decisions, made before privilege is exercised**, by something other than the workload being constrained. The same path, with the trust decision in front of it:
+
+```mermaid
+graph TD
+    R[Execution request] --> Q1[Who requested it?]
+    Q1 --> Q2[What will execute?]
+    Q2 --> Q3[Can we trust the artefact?]
+    Q3 --> Q4[Is this operation authorised?]
+    Q4 --> Q5[Is the target in scope?]
+    Q5 --> G[Grant only the required authority]
+    G --> X[Execute]
+    X --> V[Validate the outcome]
+    V --> E[Preserve evidence]
+
+    style Q1 fill:#c8e6c9
+    style Q2 fill:#c8e6c9
+    style Q3 fill:#c8e6c9
+    style Q4 fill:#c8e6c9
+    style Q5 fill:#c8e6c9
+    style G fill:#ffe0e0
+    style X fill:#fff4e6
+    style V fill:#e1f5ff
+    style E fill:#eeeeee
+```
+
+The difference looks small and changes the security model considerably. The credential is no longer the thing that establishes trust. It becomes something the workload is permitted to obtain, or use, **after** trust and authorisation have been established.
+
+---
+
+## Not a Python Problem, and Not Only a Network One
+
+This architecture started with Python-based network automation, and most of the examples on these pages are network examples, because that is what this site is about. But the further the problem is followed, the less the language matters.
+
+The same questions apply to PowerShell, Ansible, Terraform, and Bash; to CI/CD pipelines, cloud automation, containers, and scheduled jobs; to infrastructure agents; and to AI-triggered operations. Any of them can hold authority over a large part of an estate. Any of them can be modified, replaced, or pointed at something it was never meant to touch, while its credential stays perfectly valid.
+
+!!! tip "Where the boundary is"
+    **The language is not the security boundary. The privileged execution is.**
+
+Trusted Automation Execution is therefore not "security for Python". It is a security model for privileged automation, whatever it happens to be written in.
 
 ---
 
@@ -85,20 +128,23 @@ The one that does most of the work is **enforcement is external**. Every other i
 
 ---
 
-## The Model in Eight Sentences
+## The Model in Nine Sentences
 
 The whole architecture reduces to an ordered sequence. The [reference architecture](./architecture.md) page is organised around it, one section per sentence.
 
 1. **Prove who is asking.**
 2. **Prove what will run.**
-3. **Prove where it came from.**
-4. **Decide whether this operation is allowed against these resources, now.**
-5. **Grant only the authority required.**
-6. **Execute within constraints.**
-7. **Validate independently.**
-8. **Prove what happened.**
+3. **Establish where it came from.**
+4. **Decide what it may do.**
+5. **Constrain where it may do it.**
+6. **Grant only the authority required.**
+7. **Execute within defined boundaries.**
+8. **Validate the resulting state independently.**
+9. **Prove what happened.**
 
-The order is the point. Steps 1 to 4 complete before any privilege exists. Step 5 creates it. Steps 6 to 8 constrain it, check it, and record it. Most automation today starts at step 5, because the credential is already there, and treats the rest as optional.
+The order is the point. Steps 1 to 5 complete before any privilege exists. Step 6 creates it. Steps 7 to 9 constrain it, check it, and record it. Most automation today starts at step 6, because the credential is already there, and treats the rest as optional.
+
+Steps 4 and 5 are separate on purpose. *What* a workload may do and *where* it may do it are different questions, and a design that answers only one of them has a gap. A verified compliance workload is still not permitted to reload a device. An approved change workload is still not permitted to touch every device it can reach.
 
 <div class="np-reflection" markdown>
 <p class="np-reflection-label">Between the Lines</p>
@@ -133,7 +179,7 @@ Organisation size is deliberately not the axis. A small organisation operating c
 1. [The Full Reference Architecture](./architecture.md) — The target state, component by component, with the reason for each
 2. [Threat and Failure Model](./threat-and-failure-model.md) — What it defends against, how it behaves when its own parts fail, and what it explicitly does not claim
 3. [Adoption Profiles](./adoption-profiles.md) — Four profiles from Foundation to High-Assurance, the control progression between them, and a phased roadmap
-4. [Proof of Concept v1](./proof-of-concept.md) — Small enough to build, complete enough to prove the idea, and honest about the difference
+4. [Proof of Concept v1](./proof-of-concept.md) — Small enough to build, complete enough to prove the idea, and honest about the difference. A specification; no code is published
 
 ---
 
