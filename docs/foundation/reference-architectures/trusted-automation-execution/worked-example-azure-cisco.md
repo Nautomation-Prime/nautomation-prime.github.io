@@ -117,9 +117,13 @@ One operational detail: Entra ID has to be able to fetch the SPIRE issuer's disc
 | Component | In this stack |
 |---|---|
 | **Artefact identity** | Every workload release is an OCI image in Azure Container Registry, always referenced by digest and never by tag. The workload manifest — name, version, risk class, capabilities, platforms — is part of the image and covered by its signature. Released images are locked in ACR so they cannot be overwritten or deleted |
-| **Artefact signing** | cosign signs each image using a key held in Azure Key Vault, so the private key is never exported. Signing happens in a dedicated, protected pipeline stage, whose service connection the build stage cannot use. Verification happens twice: the gateway verifies the signature before it decides, and Podman on the runner verifies it again, through its signature policy, before it will start the container |
+| **Artefact signing** | cosign signs each image using a key held in Azure Key Vault, so the private key is never exported. Signing happens in a dedicated, protected pipeline stage, whose service connection the build stage cannot use. Verification happens twice: the gateway verifies the signature before it decides, and the runner verifies it again before it will start the container |
 
-Verifying in two places is deliberate. The gateway's check is the decision. Podman's check means that a bug in the gateway, or someone running a container directly on the runner, still cannot start an unsigned workload. If you standardise on Notation instead of cosign, keep the gateway check and put the second check in your own launch wrapper, because Podman's built-in policy verifies sigstore-format signatures, not Notation ones.
+Verifying in two places is deliberate. The gateway's check is the decision. The runner's check means that a bug in the gateway, or someone starting a container directly on the runner, still cannot run an unsigned workload.
+
+Where that second check lives needs care, because the formats are moving. Podman can enforce signatures itself, through a `sigstoreSigned` entry in its signature policy, but only for cosign's legacy signature format. Since cosign 3, the default is the newer Sigstore bundle format, attached through OCI referrers. As of October 2026, Podman cannot discover signatures in that format. Cosign can still write the legacy format, but the flag that does it is deprecated and due for removal in cosign 4.
+
+The durable choice is to make the second check a `cosign verify` against the image digest in the runner's own launch step, before Podman is ever called. The same approach works if you standardise on Notation instead, which Podman's policy does not verify either. Move the check into Podman's policy once Podman reads the format you sign with.
 
 ### 3. Establish where it came from
 
@@ -161,7 +165,14 @@ Two details in this group are easy to get wrong.
 | **Just-in-time, scoped privilege** | At stage 7, the gateway generates a fresh random password for the workload's ISE identity, sets it through the ISE API, enables the identity, and writes the password to Key Vault as a new secret version with an expiry. At stage 12 it disables the identity and rotates the password again. Between runs, no working device credential exists for that workload. Entra tokens for Azure resources are short-lived by design |
 | **Secrets handling** | Key Vault access is granted per secret: each workload's Entra identity can read its own device credential, and its own read-only NetBox and Catalyst Center API tokens, and nothing else. Key Vault is reachable only through a private endpoint, and every secret read is logged to Log Analytics. No secret lives in pipeline variables, images, or runner configuration |
 
-This group holds the limit of the whole design. **Network devices cannot accept short-lived tokens.** TACACS+ authenticates a username and a password, so the best available pattern is a password that only works during the run: rotated per run, narrowed by command sets, and bound to device groups. Allow for ISE to replicate the change to its policy service nodes before the workload connects. If the ISE update fails, the run fails safe and does not start. It never falls back to a standing credential.
+This group holds the limit of the whole design. **Network devices cannot accept short-lived tokens.** TACACS+ authenticates a username and a password, so the best available pattern is a password that only works during the run: rotated per run, narrowed by command sets, and bound to device groups.
+
+In ISE that rotation is an ordinary update to the internal user, through the ERS API. That means a PUT, or a PATCH from ISE 3.2, carrying the new password and the enabled flag. Writes go to the primary administration node, which replicates them to the policy service nodes that answer TACACS+, so allow for replication before the workload connects. Rotating the password in the same update that disables the account also avoids ISE's password history rejecting a re-sent old password.
+
+Two failure cases need a deliberate answer:
+
+- **The ISE update fails.** The run fails safe and does not start. It never falls back to a standing credential.
+- **Stage 12 never happens,** because the gateway dies mid-run. A scheduled sweep disables any automation identity that is enabled without an active run, so the credential cannot outlive the gateway for long.
 
 ### 7. Execute within defined boundaries
 
@@ -169,9 +180,11 @@ This group holds the limit of the whole design. **Network devices cannot accept 
 |---|---|
 | **Isolated, ephemeral runner** | Azure Arc-enabled RHEL hosts with SELinux enforcing. Azure Policy machine configuration enforces and reports the hardened baseline, Defender for Servers provides endpoint detection, and Azure Update Manager handles patching. Each run is a fresh rootless Podman container, started from the verified digest, with a read-only root filesystem, every capability dropped, no host mounts, and removal when the run ends. Hosts are rebuilt from a golden image on a short cycle rather than patched indefinitely |
 | **Pre-flight validation** | Three-source identity: the NetBox record, Catalyst Center's inventory, and the live device must agree. Then platform and software version, the running image against expected values, health, drift from the last approved configuration, and — read again from ServiceNow — an approval that is still valid and a window that is still open |
-| **Execution safeguards** | Canary first, then batches sized by risk class, with concurrency limits, per-device timeouts, and a circuit breaker on failure rate. Changes use the device's own confirmed-commit mechanism: `commit confirmed` on IOS XR, and on IOS XE either a configuration revert timer or a NETCONF confirmed commit against the candidate datastore. The change is confirmed only after independent validation passes |
+| **Execution safeguards** | Canary first, then batches sized by risk class, with concurrency limits, per-device timeouts, and a circuit breaker on failure rate. Changes use the device's own confirmed-commit mechanism. On IOS XR that is `commit confirmed`. On IOS XE it is either the Configuration Rollback Confirmed Change feature — a timed change that reverts unless `configure confirm` arrives in time, and which needs a configuration archive — or a NETCONF confirmed commit against the candidate datastore. RESTCONF has no confirmed commit, so changes that must be able to revert themselves go over NETCONF or the CLI. The change is confirmed only after independent validation passes |
 
 The confirmed commit is the safeguard that survives the automation failing. If the runner, the gateway, or the network between them disappears mid-change, the device reverts on its own when the timer runs out. Every other safeguard on this page depends on something staying up. This one does not.
+
+It still has to be tested, because the revert is only as good as the platform's implementation of it. Cisco's own IOS XE guides note cases where a revert can miss part of a configuration. Exercise a deliberate timeout on each platform and software release you automate, and treat a revert that does not restore the original state as a reason to keep that platform at a lower risk class until it does.
 
 ### 8. Validate the resulting state independently
 
