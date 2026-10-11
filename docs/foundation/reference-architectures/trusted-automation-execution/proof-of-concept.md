@@ -165,6 +165,6 @@ The PoC will have succeeded when it demonstrates, under automated test and at Fo
 
 ## Continue
 
-- Previous: [Adoption Profiles](./adoption-profiles.md)
+- Previous: [Worked Example: Azure and Cisco](./worked-example-azure-cisco.md)
 - Section index: [Trusted Automation Execution](./index.md)
 - Related: [Capstone: Build a Config Deployment Pipeline](../../tutorials/capstone/index.md) — a working pipeline that already implements several of these gates

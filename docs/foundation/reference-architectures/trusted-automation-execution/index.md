@@ -181,7 +181,8 @@ Organisation size is deliberately not the axis. A small organisation operating c
 1. [The Full Reference Architecture](./architecture.md) — The target state, component by component, with the reason for each
 2. [Threat and Failure Model](./threat-and-failure-model.md) — What it defends against, how it behaves when its own parts fail, and what it explicitly does not claim
 3. [Adoption Profiles](./adoption-profiles.md) — Four profiles from Foundation to High-Assurance, the control progression between them, and a phased roadmap
-4. [Proof of Concept v1](./proof-of-concept.md) — Small enough to build, complete enough to prove the idea, and honest about the difference. A specification; no code is published
+4. [Worked Example: Azure and Cisco](./worked-example-azure-cisco.md) — Full adoption on one illustrative stack, with alternatives for every component and the gaps no product closes
+5. [Proof of Concept v1](./proof-of-concept.md) — Small enough to build, complete enough to prove the idea, and honest about the difference. A specification; no code is published
 
 ---
 

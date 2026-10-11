@@ -217,6 +217,7 @@ nav:
         - The Full Reference Architecture: foundation/reference-architectures/trusted-automation-execution/architecture.md
         - Threat and Failure Model: foundation/reference-architectures/trusted-automation-execution/threat-and-failure-model.md
         - Adoption Profiles: foundation/reference-architectures/trusted-automation-execution/adoption-profiles.md
+        - "Worked Example: Azure and Cisco": foundation/reference-architectures/trusted-automation-execution/worked-example-azure-cisco.md
         - Proof of Concept v1: foundation/reference-architectures/trusted-automation-execution/proof-of-concept.md
     - Deep Dives:
       - foundation/deep-dives/index.md

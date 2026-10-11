@@ -18,7 +18,7 @@ This is the strongest version of the model: the target state when every supporti
 Starting there is deliberate. Defining the destination first is what lets you make the reductions honestly. A team that starts from what it already has tends to draw an architecture around it, and then cannot tell which of its gaps are acceptable and which one is the next incident. The [adoption profiles](./adoption-profiles.md) are those reductions, made on purpose.
 
 !!! tip "Responsibilities, not products"
-    As with the [Governed Automation Reference Architecture](../../standards/reference-architecture.md), every component below is named for what it must establish. A policy engine, a vault, a pipeline, or a runner you already own may fill several of them. A component nobody owns is the finding.
+    As with the [Governed Automation Reference Architecture](../../standards/reference-architecture.md), every component below is named for what it must establish. A policy engine, a vault, a pipeline, or a runner you already own may fill several of them. A component nobody owns is the finding. The [worked example](./worked-example-azure-cisco.md) shows one complete mapping onto real products.
 
 ---
 

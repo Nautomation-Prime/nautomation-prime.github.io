@@ -137,5 +137,5 @@ Phase 5 has no end. The [Automation Service Lifecycle](../../production-grade-ne
 ## Continue
 
 - Previous: [Threat and Failure Model](./threat-and-failure-model.md)
-- Next: [Proof of Concept v1](./proof-of-concept.md)
+- Next: [Worked Example: Azure and Cisco](./worked-example-azure-cisco.md) — what full adoption looks like on one real stack
 - Section index: [Trusted Automation Execution](./index.md)
