@@ -5,7 +5,7 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width,initial-scale=1" name="viewport"/>
-<meta content="Trusted Automation Execution at full adoption on one illustrative stack — Microsoft Entra ID, Azure DevOps, Key Vault, Azure Arc-enabled RHEL, NetBox, Catalyst Center, Cisco ISE, and IOS XE and IOS XR — component by component, with alternatives and the gaps no product closes." name="description"/>
+<meta content="Trusted Automation Execution at full adoption on one illustrative stack — Microsoft Entra ID, Azure DevOps, Key Vault, Azure Arc-enabled RHEL, NetBox, Catalyst Center, Cisco ISE, and IOS XE and IOS XR — component by component, with alternatives, a Kubernetes variant, and the gaps no product closes." name="description"/>
 <meta content="Christopher Davies" name="author"/>
 <link href="https://www.nautomationprime.io/foundation/reference-architectures/trusted-automation-execution/worked-example-azure-cisco/" rel="canonical"/>
 <link href="../adoption-profiles/" rel="prev"/>
@@ -24,7 +24,7 @@
 <meta content="Nautomation Prime" property="og:site_name"/>
 <meta content="en_GB" property="og:locale"/>
 <meta content="Worked Example: Azure and Cisco" property="og:title"/>
-<meta content="Trusted Automation Execution at full adoption on one illustrative stack — Microsoft Entra ID, Azure DevOps, Key Vault, Azure Arc-enabled RHEL, NetBox, Catalyst Center, Cisco ISE, and IOS XE and IOS XR — component by component, with alternatives and the gaps no product closes." property="og:description"/>
+<meta content="Trusted Automation Execution at full adoption on one illustrative stack — Microsoft Entra ID, Azure DevOps, Key Vault, Azure Arc-enabled RHEL, NetBox, Catalyst Center, Cisco ISE, and IOS XE and IOS XR — component by component, with alternatives, a Kubernetes variant, and the gaps no product closes." property="og:description"/>
 <meta content="https://www.nautomationprime.io/foundation/reference-architectures/trusted-automation-execution/worked-example-azure-cisco/" property="og:url"/>
 <meta content="https://www.nautomationprime.io/assets/social/trusted-automation-execution.png" property="og:image"/>
 <meta content="1200" property="og:image:width"/>
@@ -32,7 +32,7 @@
 <meta content="Trusted Automation Execution: a reference architecture from the Nautomation Prime Foundation" property="og:image:alt"/>
 <meta content="summary_large_image" name="twitter:card"/>
 <meta content="Worked Example: Azure and Cisco" name="twitter:title"/>
-<meta content="Trusted Automation Execution at full adoption on one illustrative stack — Microsoft Entra ID, Azure DevOps, Key Vault, Azure Arc-enabled RHEL, NetBox, Catalyst Center, Cisco ISE, and IOS XE and IOS XR — component by component, with alternatives and the gaps no product closes." name="twitter:description"/>
+<meta content="Trusted Automation Execution at full adoption on one illustrative stack — Microsoft Entra ID, Azure DevOps, Key Vault, Azure Arc-enabled RHEL, NetBox, Catalyst Center, Cisco ISE, and IOS XE and IOS XR — component by component, with alternatives, a Kubernetes variant, and the gaps no product closes." name="twitter:description"/>
 <meta content="https://www.nautomationprime.io/assets/social/trusted-automation-execution.png" name="twitter:image"/>
 <meta content="Trusted Automation Execution: a reference architecture from the Nautomation Prime Foundation" name="twitter:image:alt"/>
 </head>
@@ -1617,6 +1617,15 @@
 </a>
 </li>
 <li class="md-nav__item">
+<a class="md-nav__link" href="#variant-kubernetes-as-the-runner">
+<span class="md-ellipsis">
+      
+        Variant: Kubernetes as the Runner
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
 <a class="md-nav__link" href="#what-this-reaches-and-what-it-does-not">
 <span class="md-ellipsis">
       
@@ -2424,6 +2433,15 @@
 </a>
 </li>
 <li class="md-nav__item">
+<a class="md-nav__link" href="#variant-kubernetes-as-the-runner">
+<span class="md-ellipsis">
+      
+        Variant: Kubernetes as the Runner
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
 <a class="md-nav__link" href="#what-this-reaches-and-what-it-does-not">
 <span class="md-ellipsis">
       
@@ -2488,7 +2506,7 @@
 <tr>
 <td><strong>Workload identity</strong></td>
 <td>SPIFFE identities issued by SPIRE on each runner, federated into Entra ID; workload identity federation for Azure Pipelines</td>
-<td>Entra managed identities, where one identity per host is acceptable</td>
+<td>Kubernetes service accounts through Microsoft Entra Workload ID (see the <a href="#variant-kubernetes-as-the-runner">Kubernetes variant</a>); Entra managed identities, where one identity per host is acceptable</td>
 </tr>
 <tr>
 <td><strong>Source and review</strong></td>
@@ -2548,7 +2566,7 @@
 <tr>
 <td><strong>Runner</strong></td>
 <td>Azure Arc-enabled RHEL, running each job in a fresh rootless Podman container</td>
-<td>Any hardened Linux host</td>
+<td>Kubernetes: AKS, or an Arc-enabled cluster on-premises such as Red Hat OpenShift (see the <a href="#variant-kubernetes-as-the-runner">Kubernetes variant</a>); any hardened Linux host</td>
 </tr>
 <tr>
 <td><strong>Runner posture</strong></td>
@@ -2940,6 +2958,57 @@
 </tbody>
 </table>
 <hr/>
+<h2 id="variant-kubernetes-as-the-runner">Variant: Kubernetes as the Runner<a class="headerlink" href="#variant-kubernetes-as-the-runner" title="Anchor link to this section">¶</a></h2>
+<p>If you already run a hardened Kubernetes platform, it can replace the Arc-enabled RHEL hosts as the runner. That could be AKS, or an Arc-enabled cluster on-premises, closer to the devices; Red Hat OpenShift is among the supported distributions. Everything else on this page stays the same: the gateway still decides, ISE still enforces, and Key Vault still holds the per-run credential.</p>
+<p>What changes:</p>
+<table>
+<thead>
+<tr>
+<th>Group</th>
+<th>With Kubernetes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>1. Workload identity</strong></td>
+<td>Each workload gets its own namespace and service account. Microsoft Entra Workload ID federates the cluster's service-account tokens into Entra ID, with one federated credential per workload, scoped to <code>system:serviceaccount:&lt;namespace&gt;:&lt;name&gt;</code>. This is native on AKS, and generally available for Arc-enabled clusters. SPIRE stops being necessary, although it still works if you want identities that do not depend on the platform</td>
+</tr>
+<tr>
+<td><strong>2. The runner's signature check</strong></td>
+<td>The second check moves to admission control: a policy that refuses any pod whose image is not signed by your key, before it is scheduled. Kyverno documents support for both cosign's legacy signatures and the Sigstore bundle format, but test it against images signed exactly the way you sign them. The <a href="#2-prove-what-will-run">Podman format caveat</a> also applies to CRI-O, which uses the same signature libraries, so on OpenShift do not rely on the node's own signature policy alone</td>
+</tr>
+<tr>
+<td><strong>5. Where it may reach</strong></td>
+<td>Network policies replace firewalld: default-deny egress per namespace, opened only to that workload's target management ranges and the private endpoints it needs. They need a network plugin that enforces them</td>
+</tr>
+<tr>
+<td><strong>6. Secrets</strong></td>
+<td>Unchanged in principle: the workload reads its own per-run credential from Key Vault with its Entra token. Do not sync device credentials into Kubernetes Secrets, where they would sit in the cluster's datastore long after the run</td>
+</tr>
+<tr>
+<td><strong>7. Execution</strong></td>
+<td>Each run is a Kubernetes Job: a pod started from the verified digest under the restricted Pod Security profile — non-root, read-only root filesystem, all capabilities dropped — with a deadline, and removed automatically once it finishes. Short-lived by design, rather than by rebuilding hosts</td>
+</tr>
+<tr>
+<td><strong>9. Evidence</strong></td>
+<td>The cluster's audit log joins the evidence chain, so Sentinel can see every Job created and by whom. AKS sends it to Log Analytics through diagnostic settings; forward an on-premises cluster's audit log the same way. Defender for Containers covers runtime threat detection on both</td>
+</tr>
+<tr>
+<td><strong>10. Revocation</strong></td>
+<td>Delete the workload's federated credential, or its service account, and no pod can obtain its identity again</td>
+</tr>
+</tbody>
+</table>
+<p><strong>The trust boundary moves, and this is the part to get right.</strong> In Kubernetes, anyone who can create a pod in a namespace can run it under any service account in that namespace. As far as Entra ID is concerned, they have become that workload. So:</p>
+<ul>
+<li>Only the gateway's own identity may create Jobs or pods in the automation namespaces. Nobody else may, including cluster administrators in their everyday role.</li>
+<li><code>exec</code> into automation pods is denied. A shell inside a running workload is a shell holding its credential.</li>
+<li>Changes to the automation namespaces, their role bindings, and the admission policies go through the same review and approval as changes to the gateway itself.</li>
+<li>Cluster administration becomes a privileged role in its own right: PIM-gated, logged, and reviewed.</li>
+</ul>
+<p><strong>Where the cluster runs matters.</strong> AKS runs in Azure, so it needs private connectivity to your on-premises device management networks, and the egress rules above have to hold on that path as well. An Arc-enabled cluster on-premises sits next to the devices and keeps that path short, while Arc still brings it under the same Entra federation, Azure Policy, and Defender coverage.</p>
+<p><strong>Is it worth it?</strong> Kubernetes provides per-workload identity and per-run isolation more cheaply than the RHEL design does, but it adds a large platform to the trusted base. If you already operate a hardened cluster, it is a strong runner. If you do not, building one just for this adds more trusted surface than it removes.</p>
+<hr/>
 <h2 id="what-this-reaches-and-what-it-does-not">What This Reaches, and What It Does Not<a class="headerlink" href="#what-this-reaches-and-what-it-does-not" title="Anchor link to this section">¶</a></h2>
 <p>With everything above in place, this stack implements the <strong>Enterprise</strong> profile in full, and most of <strong>High-Assurance</strong>. Five things stand between it and the rest, and a design review should hear about them from you before it finds them itself:</p>
 <ol>
@@ -2962,7 +3031,7 @@
 <span class="md-icon" title="Last update">
 <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"></path></svg>
 </span>
-<span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="October 11, 2026 11:12:41 UTC">October 11, 2026</span>
+<span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="October 11, 2026 11:17:59 UTC">October 11, 2026</span>
 </span>
 </aside>
 </article>
