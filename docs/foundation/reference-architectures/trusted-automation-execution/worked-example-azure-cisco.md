@@ -1,6 +1,6 @@
 ---
 title: "Worked Example: Azure and Cisco"
-description: Trusted Automation Execution at full adoption on one illustrative stack — Microsoft Entra ID, Azure DevOps, Key Vault, Azure Arc-enabled RHEL, NetBox, Catalyst Center, Cisco ISE, and IOS XE and IOS XR — component by component, with alternatives and the gaps no product closes.
+description: Trusted Automation Execution at full adoption on one illustrative stack — Microsoft Entra ID, Azure DevOps, Key Vault, Azure Arc-enabled RHEL, NetBox, Catalyst Center, Cisco ISE, and IOS XE and IOS XR — component by component, with alternatives, a Kubernetes variant, and the gaps no product closes.
 image: assets/social/trusted-automation-execution.png
 image_alt: "Trusted Automation Execution: a reference architecture from the Nautomation Prime Foundation"
 tags:
@@ -33,7 +33,7 @@ Two things are worth looking for as you read. The first is how much of the archi
 | Responsibility | In this example | Alternatives |
 |---|---|---|
 | **Human identity** | Microsoft Entra ID, with Conditional Access and Privileged Identity Management (PIM) | Okta, Ping Identity |
-| **Workload identity** | SPIFFE identities issued by SPIRE on each runner, federated into Entra ID; workload identity federation for Azure Pipelines | Entra managed identities, where one identity per host is acceptable |
+| **Workload identity** | SPIFFE identities issued by SPIRE on each runner, federated into Entra ID; workload identity federation for Azure Pipelines | Kubernetes service accounts through Microsoft Entra Workload ID (see the [Kubernetes variant](#variant-kubernetes-as-the-runner)); Entra managed identities, where one identity per host is acceptable |
 | **Source and review** | Azure Repos with branch policies | GitHub, GitLab |
 | **Build and scanning** | Azure Pipelines on ephemeral agents, with GitHub Advanced Security for Azure DevOps | GitHub Actions, GitLab CI |
 | **Artefact store** | Azure Container Registry (ACR) | Harbor, JFrog Artifactory |
@@ -45,7 +45,7 @@ Two things are worth looking for as you read. The first is how much of the archi
 | **Controller context** | Cisco Catalyst Center | Your controller or management platform |
 | **Secrets** | Azure Key Vault | HashiCorp Vault, CyberArk |
 | **Device authority** | Cisco Identity Services Engine (ISE), TACACS+ device administration | Aruba ClearPass, tac_plus-ng |
-| **Runner** | Azure Arc-enabled RHEL, running each job in a fresh rootless Podman container | Any hardened Linux host |
+| **Runner** | Azure Arc-enabled RHEL, running each job in a fresh rootless Podman container | Kubernetes: AKS, or an Arc-enabled cluster on-premises such as Red Hat OpenShift (see the [Kubernetes variant](#variant-kubernetes-as-the-runner)); any hardened Linux host |
 | **Runner posture** | Azure Policy machine configuration, Microsoft Defender for Servers | Your configuration management and EDR |
 | **Validation** | pyATS and Genie; Catalyst Center Assurance | Batfish, for pre-change modelling |
 | **Evidence** | Azure Blob Storage with locked immutability policies; Log Analytics | Any WORM-capable object store |
@@ -247,6 +247,35 @@ An R3 change to a batch of IOS XE access switches, requested by an engineer, thr
 | **12. Close authority** | The gateway disables and rotates the ISE identity. The container is removed |
 | **13. Preserve evidence** | The full record goes to immutable Blob Storage and Log Analytics, and the run ID to the ServiceNow change |
 | **14. Observe and respond** | Sentinel correlates the gateway record, Key Vault reads, and ISE accounting for the run, and stays quiet only if all three agree |
+
+---
+
+## Variant: Kubernetes as the Runner
+
+If you already run a hardened Kubernetes platform, it can replace the Arc-enabled RHEL hosts as the runner. That could be AKS, or an Arc-enabled cluster on-premises, closer to the devices; Red Hat OpenShift is among the supported distributions. Everything else on this page stays the same: the gateway still decides, ISE still enforces, and Key Vault still holds the per-run credential.
+
+What changes:
+
+| Group | With Kubernetes |
+|---|---|
+| **1. Workload identity** | Each workload gets its own namespace and service account. Microsoft Entra Workload ID federates the cluster's service-account tokens into Entra ID, with one federated credential per workload, scoped to `system:serviceaccount:<namespace>:<name>`. This is native on AKS, and generally available for Arc-enabled clusters. SPIRE stops being necessary, although it still works if you want identities that do not depend on the platform |
+| **2. The runner's signature check** | The second check moves to admission control: a policy that refuses any pod whose image is not signed by your key, before it is scheduled. Kyverno documents support for both cosign's legacy signatures and the Sigstore bundle format, but test it against images signed exactly the way you sign them. The [Podman format caveat](#2-prove-what-will-run) also applies to CRI-O, which uses the same signature libraries, so on OpenShift do not rely on the node's own signature policy alone |
+| **5. Where it may reach** | Network policies replace firewalld: default-deny egress per namespace, opened only to that workload's target management ranges and the private endpoints it needs. They need a network plugin that enforces them |
+| **6. Secrets** | Unchanged in principle: the workload reads its own per-run credential from Key Vault with its Entra token. Do not sync device credentials into Kubernetes Secrets, where they would sit in the cluster's datastore long after the run |
+| **7. Execution** | Each run is a Kubernetes Job: a pod started from the verified digest under the restricted Pod Security profile — non-root, read-only root filesystem, all capabilities dropped — with a deadline, and removed automatically once it finishes. Short-lived by design, rather than by rebuilding hosts |
+| **9. Evidence** | The cluster's audit log joins the evidence chain, so Sentinel can see every Job created and by whom. AKS sends it to Log Analytics through diagnostic settings; forward an on-premises cluster's audit log the same way. Defender for Containers covers runtime threat detection on both |
+| **10. Revocation** | Delete the workload's federated credential, or its service account, and no pod can obtain its identity again |
+
+**The trust boundary moves, and this is the part to get right.** In Kubernetes, anyone who can create a pod in a namespace can run it under any service account in that namespace. As far as Entra ID is concerned, they have become that workload. So:
+
+- Only the gateway's own identity may create Jobs or pods in the automation namespaces. Nobody else may, including cluster administrators in their everyday role.
+- `exec` into automation pods is denied. A shell inside a running workload is a shell holding its credential.
+- Changes to the automation namespaces, their role bindings, and the admission policies go through the same review and approval as changes to the gateway itself.
+- Cluster administration becomes a privileged role in its own right: PIM-gated, logged, and reviewed.
+
+**Where the cluster runs matters.** AKS runs in Azure, so it needs private connectivity to your on-premises device management networks, and the egress rules above have to hold on that path as well. An Arc-enabled cluster on-premises sits next to the devices and keeps that path short, while Arc still brings it under the same Entra federation, Azure Policy, and Defender coverage.
+
+**Is it worth it?** Kubernetes provides per-workload identity and per-run isolation more cheaply than the RHEL design does, but it adds a large platform to the trusted base. If you already operate a hardened cluster, it is a strong runner. If you do not, building one just for this adds more trusted surface than it removes.
 
 ---
 
