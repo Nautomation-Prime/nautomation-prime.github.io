@@ -40,11 +40,20 @@ See the [Licensing page](licensing.md) for full details.
 
 ## 3. No Affiliation With Third Parties (Including Cisco)
 
-This website and its content are **not affiliated, endorsed, associated, or sponsored by Cisco Systems, Inc.**
+This website and its content are **not affiliated, endorsed, associated, or sponsored by Cisco Systems, Inc.**, or by any other vendor, product, or open-source project named on this site.
 
-All references to Cisco devices, commands, and terminology exist solely for interoperability, documentation, and educational purposes.
+All references to Cisco devices, commands, and terminology, and to other vendors' products, services, and open-source projects, exist solely for interoperability, documentation, and educational purposes. Naming a product identifies it. It does not imply any partnership, endorsement, or sponsorship.
 
-Cisco®, IOS®, IOS‑XE®, NX‑OS®, and other Cisco terms are trademarks of Cisco Systems, Inc.
+### Trademarks
+
+- Cisco, Cisco IOS, IOS XE, IOS XR, NX‑OS, Catalyst, Catalyst Center, Cisco Identity Services Engine (ISE), Meraki, Nexus, and pyATS are trademarks or registered trademarks of Cisco and/or its affiliates in the United States and other countries.
+- Microsoft, Azure, Microsoft Entra, Windows, Excel, PowerShell, Microsoft Teams, GitHub, and LinkedIn are trademarks of the Microsoft group of companies.
+- Red Hat, Red Hat Enterprise Linux, and Ansible are trademarks or registered trademarks of Red Hat, Inc. or its subsidiaries in the United States and other countries.
+- Python is a registered trademark of the Python Software Foundation.
+- Linux® is the registered trademark of Linus Torvalds in the United States and other countries.
+- All other product names, logos, and brands mentioned on this site are the property of their respective owners. These include, among others, those of Amazon Web Services, HashiCorp, ServiceNow, Atlassian, GitLab, NetBox Labs, SolarWinds, Juniper Networks, Arista Networks, Palo Alto Networks, Splunk, and Docker, and the open-source projects of the Linux Foundation and the Cloud Native Computing Foundation.
+
+These names are used for identification only.
 
 ## 4. No Warranty of Any Kind
 

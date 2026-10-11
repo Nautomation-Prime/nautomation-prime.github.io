@@ -24,7 +24,7 @@ Two things are worth looking for as you read. The first is how much of the archi
 !!! note "Illustrative, not a deployment"
     This describes no real organisation's environment. It is one possible mapping, chosen because these products are common in enterprise networks, and every component lists alternatives. Topology, naming, and policy values are deliberately absent: they are yours to decide, and they are the parts that would make a design like this sensitive. Like the [proof of concept](./proof-of-concept.md), this is a design. No code, templates, or configuration are published with it.
 
-    Product names are trademarks of their respective owners. Naming them here is descriptive and implies no affiliation with, or endorsement by, any vendor.
+    Product names are trademarks of their respective owners, as acknowledged in the [Terms of Use](../../../legal/terms-of-use.md#trademarks). Naming them here is descriptive and implies no affiliation with, or endorsement by, any vendor.
 
 ---
 

@@ -1,16 +1,20 @@
 # Disclaimer
 
-## 1. No Affiliation With Cisco
+## 1. No Affiliation With Cisco or Other Vendors
 
 This website and all related content are **not affiliated, associated, endorsed, or sponsored by Cisco Systems, Inc.**
 
-All Cisco‑related references are for documentation, education, and interoperability purposes only.
+The same applies to every other vendor, product, and open-source project named on this site, including Microsoft, Red Hat, and the others listed in the [Terms of Use](terms-of-use.md#trademarks). Naming a product identifies it. It does not imply any partnership, endorsement, or sponsorship.
+
+All Cisco‑related and other vendor references are for documentation, education, and interoperability purposes only.
 
 ## 2. Educational Use Only
 
 All examples, guides, and documentation are provided for **educational and informational purposes**.
 
 They are not official vendor documentation and should not be treated as professional advice.
+
+Descriptions of third-party products reflect our understanding at the time of writing. Vendors change their products, so confirm any capability against the vendor's current documentation before relying on it. Worked examples that name specific products are illustrative, and describe no real organisation's environment.
 
 ## 3. No Guarantees or Warranties
 
