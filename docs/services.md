@@ -164,7 +164,7 @@ The code is open by design. That is the point. So what are you actually paying f
 
 ### Work directly with Christopher Davies
 
-Nautomation Prime is founder-led. You work directly with Christopher Davies, a CCNP-certified network engineer with 10+ years in enterprise infrastructure and automation delivery across real operational environments, not a hand-off chain of junior consultants.
+Nautomation Prime is founder-led. You work directly with Christopher Davies, a network engineer with 10+ years in enterprise infrastructure and automation delivery across real operational environments, not a hand-off chain of junior consultants.
 
 <div class="np-founder-metrics">
   <div>
@@ -172,7 +172,7 @@ Nautomation Prime is founder-led. You work directly with Christopher Davies, a C
     Enterprise Cisco infrastructure and automation delivery
   </div>
   <div>
-    <strong>CCNP-led</strong>
+    <strong>Cisco-focused</strong>
     Senior network engineering background with automation specialism
   </div>
   <div>

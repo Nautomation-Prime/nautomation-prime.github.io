@@ -1,6 +1,6 @@
 ---
 title: Founder
-description: Learn about Christopher Davies, founder of Nautomation Prime. 10+ years in enterprise Cisco automation, CCNP-certified, driven by transparency and pragmatism.
+description: Learn about Christopher Davies, founder of Nautomation Prime. 10+ years in enterprise Cisco automation, working towards CCNP, driven by transparency and pragmatism.
 tags:
   - Founder
   - Christopher Davies
@@ -14,7 +14,7 @@ tags:
 
 ## Christopher Davies
 
-I'm the founder of Nautomation Prime and a CCNP-certified network engineer focused on transparent, production-grade Cisco automation. After 10+ years in enterprise infrastructure, I built this practice to help teams move from brittle scripts and black-box delivery to automation they can understand, trust, and own.
+I'm the founder of Nautomation Prime and a network engineer focused on transparent, production-grade Cisco automation. After 10+ years in enterprise infrastructure, I built this practice to help teams move from brittle scripts and black-box delivery to automation they can understand, trust, and own.
 
 <div class="np-action-row" markdown>
 
@@ -31,7 +31,7 @@ I'm the founder of Nautomation Prime and a CCNP-certified network engineer focus
     Enterprise network engineering and automation delivery
   </div>
   <div>
-    <strong>CCNP-led</strong>
+    <strong>Cisco-focused</strong>
     Senior Cisco background across infrastructure and automation
   </div>
   <div>
@@ -91,14 +91,15 @@ I cut my teeth in **hands-on network operations** at diverse organisations:
 **What this taught me:**  
 Real networks are ugly. Legacy, hybrid, edge-case-ridden. The solutions that work aren't the "perfect" ones—they're the ones pragmatic enough to handle reality.
 
-### Cisco Certifications
+### Cisco Certifications (In Progress)
 
-- **CCNP Enterprise** — Professional-level routing and switching design
-- **CCNP Automation** — Network automation and orchestration
-- **CCNP Collaboration** — Advanced unified communications architecture
-- **CCDA** — Cisco design methodology
+I'm currently working towards three professional-level Cisco certifications. I'll update this page as each one is achieved.
 
-**What these taught me:**  
+- **CCNP Enterprise** (in progress) — Professional-level routing and switching design
+- **CCNP Automation** (in progress) — Network automation and orchestration
+- **CCNP Collaboration** (in progress) — Advanced unified communications architecture
+
+**What studying for them reinforces:**  
 The fundamentals never change. Mastering layer 3 matters as much as Python syntax.
 
 ### Python Automation & Network Automation

@@ -166,7 +166,7 @@ Comparable enterprise environments have seen results such as:
 
 ### Built by Christopher Davies
 
-Christopher Davies is a CCNP-certified network engineer with 10+ years in enterprise infrastructure and automation. His background spans large-scale Cisco delivery, critical infrastructure environments, and production automation that has to survive real-world operational constraints.
+Christopher Davies is a network engineer with 10+ years in enterprise infrastructure and automation, currently working towards CCNP Enterprise, Automation, and Collaboration. His background spans large-scale Cisco delivery, critical infrastructure environments, and production automation that has to survive real-world operational constraints.
 
 <div class="np-founder-metrics">
   <div>
@@ -174,8 +174,8 @@ Christopher Davies is a CCNP-certified network engineer with 10+ years in enterp
     Enterprise network engineering and automation delivery
   </div>
   <div>
-    <strong>CCNP-led</strong>
-    Enterprise, Automation, and Collaboration certification background
+    <strong>CCNP in progress</strong>
+    Working towards Enterprise, Automation, and Collaboration
   </div>
   <div>
     <strong>Production focus</strong>
