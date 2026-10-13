@@ -44,7 +44,7 @@ graph TD
 
 **Why it exists:** it proves the trust model with components a small engineering team can understand and operate. Its security leans heavily on protecting the runner host, the policy file, the expected digests, and the credentials. Anyone who can edit the policy or the digest list can approve their own workload, so treat those files with the same care as the credentials themselves.
 
-This is the profile the [proof of concept](./proof-of-concept.md) implements.
+This is the profile the [proof of concept](./proof-of-concept.md) targets.
 
 ## Profile B — Integrated
 

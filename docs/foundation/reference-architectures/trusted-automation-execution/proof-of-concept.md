@@ -18,7 +18,7 @@ tags:
 
 The first proof of concept deliberately does not try to implement the enterprise stack. Its job is narrower and more useful: prove that the [ten invariants](./index.md#ten-invariants) hold, and make the upgrade path to the [full architecture](./architecture.md) visible.
 
-It implements the [Foundation profile](./adoption-profiles.md#profile-a-foundation), and that should be said every time it is demonstrated. The reference implementation proves the idea. The reference architecture describes where the idea can ultimately go.
+It targets the [Foundation profile](./adoption-profiles.md#profile-a-foundation), and any build of it should say so every time it is demonstrated. The proof of concept shows how to prove the idea. The reference architecture describes where the idea can ultimately go.
 
 The repository layout below assumes Python, because this site does. Nothing in the model depends on that. The same decision belongs in front of a PowerShell script, an Ansible playbook, or a Terraform apply.
 
