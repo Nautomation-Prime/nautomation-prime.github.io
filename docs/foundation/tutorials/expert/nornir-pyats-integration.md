@@ -213,7 +213,7 @@ class UnifiedInventoryManager:
                     'hostname': str(device.primary_ip4).split('/')[0] if device.primary_ip4 else None,
                     'platform': device.platform.slug if device.platform else 'unknown',
                     'site': device.site.slug if device.site else 'unknown',
-                    'role': device.device_role.slug if device.device_role else 'unknown',
+                    'role': self._role_slug(device),
                     'vendor': device.device_type.manufacturer.slug if device.device_type else 'unknown',
                     'model': device.device_type.model if device.device_type else 'unknown',
                     'serial': device.serial or 'unknown',
@@ -234,13 +234,26 @@ class UnifiedInventoryManager:
         logger.info(f"Loaded {len(devices)} devices from NetBox")
         return devices
     
+    @staticmethod
+    def _role_slug(device) -> str:
+        """Device role slug. NetBox 4 renamed the field from device_role to role."""
+        # Read the returned fields: getattr on a missing field makes
+        # pynetbox fetch the whole device again (an extra API call)
+        fields = dict(device)
+        role = fields.get('role') or fields.get('device_role')
+        return role['slug'] if role else 'unknown'
+
     def _get_mgmt_interface(self, device) -> Optional[Dict]:
         """Get management interface details"""
-        for interface in device.interfaces:
+        # Interfaces are their own endpoint; a device record doesn't list them
+        for interface in self.nb.dcim.interfaces.filter(device_id=device.id):
             if 'mgmt' in interface.name.lower() or 'management' in interface.name.lower():
+                fields = dict(interface)
+                # NetBox 4.2 moved the MAC to a separate primary_mac_address object
+                mac = fields.get('mac_address') or (fields.get('primary_mac_address') or {}).get('mac_address')
                 return {
                     'name': interface.name,
-                    'mac_address': interface.mac_address,
+                    'mac_address': mac,
                     'enabled': interface.enabled
                 }
         return None
@@ -259,10 +272,17 @@ class UnifiedInventoryManager:
         
         # Build groups dynamically from sites and roles
         for device in devices:
+            platform = self._map_platform_to_driver(device['platform'])
+
             # Create host entry
             hosts[device['name']] = {
                 'hostname': device['hostname'],
-                'platform': self._map_platform_to_driver(device['platform']),
+                'platform': platform,
+                # NAPALM names platforms differently from Netmiko ('ios', not
+                # 'cisco_ios'); the rollback in Step 2 uses NAPALM
+                'connection_options': {
+                    'napalm': {'platform': self._map_driver_to_napalm(platform)}
+                },
                 'groups': [device['site'], device['role'], device['vendor']],
                 'data': {
                     'model': device['model'],
@@ -336,6 +356,16 @@ class UnifiedInventoryManager:
         }
         return mapping.get(platform, 'cisco_ios')
     
+    def _map_driver_to_napalm(self, driver: str) -> str:
+        """Map a Netmiko platform name to NAPALM's name for it"""
+        mapping = {
+            'cisco_ios': 'ios',
+            'cisco_nxos': 'nxos_ssh',
+            'arista_eos': 'eos',
+            'juniper_junos': 'junos',
+        }
+        return mapping.get(driver, driver)
+
     def _map_platform_to_os(self, platform: str) -> str:
         """Map NetBox platform to PyATS OS"""
         mapping = {
@@ -352,6 +382,14 @@ class UnifiedInventoryManager:
         with open(filepath, 'w') as f:
             yaml.dump(testbed, f, default_flow_style=False)
         logger.info(f"Saved PyATS testbed to {filepath}")
+
+    def save_nornir_inventory(self, inventory: Dict, host_file: str, group_file: str):
+        """Save the generated Nornir inventory as SimpleInventory YAML files"""
+        with open(host_file, 'w') as f:
+            yaml.dump(inventory['hosts'], f, default_flow_style=False)
+        with open(group_file, 'w') as f:
+            yaml.dump(inventory['groups'], f, default_flow_style=False)
+        logger.info(f"Saved Nornir inventory to {host_file} and {group_file}")
 
 
 # Usage Example
@@ -373,9 +411,10 @@ if __name__ == '__main__':
     nornir_inv = inv_mgr.generate_nornir_inventory(filters)
     pyats_testbed = inv_mgr.generate_pyats_testbed(filters)
     
-    # Save PyATS testbed
+    # Save both inventories
     inv_mgr.save_testbed(pyats_testbed, 'testbed.yaml')
-    
+    inv_mgr.save_nornir_inventory(nornir_inv, 'hosts.yaml', 'groups.yaml')
+
     # Initialize Nornir with dynamic inventory
     nr = InitNornir(
         inventory={
@@ -459,6 +498,7 @@ from typing import List, Dict, Optional, Any
 from dataclasses import dataclass, field
 from datetime import datetime
 from enum import Enum
+import re
 import time
 import logging
 from nornir.core.task import Task, Result
@@ -467,6 +507,21 @@ from nornir_napalm.plugins.tasks import napalm_configure
 import structlog
 
 logger = structlog.get_logger()
+
+
+def clean_running_config(config: str) -> str:
+    """
+    Strip the header IOS prints before 'show running-config' output.
+
+    'Building configuration...' and 'Current configuration : N bytes' aren't
+    configuration lines; a config replace would reject them.
+    """
+    return re.sub(
+        r"^(Building configuration\.\.\.|Current configuration : \d+ bytes)\s*$\n?",
+        "",
+        config,
+        flags=re.MULTILINE,
+    )
 
 
 class ChangeState(Enum):
@@ -767,11 +822,13 @@ class ConfigurationManager:
                 original_error=change.error
             )
             
-            # Use NAPALM rollback if available, otherwise manual
+            # Use NAPALM rollback if available, otherwise manual. NAPALM
+            # needs its own platform name ('ios'): set it in the host's
+            # connection_options, as the Step 1 inventory does
             try:
                 rollback_result = task.run(
                     task=napalm_configure,
-                    configuration=change.pre_config,
+                    configuration=clean_running_config(change.pre_config),
                     replace=True,
                     name=f"{device_name}: Rollback configuration"
                 )
@@ -816,16 +873,21 @@ class CircuitBreaker:
         self.results = []
         self.is_open = False
         
-    def record(self, success: bool):
-        """Record a result and check circuit status"""
+    def record(self, success: bool) -> bool:
+        """
+        Record a result and check circuit status. Returns True if open.
+
+        It doesn't raise: callers check is_open before each device, so the
+        deployment stops cleanly (and its report still gets written).
+        """
         self.results.append(success)
         if len(self.results) > self.window_size:
             self.results.pop(0)
-        
+
         # Calculate failure rate
-        if len(self.results) >= self.window_size:
+        if len(self.results) >= self.window_size and not self.is_open:
             failure_rate = 1 - (sum(self.results) / len(self.results))
-            
+
             if failure_rate > self.failure_threshold:
                 self.is_open = True
                 logger.critical(
@@ -833,9 +895,8 @@ class CircuitBreaker:
                     failure_rate=failure_rate,
                     threshold=self.failure_threshold
                 )
-                raise CircuitBreakerOpen(
-                    f"Circuit breaker opened: {failure_rate:.1%} failure rate"
-                )
+
+        return self.is_open
     
     def reset(self):
         """Manually reset the circuit breaker"""
@@ -882,8 +943,11 @@ def orchestrated_config_deployment(
             validation_commands=validation_commands
         )
         
-        # Record success/failure for circuit breaker
-        success = not result[host_name].failed
+        # Record success/failure for circuit breaker. Judge by the task's
+        # own result ([0]): the MultiResult also keeps every failed retry
+        # attempt, so .failed on the whole host is True even after a
+        # retry succeeded
+        success = not result[host_name][0].failed
         circuit_breaker.record(success)
         
         results[host_name] = result[host_name]
@@ -907,6 +971,7 @@ def orchestrated_config_deployment(
 
 ```python
 from nornir import InitNornir
+from nornir.core.filter import F
 
 # Initialize Nornir with custom configuration
 nr = InitNornir(
@@ -940,8 +1005,10 @@ validation_commands = [
     'show interface GigabitEthernet0/1 | include line protocol',
 ]
 
+# Site and role are groups in the Step 1 inventory, not host data, so
+# filter on group membership
 results, config_mgr = orchestrated_config_deployment(
-    nr.filter(role='access-switch', site='dc1'),
+    nr.filter(F(groups__contains='access-switch') & F(groups__contains='dc1')),
     commands=commands,
     validation_commands=validation_commands,
     dry_run=True  # Start with dry run!
@@ -969,15 +1036,7 @@ from pathlib import Path
 import json
 import logging
 from pyats.topology import loader
-from genie.libs.parser.utils import get_parser
-from genie.conf import Genie
-import genie.testbed
-from genie import parsergen
 from genie.utils.diff import Diff
-from genie.libs.ops.interface.interface import Interface
-from genie.libs.ops.bgp.bgp import Bgp
-from genie.libs.ops.ospf.ospf import Ospf
-from genie.libs.ops.vrf.vrf import Vrf
 import structlog
 
 logger = structlog.get_logger()
@@ -1061,20 +1120,10 @@ class PyATSValidator:
                 feature=feature
             )
             
-            # Map feature name to Genie ops class
-            feature_map = {
-                'interface': Interface,
-                'bgp': Bgp,
-                'ospf': Ospf,
-                'vrf': Vrf,
-            }
-            
-            if feature not in feature_map:
-                raise ValueError(f"Unsupported feature: {feature}")
-            
-            # Learn the feature
-            ops_obj = feature_map[feature](device=device)
-            ops_obj.learn()
+            # device.learn() picks the ops model for the device's OS. (The
+            # generic classes in genie.libs.ops.<feature> are base classes:
+            # calling .learn() on them raises NotImplementedError.)
+            ops_obj = device.learn(feature)
             
             # Convert to dictionary
             state = ops_obj.info
@@ -1231,12 +1280,14 @@ class PyATSValidator:
             diff_output = str(diff)
             has_diff = len(diff_output) > 0
             
-            # Analyze diff for expected changes
+            # This records WHAT changed; it doesn't judge it. 'passed' only
+            # means the comparison ran. Pass/fail comes from rules such as
+            # validate_bgp_neighbors() or your custom validations
             validation = ValidationResult(
                 device=device_name,
                 feature=feature,
                 timestamp=timestamp,
-                passed=True,  # Will be updated by validation rules
+                passed=True,
                 pre_state=pre_state,
                 post_state=post_state,
                 diff={'diff_text': diff_output, 'has_changes': has_diff}
@@ -1280,10 +1331,10 @@ class PyATSValidator:
         """
         Validate specific interface against expected state.
         
-        Example expected_state:
+        Example expected_state (keys from Genie's interface ops model):
         {
             'oper_status': 'up',
-            'admin_state': 'up',
+            'enabled': True,
             'bandwidth': 1000000,
             'mtu': 1500,
         }
@@ -1667,8 +1718,12 @@ import structlog
 from nornir import InitNornir
 from nornir.core.task import Task, Result
 
+from nornir_napalm.plugins.tasks import napalm_configure
+
 # Import our previous modules
-from tasks.config_management import ConfigurationManager, ChangeRecord, CircuitBreaker
+from tasks.config_management import (
+    ConfigurationManager, ChangeRecord, CircuitBreaker, clean_running_config
+)
 from validation.pyats_validator import PyATSValidator, ValidationResult
 
 logger = structlog.get_logger()
@@ -2066,8 +2121,8 @@ class OrchestrationEngine:
                 commands=commands,
             )
             
-            # Record result
-            success = not result[host_name].failed
+            # Record result (the task's own result: see Step 2)
+            success = not result[host_name][0].failed
             self.circuit_breaker.record(success)
             results[host_name] = result[host_name]
             
@@ -2117,8 +2172,8 @@ class OrchestrationEngine:
                         if change_record:
                             deployment.change_records[host_name] = change_record
                     
-                    # Record for circuit breaker
-                    success = not result.failed
+                    # Record for circuit breaker (the task's own result)
+                    success = not result[0].failed
                     self.circuit_breaker.record(success)
                     
                 except Exception as e:
@@ -2170,10 +2225,18 @@ class OrchestrationEngine:
                             exclude_keys=['counters', 'in_pkts', 'out_pkts', 'last_clear']
                         )
                         device_validations.append(result)
-                        
+
                         if not result.passed:
                             all_passed = False
-                
+
+                # compare_states() only records diffs, so judge BGP with an
+                # explicit rule: every neighbour must be established again
+                if 'bgp' in features:
+                    bgp_result = self.validator.validate_bgp_neighbors(device)
+                    device_validations.append(bgp_result)
+                    if not bgp_result.passed:
+                        all_passed = False
+
                 # Execute custom validations
                 if custom_validations:
                     for validation_func in custom_validations:
@@ -2232,10 +2295,21 @@ class OrchestrationEngine:
             if change_record and change_record.pre_config:
                 try:
                     logger.info("rolling_back_device", device=device)
-                    
-                    # Execute rollback (implementation depends on platform)
-                    # This is a placeholder - actual rollback would use NAPALM or similar
-                    
+
+                    # Replace the running config with the pre-change copy
+                    result = self.nr.filter(name=device).run(
+                        task=napalm_configure,
+                        configuration=clean_running_config(change_record.pre_config),
+                        replace=True,
+                        name=f"{device}: Roll back to pre-change config",
+                        on_failed=True,  # the host may have failed earlier
+                    )
+                    if result[device][0].failed:
+                        raise RuntimeError(
+                            result[device][0].exception or result[device][0].result
+                        )
+
+                    # Only record the device once the rollback really happened
                     deployment.rollback_devices.append(device)
                     
                     logger.info("rollback_complete", device=device)
@@ -2490,9 +2564,10 @@ Efficient connection management is critical for large-scale automation:
 
 ```python
 # connection_pool.py
-from typing import Dict, Optional
+from typing import Any, Dict, Optional
 from datetime import datetime, timedelta
 import threading
+import time
 from contextlib import contextmanager
 import structlog
 
@@ -2613,6 +2688,9 @@ class ConnectionPool:
 
 
 # Integration with OrchestrationEngine
+from orchestrator.integration import OrchestrationEngine
+
+
 class PoolingOrchestrationEngine(OrchestrationEngine):
     """Extended engine with connection pooling"""
     
@@ -2638,6 +2716,8 @@ from typing import List, Dict, Callable
 from dataclasses import dataclass
 import time
 import structlog
+
+from orchestrator.integration import OrchestrationEngine, DeploymentRecord
 
 logger = structlog.get_logger()
 
@@ -2852,10 +2932,13 @@ class AsyncOrchestrationEngine:
         # Execute all deployments concurrently
         tasks = [deploy_single(device) for device in devices]
         results = await asyncio.gather(*tasks, return_exceptions=True)
-        
-        # Process results
+
+        # Process results. gather() returns results in task order, and a
+        # failed task gives a bare exception (not a (device, result) tuple),
+        # so pair them with the device list rather than unpacking
         result_dict = {}
-        for device, result in results:
+        for device, outcome in zip(devices, results):
+            result = outcome if isinstance(outcome, Exception) else outcome[1]
             if isinstance(result, Exception):
                 logger.error("async_deployment_failed", device=device, error=str(result))
                 result_dict[device] = {'error': str(result)}
@@ -2896,7 +2979,7 @@ Enforce maintenance windows for production safety:
 ```python
 # change_windows.py
 from datetime import datetime, time, timedelta
-from typing import List, Optional
+from typing import Dict, List, Optional
 from dataclasses import dataclass
 import structlog
 
@@ -2915,20 +2998,18 @@ class ChangeWindow:
     def is_active(self, now: Optional[datetime] = None) -> bool:
         """Check if change window is currently active"""
         now = now or datetime.now()
-        
-        # Check day of week
-        if now.weekday() != self.day_of_week:
-            return False
-        
-        # Check time range
         current_time = now.time()
-        
+
         if self.start_time <= self.end_time:
-            # Window doesn't cross midnight
-            return self.start_time <= current_time <= self.end_time
-        else:
-            # Window crosses midnight
-            return current_time >= self.start_time or current_time <= self.end_time
+            # Window doesn't cross midnight: one day, one time range
+            return (now.weekday() == self.day_of_week
+                    and self.start_time <= current_time <= self.end_time)
+
+        # Window crosses midnight (e.g. Fri 22:00-02:00): it's open late on
+        # its own day, and early on the FOLLOWING day
+        next_day = (self.day_of_week + 1) % 7
+        return ((now.weekday() == self.day_of_week and current_time >= self.start_time)
+                or (now.weekday() == next_day and current_time <= self.end_time))
 
 
 class ChangeWindowEnforcer:
@@ -3003,6 +3084,9 @@ class ChangeWindowEnforcer:
 
 
 # Integration Example
+from orchestrator.integration import OrchestrationEngine
+
+
 class WindowedOrchestrationEngine(OrchestrationEngine):
     """Orchestration engine with change window enforcement"""
     
@@ -3236,9 +3320,9 @@ class ErrorRegistry:
         if device:
             self.error_patterns[error_type].append(device)
         
-        # Log structured error
-        logger.log(
-            severity.value,
+        # Log structured error at the matching level (logger.error(...),
+        # logger.critical(...)); structlog has no log(level_name, ...) form
+        getattr(logger, severity.value)(
             "error_registered",
             error_id=error_id,
             device=device,
@@ -3374,6 +3458,9 @@ Summary:
 
 
 # Integration with OrchestrationEngine
+from orchestrator.integration import OrchestrationEngine
+
+
 class ErrorAwareOrchestrationEngine(OrchestrationEngine):
     """Engine with comprehensive error handling"""
     
@@ -3540,6 +3627,8 @@ from pathlib import Path
 import json
 import csv
 
+from orchestrator.integration import DeploymentRecord
+
 
 class ReportGenerator:
     """Generate multiple report formats for different audiences"""
@@ -3655,8 +3744,10 @@ class ReportGenerator:
 
 ```python
 # security/credential_vault.py
-from typing import Dict, Optional
+from typing import Dict, List, Optional
 from dataclasses import dataclass
+from datetime import datetime
+import time
 import hvac  # HashiCorp Vault client
 import os
 from cryptography.fernet import Fernet
@@ -3981,6 +4072,9 @@ class RBACEnforcer:
 
 
 # Integration Example
+from orchestrator.integration import OrchestrationEngine
+
+
 class SecureOrchestrationEngine(OrchestrationEngine):
     """Orchestration engine with full security controls"""
     
@@ -4336,7 +4430,8 @@ from validation.pyats_validator import PyATSValidator
 from tasks.config_management import ConfigurationManager
 from security.credential_vault import VaultManager, AuditLogger, RBACEnforcer
 from observability.metrics import AutomationMetrics, AlertingEngine
-from error_handling import ErrorRegistry, configure_structured_logging
+from error_handling import ErrorRegistry
+from logging_config import configure_structured_logging
 
 
 def setup_logging(log_level: str = 'INFO'):
