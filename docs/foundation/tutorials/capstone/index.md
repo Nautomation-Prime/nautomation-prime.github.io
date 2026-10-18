@@ -129,9 +129,14 @@ source netpipe_venv/bin/activate
 # Windows PowerShell: .\netpipe_venv\Scripts\Activate.ps1
 
 pip install "pydantic>=2.0" pydantic-settings pyyaml jinja2 \
-            nornir nornir-netmiko nornir-utils netmiko \
-            pyats[library] rich
+            nornir nornir-netmiko nornir-utils netmiko rich
+
+# Chapters 6 and 7 also need PyATS (Linux or macOS; on Windows, use WSL)
+pip install "pyats[library]"
 ```
+
+!!! note "Windows"
+    Chapters 1–5 run natively on Windows. PyATS has no Windows build, so chapters 6 and 7 need [WSL](https://learn.microsoft.com/windows/wsl/install). Chapter 6 explains, and the code is arranged so the earlier commands keep working without it.
 
 ### Required Access
 
@@ -165,7 +170,7 @@ netpipe/
 └── artefacts/                    # snapshots, diffs, audit records
 ```
 
-Around 800 lines of Python by the end. Small enough to read in a sitting, structured enough to extend.
+Around 2,000 lines of Python by the end, a good share of them docstrings and comments. Small enough to read in an afternoon, structured enough to extend.
 
 ---
 

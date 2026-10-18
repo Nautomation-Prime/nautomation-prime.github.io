@@ -237,11 +237,13 @@ def audited(action: str):
 The write phase.
 """
 
+import contextlib
 import logging
 from dataclasses import dataclass, field
 from datetime import datetime, timezone
 from pathlib import Path
 
+from nornir.core.exceptions import NornirSubTaskError
 from nornir.core.task import Result, Task
 from nornir_netmiko.tasks import netmiko_send_command, netmiko_send_config
 
@@ -250,6 +252,16 @@ from netpipe.models import SiteIntent
 from netpipe.settings import Settings
 
 logger = logging.getLogger("netpipe")
+
+# A rejected command must fail the task, not scroll past in the output
+CISCO_CLI_ERRORS = r"% Invalid|% Incomplete|% Ambiguous"
+
+
+def discard_connection(task: Task) -> None:
+    """Drop the host's cached Netmiko session so a retry opens a fresh one."""
+    if "netmiko" in task.host.connections:
+        with contextlib.suppress(Exception):   # it may already be dead
+            task.host.close_connection("netmiko")
 
 
 @dataclass
@@ -266,11 +278,15 @@ class DeployOutcome:
 @retry(attempts=3, base_delay=2.0)
 def task_backup(task: Task) -> Result:
     """Save the running config before touching anything."""
-    reply = task.run(
-        task=netmiko_send_command,
-        command_string="show running-config",
-        read_timeout=120,
-    )
+    try:
+        reply = task.run(
+            task=netmiko_send_command,
+            command_string="show running-config",
+            read_timeout=120,
+        )
+    except NornirSubTaskError:
+        discard_connection(task)
+        raise
 
     stamp = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")
     path = Path("artefacts/backup") / f"{task.host.name}-{stamp}.cfg"
@@ -293,6 +309,7 @@ def task_configure(task: Task, candidate_dir: str) -> Result:
         task=netmiko_send_config,
         config_commands=lines,
         read_timeout=180,
+        error_pattern=CISCO_CLI_ERRORS,
     )
 
     return Result(host=task.host, result=reply.result, changed=True)
@@ -302,11 +319,15 @@ def task_configure(task: Task, candidate_dir: str) -> Result:
 @retry(attempts=2, base_delay=3.0)
 def task_save(task: Task) -> Result:
     """Write the running config to startup."""
-    reply = task.run(
-        task=netmiko_send_command,
-        command_string="write memory",
-        read_timeout=120,
-    )
+    try:
+        reply = task.run(
+            task=netmiko_send_command,
+            command_string="write memory",
+            read_timeout=120,
+        )
+    except NornirSubTaskError:
+        discard_connection(task)
+        raise
     return Result(host=task.host, result=reply.result)
 
 
@@ -314,32 +335,36 @@ def task_save(task: Task) -> Result:
 
 def deploy_batch(nr, candidate_dir: str, outcome: DeployOutcome) -> None:
     """Back up, configure and save one batch of devices."""
-    backup = nr.run(task=task_backup)
+    # Every step runs with on_failed=True: the filters below decide which
+    # hosts take part, not Nornir's own failed-hosts list (see the note
+    # after this listing). result[0] is each task's own outcome.
+    backup = nr.run(task=task_backup, on_failed=True)
     for name, result in backup.items():
-        if result.failed:
-            outcome.failed[name] = f"backup failed: {result.exception}"
+        if result[0].failed:
+            outcome.failed[name] = f"backup failed: {result[0].exception}"
         else:
-            outcome.backups[name] = Path(result.result)
+            outcome.backups[name] = Path(result[0].result)
 
     # Never configure a device we could not back up
     safe = nr.filter(filter_func=lambda host: host.name in outcome.backups)
     if not safe.inventory.hosts:
         return
 
-    configured = safe.run(task=task_configure, candidate_dir=candidate_dir)
+    configured = safe.run(task=task_configure, candidate_dir=candidate_dir,
+                          on_failed=True)
     for name, result in configured.items():
-        if result.failed:
-            outcome.failed[name] = f"configure failed: {result.exception}"
+        if result[0].failed:
+            outcome.failed[name] = f"configure failed: {result[0].exception}"
 
     applied = safe.filter(
         filter_func=lambda host: host.name not in outcome.failed)
     if not applied.inventory.hosts:
         return
 
-    saved = applied.run(task=task_save)
+    saved = applied.run(task=task_save, on_failed=True)
     for name, result in saved.items():
-        if result.failed:
-            outcome.failed[name] = f"save failed: {result.exception}"
+        if result[0].failed:
+            outcome.failed[name] = f"save failed: {result[0].exception}"
         else:
             outcome.succeeded.append(name)
 
@@ -376,6 +401,13 @@ def deploy(nr, intent: SiteIntent, settings: Settings,
 
     return outcome
 ```
+
+!!! warning "Nornir Records Every Attempt"
+    `task.run()` appends each sub-task's result to the host's `MultiResult`, failures included. When `retry` recovers from a dropped session, the failed first attempt is still in there, and `MultiResult.failed` is true if *any* entry failed. Judge the host by `result.failed` and a backup that succeeded on its second try is reported as `backup failed: None`. Worse, Nornir adds the host to its failed-hosts list, and the next `run()` silently skips it.
+
+    That's why `deploy_batch` reads `result[0]`, the task's own result, and passes `on_failed=True`, leaving the explicit filters to decide who takes part. `discard_connection` belongs to the same retry: a dropped session stays cached on the host, and without closing it every retry would reuse the dead one.
+
+    `error_pattern` is what makes a rejected command fail at all. Without it, Netmiko returns the device's `% Invalid input detected` as ordinary output and the task reports success.
 
 ### Three decisions to notice
 
@@ -565,10 +597,14 @@ Deployment can't be fully tested without devices, but the parts that decide *wha
 ```python
 import pytest
 import yaml
+from nornir.core.task import Result
 
+import netpipe.deploy as deploy_module
 from netpipe.decorators import retry
-from netpipe.inventory import write_inventory
+from netpipe.deploy import DeployOutcome, deploy_batch
+from netpipe.inventory import build_nornir, write_inventory
 from netpipe.intent import load_intent
+from netpipe.settings import Settings
 
 
 def test_inventory_matches_intent(tmp_path):
@@ -628,9 +664,42 @@ def test_batching_splits_correctly():
     assert len(batches) == 3
     assert [len(b) for b in batches] == [5, 5, 2]
     assert [name for batch in batches for name in batch] == targets
+
+
+def test_recovered_retry_counts_as_success(tmp_path, monkeypatch):
+    intent = load_intent("intent/man1.yaml")
+    monkeypatch.chdir(tmp_path)               # backups and inventory land here
+    candidate = tmp_path / "candidate"
+    candidate.mkdir()
+    for device in intent.devices:
+        (candidate / f"{device.name}.cfg").write_text("hostname x\nend\n")
+
+    calls: dict[str, int] = {}
+
+    def flaky_show(task, command_string, **kwargs):
+        calls[task.host.name] = calls.get(task.host.name, 0) + 1
+        if command_string == "show running-config" and calls[task.host.name] == 1:
+            raise ConnectionError("session dropped")
+        return Result(host=task.host, result="hostname x\n")
+
+    def accept_config(task, config_commands, **kwargs):
+        return Result(host=task.host, result="ok", changed=True)
+
+    monkeypatch.setattr(deploy_module, "netmiko_send_command", flaky_show)
+    monkeypatch.setattr(deploy_module, "netmiko_send_config", accept_config)
+    monkeypatch.setattr("netpipe.decorators.time.sleep", lambda seconds: None)
+
+    nr = build_nornir(intent, Settings(username="u", password="p"))
+    outcome = DeployOutcome()
+    deploy_batch(nr, str(candidate), outcome)
+
+    assert outcome.failed == {}
+    assert sorted(outcome.succeeded) == ["man1-acc-sw-01", "man1-acc-sw-02"]
 ```
 
-`test_generated_inventory_holds_no_secrets` is the important one. It's the automated version of the reason credentials are injected in memory, and it will fail loudly the day somebody "simplifies" `write_inventory` by putting the username in `defaults.yaml`.
+`test_recovered_retry_counts_as_success` pins down the Nornir behaviour from the warning above. Every device's first backup attempt fails and the retry recovers it. If someone "simplifies" `deploy_batch` back to `result.failed`, both devices are reported as failed backups and this test catches it.
+
+`test_generated_inventory_holds_no_secrets` is the important one for security. It's the automated version of the reason credentials are injected in memory, and it will fail loudly the day somebody "simplifies" `write_inventory` by putting the username in `defaults.yaml`.
 
 ---
 
