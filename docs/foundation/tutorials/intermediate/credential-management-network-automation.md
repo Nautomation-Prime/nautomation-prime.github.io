@@ -209,6 +209,9 @@ vault kv put secret/network/devices/router1 \
 vault kv get secret/network/devices/router1
 ```
 
+!!! note "Mount and Path Are Separate in Python"
+    The CLI path starts with the mount, `secret/`. In hvac the mount is its own `mount_point` argument (default `"secret"`), so the same secret is `path="network/devices/router1"`. Passing `secret/network/...` asks Vault for `secret/secret/network/...` and every lookup comes back "not found".
+
 ### Python Integration
 
 Install hvac (Vault client):
@@ -225,16 +228,18 @@ import os
 class VaultClient:
     """Wrapper for HashiCorp Vault credential retrieval."""
     
-    def __init__(self, vault_addr=None, vault_token=None):
+    def __init__(self, vault_addr=None, vault_token=None, mount_point="secret"):
         """
         Initialize Vault client.
-        
+
         Args:
             vault_addr: Vault server URL (default: env var VAULT_ADDR)
             vault_token: Vault auth token (default: env var VAULT_TOKEN)
+            mount_point: Where the KV v2 secrets engine is mounted
         """
         self.vault_addr = vault_addr or os.getenv("VAULT_ADDR")
         self.vault_token = vault_token or os.getenv("VAULT_TOKEN")
+        self.mount_point = mount_point
         
         if not self.vault_addr:
             raise ValueError("VAULT_ADDR environment variable not set")
@@ -255,14 +260,18 @@ class VaultClient:
         Retrieve secret from Vault.
         
         Args:
-            secret_path: Path in Vault (e.g., 'secret/network/devices/router1')
-        
+            secret_path: Path inside the mount (e.g., 'network/devices/router1').
+                Don't repeat the mount name: hvac adds it, so
+                'secret/network/...' would look up secret/secret/network/...
+
         Returns:
             dict: Secret data (username, password, etc.)
         """
         try:
             response = self.client.secrets.kv.read_secret_version(
-                path=secret_path
+                path=secret_path,
+                mount_point=self.mount_point,
+                raise_on_deleted_version=True,  # explicit, avoids a hvac warning
             )
             return response['data']['data']
         except hvac.exceptions.InvalidPath:
@@ -284,7 +293,7 @@ class VaultClient:
         Returns:
             dict: Credentials with 'username' and 'password'
         """
-        secret_path = f"secret/network/devices/{device_name}"
+        secret_path = f"network/devices/{device_name}"
         return self.get_secret(secret_path)
     
     def rotate_secret(self, secret_path, new_data):
@@ -292,13 +301,14 @@ class VaultClient:
         Update secret in Vault (credential rotation).
         
         Args:
-            secret_path: Path to secret
+            secret_path: Path inside the mount (e.g., 'network/devices/router1')
             new_data: New secret data (dict)
         """
         try:
             self.client.secrets.kv.create_or_update_secret(
                 path=secret_path,
-                secret=new_data
+                secret=new_data,
+                mount_point=self.mount_point,
             )
         except Exception as e:
             raise CredentialRotationError(
@@ -401,6 +411,8 @@ pip install boto3
 import boto3
 import json
 
+from src.vault_client import CredentialRetrievalError, CredentialsNotFoundError
+
 class AWSSecretsManager:
     """Retrieve credentials from AWS Secrets Manager."""
     
@@ -475,6 +487,8 @@ pip install azure-identity azure-keyvault-secrets
 # src/azure_keyvault.py
 from azure.identity import DefaultAzureCredential
 from azure.keyvault.secrets import SecretClient
+
+from src.vault_client import CredentialRetrievalError
 
 class AzureKeyVaultClient:
     """Retrieve credentials from Azure Key Vault."""
@@ -603,63 +617,69 @@ creds = config.decrypt_credentials("credentials.enc")
 
 ---
 
-## Pattern 6: Temporary Credentials (TACACS+/RADIUS)
+## Pattern 6: Central Accounts (TACACS+/RADIUS)
 
 ### When to Use
 
-- Enterprise networks using TACACS+ or RADIUS
-- Don't want to store long-lived credentials
-- Each automation run uses fresh temporary credentials
+- Enterprise networks where devices already authenticate logins against TACACS+ or RADIUS
+- You want one automation service account, disabled or rotated in one place, instead of local users on every device
+- You want to catch a locked or expired account before a run, not halfway through it
+
+TACACS+ doesn't hand out tokens or temporary passwords: each device checks the username and password against the server at login. The automation still needs the service account's password (keep it in Vault, as above). What TACACS+ gives you is central control: rotate or disable the account once and every device follows.
 
 ### Implementation
 
-```python
-# src/tacacs_credentials.py
-import paramiko
-from tacacs_plus.client import TACACSClient
+A pre-flight check asks the TACACS+ server the same questions a device will, so a bad password fails once, up front, instead of on 200 devices (and possibly locking the account):
 
-def get_tacacs_credentials(username, password, device_ip):
+```python
+# src/tacacs_preflight.py
+from tacacs_plus.client import TACACSClient
+from tacacs_plus.flags import TAC_PLUS_AUTHEN_TYPE_PAP
+
+
+class ServiceAccountError(Exception):
+    pass
+
+
+def verify_service_account(username, password, server, shared_secret):
     """
-    Authenticate with TACACS+ and get session token.
-    
+    Check the automation account against TACACS+ before a run.
+
     Args:
         username: Service account username
-        password: Service account password
-        device_ip: Target device IP
-    
-    Returns:
-        str: Session authorisation token
+        password: Service account password (e.g. from Vault)
+        server: TACACS+ server address
+        shared_secret: TACACS+ key shared with the server
+
+    Raises:
+        ServiceAccountError: If the account can't log in or get a shell
     """
-    tacacs = TACACSClient(
-        server="10.0.0.100",  # TACACS+ server
-        port=49,
-        secret="shared_secret",
-        timeout=5
+    client = TACACSClient(server, 49, shared_secret, timeout=5)
+
+    # Authentication: is the password right, and is the account enabled?
+    authen = client.authenticate(
+        username, password, authen_type=TAC_PLUS_AUTHEN_TYPE_PAP
     )
-    
-    # Authenticate service account
-    authen = tacacs.authenticate(
-        username=username,
-        password=password,
-        authen_type=TACACSClient.AUTHEN_TYPE_PAP
+    if not authen.valid:
+        raise ServiceAccountError(f"TACACS+ rejected the login for {username}")
+
+    # Authorisation: the same "service=shell" check a device makes before
+    # giving the user an exec session. Arguments are bytes.
+    author = client.authorize(
+        username, arguments=[b"service=shell"], authen_type=TAC_PLUS_AUTHEN_TYPE_PAP
     )
-    
-    if not authen.ok:
-        raise CredentialRetrievalError("TACACS+ authentication failed")
-    
-    # Request authorisation for specific device
-    author = tacacs.authorize(
-        username=username,
-        arguments=[
-            f"device={device_ip}",
-            "service=network",
-        ]
-    )
-    
-    if not author.ok:
-        raise CredentialRetrievalError("TACACS+ authorisation failed")
-    
-    return authen.session_id
+    if not author.valid:
+        raise ServiceAccountError(f"{username} is not authorised for a shell")
+```
+
+```python
+# Before the run
+creds = vault.get_device_credentials("automation-svc")
+verify_service_account(
+    creds["username"], creds["password"],
+    server="10.0.0.100",
+    shared_secret=vault.get_secret("network/tacacs")["key"],
+)
 ```
 
 ---
@@ -687,7 +707,7 @@ class TestVaultClient:
         mock_hvac_client.return_value = mock_client
         
         vault = VaultClient(vault_addr="http://localhost:8200", vault_token="token")
-        creds = vault.get_secret("secret/network/devices/router1")
+        creds = vault.get_secret("network/devices/router1")
         
         assert creds['username'] == 'admin'
         assert creds['password'] == 'secret'
@@ -704,7 +724,7 @@ class TestVaultClient:
         vault = VaultClient(vault_addr="http://localhost:8200", vault_token="token")
         
         with pytest.raises(CredentialsNotFoundError):
-            vault.get_secret("secret/nonexistent")
+            vault.get_secret("nonexistent")
     
     def test_missing_vault_token_raises_error(self):
         """Fail fast if Vault token not set."""
@@ -744,7 +764,7 @@ def rotate_all_device_credentials():
         
         # Update Vault
         new_creds = {**old_creds, "password": new_password}
-        vault.rotate_secret(f"secret/network/devices/{device}", new_creds)
+        vault.rotate_secret(f"network/devices/{device}", new_creds)
         
         print(f"✓ Rotated credentials for {device}")
 ```
@@ -801,7 +821,7 @@ def get_device_credentials(device_name):
 ```python
 # ✅ GOOD - Script only gets credentials it needs
 vault = VaultClient()
-device_creds = vault.get_secret("secret/network/devices/router1")
+device_creds = vault.get_secret("network/devices/router1")
 # Can only access this ONE secret
 
 # ❌ BAD - Script can access entire Vault
