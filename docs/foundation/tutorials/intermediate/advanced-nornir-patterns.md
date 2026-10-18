@@ -102,6 +102,7 @@ from nornir.core.inventory import (
     ParentGroups,
 )
 from nornir.core.plugins.inventory import InventoryPluginRegister
+import os
 import requests
 from typing import Any, Dict, Optional
 
@@ -113,35 +114,40 @@ class NetboxInventory:
     
     def __init__(
         self,
-        nb_url: str,
-        nb_token: str,
+        nb_url: Optional[str] = None,
+        nb_token: Optional[str] = None,
         filters: Optional[Dict[str, str]] = None,
     ):
         """
         Args:
-            nb_url: Netbox API URL (e.g., https://netbox.yourcompany.com/api/)
-            nb_token: Netbox API token
-            filters: Query filters (e.g., {"site": "New York"})
+            nb_url: Netbox API URL (default: env var NETBOX_URL)
+                    e.g. https://netbox.yourcompany.com/api/
+            nb_token: Netbox API token (default: env var NETBOX_API_TOKEN)
+            filters: Query filters (e.g., {"site": "new-york"}, a site slug)
         """
-        self.nb_url = nb_url
-        self.nb_token = nb_token
+        # Nornir doesn't expand ${VARS} in its config file, so the plugin
+        # reads the URL and token from the environment itself
+        self.nb_url = (nb_url or os.environ["NETBOX_URL"]).rstrip("/") + "/"
+        self.nb_token = nb_token or os.environ["NETBOX_API_TOKEN"]
         self.filters = filters or {}
     
     def load(self) -> Inventory:
         """Fetch devices from Netbox and return Nornir Inventory"""
         
-        # Fetch devices from Netbox API
+        # Fetch devices from Netbox API. Results are paginated (50 per page
+        # by default), so keep following 'next' until it's None
         headers = {"Authorization": f"Token {self.nb_token}"}
-        params = self.filters
-        
-        response = requests.get(
-            f"{self.nb_url}dcim/devices/",
-            headers=headers,
-            params=params
-        )
-        response.raise_for_status()
-        
-        devices = response.json()['results']
+        url = f"{self.nb_url}dcim/devices/"
+        params = {**self.filters, "limit": 1000}
+        devices = []
+
+        while url:
+            response = requests.get(url, headers=headers, params=params, timeout=30)
+            response.raise_for_status()
+            page = response.json()
+            devices.extend(page['results'])
+            url = page['next']
+            params = None  # 'next' already carries the query string
         
         # Build Nornir inventory
         hosts = {}
@@ -178,7 +184,7 @@ class NetboxInventory:
                 data={
                     'netbox_id': device['id'],
                     'device_type_model': device_type,
-                    'serial': device.get('serial_number', ''),
+                    'serial': device.get('serial', ''),
                 }
             )
         
@@ -192,14 +198,13 @@ class NetboxInventory:
 # This runs on import, so import this module before calling InitNornir().
 InventoryPluginRegister.register("NetboxInventory", NetboxInventory)
 
-# Usage in nornir_config.yaml:
+# Usage in nornir_config.yaml (URL and token come from NETBOX_URL and
+# NETBOX_API_TOKEN in the environment):
 # inventory:
 #   plugin: NetboxInventory
 #   options:
-#     nb_url: ${NETBOX_URL}
-#     nb_token: ${NETBOX_TOKEN}
 #     filters:
-#       site: "New York"
+#       site: "new-york"
 ```
 
 ### Using the Plugin
@@ -216,9 +221,10 @@ inventory:
   plugin: NetboxInventory
   options:
     nb_url: "https://netbox.yourcompany.com/api/"
-    nb_token: "${NETBOX_API_TOKEN}"
+    # No nb_token here: Nornir would pass "${NETBOX_API_TOKEN}" through
+    # literally. The plugin reads NETBOX_API_TOKEN from the environment.
     filters:
-      site: "New York"  # Optional filter
+      site: "new-york"  # Optional filter (site slug)
 ```
 
 Then import the plugin module before initialising Nornir so its
@@ -273,6 +279,7 @@ Nornir middleware for logging, metrics, and validation
 from nornir import InitNornir
 from nornir.core.inventory import Host
 from nornir.core.task import Task, AggregatedResult, MultiResult
+from typing import Optional
 import logging
 import time
 
@@ -282,18 +289,19 @@ logger = logging.getLogger(__name__)
 # PRE-TASK MIDDLEWARE: Validation and setup
 # =====================================================================
 
-def validate_device(host: Host) -> None:
+def validate_device(host: Host) -> Optional[str]:
     """
-    Pre-flight check before each host runs the task
-    Validate device is reachable
+    Pre-flight check, run BEFORE nr.run() (see main() below)
+    Returns a description of the problem, or None if the host looks usable
     """
-    logger.debug(f"[Pre-task] Validating {host.name}")
-    
+    logger.debug(f"[Pre-flight] Validating {host.name}")
+
     # Example: Check if device credentials are set
     if not host.password:
-        raise ValueError(f"No password configured for {host.name}")
-    
+        return f"No password configured for {host.name}"
+
     # Could also do ping check, device type validation, etc.
+    return None
 
 # =====================================================================
 # POST-TASK MIDDLEWARE: Logging and metrics
@@ -329,7 +337,10 @@ class LoggingProcessor:
         pass
 
     def task_instance_started(self, task: Task, host: Host) -> None:
-        validate_device(host)
+        # Processors observe; they can't fail a single host. An exception
+        # raised here aborts the whole run for EVERY host, which is why
+        # validation happens before nr.run() instead
+        logger.debug(f"[Pre-task] {host.name}: starting {task.name}")
 
     def task_instance_completed(self, task: Task, host: Host, result: MultiResult) -> None:
         log_results(host, result)
@@ -347,7 +358,13 @@ class LoggingProcessor:
 
 def main():
     nornir = InitNornir(config_file="nornir_config.yaml")
-    
+
+    # Pre-flight: report and drop hosts that can't work, before the run
+    problems = {name: validate_device(host) for name, host in nornir.inventory.hosts.items()}
+    for problem in filter(None, problems.values()):
+        logger.error(f"[Pre-flight] {problem}: skipping")
+    nornir = nornir.filter(filter_func=lambda host: problems[host.name] is None)
+
     # Register middleware (runs on ALL tasks)
     nornir = nornir.with_processors([LoggingProcessor()])
     
@@ -448,6 +465,10 @@ def resilient_backup(task: Task) -> Result:
     - **Problem:** Device password expired = will never work, just wastes time
     - **Solution:** Add circuit breaker pattern (stop retrying if error is permanent)
 
+**Gotcha 3D: A recovered retry can still show as failed**
+    - **Problem:** If the decorated task calls `task.run()`, Nornir records every sub-task attempt in the host's `MultiResult`, failed ones included. `result.failed` is `True` if *any* entry failed, so a host that succeeded on attempt 2 still counts as failed (and lands in `nr.data.failed_hosts`)
+    - **Solution:** Judge the outcome by the task's own result, `results[host][0]`, not `results[host].failed`. Run any follow-on step with `on_failed=True` if failed hosts should still take part
+
 ---
 
 ## 💾 Pattern 4: Managing State Across Tasks
@@ -459,6 +480,9 @@ Tasks need to share data. Use task results effectively:
 State management across multi-step workflows
 """
 
+from datetime import datetime
+
+from nornir import InitNornir
 from nornir.core.task import Task, Result
 from nornir_netmiko.tasks import netmiko_send_command
 
@@ -493,10 +517,13 @@ def main():
     # Step 1: Backup
     backup_results = nornir.run(task=step1_backup)
     
-    # Step 2: Validate (pass data from step 1)
+    # Step 2: Validate (pass data from step 1). Hosts whose backup failed
+    # have no config (their result is the error text), and Nornir skips
+    # them in later runs anyway, so leave them out
     config_data = {
-        host_name: backup_results[host_name][0].result['config']
-        for host_name in backup_results.keys()
+        host_name: multi_result[0].result['config']
+        for host_name, multi_result in backup_results.items()
+        if not multi_result.failed
     }
     
     validate_results = nornir.run(
