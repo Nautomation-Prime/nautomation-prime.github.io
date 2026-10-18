@@ -373,6 +373,8 @@ interface GigabitEthernet0/0
 Load and render Jinja2 templates from files
 """
 
+from pathlib import Path
+
 from jinja2 import Environment, FileSystemLoader
 import yaml
 
@@ -393,7 +395,8 @@ with open('device_data.yaml') as f:
 # Render template
 config = template.render(data)
 
-# Save to file
+# Save to file (creating configs/ the first time)
+Path('configs').mkdir(exist_ok=True)
 with open(f"configs/{data['hostname']}_config.txt", 'w') as f:
     f.write(config)
 
@@ -494,6 +497,8 @@ interfaces:
 Generate VLAN configuration from template and data
 """
 
+from pathlib import Path
+
 from jinja2 import Environment, FileSystemLoader
 import yaml
 from datetime import datetime
@@ -520,7 +525,8 @@ def generate_vlan_config(data_file, template_file, output_file):
     template = env.get_template(template_file)
     config = template.render(data)
 
-    # Save configuration
+    # Save configuration (creating the output folder if needed)
+    Path(output_file).parent.mkdir(parents=True, exist_ok=True)
     with open(output_file, 'w') as f:
         f.write(config)
 
@@ -935,6 +941,64 @@ snmp_community: public
 timezone: EST -5 0
 ```
 
+### Templates
+
+Both device templates extend `base_config.j2` from [Template Inheritance](#1-template-inheritance), which fills in the hostname, domain and DNS servers from the global settings.
+
+**templates/router_config.j2.** This version replaces the simpler one from Template Inheritance. It reads the nested `ospf:` block and each interface's description:
+
+```jinja2
+{% extends "base_config.j2" %}
+
+{% block device_specific %}
+! Router-specific settings
+ip routing
+router ospf {{ ospf.process_id }}
+{% for net in ospf.networks %}
+ network {{ net.network }} {{ net.wildcard }} area {{ net.area }}
+{% endfor %}
+{% endblock %}
+
+{% block interfaces %}
+{% for interface in interfaces %}
+interface {{ interface.name }}
+{% if interface.description is defined %}
+ description {{ interface.description }}
+{% endif %}
+ ip address {{ interface.ip }} {{ interface.mask }}
+ no shutdown
+!
+{% endfor %}
+{% endblock %}
+```
+
+**templates/switch_config.j2.** The switch's `interfaces` is a mapping of port name to settings, so loop over `.items()`:
+
+```jinja2
+{% extends "base_config.j2" %}
+
+{% block device_specific %}
+! Switch-specific settings
+{% for vlan in vlans %}
+vlan {{ vlan.id }}
+ name {{ vlan.name }}
+{% endfor %}
+{% endblock %}
+
+{% block interfaces %}
+{% for name, interface in interfaces.items() %}
+interface {{ name }}
+{% if interface.description is defined %}
+ description {{ interface.description }}
+{% endif %}
+ switchport mode {{ interface.mode }}
+ switchport access vlan {{ interface.vlan }}
+ no shutdown
+!
+{% endfor %}
+{% endblock %}
+```
+
 ### generate_configs.py
 
 ```python
@@ -943,7 +1007,7 @@ timezone: EST -5 0
 Generate configurations for all devices from templates and data
 """
 
-from jinja2 import Environment, FileSystemLoader
+from jinja2 import Environment, FileSystemLoader, StrictUndefined
 import yaml
 from datetime import datetime
 import os
@@ -965,6 +1029,7 @@ def generate_device_config(device, global_settings, env):
     # Combine device-specific and global settings
     data = {**global_settings, **device}
     data['timestamp'] = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+    data['template_name'] = device['template']  # used by base_config.j2
 
     # Load template
     template = env.get_template(device['template'])
@@ -990,11 +1055,14 @@ def main():
     print("NETWORK CONFIGURATION GENERATOR")
     print("=" * 70)
 
-    # Setup Jinja2 environment
+    # Setup Jinja2 environment. StrictUndefined makes a missing variable
+    # an error instead of a silent blank line in the config (see
+    # "Testing and Validating Templates" below)
     env = Environment(
         loader=FileSystemLoader('templates'),
         trim_blocks=True,
-        lstrip_blocks=True
+        lstrip_blocks=True,
+        undefined=StrictUndefined
     )
 
     # Load data
@@ -1070,23 +1138,56 @@ GENERATING CONFIGURATIONS
 
 📝 Generating config for core-router-01...
   ✓ Saved to configs/core-router-01_config.txt
-  ✓ Size: 1,245 bytes
+  ✓ Size: 501 bytes
 
 📝 Generating config for access-switch-01...
   ✓ Saved to configs/access-switch-01_config.txt
-  ✓ Size: 987 bytes
+  ✓ Size: 393 bytes
 
 ======================================================================
 GENERATION SUMMARY
 ======================================================================
 Total devices: 2
-Total config size: 2,232 bytes
+Total config size: 894 bytes
 
 ======================================================================
 GENERATED FILES:
 ======================================================================
   configs/core-router-01_config.txt
   configs/access-switch-01_config.txt
+```
+
+**configs/core-router-01_config.txt:**
+
+```
+!
+! Base Configuration
+! Device: core-router-01
+! Template: router_config.j2
+! Generated: 2026-03-12 11:45:23
+!
+hostname core-router-01
+!
+ip domain-name example.com
+ip name-server 8.8.8.8 8.8.4.4
+!
+! Router-specific settings
+ip routing
+router ospf 1
+ network 192.168.1.0 0.0.0.255 area 0
+!
+interface GigabitEthernet0/0
+ description WAN Link
+ ip address 192.168.1.1 255.255.255.0
+ no shutdown
+!
+interface GigabitEthernet0/1
+ description LAN Link
+ ip address 10.10.1.1 255.255.255.0
+ no shutdown
+!
+!
+end
 ```
 
 ---
