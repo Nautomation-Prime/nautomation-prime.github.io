@@ -116,7 +116,17 @@ class NetBoxInventoryManager:
         if key not in self.cache_time:
             return False
         return (time.time() - self.cache_time[key]) < self.cache_ttl
-    
+
+    @staticmethod
+    def _role_name(device) -> str:
+        """Device role name. NetBox 4 renamed the field from device_role to role."""
+        # Read the fields NetBox returned. (getattr on a field that isn't
+        # there makes pynetbox fetch the whole device again: one extra API
+        # call per device.)
+        fields = dict(device)
+        role = fields.get('role') or fields.get('device_role')
+        return role['name'] if role else 'unknown'
+
     def get_all_devices(
         self,
         site: Optional[str] = None,
@@ -153,10 +163,10 @@ class NetBoxInventoryManager:
                     net_device = NetworkDevice(
                         name=device.name,
                         site=device.site.name if device.site else 'unknown',
-                        role=device.device_role.name if device.device_role else 'unknown',
+                        role=self._role_name(device),
                         platform=device.platform.name if device.platform else 'unknown',
                         primary_ip=str(device.primary_ip) if device.primary_ip else '',
-                        serial_number=device.serial_number or '',
+                        serial_number=device.serial or '',
                         asset_tag=device.asset_tag or '',
                         device_type=device.device_type.model if device.device_type else 'unknown',
                         custom_fields=device.custom_fields or {}
@@ -187,10 +197,10 @@ class NetBoxInventoryManager:
             return NetworkDevice(
                 name=device.name,
                 site=device.site.name if device.site else 'unknown',
-                role=device.device_role.name if device.device_role else 'unknown',
+                role=self._role_name(device),
                 platform=device.platform.name if device.platform else 'unknown',
                 primary_ip=str(device.primary_ip) if device.primary_ip else '',
-                serial_number=device.serial_number or '',
+                serial_number=device.serial or '',
                 asset_tag=device.asset_tag or '',
                 device_type=device.device_type.model if device.device_type else 'unknown',
                 custom_fields=device.custom_fields or {}
@@ -275,13 +285,15 @@ from typing import Dict, Any, Optional
 logger = logging.getLogger(__name__)
 
 class ChangeState(Enum):
-    """ServiceNow change states"""
+    """ServiceNow change_request states (the 'state' field's values)"""
     NEW = "-5"
-    IN_PROGRESS = "-4"
-    PENDING = "-3"
-    COMPLETE = "1"
-    CLOSED_SUCCESS = "3"
-    CLOSED_FAILED = "7"
+    ASSESS = "-4"
+    AUTHORIZE = "-3"
+    SCHEDULED = "-2"
+    IMPLEMENT = "-1"
+    REVIEW = "0"
+    CLOSED = "3"     # Needs close_code and close_notes
+    CANCELED = "4"
 
 class ServiceNowChangeManager:
     """
@@ -304,7 +316,7 @@ class ServiceNowChangeManager:
         change_type: str = "Standard",
         priority: int = 3,
         assignment_group: str = "Network Engineering",
-        risk_level: str = "Medium",
+        risk_level: str = "Moderate",
         impact: str = "Low to Medium"
     ) -> Optional[str]:
         """
@@ -315,24 +327,30 @@ class ServiceNowChangeManager:
             description: Detailed change description
             change_type: Standard, Normal, Emergency
             priority: 1-5, where 1 is highest
-            assignment_group: Team to assign to
-            risk_level: Low, Medium, High, Critical
+            assignment_group: Team to assign to (group name)
+            risk_level: Low, Moderate, High, Very High
             impact: Expected impact assessment
         
         Returns:
             Change request number (e.g., CHG0123456)
         """
         try:
+            # Reference fields such as assignment_group take a sys_id; a
+            # dot-walked 'assignment_group.name' is silently ignored on POST
+            group_sys_id = self._group_sys_id(assignment_group)
+            if not group_sys_id:
+                logger.error(f"Assignment group not found: {assignment_group}")
+                return None
+
             payload = {
                 'short_description': short_description,
                 'description': description,
-                'type': change_type,
-                'priority': priority,
-                'assignment_group.name': assignment_group,
-                'risk_assessment': risk_level,
+                'type': change_type.lower(),  # choice values: standard, normal, emergency
+                'priority': str(priority),
+                'assignment_group': group_sys_id,
                 'justification': f'Automated network change via Nautomation. Impact: {impact}',
-                'cab_required': risk_level in ['High', 'Critical'],
-                'needs_monitoring': 'true'
+                'risk_impact_analysis': f'Risk: {risk_level}. Impact: {impact}',
+                'cab_required': risk_level in ['High', 'Very High']
             }
             
             headers = {'Content-Type': 'application/json', 'Accept': 'application/json'}
@@ -366,23 +384,49 @@ class ServiceNowChangeManager:
             logger.error(f"Exception creating change request: {e}")
             return None
     
+    def _group_sys_id(self, group_name: str) -> Optional[str]:
+        """Look up an assignment group's sys_id by name"""
+        response = requests.get(
+            f"{self.base_url}/table/sys_user_group",
+            params={'sysparm_query': f'name={group_name}', 'sysparm_fields': 'sys_id'},
+            auth=self.auth,
+            verify=False
+        )
+        if response.status_code != 200:
+            return None
+        results = response.json().get('result', [])
+        return results[0]['sys_id'] if results else None
+
     def update_change_status(
         self,
         change_number: str,
         state: ChangeState,
-        work_notes: str = ""
+        work_notes: str = "",
+        close_code: Optional[str] = None
     ) -> bool:
-        """Update change request status"""
+        """
+        Update change request status
+
+        The instance's state model decides which moves are allowed (a
+        normal change can't jump from New to Implement without approval).
+        Closing needs a close_code: 'successful', 'successful_issues' or
+        'unsuccessful'; work_notes become the close notes.
+        """
         try:
             change = self.get_change_details(change_number)
             if not change or not change.get('sys_id'):
                 logger.error(f"Could not find change request: {change_number}")
                 return False
-            
+
             payload = {
                 'state': state.value,
                 'work_notes': work_notes
             }
+            if state == ChangeState.CLOSED:
+                if not close_code:
+                    raise ValueError("Closing a change needs a close_code")
+                payload['close_code'] = close_code
+                payload['close_notes'] = work_notes
             
             headers = {'Content-Type': 'application/json'}
             
@@ -511,14 +555,19 @@ class DNACenterIntegration:
         """Check device compliance status"""
         try:
             response = self.api.compliance.get_compliance_status(
-                deviceId=device_id
+                device_uuid=device_id
             )
-            
+
+            # One record per device, in a list under 'response'
+            records = response.get('response') or []
+            if not records:
+                return {}
+
             return {
                 'device_id': device_id,
-                'compliance_status': response.get('complianceStatus'),
-                'total_configs': response.get('totalConfigs'),
-                'non_compliant_configs': response.get('totalNonCompliantConfigs')
+                # COMPLIANT, NON_COMPLIANT, IN_PROGRESS, NOT_AVAILABLE, NOT_APPLICABLE or ERROR
+                'compliance_status': records[0].get('complianceStatus'),
+                'last_updated': records[0].get('lastUpdateTime')
             }
         
         except Exception as e:
@@ -531,25 +580,30 @@ class DNACenterIntegration:
         target_device_id: str,
         variables: Dict[str, str]
     ) -> Optional[str]:
-        """Deploy configuration template to device"""
+        """Deploy configuration template to device; returns the task ID"""
         try:
-            # Render template with variables
-            render_response = self.api.configuration_templates.render_config_template(
+            # Render first, to catch bad variables and log what will be pushed
+            preview = self.api.configuration_templates.preview_template(
                 templateId=template_id,
+                deviceId=target_device_id,
                 params=variables
             )
-            
-            rendered_config = render_response['response']['renderedConfig']
-            
-            # Deploy to device
-            deploy_response = self.api.network_device_config.deploy_device_config(
-                deviceId=target_device_id,
-                request={
-                    'config': rendered_config,
-                    'taskId': target_device_id
-                }
+            if preview.get('validationErrors'):
+                logger.error(f"Template failed validation: {preview['validationErrors']}")
+                return None
+            logger.debug(f"Rendered config:\n{preview.get('cliPreview')}")
+
+            # Deploy to device (Catalyst Center renders it again per target)
+            deploy_response = self.api.configuration_templates.deploy_template_v2(
+                templateId=template_id,
+                forcePushTemplate=False,
+                targetInfo=[{
+                    'id': target_device_id,
+                    'type': 'MANAGED_DEVICE_UUID',
+                    'params': variables
+                }]
             )
-            
+
             task_id = deploy_response['response']['taskId']
             logger.info(f"Deployed template to {target_device_id}, task: {task_id}")
             
@@ -734,7 +788,14 @@ class NetworkAutomationOrchestrator:
                 return result
             
             result['change_number'] = change_id
-            
+
+            # Move the change into Implement before touching devices. A
+            # standard change is pre-approved; a normal change must be
+            # approved (Scheduled) first, and ServiceNow refuses this move
+            if not self.snow.update_change_status(change_id, ChangeState.IMPLEMENT):
+                result['errors'].append("Change request is not ready to implement")
+                return result
+
             # Step 3: Deploy via AWX
             logger.info("Step 3: Deploying configuration via AWX")
             extra_vars['devices'] = [d.name for d in devices]
@@ -748,8 +809,9 @@ class NetworkAutomationOrchestrator:
             if not job_id:
                 self.snow.update_change_status(
                     change_id,
-                    ChangeState.CLOSED_FAILED,
-                    work_notes="AWX deployment failed"
+                    ChangeState.CLOSED,
+                    work_notes="AWX deployment failed",
+                    close_code="unsuccessful"
                 )
                 result['errors'].append("Failed to launch Ansible job")
                 return result
@@ -773,7 +835,7 @@ class NetworkAutomationOrchestrator:
                 
                 if dna_device:
                     compliance = self.dnac.get_device_compliance(dna_device['id'])
-                    if compliance.get('non_compliant_configs', 0) > 0:
+                    if compliance.get('compliance_status') == 'NON_COMPLIANT':
                         compliance_issues.append(device.name)
             
             result['validation_status'] = 'completed'
@@ -784,9 +846,10 @@ class NetworkAutomationOrchestrator:
             if compliance_issues:
                 work_notes += f". Compliance issues found on: {', '.join(compliance_issues)}"
             
+            # Review, not Closed: a person confirms the result and closes it
             self.snow.update_change_status(
                 change_id,
-                ChangeState.COMPLETE,
+                ChangeState.REVIEW,
                 work_notes=work_notes
             )
             
@@ -799,8 +862,9 @@ class NetworkAutomationOrchestrator:
             if result['change_number']:
                 self.snow.update_change_status(
                     result['change_number'],
-                    ChangeState.CLOSED_FAILED,
-                    work_notes=f"Automation failed: {e}"
+                    ChangeState.CLOSED,
+                    work_notes=f"Automation failed: {e}",
+                    close_code="unsuccessful"
                 )
         
         return result
