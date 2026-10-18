@@ -452,6 +452,7 @@ result = await runbook.execute(incident)
 import json
 from datetime import datetime
 from pathlib import Path
+from typing import List
 from incident_detector import Incident
 
 class IncidentTracker:
