@@ -90,28 +90,36 @@ class DeviceHealthChecker:
     def check_disk_space(self, min_percent_free=10) -> HealthCheckResult:
         """Check device has sufficient free disk space."""
         try:
-            output = self.device.send_command("show disk:")
-            
-            # Parse disk usage (device-specific)
-            lines = output.split('\n')
-            for line in lines:
-                if 'Kbytes total' in line:
-                    # Extract percentages
-                    parts = line.split()
-                    # (This is simplified; real parsing depends on device OS)
-                    
-                    # If we get here, device has space
-                    return HealthCheckResult(
-                        check_name="disk_space",
-                        status=HealthStatus.HEALTHY,
-                        message=f"Disk space available",
-                        details={"output": line}
-                    )
-            
+            # IOS / IOS-XE summary line, e.g.:
+            #   11353194496 bytes total (8183595008 bytes free)
+            output = self.device.send_command("dir flash: | include bytes total")
+            match = re.search(r"(\d+) bytes total \((\d+) bytes free\)", output)
+
+            if not match:
+                return HealthCheckResult(
+                    check_name="disk_space",
+                    status=HealthStatus.WARNING,
+                    message="Could not parse disk usage",
+                    details={"output": output[:100]}
+                )
+
+            total, free = (int(value) for value in match.groups())
+            percent_free = free / total * 100
+
+            if percent_free < min_percent_free:
+                return HealthCheckResult(
+                    check_name="disk_space",
+                    status=HealthStatus.WARNING,
+                    message=f"Only {percent_free:.0f}% of flash free "
+                            f"(minimum {min_percent_free}%)",
+                    details={"free_bytes": free, "total_bytes": total}
+                )
+
             return HealthCheckResult(
                 check_name="disk_space",
-                status=HealthStatus.WARNING,
-                message="Could not parse disk usage"
+                status=HealthStatus.HEALTHY,
+                message=f"{percent_free:.0f}% of flash free",
+                details={"free_bytes": free, "total_bytes": total}
             )
         except Exception as e:
             return HealthCheckResult(
@@ -459,7 +467,12 @@ class SanityTests:
     def test_interfaces_still_up(self, expected_up=2) -> SanityTestResult:
         """Verify interfaces didn't break."""
         output = self.device.send_command("show ip interface brief")
-        up_count = output.count(" UP ")
+        # Columns: Interface, IP-Address, OK?, Method, Status, Protocol.
+        # IOS prints the last two in lower case: "up up" means up/up.
+        up_count = sum(
+            1 for line in output.splitlines()[1:]
+            if line.split()[-2:] == ["up", "up"]
+        )
         
         if up_count >= expected_up:
             return SanityTestResult(
