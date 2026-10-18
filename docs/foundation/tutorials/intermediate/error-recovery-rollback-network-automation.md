@@ -399,8 +399,18 @@ def validate_bgp_neighbors_established(device, min_neighbors=1) -> ValidationRes
     """Check BGP neighbors are established."""
     output = device.send_command("show ip bgp summary")
     
-    # Count 'Established' neighbors
-    established = output.count("Established")
+    # Established peers show a prefix count in the last column
+    # (State/PfxRcd); others show a state such as Idle or Active.
+    # IOS never prints the word "Established" in this table.
+    established = 0
+    in_table = False
+    for line in output.splitlines():
+        if line.startswith("Neighbor"):
+            in_table = True
+            continue
+        parts = line.split()
+        if in_table and parts and parts[-1].isdigit():
+            established += 1
     
     if established < min_neighbors:
         return ValidationResult(
