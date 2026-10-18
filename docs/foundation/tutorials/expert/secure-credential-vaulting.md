@@ -114,8 +114,8 @@ class BaseVaultBackend(ABC):
         pass
     
     @abstractmethod
-    async def rotate_secret(self, path: str) -> None:
-        """Rotate secret (if supported)"""
+    async def rotate_secret(self, path: str, new_secret: Dict[str, Any]) -> None:
+        """Store rotated values, keeping fields that aren't being replaced"""
         pass
     
     @abstractmethod
@@ -191,24 +191,32 @@ class HashiCorpVaultBackend(BaseVaultBackend):
             logger.error(f"Failed to store secret in Vault: {e}")
             raise
     
-    async def rotate_secret(self, path: str) -> None:
+    async def rotate_secret(self, path: str, new_secret: Dict[str, Any]) -> None:
         """
         Implement secret rotation:
-        1. Generate new secret
-        2. Store in Vault
-        3. Update policy version tracking
+        1. Merge the new values into the current secret (a new KV version)
+        2. Record the rotation in the secret's custom metadata
+
+        Change the credential where it's used (e.g. on the devices) first,
+        then call this, so Vault never holds a password nothing accepts.
         """
         try:
-            # Read current secret metadata
+            # Keep fields that aren't being rotated (e.g. the username)
+            current = await self.get_secret(path)
+            await self.put_secret(path, {**current, **new_secret})
+
+            # custom_metadata is None until something sets it, and its
+            # values must be strings
             metadata = self.client.secrets.kv.v2.read_secret_metadata(path=path)
-            
-            # Create new version (automatic with create_or_update)
-            new_secret = {
-                'rotated_at': datetime.now().isoformat(),
-                'rotation_count': metadata['data'].get('custom_metadata', {}).get('rotation_count', 0) + 1
-            }
-            
-            await self.put_secret(path, new_secret)
+            custom = metadata['data'].get('custom_metadata') or {}
+            self.client.secrets.kv.v2.update_metadata(
+                path=path,
+                custom_metadata={
+                    **custom,
+                    'rotated_at': datetime.now().isoformat(),
+                    'rotation_count': str(int(custom.get('rotation_count', 0)) + 1),
+                },
+            )
             logger.info(f"Rotated secret: {path}")
         
         except Exception as e:
@@ -287,18 +295,19 @@ class AWSSecretsManagerBackend(BaseVaultBackend):
             logger.error(f"Failed to store secret in AWS: {e}")
             raise
     
-    async def rotate_secret(self, path: str) -> None:
+    async def rotate_secret(self, path: str, new_secret: Dict[str, Any]) -> None:
         """
-        Enable/trigger rotation in AWS Secrets Manager
-        AWS handles actual rotation with Lambda functions
+        Store rotated values as a new secret version, keeping other fields.
+        (To let AWS rotate the secret itself, configure a rotation Lambda
+        and call self.client.rotate_secret(SecretId=path) instead.)
         """
         try:
-            # Update secret with rotation flag
             secret = await self.get_secret(path)
+            secret.update(new_secret)
             secret['last_rotation'] = datetime.now().isoformat()
             await self.put_secret(path, secret)
-            
-            logger.info(f"Marked secret for rotation: {path}")
+
+            logger.info(f"Rotated secret: {path}")
         
         except Exception as e:
             logger.error(f"Failed to initiate rotation: {e}")
@@ -309,7 +318,7 @@ class AWSSecretsManagerBackend(BaseVaultBackend):
         try:
             self.client.delete_secret(
                 SecretId=path,
-                ForceDeleteWithoutRecovery=False  # 7-day recovery window
+                RecoveryWindowInDays=7  # Recoverable for 7 days (default 30)
             )
             logger.info(f"Deleted secret: {path}")
         
@@ -352,16 +361,17 @@ class VaultManager:
     
     def _init_backend(self, backend_type: VaultBackend, **kwargs) -> BaseVaultBackend:
         """Initialize appropriate vault backend"""
+        # Explicit arguments win; environment variables are the fallback
         if backend_type == VaultBackend.HASHICORP:
             return HashiCorpVaultBackend(
-                vault_addr=os.environ.get('VAULT_ADDR', kwargs.get('vault_addr')),
-                vault_token=os.environ.get('VAULT_TOKEN', kwargs.get('vault_token')),
+                vault_addr=kwargs.get('vault_addr') or os.environ.get('VAULT_ADDR'),
+                vault_token=kwargs.get('vault_token') or os.environ.get('VAULT_TOKEN'),
                 verify_ssl=kwargs.get('verify_ssl', True)
             )
-        
+
         elif backend_type == VaultBackend.AWS:
             return AWSSecretsManagerBackend(
-                region=os.environ.get('AWS_REGION', kwargs.get('region', 'us-east-1'))
+                region=kwargs.get('region') or os.environ.get('AWS_REGION', 'us-east-1')
             )
         
         else:
@@ -408,12 +418,7 @@ class VaultManager:
         """Store secret in vault and invalidate cache"""
         try:
             await self.backend.put_secret(path, secret)
-            
-            # Invalidate cache
-            for key in list(self.cache.keys()):
-                if key.startswith(path):
-                    del self.cache[key]
-            
+            self._invalidate(path)
             self._audit_log('secret_stored', path)
         
         except Exception as e:
@@ -421,15 +426,12 @@ class VaultManager:
             self._audit_log('secret_storage_failed', path, {'error': str(e)})
             raise
     
-    async def rotate_secret(self, path: str) -> None:
+    async def rotate_secret(self, path: str, new_secret: Dict[str, Any]) -> None:
         """Rotate secret with audit trail"""
         try:
-            await self.backend.rotate_secret(path)
-            
-            # Invalidate cache
-            self.cache.pop(path, None)
-            
-            self._audit_log('secret_rotated', path)
+            await self.backend.rotate_secret(path, new_secret)
+            self._invalidate(path)
+            self._audit_log('secret_rotated', path, {'fields': sorted(new_secret)})
             logger.info(f"Secret rotated: {path}")
         
         except Exception as e:
@@ -441,7 +443,7 @@ class VaultManager:
         """Delete secret and clear cache"""
         try:
             await self.backend.delete_secret(path)
-            self.cache.pop(path, None)
+            self._invalidate(path)
             self._audit_log('secret_deleted', path)
         
         except Exception as e:
@@ -449,6 +451,13 @@ class VaultManager:
             self._audit_log('secret_deletion_failed', path, {'error': str(e)})
             raise
     
+    def _invalidate(self, path: str) -> None:
+        """Drop cached copies of a secret: the whole secret and any single keys."""
+        for cache_key in list(self.cache):
+            # Exact match or "path:key", so "network/r1" leaves "network/r10" alone
+            if cache_key == path or cache_key.startswith(f"{path}:"):
+                del self.cache[cache_key]
+
     def _audit_log(self, action: str, path: str, details: Optional[Dict] = None) -> None:
         """Log all secret operations for compliance"""
         if not self.enable_audit:
@@ -496,10 +505,10 @@ def set_credentials_from_vault(task: Task) -> Result:
         return Result(host=task.host, failed=True, result="No vault manager configured")
     
     try:
-        # Retrieve credentials (bridge the async vault API from this sync task)
+        # Retrieve credentials (bridge the async vault API from this sync task).
+        # No key: we want the whole secret dict (username and password)
         device_creds = asyncio.run(vault_manager.get_secret(
-            f"network/credentials/{task.host.name}",
-            key='all'
+            f"network/credentials/{task.host.name}"
         ))
         
         # Update host credentials
@@ -639,34 +648,51 @@ Automatic rotation of aged credentials:
 
 ```python
 import asyncio
+from datetime import datetime, timedelta, timezone
+from typing import Any, Awaitable, Callable, Dict
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
 
 class CredentialRotationScheduler:
     """Automatically rotate credentials based on schedule"""
-    
+
     def __init__(self, vault_manager: VaultManager):
         self.vault = vault_manager
-        self.scheduler = AsyncIOScheduler()
-    
+        self.scheduler = AsyncIOScheduler(timezone=timezone.utc)
+
     def schedule_rotation(
         self,
         secret_path: str,
+        change_credential: Callable[[str], Awaitable[Dict[str, Any]]],
         interval_days: int = 90,
         rotation_hour: int = 2  # Off-peak time
     ):
         """
         Schedule automatic secret rotation
-        
+
         Args:
             secret_path: Path to secret to rotate
+            change_credential: Async function that sets a new credential where
+                it's used (e.g. a new password on the devices) and returns the
+                new values, e.g. {'password': ...}. Vault is only updated once
+                it succeeds; if it raises, the stored secret is left alone.
             interval_days: Rotation frequency
             rotation_hour: Hour of day to rotate (UTC)
         """
+        async def rotate():
+            new_secret = await change_credential(secret_path)
+            await self.vault.rotate_secret(secret_path, new_secret)
+
+        # First run at the next rotation_hour, then every interval_days
+        now = datetime.now(timezone.utc)
+        first_run = now.replace(hour=rotation_hour, minute=0, second=0, microsecond=0)
+        if first_run <= now:
+            first_run += timedelta(days=1)
+
         self.scheduler.add_job(
-            self.vault.rotate_secret,
+            rotate,
             'interval',
             days=interval_days,
-            args=[secret_path],
+            start_date=first_run,
             name=f"rotate_{secret_path}"
         )
         
@@ -690,15 +716,22 @@ class CredentialRotationScheduler:
 
 ```python
 import pytest
-from unittest.mock import AsyncMock, MagicMock
+from unittest.mock import AsyncMock, MagicMock, patch
+
+def make_manager(**kwargs):
+    """VaultManager with hvac mocked: constructing one contacts Vault."""
+    with patch("hvac.Client"):
+        return VaultManager(
+            backend_type=VaultBackend.HASHICORP,
+            vault_addr="http://vault.test:8200",
+            vault_token="test-token",
+            **kwargs
+        )
 
 @pytest.mark.asyncio
 async def test_vault_manager_caching():
     """Test secret caching with TTL"""
-    manager = VaultManager(
-        backend_type=VaultBackend.HASHICORP,
-        cache_ttl=10
-    )
+    manager = make_manager(cache_ttl=10)
     
     # Mock backend
     manager.backend.get_secret = AsyncMock(
@@ -717,10 +750,10 @@ async def test_vault_manager_caching():
 @pytest.mark.asyncio
 async def test_secret_rotation():
     """Test secret rotation audit trail"""
-    manager = VaultManager(enable_audit=True)
+    manager = make_manager(enable_audit=True)
     manager.backend.rotate_secret = AsyncMock()
-    
-    await manager.rotate_secret('network/router1')
+
+    await manager.rotate_secret('network/router1', {'password': 'n3w-Pa55'})
     
     # Check audit log
     assert len(manager.audit_log) > 0
