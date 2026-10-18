@@ -391,10 +391,13 @@ def save_config(task: Task, config_data: dict, backup_dir: str = "configs", db_f
         )
     
     try:
-        # Save to filesystem
+        # Save to filesystem. Each run gets its own timestamped file:
+        # detect_changes diffs against the previous run's file, so
+        # overwriting one fixed filename would compare the config with itself
         os.makedirs(backup_dir, exist_ok=True)
         safe_name = device_name.replace('.', '-')
-        filename = f"{safe_name}_running-config.txt"
+        stamp = datetime.now().strftime('%Y%m%d_%H%M%S')
+        filename = f"{safe_name}_{stamp}_running-config.txt"
         filepath = os.path.join(backup_dir, filename)
         
         with open(filepath, 'w') as f:
@@ -408,9 +411,9 @@ def save_config(task: Task, config_data: dict, backup_dir: str = "configs", db_f
         
         # Get previous backup to detect change
         cursor.execute('''
-            SELECT id, config_hash FROM backups 
-            WHERE device_name = ? 
-            ORDER BY backup_timestamp DESC LIMIT 1
+            SELECT id, config_hash FROM backups
+            WHERE device_name = ?
+            ORDER BY id DESC LIMIT 1
         ''', (device_name,))
         
         previous = cursor.fetchone()
@@ -561,8 +564,18 @@ def compliance_check(task: Task, config: dict, db_file: str = "backup.db") -> Re
     etc.
     """
     device_name = task.host.name
-    config_lower = (config.get(device_name) or "").lower()
-    
+    config_text = config.get(device_name)
+
+    if not config_text:
+        # No config to check: don't score an empty string as "non-compliant"
+        logger.warning(f"[{device_name}] Skipping compliance check (no config)")
+        return Result(
+            host=task.host,
+            result={'success': False, 'reason': 'config_retrieval_failed'},
+            failed=True
+        )
+
+    config_lower = config_text.lower()
     issues = []
     score = 100
     
@@ -754,12 +767,17 @@ def main():
         print(f"\n{'=' * 70}")
         print("STAGE 2: Saving Configurations & Creating Database Records")
         print(f"{'=' * 70}\n")
-        
+
+        # on_failed=True: Nornir skips hosts that failed an earlier run
+        # unless told otherwise. Every stage must still produce a result
+        # for every host (the tasks handle a missing config themselves),
+        # or stage 5's lookups by host name raise KeyError.
         save_results = nornir.run(
             task=save_config,
             config_data=config_data,
             backup_dir="enterprise_configs",
-            db_file="backup.db"
+            db_file="backup.db",
+            on_failed=True
         )
         
         # ================================================================
@@ -776,9 +794,10 @@ def main():
                 if config_data[device_name] else None
                 for device_name in config_data.keys()
             },
-            db_file="backup.db"
+            db_file="backup.db",
+            on_failed=True
         )
-        
+
         # ================================================================
         # STAGE 4: Compliance Checking (Parallel)
         # ================================================================
@@ -793,7 +812,8 @@ def main():
                 if config_data[device_name] else ""
                 for device_name in config_data.keys()
             },
-            db_file="backup.db"
+            db_file="backup.db",
+            on_failed=True
         )
         
         # ================================================================
@@ -818,8 +838,12 @@ def main():
             all_results={
                 device_name: all_aggregated[device_name]
                 for device_name in nornir.inventory.hosts.keys()
-            }
+            },
+            on_failed=True
         )
+
+        for device_name, result in report_results.items():
+            print(result[0].result.get('report', ''))
         
         # ================================================================
         # PRINT FINAL SUMMARY
@@ -839,18 +863,22 @@ def main():
             save_success = save_results[device_name][0].result.get('success', False)
             
             if compliance_results[device_name][0].result.get('success'):
-                score = compliance_results[device_name][0].result.get('score', 0)
+                compliance = f"{compliance_results[device_name][0].result['score']}/100"
             else:
-                score = 0
-            
+                compliance = "n/a"
+
             changed = changes_results[device_name][0].result.get('changed', False)
-            
+            if not config_success:
+                status = "n/a"
+            else:
+                status = "Changed" if changed else "Same"
+
             summary_data.append([
                 device_name,
                 "✓" if config_success else "✗",
                 "✓" if save_success else "✗",
-                "Changed" if changed else "Same",
-                f"{score}/100"
+                status,
+                compliance
             ])
         
         headers = ["Device", "Config Retrieved", "Saved", "Status", "Compliance"]
@@ -858,12 +886,14 @@ def main():
         
         # Statistics
         successful = sum(1 for d in summary_data if d[1] == "✓")
-        changed_count = sum(1 for d in summary_data if "Changed" in d[3])
-        avg_compliance = sum(int(d[4].split('/')[0]) for d in summary_data) / len(summary_data)
-        
+        changed_count = sum(1 for d in summary_data if d[3] == "Changed")
+        scores = [int(d[4].split('/')[0]) for d in summary_data if d[4] != "n/a"]
+
         print(f"\nSuccessful Backups: {successful}/{len(nornir.inventory.hosts)}")
         print(f"Changed Configs: {changed_count}/{len(nornir.inventory.hosts)}")
-        print(f"Average Compliance: {avg_compliance:.1f}/100")
+        if scores:
+            print(f"Average Compliance: {sum(scores) / len(scores):.1f}/100 "
+                  f"(across {len(scores)} devices checked)")
         
         print(f"\n✓ Backup database: backup.db")
         print(f"✓ Config files: enterprise_configs/")
@@ -954,6 +984,25 @@ STAGE 4: Running Compliance Checks
 STAGE 5: Generating Summary Report
 ======================================================================
 
+
+======================================================================
+Device: router1
+======================================================================
+✓ Config saved: 4,812 bytes
+Changes: No changes
+Compliance Score: 85/100
+Issues: 1
+
+======================================================================
+Device: router2
+======================================================================
+✓ Config saved: 5,104 bytes
+Changes: +3 lines, -1 lines
+Compliance Score: 80/100
+Issues: 2
+
+... (one report per device)
+
 ======================================================================
 FINAL SUMMARY
 ======================================================================
@@ -970,7 +1019,7 @@ FINAL SUMMARY
 
 Successful Backups: 5/5
 Changed Configs: 2/5
-Average Compliance: 83.6/100
+Average Compliance: 83.6/100 (across 5 devices checked)
 
 ✓ Backup database: backup.db
 ✓ Config files: enterprise_configs/
@@ -1610,7 +1659,9 @@ def main():
             print(f"✗ Failed: {failed}/{len(results)}")
             for host, result in results.items():
                 if result.failed:
-                    print(f"  - {host}: {result[0].exception}")
+                    # backup_config catches its own errors and returns them
+                    # in the result, so .exception would be None here
+                    print(f"  - {host}: {result[0].result.get('error')}")
         
         return 0 if failed == 0 else 1
         
@@ -2064,8 +2115,9 @@ from nornir_netmiko.tasks import netmiko_send_command
 
 def backup_via_bastion(task: Task) -> Result:
     """Backup config through bastion host"""
-    
-    # Netmiko will use ~/.ssh/config automatically
+
+    # Nornir hands its ssh.config_file setting (default ~/.ssh/config) to
+    # Netmiko, which follows the ProxyJump for this host
     result = task.run(
         netmiko_send_command,
         command_string="show running-config"
@@ -2077,6 +2129,9 @@ def backup_via_bastion(task: Task) -> Result:
 # No special config needed - SSH just uses the proxy!
 ```
 
+!!! note "What Netmiko Takes From the SSH Config"
+    Netmiko reads the device's `HostName`, `Port`, `User` (only if the inventory sets no username) and `ProxyJump` or `ProxyCommand`. It doesn't use the device's `IdentityFile`, so it still logs in to the device with the inventory password. The bastion's own `User` and `IdentityFile` do apply, because Netmiko starts the jump with your system `ssh` client. `ssh` must therefore be on your `PATH`, and a single `ProxyJump` line may name only one bastion.
+
 **Test it works:**
 
 ```bash
@@ -2087,53 +2142,63 @@ ssh -G 10.1.1.1  # Shows what SSH will use
 ssh admin@10.1.1.1
 ```
 
-### Pattern 2: Netmiko Native Proxy (More Control)
+### Pattern 2: A Bastion per Group (More Control)
 
-For finer control, use Netmiko's built-in proxy configuration:
+Netmiko has no proxy arguments of its own. Its proxy support *is* the SSH config file, passed as `ssh_config_file`. To send different devices through different bastions without one giant `~/.ssh/config`, give each bastion its own small config file and choose it per group with Nornir's `connection_options`. Nornir passes `extras` straight to Netmiko's `ConnectHandler`:
+
+```ssh
+# ~/.ssh/bastion-dc1.conf
+Host bastion-dc1
+    HostName bastion1.example.com
+    User netadmin
+    IdentityFile ~/.ssh/bastion_key
+
+Host *
+    ProxyJump bastion-dc1
+```
+
+```yaml
+# inventory/groups.yaml
+dc1_devices:
+  platform: cisco_ios
+  connection_options:
+    netmiko:
+      extras:
+        ssh_config_file: ~/.ssh/bastion-dc1.conf   # ← Bastion for this group
+
+dc2_devices:
+  platform: cisco_ios
+  connection_options:
+    netmiko:
+      extras:
+        ssh_config_file: ~/.ssh/bastion-dc2.conf
+```
 
 ```yaml
 # inventory/hosts.yaml
 router1:
   hostname: 10.1.1.1
-  platform: cisco_ios
   groups:
-    - ios_devices
-  data:
-    proxy_jump: bastion.example.com  # ← Bastion address
-    proxy_user: netadmin              # ← Bastion username
-    proxy_key_file: ~/.ssh/bastion_key
+    - dc1_devices
 
 switch1:
-  hostname: 10.1.1.2
-  platform: cisco_ios
+  hostname: 10.2.1.2
   groups:
-    - ios_devices
-  data:
-    proxy_jump: bastion.example.com
-    proxy_user: netadmin
-    proxy_key_file: ~/.ssh/bastion_key
+    - dc2_devices
 ```
 
-**Use in tasks:**
+**Use in tasks.** Nothing changes, because the connection already knows its route:
 
 ```python
 from nornir.core.task import Task, Result
+from nornir_netmiko.tasks import netmiko_send_command
 
 def backup_with_proxy(task: Task) -> Result:
-    """Backup through proxy/bastion"""
-    
-    proxy_jump = task.host.data.get('proxy_jump')
-    proxy_user = task.host.data.get('proxy_user')
-    proxy_key = task.host.data.get('proxy_key_file')
-    
-    # Pass proxy info to Netmiko
+    """Backup through this host's group bastion"""
     result = task.run(
         netmiko_send_command,
         command_string="show running-config",
-        ssh_config_file=None,  # We're handling it manually
-        # Netmiko handles proxy via paramiko
     )
-    
     return Result(host=task.host, result=result[0].result)
 ```
 
@@ -2291,26 +2356,21 @@ Host 10.1.1.*
 ```python
 from nornir import InitNornir
 from nornir.core.task import Task, Result
-import paramiko
 
 def test_bastion_path(task: Task) -> Result:
     """Verify connectivity through bastion"""
-    
-    device_name = task.host.name
-    hostname = task.host.hostname
-    
+
     try:
-        # Try to connect
-        ssh = paramiko.SSHClient()
-        ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
-        
-        # Uses ~/.ssh/config automatically
-        ssh.connect(hostname)
-        ssh.close()
-        
+        # Open the same Netmiko connection the backup will use, with the
+        # same SSH config and credentials. (A bare paramiko.SSHClient would
+        # be no test at all: paramiko never reads ~/.ssh/config, so it
+        # would try to reach the device directly.)
+        conn = task.host.get_connection("netmiko", task.nornir.config)
+        prompt = conn.find_prompt()
+
         return Result(
             host=task.host,
-            result={'status': 'reachable', 'message': f'Connected through bastion'}
+            result={'status': 'reachable', 'message': f'Connected through bastion: {prompt}'}
         )
         
     except Exception as e:
