@@ -562,11 +562,15 @@ def create_vlan(device_ip, vlan_id, vlan_name, username, password):
     url = f"https://{device_ip}/restconf/data/Cisco-IOS-XE-native:native/vlan"
 
     # JSON payload
+    # vlan-list is a YANG list, so RESTCONF expects a JSON array,
+    # even when you're creating a single VLAN
     payload = {
-        "Cisco-IOS-XE-vlan:vlan-list": {
-            "id": vlan_id,
-            "name": vlan_name
-        }
+        "Cisco-IOS-XE-vlan:vlan-list": [
+            {
+                "id": vlan_id,
+                "name": vlan_name
+            }
+        ]
     }
 
     headers = {
@@ -645,7 +649,7 @@ Makes logs machine-parsable for analysis
 
 import json
 import logging
-from datetime import datetime
+from datetime import datetime, timezone
 
 class JSONFormatter(logging.Formatter):
     """
@@ -658,7 +662,7 @@ class JSONFormatter(logging.Formatter):
         Format log record as JSON
         """
         log_data = {
-            'timestamp': datetime.utcnow().isoformat() + 'Z',
+            'timestamp': datetime.now(timezone.utc).isoformat().replace('+00:00', 'Z'),
             'level': record.levelname,
             'logger': record.name,
             'message': record.getMessage(),
@@ -774,7 +778,7 @@ Track configuration drift over time
 """
 
 import json
-from datetime import datetime
+from datetime import datetime, timezone
 from netmiko import ConnectHandler
 
 def capture_device_state(device_params):
@@ -786,7 +790,7 @@ def capture_device_state(device_params):
 
     # Gather device information
     state = {
-        'timestamp': datetime.utcnow().isoformat() + 'Z',
+        'timestamp': datetime.now(timezone.utc).isoformat().replace('+00:00', 'Z'),
         'hostname': device_params['host'],
         'device_type': device_params['device_type'],
         'running_config': connection.send_command('show running-config'),
@@ -1332,7 +1336,7 @@ Demonstrates best practices for network automation
 import json
 import requests
 import logging
-from datetime import datetime
+from datetime import datetime, timezone
 import time
 
 # Configure logging with JSON formatter
@@ -1414,7 +1418,7 @@ class NetworkAPIClient:
         logger.info(json.dumps({
             'event': 'get_device_info',
             'device': device_name,
-            'timestamp': datetime.utcnow().isoformat()
+            'timestamp': datetime.now(timezone.utc).isoformat()
         }))
 
         data = self._make_request('GET', f'devices/{device_name}')
@@ -1425,14 +1429,14 @@ class NetworkAPIClient:
         logger.info(json.dumps({
             'event': 'update_device_config',
             'device': device_name,
-            'timestamp': datetime.utcnow().isoformat()
+            'timestamp': datetime.now(timezone.utc).isoformat()
         }))
 
         # Prepare JSON payload
         payload = {
             'device': device_name,
             'config': config,
-            'timestamp': datetime.utcnow().isoformat()
+            'timestamp': datetime.now(timezone.utc).isoformat()
         }
 
         data = self._make_request(
