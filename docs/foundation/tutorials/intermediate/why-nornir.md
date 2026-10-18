@@ -241,27 +241,28 @@ You **could**, but here's why that's a bad idea. If you want the production-safe
 ```python
 import threading
 
-# This creates threads—but threads in Python don't truly parallelize due to GIL
-def backup_with_threading(devices):
+# One thread per device, all started at once
+def backup_with_threading(devices, backup_dir):
     threads = []
     for device in devices:
-        t = threading.Thread(target=backup_device_config, args=(device,))
+        t = threading.Thread(target=backup_device_config, args=(device, backup_dir))
         threads.append(t)
         t.start()
-    
+
     for t in threads:
         t.join()
 ```
 
+This does run the backups in parallel. Python's GIL isn't the obstacle for network work: a thread waiting on SSH releases it, so the threads overlap their waiting. The problems are everything around the threads.
+
 **Problems:**
 
-1. **Python's GIL (Global Interpreter Lock)** — Threads don't actually run in parallel; they take turns
-2. **Result aggregation** — Where does output go? How do you collect all results?
-3. **Result aggregation** — No unified error handling
-4. **Credentials** — Thread-safe password management gets complex
-5. **Scalability** — Creating 500 threads crashes Python
+1. **Result aggregation** — `Thread` discards the function's return value. Where does output go? How do you collect all results?
+2. **Error handling** — An exception in a thread is printed and lost; the main thread never learns which devices failed
+3. **Credentials** — Thread-safe password management gets complex
+4. **Scalability** — Nothing limits concurrency: 500 devices means 500 simultaneous SSH logins, which can overwhelm your server, the devices' AAA servers and the management network
 
-**Nornir uses a controlled worker pool** (the default threaded runner) for network I/O. The GIL does not block this use case because SSH/API calls spend most of their time waiting on the network, so worker threads can overlap device operations safely.
+**Nornir uses a controlled worker pool** (the default threaded runner, sized by `num_workers`) for network I/O, for the same reason threads help here: SSH/API calls spend most of their time waiting on the network, so workers can overlap device operations safely. The pool caps concurrency, and Nornir gathers every host's result and error for you.
 
 ---
 
