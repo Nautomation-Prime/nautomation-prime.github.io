@@ -241,6 +241,8 @@ class DeviceStateManager:
 ### Usage Example
 
 ```python
+import json
+
 from netmiko import ConnectHandler
 from state_management import DeviceStateManager
 
@@ -262,11 +264,7 @@ state_mgr.save_state_to_file("pre_change", "pre_change_backup.json")
 
 # Step 2: Make changes
 print("Deploying changes...")
-device.send_command("configure terminal")
-device.send_command("vlan 100")
-device.send_command("name DATA")
-device.send_command("exit")
-device.send_command("end")
+device.send_config_set(["vlan 100", "name DATA"])
 
 # Step 3: Capture post-change state
 print("Capturing post-change state...")
@@ -377,8 +375,12 @@ def validate_interfaces_up(device, min_interfaces=2) -> ValidationResult:
     """Check minimum number of interfaces are up."""
     output = device.send_command("show ip interface brief")
     
-    # Count 'up' interfaces
-    up_count = output.count(" UP ")
+    # Columns: Interface, IP-Address, OK?, Method, Status, Protocol.
+    # IOS prints the last two in lower case: "up up" means up/up.
+    up_count = sum(
+        1 for line in output.splitlines()[1:]
+        if line.split()[-2:] == ["up", "up"]
+    )
     
     if up_count < min_interfaces:
         return ValidationResult(
@@ -508,36 +510,36 @@ class RollbackManager:
         return True
     
     def _rollback_to_saved_state(self):
-        """Rollback to pre-change state."""
-        print("Loading pre-change configuration...")
-        
-        # Get running config from before change
-        # This is device-specific; example for Cisco IOS:
+        """
+        Roll back by reloading onto the startup configuration.
+
+        This works only because the change was never saved: startup-config
+        still holds the pre-change state. The SSH session is lost when the
+        device reloads, so reconnect before doing anything else with it.
+        """
         pre_state = self.state_manager.state_history.get("pre_change")
         
         if not pre_state:
             print("✗ ERROR: No pre-change state available!")
             return
         
-        # For full rollback, reload from backup or use NVRAM
-        print("Reloading from startup configuration...")
-        output = self.device.send_command_timing(
-            "reload",
-            strip_prompt=False,
-            strip_command=False
-        )
-        if "confirm" in output.lower() or "proceed" in output.lower():
-            self.device.send_command_timing(
-                "yes",
-                strip_prompt=False,
-                strip_command=False
-            )
+        print("Reloading onto the startup configuration...")
+        output = self.device.send_command_timing("reload")
         
-        # Wait for reload (in production, use proper wait logic)
-        import time
-        time.sleep(60)
+        # With unsaved changes, IOS asks first:
+        #   System configuration has been modified. Save? [yes/no]:
+        # Answer "no". Saving now would make the bad change permanent.
+        if "save?" in output.lower():
+            output = self.device.send_command_timing("no")
         
-        print("✓ Rollback to pre-change state...")
+        # Then: Proceed with reload? [confirm]   (Enter confirms)
+        if "confirm" in output.lower():
+            try:
+                self.device.send_command_timing("")
+            except (OSError, EOFError):
+                pass  # the device is going down and has closed the session
+        
+        print("✓ Reload issued: the device will boot on its pre-change startup config")
 ```
 
 ### Production Usage
@@ -553,15 +555,13 @@ from validation import (
 )
 
 def deploy_vlan_config(device):
-    """Apply VLAN configuration."""
-    device.send_command("configure terminal")
-    device.send_command("vlan 100")
-    device.send_command("name DATA")
-    device.send_command("exit")
-    device.send_command("vlan 101")
-    device.send_command("name VOICE")
-    device.send_command("exit")
-    device.send_command("end")
+    """Apply VLAN configuration (not saved, so a reload can undo it)."""
+    device.send_config_set([
+        "vlan 100",
+        "name DATA",
+        "vlan 101",
+        "name VOICE",
+    ])
     print("✓ VLAN configuration commands sent")
 
 # Main deployment workflow
@@ -617,11 +617,7 @@ def deploy_with_rollback(task: Task) -> Result:
         
         # Define change function
         def apply_changes(dev):
-            dev.send_command("configure terminal")
-            dev.send_command("interface Gi0/0/1")
-            dev.send_command("shutdown")
-            dev.send_command("exit")
-            dev.send_command("end")
+            dev.send_config_set(["interface Gi0/0/1", "shutdown"])
         
         # Define validators
         validators = [
@@ -684,7 +680,9 @@ state_mgr.capture_state("post_change")
 # ✅ GOOD - Specific, testable condition
 def validate_vlan_100_exists(device):
     output = device.send_command("show vlan id 100")
-    if "VLAN0100" in output:
+    # The VLAN's row starts with its ID, whatever it's named. A missing VLAN
+    # prints "VLAN id 100 not found in current VLAN database" instead.
+    if any(line.split()[:1] == ["100"] for line in output.splitlines()):
         return ValidationResult(passed=True, message="VLAN 100 exists")
     return ValidationResult(passed=False, message="VLAN 100 missing")
 
@@ -713,8 +711,9 @@ deploy_to_devices(all_devices)
 
 ```python
 # ✅ GOOD - Rollback is straightforward
-# Option 1: Reload from NVRAM
-device.send_command("reload")
+# Option 1: Reload onto the (unchanged) startup config. Use the method
+# above: a bare send_command("reload") hangs at the confirm prompt.
+rollback_manager._rollback_to_saved_state()
 
 # Option 2: Restore from backup
 restore_from_backup(device)
@@ -726,26 +725,36 @@ try_to_undo_each_command()  # Fragile!
 ### 5. Test Rollback Procedures
 
 ```python
-# pytest
-def test_rollback_works(mock_device):
-    """Ensure rollback actually works."""
-    rollback = RollbackManager(mock_device)
-    
-    # Capture state
-    rollback.state_manager.capture_state("pre_change")
-    
-    # Make bad change that fails validation
+# tests/test_rollback.py (pytest)
+from unittest.mock import MagicMock
+
+from rollback import RollbackManager
+from validation import validate_interfaces_up
+
+
+def test_rollback_works(tmp_path, monkeypatch):
+    """A change that fails validation must trigger the reload."""
+    monkeypatch.chdir(tmp_path)          # pre_change.json is written here
+
+    device = MagicMock()
+    device.host = "10.0.0.1"             # saved into the JSON state file
+    # After the bad change, no interface is up/up
+    device.send_command.return_value = (
+        "Interface     IP-Address   OK? Method Status  Protocol\n"
+        "Gi0/0/1       10.0.0.1     YES manual down    down\n"
+    )
+    device.send_command_timing.return_value = "Proceed with reload? [confirm]"
+
+    rollback = RollbackManager(device)
+
     def bad_change(dev):
-        dev.send_command("shutdown all interfaces")  # BAD!
-    
-    validators = [
-        ("interfaces_up", validate_interfaces_up)
-    ]
-    
-    success = rollback.safe_config_deploy(bad_change, validators)
-    
-    assert success is False  # Should have rolled back
-    assert mock_device.reload.called  # Verify reload was called
+        dev.send_config_set(["interface Gi0/0/1", "shutdown"])  # BAD!
+
+    success = rollback.safe_config_deploy(
+        bad_change, [("interfaces_up", validate_interfaces_up)])
+
+    assert success is False                           # rolled back
+    device.send_command_timing.assert_any_call("reload")
 ```
 
 ---

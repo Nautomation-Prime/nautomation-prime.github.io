@@ -50,8 +50,7 @@ Your network automation works on your test network. But production has:
 @measure_performance()
 def configure_interface(device, interface, config):
     """Pure business logic—no infrastructure concerns."""
-    device.send_command(f"interface {interface}")
-    device.send_command(config)
+    device.send_config_set([f"interface {interface}", config])
 ```
 
 **Result:**
@@ -313,16 +312,14 @@ def log_audit(action, include_args=True):
 @log_audit(action="enable_interface")
 def enable_interface(device, interface):
     """Enable a network interface."""
-    device.send_command(f"interface {interface}")
-    device.send_command("no shutdown")
+    # send_config_set enters config mode, sends each line and exits again
+    device.send_config_set([f"interface {interface}", "no shutdown"])
     return True
 
 @log_audit(action="provision_vlan")
 def provision_vlan(device, vlan_id, vlan_name):
     """Create and configure a VLAN."""
-    device.send_command(f"vlan {vlan_id}")
-    device.send_command(f"name {vlan_name}")
-    device.send_command("exit")
+    device.send_config_set([f"vlan {vlan_id}", f"name {vlan_name}"])
     return vlan_id
 
 # Usage
@@ -434,18 +431,17 @@ def send_alert(message):
 @handle_errors(notify=True, reraise=True)
 def deploy_bgp_config(device, bgp_config):
     """Deploy BGP configuration to device."""
-    device.send_command("configure terminal")
-    device.send_command(f"router bgp {bgp_config['asn']}")
+    commands = [f"router bgp {bgp_config['asn']}"]
     for neighbor in bgp_config['neighbors']:
-        device.send_command(f"neighbor {neighbor['ip']} remote-as {neighbor['asn']}")
-    device.send_command("end")
+        commands.append(f"neighbor {neighbor['ip']} remote-as {neighbor['asn']}")
+    device.send_config_set(commands)
     return True
 
 @handle_errors(default_return=False, notify=False, reraise=False)
 def check_device_health(device):
     """Check device health (non-critical operation)."""
-    output = device.send_command("show system")
-    return "OK" in output
+    output = device.send_command("show version")
+    return "uptime is" in output
 ```
 
 ### Why This Matters
@@ -707,24 +703,21 @@ The real power of decorators is composing them together. A single function can h
 ```python
 # All the previous decorators: @retry, @log_audit, @handle_errors, @measure_performance
 
+@handle_errors(notify=True, reraise=True)
 @retry(max_attempts=3, delay=2)
 @log_audit(action="configure_device")
-@handle_errors(notify=True, reraise=True)
 @perf.monitor
 def configure_device(device, config):
     """
     Pure business logic focused on the network operation.
     
     All infrastructure concerns are handled by decorators:
+    - Handle errors: Alert once, after the final attempt has failed
     - Retry: Automatic retry on failure
     - Log audit: Compliance logging
-    - Handle errors: Unified error handling and alerting
     - Performance: Execution time tracking
     """
-    device.send_command("configure terminal")
-    for command in config:
-        device.send_command(command)
-    device.send_command("end")
+    device.send_config_set(config)
     return True
 ```
 
@@ -792,13 +785,9 @@ def apply_config_task(task: Task) -> Result:
         "interface Gi0/0/1",
         "ip address 10.0.0.1 255.255.255.0",
         "no shutdown",
-        "exit"
     ]
     
-    device.send_command("configure terminal")
-    for command in config_commands:
-        device.send_command(command)
-    device.send_command("end")
+    device.send_config_set(config_commands)
     
     return Result(
         host=task.host,
@@ -1138,9 +1127,9 @@ class ConfigDeployment:
     """Enterprise configuration deployment with full decorator integration."""
     
     @device_limiter
+    @handle_errors(notify=True, reraise=True)
     @retry(max_attempts=2, delay=2)
     @log_audit(action="deploy_config")
-    @handle_errors(notify=True, reraise=False)
     @perf.monitor
     def deploy_to_single_device(
         self,
@@ -1156,9 +1145,10 @@ class ConfigDeployment:
         
         Decorators provide:
         - device_limiter: Rate limitation (10 devices/min)
+        - handle_errors: Alert once retries are exhausted, then re-raise
+          so deploy_to_fleet records the device as failed
         - retry: Automatic retry (2 attempts, 2s delay)
         - log_audit: Compliance logging
-        - handle_errors: Unified error handling
         - perf.monitor: Performance metrics
         """
         
@@ -1172,11 +1162,8 @@ class ConfigDeployment:
                 logger.info(f"Pre-check state: {pre_state}")
             
             # Deploy configuration
-            device.send_command("configure terminal")
-            for command in config:
-                logger.debug(f"Sending command: {command}")
-                device.send_command(command)
-            device.send_command("end")
+            logger.debug(f"Sending commands: {config}")
+            device.send_config_set(config)
             
             # Post-deployment verification
             if post_check:
@@ -1266,6 +1253,11 @@ config = [
 deployer = ConfigDeployment()
 results = deployer.deploy_to_fleet(devices, config)
 ```
+
+!!! warning "Never Swallow Errors Underneath `retry`"
+    The order of `@handle_errors` and `@retry` is not cosmetic. Put `@handle_errors(reraise=False)` *inside* `@retry` and it converts every failure into a `None` return. `retry` then never sees an exception, so it never retries. `deploy_to_fleet` never reaches its `except`, so an unreachable device is logged as "✅ deployment successful" with a result of `None`.
+
+    Keep error handling that alerts on the outside, and let it re-raise so the caller can count the failure.
 
 ### Output
 
