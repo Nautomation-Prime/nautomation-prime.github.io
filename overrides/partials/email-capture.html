@@ -1,0 +1,35 @@
+{#-
+  Email capture for Academy pages (site/book alignment plan, items 1.4 and 1.9).
+
+  Included from partials/content.html. Set `np_capture_variant = "book"`
+  before including it to show the book-led wording used on the final
+  Capstone chapter.
+
+  Configuration lives in mkdocs.yml under extra.mailing_list. While
+  form_action is empty, an email button is shown instead of a form, so
+  the box is useful today without a mailing-list service.
+-#}
+{%- set ml = config.extra.mailing_list or {} -%}
+{%- set fallback = ml.fallback_email or "enquiries@nautomationprime.io" -%}
+<div class="np-capture" id="mailing-list">
+  {% if np_capture_variant == "book" %}
+    <h3>You can build a pipeline now. The book is about the night one fails.</h3>
+    <p><code>netpipe</code> works. The forthcoming Nautomation Prime book picks up where it stops: what happens when automation like this meets a live estate, how you would have known beforehand, and what production does to code that looked finished. Join the list to hear when it ships.</p>
+  {% else %}
+    <h3>Get notified when the book ships</h3>
+    <p>Christopher is writing a book on production-grade Cisco network automation: one script, followed from twelve lines to a system that upgrades hundreds of devices, and every failure along the way. Join the list to hear when it ships and when new Academy material goes up.</p>
+  {% endif %}
+  {% if ml.form_action %}
+    <form class="np-capture-form" action="{{ ml.form_action }}" method="post" target="_blank">
+      <label class="np-capture-label" for="np-capture-email">Email address</label>
+      <input id="np-capture-email" type="email" name="{{ ml.email_field or 'email' }}" placeholder="you@example.com" autocomplete="email" required>
+      <button class="md-button md-button--primary" type="submit">Join the list</button>
+    </form>
+    <p class="np-capture-small">One list, occasional emails, unsubscribe any time. See the <a href="{{ base_url }}/legal/privacy-policy/">Privacy Policy</a>.</p>
+  {% else %}
+    <p>
+      <a class="md-button md-button--primary" href="mailto:{{ fallback }}?subject=Add%20me%20to%20the%20Nautomation%20Prime%20list">Email to join the list</a>
+    </p>
+    <p class="np-capture-small">Sign-up is by email for now: send a blank message and you'll be added. One list, occasional emails, and you can ask to be removed at any time.</p>
+  {% endif %}
+</div>
