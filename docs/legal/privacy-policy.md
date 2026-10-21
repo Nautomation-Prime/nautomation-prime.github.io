@@ -62,7 +62,7 @@ The sign-up form on Academy pages ("Get notified when the book ships") is provid
 
 ## 5. Cookies and Analytics
 
-When you first visit, a cookie-consent banner asks before anything optional is switched on. Until you accept, the site loads no analytics and sends nothing to Google.
+When you first visit, a cookie-consent banner asks before anything optional is switched on. You can accept everything, reject everything, or choose each option yourself; none is ticked until you do. Until you accept analytics, the site loads none and sends nothing to Google.
 
 - **Google Analytics (optional):** if you accept it, the site loads Google Analytics 4, which sets cookies (such as `_ga`) so it can tell visits apart. It records which pages are viewed, searches made with the site's search box, and general information such as browser, device type and approximate location. We use it only to see which pages are read, so we can improve them. The data is processed by Google, which may store it outside the UK; Google Analytics 4 does not log or store IP addresses.
 - **GitHub (optional):** if you accept it, the site fetches public details of our GitHub organisation, shown next to the GitHub link in the header, from GitHub's servers.
