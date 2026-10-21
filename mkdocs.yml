@@ -51,6 +51,22 @@ extra:
       as to measure the effectiveness of our documentation and whether users
       find what they're searching for. With your consent, you're helping us to
       make our documentation better.
+    # Reject must be as easy as accept, and nothing optional may start
+    # ticked (UK ICO guidance). With the boxes unticked, Material's Accept
+    # button would save nothing, so assets/javascripts/consent.js makes
+    # Accept on the banner accept everything; inside "Manage settings" it
+    # saves only what the visitor ticked.
+    actions:
+      - accept
+      - reject
+      - manage
+    cookies:
+      analytics:
+        name: Google Analytics
+        checked: false
+      github:
+        name: GitHub
+        checked: false
   # Email capture (see overrides/partials/email-capture.html).
   # The sign-up box uses the first of these that is set:
   #   1. kit_form_uid + kit_script_src: Kit's embedded form. Both values come
@@ -101,6 +117,9 @@ extra:
 
 extra_css:
   - assets/css/custom.css
+
+extra_javascript:
+  - assets/javascripts/consent.js
 
 markdown_extensions:
   - abbr  # Enable abbreviations/glossary
