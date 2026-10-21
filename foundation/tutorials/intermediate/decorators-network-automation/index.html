@@ -7130,8 +7130,7 @@
 @measure_performance()
 def configure_interface(device, interface, config):
     """Pure business logic—no infrastructure concerns."""
-    device.send_command(f"interface {interface}")
-    device.send_command(config)</code></pre>
+    device.send_config_set([f"interface {interface}", config])</code></pre>
 <p><strong>Result:</strong></p>
 <ul>
 <li>Retries automatically on failure</li>
@@ -7343,16 +7342,14 @@ def log_audit(action, include_args=True):
 <pre class="highlight"><code class="language-python">@log_audit(action="enable_interface")
 def enable_interface(device, interface):
     """Enable a network interface."""
-    device.send_command(f"interface {interface}")
-    device.send_command("no shutdown")
+    # send_config_set enters config mode, sends each line and exits again
+    device.send_config_set([f"interface {interface}", "no shutdown"])
     return True
 
 @log_audit(action="provision_vlan")
 def provision_vlan(device, vlan_id, vlan_name):
     """Create and configure a VLAN."""
-    device.send_command(f"vlan {vlan_id}")
-    device.send_command(f"name {vlan_name}")
-    device.send_command("exit")
+    device.send_config_set([f"vlan {vlan_id}", f"name {vlan_name}"])
     return vlan_id
 
 # Usage
@@ -7445,18 +7442,17 @@ def send_alert(message):
 <pre class="highlight"><code class="language-python">@handle_errors(notify=True, reraise=True)
 def deploy_bgp_config(device, bgp_config):
     """Deploy BGP configuration to device."""
-    device.send_command("configure terminal")
-    device.send_command(f"router bgp {bgp_config['asn']}")
+    commands = [f"router bgp {bgp_config['asn']}"]
     for neighbor in bgp_config['neighbors']:
-        device.send_command(f"neighbor {neighbor['ip']} remote-as {neighbor['asn']}")
-    device.send_command("end")
+        commands.append(f"neighbor {neighbor['ip']} remote-as {neighbor['asn']}")
+    device.send_config_set(commands)
     return True
 
 @handle_errors(default_return=False, notify=False, reraise=False)
 def check_device_health(device):
     """Check device health (non-critical operation)."""
-    output = device.send_command("show system")
-    return "OK" in output</code></pre>
+    output = device.send_command("show version")
+    return "uptime is" in output</code></pre>
 <h3 id="why-this-matters_2">Why This Matters<a class="headerlink" href="#why-this-matters_2" title="Anchor link to this section">&para;</a></h3>
 <ul>
 <li><strong>Consistency</strong> — Same error handling across all operations</li>
@@ -7682,24 +7678,21 @@ parse_and_store:
 <h3 id="implementation">Implementation<a class="headerlink" href="#implementation" title="Anchor link to this section">&para;</a></h3>
 <pre class="highlight"><code class="language-python"># All the previous decorators: @retry, @log_audit, @handle_errors, @measure_performance
 
+@handle_errors(notify=True, reraise=True)
 @retry(max_attempts=3, delay=2)
 @log_audit(action="configure_device")
-@handle_errors(notify=True, reraise=True)
 @perf.monitor
 def configure_device(device, config):
     """
     Pure business logic focused on the network operation.
 
     All infrastructure concerns are handled by decorators:
+    - Handle errors: Alert once, after the final attempt has failed
     - Retry: Automatic retry on failure
     - Log audit: Compliance logging
-    - Handle errors: Unified error handling and alerting
     - Performance: Execution time tracking
     """
-    device.send_command("configure terminal")
-    for command in config:
-        device.send_command(command)
-    device.send_command("end")
+    device.send_config_set(config)
     return True</code></pre>
 <h3 id="decorator-execution-order">Decorator Execution Order<a class="headerlink" href="#decorator-execution-order" title="Anchor link to this section">&para;</a></h3>
 <p><strong>Important:</strong> Decorators execute from the bottom up (closest to the function first), but the wrapper layers stack.</p>
@@ -7745,13 +7738,9 @@ def apply_config_task(task: Task) -&gt; Result:
         "interface Gi0/0/1",
         "ip address 10.0.0.1 255.255.255.0",
         "no shutdown",
-        "exit"
     ]
 
-    device.send_command("configure terminal")
-    for command in config_commands:
-        device.send_command(command)
-    device.send_command("end")
+    device.send_config_set(config_commands)
 
     return Result(
         host=task.host,
@@ -8042,9 +8031,9 @@ class ConfigDeployment:
     """Enterprise configuration deployment with full decorator integration."""
 
     @device_limiter
+    @handle_errors(notify=True, reraise=True)
     @retry(max_attempts=2, delay=2)
     @log_audit(action="deploy_config")
-    @handle_errors(notify=True, reraise=False)
     @perf.monitor
     def deploy_to_single_device(
         self,
@@ -8060,9 +8049,10 @@ class ConfigDeployment:
 
         Decorators provide:
         - device_limiter: Rate limitation (10 devices/min)
+        - handle_errors: Alert once retries are exhausted, then re-raise
+          so deploy_to_fleet records the device as failed
         - retry: Automatic retry (2 attempts, 2s delay)
         - log_audit: Compliance logging
-        - handle_errors: Unified error handling
         - perf.monitor: Performance metrics
         """
 
@@ -8076,11 +8066,8 @@ class ConfigDeployment:
                 logger.info(f"Pre-check state: {pre_state}")
 
             # Deploy configuration
-            device.send_command("configure terminal")
-            for command in config:
-                logger.debug(f"Sending command: {command}")
-                device.send_command(command)
-            device.send_command("end")
+            logger.debug(f"Sending commands: {config}")
+            device.send_config_set(config)
 
             # Post-deployment verification
             if post_check:
@@ -8169,6 +8156,11 @@ config = [
 
 deployer = ConfigDeployment()
 results = deployer.deploy_to_fleet(devices, config)</code></pre>
+<div class="admonition warning">
+<p class="admonition-title">Never Swallow Errors Underneath <code>retry</code></p>
+<p>The order of <code>@handle_errors</code> and <code>@retry</code> is not cosmetic. Put <code>@handle_errors(reraise=False)</code> <em>inside</em> <code>@retry</code> and it converts every failure into a <code>None</code> return. <code>retry</code> then never sees an exception, so it never retries. <code>deploy_to_fleet</code> never reaches its <code>except</code>, so an unreachable device is logged as "✅ deployment successful" with a result of <code>None</code>.</p>
+<p>Keep error handling that alerts on the outside, and let it re-raise so the caller can count the failure.</p>
+</div>
 <h3 id="output">Output<a class="headerlink" href="#output" title="Anchor link to this section">&para;</a></h3>
 <pre class="highlight"><code class="language-text">INFO:__main__:AUDIT START - action=deploy_config, device=10.0.0.1
 INFO:__main__:[deploy_to_single_device] took 2.34s
@@ -8356,7 +8348,7 @@ def send_packet(data):
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 11, 2026 11:08:45 UTC">September 11, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="October 18, 2026 07:12:13 UTC">October 18, 2026</span>
   </span>
 
     

@@ -6297,6 +6297,15 @@ devices:
     # Operating system — determines which parser to use
     # Options: ios, iosxe, nxos, junos, etc.
 
+    credentials:
+      # Login credentials for this device (in Python: device.credentials)
+      default:
+        # 'default' is the credential set name (can have multiple)
+        username: "%ENV{PYATS_USERNAME}"
+        password: "%ENV{PYATS_PASSWORD}"
+        # %ENV{...} is resolved from an environment variable when the
+        # testbed loads, so no secret is ever written into this file
+
     connections:
       # Connection profiles — can have multiple (cli, netconf, etc.)
       cli:
@@ -6310,32 +6319,19 @@ devices:
         port: 22
         # SSH port (default 22)
 
-        credentials:
-          # Define credentials for this connection
-          default:
-            # 'default' is the credential set name (can have multiple)
-            username: admin
-            # Username for device login
-
-            password: !vault |
-              # Encrypted password stored securely in vault format
-              # This is Ansible Vault encryption (secure)
-              # Never store plaintext passwords
-
   switch-02:
     # Second device with same structure
     type: switch
     os: ios
+    credentials:
+      default:
+        username: "%ENV{PYATS_USERNAME}"
+        password: "%ENV{PYATS_PASSWORD}"
     connections:
       cli:
         protocol: ssh
         ip: "10.1.1.2"
-        port: 22
-        credentials:
-          default:
-            username: admin
-            password: !vault |
-              # Another encrypted password</code></pre>
+        port: 22</code></pre>
 <p><strong>How PyATS Uses This:</strong></p>
 <p>When you call <code>loader.load('testbed.yaml')</code>, PyATS:</p>
 <ol>
@@ -6343,21 +6339,23 @@ devices:
 <li>Creates a Testbed object containing all devices</li>
 <li>Each device becomes a Device object with connection settings</li>
 <li>When you call <code>device.connect()</code>, PyATS uses settings from this file to establish SSH session</li>
-<li>Credentials are automatically decrypted (if using Ansible Vault)</li>
+<li>Secret markup such as <code>%ENV{...}</code>, <code>%ENC{...}</code> or <code>%ASK{}</code> is resolved as the file loads</li>
 </ol>
 <p><strong>Key Concept — Why Define Once, Use Everywhere:</strong></p>
 <ul>
 <li>Define connectivity once in testbed.yaml (IPs, credentials, protocols)</li>
 <li>Reference in multiple test files: <code>testbed.devices['switch-01']</code></li>
 <li>If device IP changes, update testbed.yaml once—all tests automatically use new IP</li>
-<li>Credentials encrypted at rest, decrypted on-demand by PyATS</li>
+<li>Secrets stay out of the file: PyATS resolves them when it loads it</li>
 </ul>
 <p><strong>Credential Security:</strong></p>
+<p>PyATS has its own secret markup. (It does <em>not</em> understand Ansible Vault's <code>!vault</code> tag; a testbed containing one fails to load.)</p>
 <ul>
 <li>❌ <strong>Bad:</strong> <code>password: admin123</code> in plaintext (visible to anyone with file access)</li>
-<li>✅ <strong>Good:</strong> <code>password: !vault |...</code> (encrypted, can only decrypt with vault password)</li>
+<li>✅ <strong>Good:</strong> <code>password: "%ENV{PYATS_PASSWORD}"</code> (read from the environment at load time, never stored in the file)</li>
+<li>✅ <strong>Good:</strong> <code>password: "%ENC{...}"</code> (encrypted with <code>pyats secret encode</code>, decrypted at load time; see <a href="#step-3-store-credentials-securely">Step 3</a>)</li>
+<li>✅ <strong>Good:</strong> <code>password: "%ASK{}"</code> (prompts for the value when the testbed loads; handy interactively, unusable in CI)</li>
 </ul>
-<p>Use: <code>ansible-vault encrypt_string 'your_password' --name 'password'</code> to encrypt passwords securely.</p>
 <h3 id="2-device-parsing">2. Device Parsing<a class="headerlink" href="#2-device-parsing" title="Anchor link to this section">&para;</a></h3>
 <p>PyATS parses device CLI output into structured data:</p>
 <pre class="highlight"><code class="language-python">from pyats.topology import loader
@@ -6386,17 +6384,21 @@ output = device.parse('show vlan')
 # {
 #   'vlans': {
 #     '1': {
+#       'vlan_id': '1',
 #       'name': 'default',
-#       'status': 'active',
-#       'interfaces': {'Ethernet0/1': {...}, ...}
+#       'state': 'active',
+#       'interfaces': ['Ethernet0/1', ...]
 #     },
 #     '10': {
+#       'vlan_id': '10',
 #       'name': 'DATA',
-#       'status': 'active',
-#       'interfaces': {'Ethernet0/2': {...}, ...}
+#       'state': 'active',
+#       'interfaces': ['Ethernet0/2', ...]
 #     }
 #   }
 # }
+# Genie expands short port names, so you'll see 'GigabitEthernet1/0/1'
+# rather than the 'Gi1/0/1' printed by the device
 
 # Easy to validate using dictionary access (no regex, no parsing strings)
 assert '10' in output['vlans'], "VLAN 10 missing!"
@@ -6491,7 +6493,7 @@ def test_vlan_has_name(device):
     output = device.parse('show vlan')
 
     # Access nested dictionary: output['vlans']['10'] gives us VLAN 10 data
-    # VLAN 10 data is a dict with keys: 'name', 'status', 'interfaces', etc.
+    # VLAN 10 data is a dict with keys: 'name', 'state', 'interfaces', etc.
     vlan_10_data = output['vlans']['10']
 
     # Check: Does VLAN 10 have the expected name?
@@ -6505,15 +6507,15 @@ def test_vlan_has_interfaces(device):
     output = device.parse('show vlan')
 
     # Navigate nested structure: vlans → 10 → interfaces
-    # VLAN 10 interfaces is a dictionary of interface names
+    # VLAN 10 interfaces is a list of full interface names
     vlan_10_interfaces = output['vlans']['10']['interfaces']
 
     # vlan_10_interfaces looks like:
-    # {'Ethernet0/1': {...}, 'Ethernet0/2': {...}, ...}
+    # ['Ethernet0/1', 'Ethernet0/2', ...]
 
     # Check: Is Ethernet0/1 in the interfaces?
     assert 'Ethernet0/1' in vlan_10_interfaces, "Ethernet0/1 missing from VLAN 10!"
-    # '.keys()' gives us interface names, we check if one exists</code></pre>
+    # 'in' checks list membership</code></pre>
 <p><strong>Run all tests with:</strong></p>
 <pre class="highlight"><code class="language-bash">pytest test_vlan_validation.py -v
 # Output:
@@ -6612,21 +6614,25 @@ def count_up_interfaces(device):
     This runs AFTER baseline capture, BEFORE validation
     """
     from netmiko import ConnectHandler
+    from pyats.utils.secret_strings import to_plaintext
 
     # Connect via Netmiko for configuration capability
     # We use Netmiko here because it's optimized for config commands
     # We use PyATS for parsing (read-only), Netmiko for configs (write)
+    creds = device.credentials['default']
     conn = ConnectHandler(
         device_type='cisco_ios',
         # Device type tells Netmiko how to communicate with this device
 
-        host=device.connections.cli.ip,
+        host=str(device.connections.cli.ip),
         # Get device IP from PyATS device object
-        # device.connections.cli is the connection object, .ip is the IP address
+        # device.connections.cli is the connection object; .ip is an
+        # ipaddress object, and Netmiko needs a plain string
 
-        username='admin',
-        password='...',
-        # Credentials (in production, get from testbed or vault)
+        username=creds['username'],
+        password=to_plaintext(creds['password']),
+        # Reuse the testbed's credentials. PyATS stores the password as a
+        # SecretString, which to_plaintext() turns back into a str
     )
 
     # Your automation commands
@@ -6748,9 +6754,14 @@ def count_up_interfaces(device):
 <hr />
 <h2 id="installation-setup">Installation &amp; Setup<a class="headerlink" href="#installation-setup" title="Anchor link to this section">&para;</a></h2>
 <h3 id="step-1-install-pyats">Step 1: Install PyATS<a class="headerlink" href="#step-1-install-pyats" title="Anchor link to this section">&para;</a></h3>
-<pre class="highlight"><code class="language-bash">pip install pyats
-# This installs PyATS and dependencies (genie, netmiko, etc.)
-# Genie is the parser library that converts output to structured data</code></pre>
+<pre class="highlight"><code class="language-bash">pip install "pyats[library]"
+# Installs PyATS plus Genie, the parser library that converts output to
+# structured data. (Plain "pip install pyats" leaves Genie out.)
+pip install netmiko   # used below to push configuration</code></pre>
+<div class="admonition warning">
+<p class="admonition-title">PyATS Runs on Linux and macOS</p>
+<p>There is no Windows build of PyATS. On Windows, use <a href="https://learn.microsoft.com/windows/wsl/install">WSL</a> and run these examples inside it.</p>
+</div>
 <h3 id="step-2-create-testbed-file">Step 2: Create Testbed File<a class="headerlink" href="#step-2-create-testbed-file" title="Anchor link to this section">&para;</a></h3>
 <p>Create <code>testbed.yaml</code>:</p>
 <pre class="highlight"><code class="language-yaml">testbed:
@@ -6768,6 +6779,16 @@ devices:
     # OS determines parser used
     # Genie has separate parsers for: ios, iosxe, nxos, ios-xr, junos, etc.
 
+    credentials:
+      default:
+        # Credential set name — can have multiple (primary, secondary, etc.)
+
+        username: admin
+        # Username for device login
+
+        password: "%ENC{gAAAAABq...your encrypted value...}"
+        # Encrypted with `pyats secret encode` (see Step 3)
+
     connections:
       cli:
         protocol: ssh
@@ -6777,42 +6798,42 @@ devices:
         # Device IP or hostname
 
         port: 22
-        # SSH port (default 22)
-
-        credentials:
-          default:
-            # Credential set name — can have multiple (primary, secondary, etc.)
-
-            username: admin
-            # Username for device login
-
-            password: !vault |
-              # Ansible Vault encrypted password (secure, not plaintext)
-              # See Step 3 below for how to create this
-              $ANSIBLE_VAULT;1.2;AES256;default
-              # Your encrypted password here</code></pre>
+        # SSH port (default 22)</code></pre>
 <h3 id="step-3-store-credentials-securely">Step 3: Store Credentials Securely<a class="headerlink" href="#step-3-store-credentials-securely" title="Anchor link to this section">&para;</a></h3>
-<p>PyATS integrates with Ansible Vault for credential encryption:</p>
-<pre class="highlight"><code class="language-bash"># Encrypt a password interactively
-ansible-vault encrypt_string
-# Enter password when prompted: (type your device password and hit Enter twice)
-# Output:
-# !vault |
-#   $ANSIBLE_VAULT;1.2;AES256;default
-#   ...long encrypted string...
-# Vault password: (enter vault password)
+<p>PyATS has its own secret strings. Encrypt the password once with your own key, and paste the result into the testbed as <code>%ENC{...}</code>:</p>
+<pre class="highlight"><code class="language-bash"># 1. Switch PyATS to real encryption. In ~/.pyats/pyats.conf:
+#   [secrets]
+#   string.representer = pyats.utils.secret_strings.FernetSecretStringRepresenter
 
-# Copy entire "!vault |" block into testbed.yaml</code></pre>
-<p><strong>Why encrypt credentials?</strong></p>
+# 2. Generate a key (once per machine or CI runner)
+pyats secret keygen
+# Newly generated key :
+# yPv07bbz...=
+
+# 3. Add the key to the same [secrets] section:
+#   string.key = yPv07bbz...=
+
+# 4. Encrypt the device password
+pyats secret encode --string 'your-device-password'
+# Encoded string :
+# gAAAAABq...
+
+# 5. Use it in testbed.yaml:  password: "%ENC{gAAAAABq...}"</code></pre>
+<div class="admonition warning">
+<p class="admonition-title">Set the Representer First</p>
+<p>Out of the box, <code>pyats secret encode</code> only <em>obscures</em> the value with a built-in default key, and it doesn't warn you. Anyone with PyATS can decode it. The Fernet representer in step 1 gives real encryption, and refuses to run until you set <code>string.key</code>. Keep that key out of the repository: an <code>%ENC{}</code> value is only as secret as the key that made it.</p>
+</div>
+<p><strong>Why keep credentials out of the file?</strong></p>
 <ul>
 <li>❌ <strong>Bad:</strong> <code>password: admin123</code> visible to anyone with file access</li>
-<li>✅ <strong>Good:</strong> <code>password: !vault |...</code> encrypted, only decryptable with vault password</li>
-<li>PyATS automatically handles decryption at runtime</li>
+<li>✅ <strong>Good:</strong> <code>password: "%ENC{...}"</code> decodable only with your key</li>
+<li>✅ <strong>Good:</strong> <code>password: "%ENV{PYATS_PASSWORD}"</code> read from the environment at load time; the simplest option in CI, where the pipeline injects the variable</li>
+<li>PyATS resolves both when the testbed loads; your code doesn't change</li>
 </ul>
-<p><strong>At runtime, PyATS asks for vault password:</strong></p>
-<pre class="highlight"><code class="language-bash">pytest test_vlan_validation.py -v
-# Vault password: (type vault password when prompted)
-# PyATS decrypts testbed credentials and connects to devices</code></pre>
+<div class="admonition note">
+<p class="admonition-title">Not Ansible Vault</p>
+<p>PyATS does not read Ansible Vault's <code>!vault</code> tag. A testbed containing one fails with <code>ConstructorError: could not determine a constructor for the tag '!vault'</code>.</p>
+</div>
 <h3 id="step-4-test-connection">Step 4: Test Connection<a class="headerlink" href="#step-4-test-connection" title="Anchor link to this section">&para;</a></h3>
 <pre class="highlight"><code class="language-python">from pyats.topology import loader
 
@@ -6824,7 +6845,7 @@ device = testbed.devices['csr1000v']
 
 # Connect to device
 # PyATS uses credentials from testbed.yaml
-# Decrypts vault-encrypted password automatically
+# (%ENC / %ENV values were already resolved when the testbed loaded)
 device.connect()
 
 # Verify connection successful
@@ -6837,7 +6858,7 @@ device.disconnect()</code></pre>
 <ol>
 <li>PyATS reads connection settings from testbed.yaml</li>
 <li>Gets device IP, username, password</li>
-<li>Automatically decrypts vault password</li>
+<li>Uses the password resolved from <code>%ENC{}</code> / <code>%ENV{}</code> at load time</li>
 <li>Initiates SSH session</li>
 <li>Logs in to device</li>
 <li>Ready for parsing and commands</li>
@@ -6849,6 +6870,7 @@ device.disconnect()</code></pre>
 <h3 id="the-test">The Test<a class="headerlink" href="#the-test" title="Anchor link to this section">&para;</a></h3>
 <pre class="highlight"><code class="language-python">import pytest
 from pyats.topology import loader
+from pyats.utils.secret_strings import to_plaintext
 from netmiko import ConnectHandler
 
 @pytest.fixture
@@ -6868,13 +6890,14 @@ def test_interface_configuration(device):
     Validate: Interface exists, has correct IP, is up
     """
 
-    # Connect via Netmiko to configure
-    from netmiko import ConnectHandler
+    # Connect via Netmiko to configure, reusing the testbed's credentials.
+    # PyATS keeps passwords as SecretString objects; Netmiko needs a str.
+    creds = device.credentials['default']
     net_connect = ConnectHandler(
         device_type='cisco_ios',
-        host=device.connections.cli.ip,
-        username='admin',
-        password=device.credentials['default'].password,
+        host=str(device.connections.cli.ip),
+        username=creds['username'],
+        password=to_plaintext(creds['password']),
     )
 
     # Run configuration commands
@@ -6898,9 +6921,9 @@ def test_interface_configuration(device):
     assert eth01.get('enabled') == True, "Interface not enabled!"
     assert eth01.get('oper_status') == 'up', "Interface not up!"
 
-    # Parse IP address
+    # Parse IP address. Genie keys each address by "address/prefix".
     ip_config = device.parse('show ip interface Ethernet0/1')
-    ip_addr = ip_config['Ethernet0/1']['ipv4']['10.0.1.1']['ip']
+    ip_addr = ip_config['Ethernet0/1']['ipv4']['10.0.1.1/24']['ip']
 
     # Validate IP address
     assert ip_addr == '10.0.1.1', f"IP mismatch! Got {ip_addr}"
@@ -6990,7 +7013,7 @@ def test_interface_configuration(device):
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 11, 2026 11:08:45 UTC">September 11, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="October 18, 2026 07:35:24 UTC">October 18, 2026</span>
   </span>
 
     

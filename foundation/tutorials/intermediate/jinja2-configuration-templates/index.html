@@ -1489,6 +1489,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#templates" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Templates
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#generate_configspy" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -6430,6 +6441,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#templates" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Templates
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#generate_configspy" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -6945,6 +6967,8 @@ interface GigabitEthernet0/0
 Load and render Jinja2 templates from files
 """
 
+from pathlib import Path
+
 from jinja2 import Environment, FileSystemLoader
 import yaml
 
@@ -6965,7 +6989,8 @@ with open('device_data.yaml') as f:
 # Render template
 config = template.render(data)
 
-# Save to file
+# Save to file (creating configs/ the first time)
+Path('configs').mkdir(exist_ok=True)
 with open(f"configs/{data['hostname']}_config.txt", 'w') as f:
     f.write(config)
 
@@ -7048,6 +7073,8 @@ interfaces:
 Generate VLAN configuration from template and data
 """
 
+from pathlib import Path
+
 from jinja2 import Environment, FileSystemLoader
 import yaml
 from datetime import datetime
@@ -7074,7 +7101,8 @@ def generate_vlan_config(data_file, template_file, output_file):
     template = env.get_template(template_file)
     config = template.render(data)
 
-    # Save configuration
+    # Save configuration (creating the output folder if needed)
+    Path(output_file).parent.mkdir(parents=True, exist_ok=True)
     with open(output_file, 'w') as f:
         f.write(config)
 
@@ -7426,13 +7454,61 @@ ntp_servers:
 syslog_server: 10.10.10.10
 snmp_community: public
 timezone: EST -5 0</code></pre>
+<h3 id="templates">Templates<a class="headerlink" href="#templates" title="Anchor link to this section">&para;</a></h3>
+<p>Both device templates extend <code>base_config.j2</code> from <a href="#1-template-inheritance">Template Inheritance</a>, which fills in the hostname, domain and DNS servers from the global settings.</p>
+<p><strong>templates/router_config.j2.</strong> This version replaces the simpler one from Template Inheritance. It reads the nested <code>ospf:</code> block and each interface's description:</p>
+<pre class="highlight"><code class="language-jinja2">{% extends "base_config.j2" %}
+
+{% block device_specific %}
+! Router-specific settings
+ip routing
+router ospf {{ ospf.process_id }}
+{% for net in ospf.networks %}
+ network {{ net.network }} {{ net.wildcard }} area {{ net.area }}
+{% endfor %}
+{% endblock %}
+
+{% block interfaces %}
+{% for interface in interfaces %}
+interface {{ interface.name }}
+{% if interface.description is defined %}
+ description {{ interface.description }}
+{% endif %}
+ ip address {{ interface.ip }} {{ interface.mask }}
+ no shutdown
+!
+{% endfor %}
+{% endblock %}</code></pre>
+<p><strong>templates/switch_config.j2.</strong> The switch's <code>interfaces</code> is a mapping of port name to settings, so loop over <code>.items()</code>:</p>
+<pre class="highlight"><code class="language-jinja2">{% extends "base_config.j2" %}
+
+{% block device_specific %}
+! Switch-specific settings
+{% for vlan in vlans %}
+vlan {{ vlan.id }}
+ name {{ vlan.name }}
+{% endfor %}
+{% endblock %}
+
+{% block interfaces %}
+{% for name, interface in interfaces.items() %}
+interface {{ name }}
+{% if interface.description is defined %}
+ description {{ interface.description }}
+{% endif %}
+ switchport mode {{ interface.mode }}
+ switchport access vlan {{ interface.vlan }}
+ no shutdown
+!
+{% endfor %}
+{% endblock %}</code></pre>
 <h3 id="generate_configspy">generate_configs.py<a class="headerlink" href="#generate_configspy" title="Anchor link to this section">&para;</a></h3>
 <pre class="highlight"><code class="language-python">#!/usr/bin/env python3
 """
 Generate configurations for all devices from templates and data
 """
 
-from jinja2 import Environment, FileSystemLoader
+from jinja2 import Environment, FileSystemLoader, StrictUndefined
 import yaml
 from datetime import datetime
 import os
@@ -7454,6 +7530,7 @@ def generate_device_config(device, global_settings, env):
     # Combine device-specific and global settings
     data = {**global_settings, **device}
     data['timestamp'] = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+    data['template_name'] = device['template']  # used by base_config.j2
 
     # Load template
     template = env.get_template(device['template'])
@@ -7479,11 +7556,14 @@ def main():
     print("NETWORK CONFIGURATION GENERATOR")
     print("=" * 70)
 
-    # Setup Jinja2 environment
+    # Setup Jinja2 environment. StrictUndefined makes a missing variable
+    # an error instead of a silent blank line in the config (see
+    # "Testing and Validating Templates" below)
     env = Environment(
         loader=FileSystemLoader('templates'),
         trim_blocks=True,
-        lstrip_blocks=True
+        lstrip_blocks=True,
+        undefined=StrictUndefined
     )
 
     # Load data
@@ -7551,23 +7631,52 @@ GENERATING CONFIGURATIONS
 
 📝 Generating config for core-router-01...
   ✓ Saved to configs/core-router-01_config.txt
-  ✓ Size: 1,245 bytes
+  ✓ Size: 501 bytes
 
 📝 Generating config for access-switch-01...
   ✓ Saved to configs/access-switch-01_config.txt
-  ✓ Size: 987 bytes
+  ✓ Size: 393 bytes
 
 ======================================================================
 GENERATION SUMMARY
 ======================================================================
 Total devices: 2
-Total config size: 2,232 bytes
+Total config size: 894 bytes
 
 ======================================================================
 GENERATED FILES:
 ======================================================================
   configs/core-router-01_config.txt
   configs/access-switch-01_config.txt</code></pre>
+<p><strong>configs/core-router-01_config.txt:</strong></p>
+<pre class="highlight"><code>!
+! Base Configuration
+! Device: core-router-01
+! Template: router_config.j2
+! Generated: 2026-03-12 11:45:23
+!
+hostname core-router-01
+!
+ip domain-name example.com
+ip name-server 8.8.8.8 8.8.4.4
+!
+! Router-specific settings
+ip routing
+router ospf 1
+ network 192.168.1.0 0.0.0.255 area 0
+!
+interface GigabitEthernet0/0
+ description WAN Link
+ ip address 192.168.1.1 255.255.255.0
+ no shutdown
+!
+interface GigabitEthernet0/1
+ description LAN Link
+ ip address 10.10.1.1 255.255.255.0
+ no shutdown
+!
+!
+end</code></pre>
 <hr />
 <h2 id="testing-and-validating-templates">🧪 Testing and Validating Templates<a class="headerlink" href="#testing-and-validating-templates" title="Anchor link to this section">&para;</a></h2>
 <h3 id="template-testing-script">Template Testing Script<a class="headerlink" href="#template-testing-script" title="Anchor link to this section">&para;</a></h3>
@@ -7886,7 +7995,7 @@ def validate_config(config):
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 20, 2026 11:07:39 UTC">September 20, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="October 18, 2026 07:38:00 UTC">October 18, 2026</span>
   </span>
 
     

@@ -8012,30 +8012,30 @@
 <p>All configurable settings are centralised in <code>config.yaml</code> at the project root. The configuration is loaded via <code>assets/config_files/config_loader.py</code> and accessed throughout the application via the <code>app_config.py</code> singleton wrapper.</p>
 <p><strong>Key Configuration Categories:</strong></p>
 <p><strong>1. Network Settings:</strong>
-<pre class="highlight"><code class="language-yaml">    network:
-    jump_host: "jump-gateway.example.com"  # Default bastion/jump host
-    device_type: "cisco_ios"                # Netmiko device type
-    ssh_port: 22                            # SSH port
-    read_timeout: 30                        # Command read timeout</code></pre></p>
+<pre class="highlight"><code class="language-yaml">network:
+  jump_host: "jump-gateway.example.com"  # Default bastion/jump host
+  device_type: "cisco_ios"                # Netmiko device type
+  ssh_port: 22                            # SSH port
+  read_timeout: 30                        # Command read timeout</code></pre></p>
 <p><strong>2. Credential Settings:</strong>
-<pre class="highlight"><code class="language-yaml">    credentials:
-    cred_target: "MyApp/ADM"  # Windows Credential Manager target
-    enable_target: ""          # Optional enable secret target</code></pre></p>
+<pre class="highlight"><code class="language-yaml">credentials:
+  cred_target: "MyApp/ADM"  # Windows Credential Manager target
+  enable_target: ""          # Optional enable secret target</code></pre></p>
 <p><strong>3. Performance &amp; Concurrency:</strong>
-<pre class="highlight"><code class="language-yaml">    concurrency:
-    default_workers: 10        # Max concurrent device sessions
-    retry_attempts: 3          # Connection retry count
-    retry_base_wait: 2         # Base wait time for exponential backoff</code></pre></p>
+<pre class="highlight"><code class="language-yaml">concurrency:
+  default_workers: 10        # Max concurrent device sessions
+  retry_attempts: 3          # Connection retry count
+  retry_base_wait: 2         # Base wait time for exponential backoff</code></pre></p>
 <p><strong>4. Excel Output:</strong>
-<pre class="highlight"><code class="language-yaml">    output:
-    default_filename: "audit.xlsx"  # Default output filename
+<pre class="highlight"><code class="language-yaml">output:
+  default_filename: "audit.xlsx"  # Default output filename
 
-    excel_formatting:
-    min_column_width: 10
-    max_column_width: 50</code></pre></p>
+excel_formatting:
+  min_column_width: 10
+  max_column_width: 50</code></pre></p>
 <p><strong>5. Stale Port Detection:</strong>
-<pre class="highlight"><code class="language-yaml">    stale_detection:
-    default_stale_days: 30  # Days threshold for stale ports</code></pre></p>
+<pre class="highlight"><code class="language-yaml">stale_detection:
+  default_stale_days: 30  # Days threshold for stale ports</code></pre></p>
 <h3 id="why-yaml-configuration">Why YAML Configuration?<a class="headerlink" href="#why-yaml-configuration" title="Anchor link to this section">&para;</a></h3>
 <table>
 <thead>
@@ -8554,16 +8554,18 @@
         for key, col_slice in slices.items():
             record[key] = line[col_slice].strip()
 
-        # Normalise status values
+        # Normalise status values. Order matters: these are substring
+        # tests, and 'connect' is inside 'notconnect' while 'disabled' is
+        # inside 'err-disabled', so test the longer forms first
         status_raw = record.get('status', '').lower()
-        if 'connect' in status_raw:
-            record['status'] = 'connected'
-        elif 'notconnect' in status_raw:
+        if 'notconnect' in status_raw:
             record['status'] = 'notconnect'
-        elif 'disabled' in status_raw:
-            record['status'] = 'disabled'
+        elif 'connect' in status_raw:
+            record['status'] = 'connected'
         elif 'err' in status_raw:
-            record['status'] = 'err-disabled'</code></pre></p>
+            record['status'] = 'err-disabled'
+        elif 'disabled' in status_raw:
+            record['status'] = 'disabled'</code></pre></p>
 <p><strong>Why Status Normalisation:</strong></p>
 <ul>
 <li>Different IOS versions use slight variations ("connected" vs "connect")</li>
@@ -8785,32 +8787,45 @@
 </tbody>
 </table>
 <h3 id="time-parsing-handling-cisco-duration-formats">Time Parsing: Handling Cisco Duration Formats<a class="headerlink" href="#time-parsing-handling-cisco-duration-formats" title="Anchor link to this section">&para;</a></h3>
-<pre class="highlight"><code class="language-python">    def _parse_last_input_seconds(s: str) -&gt; float | None:
-        """
-        Parse Cisco 'Last input' timer into seconds.
-        Handles: "00:01:23", "1d2h30m", "never"
-        """
-        s = (s or "").strip().lower()
-        if not s or s == "never":
-            return None
+<pre class="highlight"><code class="language-python">import re
 
-        # Format 1: hh:mm:ss
-        if re.match(r"^\d{1,2}:\d{2}:\d{2}$", s):
-            hh, mm, ss = s.split(":")
-            return int(hh) * 3600 + int(mm) * 60 + int(ss)
+# Compact durations such as "1y2w", "3d4h" or "5m6s". Every part is
+# optional, and each group captures only the digits, so a part that's
+# missing gives None (handled with "or 0" below)
+_TIME_RE = re.compile(
+    r"(?:(?P&lt;y&gt;\d+)y)?(?:(?P&lt;w&gt;\d+)w)?(?:(?P&lt;d&gt;\d+)d)?"
+    r"(?:(?P&lt;h&gt;\d+)h)?(?:(?P&lt;m&gt;\d+)m)?(?:(?P&lt;s&gt;\d+)s)?"
+)
 
-        # Format 2: Compact duration (1y2w3d4h5m6s)
-        m = _TIME_RE.fullmatch(s.replace(" ", ""))
-        if m:
-            y = int(m.group("y") or 0)
-            w = int(m.group("w") or 0)
-            d = int(m.group("d") or 0)
-            h = int(m.group("h").rstrip("h") or 0)
-            m_val = int(m.group("m").rstrip("m") or 0)
-            s_val = int(m.group("s").rstrip("s") or 0)
 
-            days = y * 365 + w * 7 + d
-            return days * 86400 + h * 3600 + m_val * 60 + s_val</code></pre>
+def _parse_last_input_seconds(s: str) -&gt; float | None:
+    """
+    Parse Cisco 'Last input' timer into seconds.
+    Handles: "00:01:23", "1d2h30m", "never"
+    """
+    s = (s or "").strip().lower()
+    if not s or s == "never":
+        return None
+
+    # Format 1: hh:mm:ss
+    if re.match(r"^\d{1,2}:\d{2}:\d{2}$", s):
+        hh, mm, ss = s.split(":")
+        return int(hh) * 3600 + int(mm) * 60 + int(ss)
+
+    # Format 2: Compact duration (1y2w3d4h5m6s)
+    m = _TIME_RE.fullmatch(s.replace(" ", ""))
+    if m and any(m.groups()):  # an empty string matches too: reject it
+        y = int(m.group("y") or 0)
+        w = int(m.group("w") or 0)
+        d = int(m.group("d") or 0)
+        h = int(m.group("h") or 0)
+        m_val = int(m.group("m") or 0)
+        s_val = int(m.group("s") or 0)
+
+        days = y * 365 + w * 7 + d
+        return days * 86400 + h * 3600 + m_val * 60 + s_val
+
+    return None  # Unrecognised format</code></pre>
 <p><strong>Why Multiple Format Support:</strong></p>
 <ul>
 <li>Different IOS versions use different time formats</li>
@@ -8828,9 +8843,9 @@
 <p><strong>Note:</strong> If you are running on Linux/macOS, ensure <code>credentials.py</code> prompts for credentials or implements your preferred secure store. On Windows, <code>pywin32</code> enables Credential Manager access.</p>
 <p><strong>Important:</strong> Never hard-code credentials in the repository. Use the secure store or environment prompts.</p>
 <p><strong>Configuration:</strong> Credential Manager targets are set in <code>config.yaml</code> under the <code>credentials</code> section:</p>
-<pre class="highlight"><code class="language-yaml">    credentials:
-    cred_target: "MyApp/ADM"  # Primary credential target
-    enable_target: ""          # Optional enable secret target</code></pre>
+<pre class="highlight"><code class="language-yaml">credentials:
+  cred_target: "MyApp/ADM"  # Primary credential target
+  enable_target: ""          # Optional enable secret target</code></pre>
 </blockquote>
 <hr />
 <h2 id="jump-host-bastion-behaviour">🛰️ Jump Host (Bastion) Behaviour<a class="headerlink" href="#jump-host-bastion-behaviour" title="Anchor link to this section">&para;</a></h2>
@@ -8840,8 +8855,8 @@
 <li><code>--direct</code> will skip the jump host entirely and attempt direct SSH connections</li>
 </ul>
 <p>Example configuration in <code>config.yaml</code>:
-<pre class="highlight"><code class="language-yaml">    network:
-    jump_host: "jump-gateway.example.com"  # or "" to disable by default</code></pre></p>
+<pre class="highlight"><code class="language-yaml">network:
+  jump_host: "jump-gateway.example.com"  # or "" to disable by default</code></pre></p>
 <p>The <code>JumpManager</code> (now in <code>switch_audit/jump_manager.py</code>) maintains a persistent SSH session to the bastion and proxies device connections through it.</p>
 <p><strong>How JumpManager Works:</strong></p>
 <pre class="highlight"><code class="language-python">    class JumpManager:
@@ -9209,26 +9224,26 @@ run.bat --devices devices.txt --output audit.xlsx</code></pre>
 <li><strong>Parsers:</strong> Modify parsing logic in <code>switch_audit/formatters.py</code> for custom CLI output handling</li>
 </ul>
 <p><strong>Example config.yaml for Enterprise:</strong></p>
-<pre class="highlight"><code class="language-yaml">    network:
-    jump_host: "bastion.corp.example.com"
-    read_timeout: 45  # Slower WAN links
+<pre class="highlight"><code class="language-yaml">network:
+  jump_host: "bastion.corp.example.com"
+  read_timeout: 45  # Slower WAN links
 
-    credentials:
-    cred_target: "NetworkAudit/Production"
+credentials:
+  cred_target: "NetworkAudit/Production"
 
-    concurrency:
-    default_workers: 20  # Fast discovery
-    retry_attempts: 5    # More retries for flaky network
+concurrency:
+  default_workers: 20  # Fast discovery
+  retry_attempts: 5    # More retries for flaky network
 
-    stale_detection:
-    default_stale_days: 90  # Longer threshold
+stale_detection:
+  default_stale_days: 90  # Longer threshold
 
-    output:
-    default_filename: "port_audit_report.xlsx"
+output:
+  default_filename: "port_audit_report.xlsx"
 
-    excel_formatting:
-    min_column_width: 12
-    max_column_width: 60</code></pre>
+excel_formatting:
+  min_column_width: 12
+  max_column_width: 60</code></pre>
 <hr />
 <h2 id="security-considerations">🔒 Security Considerations<a class="headerlink" href="#security-considerations" title="Anchor link to this section">&para;</a></h2>
 <ul>
@@ -9434,7 +9449,7 @@ A: The monolithic <code>main.py</code> was restructured into a professional Pyth
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 11, 2026 11:08:45 UTC">September 11, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="October 21, 2026 15:12:12 UTC">October 21, 2026</span>
   </span>
 
     

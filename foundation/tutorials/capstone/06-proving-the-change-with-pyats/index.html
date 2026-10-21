@@ -1752,6 +1752,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#install-pyats" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📦 Install PyATS
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#why-not-just-re-read-the-config" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -5590,6 +5601,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#install-pyats" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📦 Install PyATS
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#why-not-just-re-read-the-config" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -5793,6 +5815,15 @@
 </ul>
 <p><strong>Builds on:</strong> <a href="../../intermediate/pyats-fundamentals/">PyATS Fundamentals</a>, <a href="../../intermediate/pyats-network-validation/">PyATS Network Validation</a></p>
 <hr />
+<h2 id="install-pyats">📦 Install PyATS<a class="headerlink" href="#install-pyats" title="Anchor link to this section">&para;</a></h2>
+<pre class="highlight"><code class="language-bash">pip install "pyats[library]"
+pip freeze &gt; requirements.txt   # so the CI workflow from chapter 2 installs it too</code></pre>
+<div class="admonition warning">
+<p class="admonition-title">PyATS Runs on Linux and macOS — Use WSL on Windows</p>
+<p>There is no Windows build of PyATS; <code>pip install pyats</code> fails there. On Windows, run this chapter and chapter 7 inside <a href="https://learn.microsoft.com/windows/wsl/install">WSL</a> (Ubuntu works well) with the project copied or cloned into the Linux filesystem.</p>
+<p>The code below keeps the PyATS import inside the commands that need it, so <code>validate</code>, <code>plan</code>, <code>preflight</code> and <code>deploy</code> carry on working on a machine without PyATS. Only <code>snapshot</code>, <code>verify</code> and <code>run</code> need it.</p>
+</div>
+<hr />
 <h2 id="why-not-just-re-read-the-config">🔬 Why Not Just Re-Read the Config?<a class="headerlink" href="#why-not-just-re-read-the-config" title="Anchor link to this section">&para;</a></h2>
 <p>You could run <code>show running-config</code> again and check your lines are present. It's tempting, it's fast, and it proves almost nothing.</p>
 <p>Re-reading the config asks the device: <em>"do you have the text I sent you?"</em> Of course it does — you just sent it, and it said yes. The question that matters is different: <em>"is the network in the state that text was supposed to produce?"</em></p>
@@ -5832,6 +5863,7 @@
 Build a PyATS testbed from validated intent.
 """
 
+import copy
 from pathlib import Path
 
 import yaml
@@ -5879,8 +5911,18 @@ def build_testbed(intent: SiteIntent, settings: Settings,
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(yaml.safe_dump(document, sort_keys=False), encoding="utf-8")
 
-    return load_testbed(str(path))</code></pre>
-<p><code>%ENV{...}</code> is PyATS's own environment substitution — the file references the variable, the value is resolved at load time and never written down.</p>
+    # The loaded object gets the real values, from the same Settings that
+    # pre-flight used, so a .env file works here exactly as it does there.
+    in_memory = copy.deepcopy(document)
+    for spec in in_memory["devices"].values():
+        spec["credentials"]["default"] = {
+            "username": settings.username,
+            "password": settings.password.get_secret_value(),
+        }
+
+    return load_testbed(in_memory)</code></pre>
+<p>The file on disk holds <code>%ENV{...}</code> placeholders, PyATS's own environment substitution. It's safe to keep, and it still works if you hand it to the <code>pyats</code> CLI with the variables exported. The object the pipeline actually uses is loaded from an in-memory copy carrying the credentials from <code>load_settings()</code>.</p>
+<p>That distinction matters. <code>pydantic-settings</code> reads <code>.env</code> without exporting anything to the process environment, so a testbed that relied on <code>%ENV{}</code> alone would log in with blank credentials for anyone who followed chapter 4's advice and put them in <code>.env</code>.</p>
 <hr />
 <h2 id="snapshots">📸 Snapshots<a class="headerlink" href="#snapshots" title="Anchor link to this section">&para;</a></h2>
 <p>Genie's <code>learn()</code> builds a structured model of a feature by running whatever commands that feature needs and parsing them into a normalised dictionary. The same code works across IOS-XE and NX-OS, which is most of the point.</p>
@@ -6086,12 +6128,13 @@ def verify_device(testbed, device: Device, intent: SiteIntent,
 <p><code>verify</code> needs a <code>before</code> snapshot, so it fits into the flow as two steps. Add to <strong><code>netpipe/cli.py</code></strong>:</p>
 <pre class="highlight"><code class="language-python">import json   # cli.py doesn't have this yet
 
-from netpipe.testbed import build_testbed
 from netpipe.verify import snapshot, verify_device
 
 
 def cmd_snapshot(args: argparse.Namespace) -&gt; int:
     """Capture operational state. Run this before deploying."""
+    from netpipe.testbed import build_testbed   # imports pyATS — see below
+
     try:
         intent = load_intent(args.intent)
     except IntentError as exc:
@@ -6120,6 +6163,8 @@ def cmd_snapshot(args: argparse.Namespace) -&gt; int:
 
 def cmd_verify(args: argparse.Namespace) -&gt; int:
     """Verify applied state against intent and the pre-change snapshot."""
+    from netpipe.testbed import build_testbed
+
     try:
         intent = load_intent(args.intent)
     except IntentError as exc:
@@ -6173,6 +6218,7 @@ def cmd_verify(args: argparse.Namespace) -&gt; int:
     verify_cmd = sub.add_parser("verify", parents=[common],
                                 help="verify state against intent")
     verify_cmd.set_defaults(func=cmd_verify)</code></pre>
+<p><code>build_testbed</code> is imported inside each command, not at the top of <code>cli.py</code>, on purpose. A top-level import would load PyATS for every command. On a machine without it, that would break <code>netpipe validate</code> too, along with the CI job that runs it.</p>
 <hr />
 <h2 id="run-it">▶️ Run It<a class="headerlink" href="#run-it" title="Anchor link to this section">&para;</a></h2>
 <p>The full sequence, with verification in its proper place:</p>
@@ -6399,7 +6445,7 @@ def test_interface_coming_up_is_not_flagged():
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 20, 2026 11:07:39 UTC">September 20, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="October 18, 2026 07:04:52 UTC">October 18, 2026</span>
   </span>
 
     
