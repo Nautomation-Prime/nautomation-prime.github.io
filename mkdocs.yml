@@ -51,13 +51,18 @@ extra:
       find what they're searching for. With your consent, you're helping us to
       make our documentation better.
   # Email capture (see overrides/partials/email-capture.html).
-  # Until form_action is set, the sign-up box shows an email button to
-  # enquiries@ instead of a form. To connect a mailing-list service, paste
-  # its form POST URL into form_action and, if the service expects a
-  # different field name for the address, set email_field to match
-  # (Buttondown: email, Kit: email_address, MailerLite: fields[email]).
-  # Update the Privacy Policy before switching it on.
+  # The sign-up box uses the first of these that is set:
+  #   1. kit_form_uid + kit_script_src: Kit's embedded form. Both values come
+  #      from the JavaScript embed code (Kit > Forms > Embed > JavaScript):
+  #      data-uid="..." and src="...".
+  #   2. form_action: a plain HTML form posting to a mailing-list service.
+  #      Set email_field to the field name the service expects
+  #      (Buttondown: email, Kit: email_address, MailerLite: fields[email]).
+  #   3. Neither: an email button to fallback_email.
+  # Keep the Privacy Policy in step with whichever service is used.
   mailing_list:
+    kit_form_uid: "fa3ec773cd"
+    kit_script_src: "https://nautomation-prime.kit.com/fa3ec773cd/index.js"
     form_action: ""
     email_field: "email"
     fallback_email: "enquiries@nautomationprime.io"
