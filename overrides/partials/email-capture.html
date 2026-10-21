@@ -5,9 +5,13 @@
   before including it to show the book-led wording used on the final
   Capstone chapter.
 
-  Configuration lives in mkdocs.yml under extra.mailing_list. While
-  form_action is empty, an email button is shown instead of a form, so
-  the box is useful today without a mailing-list service.
+  Configuration lives in mkdocs.yml under extra.mailing_list. With
+  kit_form_uid set, Kit's embedded form is shown; otherwise a plain form
+  posting to form_action; otherwise an email button, so the box still
+  works without a mailing-list service.
+
+  Kit's script renders its form next to the <script> tag, so the tag must
+  stay inside the box.
 -#}
 {%- set ml = config.extra.mailing_list or {} -%}
 {%- set fallback = ml.fallback_email or "enquiries@nautomationprime.io" -%}
@@ -19,7 +23,12 @@
     <h3>Get notified when the book ships</h3>
     <p>Christopher is writing a book on production-grade Cisco network automation: one script, followed from twelve lines to a system that upgrades hundreds of devices, and every failure along the way. Join the list to hear when it ships and when new Academy material goes up.</p>
   {% endif %}
-  {% if ml.form_action %}
+  {% if ml.kit_form_uid and ml.kit_script_src %}
+    <div class="np-capture-kit">
+      <script async data-uid="{{ ml.kit_form_uid }}" src="{{ ml.kit_script_src }}"></script>
+    </div>
+    <p class="np-capture-small">One list, occasional emails, unsubscribe any time. Sign-up is handled by Kit; see the <a href="{{ base_url }}/legal/privacy-policy/">Privacy Policy</a>.</p>
+  {% elif ml.form_action %}
     <form class="np-capture-form" action="{{ ml.form_action }}" method="post" target="_blank">
       <label class="np-capture-label" for="np-capture-email">Email address</label>
       <input id="np-capture-email" type="email" name="{{ ml.email_field or 'email' }}" placeholder="you@example.com" autocomplete="email" required>

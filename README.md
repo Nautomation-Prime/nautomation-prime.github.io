@@ -78,7 +78,7 @@ Nothing gets deleted to protect the book: the site's free content stays.
 
 - **Academy**: the free learning content, in three tracks (Learn, Govern, See it done). Track landing pages live in `docs/academy/`; the articles themselves still live under `docs/foundation/` so existing URLs keep working.
 - **Foundation**: the charity arm only (`docs/foundation/index.md`, `docs/foundation/charity-services.md`, `docs/legal/foundation-status.md`).
-- **Email capture**: `overrides/partials/email-capture.html`, shown on every Academy page. Configure it under `extra.mailing_list` in `mkdocs.yml`.
+- **Email capture**: `overrides/partials/email-capture.html`, shown on every Academy page. It embeds the Kit sign-up form; configure it under `extra.mailing_list` in `mkdocs.yml`, and keep the Privacy Policy's Mailing List section in step with it.
 
 ---
 
