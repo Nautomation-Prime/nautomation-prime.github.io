@@ -218,6 +218,13 @@
     margin: 0;
 }
 
+/* Kit's embedded form (clean template) adds 56px of top padding at wider
+   widths for a headline this box doesn't use. Five classes/attributes
+   outrank Kit's four-part selector, whatever order the styles load in. */
+.md-typeset .np-capture .np-capture-kit .formkit-form [data-style="clean"] {
+    padding: 0.25rem 0 0;
+}
+
 .md-typeset .np-capture-small {
     font-size: 0.75rem;
     color: var(--md-default-fg-color--light);
