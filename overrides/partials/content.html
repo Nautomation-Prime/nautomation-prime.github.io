@@ -1,6 +1,7 @@
 {#-
   This file extends the default Material content partial so we can inject
-  a shared conversion CTA after Foundation article pages.
+  a shared conversion CTA after Academy article pages (which still live
+  under docs/foundation/ so that existing URLs keep working).
 
   `src_uri` is used rather than `src_path` because `src_path` is
   OS-separated, so these prefixes would not match on a Windows build.
@@ -14,6 +15,16 @@
 {% if page and page.file and page.file.src_uri %}
   {% set src = page.file.src_uri %}
   {% set is_index = src.endswith("/index.md") %}
+  {#- Email capture on every Academy page. The Academy's articles still live
+      under foundation/; the Foundation's own (charity) pages are excluded. -#}
+  {% set is_academy = src == "start-here.md"
+        or src.startswith("academy/")
+        or (src.startswith("foundation/")
+            and src not in ["foundation/index.md", "foundation/charity-services.md"]) %}
+  {% if is_academy %}
+    {% set np_capture_variant = "book" if src == "foundation/tutorials/capstone/07-rollback-and-audit.md" else "default" %}
+    {% include "partials/email-capture.html" %}
+  {% endif %}
   {% if src.startswith("foundation/deep-dives/") and not is_index %}
     {% include "partials/tool-cta.html" %}
   {% elif (src.startswith("foundation/tutorials/")

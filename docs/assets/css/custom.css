@@ -173,3 +173,58 @@
 [data-md-color-scheme="slate"] .md-typeset .np-reflection-label {
     color: rgba(128, 203, 196, 0.9);
 }
+/* Email capture (overrides/partials/email-capture.html) */
+.md-typeset .np-capture {
+    border: 1px solid rgba(0, 121, 107, 0.25);
+    border-radius: 1rem;
+    padding: 1.25rem 1.35rem;
+    margin: 1.5rem 0;
+    background: linear-gradient(135deg, rgba(0, 121, 107, 0.07), rgba(13, 71, 161, 0.04));
+}
+
+.md-typeset .np-capture h3 {
+    margin-top: 0;
+}
+
+.md-typeset .np-capture-form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    align-items: center;
+    margin: 0.75rem 0 0.5rem;
+}
+
+.md-typeset .np-capture-label {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+}
+
+.md-typeset .np-capture-form input[type="email"] {
+    flex: 1 1 16rem;
+    min-width: 0;
+    padding: 0.55rem 0.75rem;
+    font: inherit;
+    color: var(--md-default-fg-color);
+    background: var(--md-default-bg-color);
+    border: 1px solid rgba(13, 71, 161, 0.3);
+    border-radius: 0.4rem;
+}
+
+.md-typeset .np-capture-form .md-button {
+    margin: 0;
+}
+
+.md-typeset .np-capture-small {
+    font-size: 0.75rem;
+    color: var(--md-default-fg-color--light);
+    margin-bottom: 0;
+}
+
+[data-md-color-scheme="slate"] .md-typeset .np-capture {
+    border-color: rgba(128, 203, 196, 0.25);
+    background: linear-gradient(135deg, rgba(0, 121, 107, 0.12), rgba(17, 25, 40, 0.5));
+}

@@ -50,7 +50,20 @@ extra:
       as to measure the effectiveness of our documentation and whether users
       find what they're searching for. With your consent, you're helping us to
       make our documentation better.
+  # Email capture (see overrides/partials/email-capture.html).
+  # Until form_action is set, the sign-up box shows an email button to
+  # enquiries@ instead of a form. To connect a mailing-list service, paste
+  # its form POST URL into form_action and, if the service expects a
+  # different field name for the address, set email_field to match
+  # (Buttondown: email, Kit: email_address, MailerLite: fields[email]).
+  # Update the Privacy Policy before switching it on.
+  mailing_list:
+    form_action: ""
+    email_field: "email"
+    fallback_email: "enquiries@nautomationprime.io"
   footer_links:
+    - title: "Nautomation Prime Academy"
+      url: "/academy/"
     - title: "Nautomation Prime Foundation"
       url: "/foundation/"
     - title: "Privacy Policy"
@@ -124,57 +137,57 @@ markdown_extensions:
 
 nav:
   - Home: index.md
-  - Getting Started: getting-started.md
-  - Foundation:
-    - foundation/index.md
-    - Free & Low-Cost Services for Charities: foundation/charity-services.md
+  - Start Here: start-here.md
+  - Learn:
+    - academy/learn/index.md
     - Learning Hub: foundation/resources.md
-    - Tutorials:
-      - foundation/tutorials/index.md
-      - Beginner Tutorials:
-        - foundation/tutorials/beginner/index.md
-        - Multi-Device Config Backup: foundation/tutorials/beginner/multi-device-config-backup.md
-        - Multi-Device Show Command: foundation/tutorials/beginner/multi-device-show-command.md
-        - Netmiko Show Command to Excel: foundation/tutorials/beginner/netmiko-show-command-to-excel.md
-      - Intermediate Tutorials:
-        - foundation/tutorials/intermediate/index.md
-        - YAML Data Modelling: foundation/tutorials/intermediate/yaml-data-modeling-network-automation.md
-        - JSON Data Handling: foundation/tutorials/intermediate/json-data-handling-network-automation.md
-        - Pydantic Data Validation: foundation/tutorials/intermediate/pydantic-data-validation-network-automation.md
-        - Jinja2 Configuration Templates: foundation/tutorials/intermediate/jinja2-configuration-templates.md
-        - Decorators for Network Automation: foundation/tutorials/intermediate/decorators-network-automation.md
-        - PyATS Fundamentals: foundation/tutorials/intermediate/pyats-fundamentals.md
-        - PyATS Network Validation: foundation/tutorials/intermediate/pyats-network-validation.md
-        - Building Reliable Automation with PyATS: foundation/tutorials/intermediate/building-reliable-automation-with-pyats.md
-        - Why Nornir: foundation/tutorials/intermediate/why-nornir.md
-        - Nornir Fundamentals: foundation/tutorials/intermediate/nornir-fundamentals.md
-        - Enterprise Config Backup Nornir: foundation/tutorials/intermediate/enterprise-config-backup-nornir.md
-        - Advanced Nornir Patterns: foundation/tutorials/intermediate/advanced-nornir-patterns.md
-        - Testing Network Automation Scripts: foundation/tutorials/intermediate/testing-network-automation.md
-        - Credential Management for Network Automation: foundation/tutorials/intermediate/credential-management-network-automation.md
-        - Error Recovery and Rollback: foundation/tutorials/intermediate/error-recovery-rollback-network-automation.md
-        - State Management and Idempotency: foundation/tutorials/intermediate/state-management-idempotency-network-automation.md
-        - Structured Logging for Network Automation: foundation/tutorials/intermediate/structured-logging-network-automation.md
-        - Health Checks and Pre-Flight Validation: foundation/tutorials/intermediate/health-checks-pre-flight-validation.md
-      - "Capstone: Build a Config Deployment Pipeline":
-        - foundation/tutorials/capstone/index.md
-        - "1. Intent and Repository Layout": foundation/tutorials/capstone/01-intent-and-repository-layout.md
-        - "2. Validating Intent": foundation/tutorials/capstone/02-validating-intent.md
-        - "3. Rendering Configuration": foundation/tutorials/capstone/03-rendering-configuration.md
-        - "4. Credentials and Pre-Flight": foundation/tutorials/capstone/04-credentials-and-preflight.md
-        - "5. Deploying with Nornir": foundation/tutorials/capstone/05-deploying-with-nornir.md
-        - "6. Proving the Change with PyATS": foundation/tutorials/capstone/06-proving-the-change-with-pyats.md
-        - "7. Rollback and the Audit Record": foundation/tutorials/capstone/07-rollback-and-audit.md
-      - Expert Tutorials:
-        - foundation/tutorials/expert/index.md
-        - Circuit Breakers and Backpressure: foundation/tutorials/expert/circuit-breakers-backpressure-network-automation.md
-        - Dependency Management and Task Orchestration: foundation/tutorials/expert/dependency-ordering-task-orchestration.md
-        - Incident Response Automation: foundation/tutorials/expert/incident-response-automation.md
-        - Nornir + PyATS Integration: foundation/tutorials/expert/nornir-pyats-integration.md
-        - Asyncio for Network Automation: foundation/tutorials/expert/asyncio-network-automation.md
-        - Secure Credential Vaulting: foundation/tutorials/expert/secure-credential-vaulting.md
-        - DevOps & Observability: foundation/tutorials/expert/devops-observability-network-automation.md
-        - Tool Ecosystem Integration: foundation/tutorials/expert/tool-ecosystem-integration.md
+    - Tutorials Overview: foundation/tutorials/index.md
+    - Beginner Tutorials:
+      - foundation/tutorials/beginner/index.md
+      - Multi-Device Config Backup: foundation/tutorials/beginner/multi-device-config-backup.md
+      - Multi-Device Show Command: foundation/tutorials/beginner/multi-device-show-command.md
+      - Netmiko Show Command to Excel: foundation/tutorials/beginner/netmiko-show-command-to-excel.md
+    - Intermediate Tutorials:
+      - foundation/tutorials/intermediate/index.md
+      - YAML Data Modelling: foundation/tutorials/intermediate/yaml-data-modeling-network-automation.md
+      - JSON Data Handling: foundation/tutorials/intermediate/json-data-handling-network-automation.md
+      - Pydantic Data Validation: foundation/tutorials/intermediate/pydantic-data-validation-network-automation.md
+      - Jinja2 Configuration Templates: foundation/tutorials/intermediate/jinja2-configuration-templates.md
+      - Decorators for Network Automation: foundation/tutorials/intermediate/decorators-network-automation.md
+      - PyATS Fundamentals: foundation/tutorials/intermediate/pyats-fundamentals.md
+      - PyATS Network Validation: foundation/tutorials/intermediate/pyats-network-validation.md
+      - Building Reliable Automation with PyATS: foundation/tutorials/intermediate/building-reliable-automation-with-pyats.md
+      - Why Nornir: foundation/tutorials/intermediate/why-nornir.md
+      - Nornir Fundamentals: foundation/tutorials/intermediate/nornir-fundamentals.md
+      - Enterprise Config Backup Nornir: foundation/tutorials/intermediate/enterprise-config-backup-nornir.md
+      - Advanced Nornir Patterns: foundation/tutorials/intermediate/advanced-nornir-patterns.md
+      - Testing Network Automation Scripts: foundation/tutorials/intermediate/testing-network-automation.md
+      - Credential Management for Network Automation: foundation/tutorials/intermediate/credential-management-network-automation.md
+      - Error Recovery and Rollback: foundation/tutorials/intermediate/error-recovery-rollback-network-automation.md
+      - State Management and Idempotency: foundation/tutorials/intermediate/state-management-idempotency-network-automation.md
+      - Structured Logging for Network Automation: foundation/tutorials/intermediate/structured-logging-network-automation.md
+      - Health Checks and Pre-Flight Validation: foundation/tutorials/intermediate/health-checks-pre-flight-validation.md
+    - "Build netpipe: The Capstone":
+      - foundation/tutorials/capstone/index.md
+      - "1. Intent and Repository Layout": foundation/tutorials/capstone/01-intent-and-repository-layout.md
+      - "2. Validating Intent": foundation/tutorials/capstone/02-validating-intent.md
+      - "3. Rendering Configuration": foundation/tutorials/capstone/03-rendering-configuration.md
+      - "4. Credentials and Pre-Flight": foundation/tutorials/capstone/04-credentials-and-preflight.md
+      - "5. Deploying with Nornir": foundation/tutorials/capstone/05-deploying-with-nornir.md
+      - "6. Proving the Change with PyATS": foundation/tutorials/capstone/06-proving-the-change-with-pyats.md
+      - "7. Rollback and the Audit Record": foundation/tutorials/capstone/07-rollback-and-audit.md
+    - Expert Tutorials:
+      - foundation/tutorials/expert/index.md
+      - Circuit Breakers and Backpressure: foundation/tutorials/expert/circuit-breakers-backpressure-network-automation.md
+      - Dependency Management and Task Orchestration: foundation/tutorials/expert/dependency-ordering-task-orchestration.md
+      - Incident Response Automation: foundation/tutorials/expert/incident-response-automation.md
+      - Nornir + PyATS Integration: foundation/tutorials/expert/nornir-pyats-integration.md
+      - Asyncio for Network Automation: foundation/tutorials/expert/asyncio-network-automation.md
+      - Secure Credential Vaulting: foundation/tutorials/expert/secure-credential-vaulting.md
+      - DevOps & Observability: foundation/tutorials/expert/devops-observability-network-automation.md
+      - Tool Ecosystem Integration: foundation/tutorials/expert/tool-ecosystem-integration.md
+  - Govern:
+    - academy/govern/index.md
     - Production-Grade Network Automation Principles:
       - foundation/production-grade-network-automation-principles/index.md
       - Validating Device Identity Before Automation Runs: foundation/production-grade-network-automation-principles/validating-device-identity-before-automation-runs.md
@@ -199,14 +212,6 @@ nav:
       - Remediation Packs: foundation/production-grade-network-automation-principles/remediation-packs.md
       - Implementation Roadmap (30/60/90 Days): foundation/production-grade-network-automation-principles/implementation-roadmap-30-60-90-days.md
       - Operator Review Worksheet: foundation/production-grade-network-automation-principles/operator-review-worksheet.md
-    - Governed AI for Network Operations:
-      - foundation/governed-ai-network-operations/index.md
-      - AI Risk Classification: foundation/governed-ai-network-operations/ai-risk-classification.md
-      - Why Your Agent Must Not Have an execute_command Tool: foundation/governed-ai-network-operations/why-your-agent-must-not-have-execute-command.md
-      - From Script to Tool: foundation/governed-ai-network-operations/from-script-to-tool.md
-      - Designing the Tool Catalogue: foundation/governed-ai-network-operations/tool-catalogue-design.md
-      - Tool Contracts and Failure Modes: foundation/governed-ai-network-operations/tool-contracts-and-failure-modes.md
-      - Agent Review Checklist: foundation/governed-ai-network-operations/agent-review-checklist.md
     - Automation Standards:
       - foundation/standards/index.md
       - Automation Control Catalogue: foundation/standards/control-catalogue.md
@@ -222,6 +227,16 @@ nav:
         - Adoption Profiles: foundation/reference-architectures/trusted-automation-execution/adoption-profiles.md
         - "Worked Example: Azure and Cisco": foundation/reference-architectures/trusted-automation-execution/worked-example-azure-cisco.md
         - Proof of Concept v1: foundation/reference-architectures/trusted-automation-execution/proof-of-concept.md
+    - Governed AI for Network Operations:
+      - foundation/governed-ai-network-operations/index.md
+      - AI Risk Classification: foundation/governed-ai-network-operations/ai-risk-classification.md
+      - Why Your Agent Must Not Have an execute_command Tool: foundation/governed-ai-network-operations/why-your-agent-must-not-have-execute-command.md
+      - From Script to Tool: foundation/governed-ai-network-operations/from-script-to-tool.md
+      - Designing the Tool Catalogue: foundation/governed-ai-network-operations/tool-catalogue-design.md
+      - Tool Contracts and Failure Modes: foundation/governed-ai-network-operations/tool-contracts-and-failure-modes.md
+      - Agent Review Checklist: foundation/governed-ai-network-operations/agent-review-checklist.md
+  - See It Done:
+    - academy/see-it-done/index.md
     - Deep Dives:
       - foundation/deep-dives/index.md
       - Access Switch Audit: foundation/deep-dives/access-switch-audit.md
@@ -229,6 +244,14 @@ nav:
       - Cisco Compliance Audit: foundation/deep-dives/cisco-compliance-audit.md
       - Cisco Config Generator: foundation/deep-dives/cisco-config-generator.md
       - IOS XE Upgrade Orchestrator: foundation/deep-dives/ios-xe-upgrade-orchestrator.md
+    - PRIME Framework:
+        - prime-framework/index.md
+        - PRIME Philosophy: prime-framework/philosophy.md
+        - Pinpoint: prime-framework/pinpoint.md
+        - Re-engineer: prime-framework/re-engineer.md
+        - Implement: prime-framework/implement.md
+        - Measure: prime-framework/measure.md
+        - Empower: prime-framework/empower.md
   - Services:
     - Overview: services.md
     - How We Work: how-we-work.md
@@ -248,16 +271,13 @@ nav:
         - Zero-Touch Provisioning Setup: smb/packages/ztp-setup.md
         - Custom Script Build: smb/packages/custom-script-build.md
         - Automation-as-a-Service: smb/packages/automation-as-a-service.md
-  - PRIME Framework:
-      - prime-framework/index.md
-      - PRIME Philosophy: prime-framework/philosophy.md
-      - Pinpoint: prime-framework/pinpoint.md
-      - Re-engineer: prime-framework/re-engineer.md
-      - Implement: prime-framework/implement.md
-      - Measure: prime-framework/measure.md
-      - Empower: prime-framework/empower.md
+  - Foundation:
+    - foundation/index.md
+    - Free & Low-Cost Services for Charities: foundation/charity-services.md
   - About:
       - about.md
+      - The Academy: academy/index.md
+      - Getting Started: getting-started.md
       - founder.md
       - Giving With Integrity: charity.md
       - Legal:

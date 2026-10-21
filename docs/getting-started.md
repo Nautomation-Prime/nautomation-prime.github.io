@@ -16,7 +16,9 @@ Welcome! This guide will help you understand what Nautomation Prime offers and h
 
 **Nautomation Prime** bridges the gap between complex Cisco infrastructure and streamlined Python-driven automation. We provide:
 
-- **[The Nautomation Prime Foundation](foundation/index.md)** — Our free arm: all learning content, plus free and low-cost engineering for registered UK charities and CICs
+- **[Start Here](start-here.md)** — New? Five pages, in order, from your first script to a production pipeline
+- **[The Nautomation Prime Academy](academy/index.md)** — All our free learning content, organised into three tracks: Learn, Govern, and See it done
+- **[The Nautomation Prime Foundation](foundation/index.md)** — Free and low-cost engineering for registered UK charities and CICs
 - **[Tutorials](foundation/tutorials/index.md)** — Step-by-step practical guides for learning automation skills
 - **[Deep Dives](foundation/deep-dives/index.md)** — Production-ready scripts explained line-by-line
 - **[Script Library](scripts/index.md)** — Premium automation tools for common tasks

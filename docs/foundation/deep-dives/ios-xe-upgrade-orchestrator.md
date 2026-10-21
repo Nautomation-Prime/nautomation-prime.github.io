@@ -19,6 +19,9 @@ tags:
 !!! info "Version Alignment"
     This deep dive reflects the **current implemented state (2026)** of the Cisco IOS-XE Software Upgrade Orchestrator and aligns with the live CLI command surface, durable state engine, canary/topology-aware batching, install-mode-only policy, and pyATS/Genie comparison gates in the current repository.
 
+!!! note "This is the finished result. The book shows how you get there."
+    This deep dive shows the orchestrator as it stands: finished, hardened, and explained component by component. It does not show how it got that way. The forthcoming Nautomation Prime book builds this same tool from a twelve-line script to a system that upgrades hundreds of devices, and walks through every decision and every failure along the way. [Get notified when it ships](#mailing-list).
+
 The **Cisco IOS-XE Software Upgrade Orchestrator** is a production-grade Python CLI that coordinates multi-device software upgrades with persistent checkpoints, strict safety gates, and deterministic recovery behaviour. It is designed for high-consequence maintenance windows where partial success and restart recovery must be handled explicitly, not guessed.
 
 !!! abstract "Premium tool — buy ready-to-run or have it customised"

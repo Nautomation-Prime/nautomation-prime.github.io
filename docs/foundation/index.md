@@ -1,34 +1,34 @@
 ---
 title: Nautomation Prime Foundation
-description: Free Cisco network automation education for everyone, plus free and low-cost Cisco and general networking engineering, advice, and Python-based automation for registered UK charities and CICs.
+description: Free and low-cost Cisco and general networking engineering, advice, and Python-based automation for registered UK charities and CICs.
 tags:
   - Foundation
-  - Free Education
   - Charity
   - Community
 ---
 
 <div class="np-hero" markdown>
 
-<p class="np-eyebrow">Free network automation education, and free or low-cost engineering support for UK charities</p>
+<p class="np-eyebrow">Free or low-cost engineering support for UK charities and CICs</p>
 
 ## The Nautomation Prime Foundation
 
-The Nautomation Prime Foundation is the free, publicly accessible side of Nautomation Prime. It exists for two reasons: to teach Cisco network automation to anyone who wants to learn it, at no cost, and to put Christopher Davies' Cisco and general networking engineering skills — advice and improvements on existing infrastructure as well as Python-based automation — to work for registered UK charities and Community Interest Companies who could not otherwise afford them.
+The Nautomation Prime Foundation is Nautomation Prime's charity arm. It exists to put Christopher Davies' Cisco and general networking engineering skills — advice and improvements on existing infrastructure as well as Python-based automation — to work for registered UK charities and Community Interest Companies who could not otherwise afford them.
+
+Looking for the free tutorials and guides? They now live in the [Nautomation Prime Academy](../academy/index.md).
 
 <div class="np-action-row" markdown>
 
-[Start Learning](./resources.md){.md-button .md-button--primary}
-[Free & Low-Cost Services for Charities](./charity-services.md){.md-button}
-[Browse Tutorials](./tutorials/index.md){.md-button}
+[Free & Low-Cost Services for Charities](./charity-services.md){.md-button .md-button--primary}
 [Read Our Legal Status](../legal/foundation-status.md){.md-button}
+[Free Learning: the Academy](../academy/index.md){.md-button}
 
 </div>
 
 <ul class="np-signal-list">
-  <li>100% free education, no account or paywall</li>
-  <li>CC-BY 4.0 licensed learning content</li>
   <li>Free and low-cost delivery for verified UK charities and CICs</li>
+  <li>Scoped under a clear, capped-liability agreement</li>
+  <li>Paid for from Nautomation Prime's own time, not donations</li>
 </ul>
 
 </div>
@@ -43,61 +43,33 @@ Christopher built Nautomation Prime on the belief that automation should never b
 
 <div class="grid cards" markdown>
 
--   ### Education should not be gatekept
-
-    Understanding Cisco network automation shouldn't depend on being able to afford a course or a consultant. Every tutorial and deep dive here is free, indefinitely, to anyone.
-
 -   ### Charities carry real operational risk on thin budgets
 
     Small and medium UK charities often run the same critical Cisco infrastructure as commercial organisations, with none of the budget for specialist help when something needs auditing, backing up, or automating safely.
 
--   ### Skills should compound in the community, not just in one business
+-   ### Free learning is not enough on its own
 
-    Publishing tutorials and deep dives under a permissive licence means teachers, bloggers, and other engineers can build on this content rather than starting from zero.
+    The [Academy](../academy/index.md) teaches anyone to automate for free, but a charity with no engineer on staff needs the work done, not a tutorial. The Foundation is for them.
 
 </div>
 
 ---
 
-<div class="np-reflection" markdown>
-<p class="np-reflection-label">Between the Lines</p>
-<p>Simone Weil thought attention was not a technique but a moral act &mdash; &ldquo;the rarest and purest form of generosity&rdquo;, as she put it in a letter. She meant the kind you give another person. She also meant the kind a difficult thing demands before it will open.</p>
-<p>That is the honest limit of everything published here. Free tutorials remove the cost of learning; they cannot remove the requirement to sit with something long enough to understand it, and that part was always going to be the valuable part. Attention is the one resource nobody can lend you more of.</p>
-</div>
-
 ## What the Foundation offers
 
 <div class="grid cards" markdown>
-
--   ### Learn, free, forever
-
-    Structured tutorials from beginner to expert, plus the Learning Hub route map that tells you where to start for your current skill level.
-
-    [Go to the Learning Hub](./resources.md) · [Browse Tutorials](./tutorials/index.md)
-
--   ### Enterprise standards, published in full
-
-    The operating standards we assess against, free and complete: [Production-Grade Network Automation Principles](./production-grade-network-automation-principles/index.md), [Governed AI for Network Operations](./governed-ai-network-operations/index.md), and line-by-line [Deep Dives](./deep-dives/index.md) of real automation code.
-
-    [Read the principles](./production-grade-network-automation-principles/index.md)
-
--   ### Controls you can cite
-
-    The reference-grade half: a coded [control catalogue](./standards/control-catalogue.md), the [assessment method](./standards/self-assessment.md) that goes with it, the [Python engineering bar](./standards/python-engineering-standard.md), and a vendor-neutral [reference architecture](./standards/reference-architecture.md).
-
-    [Browse the standards](./standards/index.md)
-
--   ### Designs, not tutorials
-
-    Reference architectures with the reasoning behind every boundary, starting with [Trusted Automation Execution](./reference-architectures/trusted-automation-execution/index.md): Zero Trust principles applied to the automation that holds your most privileged credentials.
-
-    [Browse the architectures](./reference-architectures/index.md)
 
 -   ### Free & low-cost help for charities
 
     Cisco and general networking engineering, infrastructure advice, and Python-based automation offered directly to registered UK charities and CICs, scoped and delivered under a clear, capped-liability agreement.
 
     [Read the eligibility criteria](./charity-services.md)
+
+-   ### Free learning, for everyone
+
+    Tutorials, the netpipe Capstone, production-grade principles, standards, reference architectures and deep dives are published free in the Nautomation Prime Academy.
+
+    [Go to the Academy](../academy/index.md)
 
 </div>
 
@@ -107,7 +79,7 @@ Christopher built Nautomation Prime on the belief that automation should never b
 
 Nautomation Prime is Christopher Davies' trading name for his Cisco automation engineering and consulting work. The Foundation is not a separate legal entity today; it is the free, community-facing part of that same business, run under the same sole-trader accountability, insurance considerations, and legal obligations described in the site's [Terms of Use](../legal/terms-of-use.md) and [Disclaimer](../legal/disclaimer.md).
 
-This is a deliberately different thing from the [Giving With Integrity](../charity.md) policy, which governs how a percentage of Nautomation Prime's *commercial revenue* will be donated to independently vetted, already-registered external charities as the business grows. The Foundation, by contrast, is Nautomation Prime *directly delivering* free education and free or low-cost engineering time — it does not collect or distribute money on behalf of other charities.
+This is a deliberately different thing from the [Giving With Integrity](../charity.md) policy, which governs how a percentage of Nautomation Prime's *commercial revenue* will be donated to independently vetted, already-registered external charities as the business grows. The Foundation, by contrast, is Nautomation Prime *directly delivering* free or low-cost engineering time — it does not collect or distribute money on behalf of other charities.
 
 <div class="np-action-row" markdown>
 
@@ -120,7 +92,7 @@ This is a deliberately different thing from the [Giving With Integrity](../chari
 
 ## Licensing at a glance
 
-All Foundation tutorials, deep dives, and guides are published under **Creative Commons Attribution 4.0 (CC-BY)** — you can copy, adapt, and reuse them, including commercially, provided you credit Nautomation Prime. Illustrative code snippets inside that content are licensed under **Apache License 2.0**. Full detail, including what remains proprietary (the PRIME Framework and Philosophy, and premium packaged tools sold through the [Script Library](../scripts/index.md)), is on the [Licensing](../legal/licensing.md) page.
+Free learning content is published through the [Academy](../academy/index.md) under **Creative Commons Attribution 4.0 (CC-BY)**. Full detail is on the [Licensing](../legal/licensing.md) page.
 
 ---
 
@@ -128,12 +100,12 @@ All Foundation tutorials, deep dives, and guides are published under **Creative 
 
 ### Ready to get started?
 
-Whether you want to learn network automation for free or you run a UK charity that needs Cisco help you can't currently afford, start here.
+If you run a UK charity or CIC that needs Cisco help you can't currently afford, start with the eligibility criteria. If you want to learn network automation for free, the Academy is the place.
 
 <div class="np-action-row" markdown>
 
-[Start Learning](../getting-started.md){.md-button .md-button--primary}
-[Charity & CIC Support](./charity-services.md){.md-button}
+[Charity & CIC Support](./charity-services.md){.md-button .md-button--primary}
+[Start Learning](../start-here.md){.md-button}
 [Contact the Foundation](../contact.md){.md-button}
 
 </div>

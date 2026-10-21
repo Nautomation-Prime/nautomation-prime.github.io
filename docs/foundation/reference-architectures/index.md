@@ -53,7 +53,7 @@ The second sits inside the first. In the governed architecture, the governed ser
 
 ---
 
-## How These Relate to the Rest of the Foundation
+## How These Relate to the Rest of the Academy
 
 | If you want to… | Go to |
 |---|---|
@@ -62,11 +62,11 @@ The second sits inside the first. In the governed architecture, the governed ser
 | See what changes when an AI agent is the requester | [Governed AI for Network Operations](../governed-ai-network-operations/index.md) |
 | Cite a requirement, or assess yourself against it | [Automation Standards](../standards/index.md) |
 
-Like the rest of the Foundation, these pages are published in full under [CC-BY 4.0](../../legal/licensing.md). Adopt the designs, adapt them, or argue with them in your own documents, with attribution.
+Like the rest of the Academy, these pages are published in full under [CC-BY 4.0](../../legal/licensing.md). Adopt the designs, adapt them, or argue with them in your own documents, with attribution.
 
 ---
 
 ## Continue
 
 - Start here: [Trusted Automation Execution](./trusted-automation-execution/index.md)
-- Foundation home: [Nautomation Prime Foundation](../index.md)
+- Academy home: [Nautomation Prime Academy](../../academy/index.md)

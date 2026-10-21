@@ -96,16 +96,20 @@ The framework is built on the **[PRIME Philosophy](./prime-framework/philosophy.
 
 We provide education, premium automation tools, and professional services—all guided by the **[PRIME Framework](./prime-framework/index.md)** and **PRIME Philosophy**.
 
-### 🎓 The Nautomation Prime Foundation
+### 🎓 The Nautomation Prime Academy
 
-Our free education arm. All tutorials, deep dives, and production-grade guidance live under the **[Nautomation Prime Foundation](./foundation/index.md)** and teach network automation through real-world Cisco use cases:
+Our free education arm. All tutorials, deep dives, and production-grade guidance live in the **[Nautomation Prime Academy](./academy/index.md)** and teach network automation through real-world Cisco use cases:
 
+- **[Start Here](./start-here.md):** Five pages, in order, from first Netmiko script to a production pipeline
 - **[Tutorials](./foundation/tutorials/index.md):** Step-by-step practical scripts for beginners, intermediate, and expert levels
+- **[Build netpipe: the Capstone](./foundation/tutorials/capstone/index.md):** One project, seven chapters, a real deployment pipeline
 - **[Deep Dives](./foundation/deep-dives/index.md):** Production-grade code walkthroughs with line-by-line explanations
-- **[Free & Low-Cost Services for Charities](./foundation/charity-services.md):** Cisco and general networking engineering, infrastructure advice, and Python-based automation for registered UK charities and CICs
-- **Learning Path:** From first Netmiko script to advanced Nornir parallelisation
 
-Every script is explained line-by-line, every design decision documented, and every piece of Foundation content stays free to access.
+Every script is explained line-by-line, every design decision documented, and every piece of Academy content stays free to access.
+
+### 🤝 The Nautomation Prime Foundation
+
+Our charity arm. The **[Nautomation Prime Foundation](./foundation/index.md)** sets out [free and low-cost services for charities](./foundation/charity-services.md): Cisco and general networking engineering, infrastructure advice, and Python-based automation for registered UK charities and CICs.
 
 ### 🛠️ Premium Automation Tools
 

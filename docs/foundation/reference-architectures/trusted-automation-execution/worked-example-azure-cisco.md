@@ -2,7 +2,7 @@
 title: "Worked Example: Azure and Cisco"
 description: Trusted Automation Execution at full adoption on one illustrative stack — Microsoft Entra ID, Azure DevOps, Key Vault, Azure Arc-enabled RHEL, NetBox, Catalyst Center, Cisco ISE, and IOS XE and IOS XR — component by component, with alternatives, a Kubernetes variant, and the gaps no product closes.
 image: assets/social/trusted-automation-execution.png
-image_alt: "Trusted Automation Execution: a reference architecture from the Nautomation Prime Foundation"
+image_alt: "Trusted Automation Execution: a reference architecture from the Nautomation Prime Academy"
 tags:
   - Reference Architecture
   - Zero Trust

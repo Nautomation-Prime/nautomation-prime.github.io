@@ -1,6 +1,6 @@
 ---
 title: Automation Standards
-description: The reference-grade half of the Foundation — a coded control catalogue, an assessment method, the Python engineering bar, and a vendor-neutral reference architecture.
+description: The reference-grade half of the Academy — a coded control catalogue, an assessment method, the Python engineering bar, and a vendor-neutral reference architecture.
 tags:
   - Standards
   - Governance
@@ -51,7 +51,7 @@ Same content, different job.
 
 ---
 
-## How These Relate to the Rest of the Foundation
+## How These Relate to the Rest of the Academy
 
 | If you want to… | Go to |
 |---|---|
@@ -85,4 +85,4 @@ Everything here is free and complete, and most teams can apply it without outsid
 ## Continue
 
 - Start here: [Automation Control Catalogue](./control-catalogue.md)
-- Foundation home: [Nautomation Prime Foundation](../index.md)
+- Academy home: [Nautomation Prime Academy](../../academy/index.md)

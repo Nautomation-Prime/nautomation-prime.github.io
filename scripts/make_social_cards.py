@@ -117,7 +117,7 @@ def page_card(logo: Image.Image, filename: str, eyebrow: str, title_lines: list[
 
     draw.line([(80, 540), (W - 80, 540)], fill=(196, 214, 228), width=2)
     ff = font("Medium", 24)
-    draw.text((80, 560), "Nautomation Prime Foundation", font=ff, fill=NAVY)
+    draw.text((80, 560), "Nautomation Prime Academy", font=ff, fill=NAVY)
     url = "nautomationprime.io"
     uf = font("Regular", 24)
     draw.text((W - 80 - draw.textlength(url, font=uf), 560), url, font=uf, fill=STEEL)

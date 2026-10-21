@@ -93,11 +93,10 @@ Real networks are ugly. Legacy, hybrid, edge-case-ridden. The solutions that wor
 
 ### Cisco Certifications (In Progress)
 
-I'm currently working towards three professional-level Cisco certifications. I'll update this page as each one is achieved.
+I'm currently working towards two professional-level Cisco certifications. I'll update this page as each one is achieved.
 
 - **CCNP Enterprise** (in progress) — Professional-level routing and switching design
 - **CCNP Automation** (in progress) — Network automation and orchestration
-- **CCNP Collaboration** (in progress) — Advanced unified communications architecture
 
 **What studying for them reinforces:**  
 The fundamentals never change. Mastering layer 3 matters as much as Python syntax.

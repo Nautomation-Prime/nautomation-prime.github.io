@@ -25,7 +25,8 @@ Nautomation Prime helps network engineering teams move from manual operations an
 
 <div class="np-action-row" markdown>
 
-[Explore the Foundation](./foundation/index.md){.md-button .md-button--primary}
+[Start Here](./start-here.md){.md-button .md-button--primary}
+[Build netpipe: the Capstone](./foundation/tutorials/capstone/index.md){.md-button}
 [Explore Services](./services.md){.md-button}
 [Request Discovery Call](./contact.md){.md-button}
 [Meet Christopher Davies](./founder.md){.md-button}
@@ -76,9 +77,9 @@ Nautomation Prime helps network engineering teams move from manual operations an
 
 -   ### Learn
 
-    Build practical Cisco automation capability, free, through the Nautomation Prime Foundation's tutorials, deep dives, and production-grade engineering guidance.
+    Build practical Cisco automation capability, free, through the Nautomation Prime Academy: tutorials, the netpipe Capstone, deep dives, and production-grade engineering guidance.
 
-    [Go to the Foundation](./foundation/index.md)
+    [Go to the Academy](./academy/index.md) · [Build netpipe](./foundation/tutorials/capstone/index.md)
 
 -   ### Deploy
 
@@ -166,7 +167,7 @@ Comparable enterprise environments have seen results such as:
 
 ### Built by Christopher Davies
 
-Christopher Davies is a network engineer with 10+ years in enterprise infrastructure and automation, currently working towards CCNP Enterprise, Automation, and Collaboration. His background spans large-scale Cisco delivery, critical infrastructure environments, and production automation that has to survive real-world operational constraints.
+Christopher Davies is a network engineer with 10+ years in enterprise infrastructure and automation, currently working towards CCNP Enterprise and CCNP Automation. His background spans large-scale Cisco delivery, critical infrastructure environments, and production automation that has to survive real-world operational constraints.
 
 <div class="np-founder-metrics">
   <div>
@@ -175,7 +176,7 @@ Christopher Davies is a network engineer with 10+ years in enterprise infrastruc
   </div>
   <div>
     <strong>CCNP in progress</strong>
-    Working towards Enterprise, Automation, and Collaboration
+    Working towards Enterprise and Automation
   </div>
   <div>
     <strong>Production focus</strong>
@@ -208,7 +209,7 @@ Whether you're assessing automation opportunities, rebuilding inherited scripts,
 
 ## Giving with integrity
 
-We are building Nautomation Prime to create value beyond technology delivery. As the business grows, a percentage of revenue will be donated to carefully vetted charities that demonstrate transparency, responsible spending, ethical governance, and measurable community impact. Alongside that, the **[Nautomation Prime Foundation](./foundation/index.md)** already offers free network automation education to anyone, and free or low-cost Cisco and general networking engineering, infrastructure advice, and automation services to registered UK charities and CICs today.
+We are building Nautomation Prime to create value beyond technology delivery. As the business grows, a percentage of revenue will be donated to carefully vetted charities that demonstrate transparency, responsible spending, ethical governance, and measurable community impact. Alongside that, the **[Nautomation Prime Academy](./academy/index.md)** offers free network automation education to anyone, and the **[Nautomation Prime Foundation](./foundation/index.md)** sets out free or low-cost Cisco and general networking engineering, infrastructure advice, and automation services for registered UK charities and CICs.
 
 [Read the giving policy →](./charity.md) | [Explore the Foundation →](./foundation/index.md)
 
