@@ -972,6 +972,7 @@ def orchestrated_config_deployment(
 ```python
 from nornir import InitNornir
 from nornir.core.filter import F
+from tasks.config_management import orchestrated_config_deployment
 
 # Initialize Nornir with custom configuration
 nr = InitNornir(

@@ -491,9 +491,12 @@ Dynamic credential injection with vault manager:
 
 ```python
 import asyncio
+import os
 from nornir import InitNornir
 from nornir.core.task import Task, Result
 from nornir.core.inventory import Host
+
+from vault_manager import VaultBackend, VaultManager  # the module above
 
 def set_credentials_from_vault(task: Task) -> Result:
     """

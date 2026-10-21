@@ -2211,6 +2211,7 @@ import subprocess
 import time
 import socket
 from contextlib import contextmanager
+from nornir.core.task import Task, Result
 
 @contextmanager
 def ssh_tunnel(bastion_host, bastion_user, target_host, target_port=22, local_port=None):
