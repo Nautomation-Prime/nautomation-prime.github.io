@@ -80,6 +80,10 @@ from datetime import datetime, timezone
 from typing import Any, Dict
 import uuid
 
+# Attribute names a LogRecord already uses ("module", "name", "filename",
+# "lineno", ...). logging raises KeyError if extra= tries to reuse one.
+LOG_RECORD_ATTRS = set(vars(logging.makeLogRecord({}))) | {"message", "asctime"}
+
 class StructuredLogger:
     """Structured JSON logging for network automation."""
     
@@ -107,11 +111,15 @@ class StructuredLogger:
     
     def _add_context(self, extra: Dict[str, Any]) -> Dict[str, Any]:
         """Add standard context to log entry."""
-        return {
+        context = {
             "timestamp": datetime.now(timezone.utc).isoformat(),
             "correlation_id": self.correlation_id,
-            **extra
         }
+        for key, value in extra.items():
+            # A field called "module" or "name" would make logging raise
+            # KeyError, usually in the error path. Prefix it instead.
+            context[f"ctx_{key}" if key in LOG_RECORD_ATTRS else key] = value
+        return context
     
     def info(self, message: str, **context):
         """Log info level with context."""
@@ -164,15 +172,15 @@ class JSONFormatter(logging.Formatter):
         if hasattr(record, "correlation_id"):
             log_data["correlation_id"] = record.correlation_id
         
-        # Add any custom fields from extra={}
+        # Add any custom fields from extra={}: everything that isn't a
+        # standard LogRecord attribute (this also skips taskName, which
+        # Python 3.12 added)
         for key, value in record.__dict__.items():
-            if key not in ["name", "msg", "args", "created", "filename", "funcName", 
-                          "levelname", "levelno", "lineno", "module", "msecs", 
-                          "message", "pathname", "process", "processName", "relativeCreated",
-                          "thread", "threadName", "exc_info", "exc_text", "stack_info"]:
+            if key not in LOG_RECORD_ATTRS:
                 log_data[key] = value
-        
-        return json.dumps(log_data)
+
+        # default=str keeps a stray datetime or IP object from breaking logging
+        return json.dumps(log_data, default=str)
 ```
 
 ### Usage Example
@@ -346,9 +354,7 @@ def deploy_with_logging(task: Task) -> Result:
             )
         
         with op_logger.operation("apply_changes", device=task.host.name):
-            device.send_command("configure terminal")
-            device.send_command("hostname " + task.host.name)
-            device.send_command("end")
+            device.send_config_set([f"hostname {task.host.name}"])
             logger.info(
                 "Configuration changes applied",
                 device=task.host.name
@@ -465,7 +471,7 @@ class ElasticsearchHandler(logging.Handler):
         Initialize Elasticsearch handler.
         
         Args:
-            hosts: Elasticsearch hosts (e.g., ["localhost:9200"])
+            hosts: Elasticsearch URLs, scheme included (e.g., ["http://localhost:9200"])
             index_name: Index name for logs
         """
         super().__init__()
@@ -496,7 +502,7 @@ class ElasticsearchHandler(logging.Handler):
 logger = StructuredLogger(__name__)
 
 # Add Elasticsearch handler
-es_handler = ElasticsearchHandler(hosts=["localhost:9200"])
+es_handler = ElasticsearchHandler(hosts=["http://localhost:9200"])  # scheme required
 es_handler.setFormatter(JSONFormatter())
 logger.logger.addHandler(es_handler)
 
@@ -650,7 +656,7 @@ logger.info("ERROR happening here")
 logger.error(
     "Device configuration failed",
     device="router1",
-    module="bgp",
+    component="bgp",
     expected_neighbors=3,
     actual_neighbors=1
 )
@@ -658,6 +664,8 @@ logger.error(
 # ❌ BAD - Vague
 logger.error("Configuration failed")
 ```
+
+Name your fields so they don't collide with Python's own `LogRecord` attributes: `module`, `name`, `filename`, `lineno`, `process` and similar. Plain `logging` raises `KeyError` if `extra=` reuses one. `StructuredLogger` prefixes a clashing key (`ctx_module`) rather than crashing, but a field called `component` is easier to query than one that has been renamed behind your back.
 
 ### 3. Never Log Sensitive Data
 

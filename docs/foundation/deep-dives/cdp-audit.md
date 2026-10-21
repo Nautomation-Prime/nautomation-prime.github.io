@@ -911,7 +911,8 @@ def validate_excel_template() -> bool:
     
     # Try loading the template
     try:
-        wb = load_workbook(template_path) wb.close()
+        wb = load_workbook(template_path)
+        wb.close()
         logger.info(f"✓ Excel template valid: {template_path}")
         return True
     except Exception as e:
@@ -945,6 +946,7 @@ def validate_all() -> bool:
 The `cli.py` module calls `validate_all()` before proceeding with credential collection and discovery:
 
 ```python
+import sys
 from cdp_audit import validators
 
 if not validators.validate_all():
@@ -1008,7 +1010,8 @@ class NetworkDiscoverer:
         # Thread-safe data structures
         self.cdp_neighbor_details = []   # Parsed CDP entries (list, protected by data_lock)
         self.hostnames = set()            # Discovered hostnames for DNS (set, protected by data_lock)
-        self.visited = set()              # IPs we've already audited (set, protected by visited_lock)
+        self.visited = set()              # IPs a worker has taken to audit (set, protected by visited_lock)
+        self.enqueued = set()             # IPs and hostnames already queued (set, protected by visited_lock)
         self.authentication_errors = set()  # Auth failures (set, protected by data_lock)
         self.connection_errors = {}       # {IP: error_message} (dict, protected by data_lock)
         self.dns_ip = {}                  # {hostname: resolved_ip} (dict, protected by data_lock)
@@ -1034,7 +1037,7 @@ class NetworkDiscoverer:
 **Data Structure Choices:**
 
 - **Lists** for ordered results (`cdp_neighbor_details`)
-- **Sets** for deduplication (`visited`, `hostnames`, `authentication_errors`)
+- **Sets** for deduplication (`visited`, `enqueued`, `hostnames`, `authentication_errors`)
 - **Dicts** for key-value lookups (`connection_errors`, `dns_ip`)
 
 ### Jump Server Support
@@ -1377,6 +1380,11 @@ def parse_outputs_and_enqueue_neighbors(
         local_serial = 'N/A'
         local_uptime = 'N/A'
     
+    # This device is known by name now too: don't queue it again when a
+    # neighbour advertises it
+    with self.visited_lock:
+        self.enqueued.add(local_hostname)
+
     # Step 2: Parse CDP Neighbors
     try:
         cdp_parsed = textfsm_parser(
@@ -1423,12 +1431,15 @@ def parse_outputs_and_enqueue_neighbors(
             # Apply Queueing Heuristic
             # Only enqueue if: Switch device + not a Host + has management IP
             if "Switch" in capabilities and "Host" not in capabilities and mgmt_ip:
-                # Check if already visited or queued
+                # Check if already queued, by IP or by name. This uses
+                # 'enqueued', not 'visited': the worker skips anything in
+                # 'visited', so marking queued IPs visited would mean
+                # nothing is ever audited
                 with self.visited_lock:
-                    if mgmt_ip not in self.visited and dest_host not in self.visited:
+                    if mgmt_ip not in self.enqueued and dest_host not in self.enqueued:
                         self.queue.put(mgmt_ip)
-                        self.visited.add(mgmt_ip)
-                        self.visited.add(dest_host)
+                        self.enqueued.add(mgmt_ip)
+                        self.enqueued.add(dest_host)
                         self.logger.info(f"Queued for discovery: {dest_host} ({mgmt_ip})")
 ```
 
@@ -1480,9 +1491,10 @@ Switch (Switch) + 192.0.2.100        → Queue it ✓
 
 **Deduplication:**
 
-- Check both IP and hostname against `visited` set
+- Check both IP and hostname against the `enqueued` set
 - Prevents discovering same device multiple times
 - Thread-safe with `visited_lock`
+- Kept separate from `visited`, which records what a worker has actually taken. If queueing marked an IP as visited, the worker would skip it
 
 ### Worker Thread Pool
 
@@ -1584,11 +1596,11 @@ def discover_from_seeds(self, seeds: List[str]) -> None:
     """
     self.logger.info(f"Starting discovery with {len(seeds)} seed device(s)")
     
-    # Add seeds to queue
+    # Add seeds to queue (enqueued, not visited: the worker marks visited)
     for seed in seeds:
         self.queue.put(seed)
         with self.visited_lock:
-            self.visited.add(seed)
+            self.enqueued.add(seed)
     
     # Determine worker count
     worker_count = self.config.DEFAULT_LIMIT
@@ -1618,7 +1630,7 @@ def discover_from_seeds(self, seeds: List[str]) -> None:
 
 **Flow:**
 
-1. Add seeds to queue and mark as visited
+1. Add seeds to queue and mark as enqueued
 2. Start worker threads (count from config)
 3. Wait for queue to empty (`queue.join()`)
 4. Send shutdown signals (one None per worker)
@@ -1731,7 +1743,7 @@ from pathlib import Path
 from datetime import datetime
 from typing import Dict, List
 import pandas as pd
-from openpyxl import load_workbook
+from openpyxl import Workbook, load_workbook
 # Configuration is loaded from config.yaml at package startup
 from cdp_audit import _config as config
 
@@ -1778,7 +1790,7 @@ Preserve metadata (timestamps, permissions) with `copy2`.
 ### **Step 2: Stamp Metadata**
 
 ```python
-def _stamp_metadata(self, wb: load_workbook) -> None:
+def _stamp_metadata(self, wb: Workbook) -> None:
     """
     Stamp metadata into specific cells.
     
@@ -1832,22 +1844,16 @@ def generate_report(
     
     # Step 1: Copy template
     self._copy_template()
-    
-    # Step 2: Load workbook
-    wb = load_workbook(self.output_filename)
-    
-    # Step 3: Stamp metadata
-    self._stamp_metadata(wb)
-    
-    # Step 4: Write data to sheets
+
+    # Step 2: Write data to sheets. In append mode ExcelWriter opens the
+    # copied template itself (its .book is read-only in pandas 2+, so
+    # don't assign one) and saves it when the block ends
     with pd.ExcelWriter(
         self.output_filename,
         engine='openpyxl',
         mode='a',
         if_sheet_exists='overlay'
     ) as writer:
-        writer.book = wb
-        
         # CDP Audit Data
         if cdp_data:
             df_cdp = pd.DataFrame(cdp_data)
@@ -1901,7 +1907,14 @@ def generate_report(
                 index=False
             )
             self.logger.info(f"Wrote {len(conn_errors)} connection errors")
-    
+
+    # Step 3: Stamp metadata. Done after the writer has saved and closed
+    # the file, so its save can't overwrite the stamped cells
+    wb = load_workbook(self.output_filename)
+    self._stamp_metadata(wb)
+    wb.save(self.output_filename)
+    wb.close()
+
     self.logger.info(f"✓ Report generated: {self.output_filename}")
     return self.output_filename
 ```

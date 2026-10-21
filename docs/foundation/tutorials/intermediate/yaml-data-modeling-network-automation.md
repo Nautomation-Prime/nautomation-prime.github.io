@@ -602,6 +602,14 @@ devices:
     os: iosxe
     # Operating system (determines parser)
 
+    credentials:
+      # Shared by every connection below
+      default:
+        # Primary credential set
+        username: admin
+        password: "%ENV{PYATS_PASSWORD}"
+        # Read from an environment variable when the testbed loads
+
     connections:
       # Multiple connection types supported
 
@@ -611,54 +619,40 @@ devices:
         ip: 192.168.1.10
         port: 22
 
-        credentials:
-          default:
-            # Primary credential set
-            username: admin
-            password: !vault |
-              # Ansible Vault encrypted password
-              $ANSIBLE_VAULT;1.2;AES256;default
-              # Encrypted password here
-
       netconf:
         # NETCONF connection (if supported)
+        class: yang.connector.Netconf
+        # Connection plugin to use; without it PyATS assumes a CLI session
         protocol: netconf
         ip: 192.168.1.10
         port: 830
 
-        credentials:
-          default:
-            username: admin
-            password: !vault |
-              # Same password, encrypted
-
   nexus9k:
     type: switch
     os: nxos
+
+    credentials:
+      default:
+        username: admin
+        password: "%ENC{gAAAAABq...}"
+        # Encrypted with 'pyats secret encode'
+
+      backup:
+        # Backup credential set
+        username: backup_user
+        password: "%ENV{PYATS_BACKUP_PASSWORD}"
 
     connections:
       cli:
         protocol: ssh
         ip: 192.168.1.20
         port: 22
-
-        credentials:
-          default:
-            username: admin
-            password: !vault |
-              # Encrypted password
-
-          backup:
-            # Backup credential set
-            username: backup_user
-            password: !vault |
-              # Different credentials
 ```
 
 **Key concepts:**
 
 - Each device can have multiple connection types (cli, netconf, restconf)
-- Credentials encrypted with Ansible Vault (secure)
+- Secrets stay out of the file: `%ENV{}` reads an environment variable and `%ENC{}` decrypts a value made with `pyats secret encode` (see [PyATS Fundamentals](pyats-fundamentals.md#step-3-store-credentials-securely)). PyATS does not read Ansible Vault's `!vault` tag.
 - Multiple credential sets supported (primary, backup)
 
 ### Using PyATS Testbed in Python
@@ -1124,25 +1118,28 @@ credentials:
 ```yaml
 credentials:
   username: admin
-  password: ""  # Set at runtime or use vault
+  password: ""  # Set at runtime from a prompt, environment variable or vault
 ```
 
 ```python
 import getpass
+import os
 
-# Prompt for password at runtime
-password = getpass.getpass("Enter device password: ")
+# Use the environment variable if set (CI), otherwise prompt at runtime
+password = os.environ.get("DEVICE_PASSWORD") or getpass.getpass("Enter device password: ")
 ```
 
-Or use Ansible Vault:
+Tools with their own secret syntax can keep the reference in the YAML itself. A PyATS testbed, for example:
 
 ```yaml
 credentials:
-  username: admin
-  password: !vault |
-    $ANSIBLE_VAULT;1.2;AES256
-    # Encrypted password
+  default:
+    username: admin
+    password: "%ENV{DEVICE_PASSWORD}"
 ```
+
+!!! note "Ansible Vault Is Ansible-Only"
+    `!vault |` blocks only work in files Ansible reads. `yaml.safe_load()` and PyATS both reject the tag with a `ConstructorError`.
 
 ---
 

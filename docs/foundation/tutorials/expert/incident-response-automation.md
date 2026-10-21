@@ -233,16 +233,17 @@ detector.register_pattern(
 ```python
 # src/remediation.py
 from dataclasses import dataclass
-from typing import Any, Callable, Dict
+from typing import Any, Callable, Dict, List, Optional
 from datetime import datetime
-from incident_detector import Incident, RemediationType
+from incident_detector import Incident
 
 @dataclass
 class RemediationAction:
     """Single remediation step."""
     name: str
     func: Callable
-    validate_func: Callable = None  # Verify remediation worked
+    validate_func: Optional[Callable] = None  # Verify remediation worked
+    undo_func: Optional[Callable] = None      # Reverse this step (None = can't)
     
     async def execute(self) -> bool:
         """Execute remediation and validate."""
@@ -269,22 +270,17 @@ class RemediationRunbook:
     
     def __init__(self, incident_name: str):
         self.incident_name = incident_name
-        self.actions = []
-        self.rollback_actions = []
-    
+        self.actions: List[RemediationAction] = []
+
     def add_action(
         self,
         name: str,
         func: Callable,
-        validate_func: Callable = None,
-        reversible: bool = True
+        validate_func: Optional[Callable] = None,
+        undo_func: Optional[Callable] = None
     ):
-        """Add remediation action."""
-        action = RemediationAction(name, func, validate_func)
-        self.actions.append(action)
-        
-        if reversible:
-            self.rollback_actions.insert(0, action)
+        """Add remediation action. Give an undo_func if the step can be reversed."""
+        self.actions.append(RemediationAction(name, func, validate_func, undo_func))
     
     async def execute(self, incident: Incident) -> Dict[str, Any]:
         """
@@ -307,88 +303,144 @@ class RemediationRunbook:
             "timestamp": datetime.now().isoformat()
         }
         
+        attempted = []
+
         for action in self.actions:
+            attempted.append(action)
             success = await action.execute()
             results["actions_taken"].append({
                 "name": action.name,
                 "success": success
             })
-            
+
             if not success:
                 results["success"] = False
                 print(f"\n⚠ Remediation failed at: {action.name}")
                 print(f"  Rolling back to previous state...")
-                
-                # Execute rollback
-                for rollback_action in self.rollback_actions:
-                    print(f"  Undoing: {rollback_action.name}")
-                    try:
-                        await rollback_action.func()
-                    except:
-                        pass
-                
+                await self._roll_back(attempted)
                 break
-        
+
         return results
+
+    async def _roll_back(self, attempted: List[RemediationAction]):
+        """
+        Undo the steps that ran, newest first.
+
+        Steps after the failure never ran, so there's nothing to undo for
+        them. The failed step is included: it may have half-applied.
+        """
+        for action in reversed(attempted):
+            if action.undo_func is None:
+                print(f"  Can't undo: {action.name} (no undo step)")
+                continue
+            print(f"  Undoing: {action.name}")
+            try:
+                await action.undo_func()
+            except Exception as e:
+                # Keep undoing the rest, but never hide a failed undo
+                print(f"  ✗ Undo of {action.name} failed: {e}")
 ```
 
 ### Remediation Runbook Examples
 
 ```python
 # src/remediation_runbooks.py
-from remediation import RemediationRunbook
+import asyncio
 from netmiko import ConnectHandler
+from remediation import RemediationRunbook
 
-# BGP Flapping Remediation
-bgp_flapping_runbook = RemediationRunbook("BGP Session Flapping")
+# Netmiko is blocking, so every step runs its session in a worker thread
+# with asyncio.to_thread() rather than stalling the event loop
+
+def _session(device: dict, work):
+    """Open a Netmiko session, run work(conn), and close it again."""
+    with ConnectHandler(**device) as conn:
+        return work(conn)
+
+def all_bgp_neighbors_established(bgp_summary: str) -> bool:
+    """
+    True if every neighbour row of 'show ip bgp summary' ends in a number.
+
+    IOS never prints the word "Established" here: an established peer
+    shows its received-prefix count in the last column, and a down peer
+    shows its state (Idle, Active, Connect...).
+    """
+    _, found, table = bgp_summary.partition("Neighbor")
+    if not found:
+        return False
+    states = [line.split()[-1] for line in table.splitlines()[1:] if line.strip()]
+    return bool(states) and all(state.isdigit() for state in states)
+
+# --- BGP Flapping Remediation -------------------------------------------
 
 async def clear_bgp_session(device):
-    """Clear and re-establish BGP session."""
-    conn = ConnectHandler(**device)
-    conn.send_command("clear ip bgp * soft")
-    conn.disconnect()
+    """Soft-reset BGP (re-sends routes without dropping the sessions)."""
+    await asyncio.to_thread(_session, device, lambda conn: conn.send_command("clear ip bgp * soft"))
 
 async def verify_bgp_stable(device):
-    """Verify BGP session is stable."""
-    conn = ConnectHandler(**device)
-    output = conn.send_command("show ip bgp summary")
-    # Check for stable state
-    conn.disconnect()
-    return "Established" in output
+    """Verify every BGP neighbour is established."""
+    output = await asyncio.to_thread(
+        _session, device, lambda conn: conn.send_command("show ip bgp summary")
+    )
+    return all_bgp_neighbors_established(output)
 
-bgp_flapping_runbook.add_action(
-    name="Clear BGP session",
-    func=lambda: clear_bgp_session(device_dict),
-    validate_func=lambda: verify_bgp_stable(device_dict),
-    reversible=True
-)
+def build_bgp_flapping_runbook(device: dict) -> RemediationRunbook:
+    """BGP runbook for one device (a Netmiko connection dict)."""
+    runbook = RemediationRunbook("BGP Session Flapping")
+    runbook.add_action(
+        name="Clear BGP session",
+        func=lambda: clear_bgp_session(device),
+        validate_func=lambda: verify_bgp_stable(device),
+        # A soft clear changes no configuration, so there's no undo_func
+    )
+    return runbook
 
-# Interface Error Remediation
-interface_error_runbook = RemediationRunbook("High Interface Error Rate")
+# --- Interface Error Remediation ----------------------------------------
 
 async def restart_interface(device, interface):
-    """Cycle interface power."""
-    conn = ConnectHandler(**device)
-    conn.send_config_set([
+    """Bounce the interface (shutdown / no shutdown)."""
+    await asyncio.to_thread(_session, device, lambda conn: conn.send_config_set([
         f"interface {interface}",
         "shutdown",
         "no shutdown"
-    ])
-    conn.disconnect()
+    ]))
+
+async def enable_interface(device, interface):
+    """Undo step: make sure a failed bounce doesn't leave the port shut down."""
+    await asyncio.to_thread(_session, device, lambda conn: conn.send_config_set([
+        f"interface {interface}",
+        "no shutdown"
+    ]))
 
 async def verify_interface_healthy(device, interface):
-    """Verify interface is up and healthy."""
-    conn = ConnectHandler(**device)
-    output = conn.send_command(f"show interface {interface}")
-    conn.disconnect()
-    return "up" in output.lower() and "crc" not in output.lower()
+    """
+    Verify the interface came back up/up.
 
-interface_error_runbook.add_action(
-    name="Restart interface",
-    func=lambda: restart_interface(device, interface),
-    validate_func=lambda: verify_interface_healthy(device, interface),
-    reversible=True
-)
+    Error counters don't reset when an interface bounces, so the error
+    *rate* is judged by the monitor's next measurement, not here.
+    """
+    output = await asyncio.to_thread(
+        _session, device, lambda conn: conn.send_command(f"show interfaces {interface}")
+    )
+    return "is up, line protocol is up" in output
+
+def build_interface_error_runbook(device: dict, interface: str) -> RemediationRunbook:
+    """Interface runbook for one port on one device."""
+    runbook = RemediationRunbook("High Interface Error Rate")
+    runbook.add_action(
+        name=f"Restart interface {interface}",
+        func=lambda: restart_interface(device, interface),
+        validate_func=lambda: verify_interface_healthy(device, interface),
+        undo_func=lambda: enable_interface(device, interface),
+    )
+    return runbook
+```
+
+Runbooks are built per device, when an incident needs one, because each step must know which device (and port) to act on:
+
+```python
+runbook = build_interface_error_runbook(device, "GigabitEthernet1/0/24")
+result = await runbook.execute(incident)
 ```
 
 ---
@@ -400,6 +452,7 @@ interface_error_runbook.add_action(
 import json
 from datetime import datetime
 from pathlib import Path
+from typing import List
 from incident_detector import Incident
 
 class IncidentTracker:
@@ -493,7 +546,9 @@ class IncidentTracker:
 
 ```python
 # src/adaptive_remediation.py
+from typing import List
 from incident_tracker import IncidentTracker
+from remediation import RemediationRunbook
 
 class AdaptiveRemediationEngine:
     """Learn from incident history and adjust remediation."""
@@ -615,7 +670,7 @@ actions = [
     RemediationAction(
         "update_config",
         func=update_config,
-        reversible=True  # Can rollback
+        undo_func=restore_previous_config  # How to put it back
     )
 ]
 
@@ -651,11 +706,12 @@ async def silent_remediation(incident):
 ```python
 # src/automation_engine.py
 import asyncio
+import re
 from datetime import datetime
 from typing import List
 from netmiko import ConnectHandler
 from incident_detector import Incident, PatternMatcher, RemediationType, SeverityLevel
-from remediation import RemediationRunbook
+from remediation_runbooks import build_bgp_flapping_runbook
 from incident_tracker import IncidentTracker
 
 class AutomationEngine:
@@ -665,7 +721,7 @@ class AutomationEngine:
         self.devices = devices
         self.detector = PatternMatcher()
         self.tracker = IncidentTracker()
-        self.runbooks = {}
+        self.runbook_builders = {}
         
         # Register patterns
         self._register_patterns()
@@ -675,11 +731,12 @@ class AutomationEngine:
     
     def _register_patterns(self):
         """Register all incident detection patterns."""
-        # BGP flapping
+        # BGP flapping: a session changed state within the hour, and at
+        # least one neighbour is down right now
         self.detector.register_pattern(
             name="BGP Session Flapping",
             check_func=lambda m: (
-                m.get("bgp_changes_hour", 0) > 10 and
+                m.get("bgp_changes_hour", 0) > 0 and
                 not m.get("bgp_established", True)
             ),
             severity=SeverityLevel.HIGH,
@@ -688,28 +745,58 @@ class AutomationEngine:
         # ... more patterns
     
     def _register_runbooks(self):
-        """Register remediation runbooks."""
-        bgp_runbook = RemediationRunbook("BGP Session Flapping")
-        # ... configure runbook
-        self.runbooks["BGP Session Flapping"] = bgp_runbook
-    
+        """Register runbook builders: runbooks are built per device on demand."""
+        self.runbook_builders["BGP Session Flapping"] = build_bgp_flapping_runbook
+
+    # --- Metric parsers: plain functions of CLI text, easy to unit test ---
+
+    @staticmethod
+    def _bgp_neighbor_rows(bgp_summary: str) -> List[List[str]]:
+        """Split the neighbour table of 'show ip bgp summary' into columns."""
+        _, found, table = bgp_summary.partition("Neighbor")
+        if not found:
+            return []
+        return [line.split() for line in table.splitlines()[1:] if line.strip()]
+
+    def _count_bgp_changes(self, bgp_summary: str) -> int:
+        """
+        Neighbours whose session went up or down within the last hour.
+
+        Up/Down shows hh:mm:ss for times under a day (longer ones look like
+        2d03h), so 00:mm:ss means the state changed less than an hour ago.
+        """
+        return sum(
+            1 for row in self._bgp_neighbor_rows(bgp_summary)
+            if re.fullmatch(r"00:\d\d:\d\d", row[-2])
+        )
+
+    def _check_bgp_established(self, bgp_summary: str) -> bool:
+        """True if every neighbour shows a prefix count (not Idle/Active...)."""
+        return all(row[-1].isdigit() for row in self._bgp_neighbor_rows(bgp_summary))
+
+    def _get_interface_errors(self, input_error_lines: str) -> int:
+        """Total input errors across all interfaces."""
+        return sum(int(n) for n in re.findall(r"(\d+) input errors", input_error_lines))
+
+    def _collect_metrics(self, device: dict) -> dict:
+        """Blocking Netmiko work; check_device() runs it in a worker thread."""
+        with ConnectHandler(**device) as conn:
+            bgp_summary = conn.send_command("show ip bgp summary")
+            input_errors = conn.send_command("show interfaces | include input errors")
+
+        return {
+            "reachable": True,
+            "bgp_changes_hour": self._count_bgp_changes(bgp_summary),
+            "bgp_established": self._check_bgp_established(bgp_summary),
+            "interface_errors": self._get_interface_errors(input_errors)
+        }
+
     async def check_device(self, device: dict) -> List[Incident]:
         """Collect metrics and detect incidents."""
         try:
-            conn = ConnectHandler(**device)
-            
-            metrics = {
-                "reachable": True,
-                "bgp_changes_hour": self._count_bgp_changes(conn),
-                "bgp_established": self._check_bgp_established(conn),
-                "interface_errors": self._get_interface_errors(conn)
-            }
-            
-            conn.disconnect()
-            
-            incidents = self.detector.detect(device["host"], metrics)
-            return incidents
-        
+            metrics = await asyncio.to_thread(self._collect_metrics, device)
+            return self.detector.detect(device["host"], metrics)
+
         except Exception as e:
             return [Incident(
                 id="INC-UNREACHABLE",
@@ -729,25 +816,25 @@ class AutomationEngine:
         while True:
             print(f"\n[{datetime.now()}] Checking devices...")
             
-            # Check all devices
-            all_incidents = []
+            # Check all devices, keeping each incident with its device
+            found = []
             for device in self.devices:
-                incidents = await self.check_device(device)
-                all_incidents.extend(incidents)
-            
+                for incident in await self.check_device(device):
+                    found.append((device, incident))
+
             # Process incidents
-            for incident in all_incidents:
+            for device, incident in found:
                 print(f"\n{incident.severity.value.upper()}: {incident.name} on {incident.device}")
-                
+
                 self.tracker.record_incident(incident)
-                
+
                 # Only auto-remediate lower severity
                 if incident.remediation_type == RemediationType.AUTOMATIC:
-                    if incident.name in self.runbooks:
-                        runbook = self.runbooks[incident.name]
+                    if incident.name in self.runbook_builders:
+                        runbook = self.runbook_builders[incident.name](device)
                         result = await runbook.execute(incident)
                         self.tracker.record_remediation(incident.id, result)
-                
+
                 else:
                     print(f"  ⚠ Escalating to NOC: {incident.likely_causes}")
             

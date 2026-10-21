@@ -89,7 +89,12 @@ jobs:
 ## Part 2: Structured Logging
 
 ```python
+import logging
 import structlog
+
+# structlog hands records to the standard logging module, which drops
+# everything below WARNING until it's configured
+logging.basicConfig(level=logging.INFO, format="%(message)s")
 
 structlog.configure(
     processors=[

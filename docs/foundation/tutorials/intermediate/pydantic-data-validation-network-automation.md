@@ -670,8 +670,11 @@ class ControllerDevice(BaseModel):
     hostname: str
     management_ip: IPvAnyAddress = Field(alias="managementIpAddress")
     platform: str = Field(alias="platformId")
-    reachability: Literal["Reachable", "Unreachable", "Ping Reachable"]
-    uptime_seconds: int = Field(alias="upTime", default=0)
+    reachability: Literal["Reachable", "Unreachable", "Ping Reachable"] = Field(
+        alias="reachabilityStatus"
+    )
+    # "upTime" is display text ("47 days, 3:55:02.33"); this is the number
+    uptime_seconds: int = Field(alias="uptimeSeconds", default=0)
 
 
 class ControllerResponse(BaseModel):

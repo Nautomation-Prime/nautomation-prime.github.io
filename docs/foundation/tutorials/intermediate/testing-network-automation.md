@@ -269,7 +269,13 @@ Solution: **Mock the device connection.**
 
 ```python
 # src/device_ops.py
-from netmiko import ConnectHandler
+import re
+
+
+def short_name(interface):
+    """GigabitEthernet0/0/1 and Gi0/0/1 both become gi0/0/1."""
+    return re.sub(r"^([A-Za-z]{2})[A-Za-z-]*", lambda m: m.group(1).lower(), interface)
+
 
 def configure_interface(device, interface, ip_address, netmask):
     """Configure interface with IP address."""
@@ -277,36 +283,48 @@ def configure_interface(device, interface, ip_address, netmask):
         f"interface {interface}",
         f"ip address {ip_address} {netmask}",
         "no shutdown",
-        "exit"
     ]
-    device.send_command("configure terminal")
-    for cmd in commands:
-        device.send_command(cmd)
-    device.send_command("end")
+    # send_config_set enters config mode, sends the lines and exits again
+    device.send_config_set(commands)
     return True
+
 
 def verify_interface_config(device, interface, expected_ip):
     """Verify interface has expected IP."""
-    output = device.send_command(f"show ip interface brief | include {interface}")
-    return expected_ip in output
+    output = device.send_command("show ip interface brief")
+    # The device prints GigabitEthernet0/0/1 even if you wrote Gi0/0/1, and
+    # "10.0.0.1" is a substring of "10.0.0.10" — so match row and column.
+    for line in output.splitlines()[1:]:
+        parts = line.split()
+        if len(parts) >= 2 and short_name(parts[0]) == short_name(interface):
+            return parts[1] == expected_ip
+    return False
 ```
 
 ```python
 # tests/test_device_ops.py
 import pytest
-from unittest.mock import MagicMock, call
+from unittest.mock import MagicMock
 from src.device_ops import configure_interface, verify_interface_config
+
+# Captured output shape. Write fakes from real device output, not from
+# what you expect it to look like: an invented "Gi0/0/1 ... 10.0.0.1"
+# line is how a check that can never match on a real switch passes its tests.
+SHOW_IP_INT_BRIEF = (
+    "Interface              IP-Address      OK? Method Status                Protocol\n"
+    "GigabitEthernet0/0/1   {ip:<15} YES manual up                    up\n"
+)
 
 class TestDeviceOperations:
     """Test device configuration without real devices."""
-    
+
     @pytest.fixture
     def mock_device(self):
         """Create a mock Netmiko device."""
         device = MagicMock()
-        device.send_command = MagicMock(return_value="OK")
+        device.send_config_set = MagicMock(return_value="OK")
         return device
-    
+
     def test_configure_interface_sends_correct_commands(self, mock_device):
         """Verify correct CLI commands are sent in correct order."""
         configure_interface(
@@ -315,18 +333,13 @@ class TestDeviceOperations:
             ip_address="10.0.0.1",
             netmask="255.255.255.0"
         )
-        
-        # Verify commands sent in correct order
-        expected_calls = [
-            call("configure terminal"),
-            call("interface Gi0/0/1"),
-            call("ip address 10.0.0.1 255.255.255.0"),
-            call("no shutdown"),
-            call("exit"),
-            call("end"),
-        ]
-        
-        assert mock_device.send_command.call_args_list == expected_calls
+
+        # Verify the config block sent, in order, in one call
+        mock_device.send_config_set.assert_called_once_with([
+            "interface Gi0/0/1",
+            "ip address 10.0.0.1 255.255.255.0",
+            "no shutdown",
+        ])
     
     def test_configure_interface_returns_true_on_success(self, mock_device):
         """Function should return True indicating success."""
@@ -341,7 +354,7 @@ class TestDeviceOperations:
     
     def test_configure_interface_handles_device_error(self, mock_device):
         """If device fails, exception should propagate."""
-        mock_device.send_command.side_effect = Exception("Device unreachable")
+        mock_device.send_config_set.side_effect = Exception("Device unreachable")
         
         with pytest.raises(Exception, match="Device unreachable"):
             configure_interface(
@@ -353,7 +366,7 @@ class TestDeviceOperations:
     
     def test_verify_interface_config_detects_correct_ip(self, mock_device):
         """When interface has correct IP, should return True."""
-        mock_device.send_command.return_value = "Gi0/0/1 YES manual up 10.0.0.1"
+        mock_device.send_command.return_value = SHOW_IP_INT_BRIEF.format(ip="10.0.0.1")
         
         result = verify_interface_config(
             mock_device,
@@ -365,15 +378,21 @@ class TestDeviceOperations:
     
     def test_verify_interface_config_detects_wrong_ip(self, mock_device):
         """When interface has different IP, should return False."""
-        mock_device.send_command.return_value = "Gi0/0/1 YES manual up 192.168.1.1"
-        
+        mock_device.send_command.return_value = SHOW_IP_INT_BRIEF.format(ip="192.168.1.1")
+
         result = verify_interface_config(
             mock_device,
             interface="Gi0/0/1",
             expected_ip="10.0.0.1"
         )
-        
+
         assert result is False
+
+    def test_verify_interface_config_needs_an_exact_match(self, mock_device):
+        """10.0.0.10 is not 10.0.0.1, even though it contains it."""
+        mock_device.send_command.return_value = SHOW_IP_INT_BRIEF.format(ip="10.0.0.10")
+
+        assert verify_interface_config(mock_device, "Gi0/0/1", "10.0.0.1") is False
 ```
 
 ### Key Mocking Patterns
@@ -421,14 +440,9 @@ class TestDecoratorIntegration:
         mock_device = MagicMock()
         
         # Device fails first time, succeeds second time
-        mock_device.send_command.side_effect = [
-            Exception("Device timeout"),  # First call fails
-            "OK",  # configure terminal
-            "OK",  # interface command
-            "OK",  # ip address command
-            "OK",  # no shutdown
-            "OK",  # exit
-            "OK",  # end
+        mock_device.send_config_set.side_effect = [
+            Exception("Device timeout"),  # First attempt fails
+            "OK",                         # Second attempt succeeds
         ]
         
         @retry(max_attempts=3, delay=0)
@@ -447,7 +461,7 @@ class TestDecoratorIntegration:
     def test_retry_gives_up_after_max_attempts(self):
         """If all retries fail, exception should propagate."""
         mock_device = MagicMock()
-        mock_device.send_command.side_effect = Exception("Device down")
+        mock_device.send_config_set.side_effect = Exception("Device down")
         
         @retry(max_attempts=2, delay=0)
         def configure_with_retry(device, interface, ip):
@@ -498,26 +512,31 @@ from unittest.mock import MagicMock
 def mock_device():
     """Reusable mock Netmiko device."""
     device = MagicMock()
-    device.send_command = MagicMock(return_value="OK")
+    device.send_command = MagicMock(return_value="")
+    device.send_config_set = MagicMock(return_value="OK")
     return device
 
 @pytest.fixture
 def mock_device_with_output():
-    """Mock device that returns realistic output."""
+    """Mock device that returns realistic (captured-shape) output."""
     device = MagicMock()
     responses = {
-        "show ip route": "10.0.0.0/8 via 192.168.1.1",
-        "show running-config": "hostname R1\nip domain-name example.com",
-        "show interfaces brief": "Gi0/0/1 YES manual up 10.0.0.1",
+        "show ip route": "S*    0.0.0.0/0 [1/0] via 192.168.1.1",
+        "show running-config": "hostname R1\nip domain name example.com",
+        "show ip interface brief": (
+            "Interface              IP-Address      OK? Method Status                Protocol\n"
+            "GigabitEthernet0/0/1   10.0.0.1        YES manual up                    up\n"
+        ),
     }
-    device.send_command = MagicMock(side_effect=lambda command, **kwargs: responses.get(command))
+    device.send_command = MagicMock(side_effect=lambda command, **kwargs: responses.get(command, ""))
     return device
 
 @pytest.fixture
 def mock_device_fails():
-    """Mock device that fails to connect."""
+    """Mock device whose session has dropped: every call fails."""
     device = MagicMock()
     device.send_command.side_effect = Exception("Connection timeout")
+    device.send_config_set.side_effect = Exception("Connection timeout")
     return device
 ```
 
@@ -527,7 +546,7 @@ Now use in tests:
 def test_configure_interface(mock_device):
     """Uses fixture automatically."""
     configure_interface(mock_device, "Gi0/0/1", "10.0.0.1", "255.255.255.0")
-    assert mock_device.send_command.called
+    assert mock_device.send_config_set.called
 
 def test_fails_gracefully(mock_device_fails):
     """Uses failure fixture."""

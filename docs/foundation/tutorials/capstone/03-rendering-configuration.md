@@ -92,7 +92,7 @@ interface {{ interface.name }}
  spanning-tree bpduguard enable
 {% elif interface.mode == 'routed' %}
  no switchport
- ip address {{ interface.ip_address }} {{ interface.ip_address | netmask }}
+ ip address {{ interface.ip_address.ip }} {{ interface.ip_address.netmask }}
 {% endif %}
 {% if interface.enabled %}
  no shutdown
@@ -112,6 +112,8 @@ end
 
 **Filters do the formatting.** `trunk_vlans | join(',')` turns `[10, 20, 30]` into `10,20,30`. Keep transformations in filters, not in the data.
 
+**The data carries what the device needs.** A routed port's `ip_address` is stored with its prefix (`10.0.0.1/30`), so the template reads `.ip` and `.netmask` straight off it. Nothing in the template guesses a mask.
+
 ---
 
 ## 🐍 The Renderer
@@ -124,7 +126,6 @@ end
 Render candidate configurations from validated intent.
 """
 
-import ipaddress
 from pathlib import Path
 
 from jinja2 import Environment, FileSystemLoader, StrictUndefined, TemplateError
@@ -136,21 +137,14 @@ class RenderError(Exception):
     """A template failed to render."""
 
 
-def netmask(address) -> str:
-    """Jinja2 filter: the dotted-decimal mask for an interface address."""
-    return str(ipaddress.ip_interface(f"{address}/24").netmask)
-
-
 def build_environment(template_dir: str = "templates") -> Environment:
-    env = Environment(
+    return Environment(
         loader=FileSystemLoader(template_dir),
         trim_blocks=True,
         lstrip_blocks=True,
         keep_trailing_newline=True,
         undefined=StrictUndefined,
     )
-    env.filters["netmask"] = netmask
-    return env
 
 
 def render_device(intent: SiteIntent, device: Device,
@@ -538,6 +532,7 @@ import pytest
 from jinja2 import UndefinedError
 
 from netpipe.intent import load_intent
+from netpipe.models import Interface
 from netpipe.render import build_environment, render_device
 from netpipe.diff import normalise, config_diff, summarise
 
@@ -576,6 +571,14 @@ def test_trunk_vlans_are_comma_joined(intent):
 def test_every_physical_port_appears(intent):
     config = render_device(intent, intent.devices[0])
     assert config.count("\ninterface ") == 52
+
+
+def test_routed_port_uses_its_own_prefix(intent):
+    routed = Interface(name="GigabitEthernet1/0/48", mode="routed",
+                       ip_address="10.0.0.1/30")
+    device = intent.devices[0].model_copy(update={"interfaces": [routed]})
+    config = render_device(intent, device)
+    assert " ip address 10.0.0.1 255.255.255.252" in config
 
 
 def test_strict_undefined_catches_template_typos(intent, tmp_path):

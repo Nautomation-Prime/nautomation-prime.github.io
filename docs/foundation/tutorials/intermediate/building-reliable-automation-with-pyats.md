@@ -67,21 +67,24 @@ Combine Netmiko for configuration with PyATS for validation:
 ```python
 from netmiko import ConnectHandler
 from pyats.topology import loader
+from pyats.utils.secret_strings import to_plaintext
 
 # Load testbed (devices, credentials)
 testbed = loader.load('testbed.yaml')
 
-# Device credentials from vault (encrypted)
+# Credentials come from the testbed (%ENV / %ENC secrets, resolved on load)
 device = testbed.devices['switch-01']
 device.connect(via='cli')
 creds = device.credentials['default']
 
-# Netmiko for configuration (faster, simpler syntax)
+# Netmiko for configuration (faster, simpler syntax).
+# Netmiko needs plain strings: the testbed IP is an ipaddress object and
+# the password a SecretString.
 net_connect = ConnectHandler(
     device_type='cisco_ios',
-    host=device.connections.cli.ip,
-    username=creds.username,
-    password=creds.password,
+    host=str(device.connections.cli.ip),
+    username=creds['username'],
+    password=to_plaintext(creds['password']),
 )
 
 # PyATS for validation (structured parsing)
@@ -91,22 +94,6 @@ net_connect = ConnectHandler(
 ### The Implementation (Nornir + PyATS)
 
 ```python
-def deploy_and_validate_vlan(testbed_file, device_name, vlan_config):
-    """
-    Deploy VLAN configuration and validate immediately
-    
-    Args:
-        testbed_file: Path to testbed.yaml
-        device_name: Device name from testbed
-        vlan_config: List of dicts with vlan_id, name, interfaces
-    
-    Returns:
-        dict: Validation results
-    """
-    
-    from pyats.topology import loader
-    from netmiko import ConnectHandler
-    
 def deploy_and_validate_vlan(testbed_file, device_name, vlan_config):
     """
     Deploy VLAN configuration and validate immediately
@@ -123,8 +110,9 @@ def deploy_and_validate_vlan(testbed_file, device_name, vlan_config):
     """
     
     from pyats.topology import loader
+    from pyats.utils.secret_strings import to_plaintext
     from netmiko import ConnectHandler
-    
+
     # Load testbed — reads device definitions and credentials from YAML
     testbed = loader.load(testbed_file)
     
@@ -156,18 +144,19 @@ def deploy_and_validate_vlan(testbed_file, device_name, vlan_config):
     try:
         # Connect via Netmiko for configuration deployment
         # Netmiko is optimized for sending config commands
+        creds = device.credentials['default']
         net_connect = ConnectHandler(
             device_type='cisco_ios',
             # Device OS type (tells Netmiko how to communicate)
-            
-            host=device.connections.cli.ip,
+
+            host=str(device.connections.cli.ip),
             # Get device IP from PyATS device object
-            # device.connections.cli is the SSH connection config
-            # .ip is the IP address from that config
-            
-            username='admin',
-            password='...',  # In production, get from vault
-            # Credentials for device login
+            # device.connections.cli is the SSH connection config;
+            # .ip is an ipaddress object, so convert it to a string
+
+            username=creds['username'],
+            password=to_plaintext(creds['password']),
+            # Reuse the testbed's credentials (the password is a SecretString)
             
             timeout=20,
             # Timeout for device responses (seconds)
@@ -193,8 +182,7 @@ def deploy_and_validate_vlan(testbed_file, device_name, vlan_config):
         
         # Send configuration to device
         output = net_connect.send_config_set(config_commands)
-        # .send_config_set() sends list of commands, handles prompt detection
-        # Device automatically adds ! between commands
+        # .send_config_set() enters config mode, sends the list, and exits
         # output contains device responses
         
         # Gracefully close connection
@@ -277,8 +265,8 @@ def deploy_and_validate_vlan(testbed_file, device_name, vlan_config):
             # Skip remaining checks for this VLAN
         
         # ===== CHECK 3: VLAN IS ACTIVE =====
-        status = vlan_data['vlans'][vlan_id]['status']
-        # Get status from parsed data (should be 'active')
+        status = vlan_data['vlans'][vlan_id]['state']
+        # Genie calls this field 'state' (should be 'active')
         
         if status != 'active':
             # VLAN exists but is suspended or down
@@ -442,6 +430,10 @@ def parallel_deploy_and_validate(nr, testbed, vlan_config):
     
     # Report
     for device_name, multi_result in validate_results.items():
+        if multi_result.failed:
+            # e.g. PyATS couldn't connect: .result holds the traceback text
+            print(f"{device_name}: validation could not run: {multi_result[0].exception}")
+            continue
         result = multi_result[0].result
         total = result['passed'] + result['failed']
         print(f"{device_name}: {result['passed']}/{total} validations passed")
@@ -490,9 +482,9 @@ def deploy_with_automatic_rollback(device, config_commands, validation_func):
     """
     
     from netmiko import ConnectHandler
-    
-    device_ip = device.connections.cli.ip
-    
+
+    device_ip = str(device.connections.cli.ip)  # Netmiko needs a string
+
     # Step 1: Save running config (for rollback)
     print("1. Saving current configuration (for rollback)...")
     net_connect = ConnectHandler(
@@ -501,9 +493,12 @@ def deploy_with_automatic_rollback(device, config_commands, validation_func):
         username='admin',
         password='...',
     )
-    
-    # Save to local buffer
-    net_connect.send_command('copy running-config startup-config')
+
+    # Copy running-config to startup-config: the known-good state that a
+    # reload will return to. save_config() answers the copy prompts;
+    # send_command('copy running-config startup-config') would hang
+    # waiting for a prompt that never comes.
+    net_connect.save_config()
     net_connect.disconnect()
     
     # Step 2: Deploy new configuration
@@ -520,7 +515,8 @@ def deploy_with_automatic_rollback(device, config_commands, validation_func):
         net_connect.disconnect()
     except Exception as e:
         print(f"❌ Deployment failed: {e}")
-        print("   No changes made (closed connection before save)")
+        print("   Some lines may have applied; startup-config still holds the")
+        print("   known-good config, so a reload without saving restores it")
         return False
     
     # Step 3: Validate new configuration
@@ -532,19 +528,29 @@ def deploy_with_automatic_rollback(device, config_commands, validation_func):
     except AssertionError as e:
         print(f"❌ Validation failed: {e}")
         print("   Automatic rollback triggered...")
-        device.disconnect()
-        
-        # Rollback
+
+        # Rollback: reload WITHOUT saving, so the device boots the
+        # startup-config saved in step 1. reload asks questions, so use
+        # send_command_timing() and answer them: send_command('reload')
+        # would time out waiting for the normal prompt.
         net_connect = ConnectHandler(
             device_type='cisco_ios',
             host=device_ip,
             username='admin',
             password='...',
         )
-        
-        net_connect.send_command('reload')  # Or use other rollback method
-        net_connect.disconnect()
-        
+
+        output = net_connect.send_command_timing('reload')
+        if 'Save?' in output or '[yes/no]' in output:
+            # "System configuration has been modified. Save? [yes/no]:"
+            output = net_connect.send_command_timing('no')
+        if 'confirm' in output:
+            # "Proceed with reload? [confirm]" — the session drops here
+            try:
+                net_connect.send_command_timing('')
+            except (OSError, EOFError):
+                pass
+
         return False
     finally:
         device.disconnect()
@@ -558,10 +564,10 @@ def deploy_with_automatic_rollback(device, config_commands, validation_func):
             username='admin',
             password='...',
         )
-        
-        net_connect.send_command('copy running-config startup-config')
+
+        net_connect.save_config()
         net_connect.disconnect()
-        
+
         print("✅ Configuration deployed, validated, and saved")
         return True
 
@@ -633,7 +639,7 @@ device.connect()
 # Deploy
 net_connect = ConnectHandler(
     device_type='cisco_ios',
-    host=device.connections.cli.ip,
+    host=str(device.connections.cli.ip),  # Netmiko needs a string
     username='admin',
     password='...',
 )
@@ -706,7 +712,7 @@ def test_vlan_deployment_end_to_end(device):
     from netmiko import ConnectHandler
     net_connect = ConnectHandler(
         device_type='cisco_ios',
-        host=device.connections.cli.ip,
+        host=str(device.connections.cli.ip),  # Netmiko needs a string
         username='admin',
         password='...',
     )
@@ -751,7 +757,7 @@ pytest test_automation_workflow.py -v
 ### ❌ Don'ts
 
 - ❌ **Skip validation** — "It probably worked" is not an acceptable standard
-- ❌ **Store credentials in code** — Use vault encryption
+- ❌ **Store credentials in code** — Keep them in the testbed as `%ENV{}` or `%ENC{}` secrets
 - ❌ **Assume device state** — Always parse and validate
 - ❌ **Ignore errors** — Handle failures gracefully with recovery
 - ❌ **Test only happy paths** — What happens when a device is slow or offline?

@@ -211,42 +211,42 @@ All configurable settings are centralised in `config.yaml` at the project root. 
 
 **1. Network Settings:**
 ```yaml
-    network:
-    jump_host: "jump-gateway.example.com"  # Default bastion/jump host
-    device_type: "cisco_ios"                # Netmiko device type
-    ssh_port: 22                            # SSH port
-    read_timeout: 30                        # Command read timeout
+network:
+  jump_host: "jump-gateway.example.com"  # Default bastion/jump host
+  device_type: "cisco_ios"                # Netmiko device type
+  ssh_port: 22                            # SSH port
+  read_timeout: 30                        # Command read timeout
 ```
 
 **2. Credential Settings:**
 ```yaml
-    credentials:
-    cred_target: "MyApp/ADM"  # Windows Credential Manager target
-    enable_target: ""          # Optional enable secret target
+credentials:
+  cred_target: "MyApp/ADM"  # Windows Credential Manager target
+  enable_target: ""          # Optional enable secret target
 ```
 
 **3. Performance & Concurrency:**
 ```yaml
-    concurrency:
-    default_workers: 10        # Max concurrent device sessions
-    retry_attempts: 3          # Connection retry count
-    retry_base_wait: 2         # Base wait time for exponential backoff
+concurrency:
+  default_workers: 10        # Max concurrent device sessions
+  retry_attempts: 3          # Connection retry count
+  retry_base_wait: 2         # Base wait time for exponential backoff
 ```
 
 **4. Excel Output:**
 ```yaml
-    output:
-    default_filename: "audit.xlsx"  # Default output filename
+output:
+  default_filename: "audit.xlsx"  # Default output filename
 
-    excel_formatting:
-    min_column_width: 10
-    max_column_width: 50
+excel_formatting:
+  min_column_width: 10
+  max_column_width: 50
 ```
 
 **5. Stale Port Detection:**
 ```yaml
-    stale_detection:
-    default_stale_days: 30  # Days threshold for stale ports
+stale_detection:
+  default_stale_days: 30  # Days threshold for stale ports
 ```
 
 ### Why YAML Configuration?
@@ -723,16 +723,18 @@ This is the **authoritative source** for port mode and VLAN classification.
         for key, col_slice in slices.items():
             record[key] = line[col_slice].strip()
         
-        # Normalise status values
+        # Normalise status values. Order matters: these are substring
+        # tests, and 'connect' is inside 'notconnect' while 'disabled' is
+        # inside 'err-disabled', so test the longer forms first
         status_raw = record.get('status', '').lower()
-        if 'connect' in status_raw:
-            record['status'] = 'connected'
-        elif 'notconnect' in status_raw:
+        if 'notconnect' in status_raw:
             record['status'] = 'notconnect'
-        elif 'disabled' in status_raw:
-            record['status'] = 'disabled'
+        elif 'connect' in status_raw:
+            record['status'] = 'connected'
         elif 'err' in status_raw:
             record['status'] = 'err-disabled'
+        elif 'disabled' in status_raw:
+            record['status'] = 'disabled'
 ```
 
 **Why Status Normalisation:**
@@ -932,32 +934,45 @@ This is the **authoritative source** for port mode and VLAN classification.
 ### Time Parsing: Handling Cisco Duration Formats
 
 ```python
-    def _parse_last_input_seconds(s: str) -> float | None:
-        """
-        Parse Cisco 'Last input' timer into seconds.
-        Handles: "00:01:23", "1d2h30m", "never"
-        """
-        s = (s or "").strip().lower()
-        if not s or s == "never":
-            return None
-        
-        # Format 1: hh:mm:ss
-        if re.match(r"^\d{1,2}:\d{2}:\d{2}$", s):
-            hh, mm, ss = s.split(":")
-            return int(hh) * 3600 + int(mm) * 60 + int(ss)
-        
-        # Format 2: Compact duration (1y2w3d4h5m6s)
-        m = _TIME_RE.fullmatch(s.replace(" ", ""))
-        if m:
-            y = int(m.group("y") or 0)
-            w = int(m.group("w") or 0)
-            d = int(m.group("d") or 0)
-            h = int(m.group("h").rstrip("h") or 0)
-            m_val = int(m.group("m").rstrip("m") or 0)
-            s_val = int(m.group("s").rstrip("s") or 0)
-            
-            days = y * 365 + w * 7 + d
-            return days * 86400 + h * 3600 + m_val * 60 + s_val
+import re
+
+# Compact durations such as "1y2w", "3d4h" or "5m6s". Every part is
+# optional, and each group captures only the digits, so a part that's
+# missing gives None (handled with "or 0" below)
+_TIME_RE = re.compile(
+    r"(?:(?P<y>\d+)y)?(?:(?P<w>\d+)w)?(?:(?P<d>\d+)d)?"
+    r"(?:(?P<h>\d+)h)?(?:(?P<m>\d+)m)?(?:(?P<s>\d+)s)?"
+)
+
+
+def _parse_last_input_seconds(s: str) -> float | None:
+    """
+    Parse Cisco 'Last input' timer into seconds.
+    Handles: "00:01:23", "1d2h30m", "never"
+    """
+    s = (s or "").strip().lower()
+    if not s or s == "never":
+        return None
+
+    # Format 1: hh:mm:ss
+    if re.match(r"^\d{1,2}:\d{2}:\d{2}$", s):
+        hh, mm, ss = s.split(":")
+        return int(hh) * 3600 + int(mm) * 60 + int(ss)
+
+    # Format 2: Compact duration (1y2w3d4h5m6s)
+    m = _TIME_RE.fullmatch(s.replace(" ", ""))
+    if m and any(m.groups()):  # an empty string matches too: reject it
+        y = int(m.group("y") or 0)
+        w = int(m.group("w") or 0)
+        d = int(m.group("d") or 0)
+        h = int(m.group("h") or 0)
+        m_val = int(m.group("m") or 0)
+        s_val = int(m.group("s") or 0)
+
+        days = y * 365 + w * 7 + d
+        return days * 86400 + h * 3600 + m_val * 60 + s_val
+
+    return None  # Unrecognised format
 ```
 
 **Why Multiple Format Support:**
@@ -982,9 +997,9 @@ The script retrieves device credentials using `switch_audit/credentials.py`:
 > **Configuration:** Credential Manager targets are set in `config.yaml` under the `credentials` section:
 >
 ```yaml
-    credentials:
-    cred_target: "MyApp/ADM"  # Primary credential target
-    enable_target: ""          # Optional enable secret target
+credentials:
+  cred_target: "MyApp/ADM"  # Primary credential target
+  enable_target: ""          # Optional enable secret target
 ```
 
 ---
@@ -997,8 +1012,8 @@ The script retrieves device credentials using `switch_audit/credentials.py`:
 
 Example configuration in `config.yaml`:
 ```yaml
-    network:
-    jump_host: "jump-gateway.example.com"  # or "" to disable by default
+network:
+  jump_host: "jump-gateway.example.com"  # or "" to disable by default
 ```
 
 The `JumpManager` (now in `switch_audit/jump_manager.py`) maintains a persistent SSH session to the bastion and proxies device connections through it.
@@ -1346,26 +1361,26 @@ On completion, the Excel workbook is written to the filename you specify (defaul
 **Example config.yaml for Enterprise:**
 
 ```yaml
-    network:
-    jump_host: "bastion.corp.example.com"
-    read_timeout: 45  # Slower WAN links
-    
-    credentials:
-    cred_target: "NetworkAudit/Production"
-    
-    concurrency:
-    default_workers: 20  # Fast discovery
-    retry_attempts: 5    # More retries for flaky network
-    
-    stale_detection:
-    default_stale_days: 90  # Longer threshold
-    
-    output:
-    default_filename: "port_audit_report.xlsx"
-    
-    excel_formatting:
-    min_column_width: 12
-    max_column_width: 60
+network:
+  jump_host: "bastion.corp.example.com"
+  read_timeout: 45  # Slower WAN links
+
+credentials:
+  cred_target: "NetworkAudit/Production"
+
+concurrency:
+  default_workers: 20  # Fast discovery
+  retry_attempts: 5    # More retries for flaky network
+
+stale_detection:
+  default_stale_days: 90  # Longer threshold
+
+output:
+  default_filename: "port_audit_report.xlsx"
+
+excel_formatting:
+  min_column_width: 12
+  max_column_width: 60
 ```
 
 ---

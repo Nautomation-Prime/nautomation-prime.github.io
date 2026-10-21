@@ -34,6 +34,20 @@ This chapter goes and looks.
 
 ---
 
+## 📦 Install PyATS
+
+```bash
+pip install "pyats[library]"
+pip freeze > requirements.txt   # so the CI workflow from chapter 2 installs it too
+```
+
+!!! warning "PyATS Runs on Linux and macOS — Use WSL on Windows"
+    There is no Windows build of PyATS; `pip install pyats` fails there. On Windows, run this chapter and chapter 7 inside [WSL](https://learn.microsoft.com/windows/wsl/install) (Ubuntu works well) with the project copied or cloned into the Linux filesystem.
+
+    The code below keeps the PyATS import inside the commands that need it, so `validate`, `plan`, `preflight` and `deploy` carry on working on a machine without PyATS. Only `snapshot`, `verify` and `run` need it.
+
+---
+
 ## 🔬 Why Not Just Re-Read the Config?
 
 You could run `show running-config` again and check your lines are present. It's tempting, it's fast, and it proves almost nothing.
@@ -63,6 +77,7 @@ Same principle as the Nornir inventory: derive it, don't maintain it.
 Build a PyATS testbed from validated intent.
 """
 
+import copy
 from pathlib import Path
 
 import yaml
@@ -110,10 +125,21 @@ def build_testbed(intent: SiteIntent, settings: Settings,
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(yaml.safe_dump(document, sort_keys=False), encoding="utf-8")
 
-    return load_testbed(str(path))
+    # The loaded object gets the real values, from the same Settings that
+    # pre-flight used, so a .env file works here exactly as it does there.
+    in_memory = copy.deepcopy(document)
+    for spec in in_memory["devices"].values():
+        spec["credentials"]["default"] = {
+            "username": settings.username,
+            "password": settings.password.get_secret_value(),
+        }
+
+    return load_testbed(in_memory)
 ```
 
-`%ENV{...}` is PyATS's own environment substitution — the file references the variable, the value is resolved at load time and never written down.
+The file on disk holds `%ENV{...}` placeholders, PyATS's own environment substitution. It's safe to keep, and it still works if you hand it to the `pyats` CLI with the variables exported. The object the pipeline actually uses is loaded from an in-memory copy carrying the credentials from `load_settings()`.
+
+That distinction matters. `pydantic-settings` reads `.env` without exporting anything to the process environment, so a testbed that relied on `%ENV{}` alone would log in with blank credentials for anyone who followed chapter 4's advice and put them in `.env`.
 
 ---
 
@@ -341,12 +367,13 @@ It only works because you have a `before` snapshot. Which means taking one is no
 ```python
 import json   # cli.py doesn't have this yet
 
-from netpipe.testbed import build_testbed
 from netpipe.verify import snapshot, verify_device
 
 
 def cmd_snapshot(args: argparse.Namespace) -> int:
     """Capture operational state. Run this before deploying."""
+    from netpipe.testbed import build_testbed   # imports pyATS — see below
+
     try:
         intent = load_intent(args.intent)
     except IntentError as exc:
@@ -375,6 +402,8 @@ def cmd_snapshot(args: argparse.Namespace) -> int:
 
 def cmd_verify(args: argparse.Namespace) -> int:
     """Verify applied state against intent and the pre-change snapshot."""
+    from netpipe.testbed import build_testbed
+
     try:
         intent = load_intent(args.intent)
     except IntentError as exc:
@@ -433,6 +462,8 @@ Register both:
                                 help="verify state against intent")
     verify_cmd.set_defaults(func=cmd_verify)
 ```
+
+`build_testbed` is imported inside each command, not at the top of `cli.py`, on purpose. A top-level import would load PyATS for every command. On a machine without it, that would break `netpipe validate` too, along with the CI job that runs it.
 
 ---
 

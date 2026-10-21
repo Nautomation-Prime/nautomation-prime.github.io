@@ -223,16 +223,26 @@ def check_identity(device: Device, connection) -> CheckResult:
     return CheckResult("identity", True, f"confirmed {prompt}")
 
 
+# Registers that boot normally and load the startup config. Catalyst 9000
+# switches report 0x102; most routers report 0x2102.
+NORMAL_CONFIG_REGISTERS = {0x2102, 0x102}
+
+
 def check_config_register(connection) -> CheckResult:
     """Will this device actually load its configuration on boot?"""
     output = connection.send_command("show version | include Configuration register")
-    match = re.search(r"0x[0-9A-Fa-f]{4}", output)
+    match = re.search(
+        r"Configuration register is (0x[0-9A-Fa-f]+)"
+        r"(?:\s*\(will be (0x[0-9A-Fa-f]+) at next reload\))?",
+        output,
+    )
 
     if not match:
         return CheckResult("config-register", True, "not reported (non-IOS?)")
 
-    value = match.group(0).lower()
-    if value not in ("0x2102", "0x0102"):
+    # The next boot is what matters, so prefer the "will be" value if present
+    value = (match.group(2) or match.group(1)).lower()
+    if int(value, 16) not in NORMAL_CONFIG_REGISTERS:
         return CheckResult(
             "config-register", False,
             f"{value} — device may ignore its startup config"
@@ -280,7 +290,9 @@ def check_no_active_session(connection, our_username: str) -> CheckResult:
     others: set[str] = set()
     for line in lines[lines.index(header) + 1:]:
         if not line.strip():
-            continue
+            # End of the Line table. IOS follows it with an "Interface User
+            # Mode" table whose columns don't line up with this header.
+            break
         user = line[start:end].strip()
         if user and user != our_username:
             others.add(user)
@@ -351,7 +363,9 @@ Comparing the device's own prompt to the name in intent costs one command. See [
 !!! tip "Parse Fixed-Width Output by Column, Not by `split()`"
     `check_no_active_session` finds the `User` column from the header rather than taking `line.split()[2]`. That isn't fussiness — the Line field in `show users` is itself three tokens (`2 vty 0`), so the naive version returns `0` for every row and silently never detects anybody.
 
-    It's the general hazard with screen-scraped CLI output: the code appears to work, the tests pass if you write them from the same wrong assumption, and the check quietly does nothing. Where a parser exists (TextFSM, or Genie in chapter 6), prefer it. Where you must scrape, anchor to the header.
+    It also stops at the first blank line. Real IOS output follows the Line table with a second, differently laid-out `Interface  User  Mode` table — printed even when it's empty — and slicing that header at the first table's `User` column reads the literal word `User` as a logged-in user. Every device would be blocked.
+
+    It's the general hazard with screen-scraped CLI output: the code appears to work, the tests pass if you write them from the same wrong assumption, and the check quietly does the wrong thing. Build your test fixtures from captured device output, not from what you expect the output to be. Where a parser exists (TextFSM, or Genie in chapter 6), prefer it. Where you must scrape, anchor to the header.
 
 ---
 
@@ -433,7 +447,7 @@ Pre-flight for MAN1 (2 devices)
     ✓ reachable            10.1.1.11:22 open
     ✓ authenticate         as admin
     ✓ identity             confirmed man1-acc-sw-01
-    ✓ config-register      0x2102
+    ✓ config-register      0x102
     ✓ free-flash           1421 MB free
     ✓ no-active-session    sole session
 
@@ -441,7 +455,7 @@ Pre-flight for MAN1 (2 devices)
     ✓ reachable            10.1.1.12:22 open
     ✓ authenticate         as admin
     ✓ identity             confirmed man1-acc-sw-02
-    ✓ config-register      0x2102
+    ✓ config-register      0x102
     ✓ free-flash           1380 MB free
     ✓ no-active-session    sole session
 
@@ -457,7 +471,7 @@ Pre-flight for MAN1 (2 devices)
     ✓ reachable            10.1.1.11:22 open
     ✓ authenticate         as admin
     ✓ identity             confirmed man1-acc-sw-01
-    ✓ config-register      0x2102
+    ✓ config-register      0x102
     ✓ free-flash           1421 MB free
     ✓ no-active-session    sole session
 
@@ -465,7 +479,7 @@ Pre-flight for MAN1 (2 devices)
     ✓ reachable            10.1.1.12:22 open
     ✓ authenticate         as admin
     ✗ identity             expected 'man1-acc-sw-02', device says 'man1-acc-sw-03'
-    ✓ config-register      0x2102
+    ✓ config-register      0x102
     ✓ free-flash           1380 MB free
     ✗ no-active-session    also logged in: jsmith
 
@@ -560,6 +574,20 @@ def test_config_register_accepts_normal_value():
     assert check_config_register(conn).passed
 
 
+def test_config_register_catalyst_9000_value_is_normal():
+    conn = FakeConnection(responses={
+        "Configuration register": "Configuration register is 0x102"})
+    assert check_config_register(conn).passed
+
+
+def test_config_register_judges_the_next_reload_value():
+    conn = FakeConnection(responses={"Configuration register": (
+        "Configuration register is 0x2102 (will be 0x2142 at next reload)")})
+    result = check_config_register(conn)
+    assert not result.passed
+    assert "0x2142" in result.detail
+
+
 def test_config_register_absent_is_not_a_failure():
     assert check_config_register(FakeConnection()).passed
 
@@ -578,11 +606,20 @@ def test_free_flash_passes_when_ample():
     assert check_free_flash(conn, minimum_mb=20).passed
 
 
+# Captured IOS-XE layout: the Line table, a blank line, then an Interface
+# table header that IOS prints even when it has no rows.
+SHOW_USERS_TAIL = (
+    "\n"
+    "  Interface    User               Mode         Idle     Peer Address\n"
+)
+
+
 def test_other_user_blocks():
     conn = FakeConnection(responses={"show users": (
-        "    Line       User       Host(s)              Idle\n"
-        "   1 vty 0     jsmith     idle                 00:00:12\n"
-        "*  2 vty 1     admin      idle                 00:00:00\n"
+        "    Line       User       Host(s)              Idle       Location\n"
+        "   1 vty 0     jsmith     idle                 00:00:12 10.0.0.7\n"
+        "*  2 vty 1     admin      idle                 00:00:00 10.0.0.5\n"
+        + SHOW_USERS_TAIL
     )})
     result = check_no_active_session(conn, our_username="admin")
     assert not result.passed
@@ -591,8 +628,9 @@ def test_other_user_blocks():
 
 def test_only_us_is_fine():
     conn = FakeConnection(responses={"show users": (
-        "    Line       User       Host(s)              Idle\n"
-        "*  2 vty 1     admin      idle                 00:00:00\n"
+        "    Line       User       Host(s)              Idle       Location\n"
+        "*  2 vty 1     admin      idle                 00:00:00 10.0.0.5\n"
+        + SHOW_USERS_TAIL
     )})
     assert check_no_active_session(conn, our_username="admin").passed
 ```

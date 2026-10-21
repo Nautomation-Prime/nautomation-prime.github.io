@@ -971,7 +971,7 @@ for host in nornir.inventory.hosts.values():
 
 Sometimes you want to run sequentially (e.g., upgrades where order matters):
 
-```python
+```yaml
 # In nornir_config.yaml
 runner:
   plugin: threaded
@@ -1332,24 +1332,28 @@ logger.info(f"Device {task.host.name}: Starting backup")
 **Bad:**
 
 ```python
+from datetime import datetime
+
 def backup_config(task: Task) -> Result:
     # ... get config ...
-    result = Result(host=task.host, result={'config': config})
+    return Result(host=task.host, result={'config': config})
     
-    # Don't try to modify after return
-    result.result['timestamp'] = time.now()  # Too late!
+    # Nothing after the return runs: this line is dead code
+    result.result['timestamp'] = datetime.now().isoformat()  # Too late!
 ```
 
 **Good:**
 
 ```python
+from datetime import datetime
+
 def backup_config(task: Task) -> Result:
     # ... get config ...
     
     # Include everything BEFORE returning
     result_data = {
         'config': config,
-        'timestamp': time.now(),
+        'timestamp': datetime.now().isoformat(),
         'size': len(config)
     }
     

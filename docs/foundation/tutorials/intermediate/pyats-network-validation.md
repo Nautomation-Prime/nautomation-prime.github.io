@@ -144,11 +144,15 @@ route_table = routes['vrf']['default']['address_family']['ipv4']['routes']
 
 for prefix, route_data in route_table.items():
     # prefix examples: "10.0.0.0/24", "192.168.1.0/24"
-    # route_data is dict with next hop, metric, and protocol info
-    
+    # route_data is dict with next hop, protocol and (for learned routes) metric
+
     print(f"{prefix}: {route_data}")
-    # Output example:
-    # 10.0.0.0/24: {'metric': 0, 'next_hop': {'next_hop_list': {...}}, ...}
+    # Output examples:
+    # 10.0.5.0/24: {'source_protocol': 'ospf', 'metric': 20, 'route_preference': 110,
+    #               'next_hop': {'next_hop_list': {1: {'next_hop': '10.0.0.2', ...}}}, ...}
+    # 10.0.0.0/24: {'source_protocol': 'connected',
+    #               'next_hop': {'outgoing_interface': {'GigabitEthernet1': {...}}}, ...}
+    # Connected and local routes have no 'metric' key at all
 ```
 
 **How to use in validation:**
@@ -160,10 +164,14 @@ if '10.0.0.0/24' in route_table:
 else:
     print("❌ Route to 10.0.0.0/24 missing!")
 
-# Check route metric (hop count)
-route_data = route_table['10.0.0.0/24']
-metric = route_data['metric']
-assert metric == 0, f"Expected metric 0, got {metric}"
+# Check how a route was learned, and its metric
+route_data = route_table['10.0.5.0/24']
+assert route_data['source_protocol'] == 'ospf', \
+    f"Expected an OSPF route, got {route_data['source_protocol']}"
+
+# Use .get(): connected routes have no metric key
+metric = route_data.get('metric')
+assert metric == 20, f"Expected OSPF cost 20, got {metric}"
 ```
 
 ---
@@ -233,13 +241,14 @@ neighbors = bgp['vrf']['default']['neighbor']
 # Iterate through BGP neighbors
 for neighbor_ip, neighbor_data in neighbors.items():
     # neighbor_ip examples: "10.0.0.1", "192.168.1.1"
-    # neighbor_data contains per-address-family data
-    af_data = neighbor_data['address_family']['ipv4 unicast']
-    
-    state_or_prefixes = af_data['state_pfxrcd']
-    # Established peers show a prefix count; down peers show states like 'Idle' or 'Active'
-    
-    print(f"Neighbor {neighbor_ip}: {state_or_prefixes}")
+    # neighbor_data['address_family'] holds per-address-family data. For
+    # plain 'show ip bgp summary' Genie keys the single entry '' (an empty
+    # string), so loop over it rather than hard-coding a name
+    for af_name, af_data in neighbor_data['address_family'].items():
+        state_or_prefixes = af_data['state_pfxrcd']
+        # Established peers show a prefix count; down peers show states like 'Idle' or 'Active'
+
+        print(f"Neighbor {neighbor_ip}: {state_or_prefixes}")
     # Output examples:
     # Neighbor 10.0.0.1: 100
     # Neighbor 10.0.0.2: 42
@@ -257,16 +266,17 @@ for neighbor_ip in required_neighbors:
         f"BGP neighbor {neighbor_ip} not in summary!"
     
     # Check neighbor is established (state_pfxrcd is a prefix count)
-    af_data = neighbors[neighbor_ip]['address_family']['ipv4 unicast']
-    state_or_prefixes = af_data['state_pfxrcd']
-    assert state_or_prefixes.isdigit(), \
-        f"BGP neighbor {neighbor_ip} not established! State: {state_or_prefixes}"
+    for af_data in neighbors[neighbor_ip]['address_family'].values():
+        state_or_prefixes = af_data['state_pfxrcd']
+        assert state_or_prefixes.isdigit(), \
+            f"BGP neighbor {neighbor_ip} not established! State: {state_or_prefixes}"
 ```
 
 ### Finding Available Parsers
 
 Not all commands are available. Check which ones Cisco supports:
 
+```bash
 # Verify that Genie has a parser for a command on your device
 pyats parse "show vlan" --testbed-file testbed.yaml --devices switch-01
 
@@ -485,18 +495,19 @@ def test_bgp_neighbors(device):
     neighbors = bgp['vrf']['default']['neighbor']
     
     required_neighbors = {
-        '10.0.1.1': 'ipv4 unicast',     # Primary ISP peer
-        '10.0.2.1': 'ipv4 unicast',     # Secondary ISP peer
-        '192.168.1.2': 'ipv4 unicast',  # Internal peer
+        '10.0.1.1': 'Primary ISP peer',
+        '10.0.2.1': 'Secondary ISP peer',
+        '192.168.1.2': 'Internal peer',
     }
-    
-    for neighbor_ip, address_family in required_neighbors.items():
+
+    for neighbor_ip, role in required_neighbors.items():
         actual_neighbor = neighbors.get(neighbor_ip, {})
-        af_data = actual_neighbor.get('address_family', {}).get(address_family, {})
+        # 'show ip bgp summary' reports one address family, keyed ''
+        af_data = actual_neighbor.get('address_family', {}).get('', {})
         state_or_prefixes = af_data.get('state_pfxrcd', 'Down')
         
         assert state_or_prefixes.isdigit(), \
-            f"BGP neighbor {neighbor_ip}: not established, got {state_or_prefixes}"
+            f"BGP neighbor {neighbor_ip} ({role}): not established, got {state_or_prefixes}"
         
         # Check message counts
         messages_received = af_data.get('msg_rcvd', 0)
@@ -526,7 +537,7 @@ def device_with_timeout(testbed):
     device = testbed.devices['slow_switch']
     
     try:
-        device.connect(timeout=30)  # 30-second timeout
+        device.connect(connection_timeout=30)  # give up after 30 seconds
         yield device
     except Exception as e:
         pytest.fail(f"Failed to connect to device: {e}")
@@ -583,7 +594,7 @@ def test_with_graceful_fallback(device):
 
 ### Challenge 3: Credential Management
 
-Always use vault encryption:
+Keep secrets out of the testbed with PyATS's own secret strings. (PyATS does not read Ansible Vault's `!vault` tag.)
 
 ```yaml
 # testbed.yaml
@@ -594,25 +605,25 @@ devices:
   switch-01:
     type: switch
     os: ios
+    credentials:
+      default:
+        username: "%ENV{PYATS_USERNAME}"
+        # Read from the environment when the testbed loads (ideal in CI)
+        password: "%ENC{gAAAAABq...}"
+        # Encrypted with 'pyats secret encode' using your own Fernet key
     connections:
       cli:
         protocol: ssh
         ip: 10.1.1.1
         port: 22
-        credentials:
-          default:
-            username: admin
-            password: !vault |
-              $ANSIBLE_VAULT;1.1;AES256;secrets
-              # Encrypted password
 ```
 
-In your test, credentials are automatically decrypted:
+See [PyATS Fundamentals](pyats-fundamentals.md#step-3-store-credentials-securely) for setting up the key. In your test, the secrets are already resolved:
 
 ```python
-def test_with_vault_credentials(device):
-    """Credentials are automatically decrypted from vault"""
-    # No need to pass password - PyATS handles it
+def test_with_secret_credentials(device):
+    """%ENV and %ENC values were resolved when the testbed loaded"""
+    # No need to pass a password - PyATS handles it
     device.connect()
     # ... run your tests
     device.disconnect()
@@ -723,13 +734,16 @@ def capture_baseline(device):
 
 def run_automation(device):
     """Execute your actual automation"""
-    from netmiko import ConnectHandler
-    
+    from pyats.utils.secret_strings import to_plaintext
+
+    # Reuse the testbed's address and credentials. Netmiko needs plain
+    # strings: .ip is an ipaddress object, the password a SecretString
+    creds = device.credentials['default']
     net_connect = ConnectHandler(
         device_type='cisco_ios',
-        host=device.connections.cli.ip,
-        username='admin',
-        password='...',
+        host=str(device.connections.cli.ip),
+        username=creds['username'],
+        password=to_plaintext(creds['password']),
     )
     
     # Configure new VLAN
@@ -786,7 +800,7 @@ def test_vlan_automation_with_validation(device):
 ### ❌ Don'ts
 
 - ❌ **Hardcode IP addresses** — Use testbed files
-- ❌ **Store credentials in test files** — Use vault encryption
+- ❌ **Store credentials in test files** — Use `%ENV{}` or `%ENC{}` secret strings
 - ❌ **Assume device behaviour** — Parse and validate actual state
 - ❌ **Skip error handling** — Devices fail. Handle it gracefully.
 - ❌ **Test only happy paths** — What happens when a device is unreachable?

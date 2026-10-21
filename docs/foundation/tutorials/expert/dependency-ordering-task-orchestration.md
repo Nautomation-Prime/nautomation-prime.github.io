@@ -182,15 +182,17 @@ class TaskOrchestrator:
         for task_name in execution_order:
             task = self.tasks[task_name]
             
-            # Check if any dependencies failed
+            # Check if any dependencies failed or were skipped. Checking
+            # SKIPPED too makes the skip transitive: if the hub fails, a
+            # task that depends on a skipped spoke is skipped as well
             deps_failed = [
                 dep for dep in task.dependencies
-                if self.tasks[dep].status == TaskStatus.FAILED
+                if self.tasks[dep].status in (TaskStatus.FAILED, TaskStatus.SKIPPED)
             ]
-            
+
             if deps_failed:
                 task.status = TaskStatus.SKIPPED
-                print(f"⏭ Skipping '{task_name}' (depends on failed: {deps_failed})")
+                print(f"⏭ Skipping '{task_name}' (depends on failed or skipped: {deps_failed})")
                 results[task_name] = {
                     "status": task.status.value,
                     "result": task.result,
@@ -469,7 +471,8 @@ if not orchestrator.validate_dag():
     raise ValueError("Circular dependency detected!")
 
 # ❌ BAD - Discover at runtime
-orchestrator.execute()  # Hangs waiting for circular dependency
+orchestrator.execute()  # Raises ValueError from topological_sort() only when
+                        # the run starts, e.g. at 2am in the change window
 ```
 
 ### 3. Document Dependencies

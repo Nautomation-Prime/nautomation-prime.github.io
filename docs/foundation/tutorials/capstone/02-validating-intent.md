@@ -54,6 +54,7 @@ from pydantic import (
     ConfigDict,
     Field,
     IPvAnyAddress,
+    IPvAnyInterface,
     field_validator,
     model_validator,
 )
@@ -94,7 +95,7 @@ class Interface(BaseModel):
     access_vlan: Optional[VlanId] = None
     voice_vlan: Optional[VlanId] = None
     trunk_vlans: list[VlanId] = []
-    ip_address: Optional[IPvAnyAddress] = None
+    ip_address: Optional[IPvAnyInterface] = None   # address with prefix, e.g. 10.0.0.1/30
     enabled: bool = True
 
     @model_validator(mode="after")
@@ -661,7 +662,7 @@ An engineer proposing a VLAN change now finds out it's wrong in the pull request
 netpipe/
 ├── intent/man1.yaml
 ├── netpipe/
-│   ├── cli.py             ← show, validate
+│   ├── cli.py             ← validate
 │   ├── intent.py          ← validating loader
 │   └── models.py          ← the data contract  (new)
 └── tests/

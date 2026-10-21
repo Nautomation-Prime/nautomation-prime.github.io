@@ -48,7 +48,19 @@ Event Loop
 └── ... (N tasks all interleaved)
 
 Each task yields control when waiting (I/O), allowing others to progress.
-This is fundamentally different from threading: no lock contention, no GIL.
+Unlike threading, everything runs on one thread: no thread switching, no locks
+needed around shared state between awaits.
+```
+
+---
+
+## Installation
+
+```bash
+pip install "scrapli[asyncssh]"   # async SSH: Scrapli's asyncssh transport
+pip install httpx prometheus-client tqdm
+pip install pytest pytest-asyncio # for the tests at the end
+pip install uvloop                # optional faster event loop (Linux/macOS only)
 ```
 
 ---
@@ -65,7 +77,7 @@ from dataclasses import dataclass
 from enum import Enum
 import time
 
-from scrapli.driver.generic import AsyncGenericDriver
+from scrapli.driver.core import AsyncIOSXEDriver
 from scrapli.exceptions import ScrapliException
 
 logger = logging.getLogger(__name__)
@@ -210,10 +222,15 @@ class AsyncConnectionPool:
             'timeout_socket': device.timeout,
             'timeout_transport': device.timeout,
             'timeout_ops': device.timeout,
+            # Async drivers need an async transport; Scrapli's default
+            # (system ssh) is synchronous and is refused here
+            'transport': 'asyncssh',
         }
-        
+
         start = time.time()
-        async with AsyncGenericDriver(**device_dict) as conn:
+        # The IOS-XE driver handles the prompt, paging and privilege levels
+        # (works for classic IOS too); use the driver for your platform
+        async with AsyncIOSXEDriver(**device_dict) as conn:
             result = await asyncio.wait_for(
                 conn.send_command(command),
                 timeout=device.timeout
@@ -395,6 +412,9 @@ class CircuitBreaker:
                 self.state = CircuitState.HALF_OPEN
                 self.success_count = 0
             else:
+                # We'll never await the coroutine, so close it (this also
+                # avoids a "coroutine was never awaited" warning)
+                coro.close()
                 raise RuntimeError(
                     f"Circuit breaker OPEN for {self.timeout}s (device temporarily unavailable)"
                 )
@@ -682,12 +702,14 @@ async def main():
         await task_manager.cancel_all()
         logger.info("Shutdown complete")
 
-# Run with custom event loop
+# Run with uvloop if it's installed (Linux/macOS), else the standard loop
 if __name__ == "__main__":
-    import uvloop  # Faster event loop implementation
-    
-    asyncio.set_event_loop_policy(uvloop.EventLoopPolicy())
-    asyncio.run(main())
+    try:
+        import uvloop  # Faster event loop implementation
+    except ImportError:
+        asyncio.run(main())
+    else:
+        uvloop.run(main())
 
 ```
 
@@ -709,7 +731,10 @@ async def test_connection_pool_success():
         for i in range(3)
     ]
     
-    with patch('scrapli.driver.generic.AsyncGenericDriver') as mock_ssh:
+    # Patch the name where the pool module looks it up. Patching
+    # 'scrapli.driver.core.AsyncIOSXEDriver' would miss: the module
+    # already imported its own reference to the class
+    with patch(f"{AsyncConnectionPool.__module__}.AsyncIOSXEDriver") as mock_ssh:
         mock_instance = AsyncMock()
         mock_instance.send_command = AsyncMock(
             return_value=AsyncMock(result="show version output")

@@ -63,7 +63,8 @@ from pathlib import Path
 from nornir.core.task import Result, Task
 from nornir_netmiko.tasks import netmiko_send_command, netmiko_send_config
 
-from netpipe.decorators import audited, retry
+from netpipe.decorators import audited
+from netpipe.diff import normalise
 
 logger = logging.getLogger("netpipe")
 
@@ -89,7 +90,6 @@ def latest_backup(device_name: str,
 
 
 @audited("rollback")
-@retry(attempts=3, base_delay=5.0)
 def task_rollback(task: Task) -> Result:
     """
     Restore the pre-change configuration by merging the backup back in.
@@ -97,12 +97,16 @@ def task_rollback(task: Task) -> Result:
     This is the simple case and it handles changed values correctly. It
     cannot remove a command the change *added* — see the note below on
     `configure replace` for that.
+
+    Deliberately not retried: a rollback that fails partway needs a human,
+    not a replay. It's chapter 5's rule — retry transport, not intent.
     """
     backup = latest_backup(task.host.name)
     config = backup.read_text(encoding="utf-8")
 
-    lines = [line for line in config.splitlines()
-             if line.strip() and line.strip() not in ("!", "end")]
+    # The backup is raw `show running-config` output. normalise() strips the
+    # "Building configuration..." header, timestamps, "version" and "!" lines.
+    lines = [line for line in normalise(config) if line.strip() != "end"]
 
     task.run(
         task=netmiko_send_config,
@@ -138,12 +142,13 @@ def rollback(nr, targets: list[str]) -> RollbackOutcome:
         return outcome
 
     scoped = nr.filter(filter_func=lambda host: host.name in havable)
-    results = scoped.run(task=task_rollback)
+    # on_failed=True and result[0]: the same Nornir rules as deploy_batch
+    results = scoped.run(task=task_rollback, on_failed=True)
 
     for name, result in results.items():
-        if result.failed:
-            outcome.failed[name] = str(result.exception)
-            logger.error("rollback FAILED for %s: %s", name, result.exception)
+        if result[0].failed:
+            outcome.failed[name] = str(result[0].exception)
+            logger.error("rollback FAILED for %s: %s", name, result[0].exception)
         else:
             outcome.restored.append(name)
 
@@ -159,6 +164,8 @@ def rollback(nr, targets: list[str]) -> RollbackOutcome:
     The code above merges the backup's lines back in, which works for additive changes and is what Netmiko does most naturally. It cannot remove a command the change *added* — merging `switchport access vlan 10` over `switchport access vlan 20` works, but merging a config that simply lacks a line won't delete that line.
 
     On IOS-XE, `configure replace flash:backup.cfg force` computes a true difference and applies it. It's the right tool, it needs the file copied to the device first (SCP), and it's worth the extra step for any change that removes configuration. Treat the merge version here as the simple case.
+
+    A line-by-line merge also stumbles on multi-line blocks such as `banner motd` and certificate chains, which wait for a delimiter rather than a prompt. That's another reason to move to `configure replace` once the pipeline is in real use.
 
 ---
 
@@ -313,6 +320,8 @@ from netpipe.rollback import rollback
 
 def cmd_run(args: argparse.Namespace) -> int:
     """The full pipeline: validate, snapshot, preflight, deploy, verify."""
+    from netpipe.testbed import build_testbed   # PyATS, as in chapter 6
+
     # ── Validate ────────────────────────────────────────────────────
     try:
         intent = load_intent(args.intent)
@@ -720,12 +729,12 @@ netpipe/
 │   └── verify.py
 ├── templates/
 │   └── access_switch.j2
-├── tests/                ← 57 tests, none needing a device
+├── tests/                ← 62 tests, none needing a device
 └── artefacts/
     ├── audit/  backup/  candidate/  diff/  state/
 ```
 
-Around 800 lines. You can read all of it in an afternoon.
+Around 2,000 lines, a good share of them docstrings and comments. You can read all of it in an afternoon.
 
 ---
 

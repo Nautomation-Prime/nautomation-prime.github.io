@@ -375,16 +375,18 @@ class DeploymentStrategy:
         devices: list,
         deploy_func,
         max_failures: int = 5,
-        batch_size: int = 10
+        batch_size: int = 10,
+        min_sample: int = 5
     ) -> dict:
         """
         Deploy incrementally, stopping if failure rate is too high.
-        
+
         Args:
             devices: List of devices
             deploy_func: Function to deploy to device
-            max_failures: Stop if failures exceed this
+            max_failures: Stop if failures reach this
             batch_size: Deploy in batches
+            min_sample: Attempts needed before the failure-rate rule applies
         """
         results = {
             "total": len(devices),
@@ -418,7 +420,11 @@ class DeploymentStrategy:
                         print(f"✗ Failure threshold ({max_failures}) reached, stopping deployment")
                         return results
                     
-                    if failure_rate > 0.5:
+                    # A rate means nothing after one or two devices: without
+                    # min_sample, a single first-device failure is "100%" and
+                    # stops the run before max_failures ever applies
+                    attempts = results["success"] + results["failed"]
+                    if attempts >= min_sample and failure_rate > 0.5:
                         print(f"✗ Failure rate >50%, stopping deployment")
                         return results
             
