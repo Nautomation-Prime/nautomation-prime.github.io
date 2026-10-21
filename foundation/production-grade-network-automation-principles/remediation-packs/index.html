@@ -2712,14 +2712,14 @@
 <ul class="task-list">
 <li class="task-list-item">
 <label class="task-list-control">
-<input checked="" name="analytics" type="checkbox"/>
+<input name="analytics" type="checkbox"/>
 <span class="task-list-indicator"></span>
       Google Analytics
     </label>
 </li>
 <li class="task-list-item">
 <label class="task-list-control">
-<input checked="" name="github" type="checkbox"/>
+<input name="github" type="checkbox"/>
 <span class="task-list-indicator"></span>
       GitHub
     </label>
@@ -2728,6 +2728,7 @@
 </div>
 <div class="md-consent__controls">
 <button class="md-button md-button--primary">Accept</button>
+<button class="md-button md-button--primary" type="reset">Reject</button>
 <label class="md-button" for="__settings">Manage settings</label>
 </div>
 </form>
@@ -2736,5 +2737,6 @@
 <script>var consent=__md_get("__consent");if(consent)for(var input of document.forms.consent.elements)input.name&&(input.checked=consent[input.name]||!1);else"file:"!==location.protocol&&setTimeout((function(){document.querySelector("[data-md-component=consent]").hidden=!1}),250);var form=document.forms.consent;for(var action of["submit","reset"])form.addEventListener(action,(function(e){if(e.preventDefault(),"reset"===e.type)for(var n of document.forms.consent.elements)n.name&&(n.checked=!1);__md_set("__consent",Object.fromEntries(Array.from(new FormData(form).keys()).map((function(e){return[e,!0]})))),location.hash="",location.reload()}))</script>
 <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.tracking", "navigation.indexes", "content.code.copy", "content.code.annotate", "content.tooltips", "search.share", "search.suggest", "search.highlight", "search.stemmer", "announce.dismiss"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
 <script src="../../../assets/javascripts/bundle.d7400e89.min.js"></script>
+<script src="../../../assets/javascripts/consent.js"></script>
 </body>
 </html>
