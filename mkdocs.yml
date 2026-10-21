@@ -75,7 +75,9 @@ extra:
     - icon: material/email
       link: "mailto:enquiries@nautomationprime.io"
       name: Contact Nautomation Prime
-
+    analytics:
+      provider: google
+      property: G-428G549QS2
 
 extra_css:
   - assets/css/custom.css
