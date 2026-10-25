@@ -18,10 +18,10 @@ Nautomation Prime helps enterprise Cisco teams move from manual workflows, inher
 
 <div class="np-action-row" markdown>
 
-[Request Discovery Call](./contact.md){.md-button .md-button--primary}
+[Request Discovery Call](../contact.md){.md-button .md-button--primary}
 [Compare Engagement Options](#enterprise-service-offerings){.md-button}
 [See Investment Ranges](#typical-investment-ranges){.md-button}
-[Explore SMB Packages](./smb/index.md){.md-button}
+[Explore SMB Packages](../smb/index.md){.md-button}
 
 </div>
 
@@ -46,7 +46,7 @@ Nautomation Prime helps enterprise Cisco teams move from manual workflows, inher
 
     Use automation to reduce operational drag, lower change risk, and give leadership concrete evidence of value.
 
-    [See how value is measured](./prime-framework/measure.md)
+    [See how value is measured](../prime-framework/measure.md)
 
 -   ### Network teams inheriting brittle scripts
 
@@ -64,7 +64,7 @@ Nautomation Prime helps enterprise Cisco teams move from manual workflows, inher
 
     Work with a founder-led specialist who prioritises handover, knowledge transfer, and sustainable team capability.
 
-    [See how engagements work](./how-we-work.md)
+    [See how engagements work](../how-we-work.md)
 
 </div>
 
@@ -130,7 +130,7 @@ The code is open by design. That is the point. So what are you actually paying f
 
     If you need fixed-price, fast-turnaround work rather than a full enterprise engagement, use the SMB package route instead.
 
-    [Explore SMB packages](./smb/index.md)
+    [Explore SMB packages](../smb/index.md)
 
 </div>
 
@@ -182,9 +182,9 @@ Nautomation Prime is founder-led. You work directly with Christopher Davies, a n
 </div>
 
 <div class="np-section-link-row">
-  <a href="./founder.md">Meet Christopher Davies</a>
-  <a href="./about.md">About Nautomation Prime</a>
-  <a href="./how-we-work.md">Review the delivery model</a>
+  <a href="../founder.md">Meet Christopher Davies</a>
+  <a href="../about/index.md">About Nautomation Prime</a>
+  <a href="../how-we-work.md">Review the delivery model</a>
 </div>
 
 </div>
@@ -199,7 +199,7 @@ No. Engagements can be structured for operational ownership, code-level ownershi
 
 <div class="np-section-link-row">
   <a href="#engagement-tracks-by-technical-capability">See engagement tracks</a>
-  <a href="./foundation/tutorials/index.md">Browse learning content</a>
+  <a href="../foundation/tutorials/index.md">Browse learning content</a>
 </div>
 
 </div>
@@ -210,12 +210,12 @@ No. Engagements can be structured for operational ownership, code-level ownershi
 
 | Challenge | PRIME Framework Response |
 | :---------- | :------------------------ |
-| **Operational Scale** — Manual processes cannot keep up with business growth | Data-driven [Pinpoint](./prime-framework/pinpoint.md) analysis identifies the highest-value automation opportunities |
-| **Change Risk** — Configuration mistakes create outages and SLA impact | Production-grade [Implement](./prime-framework/implement.md) adds validation, rollback, and staged deployment patterns |
+| **Operational Scale** — Manual processes cannot keep up with business growth | Data-driven [Pinpoint](../prime-framework/pinpoint.md) analysis identifies the highest-value automation opportunities |
+| **Change Risk** — Configuration mistakes create outages and SLA impact | Production-grade [Implement](../prime-framework/implement.md) adds validation, rollback, and staged deployment patterns |
 | **Audit & Compliance** — Manual verification is slow and inconsistent | Automated governance and reporting provide repeatable evidence and exception handling |
-| **Skills Gap** — Hiring and retaining automation expertise is difficult | [Empower](./prime-framework/empower.md) builds internal capability with structured transfer and support |
-| **ROI Uncertainty** — Leadership needs proof, not enthusiasm | [Measure](./prime-framework/measure.md) instruments value and produces executive-ready reporting |
-| **Technical Debt** — Inherited scripts are hard to trust or modify | The [PRIME Philosophy](./prime-framework/philosophy.md) keeps delivery transparent, maintainable, and auditable |
+| **Skills Gap** — Hiring and retaining automation expertise is difficult | [Empower](../prime-framework/empower.md) builds internal capability with structured transfer and support |
+| **ROI Uncertainty** — Leadership needs proof, not enthusiasm | [Measure](../prime-framework/measure.md) instruments value and produces executive-ready reporting |
+| **Technical Debt** — Inherited scripts are hard to trust or modify | The [PRIME Philosophy](../prime-framework/philosophy.md) keeps delivery transparent, maintainable, and auditable |
 
 ---
 
@@ -233,11 +233,11 @@ Across enterprise environments we have worked in, the same three patterns appear
 
 The PRIME Framework is designed to prevent those failure modes:
 
-✅ **[Pinpoint](./prime-framework/pinpoint.md)** — Identify opportunities with proven ROI through data-driven analysis  
-✅ **[Re-engineer](./prime-framework/re-engineer.md)** — Optimise workflows for scalability before any code is written  
-✅ **[Implement](./prime-framework/implement.md)** — Deliver production-ready solutions built on [PRIME Philosophy](./prime-framework/philosophy.md) principles  
-✅ **[Measure](./prime-framework/measure.md)** — Track performance and demonstrate quantifiable business value  
-✅ **[Empower](./prime-framework/empower.md)** — Transfer knowledge and build sustainable long-term team capability
+✅ **[Pinpoint](../prime-framework/pinpoint.md)** — Identify opportunities with proven ROI through data-driven analysis  
+✅ **[Re-engineer](../prime-framework/re-engineer.md)** — Optimise workflows for scalability before any code is written  
+✅ **[Implement](../prime-framework/implement.md)** — Deliver production-ready solutions built on [PRIME Philosophy](../prime-framework/philosophy.md) principles  
+✅ **[Measure](../prime-framework/measure.md)** — Track performance and demonstrate quantifiable business value  
+✅ **[Empower](../prime-framework/empower.md)** — Transfer knowledge and build sustainable long-term team capability
 
 **All bespoke automation projects are developed exclusively for the commissioning client.** Custom scripts are never published, reused, or shared with third parties. Clients receive full ownership rights or an exclusive licence as defined in the project agreement, and NDAs are standard for engagements.
 
@@ -274,7 +274,7 @@ Our automation solutions support your compliance requirements:
 
 - VAT-registered UK business (VAT number provided on invoices)
 - Professional Indemnity & Public Liability Insurance
-- GDPR-compliant data handling (see [Privacy Policy](legal/privacy-policy.md))
+- GDPR-compliant data handling (see [Privacy Policy](../legal/privacy-policy.md))
 - Client code ownership: full rights transfer or exclusive licence (your choice)
 
 **Technical Standards:**
@@ -305,11 +305,11 @@ Our flagship service delivers the complete journey: from identifying the right o
 
 | Stage | Duration | Key Deliverables |
 | :------ | :--------- | :---------------- |
-| **[Pinpoint](./prime-framework/pinpoint.md)** | 1-2 weeks | Discovery workshop, ROI analysis, prioritised automation roadmap, executive summary |
-| **[Re-engineer](./prime-framework/re-engineer.md)** | 1-2 weeks | Workflow optimisation, technical architecture design, safety & validation plans |
-| **[Implement](./prime-framework/implement.md)** | 2-6 weeks | Production-ready Python automation, comprehensive testing, documentation |
-| **[Measure](./prime-framework/measure.md)** | 3-6 months | Performance instrumentation, ROI tracking, executive reporting dashboard |
-| **[Empower](./prime-framework/empower.md)** | 2-4 weeks | Knowledge transfer sessions, technical documentation, 8-week transition support |
+| **[Pinpoint](../prime-framework/pinpoint.md)** | 1-2 weeks | Discovery workshop, ROI analysis, prioritised automation roadmap, executive summary |
+| **[Re-engineer](../prime-framework/re-engineer.md)** | 1-2 weeks | Workflow optimisation, technical architecture design, safety & validation plans |
+| **[Implement](../prime-framework/implement.md)** | 2-6 weeks | Production-ready Python automation, comprehensive testing, documentation |
+| **[Measure](../prime-framework/measure.md)** | 3-6 months | Performance instrumentation, ROI tracking, executive reporting dashboard |
+| **[Empower](../prime-framework/empower.md)** | 2-4 weeks | Knowledge transfer sessions, technical documentation, 8-week transition support |
 
 **Typical Project Timeline:** 6-12 weeks for development + 3-6 months measurement phase
 
@@ -319,7 +319,7 @@ Our flagship service delivers the complete journey: from identifying the right o
 
 **Ideal For:** Organisations seeking strategic, sustainable automation with proven methodology and measurable business outcomes
 
-**[Request Discovery Call](./contact.md)** to discuss your automation requirements.
+**[Request Discovery Call](../contact.md)** to discuss your automation requirements.
 
 ---
 
@@ -341,7 +341,7 @@ If you already have automation plans or internal capability, we offer individual
 **Timeline:** 1-2 weeks  
 **Investment:** £3,000 - £5,000
 
-**[Learn more about Pinpoint →](./prime-framework/pinpoint.md)**
+**[Learn more about Pinpoint →](../prime-framework/pinpoint.md)**
 
 ---
 
@@ -359,7 +359,7 @@ If you already have automation plans or internal capability, we offer individual
 **Timeline:** 1-2 weeks per automation  
 **Investment:** £4,000 - £7,500
 
-**[Learn more about Re-engineer →](./prime-framework/re-engineer.md)**
+**[Learn more about Re-engineer →](../prime-framework/re-engineer.md)**
 
 ---
 
@@ -378,7 +378,7 @@ If you already have automation plans or internal capability, we offer individual
 
 **Deliverables:**
 
-- Production-hardened Python code following [PRIME Philosophy](./prime-framework/philosophy.md)
+- Production-hardened Python code following [PRIME Philosophy](../prime-framework/philosophy.md)
 - Comprehensive testing (lab validation + pilot deployment)
 - Line-by-line documentation
 - README with installation, usage, troubleshooting
@@ -386,7 +386,7 @@ If you already have automation plans or internal capability, we offer individual
 **Timeline:** 2-6 weeks (depending on complexity)  
 **Investment:** £8,000 - £20,000+
 
-**[Learn more about Implement →](./prime-framework/implement.md)**
+**[Learn more about Implement →](../prime-framework/implement.md)**
 
 ---
 
@@ -413,7 +413,7 @@ If you already have automation plans or internal capability, we offer individual
 **Timeline:** 2-5 business days (typical, depending on release model)
 **Investment:** £900 - £2,400
 
-**Recommended With:** [Implement](./prime-framework/implement.md) + [Measure](./prime-framework/measure.md) for security assurance and measurable adoption outcomes
+**Recommended With:** [Implement](../prime-framework/implement.md) + [Measure](../prime-framework/measure.md) for security assurance and measurable adoption outcomes
 
 ---
 
@@ -434,7 +434,7 @@ Instrumenting further automations, building additional dashboards, or extending 
 **Timeline:** 3 months (ongoing tracking)  
 **Investment:** £3,500 - £6,000
 
-**[Learn more about Measure →](./prime-framework/measure.md)**
+**[Learn more about Measure →](../prime-framework/measure.md)**
 
 ---
 
@@ -453,7 +453,7 @@ Transition support covers questions about the delivered automation and guidance 
 **Timeline:** 2-4 weeks over 3 months  
 **Investment:** £4,000 - £7,500
 
-**[Learn more about Empower →](./prime-framework/empower.md)**
+**[Learn more about Empower →](../prime-framework/empower.md)**
 
 ---
 
@@ -478,8 +478,8 @@ This review establishes whether an agent, built or planned, can be governed.
 
 **Deliverables:**
 
-- Findings against the published [Agent Review Checklist](./foundation/governed-ai-network-operations/agent-review-checklist.md), with evidence
-- An [AI risk class](./foundation/governed-ai-network-operations/ai-risk-classification.md) for each agent, and the controls that class requires
+- Findings against the published [Agent Review Checklist](../foundation/governed-ai-network-operations/agent-review-checklist.md), with evidence
+- An [AI risk class](../foundation/governed-ai-network-operations/ai-risk-classification.md) for each agent, and the controls that class requires
 - Exception register for gaps you choose to accept, with owners and expiry dates
 - Prioritised remediation plan, sequenced by risk rather than by effort
 - Executive summary suitable for security and change governance review
@@ -488,9 +488,9 @@ This review establishes whether an agent, built or planned, can be governed.
 **Investment:** £3,500 - £6,500
 
 !!! tip "The method is already published"
-    We do not ask you to buy the framework. The [Governed AI for Network Operations](./foundation/governed-ai-network-operations/index.md) track sets out the standard we assess against, in full and for free. You are engaging us to run it against your environment, argue the hard cases, and produce evidence your security team will accept.
+    We do not ask you to buy the framework. The [Governed AI for Network Operations](../foundation/governed-ai-network-operations/index.md) track sets out the standard we assess against, in full and for free. You are engaging us to run it against your environment, argue the hard cases, and produce evidence your security team will accept.
 
-**[Read the standard first →](./foundation/governed-ai-network-operations/index.md)**
+**[Read the standard first →](../foundation/governed-ai-network-operations/index.md)**
 
 ---
 
@@ -551,7 +551,7 @@ The PRIME Framework adapts to your team's Python knowledge. Choose the track tha
 
 **Investment:** Standard PRIME pricing (Empower stage focuses on code-level training)
 
-**Recommended Preparation:** Complete [Beginner Tutorials](foundation/tutorials/beginner/index.md) before engagement for maximum value
+**Recommended Preparation:** Complete [Beginner Tutorials](../foundation/tutorials/beginner/index.md) before engagement for maximum value
 
 ---
 
@@ -584,7 +584,7 @@ The PRIME Framework adapts to your team's Python knowledge. Choose the track tha
 **Recommended Path:**
 
 1. Complete PRIME engagement (all five stages with operational focus)
-2. Team members complete [Intermediate Tutorials](foundation/tutorials/intermediate/index.md) at own pace
+2. Team members complete [Intermediate Tutorials](../foundation/tutorials/intermediate/index.md) at own pace
 3. Quarterly "office hours" sessions for code questions and modification guidance
 4. After 6-12 months, team operates independently
 
@@ -610,7 +610,7 @@ The PRIME Framework adapts to your team's Python knowledge. Choose the track tha
 - Team skill levels vary (some Python-capable, others not)
 - You prefer gradual capability building over immediate deep-dive training
 
-**Still unsure?** [Request a discovery call](./contact.md) to discuss which track fits your organisation.
+**Still unsure?** [Request a discovery call](../contact.md) to discuss which track fits your organisation.
 
 ---
 
@@ -727,18 +727,18 @@ Our approach differs fundamentally from traditional consulting models:
 
 | Traditional Consulting | PRIME Framework Approach |
 | :--- | :--- |
-| Automate obvious tasks without ROI analysis | **[Pinpoint](./prime-framework/pinpoint.md)** — Data-driven opportunity identification with concrete ROI projections before commitment |
-| Automate existing inefficient workflows as-is | **[Re-engineer](./prime-framework/re-engineer.md)** — Optimise processes for scalability before writing any code |
-| Deliver prototype code with minimal documentation | **[Implement](./prime-framework/implement.md)** — Production-grade solutions with comprehensive documentation following [PRIME Philosophy](./prime-framework/philosophy.md) |
-| No proof of value or business metrics | **[Measure](./prime-framework/measure.md)** — Concrete ROI metrics and executive reporting that prove business value |
-| "Here's the code, good luck" handoff | **[Empower](./prime-framework/empower.md)** — Comprehensive knowledge transfer builds team autonomy and eliminates vendor dependency |
+| Automate obvious tasks without ROI analysis | **[Pinpoint](../prime-framework/pinpoint.md)** — Data-driven opportunity identification with concrete ROI projections before commitment |
+| Automate existing inefficient workflows as-is | **[Re-engineer](../prime-framework/re-engineer.md)** — Optimise processes for scalability before writing any code |
+| Deliver prototype code with minimal documentation | **[Implement](../prime-framework/implement.md)** — Production-grade solutions with comprehensive documentation following [PRIME Philosophy](../prime-framework/philosophy.md) |
+| No proof of value or business metrics | **[Measure](../prime-framework/measure.md)** — Concrete ROI metrics and executive reporting that prove business value |
+| "Here's the code, good luck" handoff | **[Empower](../prime-framework/empower.md)** — Comprehensive knowledge transfer builds team autonomy and eliminates vendor dependency |
 | Junior developers executing pre-sold templates | Direct engagement with principal engineer tailored to your specific environment |
 
 ---
 
 ### The PRIME Philosophy: Our Core Commitments
 
-Every engagement is guided by the [PRIME Philosophy](./prime-framework/philosophy.md)—principles that ensure enterprise-grade quality:
+Every engagement is guided by the [PRIME Philosophy](../prime-framework/philosophy.md)—principles that ensure enterprise-grade quality:
 
 | Principle | Enterprise Impact |
 | :--- | :--- |
@@ -749,7 +749,7 @@ Every engagement is guided by the [PRIME Philosophy](./prime-framework/philosoph
 | **💪 Empowerment Over "Magic Buttons"** | Your team gains deep understanding and modification capability, not just button-pushing operational tools. |
 | **🔒 Client Confidentiality** | Bespoke solutions remain exclusively yours—never published, reused, or shared. NDAs standard. Full IP ownership guaranteed. |
 
-**These principles are embedded in every stage of the [PRIME Framework](./prime-framework/index.md).**
+**These principles are embedded in every stage of the [PRIME Framework](../prime-framework/index.md).**
 
 ---
 
@@ -827,7 +827,7 @@ You are not buying days of coding. You are buying a working outcome and the resp
 
 ### What Influences Project Cost?
 
-Every engagement is scoped individually during the [Pinpoint](./prime-framework/pinpoint.md) stage, with pricing typically determined by:
+Every engagement is scoped individually during the [Pinpoint](../prime-framework/pinpoint.md) stage, with pricing typically determined by:
 
 | Factor | Impact on Scope |
 | :--- | :--- |
@@ -887,24 +887,24 @@ These are **indicative ranges**—actual quotes provided after discovery call.
 
 Our five-stage methodology ensures maximum value and sustainable success:
 
-**Stage 1: [Pinpoint](./prime-framework/pinpoint.md)** (Week 1)  
+**Stage 1: [Pinpoint](../prime-framework/pinpoint.md)** (Week 1)  
 Discovery workshop → ROI analysis → Automation roadmap
 
-**Stage 2: [Re-engineer](./prime-framework/re-engineer.md)** (Weeks 2-3)  
+**Stage 2: [Re-engineer](../prime-framework/re-engineer.md)** (Weeks 2-3)  
 Workflow optimisation → Technical architecture → Safety planning
 
-**Stage 3: [Implement](./prime-framework/implement.md)** (Weeks 4-8)  
+**Stage 3: [Implement](../prime-framework/implement.md)** (Weeks 4-8)  
 Production-ready development → Lab testing → Pilot deployment
 
-**Stage 4: [Measure](./prime-framework/measure.md)** (Weeks 9-12+)  
+**Stage 4: [Measure](../prime-framework/measure.md)** (Weeks 9-12+)  
 Metrics collection → ROI calculation → Executive reporting
 
-**Stage 5: [Empower](./prime-framework/empower.md)** (Weeks 10-16)  
+**Stage 5: [Empower](../prime-framework/empower.md)** (Weeks 10-16)  
 Knowledge transfer → Documentation → Team capability building
 
 **Timeline:** 6-12 weeks typical for medium-complexity automation
 
-**[Learn more about the PRIME Framework →](./prime-framework/index.md)**
+**[Learn more about the PRIME Framework →](../prime-framework/index.md)**
 
 ---
 
@@ -934,7 +934,7 @@ Knowledge transfer → Documentation → Team capability building
 
 **Implement Stage Deliverables:**
 
-✅ Production-hardened Python code following [PRIME Philosophy](./prime-framework/philosophy.md)  
+✅ Production-hardened Python code following [PRIME Philosophy](../prime-framework/philosophy.md)  
 ✅ Comprehensive test coverage (unit tests, integration tests, lab validation)  
 ✅ Line-by-line code documentation with architecture explanations  
 ✅ Complete README with installation procedures, usage examples, troubleshooting guide  
@@ -993,7 +993,7 @@ Ready to transform your network operations with proven automation methodology?
 
 ### Step 1: Discovery & Assessment (Free, No Obligation)
 
-**[Request a Discovery Call](./contact.md)**
+**[Request a Discovery Call](../contact.md)**
 
 **Initial Consultation (30-60 minutes):**
 
@@ -1044,10 +1044,10 @@ We'll explore:
 
 | Stage | Duration | Key Activities |
 | :------ | :--------- | :--------------- |
-| **[Re-engineer](./prime-framework/re-engineer.md)** | 1-2 weeks | Workflow optimisation, architecture design, safety planning |
-| **[Implement](./prime-framework/implement.md)** | 2-6 weeks | Development, lab testing, pilot deployment, documentation |
-| **[Measure](./prime-framework/measure.md)** | 3-6 months | Performance tracking, ROI calculation, executive reporting |
-| **[Empower](./prime-framework/empower.md)** | 2-4 weeks | Knowledge transfer, team training, transition support (8 weeks) |
+| **[Re-engineer](../prime-framework/re-engineer.md)** | 1-2 weeks | Workflow optimisation, architecture design, safety planning |
+| **[Implement](../prime-framework/implement.md)** | 2-6 weeks | Development, lab testing, pilot deployment, documentation |
+| **[Measure](../prime-framework/measure.md)** | 3-6 months | Performance tracking, ROI calculation, executive reporting |
+| **[Empower](../prime-framework/empower.md)** | 2-4 weeks | Knowledge transfer, team training, transition support (8 weeks) |
 
 **Or choose [individual services](#individual-services)** if you need specific stages only.
 
@@ -1081,7 +1081,7 @@ As a specialised practice, you receive dedicated principal engineer engagement t
 
 - VAT-registered UK business (VAT number provided on invoices)
 - Professional Indemnity & Public Liability Insurance
-- GDPR-compliant data handling (see [Privacy Policy](legal/privacy-policy.md))
+- GDPR-compliant data handling (see [Privacy Policy](../legal/privacy-policy.md))
 - Non-disclosure agreements (NDAs) standard for all engagements
 - Client code ownership: full IP transfer or exclusive licence (your choice)
 
@@ -1108,9 +1108,9 @@ As a specialised practice, you receive dedicated principal engineer engagement t
 
 While bespoke client work remains confidential, we contribute to the network automation community through:
 
-- Educational content via [tutorials](./foundation/tutorials/index.md), [deep dives](./foundation/deep-dives/index.md), and structured implementation guides
+- Educational content via [tutorials](../foundation/tutorials/index.md), [deep dives](../foundation/deep-dives/index.md), and structured implementation guides
 - Premium tools delivered with licensed source so your team can audit and maintain them
-- Knowledge sharing through [deep-dive technical articles](./foundation/deep-dives/index.md)
+- Knowledge sharing through [deep-dive technical articles](../foundation/deep-dives/index.md)
 
 This commitment to transparency strengthens the ecosystem while protecting client confidentiality.
 
@@ -1122,7 +1122,7 @@ Alongside technical delivery, Nautomation Prime is building a transparent giving
 
 As revenue scales, a percentage is allocated to vetted charities reviewed for transparency, governance, and measurable impact.
 
-**[Read the full Giving With Integrity policy ->](./charity.md)**
+**[Read the full Giving With Integrity policy ->](../charity.md)**
 
 <div class="np-reflection" markdown>
 <p class="np-reflection-label">Between the Lines</p>
@@ -1146,7 +1146,7 @@ As revenue scales, a percentage is allocated to vetted charities reviewed for tr
 
 ??? question "How do we justify the investment to senior leadership?"
 
-    The [Pinpoint](./prime-framework/pinpoint.md) stage delivers concrete ROI projections **before** you commit to full implementation. You receive:
+    The [Pinpoint](../prime-framework/pinpoint.md) stage delivers concrete ROI projections **before** you commit to full implementation. You receive:
     
     - Time-motion analysis of current manual processes
     - Projected time savings per automation
@@ -1164,7 +1164,7 @@ As revenue scales, a percentage is allocated to vetted charities reviewed for tr
     2. Provide revised estimate for additional work
     3. Complete original scope as agreed, then address changes separately
     
-    Minor clarifications and refinements are expected and included. The [Re-engineer](./prime-framework/re-engineer.md) stage specifically prevents scope issues by thoroughly defining requirements upfront.
+    Minor clarifications and refinements are expected and included. The [Re-engineer](../prime-framework/re-engineer.md) stage specifically prevents scope issues by thoroughly defining requirements upfront.
 
 ??? question "How do you handle intellectual property and licensing?"
 
@@ -1179,7 +1179,7 @@ As revenue scales, a percentage is allocated to vetted charities reviewed for tr
 
 ??? question "Will this work with our existing change management process?"
 
-    Yes. The [Implement](./prime-framework/implement.md) stage includes pre-flight validation, post-flight verification, and audit trail generation that integrate with existing change control procedures.
+    Yes. The [Implement](../prime-framework/implement.md) stage includes pre-flight validation, post-flight verification, and audit trail generation that integrate with existing change control procedures.
     
     Automation enhances change management by:
     
@@ -1197,7 +1197,7 @@ As revenue scales, a percentage is allocated to vetted charities reviewed for tr
     - **Track 1 & 3 clients**: Optional support contracts available
     - **Track 2 clients**: Your team modifies code independently (purpose of knowledge transfer)
     
-    Production-grade testing during the [Implement](./prime-framework/implement.md) stage minimises post-deployment issues.
+    Production-grade testing during the [Implement](../prime-framework/implement.md) stage minimises post-deployment issues.
 
 ??? question "How do you handle credential security?"
 
@@ -1227,7 +1227,7 @@ As revenue scales, a percentage is allocated to vetted charities reviewed for tr
 
     Absolutely. Choose **[Track 1: Operational Ownership](#track-1-operational-ownership-no-python-required)** for immediate value without code-level knowledge, or **[Track 3: Hybrid Approach](#track-3-hybrid-approach-recommended-for-growing-teams)** to gradually build capability over 6-12 months.
     
-    The [Empower](./prime-framework/empower.md) stage adapts to your team's skill level—from operational training to advanced code modification.
+    The [Empower](../prime-framework/empower.md) stage adapts to your team's skill level—from operational training to advanced code modification.
 
 ??? question "What happens if the engineer who learned the automation leaves?"
 
@@ -1238,11 +1238,11 @@ As revenue scales, a percentage is allocated to vetted charities reviewed for tr
     - **Line-by-Line Commentary**: Every function, class, and module explained
     - **Runbooks**: Troubleshooting guides and common scenarios
     
-    New team members can understand and modify automation without original author dependency. This is a core principle of the [PRIME Philosophy](./prime-framework/philosophy.md).
+    New team members can understand and modify automation without original author dependency. This is a core principle of the [PRIME Philosophy](../prime-framework/philosophy.md).
 
 ??? question "Can you train multiple team members?"
 
-    Yes. The [Empower](./prime-framework/empower.md) stage includes up to 8 participants in knowledge transfer sessions. For larger teams, we recommend:
+    Yes. The [Empower](../prime-framework/empower.md) stage includes up to 8 participants in knowledge transfer sessions. For larger teams, we recommend:
     
     - Train 2-3 "champions" deeply (code-level understanding)
     - Champions train broader team on operational aspects
@@ -1260,7 +1260,7 @@ As revenue scales, a percentage is allocated to vetted charities reviewed for tr
     | **Complex** (compliance auditing) | 6-8 weeks | 3-6 months | ~5-6 months |
     | **Enterprise programme** (IOS-XE upgrades) | 8-12 weeks | 6 months | ~8-9 months |
     
-    The [Pinpoint](./prime-framework/pinpoint.md) stage provides accurate estimates based on your specific requirements.
+    The [Pinpoint](../prime-framework/pinpoint.md) stage provides accurate estimates based on your specific requirements.
 
 ??? question "Can we engage for just one stage (not the full framework)?"
 
@@ -1291,23 +1291,23 @@ As revenue scales, a percentage is allocated to vetted charities reviewed for tr
 
 ### Explore the PRIME Framework
 
-**[Complete PRIME Framework Documentation](./prime-framework/index.md)** — Comprehensive methodology guide
+**[Complete PRIME Framework Documentation](../prime-framework/index.md)** — Comprehensive methodology guide
 
 **Individual Stage Deep-Dives:**
 
-- **[Pinpoint](./prime-framework/pinpoint.md)** — Opportunity discovery & ROI analysis
-- **[Re-engineer](./prime-framework/re-engineer.md)** — Workflow optimisation & architecture design
-- **[Implement](./prime-framework/implement.md)** — Production-ready development
-- **[Measure](./prime-framework/measure.md)** — Performance tracking & ROI validation
-- **[Empower](./prime-framework/empower.md)** — Knowledge transfer & team capability building
+- **[Pinpoint](../prime-framework/pinpoint.md)** — Opportunity discovery & ROI analysis
+- **[Re-engineer](../prime-framework/re-engineer.md)** — Workflow optimisation & architecture design
+- **[Implement](../prime-framework/implement.md)** — Production-ready development
+- **[Measure](../prime-framework/measure.md)** — Performance tracking & ROI validation
+- **[Empower](../prime-framework/empower.md)** — Knowledge transfer & team capability building
 
 ### Educational Resources
 
-**[Production-Grade Principles](./foundation/production-grade-network-automation-principles/index.md)** — Technical guidance and enterprise operating patterns
+**[Production-Grade Principles](../foundation/production-grade-network-automation-principles/index.md)** — Technical guidance and enterprise operating patterns
 
-**[Tutorials & Guides](./foundation/tutorials/index.md)** — Hands-on Python automation training
+**[Tutorials & Guides](../foundation/tutorials/index.md)** — Hands-on Python automation training
 
-**[Technical Deep-Dives](./foundation/deep-dives/index.md)** — Advanced implementation patterns
+**[Technical Deep-Dives](../foundation/deep-dives/index.md)** — Advanced implementation patterns
 
 ---
 
@@ -1325,9 +1325,9 @@ The PRIME Framework provides the proven methodology, production-grade quality, a
 
 <div class="np-action-row" markdown>
 
-[Request Free Consultation](./contact.md){.md-button .md-button--primary}
+[Request Free Consultation](../contact.md){.md-button .md-button--primary}
 [See Investment Ranges](#typical-investment-ranges){.md-button}
-[Explore the PRIME Framework](./prime-framework/index.md){.md-button}
+[Explore the PRIME Framework](../prime-framework/index.md){.md-button}
 
 </div>
 
@@ -1338,7 +1338,7 @@ The PRIME Framework provides the proven methodology, production-grade quality, a
 
 #### Option 2: Download Resources First
 
-Browse our [educational content](./foundation/tutorials/index.md) and [deep dives](./foundation/deep-dives/index.md) to learn more about network automation approaches before engaging.
+Browse our [educational content](../foundation/tutorials/index.md) and [deep dives](../foundation/deep-dives/index.md) to learn more about network automation approaches before engaging.
 
 ---
 
@@ -1353,13 +1353,13 @@ Browse our [educational content](./foundation/tutorials/index.md) and [deep dive
 ---
 
 !!! quote "Our Mission"
-    To empower network engineers through the **[PRIME Framework](./prime-framework/index.md)**—delivering automation with measurable ROI, production-grade quality, and sustainable team capability built on the **[PRIME Philosophy](./prime-framework/philosophy.md)** of transparency, reliability, and pragmatism.
+    To empower network engineers through the **[PRIME Framework](../prime-framework/index.md)**—delivering automation with measurable ROI, production-grade quality, and sustainable team capability built on the **[PRIME Philosophy](../prime-framework/philosophy.md)** of transparency, reliability, and pragmatism.
 
 **Transform your network operations. Build lasting capability. Achieve measurable results.**
 
 <div class="np-action-row" markdown>
 
-[Begin with a discovery call](./contact.md){.md-button .md-button--primary}
-[Review how we work](./how-we-work.md){.md-button}
+[Begin with a discovery call](../contact.md){.md-button .md-button--primary}
+[Review how we work](../how-we-work.md){.md-button}
 
 </div>

@@ -13,14 +13,14 @@ This is the home of **Nautomation Prime**—a collection of production-ready net
 - **📖 Technical Deep Dives** — In-depth explanations of Python automation concepts with real Cisco examples
 - **📚 Script Library** — Open-source, hardened automation tools ready to deploy
 - **🛠️ Services** — Custom automation, portable bundles, and Docker containers
-- **🚀 Getting Started** — Guides to help you find what you need
+- **🚀 Start Here** — A five-page path for first-time visitors
 
 ---
 
 ## Quick Links
 
 - **[📖 View the Site](https://www.nautomationprime.io/)** — Main documentation
-- **[🚀 Getting Started](https://www.nautomationprime.io/getting-started/)** — First-time visitor guide
+- **[🚀 Start Here](https://www.nautomationprime.io/start-here/)** — First-time visitor guide: five pages, in order
 - **[💬 Contact on LinkedIn](https://www.linkedin.com/company/nautomationprime)** — Reach out for questions or services
 
 ---
@@ -78,7 +78,7 @@ Nothing gets deleted to protect the book: the site's free content stays.
 
 - **Academy**: the free learning content, in three tracks (Learn, Govern, See it done). Track landing pages live in `docs/academy/`; the articles themselves still live under `docs/foundation/` so existing URLs keep working.
 - **Foundation**: the charity arm only (`docs/foundation/index.md`, `docs/foundation/charity-services.md`, `docs/legal/foundation-status.md`).
-- **Email capture**: `overrides/partials/email-capture.html`, shown on every Academy page. It embeds the Kit sign-up form; configure it under `extra.mailing_list` in `mkdocs.yml`, and keep the Privacy Policy's Mailing List section in step with it.
+- **Email capture**: `overrides/partials/email-capture.html`, shown on the homepage and every Academy page. It embeds the Kit sign-up form; configure it under `extra.mailing_list` in `mkdocs.yml`, and keep the Privacy Policy's Mailing List section in step with it.
 
 ---
 

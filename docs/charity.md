@@ -197,7 +197,7 @@ This page describes how Nautomation Prime plans to donate a percentage of its ow
 
 ### Related Pages
 
-- [Enterprise Services](./services.md)
-- [About Nautomation Prime](./about.md)
+- [Enterprise Services](./services/index.md)
+- [About Nautomation Prime](./about/index.md)
 - [Nautomation Prime Foundation](./foundation/index.md)
 - [Free & Low-Cost Services for Charities](./foundation/charity-services.md)

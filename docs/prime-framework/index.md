@@ -19,7 +19,7 @@ The PRIME Framework is Nautomation Prime's five-stage delivery model for turning
 <div class="np-action-row" markdown>
 
 [Request Discovery Call](../contact.md){.md-button .md-button--primary}
-[View Services](../services.md){.md-button}
+[View Services](../services/index.md){.md-button}
 [How We Work](../how-we-work.md){.md-button}
 [Read the Philosophy](./philosophy.md){.md-button}
 
@@ -248,7 +248,7 @@ Projects are priced as fixed-fee engagements based on scope and complexity. You 
 - **Selected Stages** (e.g., Implement + Empower) — When design documentation already exists
 - **Pinpoint Assessment Only** — Understand opportunities before committing to full engagement
 
-**See [Services & Pricing](../services.md) for detailed engagement models and cost estimates.**
+**See [Services & Pricing](../services/index.md) for detailed engagement models and cost estimates.**
 
 !!! info "Flexible Engagement Models"
     We work with your timeline and budget. Most projects complete in 7-13 weeks. We can structure payment around project milestones to align with your financial planning.
@@ -278,7 +278,7 @@ The usual entry point is a short discovery conversation to understand your envir
 <div class="np-action-row" markdown>
 
 [Request Discovery Call](../contact.md){.md-button .md-button--primary}
-[View Services & Pricing](../services.md){.md-button}
+[View Services & Pricing](../services/index.md){.md-button}
 [See How We Work](../how-we-work.md){.md-button}
 
 </div>
@@ -468,7 +468,7 @@ graph TD
     - Empowerment: Phased training—operations first, code literacy second, modification third
     - Outcome: Progressive independence as team skills develop
     
-    See [Services: Engagement Tracks](../services.md#engagement-tracks-by-technical-capability) for detailed breakdowns.
+    See [Services: Engagement Tracks](../services/index.md#engagement-tracks-by-technical-capability) for detailed breakdowns.
     
     We also offer [beginner tutorials](../foundation/tutorials/beginner/index.md) to help your team build Python foundational skills.
 
@@ -486,7 +486,7 @@ The PRIME Framework takes the guesswork out of network automation. Whether you'r
 
 - **[Understand our principles](./philosophy.md)** — Read the PRIME Philosophy
 - **[Request a free discovery call](mailto:enquiries@nautomationprime.io)** to discuss your needs
-- **[Explore our services](../services.md)** to see engagement options and pricing
+- **[Explore our services](../services/index.md)** to see engagement options and pricing
 - **[Learn the foundations](../foundation/tutorials/index.md)** with free tutorials
 - **[Study production tools](../foundation/deep-dives/index.md)** to see the framework in action
 

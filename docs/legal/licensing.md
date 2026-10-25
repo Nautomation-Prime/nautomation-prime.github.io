@@ -176,4 +176,4 @@ To use the PRIME Framework officially, contact us for a partnership or licensing
 For licensing questions, permissions requests, or commercial inquiries:
 
 📧 **Email:** [enquiries@nautomationprime.io](mailto:enquiries@nautomationprime.io)  
-🔗 **Contact Page:** [About Us](../about.md#contact)
+🔗 **Contact Page:** [About Us](../about/index.md#contact)

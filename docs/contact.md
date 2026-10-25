@@ -114,7 +114,7 @@ If you are not ready to contact anyone yet, start with the methodology and deliv
 
 <div class="np-action-row" markdown>
 
-[Explore Services](./services.md){.md-button .md-button--primary}
+[Explore Services](./services/index.md){.md-button .md-button--primary}
 [How We Work](./how-we-work.md){.md-button}
 [PRIME Framework](./prime-framework/index.md){.md-button}
 

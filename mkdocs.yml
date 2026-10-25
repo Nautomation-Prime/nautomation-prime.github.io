@@ -278,7 +278,7 @@ nav:
         - Measure: prime-framework/measure.md
         - Empower: prime-framework/empower.md
   - Services:
-    - Overview: services.md
+    - services/index.md
     - How We Work: how-we-work.md
     - Contact & Discovery: contact.md
     - Script Library: scripts/index.md
@@ -300,9 +300,8 @@ nav:
     - foundation/index.md
     - Free & Low-Cost Services for Charities: foundation/charity-services.md
   - About:
-      - about.md
+      - about/index.md
       - The Academy: academy/index.md
-      - Getting Started: getting-started.md
       - founder.md
       - Giving With Integrity: charity.md
       - Legal:
@@ -316,6 +315,7 @@ nav:
 plugins:
   - redirects:
       redirect_maps:
+        'getting-started.md': 'start-here.md'
         'deep-dives/access-switch-audit.md': 'foundation/deep-dives/access-switch-audit.md'
         'deep-dives/cdp-audit.md': 'foundation/deep-dives/cdp-audit.md'
         'deep-dives/cisco-compliance-audit.md': 'foundation/deep-dives/cisco-compliance-audit.md'

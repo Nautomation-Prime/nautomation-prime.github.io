@@ -19,8 +19,8 @@ This page shows how Nautomation Prime takes a network automation engagement from
 <div class="np-action-row" markdown>
 
 [Request Discovery Call](./contact.md){.md-button .md-button--primary}
-[View Services](./services.md){.md-button}
-[See Investment Ranges](./services.md#typical-investment-ranges){.md-button}
+[View Services](./services/index.md){.md-button}
+[See Investment Ranges](./services/index.md#typical-investment-ranges){.md-button}
 
 </div>
 
@@ -531,7 +531,7 @@ The first step is a low-pressure conversation about your operational bottlenecks
 <div class="np-action-row" markdown>
 
 [Book a Discovery Call](./contact.md){.md-button .md-button--primary}
-[View Services](./services.md){.md-button}
+[View Services](./services/index.md){.md-button}
 [Contact & Discovery](./contact.md#what-to-include-in-your-message){.md-button}
 
 </div>
@@ -558,7 +558,7 @@ The first step is a low-pressure conversation about your operational bottlenecks
 - [Measure](./prime-framework/measure.md) — ROI Tracking
 - [Empower](./prime-framework/empower.md) — Knowledge Transfer
 
-**[Services & Pricing](./services.md)** — Investment and deliverables
+**[Services & Pricing](./services/index.md)** — Investment and deliverables
 
 **[Production-Grade Network Automation Principles](./foundation/production-grade-network-automation-principles/index.md)** — Understand the operating patterns PRIME applies in practice
 

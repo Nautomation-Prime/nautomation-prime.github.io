@@ -139,7 +139,7 @@ Ready to build custom solutions:
 2. Study [Cisco Compliance Audit Deep Dive](../foundation/deep-dives/cisco-compliance-audit.md) — policy-driven compliance with remediation generation
 3. Purchase a tool and customise it for your environment (licensed source included)
 4. Integrate with [PRIME Framework](../prime-framework/index.md) methodology
-5. Contact us for [consulting services](../services.md) on bespoke automation
+5. Contact us for [consulting services](../services/index.md) on bespoke automation
 
 ---
 
@@ -240,7 +240,7 @@ For issues, feature requests, or questions about any script:
 ---
 
 !!! success "Need one of these patterns tailored to your environment?"
-  If you want these scripts adapted, extended, or rolled out across a live estate, review our [Enterprise Automation Services](../services.md), the [PRIME Framework](../prime-framework/index.md), or [request a Discovery Call](mailto:enquiries@nautomationprime.io).
+  If you want these scripts adapted, extended, or rolled out across a live estate, review our [Enterprise Automation Services](../services/index.md), the [PRIME Framework](../prime-framework/index.md), or [request a Discovery Call](mailto:enquiries@nautomationprime.io).
 
 ---
 

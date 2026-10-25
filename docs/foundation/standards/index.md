@@ -78,7 +78,7 @@ What we would ask is that you adopt the requirements along with the codes. A des
 
 ## Getting Help With This
 
-Everything here is free and complete, and most teams can apply it without outside help. Where it is useful to have someone else do it — an independent assessment, findings written up in a form your security and change governance functions will accept, or a control set adapted to an estate that does not fit the defaults — that work is described on the [Services](../../services.md) page, and the [Automation Opportunity Assessment](../../smb/packages/automation-assessment.md) is the smaller-estate version.
+Everything here is free and complete, and most teams can apply it without outside help. Where it is useful to have someone else do it — an independent assessment, findings written up in a form your security and change governance functions will accept, or a control set adapted to an estate that does not fit the defaults — that work is described on the [Services](../../services/index.md) page, and the [Automation Opportunity Assessment](../../smb/packages/automation-assessment.md) is the smaller-estate version.
 
 ---
 

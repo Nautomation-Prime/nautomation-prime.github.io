@@ -127,7 +127,7 @@ For the coded controls behind this track, and the method for assessing yourself 
 
 ## Getting Help With This
 
-The standard above is free and complete — you do not need us to apply it. If you would rather have the review done with you, and the findings written up in a form your security and change governance teams will accept, that is the [AI Agent Governance Review](../../services.md#individual-services).
+The standard above is free and complete — you do not need us to apply it. If you would rather have the review done with you, and the findings written up in a form your security and change governance teams will accept, that is the [AI Agent Governance Review](../../services/index.md#individual-services).
 
 ---
 

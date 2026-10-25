@@ -65,4 +65,4 @@ These projects will be promoted to the [Script Library](../scripts/index.md) onc
 ---
 
 !!! tip "Feedback Welcome"
-    Have suggestions or specific requirements for these upcoming tools? Feel free to reach out via the [contact page](../about.md#contact).
+    Have suggestions or specific requirements for these upcoming tools? Feel free to reach out via the [contact page](../about/index.md#contact).

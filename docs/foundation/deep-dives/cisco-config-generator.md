@@ -33,7 +33,7 @@ If your team needs "complete transparency", this guide is built for exactly that
     - **Customised to your estate — £1,500–£4,000:** bespoke packs, templates, and validation rules built around your platforms, naming conventions, and standards.
 
 [Request this tool](../../contact.md){ .md-button .md-button--primary }
-[Explore Services](../../services.md){ .md-button }
+[Explore Services](../../services/index.md){ .md-button }
 
 ---
 

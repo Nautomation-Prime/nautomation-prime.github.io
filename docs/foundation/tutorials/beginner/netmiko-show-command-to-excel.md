@@ -668,6 +668,6 @@ Ready to build on this foundation? Here's your learning path:
 
 Found this tutorial helpful? Have questions or suggestions for improvement?
 
-[Contact us](../../../about.md#contact) or check out our other resources!
+[Contact us](../../../about/index.md#contact) or check out our other resources!
 
 ---

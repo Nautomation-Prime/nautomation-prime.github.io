@@ -267,7 +267,7 @@ The PRIME Philosophy and Framework work for organisations at different technical
 
 **The Philosophy doesn't require Python expertise**—it requires a commitment to transparent processes, measurable outcomes, and continuous improvement.
 
-See [Services: Engagement Tracks](../services.md#engagement-tracks-by-technical-capability) for tailored approaches based on your team's skill level.
+See [Services: Engagement Tracks](../services/index.md#engagement-tracks-by-technical-capability) for tailored approaches based on your team's skill level.
 
 ---
 
@@ -301,7 +301,7 @@ If the philosophy resonates, the next step is not to guess at a solution. It is 
 <div class="np-action-row" markdown>
 
 [Request Discovery Call](../contact.md){.md-button .md-button--primary}
-[View Services](../services.md){.md-button}
+[View Services](../services/index.md){.md-button}
 [How We Work](../how-we-work.md){.md-button}
 
 </div>

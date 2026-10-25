@@ -26,7 +26,7 @@ A modular Python utility that connects to Cisco switches (optionally through an 
     - **Customised to your estate — £2,000–£5,000:** tailored classification, PoE and stale-port logic, bastion handling, and workbook formatting for your access layer.
 
 [Request this tool](../../contact.md){ .md-button .md-button--primary }
-[Explore Services](../../services.md){ .md-button }
+[Explore Services](../../services/index.md){ .md-button }
 
 ---
 

@@ -31,7 +31,7 @@ The **Cisco IOS-XE Software Upgrade Orchestrator** is a production-grade Python 
     - **Customised to your estate:** platform policy tuning, workflow controls, and reporting integration aligned to your operating model.
 
 [Request this tool](../../contact.md){ .md-button .md-button--primary }
-[Explore Services](../../services.md){ .md-button }
+[Explore Services](../../services/index.md){ .md-button }
 
 ---
 

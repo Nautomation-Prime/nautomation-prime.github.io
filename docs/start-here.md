@@ -17,6 +17,11 @@ This site has a lot of pages. You don't need most of them yet. If you are a netw
 
 </div>
 
+!!! info "Before you start"
+    These pages teach you to apply Python to network automation, not Python itself. You should already be comfortable with variables, functions, loops, conditionals, exceptions and basic file I/O. If you're new to Python, complete a fundamentals course first (Real Python, Codecademy or similar), then come back.
+
+    You'll also need **Python 3.10 or later**, SSH access to some Cisco devices (physical or virtual, such as CML, EVE-NG or GNS3), and credentials to log in to them.
+
 ---
 
 ### 1. [Your first script: show command to Excel](foundation/tutorials/beginner/netmiko-show-command-to-excel.md)

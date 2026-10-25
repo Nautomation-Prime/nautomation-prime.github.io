@@ -31,7 +31,7 @@ This is one of the most comprehensive projects in the Nautomation Prime ecosyste
     - **Customised to your estate — £3,500–£8,000:** bespoke policy model, role classification, remediation workflow, and reporting aligned to your governance and change process.
 
 [Request this tool](../../contact.md){ .md-button .md-button--primary }
-[Explore Services](../../services.md){ .md-button }
+[Explore Services](../../services/index.md){ .md-button }
 
 ---
 

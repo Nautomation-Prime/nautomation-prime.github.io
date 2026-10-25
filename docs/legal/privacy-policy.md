@@ -50,7 +50,7 @@ We do **not** use your data for marketing, sharing with third parties, or any un
 
 ## 4. Mailing List
 
-The sign-up form on Academy pages ("Get notified when the book ships") is provided by **Kit** ([kit.com](https://kit.com)), an email newsletter service.
+The sign-up form on the homepage and Academy pages ("Get notified when the book ships") is provided by **Kit** ([kit.com](https://kit.com)), an email newsletter service.
 
 - **What is collected:** the email address you enter, which is sent to and stored by Kit. Kit also records when and through which form you signed up.
 - **Loading the form:** pages showing the form load it from Kit's servers, so Kit receives the standard information your browser sends with any web request, such as your IP address and browser type.

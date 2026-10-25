@@ -31,7 +31,7 @@ A **modular, enterprise-grade** network discovery utility that crawls Cisco netw
     - **Customised to your estate — £2,000–£5,000:** tailored discovery, jump-host, credential, and reporting behaviour for your topology and operating model.
 
 [Request this tool](../../contact.md){ .md-button .md-button--primary }
-[Explore Services](../../services.md){ .md-button }
+[Explore Services](../../services/index.md){ .md-button }
 
 ---
 
