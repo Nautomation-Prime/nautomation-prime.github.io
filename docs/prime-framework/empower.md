@@ -532,7 +532,7 @@ Anything outside this is [additional work](#what-counts-as-additional-work), quo
 - **[PRIME Framework Overview](./index.md)** — See how all five stages work together
 - **[Previous Stage: Measure](./measure.md)** — Proving the value we've delivered
 - **[Beginner Tutorials](../foundation/tutorials/beginner/index.md)** — Start building Python skills
-- **[Services](../services.md)** — Explore engagement options
+- **[Services](../services/index.md)** — Explore engagement options
 - **[Request Discovery Call](../contact.md)** — Discuss your automation needs
 
 ---
@@ -555,4 +555,4 @@ By completing the PRIME Framework—**Pinpoint, Re-engineer, Implement, Measure,
 
 ---
 
-[← Previous: Measure](./measure.md) | [Back to PRIME Framework](./index.md) | [View All Services →](../services.md)
+[← Previous: Measure](./measure.md) | [Back to PRIME Framework](./index.md) | [View All Services →](../services/index.md)

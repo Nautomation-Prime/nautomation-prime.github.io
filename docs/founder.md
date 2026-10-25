@@ -19,9 +19,9 @@ I'm the founder of Nautomation Prime and a network engineer focused on transpare
 <div class="np-action-row" markdown>
 
 [Contact & Discovery](./contact.md){.md-button .md-button--primary}
-[Explore Services](./services.md){.md-button}
+[Explore Services](./services/index.md){.md-button}
 [How We Work](./how-we-work.md){.md-button}
-[About Nautomation Prime](./about.md){.md-button}
+[About Nautomation Prime](./about/index.md){.md-button}
 
 </div>
 
@@ -227,7 +227,7 @@ Whether you're starting automation, rescuing inherited scripts, or trying to bui
 <div class="np-action-row" markdown>
 
 [Book a Discovery Call](./contact.md){.md-button .md-button--primary}
-[Explore Services](./services.md){.md-button}
+[Explore Services](./services/index.md){.md-button}
 [How We Work](./how-we-work.md){.md-button}
 
 </div>

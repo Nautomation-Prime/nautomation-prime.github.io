@@ -27,7 +27,7 @@ Nautomation Prime helps network engineering teams move from manual operations an
 
 [Start Here](./start-here.md){.md-button .md-button--primary}
 [Build netpipe: the Capstone](./foundation/tutorials/capstone/index.md){.md-button}
-[Explore Services](./services.md){.md-button}
+[Explore Services](./services/index.md){.md-button}
 [Request Discovery Call](./contact.md){.md-button}
 [Meet Christopher Davies](./founder.md){.md-button}
 
@@ -91,7 +91,7 @@ Nautomation Prime helps network engineering teams move from manual operations an
 
     Bring in Nautomation Prime when scale, governance, ROI, or knowledge transfer matter as much as the code itself.
 
-    [View services](./services.md)
+    [View services](./services/index.md)
 
 </div>
 
@@ -105,7 +105,7 @@ If you already know the problem and need an implementation partner, start with t
 
 <div class="np-action-row" markdown>
 
-[View Services](./services.md){.md-button .md-button--primary}
+[View Services](./services/index.md){.md-button .md-button--primary}
 [Request Discovery Call](./contact.md){.md-button}
 [Compare SMB Packages](./smb/index.md){.md-button}
 
@@ -186,7 +186,7 @@ Christopher Davies is a network engineer with 10+ years in enterprise infrastruc
 
 <div class="np-section-link-row">
   <a href="./founder.md">Read Christopher's story</a>
-  <a href="./about.md">About Nautomation Prime</a>
+  <a href="./about/index.md">About Nautomation Prime</a>
 </div>
 
 </div>
@@ -200,8 +200,8 @@ Whether you're assessing automation opportunities, rebuilding inherited scripts,
 <div class="np-action-row" markdown>
 
 [Request Discovery Call](./contact.md){.md-button .md-button--primary}
-[Compare Services](./services.md){.md-button}
-[Start with Getting Started](./getting-started.md){.md-button}
+[Compare Services](./services/index.md){.md-button}
+[Start Here](./start-here.md){.md-button}
 
 </div>
 

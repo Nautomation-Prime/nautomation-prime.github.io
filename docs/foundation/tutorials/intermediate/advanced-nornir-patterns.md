@@ -1296,11 +1296,11 @@ You've mastered advanced Nornir patterns used in enterprise deployments worldwid
    - Implement with confidence using proven patterns
    - Measure results and empower your team
 
-4. **[Services](../../../services.md)** — Consulting for enterprise automation at scale
+4. **[Services](../../../services/index.md)** — Consulting for enterprise automation at scale
    - Custom implementations
    - Team training and mentoring
    - Architecture reviews
-   - Contact: [email](../../../about.md#contact)
+   - Contact: [email](../../../about/index.md#contact)
 
 ---
 
@@ -1318,7 +1318,7 @@ Use what works. Ignore what doesn't. Build systematically.
 
 Found a better pattern? Have a real-world use case?
 
-We'd love to hear about it: [Contact Information](../../../about.md#contact)
+We'd love to hear about it: [Contact Information](../../../about/index.md#contact)
 
 ---
 

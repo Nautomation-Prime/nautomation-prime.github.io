@@ -617,7 +617,7 @@ After completing all 4 intermediate tutorials, you'll be able to:
 
 Found these tutorials helpful? Have questions about Nornir?
 
-[Contact us](../../../about.md#contact) — We'd love to hear how you're using Nornir!
+[Contact us](../../../about/index.md#contact) — We'd love to hear how you're using Nornir!
 
 ---
 

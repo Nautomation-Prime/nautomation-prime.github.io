@@ -2510,8 +2510,8 @@ You've built an enterprise-grade automation system! Here's what's next:
     **Scale & Deploy:**
 
 4. **[PRIME Framework](../../../prime-framework/index.md)** — Structure your automation for sustainable ROI
-5. **[Services](../../../services.md)** — Consulting for enterprise automation systems
-6. **[Contact Us](../../../about.md#contact)** — Let's discuss your automation challenges
+5. **[Services](../../../services/index.md)** — Consulting for enterprise automation systems
+6. **[Contact Us](../../../about/index.md#contact)** — Let's discuss your automation challenges
 
 ---
 

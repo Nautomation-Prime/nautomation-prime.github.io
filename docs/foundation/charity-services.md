@@ -60,7 +60,7 @@ Several kinds of help are available, on their own or combined, depending on what
 
 -   ### Discounted larger engagements
 
-    Where a charity's need — advice, hands-on engineering, automation, or a mix — is larger than a single free engagement can cover, work is quoted at a substantially reduced day rate against the standard [Services](../services.md) pricing, subject to capacity.
+    Where a charity's need — advice, hands-on engineering, automation, or a mix — is larger than a single free engagement can cover, work is quoted at a substantially reduced day rate against the standard [Services](../services/index.md) pricing, subject to capacity.
 
 </div>
 
@@ -113,7 +113,7 @@ This section applies specifically to charity-services engagements delivered unde
 
 ### Want to register interest, or need something different?
 
-If your organisation isn't a registered charity or CIC but still needs low-cost help, see the [SMB packages](../smb/index.md) or [Services overview](../services.md) instead — or [get in touch](../contact.md) and ask.
+If your organisation isn't a registered charity or CIC but still needs low-cost help, see the [SMB packages](../smb/index.md) or [Services overview](../services/index.md) instead — or [get in touch](../contact.md) and ask.
 
 <div class="np-action-row" markdown>
 

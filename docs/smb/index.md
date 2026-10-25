@@ -151,11 +151,11 @@ For **£249**, we analyse up to five of your most time-consuming manual processe
 
 ## Already Running Larger Programmes?
 
-If your organisation is ready for a broader transformation — or if you need automation across multiple teams with a formal methodology — our **[PRIME Framework Enterprise Engagement](../services.md)** may be the right fit.
+If your organisation is ready for a broader transformation — or if you need automation across multiple teams with a formal methodology — our **[PRIME Framework Enterprise Engagement](../services/index.md)** may be the right fit.
 
 SMB packages are designed as starting points. Many clients begin with a package and grow into a full engagement as confidence builds.
 
-[**Explore Enterprise Services →**](../services.md)
+[**Explore Enterprise Services →**](../services/index.md)
 
 ---
 

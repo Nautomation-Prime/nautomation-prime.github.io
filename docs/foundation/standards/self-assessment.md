@@ -155,7 +155,7 @@ Everything else can wait until you have done it twice.
 
 ## Getting Help With This
 
-The method above is free and complete — you do not need us to run it. If you would rather have the assessment done with you, and the findings written up in a form your security and change governance teams will accept, that is the [Automation Opportunity Assessment](../../smb/packages/automation-assessment.md) for smaller estates, or the individual assessment services on the [Services](../../services.md) page.
+The method above is free and complete — you do not need us to run it. If you would rather have the assessment done with you, and the findings written up in a form your security and change governance teams will accept, that is the [Automation Opportunity Assessment](../../smb/packages/automation-assessment.md) for smaller estates, or the individual assessment services on the [Services](../../services/index.md) page.
 
 ---
 

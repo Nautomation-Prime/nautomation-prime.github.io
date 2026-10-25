@@ -47,7 +47,7 @@ tags:
 
     Engagements for enterprise teams, and fixed-scope packages for small and medium businesses.
 
-    [Services](../../services.md) · [SMB packages](../../smb/index.md)
+    [Services](../../services/index.md) · [SMB packages](../../smb/index.md)
 
 -   ### How we work
 

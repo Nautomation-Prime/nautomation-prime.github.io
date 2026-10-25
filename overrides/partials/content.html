@@ -15,13 +15,15 @@
 {% if page and page.file and page.file.src_uri %}
   {% set src = page.file.src_uri %}
   {% set is_index = src.endswith("/index.md") %}
-  {#- Email capture on every Academy page. The Academy's articles still live
-      under foundation/; the Foundation's own (charity) pages are excluded. -#}
-  {% set is_academy = src == "start-here.md"
+  {#- Email capture on every Academy page, and on the homepage (the most
+      visited page). The Academy's articles still live under foundation/;
+      the Foundation's own (charity) pages are excluded. -#}
+  {% set show_capture = src == "start-here.md"
+        or src == "index.md"
         or src.startswith("academy/")
         or (src.startswith("foundation/")
             and src not in ["foundation/index.md", "foundation/charity-services.md"]) %}
-  {% if is_academy %}
+  {% if show_capture %}
     {% set np_capture_variant = "book" if src == "foundation/tutorials/capstone/07-rollback-and-audit.md" else "default" %}
     {% include "partials/email-capture.html" %}
   {% endif %}

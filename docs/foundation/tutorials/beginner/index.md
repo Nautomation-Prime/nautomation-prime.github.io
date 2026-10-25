@@ -1,6 +1,6 @@
 ---
 title: Beginner Tutorials
-description: Foundation tutorials for Python network automation beginners. Learn Netmiko, TextFSM, and data export with complete line-by-line explanations.
+description: Beginner tutorials for Python network automation. Learn Netmiko, TextFSM, and data export with complete line-by-line explanations.
 tags:
   - Beginner
   - Tutorials

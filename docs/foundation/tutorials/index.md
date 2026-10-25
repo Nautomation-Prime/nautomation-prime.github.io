@@ -137,7 +137,7 @@ Every tutorial follows these principles:
 
 All tutorials assume you have:
 
-- **Python 3.8+** installed
+- **Python 3.10+** installed (the Capstone's code uses 3.10 syntax)
 - **Basic Python knowledge** (variables, functions, loops, dictionaries)
 - **Access to Cisco devices** (physical or virtual like CML, EVE-NG, or GNS3)
 - **pip** for installing required libraries
@@ -153,9 +153,9 @@ All tutorials assume you have:
 
 - **[Deep Dives](../deep-dives/index.md)** — In-depth technical analysis of production automation
 - **[Scripts](../../scripts/index.md)** — Ready-to-deploy automation tools
-- **[Getting Started](../../getting-started.md)** — New to Nautomation Prime? Start here
+- **[Start Here](../../start-here.md)** — New to Nautomation Prime? Five pages, in order
 
 ---
 
 !!! tip "Need help applying this beyond the lab?"
-  If you're moving from tutorials to governed production automation, review our [Enterprise Automation Services](../../services.md) or the [PRIME Framework](../../prime-framework/index.md).
+  If you're moving from tutorials to governed production automation, review our [Enterprise Automation Services](../../services/index.md) or the [PRIME Framework](../../prime-framework/index.md).
