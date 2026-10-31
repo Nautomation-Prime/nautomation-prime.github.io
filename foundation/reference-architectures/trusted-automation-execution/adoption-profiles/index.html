@@ -1638,6 +1638,15 @@
 </a>
 </li>
 <li class="md-nav__item">
+<a class="md-nav__link" href="#profiles-and-modules">
+<span class="md-ellipsis">
+      
+        Profiles and Modules
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
 <a class="md-nav__link" href="#profile-a-foundation">
 <span class="md-ellipsis">
       
@@ -2316,6 +2325,15 @@
 </a>
 </li>
 <li class="md-nav__item">
+<a class="md-nav__link" href="#profiles-and-modules">
+<span class="md-ellipsis">
+      
+        Profiles and Modules
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
 <a class="md-nav__link" href="#profile-a-foundation">
 <span class="md-ellipsis">
       
@@ -2402,6 +2420,11 @@
 <p>Every profile here implements the model. They do not implement it equally. A Foundation implementation is a real control and a real improvement on implicit trust, but presenting it as equivalent to High-Assurance is exactly the kind of claim this architecture exists to prevent.</p>
 </div>
 <hr/>
+<h2 id="profiles-and-modules">Profiles and Modules<a class="headerlink" href="#profiles-and-modules" title="Anchor link to this section">¶</a></h2>
+<p>Profiles and <a href="../architecture/#modular-by-design">module classes</a> answer different questions. A module's class says whether the capability must exist at all. A profile says how strongly it is enforced.</p>
+<p>So every profile, Foundation included, contains every core module and every conditional module whose condition applies. What changes between profiles is the implementation behind each one: a local policy file and a hardened runner at Foundation, a policy decision service and an ephemeral, attested environment at High-Assurance. Either way, the trust gateway exists.</p>
+<p>Optional modules can be left out at any profile, but leaving one out is recorded along with its effect on assurance. Where a workload's risk class calls for the missing module, that is an <a href="../../../production-grade-network-automation-principles/exception-and-waiver-process/">exception</a>, with an owner and an expiry.</p>
+<hr/>
 <h2 id="profile-a-foundation">Profile A — Foundation<a class="headerlink" href="#profile-a-foundation" title="Anchor link to this section">¶</a></h2>
 <p><strong>Suitable when</strong> tooling is limited and automation risk is modest, or as the first demonstrator before integrating with enterprise systems.</p>
 <pre class="mermaid"><code>graph TD
@@ -2431,7 +2454,8 @@
 <h2 id="profile-c-enterprise">Profile C — Enterprise<a class="headerlink" href="#profile-c-enterprise" title="Anchor link to this section">¶</a></h2>
 <p><strong>Suitable where</strong> privileged automation runs at scale, across many workloads, teams, or environments.</p>
 <ul>
-<li>A dedicated execution gateway as the single enforcement point</li>
+<li>A dedicated trust gateway as the single enforcement point, deciding on a canonical request</li>
+<li>An orchestrator, where one is used, behind the gateway and accepting work only from it</li>
 <li>Workload identity distinct from requester identity</li>
 <li>Signed artefacts with verified provenance</li>
 <li>A central policy decision service fed by authoritative context</li>
@@ -2453,17 +2477,18 @@
 <li>Ephemeral, hardened execution with strict egress and target-side enforcement</li>
 <li>Very short-lived, capability-specific authority</li>
 <li>Canary and batched execution with automated stop conditions</li>
-<li>Post-change validation through a separate trust path</li>
+<li>Post-change validation through a separate trust path, and declared per-operation rollback, halt, or escalation</li>
+<li>Per-capability device authorisation, with accounting held off the device</li>
 <li>Tamper-resistant evidence with explicit retention and review</li>
 <li>Rapid revocation and quarantine, and break-glass procedures that have actually been exercised</li>
 </ul>
 <hr/>
 <h2 id="control-progression">Control Progression<a class="headerlink" href="#control-progression" title="Anchor link to this section">¶</a></h2>
-<p>The same concern at three levels of strength. Enterprise and High-Assurance share a column here: their components are largely the same, and what separates them is the strength of attestation, separation of duties, and evidence.</p>
+<p>The same concern at three levels of strength, with the <a href="../architecture/#the-module-catalogue">modules</a> each row covers. Enterprise and High-Assurance share a column here: their modules are largely the same, and what separates them is the strength of attestation, separation of duties, and evidence.</p>
 <table>
 <thead>
 <tr>
-<th>Concern</th>
+<th>Concern (modules)</th>
 <th>Foundation</th>
 <th>Integrated</th>
 <th>Enterprise / High-Assurance</th>
@@ -2471,67 +2496,97 @@
 </thead>
 <tbody>
 <tr>
-<td><strong>Artefact identity</strong></td>
+<td><strong>Request and intent</strong> (1, 3)</td>
+<td>A single entry on the runner; the operation named by the manifest; a Job ID per run</td>
+<td>One entry service with a canonical request schema and a Job ID</td>
+<td>Every route converges on one request contract; malformed requests are rejected before any decision</td>
+</tr>
+<tr>
+<td><strong>Artefact identity</strong> (6)</td>
 <td>Manifest, version, and digest</td>
 <td>Signed release</td>
 <td>Signed immutable artefact with verified provenance</td>
 </tr>
 <tr>
-<td><strong>Requester identity</strong></td>
+<td><strong>Requester identity</strong> (2)</td>
 <td>Runner or OS identity, or controlled invocation</td>
 <td>Enterprise identity</td>
 <td>Strong identity with contextual and risk signals</td>
 </tr>
 <tr>
-<td><strong>Workload identity</strong></td>
+<td><strong>Workload identity</strong> (10)</td>
 <td>Manifest identity</td>
 <td>Service identity where available</td>
 <td>Dedicated short-lived cryptographic workload identity</td>
 </tr>
 <tr>
-<td><strong>Policy</strong></td>
+<td><strong>Policy</strong> (7)</td>
 <td>Protected local YAML or JSON</td>
 <td>Central or protected policy</td>
 <td>Independent policy decision service with authoritative context</td>
 </tr>
 <tr>
-<td><strong>Enforcement</strong></td>
+<td><strong>Enforcement</strong> (7)</td>
 <td>Trusted wrapper or runner</td>
 <td>Hardened, controlled runner</td>
-<td>Mandatory execution gateway</td>
+<td>Mandatory trust gateway</td>
 </tr>
 <tr>
-<td><strong>Privilege</strong></td>
+<td><strong>Orchestration</strong> (8)</td>
+<td>None: the runner dispatches directly</td>
+<td>Optional, behind the runner</td>
+<td>Behind the gateway, accepting work only from it</td>
+</tr>
+<tr>
+<td><strong>Privilege</strong> (11)</td>
 <td>Secret retrieved after allow</td>
 <td>Central vault or PAM retrieval</td>
 <td>Just-in-time, capability-scoped, short-lived authority</td>
 </tr>
 <tr>
-<td><strong>Execution isolation</strong></td>
+<td><strong>Execution isolation</strong> (9)</td>
 <td>Dedicated hardened host</td>
 <td>Separated runner or container</td>
 <td>Ephemeral, attested, isolated environment</td>
 </tr>
 <tr>
-<td><strong>Target scope</strong></td>
+<td><strong>Target scope</strong> (4)</td>
 <td>Local allow-list</td>
 <td>Source-of-truth integration</td>
-<td>Authoritative target context plus network and target-side enforcement</td>
+<td>Authoritative target context from more than one source</td>
 </tr>
 <tr>
-<td><strong>Validation</strong></td>
+<td><strong>Network boundary</strong> (12)</td>
+<td>Host firewall: the runner reaches only allow-listed target management addresses</td>
+<td>A segmented runner network with explicit egress</td>
+<td>Default-deny segmentation per execution environment, plus management-plane restrictions on every target</td>
+</tr>
+<tr>
+<td><strong>Device authorisation</strong> (13)</td>
+<td>Local device account limited to the automation's role, recorded as a compensating control</td>
+<td>Central AAA with automation-specific accounts</td>
+<td>Per-capability AAA identities with command authorisation and accounting held off the device</td>
+</tr>
+<tr>
+<td><strong>Validation</strong> (16)</td>
 <td>Local assertions, pyATS where relevant</td>
 <td>Independent job or process</td>
 <td>Independent validation trust path with evidence</td>
 </tr>
 <tr>
-<td><strong>Evidence</strong></td>
-<td>Structured local record plus a protected copy</td>
-<td>Central logs and SIEM</td>
+<td><strong>Outcome handling</strong> (17)</td>
+<td>An explicit terminal state in the evidence record</td>
+<td>Declared rollback per operation; change record updated</td>
+<td>Rollback, halt, and escalation driven by declared per-operation rules and the validation result</td>
+</tr>
+<tr>
+<td><strong>Evidence</strong> (18)</td>
+<td>Structured local record with a Job ID, plus a protected copy</td>
+<td>Central logs and SIEM, correlated by Job ID</td>
 <td>Tamper-resistant central evidence with correlation and response</td>
 </tr>
 <tr>
-<td><strong>Human control</strong></td>
+<td><strong>Human control</strong> (5)</td>
 <td>Manual invocation for risky tasks</td>
 <td>Approval workflow</td>
 <td>Risk-bound separation of duties, and break-glass</td>
@@ -2558,13 +2613,13 @@
 </tr>
 <tr>
 <td><strong>1 — Foundation PoC</strong></td>
-<td>External runner, manifest and digest, local policy, target allow-list, delayed secret retrieval, evidence</td>
+<td>External runner, manifest and digest, local policy, target allow-list, host network boundary, delayed secret retrieval, evidence with a Job ID</td>
 <td>Tamper, scope, and capability denial paths demonstrably work</td>
 </tr>
 <tr>
 <td><strong>2 — Integrate</strong></td>
-<td>Enterprise requester identity, central secrets, signing, CI, central logs</td>
-<td>No privileged secret in source or runner configuration; signed releases; central evidence</td>
+<td>Enterprise requester identity, a canonical request schema, central secrets, signing, CI, central logs</td>
+<td>No privileged secret in source or runner configuration; signed releases; central evidence correlated by Job ID</td>
 </tr>
 <tr>
 <td><strong>3 — Enterprise</strong></td>
@@ -2605,7 +2660,7 @@
 <span class="md-icon" title="Last update">
 <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"></path></svg>
 </span>
-<span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="October 21, 2026 15:53:49 UTC">October 21, 2026</span>
+<span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="October 31, 2026 09:19:44 UTC">October 31, 2026</span>
 </span>
 </aside>
 </article>

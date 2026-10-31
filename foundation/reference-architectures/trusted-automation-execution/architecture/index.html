@@ -5,7 +5,7 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width,initial-scale=1" name="viewport"/>
-<meta content="The Trusted Automation Execution target state, component by component — requester and workload identity, artefact trust, the policy decision, just-in-time privilege, constrained execution, independent validation, and evidence — with the reason for each." name="description"/>
+<meta content="The Trusted Automation Execution target state, module by module — eighteen modules across four planes, each core, conditional, or optional, mapped to the nine sentences — with the reason for each, the policy decision, the execution lifecycle, and the evidence contract." name="description"/>
 <meta content="Christopher Davies" name="author"/>
 <link href="https://www.nautomationprime.io/foundation/reference-architectures/trusted-automation-execution/architecture/" rel="canonical"/>
 <link href="../" rel="prev"/>
@@ -26,7 +26,7 @@
 <meta content="Nautomation Prime" property="og:site_name"/>
 <meta content="en_GB" property="og:locale"/>
 <meta content="The Full Reference Architecture" property="og:title"/>
-<meta content="The Trusted Automation Execution target state, component by component — requester and workload identity, artefact trust, the policy decision, just-in-time privilege, constrained execution, independent validation, and evidence — with the reason for each." property="og:description"/>
+<meta content="The Trusted Automation Execution target state, module by module — eighteen modules across four planes, each core, conditional, or optional, mapped to the nine sentences — with the reason for each, the policy decision, the execution lifecycle, and the evidence contract." property="og:description"/>
 <meta content="https://www.nautomationprime.io/foundation/reference-architectures/trusted-automation-execution/architecture/" property="og:url"/>
 <meta content="https://www.nautomationprime.io/assets/social/trusted-automation-execution.png" property="og:image"/>
 <meta content="1200" property="og:image:width"/>
@@ -34,7 +34,7 @@
 <meta content="Trusted Automation Execution: a reference architecture from the Nautomation Prime Academy" property="og:image:alt"/>
 <meta content="summary_large_image" name="twitter:card"/>
 <meta content="The Full Reference Architecture" name="twitter:title"/>
-<meta content="The Trusted Automation Execution target state, component by component — requester and workload identity, artefact trust, the policy decision, just-in-time privilege, constrained execution, independent validation, and evidence — with the reason for each." name="twitter:description"/>
+<meta content="The Trusted Automation Execution target state, module by module — eighteen modules across four planes, each core, conditional, or optional, mapped to the nine sentences — with the reason for each, the policy decision, the execution lifecycle, and the evidence contract." name="twitter:description"/>
 <meta content="https://www.nautomationprime.io/assets/social/trusted-automation-execution.png" name="twitter:image"/>
 <meta content="Trusted Automation Execution: a reference architecture from the Nautomation Prime Academy" name="twitter:image:alt"/>
 </head>
@@ -1614,6 +1614,46 @@
 </a>
 </li>
 <li class="md-nav__item">
+<a class="md-nav__link" href="#modular-by-design">
+<span class="md-ellipsis">
+      
+        Modular by Design
+      
+    </span>
+</a>
+<nav aria-label="Modular by Design" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#module-classes">
+<span class="md-ellipsis">
+      
+        Module classes
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#four-planes">
+<span class="md-ellipsis">
+      
+        Four planes
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#the-module-catalogue">
+<span class="md-ellipsis">
+      
+        The module catalogue
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
 <a class="md-nav__link" href="#the-target-state">
 <span class="md-ellipsis">
       
@@ -1636,14 +1676,14 @@
 </nav>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#component-by-component">
+<a class="md-nav__link" href="#module-by-module">
 <span class="md-ellipsis">
       
-        Component by Component
+        Module by Module
       
     </span>
 </a>
-<nav aria-label="Component by Component" class="md-nav">
+<nav aria-label="Module by Module" class="md-nav">
 <ul class="md-nav__list">
 <li class="md-nav__item">
 <a class="md-nav__link" href="#1-prove-who-is-asking">
@@ -1773,6 +1813,19 @@
       
     </span>
 </a>
+<nav aria-label="The Evidence Record" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#the-job-id-and-evidence-contract">
+<span class="md-ellipsis">
+      
+        The Job ID and evidence contract
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
 </li>
 <li class="md-nav__item">
 <a class="md-nav__link" href="#ai-triggered-automation">
@@ -1788,6 +1841,15 @@
 <span class="md-ellipsis">
       
         Mapping to the Control Catalogue
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#open-design-decisions">
+<span class="md-ellipsis">
+      
+        Open Design Decisions
       
     </span>
 </a>
@@ -2450,6 +2512,46 @@
 </a>
 </li>
 <li class="md-nav__item">
+<a class="md-nav__link" href="#modular-by-design">
+<span class="md-ellipsis">
+      
+        Modular by Design
+      
+    </span>
+</a>
+<nav aria-label="Modular by Design" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#module-classes">
+<span class="md-ellipsis">
+      
+        Module classes
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#four-planes">
+<span class="md-ellipsis">
+      
+        Four planes
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#the-module-catalogue">
+<span class="md-ellipsis">
+      
+        The module catalogue
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
 <a class="md-nav__link" href="#the-target-state">
 <span class="md-ellipsis">
       
@@ -2472,14 +2574,14 @@
 </nav>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#component-by-component">
+<a class="md-nav__link" href="#module-by-module">
 <span class="md-ellipsis">
       
-        Component by Component
+        Module by Module
       
     </span>
 </a>
-<nav aria-label="Component by Component" class="md-nav">
+<nav aria-label="Module by Module" class="md-nav">
 <ul class="md-nav__list">
 <li class="md-nav__item">
 <a class="md-nav__link" href="#1-prove-who-is-asking">
@@ -2609,6 +2711,19 @@
       
     </span>
 </a>
+<nav aria-label="The Evidence Record" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#the-job-id-and-evidence-contract">
+<span class="md-ellipsis">
+      
+        The Job ID and evidence contract
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
 </li>
 <li class="md-nav__item">
 <a class="md-nav__link" href="#ai-triggered-automation">
@@ -2624,6 +2739,15 @@
 <span class="md-ellipsis">
       
         Mapping to the Control Catalogue
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#open-design-decisions">
+<span class="md-ellipsis">
+      
+        Open Design Decisions
       
     </span>
 </a>
@@ -2666,42 +2790,306 @@
 <p>Starting there is deliberate. Defining the destination first is what lets you make the reductions honestly. A team that starts from what it already has tends to draw an architecture around it, and then cannot tell which of its gaps are acceptable and which one is the next incident. The <a href="../adoption-profiles/">adoption profiles</a> are those reductions, made on purpose.</p>
 <div class="admonition tip">
 <p class="admonition-title">Responsibilities, not products</p>
-<p>As with the <a href="../../../standards/reference-architecture/">Governed Automation Reference Architecture</a>, every component below is named for what it must establish. A policy engine, a vault, a pipeline, or a runner you already own may fill several of them. A component nobody owns is the finding. The <a href="../worked-example-azure-cisco/">worked example</a> shows one complete mapping onto real products.</p>
+<p>As with the <a href="../../../standards/reference-architecture/">Governed Automation Reference Architecture</a>, every module below is named for what it must establish. A policy engine, a vault, a pipeline, or a runner you already own may fill several of them. A module nobody owns is the finding. The <a href="../worked-example-azure-cisco/">worked example</a> shows one complete mapping onto real products.</p>
 </div>
+<hr/>
+<h2 id="modular-by-design">Modular by Design<a class="headerlink" href="#modular-by-design" title="Anchor link to this section">¶</a></h2>
+<div class="admonition quote">
+<p class="admonition-title">The design principle</p>
+<p><strong>The security properties are mandatory. The products implementing them are replaceable.</strong></p>
+</div>
+<p>The architecture is eighteen modules joined by contracts. Each module consumes and produces something defined — a canonical request, a decision, a scoped credential, a validation result, an evidence event — rather than depending on the product next to it. That is what lets a module be swapped or removed without breaking the workflow. Replace the product behind a module, and as long as the replacement honours the same contract, nothing on either side of it has to change.</p>
+<p>There are three kinds of change, and each has a rule:</p>
+<table>
+<thead>
+<tr>
+<th>Change</th>
+<th>Allowed for</th>
+<th>Rule</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Swap the product</strong></td>
+<td>Every module</td>
+<td>The replacement honours the same inputs, outputs, policy, and evidence contracts</td>
+</tr>
+<tr>
+<td><strong>Omit when not triggered</strong></td>
+<td>Conditional modules</td>
+<td>Only while the condition that requires the module does not apply, and the reason is recorded</td>
+</tr>
+<tr>
+<td><strong>Remove entirely</strong></td>
+<td>Optional modules</td>
+<td>The change in assurance or functionality is recorded, and anything the trust decision relied on is still established another way</td>
+</tr>
+</tbody>
+</table>
+<h3 id="module-classes">Module classes<a class="headerlink" href="#module-classes" title="Anchor link to this section">¶</a></h3>
+<table>
+<thead>
+<tr>
+<th>Class</th>
+<th>Meaning</th>
+<th>Can it be removed?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>● Core</strong></td>
+<td>A required capability. Its implementation is replaceable</td>
+<td>No</td>
+</tr>
+<tr>
+<td><strong>◆ Conditional</strong></td>
+<td>Required when the execution scenario triggers it</td>
+<td>Only when its condition does not apply</td>
+</tr>
+<tr>
+<td><strong>○ Optional</strong></td>
+<td>An additional integration, assurance, or operational capability</td>
+<td>Yes, with the impact recorded</td>
+</tr>
+</tbody>
+</table>
+<p>A core module can be replaced but never removed. A deployment without a trust gateway, a network boundary, independent validation, or evidence is not a smaller version of this architecture. It is a different one.</p>
+<div class="admonition note">
+<p class="admonition-title">Conformance</p>
+<p>A deployment conforms when every core module exists, every applicable conditional requirement is satisfied, every optional omission is explicit, and every replacement honours the same inputs, outputs, policy, and evidence contracts. It also keeps all <a href="../#ten-invariants">ten invariants</a> and the <a href="#10-keep-trust-withdrawable">controls that keep trust withdrawable</a>: removing a module never removes the property an invariant protects.</p>
+</div>
+<p>Leaving out an optional module is a recorded decision, not an oversight. Where a workload's <a href="#risk-classes-and-what-the-gateway-demands">risk class</a> would call for the module, its absence is an <a href="../../../production-grade-network-automation-principles/exception-and-waiver-process/">exception</a>, with an owner and an expiry.</p>
+<h3 id="four-planes">Four planes<a class="headerlink" href="#four-planes" title="Anchor link to this section">¶</a></h3>
+<p>The modules fall into four planes, each answering one question.</p>
+<table>
+<thead>
+<tr>
+<th>Plane</th>
+<th>Question</th>
+<th>Modules</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Control</strong></td>
+<td>Should this happen?</td>
+<td>Request, requester identity, intent, source of truth, change governance, artefact trust, and the trust gateway's decision</td>
+</tr>
+<tr>
+<td><strong>Execution</strong></td>
+<td>How can it happen safely?</td>
+<td>Orchestration, the execution environment, workload identity, secrets, the network boundary, device authorisation, and target adapters</td>
+</tr>
+<tr>
+<td><strong>Validation</strong></td>
+<td>Did reality become the approved intent?</td>
+<td>Independent observation, comparison with intent, and outcome handling</td>
+</tr>
+<tr>
+<td><strong>Observability and evidence</strong></td>
+<td>Can we prove what happened?</td>
+<td>Job-ID correlation across application events, decisions, AAA accounting, device logs, platform logs, and validation results</td>
+</tr>
+</tbody>
+</table>
+<p>The fourth plane spans the other three. Evidence is not a step at the end; every module contributes to it.</p>
+<h3 id="the-module-catalogue">The module catalogue<a class="headerlink" href="#the-module-catalogue" title="Anchor link to this section">¶</a></h3>
+<p>Each module sits under one of the <a href="../#the-model-in-nine-sentences">nine sentences</a>. Workload identity serves two of them: it is an input to the decision, and it is how the workload later proves itself to the secrets broker.</p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Module</th>
+<th>Class</th>
+<th>Plane</th>
+<th>Sentence</th>
+<th>Must establish</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><strong>Request / Trigger</strong></td>
+<td>● Core</td>
+<td>Control</td>
+<td>1</td>
+<td>A controlled entry point. Every route converges on one execution contract</td>
+</tr>
+<tr>
+<td>2</td>
+<td><strong>Caller / Requester Identity</strong></td>
+<td>◆ Conditional</td>
+<td>Control</td>
+<td>1</td>
+<td>Who or what originated the request. The mechanism is conditional; attribution is not</td>
+</tr>
+<tr>
+<td>3</td>
+<td><strong>Intent Normalisation</strong></td>
+<td>● Core</td>
+<td>Control</td>
+<td>4</td>
+<td>One canonical request schema, a classified operation, and the Job ID</td>
+</tr>
+<tr>
+<td>4</td>
+<td><strong>Source of Truth</strong></td>
+<td>○ Optional</td>
+<td>Control</td>
+<td>5</td>
+<td>Authoritative facts about targets. If absent, those facts are still established another way</td>
+</tr>
+<tr>
+<td>5</td>
+<td><strong>Change Governance / Approval</strong></td>
+<td>◆ Conditional</td>
+<td>Control</td>
+<td>4</td>
+<td>Change record, approval, risk, and window, when policy requires them</td>
+</tr>
+<tr>
+<td>6</td>
+<td><strong>Artefact Trust</strong></td>
+<td>● Core</td>
+<td>Control</td>
+<td>2, 3</td>
+<td>Exactly what will run, and that it is an approved release</td>
+</tr>
+<tr>
+<td>7</td>
+<td><strong>Trust Gateway / Policy Decision</strong></td>
+<td>● Core</td>
+<td>Control</td>
+<td>4</td>
+<td>Whether privilege may be exercised: allow, deny, or escalate, with reasons</td>
+</tr>
+<tr>
+<td>8</td>
+<td><strong>Orchestration</strong></td>
+<td>○ Optional</td>
+<td>Execution</td>
+<td>7</td>
+<td>Workflow, dependencies, scheduling, and dispatch. Never the trust decision</td>
+</tr>
+<tr>
+<td>9</td>
+<td><strong>Controlled Execution Environment</strong></td>
+<td>● Core</td>
+<td>Execution</td>
+<td>7</td>
+<td>An isolated, reproducible, least-privileged runtime</td>
+</tr>
+<tr>
+<td>10</td>
+<td><strong>Workload / Machine Identity</strong></td>
+<td>◆ Conditional</td>
+<td>Execution</td>
+<td>1, 6</td>
+<td>An attributable runtime identity, distinct from the requester's</td>
+</tr>
+<tr>
+<td>11</td>
+<td><strong>Secret / PKI Broker</strong></td>
+<td>◆ Conditional</td>
+<td>Execution</td>
+<td>6</td>
+<td>Credentials, certificates, or keys, released only after an allow</td>
+</tr>
+<tr>
+<td>12</td>
+<td><strong>Network Boundary</strong></td>
+<td>● Core</td>
+<td>Execution</td>
+<td>5</td>
+<td>Reachability restricted to the approved targets and supporting services</td>
+</tr>
+<tr>
+<td>13</td>
+<td><strong>Device AAA / Authorisation</strong></td>
+<td>○ Optional</td>
+<td>Execution</td>
+<td>5</td>
+<td>A target-side check on who may run what, with accounting</td>
+</tr>
+<tr>
+<td>14</td>
+<td><strong>Target Adapter</strong></td>
+<td>● Core</td>
+<td>Execution</td>
+<td>7</td>
+<td>Approved, platform-neutral intent translated into the target's protocol or API</td>
+</tr>
+<tr>
+<td>15</td>
+<td><strong>Target System</strong></td>
+<td>● Core</td>
+<td>Execution</td>
+<td>7</td>
+<td>The managed system itself, and the controls it contributes</td>
+</tr>
+<tr>
+<td>16</td>
+<td><strong>Independent Validation</strong></td>
+<td>● Core</td>
+<td>Validation</td>
+<td>8</td>
+<td>Observed state compared with approved intent, independently of the executor</td>
+</tr>
+<tr>
+<td>17</td>
+<td><strong>Outcome / Failure Handling</strong></td>
+<td>● Core</td>
+<td>Validation</td>
+<td>8</td>
+<td>An explicit terminal state, and the operation's declared rollback, halt, or escalation</td>
+</tr>
+<tr>
+<td>18</td>
+<td><strong>Observability &amp; Evidence</strong></td>
+<td>● Core</td>
+<td>Observability and evidence</td>
+<td>9</td>
+<td>A correlated record of the whole transaction, reconstructable by Job ID</td>
+</tr>
+</tbody>
+</table>
+<p>Eleven core, four conditional, three optional. In the target state on this page all eighteen are present, including the optional ones. The <a href="../adoption-profiles/">adoption profiles</a> are where you decide which conditional and optional modules each workload needs, and how strongly each module is enforced.</p>
 <hr/>
 <h2 id="the-target-state">The Target State<a class="headerlink" href="#the-target-state" title="Anchor link to this section">¶</a></h2>
 <pre class="mermaid"><code>graph TD
-    RQ[Author · Approver · CI · Scheduler · Agent] --&gt; ID[Requester identity&lt;br/&gt;MFA or attestation]
-    ID --&gt; GW[Execution gateway&lt;br/&gt;policy enforcement point]
-    GW --&gt; WI[Workload identity&lt;br/&gt;+ attestation]
-    GW --&gt; AT[Artefact trust&lt;br/&gt;+ provenance]
-    GW --&gt; CX[Context and risk&lt;br/&gt;+ target scope]
-    WI --&gt; PD[Policy decision service&lt;br/&gt;default DENY · explicit ALLOW]
-    AT --&gt; PD
-    CX --&gt; PD
-    PD --&gt;|approved request| PB[Just-in-time privilege broker&lt;br/&gt;workload credential issuer]
-    PB --&gt;|short-lived authority| RN[Ephemeral, isolated runner]
-    RN --&gt; SOT[Source of truth]
-    RN --&gt; TG[Target systems]
-    SOT --&gt; VA[Independent validation]
-    TG --&gt; VA
-    VA --&gt; EV[Telemetry + protected evidence]
-    EV --&gt; SI[SIEM · review · response]
+    RQ[1 Request / trigger&lt;br/&gt;person · pipeline · scheduler · agent] --&gt; ID[2 Requester identity]
+    ID --&gt; IN[3 Intent normalisation&lt;br/&gt;canonical request · Job ID]
+    IN --&gt; GW[7 Trust gateway&lt;br/&gt;default DENY · explicit ALLOW]
+    SOT[4 Source of truth] --&gt; GW
+    CG[5 Change governance] --&gt; GW
+    AT[6 Artefact trust&lt;br/&gt;signature · provenance] --&gt; GW
+    GW --&gt;|ALLOW| OR[8 Orchestration&lt;br/&gt;optional · behind the gateway]
+    GW -.-&gt;|or direct dispatch| RN
+    OR --&gt; RN[9 Controlled execution environment&lt;br/&gt;10 workload identity]
+    RN --&gt;|only after allow| SB[11 Secret / PKI broker&lt;br/&gt;scoped · short-lived]
+    RN --&gt; AD[14 Target adapter]
+    AD --&gt; NB[12 Network boundary]
+    NB --&gt; AAA[13 Device AAA&lt;br/&gt;optional]
+    AAA --&gt; TG[15 Target systems]
+    TG --&gt; VA[16 Independent validation]
+    VA --&gt; OH[17 Outcome handling&lt;br/&gt;confirm · roll back · halt · escalate]
+    OH --&gt; EV[18 Observability and evidence&lt;br/&gt;correlated by Job ID]
 
     style GW fill:#c8e6c9
-    style PD fill:#c8e6c9
-    style PB fill:#ffe0e0
+    style SB fill:#ffe0e0
     style RN fill:#fff4e6
     style VA fill:#e1f5ff
+    style OH fill:#e1f5ff
     style EV fill:#eeeeee</code></pre>
-<p>Look at where the privilege broker sits: below the policy decision. In most estates it is effectively at the top, because the credential exists before anyone has asked for anything.</p>
+<p>Evidence is drawn once, at the end, for readability. In practice every module above writes to it, tagged with the same Job ID.</p>
+<p>Look at where the secrets broker sits: below the trust gateway. In most estates it is effectively at the top, because the credential exists before anyone has asked for anything.</p>
 <p>Two structural rules fall out of the diagram:</p>
 <ul>
-<li><strong>There is one way in.</strong> If a caller can reach the same credential or the same target by another route, the gateway is advisory. Bypass paths are found and closed, not documented.</li>
+<li><strong>There is one way in.</strong> If a caller can reach the same credential or the same target by another route — a second trigger, an orchestrator's own interface, a direct login — the gateway is advisory. Bypass paths are found and closed, not documented.</li>
 <li><strong>The decision is not made by the thing being decided about.</strong> The workload supplies evidence. It never evaluates it.</li>
 </ul>
 <h3 id="the-publication-path">The publication path<a class="headerlink" href="#the-publication-path" title="Anchor link to this section">¶</a></h3>
-<p>Runtime verification is only as meaningful as the evidence it verifies. The gateway can check a signature and a provenance record at execution time, but only if something trustworthy produced them earlier.</p>
+<p>Runtime verification is only as meaningful as the evidence it verifies. The gateway can check a signature and a provenance record at execution time, but only if something trustworthy produced them earlier. This is the inside of module 6.</p>
 <pre class="mermaid"><code>graph LR
     A[Reviewed source] --&gt; B[Controlled repository]
     B --&gt; C[Controlled build&lt;br/&gt;tests · security checks]
@@ -2713,27 +3101,32 @@
     style F fill:#fff4e6</code></pre>
 <p><a href="https://slsa.dev/provenance/">SLSA</a> defines provenance as verifiable information about where, when, and how an artefact was produced. Its <a href="https://slsa.dev/spec/v1.2/verifying-artifacts">verification guidance</a> checks that information against trusted builder identities and expected build parameters, rather than accepting the presence of metadata as proof. That distinction matters here. A provenance record nobody verifies is decoration.</p>
 <hr/>
-<h2 id="component-by-component">Component by Component<a class="headerlink" href="#component-by-component" title="Anchor link to this section">¶</a></h2>
-<p>Twenty-four components, grouped under the <a href="../#the-model-in-nine-sentences">nine sentences</a> from the overview, plus a tenth group for keeping trust withdrawable once it has been given.</p>
+<h2 id="module-by-module">Module by Module<a class="headerlink" href="#module-by-module" title="Anchor link to this section">¶</a></h2>
+<p>The eighteen modules, grouped under the <a href="../#the-model-in-nine-sentences">nine sentences</a> from the overview, plus a tenth group of cross-cutting controls for keeping trust withdrawable once it has been given. Where a module carries several requirements, each gets its own row.</p>
 <h3 id="1-prove-who-is-asking">1. Prove who is asking<a class="headerlink" href="#1-prove-who-is-asking" title="Anchor link to this section">¶</a></h3>
 <table>
 <thead>
 <tr>
-<th>Component</th>
+<th>Module</th>
 <th>Why it exists</th>
 <th>Target state</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><strong>Requester identity</strong> — who or what started the run</td>
-<td>Without it, an approved workload becomes a generic privileged back door. The same artefact can be acceptable when one principal invokes it and unacceptable when another does</td>
-<td>Strong authentication, a non-repudiable request identifier, role and entitlement context, and approval context where it applies</td>
+<td><strong>1. Request / Trigger</strong> ● — the controlled entry point</td>
+<td>Every separate route into execution is a separate boundary to secure. A portal, an API, a scheduler, and an agent with their own paths to the runner are four gateways, not one</td>
+<td>One controlled entry contract that every route — ITSM, API, webhook, scheduler, Git event, agent — converges on. The Job ID is issued at acceptance and carried downstream</td>
 </tr>
 <tr>
-<td><strong>Workload identity</strong> — the automation's own identity, distinct from the requester's</td>
+<td><strong>2. Requester identity</strong> ◆ — who or what started the run</td>
+<td>Without it, an approved workload becomes a generic privileged back door. The same artefact can be acceptable when one principal invokes it and unacceptable when another does</td>
+<td>Strong authentication, a non-repudiable request identifier, role and entitlement context, and approval context where it applies. The mechanism is conditional — a person signs in, a scheduler presents a trusted event identity — but attribution is never optional</td>
+</tr>
+<tr>
+<td><strong>10. Workload identity</strong> ◆ — the automation's own identity, distinct from the requester's</td>
 <td>Authenticating the requester does not identify the code exercising privilege. Separating the two lets policy say <em>Alice may request the audit workload, and the audit workload may only read</em></td>
-<td>A stable workload identifier; in mature implementations, a short-lived cryptographic identity. <a href="https://spiffe.io/docs/latest/spiffe-about/overview/">SPIFFE</a> is one standard built for exactly this</td>
+<td>A stable workload identifier; in mature implementations, a short-lived cryptographic identity. <a href="https://spiffe.io/docs/latest/spiffe-about/overview/">SPIFFE</a> is one standard built for exactly this. Conditional on the runtime and the resources it reaches: where no dedicated mechanism applies, the workload is still identified by its verified manifest and digest, never by its path or host</td>
 </tr>
 </tbody>
 </table>
@@ -2742,100 +3135,112 @@
 <table>
 <thead>
 <tr>
-<th>Component</th>
+<th>Module</th>
 <th>Why it exists</th>
 <th>Target state</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><strong>Artefact identity</strong> — exactly which executable content is proposed, as an immutable version</td>
+<td><strong>6. Artefact Trust</strong> ● — artefact identity: exactly which executable content is proposed, as an immutable version</td>
 <td>Names and paths are mutable labels. Policy has to reason about something that cannot change underneath it</td>
 <td>Manifest metadata plus a cryptographic digest; in mature designs, the digest is bound to signed provenance and a release identity</td>
 </tr>
 <tr>
-<td><strong>Artefact signing</strong> — that an authorised publisher or release process produced it</td>
+<td><strong>6. Artefact Trust</strong> — artefact signing: that an authorised publisher or release process produced it</td>
 <td>A digest detects change against an expected value. It does not, by itself, say who approved or produced the artefact</td>
 <td>A trusted signing identity, a protected signing mechanism, rotation and revocation, and verification at the execution boundary, not only at publication</td>
 </tr>
 </tbody>
 </table>
 <p>This is the <a href="../../../production-grade-network-automation-principles/remediation-packs/#immutability-and-the-checksum">remediation pack</a> argument applied to code rather than to a change. A checksum over a pack proves the change is the one that was approved. A digest and a signature over the workload prove the code applying it is the one that was reviewed. Most estates have neither, and the ones that have the first rarely have the second.</p>
+<p>Source control alone is not this module. Build, test, promotion, and integrity evidence all belong to it.</p>
 <h3 id="3-establish-where-it-came-from">3. Establish where it came from<a class="headerlink" href="#3-establish-where-it-came-from" title="Anchor link to this section">¶</a></h3>
 <table>
 <thead>
 <tr>
-<th>Component</th>
+<th>Module</th>
 <th>Why it exists</th>
 <th>Target state</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><strong>Build provenance</strong> — where the artefact came from and how it was produced</td>
+<td><strong>6. Artefact Trust</strong> — build provenance: where the artefact came from and how it was produced</td>
 <td>A valid signature is stronger when you can also verify the source, builder, and build parameters behind it</td>
 <td>Signed provenance and an enforced verifier, checked against trusted builder identities and expected build inputs</td>
 </tr>
 <tr>
-<td><strong>Dependency evidence</strong> — what the workload inherits</td>
+<td><strong>6. Artefact Trust</strong> — dependency evidence: what the workload inherits</td>
 <td>Approved first-party code still inherits the risk of everything it imports. Artefact trust cannot be a hash of the top-level script alone</td>
 <td>Locked dependencies, vulnerability and policy checks, an SBOM or equivalent dependency evidence, and controlled package sources</td>
 </tr>
 </tbody>
 </table>
-<p>In most network automation the top-level script is a few hundred lines and the dependency tree is tens of thousands. Signing the script and ignoring the tree verifies the part least likely to be the problem. The <a href="../../../standards/python-engineering-standard/">Python Engineering Standard</a> sets the dependency bar this component verifies.</p>
+<p>In most network automation the top-level script is a few hundred lines and the dependency tree is tens of thousands. Signing the script and ignoring the tree verifies the part least likely to be the problem. The <a href="../../../standards/python-engineering-standard/">Python Engineering Standard</a> sets the dependency bar this module verifies.</p>
 <h3 id="4-decide-what-it-may-do">4. Decide what it may do<a class="headerlink" href="#4-decide-what-it-may-do" title="Anchor link to this section">¶</a></h3>
 <table>
 <thead>
 <tr>
-<th>Component</th>
+<th>Module</th>
 <th>Why it exists</th>
 <th>Target state</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><strong>Execution gateway</strong> — the enforcement point every privileged run must enter through</td>
+<td><strong>3. Intent Normalisation</strong> ● — every request converted into one canonical form</td>
+<td>Policy can only reason about what it can parse. If each trigger's own format reaches the decision, every format is a separate parser to get right and a separate way to slip a request past it</td>
+<td>One canonical execution-request schema and operation taxonomy. Fields are validated, the operation is classified, and malformed or unclassifiable requests are rejected before any decision. Downstream modules depend on this contract, never on the original trigger</td>
+</tr>
+<tr>
+<td><strong>7. Trust Gateway</strong> ● — enforcement: the point every privileged run must enter through</td>
 <td>If a caller can bypass the runner and use the same credential, or reach the same target directly, the architecture is advisory rather than enforcing</td>
-<td>A mandatory gateway that validates evidence, obtains a decision, provisions execution, and refuses bypass paths</td>
+<td>A mandatory gateway that validates evidence, obtains a decision, provisions execution, and refuses bypass paths. An orchestrator, if present, sits behind it</td>
 </tr>
 <tr>
-<td><strong>Policy decision service</strong> — whether this subject, workload, operation, target, and context are authorised now</td>
+<td><strong>7. Trust Gateway</strong> — policy decision: whether this subject, workload, operation, target, and context are authorised now</td>
 <td>Identity answers <em>who</em> and <em>what</em>. Policy answers <em>may this happen now?</em> Keeping policy outside the workload lets authorisation change without changing the code</td>
-<td>Default deny, explicit and versioned policy, an explainable reason for every decision, and protected decision evidence where it matters</td>
+<td>Default deny, explicit and versioned policy, a machine-readable allow, deny, or escalate result with reason codes for every decision, and protected decision evidence</td>
 </tr>
 <tr>
-<td><strong>Policy context</strong> — the facts the decision is made from</td>
+<td><strong>7. Trust Gateway</strong> — policy context: the facts the decision is made from</td>
 <td>A policy engine cannot make a good decision from untrusted or stale inputs</td>
 <td>Authoritative identity and source-of-truth data, integrity-protected context, freshness limits, and fail-closed handling when a mandatory signal is missing</td>
 </tr>
 <tr>
-<td><strong>Human approval</strong> — an independent human decision where risk warrants it</td>
+<td><strong>5. Change Governance / Approval</strong> ◆ — an independent human decision where risk warrants it</td>
 <td>Zero-touch is not always the right outcome. Destructive, exceptional, or broad changes justify separation of duties and explicit review</td>
-<td>The <a href="#risk-classes-and-what-the-gateway-demands">risk class</a> decides when approval is mandatory. The approval is bound to the artefact, operation, scope, and window, never a reusable blanket permission</td>
+<td>The <a href="#risk-classes-and-what-the-gateway-demands">risk class</a> decides when approval is mandatory, and from R3 upward it always is. The approval is bound to the artefact, operation, scope, and window, never a reusable blanket permission. Conditional on policy: a read-only or low-risk operation may legitimately need none</td>
 </tr>
 </tbody>
 </table>
 <p>This is where <em>identity is not capability</em> is enforced. A request names the capability it wants, and policy grants or refuses that capability specifically. A verified compliance workload asking to reload a device is not a trusted workload doing something slightly unusual. It is a known workload making an unauthorised request, and the gateway has to be able to tell the difference.</p>
+<p>The gateway can be one service, or an enforcement point in front of a separate decision engine. Either way it is one module with one contract, which is what lets the decision engine be swapped without anything upstream or downstream noticing.</p>
 <h3 id="5-constrain-where-it-may-do-it">5. Constrain where it may do it<a class="headerlink" href="#5-constrain-where-it-may-do-it" title="Anchor link to this section">¶</a></h3>
 <table>
 <thead>
 <tr>
-<th>Component</th>
+<th>Module</th>
 <th>Why it exists</th>
 <th>Target state</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><strong>Authoritative source of truth</strong> — what a target is, who owns it, and which scope it belongs to</td>
+<td><strong>4. Source of Truth</strong> ○ — what a target is, who owns it, and which scope it belongs to</td>
 <td>Text supplied by the caller must not be able to redefine what a target is, or whether it is in scope</td>
-<td>Validated inventory with <a href="../../../production-grade-network-automation-principles/trust-boundaries-around-your-source-of-truth/">trust boundaries</a>, ownership, and environment classification</td>
+<td>Validated inventory with <a href="../../../production-grade-network-automation-principles/trust-boundaries-around-your-source-of-truth/">trust boundaries</a>, ownership, and environment classification. Optional as a separate system, but not as a set of facts: without one, what a target is and whether it is in scope still come from a protected source, such as a reviewed allow-list</td>
 </tr>
 <tr>
-<td><strong>Network and target enforcement</strong> — what the workload can physically reach, not only what policy says it may target</td>
-<td>Application policy is stronger when network reachability and target-side authorisation reinforce it. A policy bug should not mean unrestricted reach</td>
-<td>Segmentation, management-plane restrictions, explicit egress, and target-side RBAC or ACLs</td>
+<td><strong>12. Network Boundary</strong> ● — what the workload can physically reach</td>
+<td>Application policy is stronger when reachability reinforces it. Automation should not receive arbitrary reachability because it is trusted software, and a policy bug should not mean unrestricted reach</td>
+<td>Default-deny segmentation and explicit egress for each execution environment, management-plane restrictions on the targets, and private access to supporting services</td>
+</tr>
+<tr>
+<td><strong>13. Device AAA / Authorisation</strong> ○ — a target-side check that does not depend on the automation stack</td>
+<td>If everything upstream is wrong, the device should still refuse commands the workload's role was never given, and record the ones it ran</td>
+<td>Per-role or per-capability device identities, command authorisation, and accounting held off the device. Without an AAA platform, local device RBAC is a lower-assurance compensating control, and the absence is recorded as an assurance reduction. The platform can be removed; target-side least privilege cannot</td>
 </tr>
 </tbody>
 </table>
@@ -2845,21 +3250,21 @@
 <table>
 <thead>
 <tr>
-<th>Component</th>
+<th>Module</th>
 <th>Why it exists</th>
 <th>Target state</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><strong>Just-in-time, scoped privilege</strong> — authority created only after an allow, bounded in scope and lifetime</td>
+<td><strong>11. Secret / PKI Broker</strong> ◆ — just-in-time, scoped privilege: authority created only after an allow, bounded in scope and lifetime</td>
 <td>Standing credentials make the runner and the workload worth compromising. Delayed, time-bounded authority shrinks both the opportunity and the blast radius</td>
-<td>Short-lived tokens or certificates, or brokered secrets, with narrow permissions, target restrictions, and automatic expiry or revocation where the platform supports it</td>
+<td>Short-lived tokens or certificates, or brokered secrets, with narrow permissions, target restrictions, and automatic expiry or revocation where the platform supports it. The workload proves itself to the broker with its own identity (module 10)</td>
 </tr>
 <tr>
-<td><strong>Secrets handling</strong> — credential material kept out of source, logs, and persistent workload state</td>
+<td><strong>11. Secret / PKI Broker</strong> — secrets handling: credential material kept out of source, logs, and persistent workload state</td>
 <td>Trusting the artefact does not make leaking a secret acceptable. An exposed secret lets someone skip every future policy decision</td>
-<td>An external secrets or PAM platform, retrieval only after allow, in-memory or platform-native delivery, redaction, and rotation</td>
+<td>An external secrets or PAM platform, retrieval only after allow, in-memory or platform-native delivery, redaction, and rotation. Conditional: a genuinely secretless, federated path does not add a vault retrieval to satisfy the diagram</td>
 </tr>
 </tbody>
 </table>
@@ -2868,26 +3273,41 @@
 <table>
 <thead>
 <tr>
-<th>Component</th>
+<th>Module</th>
 <th>Why it exists</th>
 <th>Target state</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><strong>Isolated, ephemeral runner</strong> — a clean, constrained environment for each run</td>
-<td>A long-lived runner accumulates state, credentials, tools, and eventually compromise. Isolation stops one run or workload interfering with another</td>
-<td>An ephemeral VM, container, or sandbox from a hardened base image, with a restricted filesystem, controlled egress, clean teardown, and runner attestation where available</td>
+<td><strong>8. Orchestration</strong> ○ — workflow, dependencies, scheduling, and dispatch</td>
+<td>Real changes have dependencies, schedules, and multi-step workflows, and an orchestrator coordinates them well. It is also a powerful system that can start jobs, which makes it a candidate second way in</td>
+<td>If present, it sits behind the gateway and accepts work only from it. Its own interface, credentials, and schedules cannot start privileged execution, and the trust decision stays with the gateway. If absent, the gateway dispatches directly</td>
 </tr>
 <tr>
-<td><strong>Pre-flight validation</strong> — prerequisites confirmed before any write begins</td>
+<td><strong>9. Controlled Execution Environment</strong> ● — a clean, constrained environment for each run</td>
+<td>A long-lived runner accumulates state, credentials, tools, and eventually compromise. Isolation stops one run or workload interfering with another</td>
+<td>An ephemeral, reproducible VM, container, or sandbox from a hardened base image, with a restricted filesystem, controlled egress, least privilege, clean teardown, and runner attestation where available</td>
+</tr>
+<tr>
+<td><strong>Pre-flight validation</strong> — a requirement on modules 9 and 14</td>
 <td>An authorised change can still be unsafe when the target is unhealthy, unexpected, unreachable, or already changed</td>
 <td>Identity, reachability, platform and version, state and capacity, window, and drift checks — see <a href="../../../production-grade-network-automation-principles/pre-flight-checks-failing-fast-before-making-changes/">Pre-Flight Checks</a></td>
 </tr>
 <tr>
-<td><strong>Execution safeguards</strong> — blast radius bounded during the run</td>
+<td><strong>Execution safeguards</strong> — a requirement on modules 8, 9, and 14</td>
 <td>Approved automation still contains defects, and still meets production state nobody predicted</td>
-<td>Canaries and batches, concurrency limits, <a href="../../../tutorials/expert/circuit-breakers-backpressure-network-automation/">circuit breakers</a>, timeouts, idempotency, dry-run where supported, stop conditions, and a chosen rollback strategy</td>
+<td>Canaries and batches, concurrency limits, <a href="../../../tutorials/expert/circuit-breakers-backpressure-network-automation/">circuit breakers</a>, timeouts, idempotency, dry-run where supported, stop conditions, and a rollback strategy chosen before the run</td>
+</tr>
+<tr>
+<td><strong>14. Target Adapter</strong> ● — approved intent translated into the target's protocol or API</td>
+<td>If policy reasons in device command text, it cannot be platform-neutral, and a named operation quietly becomes free-form commands. A stable adapter contract keeps transport and vendor detail out of the policy layer</td>
+<td>A defined interface per operation, with pluggable adapters for the CLI, NETCONF, RESTCONF, controllers, and other APIs. Adapters accept only named operations from approved intent, and model-driven access is governed as strictly as the CLI</td>
+</tr>
+<tr>
+<td><strong>15. Target System</strong> ● — the managed system itself</td>
+<td>The target is part of the boundary, not outside it. Its own controls — confirmed commits, management-plane restrictions, local accounting — still work when everything upstream has failed</td>
+<td>Open-ended target types: switches, routers, controllers, DDI, firewalls, cloud and other managed APIs. Each platform's controls are known, enabled, and tested at the software release you run</td>
 </tr>
 </tbody>
 </table>
@@ -2896,42 +3316,48 @@
 <table>
 <thead>
 <tr>
-<th>Component</th>
+<th>Module</th>
 <th>Why it exists</th>
 <th>Target state</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><strong>Independent post-execution validation</strong> — the resulting state, evaluated separately from the code that produced it</td>
+<td><strong>16. Independent Validation</strong> ● — the resulting state, evaluated separately from the code that produced it</td>
 <td>An exit code of zero does not prove the infrastructure is correct. Asking the actor that made a change to grade its own work is not validation</td>
-<td>Structured state collection, expected-versus-observed assertions (pyATS and Genie, or equivalent, in network environments), health checks, and clear pass or fail evidence</td>
+<td>Structured state collection and expected-versus-observed assertions (pyATS and Genie, or equivalent, in network environments), health checks, and a result of PASS, FAIL, DRIFT, or UNKNOWN — or PARTIAL, where some targets passed and others did not. UNKNOWN never counts as PASS. Validation uses lower privilege than the change path, ideally read-only</td>
+</tr>
+<tr>
+<td><strong>17. Outcome / Failure Handling</strong> ● — results turned into an explicit terminal state</td>
+<td>A failed validation that only becomes a log line has changed nothing. A rollback decided in the moment, under pressure, is a rollback improvised</td>
+<td>Every run ends in an explicit, machine-readable terminal state. Each operation declares in advance whether rollback is safe for it, because automatic rollback is not universal; where it is not, the run halts and escalates. Change and incident records are updated with the outcome</td>
 </tr>
 </tbody>
 </table>
 <p>Independence is the part that is easy to drop. A deployment script that runs its own checks at the end is better than one that runs none, but it shares every assumption, every parser, and every bug with the code it is checking. The capstone pipeline keeps the two apart for exactly this reason. <a href="../../../tutorials/capstone/06-proving-the-change-with-pyats/">Proving the Change with PyATS</a> is built around a deploy that succeeded and an uplink that is down.</p>
+<p>Outcome handling is where the invariant <em>failures are explicit</em> is enforced. A run that ends in an unrecorded state has failed silently, whatever its exit code says.</p>
 <h3 id="9-prove-what-happened">9. Prove what happened<a class="headerlink" href="#9-prove-what-happened" title="Anchor link to this section">¶</a></h3>
 <table>
 <thead>
 <tr>
-<th>Component</th>
+<th>Module</th>
 <th>Why it exists</th>
 <th>Target state</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><strong>Evidence and audit record</strong> — the complete decision and execution story</td>
+<td><strong>18. Observability &amp; Evidence</strong> ● — the evidence and audit record: the complete decision and execution story</td>
 <td>Incident response, governance, and learning all depend on knowing what was requested, allowed, executed, and observed</td>
-<td>One correlated record covering every category in <a href="#the-evidence-record">the evidence record</a> below</td>
+<td>One record per run, correlated by its Job ID, covering every field in <a href="#the-evidence-record">the evidence record</a> below. Searching for the Job ID reconstructs the transaction</td>
 </tr>
 <tr>
-<td><strong>Tamper-resistant central evidence</strong> — important records held outside the workload's control</td>
+<td><strong>18. Observability &amp; Evidence</strong> — tamper-resistant central evidence: important records held outside the workload's control</td>
 <td>A compromised workload must not be able to erase the authoritative account of its own execution</td>
 <td>A central evidence service with restricted write semantics, integrity and retention controls, synchronised time, and correlation IDs</td>
 </tr>
 <tr>
-<td><strong>Telemetry, detection, and response</strong> — security and operational behaviour observed and acted on</td>
+<td><strong>18. Observability &amp; Evidence</strong> — telemetry, detection, and response: security and operational behaviour observed and acted on</td>
 <td>Execution trust is not a one-time guarantee. Conditions change during and after the run</td>
 <td>SIEM and monitoring integration, alerts on policy denials, unusual target or scope detection, runner health, credential anomalies, and a response process</td>
 </tr>
@@ -2939,10 +3365,11 @@
 </table>
 <p>Alert on denials. A gateway that refuses quietly is half a control: the refusal protected this run, but the attempt is information, and a pattern of attempts is an investigation. <a href="../../../governed-ai-network-operations/tool-contracts-and-failure-modes/">Tool Contracts and Failure Modes</a> makes the same argument for agents.</p>
 <h3 id="10-keep-trust-withdrawable">10. Keep trust withdrawable<a class="headerlink" href="#10-keep-trust-withdrawable" title="Anchor link to this section">¶</a></h3>
+<p>These are not modules in the catalogue, because each acts across all of them. They are required in every conformant deployment, whatever has been swapped or removed.</p>
 <table>
 <thead>
 <tr>
-<th>Component</th>
+<th>Control</th>
 <th>Why it exists</th>
 <th>Target state</th>
 </tr>
@@ -2965,39 +3392,46 @@
 </tr>
 </tbody>
 </table>
-<p>Break-glass is the component most likely to be skipped and the one most likely to be needed. If you do not design it, it still exists: as a shared admin password in a spreadsheet, discovered during the review after the outage.</p>
+<p>Break-glass is the control most likely to be skipped and the one most likely to be needed. If you do not design it, it still exists: as a shared admin password in a spreadsheet, discovered during the review after the outage.</p>
 <p>It is also not an <a href="../../../production-grade-network-automation-principles/exception-and-waiver-process/">exception</a>. An exception is a planned, time-bound deviation from a control. Break-glass is an unplanned emergency route through one. They need different approvals and leave different evidence.</p>
 <hr/>
 <h2 id="the-policy-decision">The Policy Decision<a class="headerlink" href="#the-policy-decision" title="Anchor link to this section">¶</a></h2>
 <p>The decision is an evaluation of evidence, context, and requested capability, not a single trusted-or-untrusted flag.</p>
 <pre class="highlight"><code class="language-text">decision = f(
+    job_id,
     requester_identity,
     workload_identity,
-    artefact_digest,
+    artifact_digest,
     publisher_and_provenance,
+    operation,                 # from the canonical request
     requested_capability,
     target_identity_and_classification,
     environment,
-    approval_context,
+    change_and_approval_context,
     current_risk_and_posture,
     policy_version,
 )
 
 if mandatory evidence is missing or policy is not satisfied:
-    DENY
+    DENY with reason codes
+elif policy requires a human decision that has not been given:
+    ESCALATE to change governance
 else:
-    ALLOW with constrained capability, scope, and lifetime</code></pre>
-<p><code>ALLOW</code> is never unqualified. An allow carries its constraints with it — which capability, against which targets, for how long — and the privilege broker issues exactly that and no more.</p>
+    ALLOW with constrained capability, scope, and lifetime,
+          bound to this job_id and expiring</code></pre>
+<p><code>ALLOW</code> is never unqualified. An allow carries its constraints with it — which capability, against which targets, for how long — and the secrets broker issues exactly that and no more. It is also bound to one request: a decision cannot be replayed for a different Job ID, and it expires if it is not used.</p>
+<p><code>ESCALATE</code> is not a soft deny. It routes the request to the approval path, and the request comes back to the gateway as a fresh evaluation once a human has decided. An escalation nobody answers expires as a deny.</p>
 <p>The architecture does not prescribe a policy engine. A dedicated decision service, an existing platform's authorisation controls, or a version-controlled policy file evaluated by a trusted runner can each fill the role. What it requires is that the decision is:</p>
 <ul>
 <li><strong>external</strong> to the workload it governs</li>
 <li><strong>reproducible</strong> enough to explain afterwards: the same inputs and the same policy version give the same answer</li>
 <li><strong>enforceable</strong> at the execution boundary, not merely recorded there</li>
+<li><strong>explained</strong>, with reason codes a machine and an auditor can both read</li>
 </ul>
 <p><code>policy_version</code> is an input for the second reason. An auditor asking why a run was allowed in March needs the policy as it stood in March.</p>
 <hr/>
 <h2 id="the-execution-lifecycle">The Execution Lifecycle<a class="headerlink" href="#the-execution-lifecycle" title="Anchor link to this section">¶</a></h2>
-<p>Fourteen stages. The workload holds privilege only between stages 7 and 12.</p>
+<p>Fifteen stages. The workload holds privilege only between stages 7 and 13.</p>
 <table>
 <thead>
 <tr>
@@ -3008,7 +3442,7 @@ else:
 <tbody>
 <tr>
 <td><strong>1. Request</strong></td>
-<td>A human, CI workflow, scheduler, or governed agent submits a request referencing an immutable workload release and an intended target scope</td>
+<td>A human, CI workflow, scheduler, or governed agent submits a request referencing an immutable workload release and an intended target scope. It is normalised into the canonical schema, and the Job ID is issued</td>
 </tr>
 <tr>
 <td><strong>2. Authenticate the requester</strong></td>
@@ -3028,7 +3462,7 @@ else:
 </tr>
 <tr>
 <td><strong>6. Evaluate policy</strong></td>
-<td>Requester, workload, operation, targets, context, and approvals are evaluated. Missing mandatory evidence means deny</td>
+<td>Requester, workload, operation, targets, context, and approvals are evaluated. Missing mandatory evidence means deny. An escalation returns here once a human has decided</td>
 </tr>
 <tr>
 <td><strong>7. Acquire privilege</strong></td>
@@ -3036,7 +3470,7 @@ else:
 </tr>
 <tr>
 <td><strong>8. Prepare the runner</strong></td>
-<td>A constrained environment is created or selected, with only the network and system access it needs</td>
+<td>A constrained environment is created or selected, directly or through the orchestrator, with only the network and system access it needs</td>
 </tr>
 <tr>
 <td><strong>9. Pre-flight</strong></td>
@@ -3044,28 +3478,32 @@ else:
 </tr>
 <tr>
 <td><strong>10. Execute safely</strong></td>
-<td>The operation runs with batching, timeouts, circuit breakers, and stop and rollback criteria matched to its risk</td>
+<td>The operation runs through the target adapter, with batching, timeouts, circuit breakers, and stop and rollback criteria matched to its risk. Device AAA authorises each command where it is present</td>
 </tr>
 <tr>
 <td><strong>11. Validate independently</strong></td>
-<td>A separate validation path gathers state and establishes whether the intended outcome was reached</td>
+<td>A separate validation path gathers state and returns PASS, FAIL, DRIFT, UNKNOWN, or PARTIAL</td>
 </tr>
 <tr>
-<td><strong>12. Close authority</strong></td>
+<td><strong>12. Determine the outcome</strong></td>
+<td>The result becomes an explicit terminal state. The operation's declared rollback, halt, or escalation is applied, and change records are updated</td>
+</tr>
+<tr>
+<td><strong>13. Close authority</strong></td>
 <td>Temporary authority expires or is revoked, and ephemeral execution state is destroyed</td>
 </tr>
 <tr>
-<td><strong>13. Preserve evidence</strong></td>
-<td>Decision, execution, validation, and exception evidence is committed centrally</td>
+<td><strong>14. Preserve evidence</strong></td>
+<td>Decision, execution, validation, outcome, and exception evidence is committed centrally under the Job ID</td>
 </tr>
 <tr>
-<td><strong>14. Observe and respond</strong></td>
+<td><strong>15. Observe and respond</strong></td>
 <td>Telemetry is assessed for policy violations, failures, anomalies, and follow-up</td>
 </tr>
 </tbody>
 </table>
 <p>For a change, the <a href="../../../production-grade-network-automation-principles/remediation-packs/">remediation pack</a> travels with the request at stage 1, and its <a href="../../../production-grade-network-automation-principles/remediation-packs/#revalidation-before-execution">revalidation</a> happens at stage 9.</p>
-<p>Map your current automation onto this table and the usual result is that stages 7, 10, and part of 13 exist, and everything else is implicit. That is not a failing grade. It is the starting position the <a href="../adoption-profiles/">adoption profiles</a> are written for.</p>
+<p>Map your current automation onto this table and the usual result is that stages 7, 10, and part of 14 exist, and everything else is implicit. That is not a failing grade. It is the starting position the <a href="../adoption-profiles/">adoption profiles</a> are written for.</p>
 <hr/>
 <h2 id="risk-classes-and-what-the-gateway-demands">Risk Classes and What the Gateway Demands<a class="headerlink" href="#risk-classes-and-what-the-gateway-demands" title="Anchor link to this section">¶</a></h2>
 <p>The architecture uses the site's existing <a href="../../../production-grade-network-automation-principles/enterprise-control-matrix/#automation-risk-classification">automation risk classes</a> unchanged. Every class goes through the gateway, including read-only work, because a read is still privileged access: <code>show running-config</code> is a read that can expose every credential on a device. What the class changes is how much the gateway demands before it says yes.</p>
@@ -3109,12 +3547,12 @@ else:
 <p><strong>Break-glass is not a class.</strong> Emergency, destructive, or unusually sensitive authority outside these paths goes through the break-glass route described in <a href="#10-keep-trust-withdrawable">group 10</a>, and every use of it is reviewed afterwards.</p>
 <hr/>
 <h2 id="the-evidence-record">The Evidence Record<a class="headerlink" href="#the-evidence-record" title="Anchor link to this section">¶</a></h2>
-<p>A run should be reconstructable as a chain of decisions and outcomes. The schema is yours to choose; the categories are not. Without recording any secret, capture:</p>
+<p>A run should be reconstructable as a chain of decisions and outcomes. Without recording any secret, capture:</p>
 <ul>
-<li>a unique execution and correlation ID</li>
+<li>a unique Job ID, issued at acceptance and used as the correlation ID everywhere</li>
 <li>requester identity, with its authentication and approval context</li>
 <li>workload identity, version, digest, and the result of publisher and provenance verification</li>
-<li>policy version, decision, reason, and the context it evaluated</li>
+<li>policy version, decision, reason codes, and the context it evaluated</li>
 <li>the capability requested and the capability authorised, recorded separately</li>
 <li>resolved target identities with their environment and risk classification</li>
 <li>a reference to the privilege issued — an issuance identifier, never the secret itself</li>
@@ -3122,15 +3560,105 @@ else:
 <li>the pre-flight result</li>
 <li>execution stages and their bounded results</li>
 <li>the independent validation result</li>
-<li>revocation, rollback, and exception events</li>
-<li>start and end timestamps, and the final disposition</li>
+<li>the terminal outcome, and any revocation, rollback, escalation, or exception events</li>
+<li>start and end timestamps</li>
 </ul>
 <p>This extends the <a href="../../../production-grade-network-automation-principles/building-audit-ready-automation/#evidence-model-per-run">per-run evidence model</a> in Building Audit-Ready Automation with the trust decision itself. That page records what the run did. This adds why it was allowed to.</p>
+<h3 id="the-job-id-and-evidence-contract">The Job ID and evidence contract<a class="headerlink" href="#the-job-id-and-evidence-contract" title="Anchor link to this section">¶</a></h3>
+<p>Every accepted request receives a globally unique Job ID. Wherever integration permits, it travels with the policy decision, orchestration, application events, target-side markers, validation records, and the final outcome. Searching the central evidence platform for one Job ID should reconstruct the transaction.</p>
+<p>The field names below are the minimum contract. Keeping them stable is what lets the evidence backend be swapped: a new platform has to accept the same events, not a new schema.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>job_id</code></td>
+<td>Global correlation identifier, issued at acceptance</td>
+</tr>
+<tr>
+<td><code>change_id</code></td>
+<td>Change or ITSM reference, where one applies</td>
+</tr>
+<tr>
+<td><code>requester</code></td>
+<td>The attributed caller</td>
+</tr>
+<tr>
+<td><code>approved_by</code></td>
+<td>The approver, where one applies</td>
+</tr>
+<tr>
+<td><code>application</code></td>
+<td>The automation component emitting the event</td>
+</tr>
+<tr>
+<td><code>workload_identity</code></td>
+<td>The runtime principal, where one applies</td>
+</tr>
+<tr>
+<td><code>execution_identity</code></td>
+<td>The identity used on the target</td>
+</tr>
+<tr>
+<td><code>target</code></td>
+<td>The managed device or system</td>
+</tr>
+<tr>
+<td><code>operation</code></td>
+<td>The canonical operation</td>
+</tr>
+<tr>
+<td><code>capability_requested</code> / <code>capability_authorised</code></td>
+<td>Recorded separately, so the gap between them is visible</td>
+</tr>
+<tr>
+<td><code>artifact_version</code> / <code>artifact_digest</code></td>
+<td>The trusted code identity</td>
+</tr>
+<tr>
+<td><code>policy_version</code> / <code>decision</code> / <code>reason_codes</code></td>
+<td>The trust decision and its context</td>
+</tr>
+<tr>
+<td><code>privilege_reference</code></td>
+<td>An issuance identifier for the authority granted — never the secret</td>
+</tr>
+<tr>
+<td><code>source</code></td>
+<td>Where execution ran: the runner or trusted zone</td>
+</tr>
+<tr>
+<td><code>preflight_result</code></td>
+<td>Pass, fail, or the targets excluded</td>
+</tr>
+<tr>
+<td><code>validation_result</code></td>
+<td>PASS, FAIL, DRIFT, UNKNOWN, or PARTIAL</td>
+</tr>
+<tr>
+<td><code>result</code></td>
+<td>The final job state</td>
+</tr>
+<tr>
+<td><code>timestamp</code></td>
+<td>Event time, from synchronised clocks</td>
+</tr>
+</tbody>
+</table>
+<p>Where a platform supports it, a target-side marker carrying the Job ID — in the device's own log or configuration archive — lets device-side records join the same thread. The mechanism differs by platform and software release, so verify it on each one before relying on it.</p>
+<div class="admonition warning">
+<p class="admonition-title">Evidence safety</p>
+<p>Record credential references, authorisation decisions, and retrieval outcomes. Never record passwords, secret values, private keys, session cookies, or access and refresh tokens.</p>
+</div>
 <hr/>
 <h2 id="ai-triggered-automation">AI-Triggered Automation<a class="headerlink" href="#ai-triggered-automation" title="Anchor link to this section">¶</a></h2>
 <p>The model matters most when an AI system can request operational actions. The agent becomes <strong>another requester, not a privileged exception</strong>.</p>
 <pre class="mermaid"><code>graph TD
-    AG[AI agent] --&gt;|requests an approved capability| GW[Execution gateway]
+    AG[AI agent] --&gt;|requests an approved capability| GW[Trust gateway]
     GW --&gt; C1[Verify agent&lt;br/&gt;and request context]
     GW --&gt; C2[Verify approved&lt;br/&gt;workload and artefact]
     GW --&gt; C3[Evaluate operation,&lt;br/&gt;target, and risk]
@@ -3145,7 +3673,7 @@ else:
     style GW fill:#c8e6c9
     style EX fill:#fff4e6
     style VE fill:#e1f5ff</code></pre>
-<p>The agent never receives a generic execution capability that sidesteps the gateway. That case is argued in full in <a href="../../../governed-ai-network-operations/why-your-agent-must-not-have-execute-command/">Why Your Agent Must Not Have an execute_command Tool</a>.</p>
+<p>The agent never receives a generic execution capability that sidesteps the gateway. That case is argued in full in <a href="../../../governed-ai-network-operations/why-your-agent-must-not-have-execute-command/">Why Your Agent Must Not Have an execute_command Tool</a>. Its requests enter through the same request contract as everyone else's (module 1) and are normalised the same way (module 3), so an agent cannot invent an operation the taxonomy does not contain.</p>
 <p>What Trusted Automation Execution adds is that the governed tools an agent calls are themselves workloads. Each call is identified, verified, checked against policy, and given scoped authority, exactly as it would be for an engineer or a pipeline. Both the agent's <a href="../../../governed-ai-network-operations/ai-risk-classification/">AI risk class</a> and the workflow's R class apply.</p>
 <hr/>
 <h2 id="mapping-to-the-control-catalogue">Mapping to the Control Catalogue<a class="headerlink" href="#mapping-to-the-control-catalogue" title="Anchor link to this section">¶</a></h2>
@@ -3153,56 +3681,56 @@ else:
 <table>
 <thead>
 <tr>
-<th>Group</th>
+<th>Group (modules)</th>
 <th>Catalogue controls it satisfies</th>
 <th>Where this architecture goes further</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><strong>1. Who is asking</strong></td>
+<td><strong>1. Who is asking</strong> (1, 2, 10)</td>
 <td>NP-TOOL-04, NP-EVD-01</td>
-<td>A workload identity distinct from the requester's, used as a policy input</td>
+<td>One entry contract for every route, and a workload identity distinct from the requester's, used as a policy input</td>
 </tr>
 <tr>
-<td><strong>2. What will run</strong></td>
+<td><strong>2. What will run</strong> (6)</td>
 <td>NP-PLAT-02, NP-PLAT-05, NP-CHG-02</td>
 <td>Digest and signature verified at the execution boundary on every run, not only at build or promotion</td>
 </tr>
 <tr>
-<td><strong>3. Where it came from</strong></td>
+<td><strong>3. Where it came from</strong> (6)</td>
 <td>NP-PLAT-02, NP-PLAT-04, NP-PLAT-06</td>
 <td>Provenance <em>verified</em> against the expected builder and inputs, not merely recorded</td>
 </tr>
 <tr>
-<td><strong>4. What it may do</strong></td>
+<td><strong>4. What it may do</strong> (3, 5, 7)</td>
 <td>NP-CORE-03, NP-CORE-04, NP-CORE-08, NP-CHG-03, NP-TOOL-04, NP-AI-01, NP-AI-05</td>
-<td>One mandatory enforcement point for every requester — human, pipeline, or agent — with bypass paths closed</td>
+<td>One mandatory enforcement point for every requester — human, pipeline, or agent — deciding on a canonical request, with bypass paths closed</td>
 </tr>
 <tr>
-<td><strong>5. Where it may do it</strong></td>
+<td><strong>5. Where it may do it</strong> (4, 12, 13)</td>
 <td>NP-CORE-01, NP-CORE-06, NP-TOOL-04, NP-PLAT-01</td>
 <td>Network and target-side enforcement that holds even when policy is wrong</td>
 </tr>
 <tr>
-<td><strong>6. Only the authority required</strong></td>
+<td><strong>6. Only the authority required</strong> (11)</td>
 <td>NP-PLAT-01, NP-PLAT-03</td>
 <td>Credentials unavailable until after an allow decision, and expiring with the run</td>
 </tr>
 <tr>
-<td><strong>7. Within defined boundaries</strong></td>
+<td><strong>7. Within defined boundaries</strong> (8, 9, 14, 15)</td>
 <td>NP-CORE-02, NP-CORE-05, NP-CORE-06, NP-CORE-07, NP-CORE-08, NP-CHG-04, NP-CHG-06</td>
-<td>Ephemeral runners with clean teardown, so no run inherits another's state or credentials</td>
+<td>Ephemeral runners with clean teardown, so no run inherits another's state or credentials, and no orchestrator acting as a second way in</td>
 </tr>
 <tr>
-<td><strong>8. Validate independently</strong></td>
+<td><strong>8. Validate independently</strong> (16, 17)</td>
 <td>NP-CHG-05</td>
-<td>Validation performed independently of the workload, with its own result, for read-only runs as well as changes</td>
+<td>Validation performed independently of the workload, with its own result, for read-only runs as well as changes, and an explicit terminal state for every run</td>
 </tr>
 <tr>
-<td><strong>9. What happened</strong></td>
+<td><strong>9. What happened</strong> (18)</td>
 <td>NP-EVD-01, NP-EVD-02, NP-EVD-04, NP-EVD-05, NP-TOOL-07</td>
-<td>The trust decision itself in the record, held where the workload cannot alter it</td>
+<td>The trust decision itself in the record, correlated by Job ID and held where the workload cannot alter it</td>
 </tr>
 <tr>
 <td><strong>10. Withdrawable</strong></td>
@@ -3212,6 +3740,28 @@ else:
 </tbody>
 </table>
 <p>The right-hand column is what an assessment against the catalogue alone would not catch.</p>
+<hr/>
+<h2 id="open-design-decisions">Open Design Decisions<a class="headerlink" href="#open-design-decisions" title="Anchor link to this section">¶</a></h2>
+<p>Every implementation has to answer these. The architecture deliberately does not settle them, because the right answer depends on the platforms in front of you. The <a href="../worked-example-azure-cisco/">worked example</a> answers several for one stack, and any proof of concept should test its answers rather than assume them.</p>
+<ul>
+<li>The canonical execution-request schema, the operation taxonomy, and the Job ID format</li>
+<li>The trust gateway's policy inputs, decision format, reason codes, and decision expiry and replay protection</li>
+<li>How change-governance state reaches the gateway securely: fetched from its source or signed, never asserted by the caller</li>
+<li>How artefacts are promoted, and exactly which digest and signature mechanism the executor verifies</li>
+<li>How different execution environments — a container platform, an orchestrator's execution environment, a hardened host — satisfy the same runtime contract</li>
+<li>How workload identity and secret access are scoped per automation function</li>
+<li>The network flows each execution environment needs, and the default-deny policy around them</li>
+<li>Device AAA command sets per automation role, and whether source-address restrictions actually work for your AAA and device combination</li>
+<li>The adapter interface for direct device, controller, and DDI operations</li>
+<li>The validation strategy for each operation, including how UNKNOWN and PARTIAL results are handled</li>
+<li>The evidence event schema, its transport, buffering and retry behaviour, and retention</li>
+<li>The target-side Job ID marker for each supported platform and software release</li>
+<li>Failure simulations: a denied policy, a missing approval, a secrets platform failure, an AAA denial, an unreachable target, partial execution, a validation mismatch, and an observability outage</li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Verify before prescribing</p>
+<p>Product capabilities, platform versions, exact APIs and commands, AAA source-address conditions, and device-side logging mechanisms must be verified against the versions actually deployed before they become prescriptive configuration.</p>
+</div>
 <hr/>
 <h2 id="ten-things-that-must-be-true">Ten Things That Must Be True<a class="headerlink" href="#ten-things-that-must-be-true" title="Anchor link to this section">¶</a></h2>
 <p>The architecture is working when all of these hold.</p>
@@ -3227,7 +3777,7 @@ else:
 <li>Trust can be revoked quickly — for a workload, a publisher, a policy grant, or a credential path.</li>
 <li>The architecture can be implemented at lower maturity without redefining its trust principles.</li>
 </ol>
-<p>The first nine double as acceptance tests for any implementation, at any profile. The tenth is a test of the architecture itself, and the <a href="../adoption-profiles/">adoption profiles</a> are the evidence offered for it.</p>
+<p>The first nine double as acceptance tests for any implementation, at any profile, and with any combination of products behind the modules. The tenth is a test of the architecture itself, and the <a href="../adoption-profiles/">adoption profiles</a> are the evidence offered for it.</p>
 <hr/>
 <h2 id="continue">Continue<a class="headerlink" href="#continue" title="Anchor link to this section">¶</a></h2>
 <ul>
@@ -3248,7 +3798,7 @@ else:
 <span class="md-icon" title="Last update">
 <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"></path></svg>
 </span>
-<span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="October 21, 2026 15:53:49 UTC">October 21, 2026</span>
+<span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="October 31, 2026 09:19:44 UTC">October 31, 2026</span>
 </span>
 </aside>
 </article>
