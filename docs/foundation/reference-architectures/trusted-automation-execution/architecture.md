@@ -27,7 +27,7 @@ Starting there is deliberate. Defining the destination first is what lets you ma
 !!! quote "The design principle"
     **The security properties are mandatory. The products implementing them are replaceable.**
 
-The architecture is eighteen modules joined by contracts. Each module consumes and produces something defined — a canonical request, a decision, a scoped credential, a validation result, an evidence event — rather than depending on the product next to it. That is what lets a module be swapped or removed without breaking the workflow. Replace the product behind a module, and as long as the replacement honours the same contract, nothing on either side of it has to change.
+The architecture is eighteen modules joined by contracts. Each module consumes and produces something defined — a canonical request, a decision, a scoped credential, a validation result, an evidence event — rather than depending on the product next to it. The [interface contracts](./interface-contracts.md) define each one. That is what lets a module be swapped or removed without breaking the workflow. Replace the product behind a module, and as long as the replacement honours the same contract, nothing on either side of it has to change.
 
 There are three kinds of change, and each has a rule:
 
@@ -392,7 +392,7 @@ This extends the [per-run evidence model](../../production-grade-network-automat
 
 Every accepted request receives a globally unique Job ID. Wherever integration permits, it travels with the policy decision, orchestration, application events, target-side markers, validation records, and the final outcome. Searching the central evidence platform for one Job ID should reconstruct the transaction.
 
-The field names below are the minimum contract. Keeping them stable is what lets the evidence backend be swapped: a new platform has to accept the same events, not a new schema.
+The field names below are the minimum contract. Keeping them stable is what lets the evidence backend be swapped: a new platform has to accept the same events, not a new schema. The [evidence event](./interface-contracts.md#8-evidence-event) contract defines the envelope these fields travel in.
 
 | Field | Meaning |
 |---|---|
@@ -517,5 +517,5 @@ The first nine double as acceptance tests for any implementation, at any profile
 ## Continue
 
 - Previous: [Trusted Automation Execution](./index.md)
-- Next: [Threat and Failure Model](./threat-and-failure-model.md)
+- Next: [Interface Contracts](./interface-contracts.md)
 - Related: [Governed Automation Reference Architecture](../../standards/reference-architecture.md) · [Remediation Packs](../../production-grade-network-automation-principles/remediation-packs.md)
