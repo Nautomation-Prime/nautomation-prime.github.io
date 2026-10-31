@@ -1,0 +1,3847 @@
+
+<!DOCTYPE html>
+
+<html class="no-js" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<meta content="The contracts between Trusted Automation Execution modules — execution request, canonical request, decision, execution order, operation and adapter result, validation result, outcome, and evidence event — defined language-neutrally, so any module can be built in any language or swapped for another product." name="description"/>
+<meta content="Christopher Davies" name="author"/>
+<link href="https://www.nautomationprime.io/foundation/reference-architectures/trusted-automation-execution/interface-contracts/" rel="canonical"/>
+<link href="../architecture/" rel="prev"/>
+<link href="../threat-and-failure-model/" rel="next"/>
+<link href="../../../../assets/favicon.ico" rel="icon"/>
+<meta content="mkdocs-1.6.1, mkdocs-material-9.8.0" name="generator"/>
+<title>Interface Contracts - Nautomation Prime</title>
+<link href="../../../../assets/stylesheets/main.57a0d79d.min.css" rel="stylesheet"/>
+<link href="../../../../assets/stylesheets/palette.fb2fffe2.min.css" rel="stylesheet"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&amp;display=fallback" rel="stylesheet"/>
+<style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+<link href="../../../../assets/css/custom.css" rel="stylesheet"/>
+<script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+<script id="__analytics">function __md_analytics(){function e(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],e("js",new Date),e("config","G-428G549QS2"),document.addEventListener("DOMContentLoaded",(function(){document.forms.search&&document.forms.search.query.addEventListener("blur",(function(){this.value&&e("event","search",{search_term:this.value})}));document$.subscribe((function(){var t=document.forms.feedback;if(void 0!==t)for(var a of t.querySelectorAll("[type=submit]"))a.addEventListener("click",(function(a){a.preventDefault();var n=document.location.pathname,d=this.getAttribute("data-md-value");e("event","feedback",{page:n,data:d}),t.firstElementChild.disabled=!0;var r=t.querySelector(".md-feedback__note [data-md-value='"+d+"']");r&&(r.hidden=!1)})),t.hidden=!1})),location$.subscribe((function(t){e("config","G-428G549QS2",{page_path:t.pathname})}))}));var t=document.createElement("script");t.async=!0,t.src="https://www.googletagmanager.com/gtag/js?id=G-428G549QS2",document.getElementById("__analytics").insertAdjacentElement("afterEnd",t)}</script>
+<script>if("undefined"!=typeof __md_analytics){var consent=__md_get("__consent");consent&&consent.analytics&&__md_analytics()}</script>
+<meta content="article" property="og:type"/>
+<meta content="Nautomation Prime" property="og:site_name"/>
+<meta content="en_GB" property="og:locale"/>
+<meta content="Interface Contracts" property="og:title"/>
+<meta content="The contracts between Trusted Automation Execution modules — execution request, canonical request, decision, execution order, operation and adapter result, validation result, outcome, and evidence event — defined language-neutrally, so any module can be built in any language or swapped for another product." property="og:description"/>
+<meta content="https://www.nautomationprime.io/foundation/reference-architectures/trusted-automation-execution/interface-contracts/" property="og:url"/>
+<meta content="https://www.nautomationprime.io/assets/social/trusted-automation-execution.png" property="og:image"/>
+<meta content="1200" property="og:image:width"/>
+<meta content="630" property="og:image:height"/>
+<meta content="Trusted Automation Execution: a reference architecture from the Nautomation Prime Academy" property="og:image:alt"/>
+<meta content="summary_large_image" name="twitter:card"/>
+<meta content="Interface Contracts" name="twitter:title"/>
+<meta content="The contracts between Trusted Automation Execution modules — execution request, canonical request, decision, execution order, operation and adapter result, validation result, outcome, and evidence event — defined language-neutrally, so any module can be built in any language or swapped for another product." name="twitter:description"/>
+<meta content="https://www.nautomationprime.io/assets/social/trusted-automation-execution.png" name="twitter:image"/>
+<meta content="Trusted Automation Execution: a reference architecture from the Nautomation Prime Academy" name="twitter:image:alt"/>
+</head>
+<body data-md-color-accent="blue" data-md-color-primary="blue" data-md-color-scheme="default" dir="ltr">
+<input autocomplete="off" class="md-toggle" data-md-toggle="drawer" id="__drawer" type="checkbox"/>
+<input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
+<label class="md-overlay" for="__drawer"></label>
+<div data-md-component="skip">
+<a class="md-skip" href="#interface-contracts">
+          Skip to content
+        </a>
+</div>
+<div data-md-component="announce">
+<aside class="md-banner">
+<div class="md-banner__inner md-grid md-typeset">
+<button aria-label="Don't show this again" class="md-banner__button md-icon">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg>
+</button>
+<strong>Nautomation Prime is not yet trading.</strong>
+  This site is being built ahead of launch — the free learning content is
+  live to read, but services are not yet being supplied and no engagement or
+  charity application can be accepted today.
+  <a href="../../../../legal/foundation-status/">Read the current legal status</a>.
+
+          </div>
+<script>var el=document.querySelector("[data-md-component=announce]");if(el){var content=el.querySelector(".md-typeset");__md_hash(content.innerHTML)===__md_get("__announce")&&(el.hidden=!0)}</script>
+</aside>
+</div>
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+<nav aria-label="Header" class="md-header__inner md-grid">
+<a aria-label="Nautomation Prime" class="md-header__button md-logo" data-md-component="logo" href="../../../.." title="Nautomation Prime">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"></path></svg>
+</a>
+<label class="md-header__button md-icon" for="__drawer">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"></path></svg>
+</label>
+<div class="md-header__title" data-md-component="header-title">
+<div class="md-header__ellipsis">
+<div class="md-header__topic">
+<span class="md-ellipsis">
+            Nautomation Prime
+          </span>
+</div>
+<div class="md-header__topic" data-md-component="header-topic">
+<span class="md-ellipsis">
+            
+              Interface Contracts
+            
+          </span>
+</div>
+</div>
+</div>
+<label class="md-header__button md-icon" for="__search">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
+</label>
+<div class="md-search" data-md-component="search" role="dialog">
+<label class="md-search__overlay" for="__search"></label>
+<div class="md-search__inner" role="search">
+<form class="md-search__form" name="search">
+<input aria-label="Search" autocapitalize="off" autocomplete="off" autocorrect="off" class="md-search__input" data-md-component="search-query" name="query" placeholder="Search" required="" spellcheck="false" type="text"/>
+<label class="md-search__icon md-icon" for="__search">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"></path></svg>
+</label>
+<nav aria-label="Search" class="md-search__options">
+<a aria-label="Share" class="md-search__icon md-icon" data-clipboard="" data-clipboard-text="" data-md-component="search-share" href="javascript:void(0)" tabindex="-1" title="Share">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"></path></svg>
+</a>
+<button aria-label="Clear" class="md-search__icon md-icon" tabindex="-1" title="Clear" type="reset">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg>
+</button>
+</nav>
+<div class="md-search__suggest" data-md-component="search-suggest"></div>
+</form>
+<div class="md-search__output">
+<div class="md-search__scrollwrap" data-md-scrollfix="" tabindex="0">
+<div class="md-search-result" data-md-component="search-result">
+<div class="md-search-result__meta">
+            Initializing search
+          </div>
+<ol class="md-search-result__list" role="presentation"></ol>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="md-header__source">
+<a class="md-source" data-md-component="source" href="https://github.com/Nautomation-Prime" title="Go to repository">
+<div class="md-source__icon md-icon">
+<svg viewbox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"></path></svg>
+</div>
+<div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+</div>
+</nav>
+<nav aria-label="Tabs" class="md-tabs" data-md-component="tabs">
+<div class="md-grid">
+<ul class="md-tabs__list">
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../../../..">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../../../../start-here/">
+        
+  
+  
+    
+  
+  Start Here
+
+      </a>
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../../../../academy/">
+          
+  
+  
+    
+  
+  Academy
+
+        </a>
+</li>
+<li class="md-tabs__item md-tabs__item--active">
+<a class="md-tabs__link" href="../../../../academy/govern/">
+          
+  
+  
+    
+  
+  Govern
+
+        </a>
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../../../../services/">
+          
+  
+  
+    
+  
+  Services
+
+        </a>
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../../../">
+          
+  
+  
+    
+  
+  Foundation
+
+        </a>
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../../../../about/">
+          
+  
+  
+    
+  
+  About
+
+        </a>
+</li>
+</ul>
+</div>
+</nav>
+</header>
+<div class="md-container" data-md-component="container">
+<main class="md-main" data-md-component="main">
+<div class="md-main__inner md-grid">
+<div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation">
+<div class="md-sidebar__scrollwrap">
+<div class="md-sidebar__inner">
+<nav aria-label="Navigation" class="md-nav md-nav--primary md-nav--lifted" data-md-level="0">
+<label class="md-nav__title" for="__drawer">
+<a aria-label="Nautomation Prime" class="md-nav__button md-logo" data-md-component="logo" href="../../../.." title="Nautomation Prime">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"></path></svg>
+</a>
+    Nautomation Prime
+  </label>
+<div class="md-nav__source">
+<a class="md-source" data-md-component="source" href="https://github.com/Nautomation-Prime" title="Go to repository">
+<div class="md-source__icon md-icon">
+<svg viewbox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"></path></svg>
+</div>
+<div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+</div>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../..">
+<span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../start-here/">
+<span class="md-ellipsis">
+    
+  
+    Start Here
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_3" type="checkbox"/>
+<div class="md-nav__link md-nav__container">
+<a class="md-nav__link" href="../../../../academy/">
+<span class="md-ellipsis">
+    
+  
+    Academy
+  
+
+    
+  </span>
+</a>
+<label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-expanded="false" aria-labelledby="__nav_3_label" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_3">
+<span class="md-nav__icon md-icon"></span>
+            
+  
+    Academy
+  
+
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_3_2" type="checkbox"/>
+<div class="md-nav__link md-nav__container">
+<a class="md-nav__link" href="../../../../academy/learn/">
+<span class="md-ellipsis">
+    
+  
+    Learn
+  
+
+    
+  </span>
+</a>
+<label class="md-nav__link" for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-expanded="false" aria-labelledby="__nav_3_2_label" class="md-nav" data-md-level="2">
+<label class="md-nav__title" for="__nav_3_2">
+<span class="md-nav__icon md-icon"></span>
+            
+  
+    Learn
+  
+
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../resources/">
+<span class="md-ellipsis">
+    
+  
+    Learning Hub
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../tutorials/">
+<span class="md-ellipsis">
+    
+  
+    Tutorials Overview
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_3_2_4" type="checkbox"/>
+<div class="md-nav__link md-nav__container">
+<a class="md-nav__link" href="../../../tutorials/beginner/">
+<span class="md-ellipsis">
+    
+  
+    Beginner Tutorials
+  
+
+    
+  </span>
+</a>
+<label class="md-nav__link" for="__nav_3_2_4" id="__nav_3_2_4_label" tabindex="0">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-expanded="false" aria-labelledby="__nav_3_2_4_label" class="md-nav" data-md-level="3">
+<label class="md-nav__title" for="__nav_3_2_4">
+<span class="md-nav__icon md-icon"></span>
+            
+  
+    Beginner Tutorials
+  
+
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../tutorials/beginner/multi-device-config-backup/">
+<span class="md-ellipsis">
+    
+  
+    Multi-Device Config Backup
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../tutorials/beginner/multi-device-show-command/">
+<span class="md-ellipsis">
+    
+  
+    Multi-Device Show Command
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../tutorials/beginner/netmiko-show-command-to-excel/">
+<span class="md-ellipsis">
+    
+  
+    Netmiko Show Command to Excel
+  
+
+    
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_3_2_5" type="checkbox"/>
+<div class="md-nav__link md-nav__container">
+<a class="md-nav__link" href="../../../tutorials/intermediate/">
+<span class="md-ellipsis">
+    
+  
+    Intermediate Tutorials
+  
+
+    
+  </span>
+</a>
+<label class="md-nav__link" for="__nav_3_2_5" id="__nav_3_2_5_label" tabindex="0">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-expanded="false" aria-labelledby="__nav_3_2_5_label" class="md-nav" data-md-level="3">
+<label class="md-nav__title" for="__nav_3_2_5">
+<span class="md-nav__icon md-icon"></span>
+            
+  
+    Intermediate Tutorials
+  
+
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../tutorials/intermediate/yaml-data-modeling-network-automation/">
+<span class="md-ellipsis">
+    
+  
+    YAML Data Modelling
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../tutorials/intermediate/json-data-handling-network-automation/">
+<span class="md-ellipsis">
+    
+  
+    JSON Data Handling
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../tutorials/intermediate/pydantic-data-validation-network-automation/">
+<span class="md-ellipsis">
+    
+  
+    Pydantic Data Validation
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../tutorials/intermediate/jinja2-configuration-templates/">
+<span class="md-ellipsis">
+    
+  
+    Jinja2 Configuration Templates
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../tutorials/intermediate/decorators-network-automation/">
+<span class="md-ellipsis">
+    
+  
+    Decorators for Network Automation
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../tutorials/intermediate/pyats-fundamentals/">
+<span class="md-ellipsis">
+    
+  
+    PyATS Fundamentals
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../tutorials/intermediate/pyats-network-validation/">
+<span class="md-ellipsis">
+    
+  
+    PyATS Network Validation
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../tutorials/intermediate/building-reliable-automation-with-pyats/">
+<span class="md-ellipsis">
+    
+  
+    Building Reliable Automation with PyATS
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../tutorials/intermediate/why-nornir/">
+<span class="md-ellipsis">
+    
+  
+    Why Nornir
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../tutorials/intermediate/nornir-fundamentals/">
+<span class="md-ellipsis">
+    
+  
+    Nornir Fundamentals
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../tutorials/intermediate/enterprise-config-backup-nornir/">
+<span class="md-ellipsis">
+    
+  
+    Enterprise Config Backup Nornir
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../tutorials/intermediate/advanced-nornir-patterns/">
+<span class="md-ellipsis">
+    
+  
+    Advanced Nornir Patterns
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../tutorials/intermediate/testing-network-automation/">
+<span class="md-ellipsis">
+    
+  
+    Testing Network Automation Scripts
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../tutorials/intermediate/credential-management-network-automation/">
+<span class="md-ellipsis">
+    
+  
+    Credential Management for Network Automation
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../tutorials/intermediate/error-recovery-rollback-network-automation/">
+<span class="md-ellipsis">
+    
+  
+    Error Recovery and Rollback
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../tutorials/intermediate/state-management-idempotency-network-automation/">
+<span class="md-ellipsis">
+    
+  
+    State Management and Idempotency
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../tutorials/intermediate/structured-logging-network-automation/">
+<span class="md-ellipsis">
+    
+  
+    Structured Logging for Network Automation
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../tutorials/intermediate/health-checks-pre-flight-validation/">
+<span class="md-ellipsis">
+    
+  
+    Health Checks and Pre-Flight Validation
+  
+
+    
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_3_2_6" type="checkbox"/>
+<div class="md-nav__link md-nav__container">
+<a class="md-nav__link" href="../../../tutorials/capstone/">
+<span class="md-ellipsis">
+    
+  
+    Build netpipe: The Capstone
+  
+
+    
+  </span>
+</a>
+<label class="md-nav__link" for="__nav_3_2_6" id="__nav_3_2_6_label" tabindex="0">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-expanded="false" aria-labelledby="__nav_3_2_6_label" class="md-nav" data-md-level="3">
+<label class="md-nav__title" for="__nav_3_2_6">
+<span class="md-nav__icon md-icon"></span>
+            
+  
+    Build netpipe: The Capstone
+  
+
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../tutorials/capstone/01-intent-and-repository-layout/">
+<span class="md-ellipsis">
+    
+  
+    1. Intent and Repository Layout
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../tutorials/capstone/02-validating-intent/">
+<span class="md-ellipsis">
+    
+  
+    2. Validating Intent
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../tutorials/capstone/03-rendering-configuration/">
+<span class="md-ellipsis">
+    
+  
+    3. Rendering Configuration
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../tutorials/capstone/04-credentials-and-preflight/">
+<span class="md-ellipsis">
+    
+  
+    4. Credentials and Pre-Flight
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../tutorials/capstone/05-deploying-with-nornir/">
+<span class="md-ellipsis">
+    
+  
+    5. Deploying with Nornir
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../tutorials/capstone/06-proving-the-change-with-pyats/">
+<span class="md-ellipsis">
+    
+  
+    6. Proving the Change with PyATS
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../tutorials/capstone/07-rollback-and-audit/">
+<span class="md-ellipsis">
+    
+  
+    7. Rollback and the Audit Record
+  
+
+    
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_3_2_7" type="checkbox"/>
+<div class="md-nav__link md-nav__container">
+<a class="md-nav__link" href="../../../tutorials/expert/">
+<span class="md-ellipsis">
+    
+  
+    Expert Tutorials
+  
+
+    
+  </span>
+</a>
+<label class="md-nav__link" for="__nav_3_2_7" id="__nav_3_2_7_label" tabindex="0">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-expanded="false" aria-labelledby="__nav_3_2_7_label" class="md-nav" data-md-level="3">
+<label class="md-nav__title" for="__nav_3_2_7">
+<span class="md-nav__icon md-icon"></span>
+            
+  
+    Expert Tutorials
+  
+
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../tutorials/expert/circuit-breakers-backpressure-network-automation/">
+<span class="md-ellipsis">
+    
+  
+    Circuit Breakers and Backpressure
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../tutorials/expert/dependency-ordering-task-orchestration/">
+<span class="md-ellipsis">
+    
+  
+    Dependency Management and Task Orchestration
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../tutorials/expert/incident-response-automation/">
+<span class="md-ellipsis">
+    
+  
+    Incident Response Automation
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../tutorials/expert/nornir-pyats-integration/">
+<span class="md-ellipsis">
+    
+  
+    Nornir + PyATS Integration
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../tutorials/expert/asyncio-network-automation/">
+<span class="md-ellipsis">
+    
+  
+    Asyncio for Network Automation
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../tutorials/expert/secure-credential-vaulting/">
+<span class="md-ellipsis">
+    
+  
+    Secure Credential Vaulting
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../tutorials/expert/devops-observability-network-automation/">
+<span class="md-ellipsis">
+    
+  
+    DevOps &amp; Observability
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../tutorials/expert/tool-ecosystem-integration/">
+<span class="md-ellipsis">
+    
+  
+    Tool Ecosystem Integration
+  
+
+    
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_3_3" type="checkbox"/>
+<div class="md-nav__link md-nav__container">
+<a class="md-nav__link" href="../../../../academy/see-it-done/">
+<span class="md-ellipsis">
+    
+  
+    See It Done
+  
+
+    
+  </span>
+</a>
+<label class="md-nav__link" for="__nav_3_3" id="__nav_3_3_label" tabindex="0">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-expanded="false" aria-labelledby="__nav_3_3_label" class="md-nav" data-md-level="2">
+<label class="md-nav__title" for="__nav_3_3">
+<span class="md-nav__icon md-icon"></span>
+            
+  
+    See It Done
+  
+
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_3_3_2" type="checkbox"/>
+<div class="md-nav__link md-nav__container">
+<a class="md-nav__link" href="../../../deep-dives/">
+<span class="md-ellipsis">
+    
+  
+    Deep Dives
+  
+
+    
+  </span>
+</a>
+<label class="md-nav__link" for="__nav_3_3_2" id="__nav_3_3_2_label" tabindex="0">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-expanded="false" aria-labelledby="__nav_3_3_2_label" class="md-nav" data-md-level="3">
+<label class="md-nav__title" for="__nav_3_3_2">
+<span class="md-nav__icon md-icon"></span>
+            
+  
+    Deep Dives
+  
+
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../deep-dives/access-switch-audit/">
+<span class="md-ellipsis">
+    
+  
+    Access Switch Audit
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../deep-dives/cdp-audit/">
+<span class="md-ellipsis">
+    
+  
+    CDP Audit
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../deep-dives/cisco-compliance-audit/">
+<span class="md-ellipsis">
+    
+  
+    Cisco Compliance Audit
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../deep-dives/cisco-config-generator/">
+<span class="md-ellipsis">
+    
+  
+    Cisco Config Generator
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../deep-dives/ios-xe-upgrade-orchestrator/">
+<span class="md-ellipsis">
+    
+  
+    IOS XE Upgrade Orchestrator
+  
+
+    
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_3_3_3" type="checkbox"/>
+<div class="md-nav__link md-nav__container">
+<a class="md-nav__link" href="../../../../prime-framework/">
+<span class="md-ellipsis">
+    
+  
+    PRIME Framework
+  
+
+    
+  </span>
+</a>
+<label class="md-nav__link" for="__nav_3_3_3" id="__nav_3_3_3_label" tabindex="0">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-expanded="false" aria-labelledby="__nav_3_3_3_label" class="md-nav" data-md-level="3">
+<label class="md-nav__title" for="__nav_3_3_3">
+<span class="md-nav__icon md-icon"></span>
+            
+  
+    PRIME Framework
+  
+
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../prime-framework/philosophy/">
+<span class="md-ellipsis">
+    
+  
+    PRIME Philosophy
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../prime-framework/pinpoint/">
+<span class="md-ellipsis">
+    
+  
+    Pinpoint
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../prime-framework/re-engineer/">
+<span class="md-ellipsis">
+    
+  
+    Re-engineer
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../prime-framework/implement/">
+<span class="md-ellipsis">
+    
+  
+    Implement
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../prime-framework/measure/">
+<span class="md-ellipsis">
+    
+  
+    Measure
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../prime-framework/empower/">
+<span class="md-ellipsis">
+    
+  
+    Empower
+  
+
+    
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+<input checked="" class="md-nav__toggle md-toggle" id="__nav_4" type="checkbox"/>
+<div class="md-nav__link md-nav__container">
+<a class="md-nav__link" href="../../../../academy/govern/">
+<span class="md-ellipsis">
+    
+  
+    Govern
+  
+
+    
+  </span>
+</a>
+<label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-expanded="true" aria-labelledby="__nav_4_label" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_4">
+<span class="md-nav__icon md-icon"></span>
+            
+  
+    Govern
+  
+
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_4_2" type="checkbox"/>
+<div class="md-nav__link md-nav__container">
+<a class="md-nav__link" href="../../../production-grade-network-automation-principles/">
+<span class="md-ellipsis">
+    
+  
+    Production-Grade Network Automation Principles
+  
+
+    
+  </span>
+</a>
+<label class="md-nav__link" for="__nav_4_2" id="__nav_4_2_label" tabindex="0">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-expanded="false" aria-labelledby="__nav_4_2_label" class="md-nav" data-md-level="2">
+<label class="md-nav__title" for="__nav_4_2">
+<span class="md-nav__icon md-icon"></span>
+            
+  
+    Production-Grade Network Automation Principles
+  
+
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../production-grade-network-automation-principles/validating-device-identity-before-automation-runs/">
+<span class="md-ellipsis">
+    
+  
+    Validating Device Identity Before Automation Runs
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../production-grade-network-automation-principles/pre-flight-checks-failing-fast-before-making-changes/">
+<span class="md-ellipsis">
+    
+  
+    Pre-Flight Checks - Failing Fast Before Making Changes
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../production-grade-network-automation-principles/trust-boundaries-around-your-source-of-truth/">
+<span class="md-ellipsis">
+    
+  
+    Trust Boundaries Around Your Source of Truth
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../production-grade-network-automation-principles/detecting-and-handling-configuration-drift-safely/">
+<span class="md-ellipsis">
+    
+  
+    Detecting and Handling Configuration Drift Safely
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../production-grade-network-automation-principles/real-world-idempotency-in-network-automation/">
+<span class="md-ellipsis">
+    
+  
+    Real-World Idempotency in Network Automation
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../production-grade-network-automation-principles/scoping-automation-to-reduce-blast-radius/">
+<span class="md-ellipsis">
+    
+  
+    Scoping Automation to Reduce Blast Radius
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../production-grade-network-automation-principles/designing-automation-that-can-safely-fail/">
+<span class="md-ellipsis">
+    
+  
+    Designing Automation That Can Safely Fail
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../production-grade-network-automation-principles/rollback-strategies-what-works-and-what-doesnt/">
+<span class="md-ellipsis">
+    
+  
+    Rollback Strategies - What Works and What Doesn't
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../production-grade-network-automation-principles/separating-read-and-write-phases/">
+<span class="md-ellipsis">
+    
+  
+    Separating Read and Write Phases in Automation Workflows
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../production-grade-network-automation-principles/making-automation-output-operator-friendly/">
+<span class="md-ellipsis">
+    
+  
+    Making Automation Output Operator-Friendly
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../production-grade-network-automation-principles/building-audit-ready-automation/">
+<span class="md-ellipsis">
+    
+  
+    Building Audit-Ready Automation
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../production-grade-network-automation-principles/secrets-and-credentials-in-enterprise-automation/">
+<span class="md-ellipsis">
+    
+  
+    Secrets and Credentials in Enterprise Automation
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../production-grade-network-automation-principles/human-in-the-loop-automation-design/">
+<span class="md-ellipsis">
+    
+  
+    Human-in-the-Loop Automation Design
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../production-grade-network-automation-principles/knowing-when-not-to-automate/">
+<span class="md-ellipsis">
+    
+  
+    Knowing When Not to Automate
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../production-grade-network-automation-principles/executive-summary/">
+<span class="md-ellipsis">
+    
+  
+    Executive Summary for Leadership
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../production-grade-network-automation-principles/program-charter/">
+<span class="md-ellipsis">
+    
+  
+    Program Charter for Production-Grade Automation
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../production-grade-network-automation-principles/enterprise-control-matrix/">
+<span class="md-ellipsis">
+    
+  
+    Enterprise Control Matrix
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../production-grade-network-automation-principles/exception-and-waiver-process/">
+<span class="md-ellipsis">
+    
+  
+    Exception and Waiver Process
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../production-grade-network-automation-principles/automation-service-lifecycle/">
+<span class="md-ellipsis">
+    
+  
+    Automation Service Lifecycle
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../production-grade-network-automation-principles/remediation-packs/">
+<span class="md-ellipsis">
+    
+  
+    Remediation Packs
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../production-grade-network-automation-principles/implementation-roadmap-30-60-90-days/">
+<span class="md-ellipsis">
+    
+  
+    Implementation Roadmap (30/60/90 Days)
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../production-grade-network-automation-principles/operator-review-worksheet/">
+<span class="md-ellipsis">
+    
+  
+    Operator Review Worksheet
+  
+
+    
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_4_3" type="checkbox"/>
+<div class="md-nav__link md-nav__container">
+<a class="md-nav__link" href="../../../standards/">
+<span class="md-ellipsis">
+    
+  
+    Automation Standards
+  
+
+    
+  </span>
+</a>
+<label class="md-nav__link" for="__nav_4_3" id="__nav_4_3_label" tabindex="0">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-expanded="false" aria-labelledby="__nav_4_3_label" class="md-nav" data-md-level="2">
+<label class="md-nav__title" for="__nav_4_3">
+<span class="md-nav__icon md-icon"></span>
+            
+  
+    Automation Standards
+  
+
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../standards/control-catalogue/">
+<span class="md-ellipsis">
+    
+  
+    Automation Control Catalogue
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../standards/self-assessment/">
+<span class="md-ellipsis">
+    
+  
+    Assessing Yourself Against These Controls
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../standards/python-engineering-standard/">
+<span class="md-ellipsis">
+    
+  
+    Python Engineering Standard
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../standards/reference-architecture/">
+<span class="md-ellipsis">
+    
+  
+    Governed Automation Reference Architecture
+  
+
+    
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--active md-nav__item--nested">
+<input checked="" class="md-nav__toggle md-toggle" id="__nav_4_4" type="checkbox"/>
+<div class="md-nav__link md-nav__container">
+<a class="md-nav__link" href="../../">
+<span class="md-ellipsis">
+    
+  
+    Reference Architectures
+  
+
+    
+  </span>
+</a>
+<label class="md-nav__link" for="__nav_4_4" id="__nav_4_4_label" tabindex="0">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-expanded="true" aria-labelledby="__nav_4_4_label" class="md-nav" data-md-level="2">
+<label class="md-nav__title" for="__nav_4_4">
+<span class="md-nav__icon md-icon"></span>
+            
+  
+    Reference Architectures
+  
+
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item md-nav__item--active md-nav__item--nested">
+<input checked="" class="md-nav__toggle md-toggle" id="__nav_4_4_2" type="checkbox"/>
+<div class="md-nav__link md-nav__container">
+<a class="md-nav__link" href="../">
+<span class="md-ellipsis">
+    
+  
+    Trusted Automation Execution
+  
+
+    
+  </span>
+</a>
+<label class="md-nav__link" for="__nav_4_4_2" id="__nav_4_4_2_label" tabindex="0">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-expanded="true" aria-labelledby="__nav_4_4_2_label" class="md-nav" data-md-level="3">
+<label class="md-nav__title" for="__nav_4_4_2">
+<span class="md-nav__icon md-icon"></span>
+            
+  
+    Trusted Automation Execution
+  
+
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../architecture/">
+<span class="md-ellipsis">
+    
+  
+    The Full Reference Architecture
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item md-nav__item--active">
+<input class="md-nav__toggle md-toggle" id="__toc" type="checkbox"/>
+<label class="md-nav__link md-nav__link--active" for="__toc">
+<span class="md-ellipsis">
+    
+  
+    Interface Contracts
+  
+
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<a class="md-nav__link md-nav__link--active" href="./">
+<span class="md-ellipsis">
+    
+  
+    Interface Contracts
+  
+
+    
+  </span>
+</a>
+<nav aria-label="Table of contents" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#interface-contracts">
+<span class="md-ellipsis">
+      
+        Interface Contracts
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#where-the-contracts-sit">
+<span class="md-ellipsis">
+      
+        Where the Contracts Sit
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#rules-for-every-contract">
+<span class="md-ellipsis">
+      
+        Rules for Every Contract
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#1-execution-request">
+<span class="md-ellipsis">
+      
+        1. Execution request
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#2-canonical-request">
+<span class="md-ellipsis">
+      
+        2. Canonical request
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#3-decision">
+<span class="md-ellipsis">
+      
+        3. Decision
+      
+    </span>
+</a>
+<nav aria-label="3. Decision" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#reason-codes">
+<span class="md-ellipsis">
+      
+        Reason codes
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#4-execution-order">
+<span class="md-ellipsis">
+      
+        4. Execution order
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#5-operation-declaration-and-adapter-result">
+<span class="md-ellipsis">
+      
+        5. Operation declaration and adapter result
+      
+    </span>
+</a>
+<nav aria-label="5. Operation declaration and adapter result" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#operation-declaration">
+<span class="md-ellipsis">
+      
+        Operation declaration
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#adapter-result">
+<span class="md-ellipsis">
+      
+        Adapter result
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#6-validation-result">
+<span class="md-ellipsis">
+      
+        6. Validation result
+      
+    </span>
+</a>
+<nav aria-label="6. Validation result" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#the-five-results">
+<span class="md-ellipsis">
+      
+        The five results
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#7-outcome">
+<span class="md-ellipsis">
+      
+        7. Outcome
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#8-evidence-event">
+<span class="md-ellipsis">
+      
+        8. Evidence event
+      
+    </span>
+</a>
+<nav aria-label="8. Evidence event" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#event-types">
+<span class="md-ellipsis">
+      
+        Event types
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#proving-a-replacement-fits">
+<span class="md-ellipsis">
+      
+        Proving a Replacement Fits
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#continue">
+<span class="md-ellipsis">
+      
+        Continue
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../threat-and-failure-model/">
+<span class="md-ellipsis">
+    
+  
+    Threat and Failure Model
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../adoption-profiles/">
+<span class="md-ellipsis">
+    
+  
+    Adoption Profiles
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../foundation-quick-start/">
+<span class="md-ellipsis">
+    
+  
+    Foundation Quick-Start
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../operating-model/">
+<span class="md-ellipsis">
+    
+  
+    Operating Model
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../worked-example-azure-cisco/">
+<span class="md-ellipsis">
+    
+  
+    Worked Example: Azure and Cisco
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../proof-of-concept/">
+<span class="md-ellipsis">
+    
+  
+    Proof of Concept v1
+  
+
+    
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_4_5" type="checkbox"/>
+<div class="md-nav__link md-nav__container">
+<a class="md-nav__link" href="../../../governed-ai-network-operations/">
+<span class="md-ellipsis">
+    
+  
+    Governed AI for Network Operations
+  
+
+    
+  </span>
+</a>
+<label class="md-nav__link" for="__nav_4_5" id="__nav_4_5_label" tabindex="0">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-expanded="false" aria-labelledby="__nav_4_5_label" class="md-nav" data-md-level="2">
+<label class="md-nav__title" for="__nav_4_5">
+<span class="md-nav__icon md-icon"></span>
+            
+  
+    Governed AI for Network Operations
+  
+
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../governed-ai-network-operations/ai-risk-classification/">
+<span class="md-ellipsis">
+    
+  
+    AI Risk Classification
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../governed-ai-network-operations/why-your-agent-must-not-have-execute-command/">
+<span class="md-ellipsis">
+    
+  
+    Why Your Agent Must Not Have an execute_command Tool
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../governed-ai-network-operations/from-script-to-tool/">
+<span class="md-ellipsis">
+    
+  
+    From Script to Tool
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../governed-ai-network-operations/tool-catalogue-design/">
+<span class="md-ellipsis">
+    
+  
+    Designing the Tool Catalogue
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../governed-ai-network-operations/tool-contracts-and-failure-modes/">
+<span class="md-ellipsis">
+    
+  
+    Tool Contracts and Failure Modes
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../governed-ai-network-operations/agent-review-checklist/">
+<span class="md-ellipsis">
+    
+  
+    Agent Review Checklist
+  
+
+    
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_5" type="checkbox"/>
+<div class="md-nav__link md-nav__container">
+<a class="md-nav__link" href="../../../../services/">
+<span class="md-ellipsis">
+    
+  
+    Services
+  
+
+    
+  </span>
+</a>
+<label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-expanded="false" aria-labelledby="__nav_5_label" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_5">
+<span class="md-nav__icon md-icon"></span>
+            
+  
+    Services
+  
+
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../how-we-work/">
+<span class="md-ellipsis">
+    
+  
+    How We Work
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../contact/">
+<span class="md-ellipsis">
+    
+  
+    Contact &amp; Discovery
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../scripts/">
+<span class="md-ellipsis">
+    
+  
+    Script Library
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_5_5" type="checkbox"/>
+<div class="md-nav__link md-nav__container">
+<a class="md-nav__link" href="../../../../coming-soon/">
+<span class="md-ellipsis">
+    
+  
+    Coming Soon
+  
+
+    
+  </span>
+</a>
+<label class="md-nav__link" for="__nav_5_5" id="__nav_5_5_label" tabindex="0">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-expanded="false" aria-labelledby="__nav_5_5_label" class="md-nav" data-md-level="2">
+<label class="md-nav__title" for="__nav_5_5">
+<span class="md-nav__icon md-icon"></span>
+            
+  
+    Coming Soon
+  
+
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../coming-soon/cisco-ios-xe-ztp/">
+<span class="md-ellipsis">
+    
+  
+    Cisco IOS XE ZTP
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../coming-soon/ztp-automation-platform/">
+<span class="md-ellipsis">
+    
+  
+    ZTP Automation Platform
+  
+
+    
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_5_6" type="checkbox"/>
+<div class="md-nav__link md-nav__container">
+<a class="md-nav__link" href="../../../../smb/">
+<span class="md-ellipsis">
+    
+  
+    For Small &amp; Medium Businesses
+  
+
+    
+  </span>
+</a>
+<label class="md-nav__link" for="__nav_5_6" id="__nav_5_6_label" tabindex="0">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-expanded="false" aria-labelledby="__nav_5_6_label" class="md-nav" data-md-level="2">
+<label class="md-nav__title" for="__nav_5_6">
+<span class="md-nav__icon md-icon"></span>
+            
+  
+    For Small &amp; Medium Businesses
+  
+
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../smb/services/">
+<span class="md-ellipsis">
+    
+  
+    SMB Automation Packages
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_5_6_3" type="checkbox"/>
+<label class="md-nav__link" for="__nav_5_6_3" id="__nav_5_6_3_label" tabindex="0">
+<span class="md-ellipsis">
+    
+  
+    Automation Packages
+  
+
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_5_6_3_label" class="md-nav" data-md-level="3">
+<label class="md-nav__title" for="__nav_5_6_3">
+<span class="md-nav__icon md-icon"></span>
+            
+  
+    Automation Packages
+  
+
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../smb/packages/automation-assessment/">
+<span class="md-ellipsis">
+    
+  
+    Automation Opportunity Assessment
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../smb/packages/switch-audit-pack/">
+<span class="md-ellipsis">
+    
+  
+    Switch Audit &amp; Compliance Pack
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../smb/packages/ios-xe-upgrade-pack/">
+<span class="md-ellipsis">
+    
+  
+    IOS-XE Upgrade Automation Pack
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../smb/packages/ztp-setup/">
+<span class="md-ellipsis">
+    
+  
+    Zero-Touch Provisioning Setup
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../smb/packages/custom-script-build/">
+<span class="md-ellipsis">
+    
+  
+    Custom Script Build
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../smb/packages/automation-as-a-service/">
+<span class="md-ellipsis">
+    
+  
+    Automation-as-a-Service
+  
+
+    
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_6" type="checkbox"/>
+<div class="md-nav__link md-nav__container">
+<a class="md-nav__link" href="../../../">
+<span class="md-ellipsis">
+    
+  
+    Foundation
+  
+
+    
+  </span>
+</a>
+<label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-expanded="false" aria-labelledby="__nav_6_label" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_6">
+<span class="md-nav__icon md-icon"></span>
+            
+  
+    Foundation
+  
+
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../charity-services/">
+<span class="md-ellipsis">
+    
+  
+    Free &amp; Low-Cost Services for Charities
+  
+
+    
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_7" type="checkbox"/>
+<div class="md-nav__link md-nav__container">
+<a class="md-nav__link" href="../../../../about/">
+<span class="md-ellipsis">
+    
+  
+    About
+  
+
+    
+  </span>
+</a>
+<label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-expanded="false" aria-labelledby="__nav_7_label" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_7">
+<span class="md-nav__icon md-icon"></span>
+            
+  
+    About
+  
+
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../founder/">
+<span class="md-ellipsis">
+    
+  
+    Founder
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../charity/">
+<span class="md-ellipsis">
+    
+  
+    Giving With Integrity
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_7_4" type="checkbox"/>
+<label class="md-nav__link" for="__nav_7_4" id="__nav_7_4_label" tabindex="0">
+<span class="md-ellipsis">
+    
+  
+    Legal
+  
+
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_7_4_label" class="md-nav" data-md-level="2">
+<label class="md-nav__title" for="__nav_7_4">
+<span class="md-nav__icon md-icon"></span>
+            
+  
+    Legal
+  
+
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../legal/brand/">
+<span class="md-ellipsis">
+    
+  
+    Brand &amp; Logo Usage
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../legal/disclaimer/">
+<span class="md-ellipsis">
+    
+  
+    Disclaimer
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../legal/licensing/">
+<span class="md-ellipsis">
+    
+  
+    Licensing
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../legal/privacy-policy/">
+<span class="md-ellipsis">
+    
+  
+    Privacy Policy
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../legal/terms-of-use/">
+<span class="md-ellipsis">
+    
+  
+    Terms of Use
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../legal/foundation-status/">
+<span class="md-ellipsis">
+    
+  
+    Nautomation Prime Foundation — Legal Status &amp; Governance
+  
+
+    
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</div>
+</div>
+</div>
+<div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc">
+<div class="md-sidebar__scrollwrap">
+<div class="md-sidebar__inner">
+<nav aria-label="Table of contents" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#interface-contracts">
+<span class="md-ellipsis">
+      
+        Interface Contracts
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#where-the-contracts-sit">
+<span class="md-ellipsis">
+      
+        Where the Contracts Sit
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#rules-for-every-contract">
+<span class="md-ellipsis">
+      
+        Rules for Every Contract
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#1-execution-request">
+<span class="md-ellipsis">
+      
+        1. Execution request
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#2-canonical-request">
+<span class="md-ellipsis">
+      
+        2. Canonical request
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#3-decision">
+<span class="md-ellipsis">
+      
+        3. Decision
+      
+    </span>
+</a>
+<nav aria-label="3. Decision" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#reason-codes">
+<span class="md-ellipsis">
+      
+        Reason codes
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#4-execution-order">
+<span class="md-ellipsis">
+      
+        4. Execution order
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#5-operation-declaration-and-adapter-result">
+<span class="md-ellipsis">
+      
+        5. Operation declaration and adapter result
+      
+    </span>
+</a>
+<nav aria-label="5. Operation declaration and adapter result" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#operation-declaration">
+<span class="md-ellipsis">
+      
+        Operation declaration
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#adapter-result">
+<span class="md-ellipsis">
+      
+        Adapter result
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#6-validation-result">
+<span class="md-ellipsis">
+      
+        6. Validation result
+      
+    </span>
+</a>
+<nav aria-label="6. Validation result" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#the-five-results">
+<span class="md-ellipsis">
+      
+        The five results
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#7-outcome">
+<span class="md-ellipsis">
+      
+        7. Outcome
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#8-evidence-event">
+<span class="md-ellipsis">
+      
+        8. Evidence event
+      
+    </span>
+</a>
+<nav aria-label="8. Evidence event" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#event-types">
+<span class="md-ellipsis">
+      
+        Event types
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#proving-a-replacement-fits">
+<span class="md-ellipsis">
+      
+        Proving a Replacement Fits
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#continue">
+<span class="md-ellipsis">
+      
+        Continue
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</div>
+</div>
+</div>
+<div class="md-content" data-md-component="content">
+<article class="md-content__inner md-typeset">
+<nav class="md-tags">
+<span class="md-tag">Architecture</span>
+<span class="md-tag">Enterprise</span>
+<span class="md-tag">Integration</span>
+<span class="md-tag">Reference Architecture</span>
+<span class="md-tag">Zero Trust</span>
+</nav>
+<h1>Interface Contracts</h1>
+<h2 id="interface-contracts">Interface Contracts<a class="headerlink" href="#interface-contracts" title="Anchor link to this section">¶</a></h2>
+<p>The architecture is <a href="../architecture/#modular-by-design">modular</a> because its modules depend on contracts, not on each other. A trust gateway does not care whether the request came from ServiceNow or a webhook; it cares that it received a valid canonical request. A validator does not care which adapter made the change; it returns a result in a known shape. Keep the contracts stable and every module behind them can be rebuilt, replaced, or written in a different language without anything else noticing.</p>
+<p>This page defines those contracts. It is the part of the architecture you implement against.</p>
+<div class="admonition info">
+<p class="admonition-title">Specification, not code</p>
+<p>Each contract is described as a field table with an illustrative JSON example. Nothing here is a library, a schema file, or a reference implementation, and nothing should be read as one. Python, Go, PowerShell, or anything else can satisfy these contracts equally well. The field names are a minimum: extend them, but do not rename them, because the names are what let a replacement module fit.</p>
+</div>
+<hr/>
+<h2 id="where-the-contracts-sit">Where the Contracts Sit<a class="headerlink" href="#where-the-contracts-sit" title="Anchor link to this section">¶</a></h2>
+<p>Eight contracts carry a run from request to evidence.</p>
+<table>
+<thead>
+<tr>
+<th>Contract</th>
+<th>Produced by (module)</th>
+<th>Consumed by (module)</th>
+<th>Lifecycle stage</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong><a href="#1-execution-request">Execution request</a></strong></td>
+<td>Request / trigger (1)</td>
+<td>Intent normalisation (3)</td>
+<td>1</td>
+</tr>
+<tr>
+<td><strong><a href="#2-canonical-request">Canonical request</a></strong></td>
+<td>Intent normalisation (3)</td>
+<td>Trust gateway (7)</td>
+<td>1–6</td>
+</tr>
+<tr>
+<td><strong><a href="#3-decision">Decision</a></strong></td>
+<td>Trust gateway (7)</td>
+<td>Orchestration (8), execution environment (9), change governance (5) on escalation</td>
+<td>6</td>
+</tr>
+<tr>
+<td><strong><a href="#4-execution-order">Execution order</a></strong></td>
+<td>Trust gateway (7), or orchestration (8) on its behalf</td>
+<td>Execution environment (9)</td>
+<td>8</td>
+</tr>
+<tr>
+<td><strong><a href="#5-operation-declaration-and-adapter-result">Operation declaration and adapter result</a></strong></td>
+<td>Workload manifest (6); target adapter (14)</td>
+<td>Trust gateway (7), outcome handling (17)</td>
+<td>3, 10</td>
+</tr>
+<tr>
+<td><strong><a href="#6-validation-result">Validation result</a></strong></td>
+<td>Independent validation (16)</td>
+<td>Outcome handling (17)</td>
+<td>11</td>
+</tr>
+<tr>
+<td><strong><a href="#7-outcome">Outcome</a></strong></td>
+<td>Outcome handling (17)</td>
+<td>Change governance (5), evidence (18)</td>
+<td>12</td>
+</tr>
+<tr>
+<td><strong><a href="#8-evidence-event">Evidence event</a></strong></td>
+<td>Every module</td>
+<td>Observability and evidence (18)</td>
+<td>All</td>
+</tr>
+</tbody>
+</table>
+<pre class="mermaid"><code>graph TD
+    T[1 Trigger] --&gt;|execution request| N[3 Intent normalisation]
+    N --&gt;|canonical request| G[7 Trust gateway]
+    G --&gt;|decision| O[8 Orchestration&lt;br/&gt;optional]
+    G --&gt;|execution order| E[9 Execution environment]
+    O --&gt;|execution order| E
+    E --&gt;|named operation| A[14 Target adapter]
+    A --&gt;|adapter result| C[17 Outcome handling]
+    V[16 Independent validation] --&gt;|validation result| C
+    C --&gt;|outcome| CG[5 Change governance]
+
+    style G fill:#c8e6c9
+    style E fill:#fff4e6
+    style V fill:#e1f5ff
+    style C fill:#e1f5ff</code></pre>
+<p>Every module on the diagram also emits evidence events to module 18. Those arrows are left off to keep it readable.</p>
+<hr/>
+<h2 id="rules-for-every-contract">Rules for Every Contract<a class="headerlink" href="#rules-for-every-contract" title="Anchor link to this section">¶</a></h2>
+<p>These apply to all eight. They are what make the contracts safe to cross a trust boundary.</p>
+<table>
+<thead>
+<tr>
+<th>Rule</th>
+<th>Why</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Every message carries <code>contract</code> and <code>contract_version</code></strong></td>
+<td>A consumer must know exactly what it is parsing. Versions follow major.minor: a consumer accepts any minor version of the major it supports, and refuses a major it does not</td>
+</tr>
+<tr>
+<td><strong>Every message after acceptance carries <code>job_id</code></strong></td>
+<td>The Job ID is the thread that ties the run together. A message without one cannot be correlated, so it cannot be trusted</td>
+</tr>
+<tr>
+<td><strong>Strict at trust boundaries</strong></td>
+<td>The execution request, canonical request, decision, and execution order reject unknown top-level fields and missing required ones. Extra data goes in an <code>extensions</code> object, which policy ignores unless a rule names it. A field nobody expected is a field somebody may have smuggled</td>
+</tr>
+<tr>
+<td><strong>Identity comes from authentication, never from the payload</strong></td>
+<td>A <code>requester</code> field in a submitted request is ignored. The request service takes the requester from the authenticated session or the verified event identity</td>
+</tr>
+<tr>
+<td><strong>Times are UTC, in ISO 8601</strong></td>
+<td>Correlation across platforms fails on mixed time zones</td>
+</tr>
+<tr>
+<td><strong>Enumerations are fixed and upper case</strong></td>
+<td><code>ALLOW</code>, not <code>allowed</code> or <code>Allow</code>. A consumer that meets a value it does not recognise treats it as the most restrictive one available</td>
+</tr>
+<tr>
+<td><strong>No secrets, ever</strong></td>
+<td>Contracts carry references to credentials — a secret's name or an issuance identifier — never the credential itself</td>
+</tr>
+<tr>
+<td><strong>Integrity in transit</strong></td>
+<td>Between hosts, messages travel over mutually authenticated channels. A decision consumed by a separate execution environment is also signed by the gateway, so the executor can verify it did not come from somewhere else</td>
+</tr>
+</tbody>
+</table>
+<p>The Foundation profile can meet these with files and a single host: a local queue, file permissions instead of mutual TLS, and the runner reading its own decision. The rules do not change with the profile. Their implementation does.</p>
+<hr/>
+<h2 id="1-execution-request">1. Execution request<a class="headerlink" href="#1-execution-request" title="Anchor link to this section">¶</a></h2>
+<p>What a caller submits. It is deliberately small, because it is untrusted input.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Required</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>contract</code>, <code>contract_version</code></td>
+<td>Yes</td>
+<td><code>execution-request</code>, and its version</td>
+</tr>
+<tr>
+<td><code>client_request_id</code></td>
+<td>Yes</td>
+<td>The caller's own identifier, used to make submission idempotent: the same ID twice is one request, not two</td>
+</tr>
+<tr>
+<td><code>workload</code></td>
+<td>Yes</td>
+<td><code>name</code> and <code>digest</code>. A release is always named by digest, never by tag or path</td>
+</tr>
+<tr>
+<td><code>operation</code></td>
+<td>Yes</td>
+<td>The named operation from the workload's manifest</td>
+</tr>
+<tr>
+<td><code>targets</code></td>
+<td>Yes</td>
+<td>The targets as the caller names them. They are resolved later, by the gateway, from an authoritative source</td>
+</tr>
+<tr>
+<td><code>parameters</code></td>
+<td>No</td>
+<td>Operation-specific values, validated against the operation's declared parameters</td>
+</tr>
+<tr>
+<td><code>change_id</code></td>
+<td>Conditional</td>
+<td>Required where policy requires a change record</td>
+</tr>
+<tr>
+<td><code>requested_window</code></td>
+<td>No</td>
+<td><code>start</code> and <code>end</code>, if the caller wants the run held to a window</td>
+</tr>
+<tr>
+<td><code>channel</code></td>
+<td>Yes</td>
+<td>Which entry route was used: <code>ITSM</code>, <code>API</code>, <code>PIPELINE</code>, <code>SCHEDULER</code>, <code>AGENT</code></td>
+</tr>
+</tbody>
+</table>
+<pre class="highlight"><code class="language-json">{
+  "contract": "execution-request",
+  "contract_version": "1.0",
+  "client_request_id": "c0f3d1e2-5a77-4b0e-9a51-2f4c0e8d1b6a",
+  "workload": {
+    "name": "access-port-vlan",
+    "digest": "sha256:9f2c…"
+  },
+  "operation": "set-access-vlan",
+  "targets": ["switch-a", "switch-b"],
+  "parameters": { "interface": "GigabitEthernet1/0/12", "vlan": 120 },
+  "change_id": "CHG0001234",
+  "channel": "ITSM"
+}</code></pre>
+<p>There is no requester field. Who asked is established by authentication, not by what the request says about itself.</p>
+<hr/>
+<h2 id="2-canonical-request">2. Canonical request<a class="headerlink" href="#2-canonical-request" title="Anchor link to this section">¶</a></h2>
+<p>What the request service produces, and the only request format the gateway accepts. Downstream modules depend on this contract and never on the trigger's own format.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Required</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>contract</code>, <code>contract_version</code></td>
+<td>Yes</td>
+<td><code>canonical-request</code>, and its version</td>
+</tr>
+<tr>
+<td><code>job_id</code></td>
+<td>Yes</td>
+<td>Issued here, at acceptance. Globally unique</td>
+</tr>
+<tr>
+<td><code>accepted_at</code></td>
+<td>Yes</td>
+<td>When the request service accepted it</td>
+</tr>
+<tr>
+<td><code>requester</code></td>
+<td>Yes</td>
+<td><code>principal</code>, <code>type</code> (<code>HUMAN</code>, <code>SERVICE</code>, <code>SCHEDULER</code>, <code>AGENT</code>), and <code>auth_context</code> — for example, whether MFA was used and whether a privileged role was active</td>
+</tr>
+<tr>
+<td><code>channel</code></td>
+<td>Yes</td>
+<td>Copied from the execution request</td>
+</tr>
+<tr>
+<td><code>workload</code></td>
+<td>Yes</td>
+<td><code>name</code>, <code>version</code>, and <code>digest</code></td>
+</tr>
+<tr>
+<td><code>operation</code></td>
+<td>Yes</td>
+<td>A value from the operation taxonomy</td>
+</tr>
+<tr>
+<td><code>capability_requested</code></td>
+<td>Yes</td>
+<td>The capability the operation needs, from the manifest</td>
+</tr>
+<tr>
+<td><code>risk_class</code></td>
+<td>Yes</td>
+<td><code>R0</code> to <code>R4</code>, from the operation. The gateway re-derives it and never trusts this value alone</td>
+</tr>
+<tr>
+<td><code>targets</code></td>
+<td>Yes</td>
+<td>Each target as requested. The <code>resolved</code> part is empty here, and filled in by the gateway at stage 5</td>
+</tr>
+<tr>
+<td><code>parameters</code></td>
+<td>No</td>
+<td>Validated parameters</td>
+</tr>
+<tr>
+<td><code>change_id</code></td>
+<td>Conditional</td>
+<td>As supplied, if any</td>
+</tr>
+<tr>
+<td><code>window</code></td>
+<td>No</td>
+<td>The permitted window, if any</td>
+</tr>
+</tbody>
+</table>
+<pre class="highlight"><code class="language-json">{
+  "contract": "canonical-request",
+  "contract_version": "1.0",
+  "job_id": "job-01J9Z6Q8T4V2K7M3N5P8R1S6W0",
+  "accepted_at": "2026-10-31T09:14:05Z",
+  "requester": {
+    "principal": "engineer@example.org",
+    "type": "HUMAN",
+    "auth_context": { "mfa": true, "privileged_role_active": true }
+  },
+  "channel": "ITSM",
+  "workload": {
+    "name": "access-port-vlan",
+    "version": "2.3.0",
+    "digest": "sha256:9f2c…"
+  },
+  "operation": "set-access-vlan",
+  "capability_requested": "config-write:access-interface",
+  "risk_class": "R3",
+  "targets": [
+    { "requested": "switch-a", "resolved": null },
+    { "requested": "switch-b", "resolved": null }
+  ],
+  "parameters": { "interface": "GigabitEthernet1/0/12", "vlan": 120 },
+  "change_id": "CHG0001234"
+}</code></pre>
+<p>A request that fails validation here never reaches the gateway. It ends in the <code>REJECTED</code> <a href="#7-outcome">outcome</a>, with an evidence event recording why.</p>
+<hr/>
+<h2 id="3-decision">3. Decision<a class="headerlink" href="#3-decision" title="Anchor link to this section">¶</a></h2>
+<p>What the trust gateway returns. A decision is a record, not a flag: it says what was decided, why, under which policy, and under what constraints.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Required</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>contract</code>, <code>contract_version</code></td>
+<td>Yes</td>
+<td><code>decision</code>, and its version</td>
+</tr>
+<tr>
+<td><code>job_id</code></td>
+<td>Yes</td>
+<td>The request this decision belongs to</td>
+</tr>
+<tr>
+<td><code>decision_id</code></td>
+<td>Yes</td>
+<td>Unique. An execution environment accepts each decision once</td>
+</tr>
+<tr>
+<td><code>decision</code></td>
+<td>Yes</td>
+<td><code>ALLOW</code>, <code>DENY</code>, or <code>ESCALATE</code></td>
+</tr>
+<tr>
+<td><code>reason_codes</code></td>
+<td>Yes</td>
+<td>Why. At least one, for every result, including <code>ALLOW</code></td>
+</tr>
+<tr>
+<td><code>policy_version</code></td>
+<td>Yes</td>
+<td>The policy as it stood when it decided</td>
+</tr>
+<tr>
+<td><code>evaluated_at</code>, <code>expires_at</code></td>
+<td>Yes</td>
+<td>An <code>ALLOW</code> that is not used before <code>expires_at</code> is void</td>
+</tr>
+<tr>
+<td><code>bound_to</code></td>
+<td>Yes</td>
+<td>The <code>workload_digest</code> and <code>operation</code> this decision applies to. An executor that would run anything else refuses</td>
+</tr>
+<tr>
+<td><code>constraints</code></td>
+<td>For <code>ALLOW</code></td>
+<td><code>capability_authorised</code>, the resolved <code>targets</code>, and limits such as <code>max_concurrency</code>, <code>batch_size</code>, and <code>deadline</code></td>
+</tr>
+<tr>
+<td><code>escalation</code></td>
+<td>For <code>ESCALATE</code></td>
+<td>Where the request went for a human decision, and the change record it is waiting on</td>
+</tr>
+</tbody>
+</table>
+<pre class="highlight"><code class="language-json">{
+  "contract": "decision",
+  "contract_version": "1.0",
+  "job_id": "job-01J9Z6Q8T4V2K7M3N5P8R1S6W0",
+  "decision_id": "dec-7c41e0b2",
+  "decision": "ALLOW",
+  "reason_codes": ["POLICY_SATISFIED", "APPROVAL_VALID"],
+  "policy_version": "policy-bundle-2026.10.31-3",
+  "evaluated_at": "2026-10-31T09:14:07Z",
+  "expires_at": "2026-10-31T09:24:07Z",
+  "bound_to": {
+    "workload_digest": "sha256:9f2c…",
+    "operation": "set-access-vlan"
+  },
+  "constraints": {
+    "capability_authorised": "config-write:access-interface",
+    "targets": [
+      { "requested": "switch-a", "resolved": "dcim:device:4411" },
+      { "requested": "switch-b", "resolved": "dcim:device:4412" }
+    ],
+    "max_concurrency": 1,
+    "batch_size": 1,
+    "deadline": "2026-10-31T10:00:00Z"
+  }
+}</code></pre>
+<h3 id="reason-codes">Reason codes<a class="headerlink" href="#reason-codes" title="Anchor link to this section">¶</a></h3>
+<p>A starting set. Extend it, but keep each code specific enough that a denial can be acted on without reading the gateway's logs.</p>
+<table>
+<thead>
+<tr>
+<th>Code</th>
+<th>Result</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>POLICY_SATISFIED</code></td>
+<td>ALLOW</td>
+<td>Every rule that applies was met</td>
+</tr>
+<tr>
+<td><code>APPROVAL_VALID</code></td>
+<td>ALLOW</td>
+<td>A required approval exists, matches the digest and scope, and has not expired</td>
+</tr>
+<tr>
+<td><code>UNKNOWN_WORKLOAD</code></td>
+<td>DENY</td>
+<td>No registered workload has this name and digest</td>
+</tr>
+<tr>
+<td><code>INTEGRITY_MISMATCH</code></td>
+<td>DENY</td>
+<td>The digest does not match the approved release</td>
+</tr>
+<tr>
+<td><code>SIGNATURE_INVALID</code></td>
+<td>DENY</td>
+<td>The signature is missing, or not from a trusted publisher</td>
+</tr>
+<tr>
+<td><code>PROVENANCE_UNVERIFIED</code></td>
+<td>DENY</td>
+<td>Provenance is missing, or does not match the expected builder and inputs</td>
+</tr>
+<tr>
+<td><code>REVOKED</code></td>
+<td>DENY</td>
+<td>The workload version, publisher, requester, or grant has been withdrawn</td>
+</tr>
+<tr>
+<td><code>REQUESTER_NOT_AUTHORISED</code></td>
+<td>DENY</td>
+<td>This principal may not request this workload or operation</td>
+</tr>
+<tr>
+<td><code>CAPABILITY_NOT_GRANTED</code></td>
+<td>DENY</td>
+<td>The operation needs a capability the workload's grant does not include</td>
+</tr>
+<tr>
+<td><code>TARGET_UNRESOLVED</code></td>
+<td>DENY</td>
+<td>A requested target has no authoritative record</td>
+</tr>
+<tr>
+<td><code>TARGET_OUT_OF_SCOPE</code></td>
+<td>DENY</td>
+<td>A target resolved, but is outside the grant's scope</td>
+</tr>
+<tr>
+<td><code>CONTEXT_MISSING</code></td>
+<td>DENY</td>
+<td>A mandatory input could not be obtained</td>
+</tr>
+<tr>
+<td><code>CONTEXT_STALE</code></td>
+<td>DENY</td>
+<td>A mandatory input is older than its freshness limit</td>
+</tr>
+<tr>
+<td><code>CONTEXT_CONFLICT</code></td>
+<td>DENY</td>
+<td>Authoritative sources disagree about a target</td>
+</tr>
+<tr>
+<td><code>OUTSIDE_WINDOW</code></td>
+<td>DENY</td>
+<td>The run falls outside its permitted window</td>
+</tr>
+<tr>
+<td><code>APPROVAL_INVALID</code></td>
+<td>DENY</td>
+<td>An approval exists but does not match, or has been withdrawn</td>
+</tr>
+<tr>
+<td><code>EVIDENCE_UNAVAILABLE</code></td>
+<td>DENY</td>
+<td>Policy requires evidence to be committed, and the evidence platform is not accepting it</td>
+</tr>
+<tr>
+<td><code>APPROVAL_REQUIRED</code></td>
+<td>ESCALATE</td>
+<td>A human decision is needed and has not yet been given</td>
+</tr>
+</tbody>
+</table>
+<hr/>
+<h2 id="4-execution-order">4. Execution order<a class="headerlink" href="#4-execution-order" title="Anchor link to this section">¶</a></h2>
+<p>What the execution environment receives. It never runs anything without one, and it checks the order against the decision before it starts.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Required</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>contract</code>, <code>contract_version</code></td>
+<td>Yes</td>
+<td><code>execution-order</code>, and its version</td>
+</tr>
+<tr>
+<td><code>job_id</code>, <code>decision_id</code></td>
+<td>Yes</td>
+<td>The run and the decision that authorised it</td>
+</tr>
+<tr>
+<td><code>workload_digest</code></td>
+<td>Yes</td>
+<td>What to start. The environment verifies the artefact's signature itself before starting it</td>
+</tr>
+<tr>
+<td><code>operation</code>, <code>parameters</code></td>
+<td>Yes</td>
+<td>The named operation and its validated parameters</td>
+</tr>
+<tr>
+<td><code>targets</code></td>
+<td>Yes</td>
+<td>Resolved targets only, with the management address each one should be reached on</td>
+</tr>
+<tr>
+<td><code>constraints</code></td>
+<td>Yes</td>
+<td>Copied from the decision</td>
+</tr>
+<tr>
+<td><code>credential_reference</code></td>
+<td>Conditional</td>
+<td>The name of the credential the workload may retrieve with its own identity. Never the credential</td>
+</tr>
+<tr>
+<td><code>validation_profile</code></td>
+<td>Yes</td>
+<td>Which validation the run will be judged by</td>
+</tr>
+<tr>
+<td><code>issued_at</code></td>
+<td>Yes</td>
+<td>When the order was issued</td>
+</tr>
+<tr>
+<td><code>signature</code></td>
+<td>Between hosts</td>
+<td>The gateway's signature over the order</td>
+</tr>
+</tbody>
+</table>
+<pre class="highlight"><code class="language-json">{
+  "contract": "execution-order",
+  "contract_version": "1.0",
+  "job_id": "job-01J9Z6Q8T4V2K7M3N5P8R1S6W0",
+  "decision_id": "dec-7c41e0b2",
+  "workload_digest": "sha256:9f2c…",
+  "operation": "set-access-vlan",
+  "parameters": { "interface": "GigabitEthernet1/0/12", "vlan": 120 },
+  "targets": [
+    { "id": "dcim:device:4411", "management_address": "192.0.2.11" },
+    { "id": "dcim:device:4412", "management_address": "192.0.2.12" }
+  ],
+  "constraints": { "max_concurrency": 1, "batch_size": 1, "deadline": "2026-10-31T10:00:00Z" },
+  "credential_reference": "automation/access-port-vlan/device",
+  "validation_profile": "access-port-vlan-v2",
+  "issued_at": "2026-10-31T09:14:09Z"
+}</code></pre>
+<p>The execution environment refuses the order if the decision is not <code>ALLOW</code>, has expired, has already been used, or is bound to a different digest or operation. An orchestrator can pass an order on. It cannot create one.</p>
+<hr/>
+<h2 id="5-operation-declaration-and-adapter-result">5. Operation declaration and adapter result<a class="headerlink" href="#5-operation-declaration-and-adapter-result" title="Anchor link to this section">¶</a></h2>
+<p>Two halves of one contract. The <strong>operation declaration</strong> lives in the workload's signed manifest and says what an operation is allowed to be. The <strong>adapter result</strong> is what each target reports back after the operation ran.</p>
+<h3 id="operation-declaration">Operation declaration<a class="headerlink" href="#operation-declaration" title="Anchor link to this section">¶</a></h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Required</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>name</code>, <code>version</code></td>
+<td>Yes</td>
+<td>The operation, as named in requests</td>
+</tr>
+<tr>
+<td><code>capability</code></td>
+<td>Yes</td>
+<td>The capability it needs</td>
+</tr>
+<tr>
+<td><code>risk_class</code></td>
+<td>Yes</td>
+<td><code>R0</code> to <code>R4</code></td>
+</tr>
+<tr>
+<td><code>platforms</code></td>
+<td>Yes</td>
+<td>The target platforms it supports</td>
+</tr>
+<tr>
+<td><code>parameters</code></td>
+<td>Yes</td>
+<td>Each parameter's name, type, and allowed values</td>
+</tr>
+<tr>
+<td><code>preflight</code></td>
+<td>Yes</td>
+<td>The checks that must pass before any write</td>
+</tr>
+<tr>
+<td><code>safeguards</code></td>
+<td>Yes</td>
+<td>For example, whether a confirmed commit is used and whether a dry run is supported</td>
+</tr>
+<tr>
+<td><code>rollback</code></td>
+<td>Yes</td>
+<td><code>safe</code> (<code>true</code> or <code>false</code>) and <code>method</code>. Declared before any run, because automatic rollback is not universal</td>
+</tr>
+<tr>
+<td><code>validation_profile</code></td>
+<td>Yes</td>
+<td>How the result will be judged</td>
+</tr>
+</tbody>
+</table>
+<pre class="highlight"><code class="language-json">{
+  "name": "set-access-vlan",
+  "version": "2.3.0",
+  "capability": "config-write:access-interface",
+  "risk_class": "R3",
+  "platforms": ["cisco-iosxe"],
+  "parameters": {
+    "interface": { "type": "string", "pattern": "^GigabitEthernet[0-9/]+$" },
+    "vlan": { "type": "integer", "minimum": 2, "maximum": 4094 }
+  },
+  "preflight": ["identity-matches-sot", "interface-is-access-mode", "vlan-exists"],
+  "safeguards": { "confirmed_commit": true, "dry_run": true },
+  "rollback": { "safe": true, "method": "confirmed-commit-revert" },
+  "validation_profile": "access-port-vlan-v2"
+}</code></pre>
+<h3 id="adapter-result">Adapter result<a class="headerlink" href="#adapter-result" title="Anchor link to this section">¶</a></h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Required</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>job_id</code>, <code>target</code></td>
+<td>Yes</td>
+<td>Which run, which target</td>
+</tr>
+<tr>
+<td><code>status</code></td>
+<td>Yes</td>
+<td><code>APPLIED</code>, <code>NOT_APPLIED</code>, <code>FAILED</code>, or <code>SKIPPED_PREFLIGHT</code></td>
+</tr>
+<tr>
+<td><code>started_at</code>, <code>ended_at</code></td>
+<td>Yes</td>
+<td>Timing</td>
+</tr>
+<tr>
+<td><code>change_markers</code></td>
+<td>No</td>
+<td>Platform evidence of the change — a commit identifier, a revert timer, a Job ID marker on the device</td>
+</tr>
+<tr>
+<td><code>error_code</code></td>
+<td>On failure</td>
+<td>A specific, machine-readable reason</td>
+</tr>
+</tbody>
+</table>
+<pre class="highlight"><code class="language-json">{
+  "job_id": "job-01J9Z6Q8T4V2K7M3N5P8R1S6W0",
+  "target": "dcim:device:4411",
+  "status": "APPLIED",
+  "started_at": "2026-10-31T09:15:02Z",
+  "ended_at": "2026-10-31T09:15:09Z",
+  "change_markers": { "confirm_timer_seconds": 300, "job_marker": "job-01J9Z6Q8T4V2K7M3N5P8R1S6W0" }
+}</code></pre>
+<p><code>APPLIED</code> means the adapter believes the change went in. It is not success. Only the validation result decides that.</p>
+<hr/>
+<h2 id="6-validation-result">6. Validation result<a class="headerlink" href="#6-validation-result" title="Anchor link to this section">¶</a></h2>
+<p>What the independent validator returns. It is produced by a different identity and different code from the change, and its result is the only one that decides whether the run worked.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Required</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>contract</code>, <code>contract_version</code></td>
+<td>Yes</td>
+<td><code>validation-result</code>, and its version</td>
+</tr>
+<tr>
+<td><code>job_id</code></td>
+<td>Yes</td>
+<td>The run being judged</td>
+</tr>
+<tr>
+<td><code>validator</code></td>
+<td>Yes</td>
+<td><code>name</code>, <code>version</code>, and the identity it ran as</td>
+</tr>
+<tr>
+<td><code>observed_at</code></td>
+<td>Yes</td>
+<td>When state was collected</td>
+</tr>
+<tr>
+<td><code>result</code></td>
+<td>Yes</td>
+<td>The overall result, aggregated from the targets as below</td>
+</tr>
+<tr>
+<td><code>targets</code></td>
+<td>Yes</td>
+<td>Per target: its <code>result</code>, and each <code>check</code> with its <code>expected</code> value, a summary of what was <code>observed</code>, and whether it passed</td>
+</tr>
+</tbody>
+</table>
+<pre class="highlight"><code class="language-json">{
+  "contract": "validation-result",
+  "contract_version": "1.0",
+  "job_id": "job-01J9Z6Q8T4V2K7M3N5P8R1S6W0",
+  "validator": { "name": "access-port-validator", "version": "1.4.1", "identity": "validator-access-port" },
+  "observed_at": "2026-10-31T09:16:30Z",
+  "result": "PARTIAL",
+  "targets": [
+    {
+      "target": "dcim:device:4411",
+      "result": "PASS",
+      "checks": [{ "check": "access-vlan", "expected": "120", "observed": "120", "passed": true }]
+    },
+    {
+      "target": "dcim:device:4412",
+      "result": "UNKNOWN",
+      "checks": [{ "check": "access-vlan", "expected": "120", "observed": "unreachable", "passed": false }]
+    }
+  ]
+}</code></pre>
+<h3 id="the-five-results">The five results<a class="headerlink" href="#the-five-results" title="Anchor link to this section">¶</a></h3>
+<table>
+<thead>
+<tr>
+<th>Result</th>
+<th>For one target</th>
+<th>Overall, across targets</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>PASS</strong></td>
+<td>Every check matches the approved intent</td>
+<td>Every target passed</td>
+</tr>
+<tr>
+<td><strong>FAIL</strong></td>
+<td>At least one check contradicts the intent</td>
+<td>No target passed, and at least one failed</td>
+</tr>
+<tr>
+<td><strong>DRIFT</strong></td>
+<td>The state differs from intent in ways this change did not cause</td>
+<td>No target passed or failed, and at least one drifted</td>
+</tr>
+<tr>
+<td><strong>UNKNOWN</strong></td>
+<td>The state could not be observed</td>
+<td>Nothing could be observed on any target</td>
+</tr>
+<tr>
+<td><strong>PARTIAL</strong></td>
+<td>—</td>
+<td>Some targets passed and others did not</td>
+</tr>
+</tbody>
+</table>
+<p>UNKNOWN never counts as a pass. A validator that could not see the result has not reported success; it has reported that success cannot be claimed.</p>
+<hr/>
+<h2 id="7-outcome">7. Outcome<a class="headerlink" href="#7-outcome" title="Anchor link to this section">¶</a></h2>
+<p>What outcome handling records as the run's terminal state. Every run ends in exactly one of these, including runs that never started.</p>
+<table>
+<thead>
+<tr>
+<th>Outcome</th>
+<th>When</th>
+<th>Attention required</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>REJECTED</strong></td>
+<td>The request failed validation at intent normalisation</td>
+<td>No</td>
+</tr>
+<tr>
+<td><strong>DENIED</strong></td>
+<td>The gateway returned <code>DENY</code></td>
+<td>Depends on the reason code; repeated denials are worth investigating</td>
+</tr>
+<tr>
+<td><strong>EXPIRED</strong></td>
+<td>An <code>ESCALATE</code> was never answered, or an <code>ALLOW</code> was never used</td>
+<td>No</td>
+</tr>
+<tr>
+<td><strong>FAILED_TO_START</strong></td>
+<td>Privilege could not be acquired, the execution environment refused the order, or every target failed pre-flight</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td><strong>SUCCEEDED</strong></td>
+<td>Validation returned PASS</td>
+<td>No</td>
+</tr>
+<tr>
+<td><strong>ROLLED_BACK</strong></td>
+<td>Validation returned FAIL or UNKNOWN, the operation declares rollback safe, and the rollback was confirmed</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td><strong>HALTED</strong></td>
+<td>Validation returned FAIL or UNKNOWN and rollback is not declared safe or did not complete; or the result was DRIFT or PARTIAL</td>
+<td>Yes, with escalation</td>
+</tr>
+<tr>
+<td><strong>STOPPED</strong></td>
+<td>A revocation, emergency stop, or circuit breaker ended the run</td>
+<td>Yes</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Required</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>contract</code>, <code>contract_version</code></td>
+<td>Yes</td>
+<td><code>outcome</code>, and its version</td>
+</tr>
+<tr>
+<td><code>job_id</code></td>
+<td>Yes</td>
+<td>The run</td>
+</tr>
+<tr>
+<td><code>outcome</code></td>
+<td>Yes</td>
+<td>One of the eight above</td>
+</tr>
+<tr>
+<td><code>attention_required</code></td>
+<td>Yes</td>
+<td><code>true</code> or <code>false</code></td>
+</tr>
+<tr>
+<td><code>validation_result</code></td>
+<td>Where validation ran</td>
+<td>The overall result it was based on</td>
+</tr>
+<tr>
+<td><code>rollback</code></td>
+<td>Where attempted</td>
+<td>What was rolled back, by which method, and whether it was confirmed</td>
+</tr>
+<tr>
+<td><code>escalated_to</code></td>
+<td>For <code>HALTED</code></td>
+<td>Where the run was escalated</td>
+</tr>
+<tr>
+<td><code>change_id</code></td>
+<td>Where one applies</td>
+<td>So the change record can be updated</td>
+</tr>
+<tr>
+<td><code>completed_at</code></td>
+<td>Yes</td>
+<td>When the terminal state was reached</td>
+</tr>
+</tbody>
+</table>
+<pre class="highlight"><code class="language-json">{
+  "contract": "outcome",
+  "contract_version": "1.0",
+  "job_id": "job-01J9Z6Q8T4V2K7M3N5P8R1S6W0",
+  "outcome": "HALTED",
+  "attention_required": true,
+  "validation_result": "PARTIAL",
+  "rollback": { "attempted": false, "reason": "PARTIAL results halt the batch for review" },
+  "escalated_to": "network-change-review",
+  "change_id": "CHG0001234",
+  "completed_at": "2026-10-31T09:17:02Z"
+}</code></pre>
+<p>DRIFT halts rather than rolling back on purpose. A rollback undoes <em>this</em> change. Drift is a difference this change did not make, and undoing the change would not fix it.</p>
+<hr/>
+<h2 id="8-evidence-event">8. Evidence event<a class="headerlink" href="#8-evidence-event" title="Anchor link to this section">¶</a></h2>
+<p>What every module emits, all the way through the run. An evidence event is an envelope with a payload: the envelope is the same for every event, and the payload depends on the event type.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Required</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>contract</code>, <code>contract_version</code></td>
+<td>Yes</td>
+<td><code>evidence-event</code>, and its version</td>
+</tr>
+<tr>
+<td><code>event_id</code></td>
+<td>Yes</td>
+<td>Unique</td>
+</tr>
+<tr>
+<td><code>event_type</code></td>
+<td>Yes</td>
+<td>From the list below</td>
+</tr>
+<tr>
+<td><code>job_id</code></td>
+<td>Yes, once issued</td>
+<td>The correlation thread. Events from before acceptance carry the <code>client_request_id</code> instead</td>
+</tr>
+<tr>
+<td><code>sequence</code></td>
+<td>Yes</td>
+<td>The event's position within its job, so the run can be replayed in order even if events arrive out of order</td>
+</tr>
+<tr>
+<td><code>timestamp</code></td>
+<td>Yes</td>
+<td>When the event happened, from a synchronised clock</td>
+</tr>
+<tr>
+<td><code>emitter</code></td>
+<td>Yes</td>
+<td>The <code>component</code>, its <code>version</code>, and the <code>identity</code> it ran as</td>
+</tr>
+<tr>
+<td><code>payload</code></td>
+<td>Yes</td>
+<td>The event's own fields. For most types, this is the contract message it refers to</td>
+</tr>
+<tr>
+<td><code>previous_event_hash</code></td>
+<td>Recommended</td>
+<td>A hash of the job's previous event, so a deleted or altered event breaks the chain visibly</td>
+</tr>
+</tbody>
+</table>
+<pre class="highlight"><code class="language-json">{
+  "contract": "evidence-event",
+  "contract_version": "1.0",
+  "event_id": "evt-5b9e2c11",
+  "event_type": "decision.allow",
+  "job_id": "job-01J9Z6Q8T4V2K7M3N5P8R1S6W0",
+  "sequence": 4,
+  "timestamp": "2026-10-31T09:14:07Z",
+  "emitter": { "component": "trust-gateway", "version": "3.2.0", "identity": "gateway-prod" },
+  "payload": { "decision_id": "dec-7c41e0b2", "reason_codes": ["POLICY_SATISFIED", "APPROVAL_VALID"], "policy_version": "policy-bundle-2026.10.31-3" },
+  "previous_event_hash": "sha256:1d0a…"
+}</code></pre>
+<h3 id="event-types">Event types<a class="headerlink" href="#event-types" title="Anchor link to this section">¶</a></h3>
+<table>
+<thead>
+<tr>
+<th>Event type</th>
+<th>Emitted by</th>
+<th>When</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>request.accepted</code>, <code>request.rejected</code></td>
+<td>Intent normalisation</td>
+<td>Stage 1</td>
+</tr>
+<tr>
+<td><code>decision.allow</code>, <code>decision.deny</code>, <code>decision.escalate</code></td>
+<td>Trust gateway</td>
+<td>Stage 6</td>
+</tr>
+<tr>
+<td><code>privilege.issued</code>, <code>privilege.closed</code></td>
+<td>Trust gateway or secrets broker</td>
+<td>Stages 7 and 13</td>
+</tr>
+<tr>
+<td><code>execution.started</code>, <code>execution.refused</code></td>
+<td>Execution environment</td>
+<td>Stage 8</td>
+</tr>
+<tr>
+<td><code>preflight.result</code></td>
+<td>Execution environment or adapter</td>
+<td>Stage 9</td>
+</tr>
+<tr>
+<td><code>adapter.result</code></td>
+<td>Target adapter</td>
+<td>Stage 10, once per target</td>
+</tr>
+<tr>
+<td><code>validation.result</code></td>
+<td>Independent validation</td>
+<td>Stage 11</td>
+</tr>
+<tr>
+<td><code>outcome.final</code></td>
+<td>Outcome handling</td>
+<td>Stage 12</td>
+</tr>
+<tr>
+<td><code>revocation.applied</code>, <code>breakglass.used</code></td>
+<td>Gateway, or the platform where it happened</td>
+<td>Whenever they happen</td>
+</tr>
+</tbody>
+</table>
+<p>The evidence platform stores events append-only. Nothing in a run can update or delete an event that has been committed; a correction is a new event that refers to the old one.</p>
+<div class="admonition warning">
+<p class="admonition-title">Evidence safety</p>
+<p>Record credential references, authorisation decisions, and retrieval outcomes. Never record passwords, secret values, private keys, session cookies, or access and refresh tokens, in any field of any event.</p>
+</div>
+<hr/>
+<h2 id="proving-a-replacement-fits">Proving a Replacement Fits<a class="headerlink" href="#proving-a-replacement-fits" title="Anchor link to this section">¶</a></h2>
+<p>A contract is only useful if a replacement module can be shown to honour it. So every module implementation comes with contract tests, and a swap is accepted when the new module passes the same ones as the old.</p>
+<table>
+<thead>
+<tr>
+<th>For a replacement…</th>
+<th>It must show</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Request service</strong></td>
+<td>Valid requests produce canonical requests with a Job ID; a request with an unknown field, a missing field, or a payload-supplied requester is rejected</td>
+</tr>
+<tr>
+<td><strong>Trust gateway or decision engine</strong></td>
+<td>The same inputs and policy version produce the same decision; every result carries reason codes; missing mandatory context produces <code>DENY</code>; decisions expire and cannot be reused</td>
+</tr>
+<tr>
+<td><strong>Execution environment</strong></td>
+<td>It refuses orders with no decision, an expired or reused decision, or a decision bound to a different digest or operation; it verifies the artefact itself</td>
+</tr>
+<tr>
+<td><strong>Adapter</strong></td>
+<td>It accepts only declared operations and parameters within their declared limits, and reports every target, including those it skipped</td>
+</tr>
+<tr>
+<td><strong>Validator</strong></td>
+<td>It aggregates per-target results into the overall result exactly as defined above, and returns UNKNOWN — not PASS — when it cannot observe</td>
+</tr>
+<tr>
+<td><strong>Outcome handler</strong></td>
+<td>Every combination of validation result and rollback declaration maps to the outcome defined above</td>
+</tr>
+<tr>
+<td><strong>Evidence backend</strong></td>
+<td>It accepts the same events unchanged, preserves their order by sequence, and can return a complete run from one Job ID</td>
+</tr>
+</tbody>
+</table>
+<p>The tests are written against the contract, not against the product. That is what makes them reusable: the decision-engine tests written when the gateway used one policy engine are the same tests a different engine has to pass.</p>
+<hr/>
+<h2 id="continue">Continue<a class="headerlink" href="#continue" title="Anchor link to this section">¶</a></h2>
+<ul>
+<li>Previous: <a href="../architecture/">The Full Reference Architecture</a></li>
+<li>Next: <a href="../threat-and-failure-model/">Threat and Failure Model</a></li>
+<li>Section index: <a href="../">Trusted Automation Execution</a></li>
+</ul>
+<div class="np-capture" id="mailing-list">
+<h3>Get notified when the book ships</h3>
+<p>Christopher is writing a book on production-grade Cisco network automation: one script, followed from twelve lines to a system that upgrades hundreds of devices, and every failure along the way. Join the list to hear when it ships and when new Academy material goes up.</p>
+<div class="np-capture-kit">
+<script async="" data-uid="fa3ec773cd" src="https://nautomation-prime.kit.com/fa3ec773cd/index.js"></script>
+</div>
+<p class="np-capture-small">One list, occasional emails, unsubscribe any time. Sign-up is handled by Kit; see the <a href="../../../../legal/privacy-policy/">Privacy Policy</a>.</p>
+</div>
+<aside class="md-source-file">
+<span class="md-source-file__fact">
+<span class="md-icon" title="Last update">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"></path></svg>
+</span>
+<span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="October 31, 2026 09:36:12 UTC">October 31, 2026</span>
+</span>
+</aside>
+</article>
+</div>
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+</div>
+<button class="md-top md-icon" data-md-component="top" hidden="" type="button">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"></path></svg>
+  Back to top
+</button>
+</main>
+<footer class="md-footer">
+<div class="md-footer-meta md-typeset">
+<div class="md-footer-meta__inner md-grid">
+<div class="md-copyright">
+<div class="md-copyright__highlight">
+      © 2026 Christopher Davies T/A Nautomation Prime — Not affiliated with Cisco Systems, Inc.<br/> Empowering Network Automation Professionals · Built with Material for MkDocs · <a href="#__consent">Change cookie settings</a>
+</div>
+</div>
+<div class="md-social">
+<a class="md-social__link" href="https://www.linkedin.com/company/nautomationprime" rel="noopener" target="_blank" title="LinkedIn">
+<svg viewbox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3M135.4 416H69V202.2h66.5V416zM102.2 96a38.5 38.5 0 1 1 0 77 38.5 38.5 0 1 1 0-77m282.1 320h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9z"></path></svg>
+</a>
+<a class="md-social__link" href="https://github.com/Nautomation-Prime" rel="noopener" target="_blank" title="GitHub">
+<svg viewbox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"></path></svg>
+</a>
+<a class="md-social__link" href="mailto:enquiries@nautomationprime.io" rel="noopener" target="_blank" title="Contact Nautomation Prime">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="m20 8-8 5-8-5V6l8 5 8-5m0-2H4c-1.11 0-2 .89-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2"></path></svg>
+</a>
+</div>
+</div>
+</div>
+</footer>
+</div>
+<div class="md-dialog" data-md-component="dialog">
+<div class="md-dialog__inner md-typeset"></div>
+</div>
+<div class="md-consent" data-md-component="consent" hidden="" id="__consent">
+<div class="md-consent__overlay"></div>
+<aside class="md-consent__inner">
+<form class="md-consent__form md-grid md-typeset" name="consent">
+<h4>Cookie consent</h4>
+<p>We use cookies to recognize your repeated visits and preferences, as well as to measure the effectiveness of our documentation and whether users find what they're searching for. With your consent, you're helping us to make our documentation better.</p>
+<input class="md-toggle" id="__settings" type="checkbox"/>
+<div class="md-consent__settings">
+<ul class="task-list">
+<li class="task-list-item">
+<label class="task-list-control">
+<input name="analytics" type="checkbox"/>
+<span class="task-list-indicator"></span>
+      Google Analytics
+    </label>
+</li>
+<li class="task-list-item">
+<label class="task-list-control">
+<input name="github" type="checkbox"/>
+<span class="task-list-indicator"></span>
+      GitHub
+    </label>
+</li>
+</ul>
+</div>
+<div class="md-consent__controls">
+<button class="md-button md-button--primary">Accept</button>
+<button class="md-button md-button--primary" type="reset">Reject</button>
+<label class="md-button" for="__settings">Manage settings</label>
+</div>
+</form>
+</aside>
+</div>
+<script>var consent=__md_get("__consent");if(consent)for(var input of document.forms.consent.elements)input.name&&(input.checked=consent[input.name]||!1);else"file:"!==location.protocol&&setTimeout((function(){document.querySelector("[data-md-component=consent]").hidden=!1}),250);var form=document.forms.consent;for(var action of["submit","reset"])form.addEventListener(action,(function(e){if(e.preventDefault(),"reset"===e.type)for(var n of document.forms.consent.elements)n.name&&(n.checked=!1);__md_set("__consent",Object.fromEntries(Array.from(new FormData(form).keys()).map((function(e){return[e,!0]})))),location.hash="",location.reload()}))</script>
+<script id="__config" type="application/json">{"annotate": null, "base": "../../../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.tracking", "navigation.indexes", "content.code.copy", "content.code.annotate", "content.tooltips", "search.share", "search.suggest", "search.highlight", "search.stemmer", "announce.dismiss"], "search": "../../../../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+<script src="../../../../assets/javascripts/bundle.c21346df.min.js"></script>
+<script src="../../../../assets/javascripts/consent.js"></script>
+</body>
+</html>
