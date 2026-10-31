@@ -54,7 +54,7 @@ graph TD
 
 **Why it exists:** it proves the trust model with components a small engineering team can understand and operate. Its security leans heavily on protecting the runner host, the policy file, the expected digests, and the credentials. Anyone who can edit the policy or the digest list can approve their own workload, so treat those files with the same care as the credentials themselves.
 
-This is the profile the [proof of concept](./proof-of-concept.md) targets.
+This is the profile the [proof of concept](./proof-of-concept.md) targets, and the [Foundation Quick-Start](./foundation-quick-start.md) turns it into six ordered steps.
 
 ## Profile B — Integrated
 
@@ -154,5 +154,5 @@ Phase 5 has no end. The [Automation Service Lifecycle](../../production-grade-ne
 ## Continue
 
 - Previous: [Threat and Failure Model](./threat-and-failure-model.md)
-- Next: [Worked Example: Azure and Cisco](./worked-example-azure-cisco.md) — what full adoption looks like on one real stack
+- Next: [Foundation Quick-Start](./foundation-quick-start.md) — six steps to a working Foundation deployment
 - Section index: [Trusted Automation Execution](./index.md)

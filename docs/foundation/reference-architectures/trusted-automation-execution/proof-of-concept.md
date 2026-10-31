@@ -161,7 +161,7 @@ Being specific about this is what makes the PoC credible.
 - **Just-in-time privilege.** Retrieving a stored secret after the allow decision is the right order of operations, but the secret still exists before the run and after it.
 - **Tamper resistance.** A local record with a protected copy is far better than nothing. It is not evidence the workload cannot reach.
 
-Each of these is a named step in the [adoption roadmap](./adoption-profiles.md#adoption-roadmap). The value of the PoC is that its gaps are visible, and that the trust model does not change as they close.
+Each of these is a named step in the [adoption roadmap](./adoption-profiles.md#adoption-roadmap). The value of the PoC is that its gaps are visible, and that the trust model does not change as they close. The [Foundation Quick-Start](./foundation-quick-start.md#what-comes-next) names the three upgrades that close the most of them first.
 
 ---
 

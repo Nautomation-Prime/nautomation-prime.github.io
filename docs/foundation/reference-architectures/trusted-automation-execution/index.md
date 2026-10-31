@@ -180,7 +180,49 @@ The modules fall into four planes, each answering one question:
 | **Validation** | Did reality become the approved intent? |
 | **Observability and evidence** | Can we prove what happened? |
 
-The [full reference architecture](./architecture.md#modular-by-design) has the module catalogue, the class of every module, and the conformance rule.
+The [full reference architecture](./architecture.md#modular-by-design) has the module catalogue, the class of every module, and the conformance rule. The [interface contracts](./interface-contracts.md) define what passes between modules, which is what makes a swap safe.
+
+---
+
+## How the Ideas Fit Together
+
+The model has several lists in it. They are one model, seen from different sides.
+
+```mermaid
+graph TD
+    S[Nine sentences<br/>why, and in what order] --> M[Eighteen modules<br/>what must exist]
+    I[Ten invariants<br/>what never changes] --> M
+    M --> PL[Four planes<br/>which question each answers]
+    M --> CL[Module classes<br/>core · conditional · optional]
+    M --> K[Interface contracts<br/>how modules connect]
+    M --> L[Fifteen-stage lifecycle<br/>when each module acts]
+    CL --> PR[Adoption profiles<br/>how strongly each is enforced]
+    R[Risk classes R0–R4<br/>how much the gateway demands] --> PR
+
+    style S fill:#c8e6c9
+    style M fill:#fff4e6
+    style PR fill:#e1f5ff
+```
+
+| Idea | The question it answers |
+|---|---|
+| **Nine sentences** | Why, and in what order trust is established |
+| **Ten invariants** | What never changes, whatever the implementation |
+| **Eighteen modules** | What must exist |
+| **Four planes** | Which question each module answers |
+| **Module classes** | What can be omitted or removed, and on what condition |
+| **Interface contracts** | How modules connect, so any one can be replaced |
+| **Fifteen-stage lifecycle** | When each module acts during a run |
+| **Adoption profiles** | How strongly each module is enforced |
+| **Risk classes** | How much the gateway demands for a given workload |
+
+### Where to start reading
+
+| You are… | Read, in this order |
+|---|---|
+| **A network engineer with automation to protect** | [Foundation Quick-Start](./foundation-quick-start.md) · [Proof of Concept](./proof-of-concept.md) · [Interface Contracts](./interface-contracts.md) |
+| **An architect designing an implementation** | [The Full Reference Architecture](./architecture.md) · [Interface Contracts](./interface-contracts.md) · [Threat and Failure Model](./threat-and-failure-model.md) · [Worked Example](./worked-example-azure-cisco.md) |
+| **A leader, manager, or auditor** | This page · [Adoption Profiles](./adoption-profiles.md) · [Operating Model](./operating-model.md) · [Threat and Failure Model](./threat-and-failure-model.md) |
 
 ---
 
@@ -207,10 +249,13 @@ Organisation size is deliberately not the axis. A small organisation operating c
 ## In This Section
 
 1. [The Full Reference Architecture](./architecture.md) — The target state, module by module: eighteen modules across four planes, with the reason for each and what can be swapped or removed
-2. [Threat and Failure Model](./threat-and-failure-model.md) — What it defends against, how it behaves when its own parts fail, and what it explicitly does not claim
-3. [Adoption Profiles](./adoption-profiles.md) — Four profiles from Foundation to High-Assurance, the control progression between them, and a phased roadmap
-4. [Worked Example: Azure and Cisco](./worked-example-azure-cisco.md) — Full adoption on one illustrative stack, with alternatives for every module, what changes when modules are swapped or removed, and the gaps no product closes
-5. [Proof of Concept v1](./proof-of-concept.md) — Small enough to build, complete enough to prove the idea, and honest about the difference. A specification; no code is published
+2. [Interface Contracts](./interface-contracts.md) — The eight contracts between modules, defined language-neutrally, and the tests a replacement module has to pass
+3. [Threat and Failure Model](./threat-and-failure-model.md) — What it defends against, how it behaves when its own parts fail, and what it explicitly does not claim
+4. [Adoption Profiles](./adoption-profiles.md) — Four profiles from Foundation to High-Assurance, the control progression between them, and a phased roadmap
+5. [Foundation Quick-Start](./foundation-quick-start.md) — Six steps, in order, for a small team, each with a test that tells you it is done
+6. [Operating Model](./operating-model.md) — Who owns each module, how workloads are onboarded and retired, policy as code, running the gateway at scale, and what to measure
+7. [Worked Example: Azure and Cisco](./worked-example-azure-cisco.md) — Full adoption on one illustrative stack, with alternatives for every module, what changes when modules are swapped or removed, and the gaps no product closes
+8. [Proof of Concept v1](./proof-of-concept.md) — Small enough to build, complete enough to prove the idea, and honest about the difference. A specification; no code is published
 
 ---
 

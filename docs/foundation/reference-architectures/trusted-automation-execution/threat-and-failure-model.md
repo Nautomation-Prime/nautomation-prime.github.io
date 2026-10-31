@@ -110,6 +110,6 @@ The fifth is worth underlining. The architecture verifies that what runs was app
 
 ## Continue
 
-- Previous: [The Full Reference Architecture](./architecture.md)
+- Previous: [Interface Contracts](./interface-contracts.md)
 - Next: [Adoption Profiles](./adoption-profiles.md)
 - Section index: [Trusted Automation Execution](./index.md)

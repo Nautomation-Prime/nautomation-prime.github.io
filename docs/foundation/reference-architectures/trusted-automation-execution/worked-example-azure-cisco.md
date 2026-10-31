@@ -324,6 +324,6 @@ None of these is a reason to stop short. Each is a known, stated residual risk, 
 
 ## Continue
 
-- Previous: [Adoption Profiles](./adoption-profiles.md)
+- Previous: [Operating Model](./operating-model.md)
 - Next: [Proof of Concept v1](./proof-of-concept.md)
 - Section index: [Trusted Automation Execution](./index.md)
