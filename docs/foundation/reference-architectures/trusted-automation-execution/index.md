@@ -1,6 +1,6 @@
 ---
 title: Trusted Automation Execution
-description: A reference architecture applying Zero Trust principles to privileged infrastructure automation — the trust model, its ten invariants, and why a valid credential is not evidence that the automation using it should be trusted.
+description: A modular reference architecture applying Zero Trust principles to privileged infrastructure automation — the trust model, its ten invariants, eighteen swappable modules, and why a valid credential is not evidence that the automation using it should be trusted.
 image: assets/social/trusted-automation-execution.png
 image_alt: "Trusted Automation Execution: a reference architecture from the Nautomation Prime Academy"
 tags:
@@ -30,7 +30,7 @@ Answering it means being able to say:
 > Why should **this** automation artefact, requested by **this** identity, in **this** context, be permitted to exercise **this** capability against **these** resources — **now**?
 
 !!! warning "What this is, and what it is not"
-    This is a reference architecture and an engineering proof of concept — a Nautomation Prime design proposal. It is not a claim of NIST certification, of formal compliance with any framework, or of a finished security product.
+    This is a reference architecture and an engineering proof of concept — a Nautomation Prime design proposal, currently at version 2.2 (October 2026). It is not a claim of NIST certification, of formal compliance with any framework, or of a finished security product.
 
 ---
 
@@ -146,6 +146,8 @@ The whole architecture reduces to an ordered sequence. The [reference architectu
 
 The order is the point. Steps 1 to 5 complete before any privilege exists. Step 6 creates it. Steps 7 to 9 constrain it, check it, and record it. Most automation today starts at step 6, because the credential is already there, and treats the rest as optional.
 
+The sentences say *why*. The [eighteen modules](./architecture.md#the-module-catalogue) say *what*: each module sits under one sentence, and implements part of it.
+
 Steps 4 and 5 are separate on purpose. *What* a workload may do and *where* it may do it are different questions, and a design that answers only one of them has a gap. A verified compliance workload is still not permitted to reload a device. An approved change workload is still not permitted to touch every device it can reach.
 
 <div class="np-reflection" markdown>
@@ -153,6 +155,32 @@ Steps 4 and 5 are separate on purpose. *What* a workload may do and *where* it m
 <p>In her 2002 Reith Lectures, and for years afterwards, Onora O&rsquo;Neill argued that &ldquo;more trust&rdquo; is the wrong thing to want. What matters is trust placed well &mdash; given to what has shown itself trustworthy, withheld from what has not &mdash; and placing it well takes evidence, not a feeling.</p>
 <p>Everything in this section is an attempt to place trust well in something that cannot earn it the way a colleague does. The reward is not suspicion. It is being able to stop checking &mdash; to go home knowing that what ran overnight was what you approved, and that it can prove it.</p>
 </div>
+
+---
+
+## Modular by Design
+
+!!! quote "The design principle"
+    **The security properties are mandatory. The products implementing them are replaceable.**
+
+The architecture is eighteen modules, each named for what it must establish rather than for a product, and joined to the next by a contract rather than by a product. That is what makes it usable in an estate that already owns a stack, and what lets the stack change without the architecture changing:
+
+- **Swap** any module's product, as long as the replacement honours the same contract — the same inputs, outputs, policy, and evidence. Nothing on either side of it has to change.
+- **Omit** a conditional module while the situation that requires it does not apply. A genuinely secretless path needs no vault retrieval. A read-only audit may need no change approval.
+- **Remove** an optional module entirely — a separate source of truth, an orchestrator, a device AAA platform — and record what that does to assurance.
+
+What you cannot remove is a core module, or any of the ten invariants. Replaceable is not removable.
+
+The modules fall into four planes, each answering one question:
+
+| Plane | Question |
+|---|---|
+| **Control** | Should this happen? |
+| **Execution** | How can it happen safely? |
+| **Validation** | Did reality become the approved intent? |
+| **Observability and evidence** | Can we prove what happened? |
+
+The [full reference architecture](./architecture.md#modular-by-design) has the module catalogue, the class of every module, and the conformance rule.
 
 ---
 
@@ -178,10 +206,10 @@ Organisation size is deliberately not the axis. A small organisation operating c
 
 ## In This Section
 
-1. [The Full Reference Architecture](./architecture.md) — The target state, component by component, with the reason for each
+1. [The Full Reference Architecture](./architecture.md) — The target state, module by module: eighteen modules across four planes, with the reason for each and what can be swapped or removed
 2. [Threat and Failure Model](./threat-and-failure-model.md) — What it defends against, how it behaves when its own parts fail, and what it explicitly does not claim
 3. [Adoption Profiles](./adoption-profiles.md) — Four profiles from Foundation to High-Assurance, the control progression between them, and a phased roadmap
-4. [Worked Example: Azure and Cisco](./worked-example-azure-cisco.md) — Full adoption on one illustrative stack, with alternatives for every component and the gaps no product closes
+4. [Worked Example: Azure and Cisco](./worked-example-azure-cisco.md) — Full adoption on one illustrative stack, with alternatives for every module, what changes when modules are swapped or removed, and the gaps no product closes
 5. [Proof of Concept v1](./proof-of-concept.md) — Small enough to build, complete enough to prove the idea, and honest about the difference. A specification; no code is published
 
 ---

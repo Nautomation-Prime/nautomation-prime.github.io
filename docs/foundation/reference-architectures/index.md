@@ -24,7 +24,7 @@ A reference architecture is not a product and not a recipe. You will not finish 
 
 -   ### Trusted Automation Execution
 
-    Zero Trust principles applied to privileged automation. Your automation has valid credentials — this asks whether you should trust the automation itself, and puts an independent decision in front of every privileged run.
+    Zero Trust principles applied to privileged automation. Your automation has valid credentials — this asks whether you should trust the automation itself, and puts an independent decision in front of every privileged run. Eighteen modules, each replaceable behind a contract, so it fits the stack you already have.
 
     [Read the architecture](./trusted-automation-execution/index.md)
 

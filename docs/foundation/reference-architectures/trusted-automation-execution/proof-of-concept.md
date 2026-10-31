@@ -1,6 +1,6 @@
 ---
 title: Proof of Concept v1
-description: The first Trusted Automation Execution proof of concept — deliberately small, built on a trusted runner, a manifest and digest, and a default-deny local policy — with its requirements, a twelve-case test matrix, and an honest account of what it does not prove.
+description: The first Trusted Automation Execution proof of concept — deliberately small, built on a trusted runner, a manifest and digest, and a default-deny local policy — with its requirements, a thirteen-case test matrix, and an honest account of what it does not prove.
 image: assets/social/trusted-automation-execution.png
 image_alt: "Trusted Automation Execution: a reference architecture from the Nautomation Prime Academy"
 tags:
@@ -66,13 +66,20 @@ The layout is the architecture in miniature. `runner/` is the enforcement point.
 3. **SHA-256 verifies the artefact** against protected expected state. The documentation says plainly that this is an integrity demonstration, not publisher or provenance assurance.
 4. **Policy is declarative,** version-controlled, protected from the workload, and default-deny.
 5. **Targets are allow-listed** and classified, at minimum, as lab or non-lab.
-6. **Secrets are unavailable to the workload** until the runner has an allow decision.
-7. **Lab targets or a simulation mode by default.** Nothing in the PoC can reach production without a deliberate change.
-8. **Execution evidence** records requester and context, workload, version and digest, policy result and reason, operation, targets, and outcome, and contains no secrets.
-9. **Independent post-run validation** produces a result distinct from the workload's exit status.
-10. **Automated tests exercise both permitted and prohibited paths.**
+6. **The runner's network access is restricted** to the allow-listed targets and the services it needs, so a policy error cannot reach anything else.
+7. **Secrets are unavailable to the workload** until the runner has an allow decision.
+8. **Lab targets or a simulation mode by default.** Nothing in the PoC can reach production without a deliberate change.
+9. **Execution evidence** records a Job ID for the run, requester and context, workload, version and digest, policy result and reason, operation, targets, and outcome, and contains no secrets.
+10. **Independent post-run validation** produces a result distinct from the workload's exit status, and every run ends in an explicit terminal state.
+11. **Automated tests exercise both permitted and prohibited paths.**
 
-The tenth is the one that turns the PoC from a demo into evidence. A boundary that has only ever been shown allowing things has not been shown to be a boundary.
+The last is the one that turns the PoC from a demo into evidence. A boundary that has only ever been shown allowing things has not been shown to be a boundary.
+
+### v1, module by module
+
+In terms of the [module catalogue](./architecture.md#the-module-catalogue), v1 implements every core module at Foundation strength: the runner's single entry point (1), the manifest as the canonical request (3), the digest (6), the runner and its local policy as the trust gateway (7), the runner host (9), the host firewall (12), the workload's own connection code as its adapter (14), lab targets (15), the validator (16), an explicit terminal state for every run (17), and the evidence record (18).
+
+Of the conditional modules, it attributes the requester through the operating-system account that invoked the runner (2), checks for approval on high-risk requests (5), and retrieves its secret only after an allow (11). It has no dedicated workload identity (10); that is one of the gaps listed below. It omits all three optional modules — a separate source of truth (an allow-list stands in), orchestration, and device AAA — and says so.
 
 ---
 
@@ -119,7 +126,7 @@ on_missing_evidence: deny
 
 ## Demonstration and Test Matrix
 
-Twelve cases. The first proves the controls do not simply block everything. The other eleven prove they block the right things.
+Thirteen cases. The first proves the controls do not simply block everything. The other twelve prove they block the right things.
 
 | Test | Expected decision | What it proves |
 |---|---|---|
@@ -128,6 +135,7 @@ Twelve cases. The first proves the controls do not simply block everything. The 
 | Workload replaced with an unknown file of the same name | **DENY** | A filename or path is not identity |
 | Valid workload requests a configuration capability | **DENY** | Identity is not capability |
 | Valid workload targets an unauthorised device | **DENY** | Scope is evaluated |
+| Workload connects directly to an address outside the allow-list | **BLOCKED** by the network boundary | Policy is not the only scope control |
 | Required evidence missing | **DENY** | The design fails closed |
 | Policy file malformed or unavailable | **DENY** | A policy failure does not become an allow |
 | Credential backend unavailable | **FAIL SAFE**, no execution | There is no fallback to embedded standing secrets |

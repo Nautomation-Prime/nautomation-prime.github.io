@@ -33,6 +33,9 @@ The third list matters most in practice. A trust boundary is only as good as its
 | **Build or pipeline compromise** | Controlled build, provenance, protected signing, an enforced verifier | Root-of-trust compromise remains high impact |
 | **Log deletion or falsification** | Protected evidence outside the workload's control | Compromise of the evidence platform itself remains possible |
 | **AI or agent overreach** | No route around the gateway, capability policy, human approval for risky actions | Agent safety still depends on upstream model and tool governance |
+| **A second way in** — an orchestrator's own interface, a scheduler, or a direct login | One request contract for every route; an orchestrator that accepts work only from the gateway; network and device-side enforcement | A misconfigured orchestrator, or a forgotten trigger, can reopen the path. Bypass routes have to be looked for, not assumed absent |
+| **Request tampering or replay** | Intent normalisation, requester attribution, and decisions bound to one Job ID with an expiry | Compromise of the request service or the gateway itself |
+| **Device-side abuse of a valid session** | Device AAA command authorisation and off-device accounting, independent of the automation stack | Without device AAA, local device RBAC is weaker, and the gap is recorded as an assurance reduction |
 | **Policy service unavailable** | Fail closed for privileged operations, and a designed break-glass route | The availability trade-off has to be engineered deliberately |
 | **Malicious but properly approved code** | Review, separation of duties, testing, behaviour limits, validation | Approval cannot prove the absence of malicious intent or a latent vulnerability |
 
@@ -46,21 +49,32 @@ How the boundary behaves when part of it is unavailable, or returns something un
 
 | Failure | Preferred behaviour |
 |---|---|
+| **Request malformed or unclassifiable** | Reject at intent normalisation, before any decision |
 | **Unknown workload or publisher** | Deny |
 | **Integrity or provenance mismatch** | Deny, and alert |
 | **Mandatory context unavailable** | Deny |
 | **Policy service unavailable** | Deny the privileged operation. Use break-glass only where organisational policy explicitly permits it |
-| **Privilege broker unavailable** | Do not fall back to embedded or broad credentials |
+| **Approval missing, expired, or withdrawn** | Deny, or escalate where policy allows. Never proceed on an approval that no longer stands |
+| **Escalation unanswered** | Expires as a deny |
+| **Secrets broker unavailable** | Do not fall back to embedded or broad credentials |
+| **Device AAA denies a command** | Stop work on that target and record it as a failure. Never retry with a broader account |
+| **Target unreachable** | Exclude the target and record it. Do not force, and do not widen reachability to reach it |
 | **Pre-flight failed** | Do not begin the write phase |
 | **Circuit breaker trips mid-run** | Stop new work, contain scope, preserve evidence, then evaluate rollback or repair |
+| **Partial execution** | Stop, mark the run PARTIAL, roll back only where the operation declares rollback safe, and escalate otherwise |
 | **Post-validation fails** | Mark the run unsuccessful and attention-required, even though the process exited zero |
+| **Validation result UNKNOWN or DRIFT** | Never treat it as a pass. Handle it as a failure until a person or a further check resolves it |
 | **Evidence sink unavailable** | For high-risk operations, deny or stop according to policy. Never silently discard required evidence |
 
-Two of these deserve comment.
+Every row here should exist as an automated failure simulation, not only as a line in a design document. The [open design decisions](./architecture.md#open-design-decisions) list the ones every implementation has to test.
 
-**The privilege broker fallback** is where good designs quietly fail. Someone adds a fallback "for resilience": if the vault is unreachable, use the credential in the environment file. From that day the vault is optional and the architecture is a suggestion. The fallback is the vulnerability.
+Three of these deserve comment.
+
+**The secrets broker fallback** is where good designs quietly fail. Someone adds a fallback "for resilience": if the vault is unreachable, use the credential in the environment file. From that day the vault is optional and the architecture is a suggestion. The fallback is the vulnerability.
 
 **The evidence sink** forces a real decision. Refusing to run because logging is down feels excessive until you consider the alternative, which is a high-risk change with no record of it. For read-only work, buffering locally and forwarding later may be acceptable. For change it usually is not. Decide in advance, write the decision into policy, and test it.
+
+**UNKNOWN** is the result most likely to be quietly rounded up. A validator that timed out, or could not reach a device, has not said the change failed, and it is tempting to treat silence as success. It is the opposite: the one thing the run cannot claim is that it worked.
 
 ---
 
@@ -68,7 +82,7 @@ Two of these deserve comment.
 
 Failing closed has a price. Pretending otherwise produces a design that gets bypassed the first time it blocks an emergency.
 
-If the policy service, the identity provider, or the privilege broker is unavailable, privileged automation stops. That is correct for routine work and potentially dangerous during an incident, because the moment you most need automation may be the moment its dependencies are degraded. Two responses, used together:
+If the policy service, the identity provider, or the secrets broker is unavailable, privileged automation stops. That is correct for routine work and potentially dangerous during an incident, because the moment you most need automation may be the moment its dependencies are degraded. Two responses, used together:
 
 - **Engineer the dependencies for the availability you need.** If privileged automation is part of incident response, its policy and privilege path are as critical as the systems it repairs.
 - **Design the break-glass route before you need it.** A separate protected identity, a stated reason, narrow scope, full logging, and mandatory review afterwards. Exercise it, so that the first time it is used is not the first time it is tried.

@@ -24,6 +24,16 @@ Progressive adoption is not foreign to Zero Trust. CISA's [Zero Trust Maturity M
 
 ---
 
+## Profiles and Modules
+
+Profiles and [module classes](./architecture.md#modular-by-design) answer different questions. A module's class says whether the capability must exist at all. A profile says how strongly it is enforced.
+
+So every profile, Foundation included, contains every core module and every conditional module whose condition applies. What changes between profiles is the implementation behind each one: a local policy file and a hardened runner at Foundation, a policy decision service and an ephemeral, attested environment at High-Assurance. Either way, the trust gateway exists.
+
+Optional modules can be left out at any profile, but leaving one out is recorded along with its effect on assurance. Where a workload's risk class calls for the missing module, that is an [exception](../../production-grade-network-automation-principles/exception-and-waiver-process.md), with an owner and an expiry.
+
+---
+
 ## Profile A — Foundation
 
 **Suitable when** tooling is limited and automation risk is modest, or as the first demonstrator before integrating with enterprise systems.
@@ -63,7 +73,8 @@ This is the profile the [proof of concept](./proof-of-concept.md) targets.
 
 **Suitable where** privileged automation runs at scale, across many workloads, teams, or environments.
 
-- A dedicated execution gateway as the single enforcement point
+- A dedicated trust gateway as the single enforcement point, deciding on a canonical request
+- An orchestrator, where one is used, behind the gateway and accepting work only from it
 - Workload identity distinct from requester identity
 - Signed artefacts with verified provenance
 - A central policy decision service fed by authoritative context
@@ -87,7 +98,8 @@ This is the profile the [proof of concept](./proof-of-concept.md) targets.
 - Ephemeral, hardened execution with strict egress and target-side enforcement
 - Very short-lived, capability-specific authority
 - Canary and batched execution with automated stop conditions
-- Post-change validation through a separate trust path
+- Post-change validation through a separate trust path, and declared per-operation rollback, halt, or escalation
+- Per-capability device authorisation, with accounting held off the device
 - Tamper-resistant evidence with explicit retention and review
 - Rapid revocation and quarantine, and break-glass procedures that have actually been exercised
 
@@ -95,21 +107,26 @@ This is the profile the [proof of concept](./proof-of-concept.md) targets.
 
 ## Control Progression
 
-The same concern at three levels of strength. Enterprise and High-Assurance share a column here: their components are largely the same, and what separates them is the strength of attestation, separation of duties, and evidence.
+The same concern at three levels of strength, with the [modules](./architecture.md#the-module-catalogue) each row covers. Enterprise and High-Assurance share a column here: their modules are largely the same, and what separates them is the strength of attestation, separation of duties, and evidence.
 
-| Concern | Foundation | Integrated | Enterprise / High-Assurance |
+| Concern (modules) | Foundation | Integrated | Enterprise / High-Assurance |
 |---|---|---|---|
-| **Artefact identity** | Manifest, version, and digest | Signed release | Signed immutable artefact with verified provenance |
-| **Requester identity** | Runner or OS identity, or controlled invocation | Enterprise identity | Strong identity with contextual and risk signals |
-| **Workload identity** | Manifest identity | Service identity where available | Dedicated short-lived cryptographic workload identity |
-| **Policy** | Protected local YAML or JSON | Central or protected policy | Independent policy decision service with authoritative context |
-| **Enforcement** | Trusted wrapper or runner | Hardened, controlled runner | Mandatory execution gateway |
-| **Privilege** | Secret retrieved after allow | Central vault or PAM retrieval | Just-in-time, capability-scoped, short-lived authority |
-| **Execution isolation** | Dedicated hardened host | Separated runner or container | Ephemeral, attested, isolated environment |
-| **Target scope** | Local allow-list | Source-of-truth integration | Authoritative target context plus network and target-side enforcement |
-| **Validation** | Local assertions, pyATS where relevant | Independent job or process | Independent validation trust path with evidence |
-| **Evidence** | Structured local record plus a protected copy | Central logs and SIEM | Tamper-resistant central evidence with correlation and response |
-| **Human control** | Manual invocation for risky tasks | Approval workflow | Risk-bound separation of duties, and break-glass |
+| **Request and intent** (1, 3) | A single entry on the runner; the operation named by the manifest; a Job ID per run | One entry service with a canonical request schema and a Job ID | Every route converges on one request contract; malformed requests are rejected before any decision |
+| **Artefact identity** (6) | Manifest, version, and digest | Signed release | Signed immutable artefact with verified provenance |
+| **Requester identity** (2) | Runner or OS identity, or controlled invocation | Enterprise identity | Strong identity with contextual and risk signals |
+| **Workload identity** (10) | Manifest identity | Service identity where available | Dedicated short-lived cryptographic workload identity |
+| **Policy** (7) | Protected local YAML or JSON | Central or protected policy | Independent policy decision service with authoritative context |
+| **Enforcement** (7) | Trusted wrapper or runner | Hardened, controlled runner | Mandatory trust gateway |
+| **Orchestration** (8) | None: the runner dispatches directly | Optional, behind the runner | Behind the gateway, accepting work only from it |
+| **Privilege** (11) | Secret retrieved after allow | Central vault or PAM retrieval | Just-in-time, capability-scoped, short-lived authority |
+| **Execution isolation** (9) | Dedicated hardened host | Separated runner or container | Ephemeral, attested, isolated environment |
+| **Target scope** (4) | Local allow-list | Source-of-truth integration | Authoritative target context from more than one source |
+| **Network boundary** (12) | Host firewall: the runner reaches only allow-listed target management addresses | A segmented runner network with explicit egress | Default-deny segmentation per execution environment, plus management-plane restrictions on every target |
+| **Device authorisation** (13) | Local device account limited to the automation's role, recorded as a compensating control | Central AAA with automation-specific accounts | Per-capability AAA identities with command authorisation and accounting held off the device |
+| **Validation** (16) | Local assertions, pyATS where relevant | Independent job or process | Independent validation trust path with evidence |
+| **Outcome handling** (17) | An explicit terminal state in the evidence record | Declared rollback per operation; change record updated | Rollback, halt, and escalation driven by declared per-operation rules and the validation result |
+| **Evidence** (18) | Structured local record with a Job ID, plus a protected copy | Central logs and SIEM, correlated by Job ID | Tamper-resistant central evidence with correlation and response |
+| **Human control** (5) | Manual invocation for risky tasks | Approval workflow | Risk-bound separation of duties, and break-glass |
 
 Mixing profiles is normal. A team might run Integrated for most workloads and High-Assurance for the three that can reload the core. What matters is that each workload's profile is a recorded decision tied to its [risk class](../../production-grade-network-automation-principles/enterprise-control-matrix.md#automation-risk-classification), not an accident of which runner it happened to land on. Where a workload sits below the profile its risk calls for, that is an [exception](../../production-grade-network-automation-principles/exception-and-waiver-process.md), with an owner and an expiry.
 
@@ -122,8 +139,8 @@ The architecture can be introduced in phases without changing its trust model. E
 | Phase | Deliverable | Exit criterion |
 |---|---|---|
 | **0 — Threat model** | Inventory privileged automation and classify its risk | You know which workloads carry meaningful blast radius |
-| **1 — Foundation PoC** | External runner, manifest and digest, local policy, target allow-list, delayed secret retrieval, evidence | Tamper, scope, and capability denial paths demonstrably work |
-| **2 — Integrate** | Enterprise requester identity, central secrets, signing, CI, central logs | No privileged secret in source or runner configuration; signed releases; central evidence |
+| **1 — Foundation PoC** | External runner, manifest and digest, local policy, target allow-list, host network boundary, delayed secret retrieval, evidence with a Job ID | Tamper, scope, and capability denial paths demonstrably work |
+| **2 — Integrate** | Enterprise requester identity, a canonical request schema, central secrets, signing, CI, central logs | No privileged secret in source or runner configuration; signed releases; central evidence correlated by Job ID |
 | **3 — Enterprise** | Workload identity, policy service, source-of-truth integration, just-in-time privilege, isolated runners | Privilege and target scope are bound dynamically to each authorised execution |
 | **4 — High assurance** | Enforced provenance, separation of duties, an independent validation trust path, tamper-resistant evidence, exercised revocation and break-glass | Critical workflows can demonstrate end-to-end control and recovery behaviour |
 | **5 — Operate** | Metrics, reviews, recertification, incident exercises, lifecycle and deprecation | Trust is maintained, rather than implemented once |
