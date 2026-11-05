@@ -2,11 +2,11 @@
 
 ## Policy Review Status
 
-- **Policy version:** 1.3
+- **Policy version:** 1.4
 - **Policy owner:** Christopher Davies (Founder, Nautomation Prime)
-- **Last reviewed:** 21 September 2026
+- **Last reviewed:** 5 November 2026
 - **Next scheduled review:** March 2027
-- **Current status:** Pre-launch — Nautomation Prime is not yet trading. The Foundation is unregistered; registration as a charity or CIC is a stated future intention, not a current fact. Use of the word "Foundation" in the current sole trader business name has been confirmed with Companies House as not requiring approval (see section 4).
+- **Current status:** Active — the Foundation is unregistered; registration as a charity or CIC is a stated future intention, not a current fact. Use of the word "Foundation" in the current sole trader business name has been confirmed with Companies House as not requiring approval (see section 4).
 
 ---
 
@@ -14,12 +14,10 @@
 
 The "Nautomation Prime Foundation" is a name used for a section of this website. It is **not** a registered charity, not a registered Community Interest Company (CIC), and not a separate legal entity of any kind. It is operated directly by:
 
-**Christopher Davies**
+**Christopher Davies**, trading as **Nautomation Prime**
 9 The Sleeve, Leek, ST13 8HR, Staffordshire, England, United Kingdom
 
-**Nautomation Prime is not yet trading.** This site is being built ahead of launch. The free educational content published here is available to read now, but no commercial services are currently being supplied, no engagements are being taken on, and the charity-services offer described on the [Charity Services](../foundation/charity-services.md) page is not yet open — it sets out the intended terms so they can be read and challenged before it opens, not an offer capable of acceptance today.
-
-Once trading begins, every commitment, free tutorial, and charity engagement made "by the Foundation" will legally be a commitment made by Christopher Davies personally as a sole trader. There is no independent trustee board, no separate charitable fund, and no legal separation between "Nautomation Prime" and "Nautomation Prime Foundation".
+Every commitment, free tutorial, and charity engagement made "by the Foundation" is legally a commitment made by Christopher Davies personally as a sole trader. There is no independent trustee board, no separate charitable fund, and no legal separation between "Nautomation Prime" and "Nautomation Prime Foundation".
 
 ## 2. Why we use the word "Foundation" now, and what it does not mean
 
@@ -67,8 +65,8 @@ This was a word-mark search carried out as ordinary due diligence. It is **not**
 Because the Foundation is not a separate legal entity, all liability for Foundation activity sits with Christopher Davies personally, on the same basis as the rest of Nautomation Prime's work:
 
 - Free educational content (tutorials, deep dives, guides) is provided on an "AS IS" basis with no warranty, exactly as set out in the site [Disclaimer](./disclaimer.md) and [Terms of Use](./terms-of-use.md).
-- Charity engagements delivered under the [Charity Services](../foundation/charity-services.md) offer will be subject to the specific liability cap and terms set out on that page, which do not exclude liability for death or personal injury caused by negligence, fraud, or anything else that cannot lawfully be excluded under the Unfair Contract Terms Act 1977. Any cap on liability for negligence is in any event effective only so far as it satisfies the requirement of reasonableness in section 11 of that Act — a cap stated on this site is what is proposed, not a guarantee of what a court would enforce.
-- No professional indemnity or public liability insurance level is represented on this site, and none should be assumed. The insurance position will be settled before trading begins, and stated here. Charities and individuals should ask about current insurance arrangements before relying on any free or paid engagement for critical infrastructure.
+- Charity engagements delivered under the [Charity Services](../foundation/charity-services.md) offer are subject to the specific liability cap and terms set out on that page, which do not exclude liability for death or personal injury caused by negligence, fraud, or anything else that cannot lawfully be excluded under the Unfair Contract Terms Act 1977. Any cap on liability for negligence is in any event effective only so far as it satisfies the requirement of reasonableness in section 11 of that Act — a cap stated on this site is what is proposed, not a guarantee of what a court would enforce.
+- No professional indemnity or public liability insurance level is represented on this site, and none should be assumed. Charities and individuals should ask about current insurance arrangements before relying on any free or paid engagement for critical infrastructure.
 
 ## 6. Data protection
 

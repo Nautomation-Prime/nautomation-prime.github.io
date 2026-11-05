@@ -33,7 +33,7 @@ Looking for the free tutorials and guides? They now live in the [Nautomation Pri
 
 </div>
 
-> **Legal status note:** Nautomation Prime is **not yet trading**, and the charity-services offer below is **not yet open**. The Nautomation Prime Foundation is **not a registered charity or Community Interest Company**. It is an initiative operated directly by Christopher Davies, with the stated intention of registering it as a charity or CIC as it grows. It does not solicit public donations for itself. Companies House has confirmed that the word "Foundation" does not require its approval when used, as here, in a sole trader's business name; the full position is on the [Foundation Legal Status & Governance](../legal/foundation-status.md) page. Nothing on this site should be read as a claim of registered charitable status.
+> **Legal status note:** The Nautomation Prime Foundation is **not a registered charity or Community Interest Company**. It is an initiative operated directly by Christopher Davies, with the stated intention of registering it as a charity or CIC as it grows. It does not solicit public donations for itself. Companies House has confirmed that the word "Foundation" does not require its approval when used, as here, in a sole trader's business name; the full position is on the [Foundation Legal Status & Governance](../legal/foundation-status.md) page. Nothing on this site should be read as a claim of registered charitable status.
 
 ---
 
