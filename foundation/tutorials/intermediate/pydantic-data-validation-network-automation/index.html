@@ -6271,6 +6271,14 @@
 
   <h1>Pydantic Data Validation</h1>
 
+<div class="admonition info np-lesson-code">
+  <p class="admonition-title">Get the code for this lesson</p>
+  <p>Every file this lesson builds is on GitHub. Type it out as you read, because that's where the learning happens. Then use the repo to check your work when something won't run, or to grab the data files and templates so you can focus on the Python.</p>
+  <div class="np-action-row"><p>
+    <a class="md-button md-button--primary" href="https://github.com/Nautomation-Prime/network-automation-tutorials/tree/main/intermediate/pydantic-data-validation-network-automation">Browse this lesson's code</a>
+    <a class="md-button" href="https://github.com/Nautomation-Prime/network-automation-tutorials/archive/refs/heads/main.zip">Download all lessons (ZIP)</a>
+  </p></div>
+</div>
 <h2 id="pydantic-data-validation-for-network-automation">Pydantic Data Validation for Network Automation<a class="headerlink" href="#pydantic-data-validation-for-network-automation" title="Anchor link to this section">&para;</a></h2>
 <h2 id="from-hoping-your-data-is-right-to-proving-it-typed-models-at-the-boundary">"From Hoping Your Data Is Right to Proving It — Typed Models at the Boundary"<a class="headerlink" href="#from-hoping-your-data-is-right-to-proving-it-typed-models-at-the-boundary" title="Anchor link to this section">&para;</a></h2>
 <p>You've modelled your intent in YAML and learned to exchange it as JSON. Both tutorials ended the same way: you loaded a file, got a Python dictionary back, and carried on. <strong>Pydantic</strong> is the step you're missing between "I loaded the data" and "I trust the data".</p>
@@ -6605,7 +6613,14 @@ import sys
 from typing import Annotated, Literal, Optional
 
 import yaml
-from pydantic import BaseModel, ConfigDict, Field, IPvAnyAddress, ValidationError
+from pydantic import (
+    BaseModel,
+    ConfigDict,
+    Field,
+    IPvAnyAddress,
+    ValidationError,
+    model_validator,
+)
 
 VlanId = Annotated[int, Field(ge=1, le=4094)]
 
@@ -6626,6 +6641,17 @@ class Interface(BaseModel):
     access_vlan: Optional[VlanId] = None
     ip_address: Optional[IPvAnyAddress] = None
     enabled: bool = True
+
+    @model_validator(mode="after")
+    def check_mode_consistency(self):
+        # The cross-field rule from "Model validators" below
+        if self.mode == "access" and self.access_vlan is None:
+            raise ValueError(f"{self.name}: access ports require an access_vlan")
+        if self.mode == "routed" and self.ip_address is None:
+            raise ValueError(f"{self.name}: routed ports require an ip_address")
+        if self.mode == "routed" and self.access_vlan is not None:
+            raise ValueError(f"{self.name}: routed ports cannot have an access_vlan")
+        return self
 
 
 class Device(BaseModel):
@@ -6882,6 +6908,8 @@ def fetch_devices(base_url: str, token: str) -&gt; list[ControllerDevice]:
 Render device configuration from a validated model.
 """
 
+from pathlib import Path
+
 from jinja2 import Environment, FileSystemLoader, StrictUndefined
 
 from models import load_inventory
@@ -6895,6 +6923,7 @@ env = Environment(
 
 inventory = load_inventory("inventory.yaml")
 template = env.get_template("switch.j2")
+Path("output").mkdir(exist_ok=True)
 
 for device in inventory.devices:
     config = template.render(device=device, site=inventory.site)
@@ -7211,7 +7240,7 @@ def test_routed_port_rejects_access_vlan():
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="October 18, 2026 07:36:41 UTC">October 18, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="November 7, 2026 11:58:21 UTC">November 7, 2026</span>
   </span>
 
     

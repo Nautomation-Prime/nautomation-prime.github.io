@@ -5870,6 +5870,14 @@
 
   <h1>Dependency Management and Task Orchestration</h1>
 
+<div class="admonition info np-lesson-code">
+  <p class="admonition-title">Get the code for this lesson</p>
+  <p>Every file this lesson builds is on GitHub. Type it out as you read, because that's where the learning happens. Then use the repo to check your work when something won't run, or to grab the data files and templates so you can focus on the Python.</p>
+  <div class="np-action-row"><p>
+    <a class="md-button md-button--primary" href="https://github.com/Nautomation-Prime/network-automation-tutorials/tree/main/expert/dependency-ordering-task-orchestration">Browse this lesson's code</a>
+    <a class="md-button" href="https://github.com/Nautomation-Prime/network-automation-tutorials/archive/refs/heads/main.zip">Download all lessons (ZIP)</a>
+  </p></div>
+</div>
 <h2 id="why-task-ordering-matters">Why Task Ordering Matters<a class="headerlink" href="#why-task-ordering-matters" title="Anchor link to this section">&para;</a></h2>
 <p><strong>Scenario:</strong> Deploy new WAN architecture across 10 sites.</p>
 <p><strong>Simple approach</strong> (no dependency management):</p>
@@ -6136,6 +6144,11 @@ from nornir import InitNornir
 from nornir.core.task import Task, Result
 from nornir.core.filter import F
 
+def deploy_to_device(task: Task) -&gt; Result:
+    """Stand-in for your real deployment task."""
+    return Result(host=task.host, result=f"deployed to {task.host.name}")
+
+
 def orchestrate_multisite_deployment():
     """Orchestrate deployment across multiple sites."""
 
@@ -6204,6 +6217,19 @@ class ConditionalTask:
         """Determine if this task should run."""
         return self.condition()
 
+# Stand-ins for your own task functions, so the example runs as written
+def check_if_hub_needs_update():
+    return True
+
+def hub_deployment_failed():
+    return False
+
+def update_hub_config():
+    print("✓ hub configuration updated")
+
+def rollback_hub_config():
+    print("⟲ hub configuration rolled back")
+
 # Usage
 tasks = [
     ConditionalTask(
@@ -6267,6 +6293,10 @@ class ParallelTask:
                     results["failed"].append((item, str(e)))
 
         return results
+
+# Stand-in for your real per-device task, so the example runs as written
+def configure_spoke_device(name: str) -&gt; str:
+    return f"{name} configured"
 
 # Usage
 task = ParallelTask(
@@ -6398,7 +6428,7 @@ def visualize_dag(orchestrator):
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="October 18, 2026 07:47:01 UTC">October 18, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="November 7, 2026 11:58:21 UTC">November 7, 2026</span>
   </span>
 
     

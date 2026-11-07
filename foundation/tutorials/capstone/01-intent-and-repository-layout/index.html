@@ -5837,6 +5837,14 @@
 
   <h1>1. Intent and Repository Layout</h1>
 
+<div class="admonition info np-lesson-code">
+  <p class="admonition-title">Chapter checkpoint</p>
+  <p>The project as it stands at the end of this chapter is tagged <code>chapter-01</code> in the capstone repo. Build it yourself first, then compare against the checkpoint when something won't run.</p>
+  <div class="np-action-row"><p>
+    <a class="md-button md-button--primary" href="https://github.com/Nautomation-Prime/netpipe-capstone/tree/chapter-01">Browse chapter-01</a>
+    <a class="md-button" href="https://github.com/Nautomation-Prime/netpipe-capstone/archive/refs/tags/chapter-01.zip">Download chapter-01 (ZIP)</a>
+  </p></div>
+</div>
 <h2 id="chapter-1-intent-and-repository-layout">Chapter 1: Intent and Repository Layout<a class="headerlink" href="#chapter-1-intent-and-repository-layout" title="Anchor link to this section">&para;</a></h2>
 <p><em>Capstone chapter 1 of 7 — <a href="../">project overview</a></em></p>
 <h2 id="decide-what-is-data-before-you-write-any-code">"Decide What Is Data Before You Write Any Code"<a class="headerlink" href="#decide-what-is-data-before-you-write-any-code" title="Anchor link to this section">&para;</a></h2>
@@ -6161,6 +6169,11 @@ def test_no_credentials_in_intent():
 
     for forbidden in ("password", "secret", "enable_pass", "api_key", "token"):
         assert forbidden not in content, f"'{forbidden}' found in intent file"</code></pre>
+<p>One more file, so pytest can find your package. Without it, pytest puts <code>tests/</code> on the import path rather than the project root, and every test fails with <code>ModuleNotFoundError: No module named 'netpipe'</code>.</p>
+<p><strong><code>pyproject.toml</code>:</strong></p>
+<pre class="highlight"><code class="language-toml">[tool.pytest.ini_options]
+# Lets a plain `pytest` import the netpipe package from the project root
+pythonpath = ["."]</code></pre>
 <pre class="highlight"><code class="language-bash">pip install pytest
 pytest tests/ -q</code></pre>
 <p>That third test is not a joke test. It's a tripwire, it costs nothing to run in CI, and it will catch the day somebody adds a <code>password:</code> key because it was the fastest way to get their change out.</p>
@@ -6168,6 +6181,7 @@ pytest tests/ -q</code></pre>
 <h2 id="where-you-are">📁 Where You Are<a class="headerlink" href="#where-you-are" title="Anchor link to this section">&para;</a></h2>
 <pre class="highlight"><code>netpipe/
 ├── .gitignore
+├── pyproject.toml         ← pytest settings
 ├── requirements.txt
 ├── intent/
 │   └── man1.yaml          ← the site, described
@@ -6249,7 +6263,7 @@ pytest tests/ -q</code></pre>
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 20, 2026 11:07:39 UTC">September 20, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="November 7, 2026 11:58:21 UTC">November 7, 2026</span>
   </span>
 
     
