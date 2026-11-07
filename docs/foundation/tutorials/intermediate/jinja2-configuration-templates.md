@@ -1,6 +1,7 @@
 ---
 title: Jinja2 Configuration Templates for Network Automation
 description: Master Jinja2 templating for Cisco network automation - generate configurations dynamically from data. Learn syntax, filters, inheritance, and production patterns.
+lesson_code: intermediate/jinja2-configuration-templates
 tags:
   - Intermediate
   - Jinja2

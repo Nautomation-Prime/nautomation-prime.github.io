@@ -1,6 +1,7 @@
 ---
 title: "DevOps and Observability for Network Automation: CI/CD, GitOps, and Monitoring"
 description: Build production-grade pipelines and observability for safe, scalable network automation.
+lesson_code: expert/devops-observability-network-automation
 tags:
   - Expert
   - DevOps

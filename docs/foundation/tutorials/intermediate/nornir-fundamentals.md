@@ -1,6 +1,7 @@
 ---
 title: Nornir Fundamentals
 description: Master Nornir's core concepts - inventory management, task creation, parallel execution, and result processing with complete working examples.
+lesson_code: intermediate/nornir-fundamentals
 tags:
   - Intermediate
   - Nornir

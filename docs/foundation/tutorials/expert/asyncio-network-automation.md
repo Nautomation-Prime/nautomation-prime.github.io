@@ -1,6 +1,7 @@
 ---
 title: "Asyncio for Network Automation: High-Performance, Non-Blocking Operations"
 description: Master Python's asyncio for scalable, event-driven network automation workflows.
+lesson_code: expert/asyncio-network-automation
 tags:
   - Expert
   - Asyncio

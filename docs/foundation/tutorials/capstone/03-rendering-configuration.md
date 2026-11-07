@@ -1,6 +1,7 @@
 ---
 title: "Capstone Chapter 3: Rendering Configuration"
 description: Generate candidate device configurations with Jinja2 from validated models, diff them against the running config, and produce a change plan a human can review.
+capstone_checkpoint: 3
 tags:
   - Capstone
   - Jinja2

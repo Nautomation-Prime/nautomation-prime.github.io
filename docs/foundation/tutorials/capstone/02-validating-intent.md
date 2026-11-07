@@ -1,6 +1,7 @@
 ---
 title: "Capstone Chapter 2: Validating Intent"
 description: Turn raw YAML into typed Pydantic models with naming standards, VLAN rules and design constraints encoded, so invalid intent can never reach a device.
+capstone_checkpoint: 2
 tags:
   - Capstone
   - Pydantic

@@ -1,6 +1,7 @@
 ---
 title: "Capstone Chapter 1: Intent and Repository Layout"
 description: Set up the netpipe project skeleton and write the YAML intent file that describes a site — the data every later chapter consumes.
+capstone_checkpoint: 1
 tags:
   - Capstone
   - YAML

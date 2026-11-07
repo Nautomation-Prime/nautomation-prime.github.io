@@ -1,6 +1,7 @@
 ---
 title: "Secure Credential Vaulting for Network Automation: HashiCorp Vault, AWS Secrets Manager, and Beyond"
 description: How to integrate enterprise-grade secrets management into your automation workflows for safety and compliance.
+lesson_code: expert/secure-credential-vaulting
 tags:
   - Expert
   - Security

@@ -1,6 +1,7 @@
 ---
 title: YAML Data Modelling for Network Automation
 description: Master YAML for network automation - device inventories, configuration templates, and structured data. Learn syntax, best practices, and real-world patterns.
+lesson_code: intermediate/yaml-data-modeling-network-automation
 tags:
   - Intermediate
   - YAML

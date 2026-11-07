@@ -1,6 +1,7 @@
 ---
 title: Pydantic Data Validation for Network Automation
 description: Use Pydantic v2 BaseModel to turn untrusted YAML, JSON and API data into typed, validated Python objects before your automation touches a device.
+lesson_code: intermediate/pydantic-data-validation-network-automation
 tags:
   - Intermediate
   - Pydantic

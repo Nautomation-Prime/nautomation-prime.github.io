@@ -11,6 +11,9 @@
 {% if "<h1" not in page.content %}
   <h1>{{ page.title | d(config.site_name, true)}}</h1>
 {% endif %}
+{#- "Get the code" callout for lessons with companion repos (front matter
+    lesson_code, capstone_checkpoint or capstone_repo; see the partial). -#}
+{% include "partials/lesson-code.html" %}
 {{ page.content }}
 {% if page and page.file and page.file.src_uri %}
   {% set src = page.file.src_uri %}

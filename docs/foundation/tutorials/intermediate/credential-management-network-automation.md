@@ -1,6 +1,7 @@
 ---
 title: Credential Management in Network Automation
 description: Secure credential handling for production automation. Master HashiCorp Vault, AWS Secrets Manager, environment variables, and encryption patterns.
+lesson_code: intermediate/credential-management-network-automation
 tags:
   - Security
   - Credentials

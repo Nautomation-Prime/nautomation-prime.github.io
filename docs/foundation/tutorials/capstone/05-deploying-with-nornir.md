@@ -1,6 +1,7 @@
 ---
 title: "Capstone Chapter 5: Deploying with Nornir"
 description: Push configuration in batches with Nornir, using decorators for retry, rate limiting and audit logging, with a dry run that proves the path before it writes.
+capstone_checkpoint: 5
 tags:
   - Capstone
   - Nornir

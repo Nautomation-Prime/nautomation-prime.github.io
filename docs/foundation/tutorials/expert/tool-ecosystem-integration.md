@@ -1,6 +1,7 @@
 ---
 title: "Tool Ecosystem Integration for Network Automation: Netbox, ServiceNow, DNA Center, and More"
 description: Integrate your automation with industry tools for inventory, ITSM, and intent-based networking.
+lesson_code: expert/tool-ecosystem-integration
 tags:
   - Expert
   - Tool Integration

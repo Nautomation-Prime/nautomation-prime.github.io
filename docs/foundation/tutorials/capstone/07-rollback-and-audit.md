@@ -1,6 +1,7 @@
 ---
 title: "Capstone Chapter 7: Rollback and the Audit Record"
 description: Wire verification failure to automatic rollback, emit a structured audit record of the whole change, and join every stage into one orchestrated command.
+capstone_checkpoint: 7
 tags:
   - Capstone
   - Rollback

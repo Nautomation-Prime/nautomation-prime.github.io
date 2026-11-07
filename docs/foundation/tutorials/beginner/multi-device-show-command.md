@@ -1,6 +1,7 @@
 ---
 title: Multi-Device Show Commands
 description: Build on Tutorial #1 to collect show commands from multiple Cisco devices using CSV inventory and export to Excel with per-device error handling.
+lesson_code: beginner/multi-device-show-command
 tags:
   - Beginner
   - Netmiko

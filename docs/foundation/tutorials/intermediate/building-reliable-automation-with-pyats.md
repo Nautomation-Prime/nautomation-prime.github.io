@@ -1,6 +1,7 @@
 ---
 title: PyATS Production Patterns
 description: Integrate PyATS validation into your Netmiko and Nornir automation. Learn production patterns for reliable network changes with measurable ROI proof.
+lesson_code: intermediate/building-reliable-automation-with-pyats
 tags:
   - PyATS
   - Production Automation

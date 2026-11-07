@@ -1,6 +1,7 @@
 ---
 title: Advanced Nornir Patterns
 description: Master advanced Nornir patterns for enterprise deployment - custom plugins, middleware, multi-vendor support, memory optimisation, and testing.
+lesson_code: intermediate/advanced-nornir-patterns
 tags:
   - Intermediate
   - Nornir

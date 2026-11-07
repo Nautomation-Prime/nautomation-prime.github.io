@@ -1,6 +1,7 @@
 ---
 title: Health Checks & Pre-Flight Validation
 description: Validate devices before deployment. Pre-flight checks prevent bad configurations from reaching production. Safe deployment starts with validation.
+lesson_code: intermediate/health-checks-pre-flight-validation
 tags:
   - Health Checks
   - Validation

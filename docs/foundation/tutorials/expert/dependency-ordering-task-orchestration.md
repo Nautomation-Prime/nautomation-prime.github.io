@@ -1,6 +1,7 @@
 ---
 title: Dependency Management & Task Orchestration
 description: Coordinate complex multi-device workflows. Task DAGs, dependency ordering, and safe parallel execution. Orchestrate enterprise automation at scale.
+lesson_code: expert/dependency-ordering-task-orchestration
 tags:
   - Task Orchestration
   - Dependencies

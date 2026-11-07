@@ -1,6 +1,7 @@
 ---
 title: "Nornir + PyATS Integration: Enterprise-Grade Automation and Validation"
 description: Combine Nornir's parallel execution with PyATS validation for production-ready, scalable network automation.
+lesson_code: expert/nornir-pyats-integration
 tags:
   - Expert
   - Nornir

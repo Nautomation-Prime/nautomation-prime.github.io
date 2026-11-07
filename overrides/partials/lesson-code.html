@@ -1,0 +1,52 @@
+{#-
+  "Get the code" callout for lessons with companion code on GitHub, shown
+  under the page title. A page opts in with one front matter key:
+
+    lesson_code: beginner/netmiko-show-command-to-excel
+        The lesson's folder in the network-automation-tutorials repo.
+
+    capstone_checkpoint: 3
+        A capstone chapter. Links the chapter-03 tag (the project at the end
+        of the chapter) and, from chapter 2 on, the diff from chapter-02.
+
+    capstone_repo: true
+        The capstone overview. Links the repo and its "Use this template".
+-#}
+{%- set np_org = "https://github.com/Nautomation-Prime" -%}
+{%- if page and page.meta and page.meta.lesson_code -%}
+  {%- set repo = np_org ~ "/network-automation-tutorials" %}
+<div class="admonition info np-lesson-code">
+  <p class="admonition-title">Get the code for this lesson</p>
+  <p>Every file this lesson builds is on GitHub. Type it out as you read, because that's where the learning happens. Then use the repo to check your work when something won't run, or to grab the data files and templates so you can focus on the Python.</p>
+  <div class="np-action-row"><p>
+    <a class="md-button md-button--primary" href="{{ repo }}/tree/main/{{ page.meta.lesson_code }}">Browse this lesson's code</a>
+    <a class="md-button" href="{{ repo }}/archive/refs/heads/main.zip">Download all lessons (ZIP)</a>
+  </p></div>
+</div>
+{%- elif page and page.meta and page.meta.capstone_checkpoint -%}
+  {%- set repo = np_org ~ "/netpipe-capstone" -%}
+  {%- set chapter = page.meta.capstone_checkpoint | int -%}
+  {%- set tag = "chapter-%02d" | format(chapter) -%}
+  {%- set previous = "chapter-%02d" | format(chapter - 1) %}
+<div class="admonition info np-lesson-code">
+  <p class="admonition-title">Chapter checkpoint</p>
+  <p>The project as it stands at the end of this chapter is tagged <code>{{ tag }}</code> in the capstone repo. Build it yourself first, then compare against the checkpoint when something won't run.{% if chapter > 1 %} To start here without building the earlier chapters, begin from <code>{{ previous }}</code>.{% endif %}</p>
+  <div class="np-action-row"><p>
+    <a class="md-button md-button--primary" href="{{ repo }}/tree/{{ tag }}">Browse {{ tag }}</a>
+    {%- if chapter > 1 %}
+    <a class="md-button" href="{{ repo }}/compare/{{ previous }}...{{ tag }}">See what this chapter adds</a>
+    {%- endif %}
+    <a class="md-button" href="{{ repo }}/archive/refs/tags/{{ tag }}.zip">Download {{ tag }} (ZIP)</a>
+  </p></div>
+</div>
+{%- elif page and page.meta and page.meta.capstone_repo -%}
+  {%- set repo = np_org ~ "/netpipe-capstone" %}
+<div class="admonition info np-lesson-code">
+  <p class="admonition-title">Companion repo</p>
+  <p>The finished <code>netpipe</code> project is on GitHub, with a tagged checkpoint at the end of every chapter. Build it yourself as you go, and use the checkpoints to check your work or to start partway through.</p>
+  <div class="np-action-row"><p>
+    <a class="md-button md-button--primary" href="{{ repo }}">Browse the capstone repo</a>
+    <a class="md-button" href="{{ repo }}/generate">Use it as a template</a>
+  </p></div>
+</div>
+{%- endif -%}

@@ -1,6 +1,7 @@
 ---
 title: Enterprise Config Backup
 description: Build a production-grade config backup system with Nornir including database integration, change detection, compliance checking, and reporting.
+lesson_code: intermediate/enterprise-config-backup-nornir
 tags:
   - Intermediate
   - Nornir
