@@ -1,6 +1,7 @@
 ---
 title: Show Command to Excel
 description: Learn to connect to Cisco devices with Netmiko, execute show commands with TextFSM parsing, and export structured data to Excel using pandas.
+lesson_code: beginner/netmiko-show-command-to-excel
 tags:
   - Beginner
   - Netmiko

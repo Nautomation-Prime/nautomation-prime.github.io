@@ -1,6 +1,7 @@
 ---
 title: Incident Response Automation
 description: Detect, remediate, and recover from network incidents automatically. Pattern matching, self-healing networks, and incident tracking. Enterprise-grade automation.
+lesson_code: expert/incident-response-automation
 tags:
   - Incident Response
   - Automation

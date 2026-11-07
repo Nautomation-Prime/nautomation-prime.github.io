@@ -1,6 +1,7 @@
 ---
 title: "Capstone Chapter 6: Proving the Change with PyATS"
 description: Verify a deployment independently by learning operational state with PyATS Genie and diffing it against a snapshot taken before the change.
+capstone_checkpoint: 6
 tags:
   - Capstone
   - PyATS

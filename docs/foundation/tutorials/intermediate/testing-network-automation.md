@@ -1,6 +1,7 @@
 ---
 title: Testing Network Automation Scripts
 description: Master pytest, mocking, and test patterns for reliable network automation. Test decorators, business logic, and device interactions safely without hardware.
+lesson_code: intermediate/testing-network-automation
 tags:
   - Testing
   - Python

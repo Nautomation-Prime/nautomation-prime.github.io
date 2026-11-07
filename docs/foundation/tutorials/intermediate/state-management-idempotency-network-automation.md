@@ -1,6 +1,7 @@
 ---
 title: State Management & Idempotency
 description: Build repeatable, safe automations. Run the same script multiple times without breaking things. Idempotent operations and state tracking for reliable automation.
+lesson_code: intermediate/state-management-idempotency-network-automation
 tags:
   - State Management
   - Idempotency

@@ -1,6 +1,7 @@
 ---
 title: "Capstone Chapter 1: Intent and Repository Layout"
 description: Set up the netpipe project skeleton and write the YAML intent file that describes a site — the data every later chapter consumes.
+capstone_checkpoint: 1
 tags:
   - Capstone
   - YAML
@@ -387,6 +388,16 @@ def test_no_credentials_in_intent():
         assert forbidden not in content, f"'{forbidden}' found in intent file"
 ```
 
+One more file, so pytest can find your package. Without it, pytest puts `tests/` on the import path rather than the project root, and every test fails with `ModuleNotFoundError: No module named 'netpipe'`.
+
+**`pyproject.toml`:**
+
+```toml
+[tool.pytest.ini_options]
+# Lets a plain `pytest` import the netpipe package from the project root
+pythonpath = ["."]
+```
+
 ```bash
 pip install pytest
 pytest tests/ -q
@@ -401,6 +412,7 @@ That third test is not a joke test. It's a tripwire, it costs nothing to run in 
 ```
 netpipe/
 ├── .gitignore
+├── pyproject.toml         ← pytest settings
 ├── requirements.txt
 ├── intent/
 │   └── man1.yaml          ← the site, described

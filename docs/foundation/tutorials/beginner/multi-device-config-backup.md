@@ -1,6 +1,7 @@
 ---
 title: Multi-Device Configuration Backup
 description: Build on Tutorial #2 to automatically backup running configurations from multiple Cisco devices with timestamped filenames, organised by device type.
+lesson_code: beginner/multi-device-config-backup
 tags:
   - Beginner
   - Netmiko

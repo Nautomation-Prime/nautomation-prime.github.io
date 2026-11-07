@@ -1,6 +1,7 @@
 ---
 title: Structured Logging for Network Automation
 description: Production-grade logging with JSON, log levels, and log aggregation integration. Track what happened, when, and why. Centralized observability for automation.
+lesson_code: intermediate/structured-logging-network-automation
 tags:
   - Logging
   - Observability

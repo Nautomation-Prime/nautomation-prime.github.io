@@ -1,6 +1,7 @@
 ---
 title: Circuit Breakers & Backpressure Patterns
 description: Prevent cascade failures at scale. Circuit breaker pattern, exponential backoff, and graceful degradation for fleet deployments. Enterprise-grade safety.
+lesson_code: expert/circuit-breakers-backpressure-network-automation
 tags:
   - Circuit Breakers
   - Backpressure

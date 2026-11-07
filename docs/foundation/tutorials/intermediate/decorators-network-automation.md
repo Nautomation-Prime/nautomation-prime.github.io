@@ -1,6 +1,7 @@
 ---
 title: Decorators in Network Automation
 description: Master Python decorators for production network automation. Build retry logic, logging, error handling, rate limiting, and monitoring—all patterns proven in enterprise environments.
+lesson_code: intermediate/decorators-network-automation
 tags:
   - Decorators
   - Python

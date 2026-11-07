@@ -1,6 +1,7 @@
 ---
 title: "Capstone Chapter 4: Credentials and Pre-Flight"
 description: Move secrets out of the codebase with pydantic-settings, then add the pre-flight gates that must pass before any configuration is written to a device.
+capstone_checkpoint: 4
 tags:
   - Capstone
   - Credentials

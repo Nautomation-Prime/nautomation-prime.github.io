@@ -1,6 +1,7 @@
 ---
 title: Error Recovery & Rollback Patterns
 description: Safe network changes with automated rollback. Capture pre-state, validate post-state, and automatically undo failures. Production-grade deployment patterns.
+lesson_code: intermediate/error-recovery-rollback-network-automation
 tags:
   - Error Recovery
   - Rollback

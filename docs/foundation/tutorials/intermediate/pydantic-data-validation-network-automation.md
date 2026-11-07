@@ -1,6 +1,7 @@
 ---
 title: Pydantic Data Validation for Network Automation
 description: Use Pydantic v2 BaseModel to turn untrusted YAML, JSON and API data into typed, validated Python objects before your automation touches a device.
+lesson_code: intermediate/pydantic-data-validation-network-automation
 tags:
   - Intermediate
   - Pydantic
@@ -402,7 +403,14 @@ import sys
 from typing import Annotated, Literal, Optional
 
 import yaml
-from pydantic import BaseModel, ConfigDict, Field, IPvAnyAddress, ValidationError
+from pydantic import (
+    BaseModel,
+    ConfigDict,
+    Field,
+    IPvAnyAddress,
+    ValidationError,
+    model_validator,
+)
 
 VlanId = Annotated[int, Field(ge=1, le=4094)]
 
@@ -423,6 +431,17 @@ class Interface(BaseModel):
     access_vlan: Optional[VlanId] = None
     ip_address: Optional[IPvAnyAddress] = None
     enabled: bool = True
+
+    @model_validator(mode="after")
+    def check_mode_consistency(self):
+        # The cross-field rule from "Model validators" below
+        if self.mode == "access" and self.access_vlan is None:
+            raise ValueError(f"{self.name}: access ports require an access_vlan")
+        if self.mode == "routed" and self.ip_address is None:
+            raise ValueError(f"{self.name}: routed ports require an ip_address")
+        if self.mode == "routed" and self.access_vlan is not None:
+            raise ValueError(f"{self.name}: routed ports cannot have an access_vlan")
+        return self
 
 
 class Device(BaseModel):
@@ -721,6 +740,8 @@ This is the join between this tutorial and the next one. Jinja2 renders from a v
 Render device configuration from a validated model.
 """
 
+from pathlib import Path
+
 from jinja2 import Environment, FileSystemLoader, StrictUndefined
 
 from models import load_inventory
@@ -734,6 +755,7 @@ env = Environment(
 
 inventory = load_inventory("inventory.yaml")
 template = env.get_template("switch.j2")
+Path("output").mkdir(exist_ok=True)
 
 for device in inventory.devices:
     config = template.render(device=device, site=inventory.site)

@@ -50,6 +50,15 @@
     text-align: center;
 }
 
+/* "Get the code" callout under lesson titles (overrides/partials/lesson-code.html) */
+.md-typeset .np-lesson-code .np-action-row {
+    margin: 0.9rem 0 0.6rem;
+}
+
+.md-typeset .np-lesson-code .np-action-row .md-button {
+    font-size: 0.72rem;
+}
+
 .md-typeset .np-signal-list {
     display: flex;
     flex-wrap: wrap;

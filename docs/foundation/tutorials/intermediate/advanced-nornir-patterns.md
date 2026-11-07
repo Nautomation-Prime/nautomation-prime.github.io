@@ -1,6 +1,7 @@
 ---
 title: Advanced Nornir Patterns
 description: Master advanced Nornir patterns for enterprise deployment - custom plugins, middleware, multi-vendor support, memory optimisation, and testing.
+lesson_code: intermediate/advanced-nornir-patterns
 tags:
   - Intermediate
   - Nornir
@@ -278,7 +279,7 @@ Nornir middleware for logging, metrics, and validation
 
 from nornir import InitNornir
 from nornir.core.inventory import Host
-from nornir.core.task import Task, AggregatedResult, MultiResult
+from nornir.core.task import Task, AggregatedResult, MultiResult, Result
 from typing import Optional
 import logging
 import time
@@ -355,6 +356,11 @@ class LoggingProcessor:
 # =====================================================================
 # Using Middleware in Nornir
 # =====================================================================
+
+def my_task(task: Task) -> Result:
+    """Stand-in for whichever task you want the middleware around."""
+    return Result(host=task.host, result="ok")
+
 
 def main():
     nornir = InitNornir(config_file="nornir_config.yaml")

@@ -1,6 +1,7 @@
 ---
 title: PyATS Network Validation
 description: Master PyATS device parsing, testbed configuration, and validation patterns. Learn how to capture network state and validate automation changes in production.
+lesson_code: intermediate/pyats-network-validation
 tags:
   - PyATS
   - Network Validation

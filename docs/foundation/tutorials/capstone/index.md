@@ -1,6 +1,7 @@
 ---
 title: Capstone Project — Build a Config Deployment Pipeline
 description: A seven-chapter capstone that combines YAML, Pydantic, Jinja2, Nornir, PyATS, structured logging and rollback into one production-shaped deployment pipeline.
+capstone_repo: true
 tags:
   - Capstone
   - Tutorials

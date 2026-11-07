@@ -1,6 +1,7 @@
 ---
 title: JSON Data Handling for Network Automation
 description: Master JSON for network automation - REST API interactions, structured logging, data serialization. Learn parsing, generation, and production patterns.
+lesson_code: intermediate/json-data-handling-network-automation
 tags:
   - Intermediate
   - JSON
