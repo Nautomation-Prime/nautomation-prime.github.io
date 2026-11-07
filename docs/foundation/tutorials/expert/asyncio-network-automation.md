@@ -57,7 +57,7 @@ needed around shared state between awaits.
 ## Installation
 
 ```bash
-pip install "scrapli[asyncssh]"   # async SSH: Scrapli's asyncssh transport
+pip install "scrapli[asyncssh]<2026"   # async SSH; scrapli 2026 is a rewrite this lesson predates
 pip install httpx prometheus-client tqdm
 pip install pytest pytest-asyncio # for the tests at the end
 pip install uvloop                # optional faster event loop (Linux/macOS only)

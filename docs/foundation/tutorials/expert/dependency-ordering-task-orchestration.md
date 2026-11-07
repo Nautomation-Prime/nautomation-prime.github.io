@@ -293,6 +293,11 @@ from nornir import InitNornir
 from nornir.core.task import Task, Result
 from nornir.core.filter import F
 
+def deploy_to_device(task: Task) -> Result:
+    """Stand-in for your real deployment task."""
+    return Result(host=task.host, result=f"deployed to {task.host.name}")
+
+
 def orchestrate_multisite_deployment():
     """Orchestrate deployment across multiple sites."""
     
@@ -366,6 +371,19 @@ class ConditionalTask:
         """Determine if this task should run."""
         return self.condition()
 
+# Stand-ins for your own task functions, so the example runs as written
+def check_if_hub_needs_update():
+    return True
+
+def hub_deployment_failed():
+    return False
+
+def update_hub_config():
+    print("✓ hub configuration updated")
+
+def rollback_hub_config():
+    print("⟲ hub configuration rolled back")
+
 # Usage
 tasks = [
     ConditionalTask(
@@ -434,6 +452,10 @@ class ParallelTask:
                     results["failed"].append((item, str(e)))
         
         return results
+
+# Stand-in for your real per-device task, so the example runs as written
+def configure_spoke_device(name: str) -> str:
+    return f"{name} configured"
 
 # Usage
 task = ParallelTask(

@@ -330,7 +330,7 @@ class CredentialRotationError(Exception):
 
 ```python
 from netmiko import ConnectHandler
-from vault_client import VaultClient
+from src.vault_client import VaultClient
 
 # Initialize Vault client (uses VAULT_ADDR and VAULT_TOKEN from env)
 vault = VaultClient()
@@ -356,7 +356,7 @@ device.disconnect()
 ```python
 from nornir import InitNornir
 from nornir.core.task import Task, Result
-from vault_client import VaultClient
+from src.vault_client import VaultClient
 
 vault = VaultClient()
 
@@ -601,7 +601,7 @@ print(key.decode())  # Save this somewhere secure
 # Set as: export ENCRYPTION_KEY="<key>"
 
 # Encrypt credentials
-from encrypted_config import EncryptedConfig
+from src.encrypted_config import EncryptedConfig
 config = EncryptedConfig()
 config.encrypt_credentials(
     {
@@ -789,7 +789,7 @@ admin_token = "hvs.CAwEB_secret_admin_token_xyzabc"
 import logging
 import os
 from datetime import datetime, timezone
-from vault_client import VaultClient
+from src.vault_client import VaultClient
 
 logger = logging.getLogger(__name__)
 

@@ -486,7 +486,35 @@ And register it in `build_parser()`, alongside `show`:
 
 `cmd_show` from chapter 1 imported `load_raw_intent`, which no longer exists. Either delete `cmd_show` — `validate` does everything it did and more — or point it at `load_intent`. This tutorial drops it.
 
-For the same reason, update `tests/test_intent.py`: `load_raw_intent` is now `load_intent`, and a missing file raises `IntentError` rather than `FileNotFoundError`. The credentials tripwire test is unchanged and still earns its place.
+For the same reason, update `tests/test_intent.py`. `load_raw_intent` is now `load_intent`, and a missing file raises `IntentError` rather than `FileNotFoundError`. The loader also returns a `SiteIntent` model now, not a dictionary, so read its fields as attributes: `intent.site`, not `intent["site"]`. The credentials tripwire test is unchanged and still earns its place.
+
+**`tests/test_intent.py`:**
+
+```python
+import pytest
+
+from netpipe.intent import IntentError, load_intent
+
+
+def test_loads_real_intent_file():
+    intent = load_intent("intent/man1.yaml")
+    assert intent.site == "MAN1"
+    assert len(intent.devices) == 2
+
+
+def test_missing_file_is_a_clear_error():
+    with pytest.raises(IntentError, match="Intent file not found"):
+        load_intent("intent/nope.yaml")
+
+
+def test_no_credentials_in_intent():
+    """Intent is committed to git. Secrets must never appear in it."""
+    with open("intent/man1.yaml", encoding="utf-8") as handle:
+        content = handle.read().lower()
+
+    for forbidden in ("password", "secret", "enable_pass", "api_key", "token"):
+        assert forbidden not in content, f"'{forbidden}' found in intent file"
+```
 
 ---
 
