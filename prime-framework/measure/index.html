@@ -11,7 +11,7 @@
 <link href="../implement/" rel="prev"/>
 <link href="../empower/" rel="next"/>
 <link href="../../assets/favicon.ico" rel="icon"/>
-<meta content="mkdocs-1.6.1, mkdocs-material-9.8.0" name="generator"/>
+<meta content="mkdocs-1.6.1, mkdocs-material-9.8.1" name="generator"/>
 <title>Measure - Nautomation Prime</title>
 <link href="../../assets/stylesheets/main.57a0d79d.min.css" rel="stylesheet"/>
 <link href="../../assets/stylesheets/palette.fb2fffe2.min.css" rel="stylesheet"/>
@@ -3301,6 +3301,27 @@ Failures:         4 devices (3× auth timeout, 1× config rollback)</code></pre>
 <hr/>
 <h3 id="4-roi-calculation">4. ROI Calculation<a class="headerlink" href="#4-roi-calculation" title="Anchor link to this section">¶</a></h3>
 <p>We prove value with concrete numbers.</p>
+<div class="admonition warning">
+<p class="admonition-title">Lead with the outcome, not the effort</p>
+<p>Hours saved is the weakest number in this section, and it is the one most
+people reach for first. It is built on remembered durations, it cannot be
+independently checked, and it converts to money only by removing
+headcount — which is almost never the intention. Presented as a headline it
+invites exactly one question, and it does not survive it.</p>
+<p>The figures below are a <strong>cost model</strong>. They belong on the cost side of a
+business case, not in the claim.</p>
+<p>What should lead instead are measures somebody else could reproduce from a
+system of record:</p>
+<ul>
+<li><strong>Coverage</strong> — what proportion of the estate is actually assessed, and how often</li>
+<li><strong>Detection time</strong> — how long between something going wrong and somebody knowing</li>
+<li><strong>Rework rate</strong> — how many changes needed a second visit</li>
+<li><strong>Outstanding high-risk findings</strong> — trending, not a single score</li>
+<li><strong>Deviation count</strong> — devices away from standard, as a number rather than a percentage</li>
+</ul>
+<p>Each answers <em>what is different about the network</em>. Hours saved answers what
+is different about our week, which is our problem and not the customer's.</p>
+</div>
 <div class="admonition note">
 <p class="admonition-title">ROI Formulas</p>
 <p><strong>ROI (%) = (Total Annual Benefits − Total Costs) ÷ Total Costs × 100</strong></p>
@@ -3606,7 +3627,7 @@ Portfolio ROI:         56% (Year 1)</code></pre>
 <span class="md-icon" title="Last update">
 <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"></path></svg>
 </span>
-<span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 29, 2026 14:20:01 UTC">September 29, 2026</span>
+<span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="November 12, 2026 10:08:56 UTC">November 12, 2026</span>
 </span>
 </aside>
 </article>
@@ -3679,7 +3700,7 @@ Portfolio ROI:         56% (Year 1)</code></pre>
 </div>
 <script>var consent=__md_get("__consent");if(consent)for(var input of document.forms.consent.elements)input.name&&(input.checked=consent[input.name]||!1);else"file:"!==location.protocol&&setTimeout((function(){document.querySelector("[data-md-component=consent]").hidden=!1}),250);var form=document.forms.consent;for(var action of["submit","reset"])form.addEventListener(action,(function(e){if(e.preventDefault(),"reset"===e.type)for(var n of document.forms.consent.elements)n.name&&(n.checked=!1);__md_set("__consent",Object.fromEntries(Array.from(new FormData(form).keys()).map((function(e){return[e,!0]})))),location.hash="",location.reload()}))</script>
 <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.tracking", "navigation.indexes", "content.code.copy", "content.code.annotate", "content.tooltips", "search.share", "search.suggest", "search.highlight", "search.stemmer", "announce.dismiss"], "search": "../../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
-<script src="../../assets/javascripts/bundle.c21346df.min.js"></script>
+<script src="../../assets/javascripts/bundle.a5f9d56c.min.js"></script>
 <script src="../../assets/javascripts/consent.js"></script>
 </body>
 </html>
