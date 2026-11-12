@@ -158,6 +158,21 @@ For each feasible automation, we calculate:
 
 **Financial Impact:** 151 hours × £50/hour = **£7,550/year**
 
+!!! warning "What this number is for"
+    These figures exist to **rank candidates against each other**, not to be
+    claimed back later as a saving.
+
+    Estimated hours are the right basis for deciding that VLAN provisioning
+    deserves attention before port monitoring. They are the wrong basis for a
+    business case presented after delivery, because the first question a
+    finance director asks is how many fewer engineers are now required — and
+    the honest answer is usually none. The time goes into work that was not
+    being done at all.
+
+    Outcome reporting uses different measures entirely: coverage, detection
+    time, rework rate and outstanding high-risk findings. See
+    [Measure](./measure.md).
+
 !!! success "Output: Prioritised Roadmap"
     All opportunities are ranked by ROI. Your leadership sees:
 

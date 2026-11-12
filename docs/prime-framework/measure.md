@@ -224,6 +224,28 @@ Failures:         4 devices (3× auth timeout, 1× config rollback)
 
 We prove value with concrete numbers.
 
+!!! warning "Lead with the outcome, not the effort"
+    Hours saved is the weakest number in this section, and it is the one most
+    people reach for first. It is built on remembered durations, it cannot be
+    independently checked, and it converts to money only by removing
+    headcount — which is almost never the intention. Presented as a headline it
+    invites exactly one question, and it does not survive it.
+
+    The figures below are a **cost model**. They belong on the cost side of a
+    business case, not in the claim.
+
+    What should lead instead are measures somebody else could reproduce from a
+    system of record:
+
+    - **Coverage** — what proportion of the estate is actually assessed, and how often
+    - **Detection time** — how long between something going wrong and somebody knowing
+    - **Rework rate** — how many changes needed a second visit
+    - **Outstanding high-risk findings** — trending, not a single score
+    - **Deviation count** — devices away from standard, as a number rather than a percentage
+
+    Each answers *what is different about the network*. Hours saved answers what
+    is different about our week, which is our problem and not the customer's.
+
 !!! note "ROI Formulas"
     **ROI (%) = (Total Annual Benefits − Total Costs) ÷ Total Costs × 100**
 
