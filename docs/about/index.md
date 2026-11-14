@@ -17,10 +17,10 @@ Nautomation Prime exists to close the gap between complex Cisco infrastructure a
 
 <div class="np-action-row" markdown>
 
-[Explore Services](../services/index.md){.md-button .md-button--primary}
-[How We Work](../how-we-work.md){.md-button}
+[Explore the Academy](../academy/index.md){.md-button .md-button--primary}
+[Work With Me](../work-with-me/index.md){.md-button}
 [Meet Christopher Davies](../founder.md){.md-button}
-[Contact & Discovery](../contact.md){.md-button}
+[Contact](../contact.md){.md-button}
 
 </div>
 
@@ -152,15 +152,15 @@ Christopher specialises in enterprise Cisco automation, with deep expertise in P
 
 ---
 
-## Ready to Transform Your Network Automation?
+## Get in Touch
 
-Whether you want to learn, deploy tools, or build bespoke solutions, let's talk.
+Whether you're hiring for a contract role, have a small project in mind, or just want to learn, let's talk.
 
 <div class="np-action-row" markdown>
 
-[Book a Discovery Call](../contact.md){.md-button .md-button--primary}
-[Explore Services](../services/index.md){.md-button}
-[How We Work](../how-we-work.md){.md-button}
+[Work With Me](../work-with-me/index.md){.md-button .md-button--primary}
+[Download CV (PDF)](../assets/cv/Christopher_Davies_CV.pdf){.md-button}
+[Contact](../contact.md){.md-button}
 
 </div>
 

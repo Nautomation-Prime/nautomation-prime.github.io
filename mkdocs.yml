@@ -39,7 +39,7 @@ copyright: >
 
 extra:
   metadata:
-    keywords: "Cisco automation, Python network automation, Nautomation Prime, network scripting"
+    keywords: "Cisco automation, Python network automation, network automation contractor, Nautomation Prime, network scripting"
   generator: false  # Removes default "Made with Material for MkDocs" (we added custom attribution above)
   status:
     new: Recently added
@@ -282,25 +282,26 @@ nav:
       - Designing the Tool Catalogue: foundation/governed-ai-network-operations/tool-catalogue-design.md
       - Tool Contracts and Failure Modes: foundation/governed-ai-network-operations/tool-contracts-and-failure-modes.md
       - Agent Review Checklist: foundation/governed-ai-network-operations/agent-review-checklist.md
-  - Services:
-    - services/index.md
-    - How We Work: how-we-work.md
-    - Contact & Discovery: contact.md
+  - Work With Me:
+    - work-with-me/index.md
+    - Contact: contact.md
     - Script Library: scripts/index.md
     - Coming Soon:
       - coming-soon/index.md
       - Cisco IOS XE ZTP: coming-soon/cisco-ios-xe-ztp.md
       - ZTP Automation Platform: coming-soon/ztp-automation-platform.md
-    - For Small & Medium Businesses:
+    - Consultancy (By Enquiry):
+      - services/index.md
+      - How We Work: how-we-work.md
+    - Small Fixed-Scope Projects:
       - smb/index.md
       - smb/services.md
-      - Automation Packages:
+      - Project Packages:
         - Automation Opportunity Assessment: smb/packages/automation-assessment.md
         - Switch Audit & Compliance Pack: smb/packages/switch-audit-pack.md
         - IOS-XE Upgrade Automation Pack: smb/packages/ios-xe-upgrade-pack.md
         - Zero-Touch Provisioning Setup: smb/packages/ztp-setup.md
         - Custom Script Build: smb/packages/custom-script-build.md
-        - Automation-as-a-Service: smb/packages/automation-as-a-service.md
   - Foundation:
     - foundation/index.md
     - Free & Low-Cost Services for Charities: foundation/charity-services.md
@@ -320,6 +321,7 @@ plugins:
   - redirects:
       redirect_maps:
         'getting-started.md': 'start-here.md'
+        'smb/packages/automation-as-a-service.md': 'smb/index.md'
         'deep-dives/access-switch-audit.md': 'foundation/deep-dives/access-switch-audit.md'
         'deep-dives/cdp-audit.md': 'foundation/deep-dives/cdp-audit.md'
         'deep-dives/cisco-compliance-audit.md': 'foundation/deep-dives/cisco-compliance-audit.md'

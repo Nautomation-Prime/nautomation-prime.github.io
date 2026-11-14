@@ -24,7 +24,6 @@ All packages are fixed-scope and fixed-price. No hourly billing. No open-ended e
 | [IOS-XE Upgrade Automation Pack](#ios-xe-upgrade-automation-pack) | Upgrading 10–200+ devices safely | 1–2 weeks | £1,200 – £2,500 |
 | [Zero-Touch Provisioning Setup](#zero-touch-provisioning-setup) | Auto-configuring new access switches | 2–3 weeks | £1,500 – £3,000 |
 | [Custom Script Build](#custom-script-build) | A specific task built to your requirements | 1–3 weeks | £800 – £2,000 |
-| [Automation-as-a-Service](#automation-as-a-service) | Ongoing monthly automation | Recurring | £300 – £900/mo |
 
 ---
 
@@ -198,34 +197,6 @@ Not every automation need fits a pre-built pack. If you have a specific, well-de
 
 ---
 
-## Automation-as-a-Service
-
-**Ongoing monthly automation — the tasks that need to run every day, every week, every month.**
-
-Some automation isn't a one-off. Config backups, compliance audits, and inventory reports need to run on a schedule — reliably, automatically, without someone remembering to kick them off.
-
-Automation-as-a-Service provides a managed, recurring automation capability for SMBs that don't have the in-house resource to run and maintain it themselves.
-
-**Monthly Service Options:**
-
-| Tier | What's Included | Monthly Price |
-| :---- | :-------------- | :------------ |
-| **Essentials** | Weekly config backups to Git, monthly compliance audit report | £300/mo |
-| **Standard** | Daily config backups, weekly compliance audits, monthly inventory report | £500/mo |
-| **Advanced** | Daily backups, weekly compliance audits, monthly inventory + change-diff report, quarterly review call | £750/mo |
-| **Custom** | Tailored to your specific requirements | From £300/mo |
-
-**What's Not Included:**
-
-- Hosting infrastructure (a lightweight VM or cloud instance is required — we advise on setup)
-- Access switch hardware
-
-**Minimum Commitment:** 3 months
-
-[**Learn More →**](./packages/automation-as-a-service.md){.md-button .md-button--primary}
-
----
-
 ## All Packages Include
 
 Regardless of which package you choose:
@@ -237,7 +208,7 @@ Regardless of which package you choose:
 - ✅ Comprehensive inline documentation
 - ✅ Handover walkthrough session
 - ✅ 30 days of post-delivery support for questions and minor issues
-- ✅ Professional Indemnity and Public Liability insurance
+- ✅ Professional Indemnity and Public Liability insurance in place before work starts
 - ✅ GDPR-compliant delivery (UK-based)
 
 ---

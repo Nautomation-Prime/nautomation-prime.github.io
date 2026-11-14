@@ -21,6 +21,9 @@ If your engineers are still spending hours on manual switch upgrades, repetitive
 
 No long-term contracts. No 6-month engagements. No black-box code.
 
+!!! note "Small projects, by enquiry"
+    My main focus is contract engagements, so I take on these fixed-scope projects by enquiry and schedule them around existing commitments. If you have a project in mind, [get in touch](../contact.md) and I'll tell you honestly when I could start. Looking for a contractor instead? See [Work With Me](../work-with-me/index.md).
+
 <div class="np-action-row" markdown>
 
 [**📋 Start With an Assessment — £249**](./packages/automation-assessment.md){.md-button .md-button--primary} [**View All Packages →**](./services.md){.md-button}
@@ -57,7 +60,7 @@ You don't need to explain "network automation" to us. We understand the day-to-d
 
     Without automated backups, a hardware failure or bad change can mean rebuilding from memory. That's not a risk worth taking.
 
-    [Automation-as-a-Service →](./packages/automation-as-a-service.md)
+    [Custom Script Build →](./packages/custom-script-build.md)
 
 -   **New sites taking too long to provision**
 
@@ -98,7 +101,6 @@ All SMB packages are fixed-scope and fixed-price. You know exactly what you're g
 | [IOS-XE Upgrade Automation Pack](./packages/ios-xe-upgrade-pack.md) | Safe, parallelised IOS-XE upgrades with rollback | £1,200 – £2,500 |
 | [Zero-Touch Provisioning Setup](./packages/ztp-setup.md) | Auto-configure new access switches on first boot | £1,500 – £3,000 |
 | [Custom Script Build](./packages/custom-script-build.md) | A specific automation task built to fixed scope | £800 – £2,000 |
-| [Automation-as-a-Service](./packages/automation-as-a-service.md) | Monthly recurring automation — backups, audits, reports | £300 – £900/mo |
 
 ---
 
@@ -111,7 +113,7 @@ These packages are not watered-down scripts. Every deliverable follows the same 
 - **No black-box code** — you receive full source, not a compiled binary
 - **You own it** — full code ownership, no ongoing licence fees
 - **GDPR-compliant** — UK-based delivery, all data handled within UK jurisdiction
-- **Insured** — Professional Indemnity and Public Liability insurance as standard
+- **Insured** — Professional Indemnity and Public Liability insurance in place before work starts
 
 > The difference between SMB and enterprise packages is scope and timeline — not quality or safety standards.
 
