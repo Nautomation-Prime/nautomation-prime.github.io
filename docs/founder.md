@@ -79,8 +79,8 @@ I cut my teeth in **hands-on network operations** at diverse organisations:
   - Proactive monitoring of enterprise networks across multiple UK dairy sites using SolarWinds Orion, Cisco DNAC and Netbox
   - Ground-up implementation of Cisco DNAC for network visibility and automation
   - Designed and executed site-wide wireless upgrades using Ekahau AI Pro
-  - Managed tens of thousands of network devices across multiple data centers
-  - Collaborated with engineers to deploy Python scripts for automatic configuration of 200+ switches during network upgrades across UK courts, prisons, and probation offices
+  - Managed thousands of network devices across multiple data centers
+  - Collaborated with engineers to deploy Python scripts for automatic configuration of switches during network upgrades across UK courts, prisons, and probation offices
   - Delivered NHS integration enabling video conferencing across health systems (Cisco networking, Dell Hyper-V, Pexip VoIP)
   - Ensured 99.9% uptime for mission-critical collaboration infrastructure
   - Led migration from on-premises Mitel telephony to cloud-based Cisco Catalyst platforms
@@ -157,8 +157,6 @@ Throughout my career, I've seen automation fail because teams don't understand t
 ### Life in Staffordshire
 
 I'm based in Leek, Staffordshire, where I live with my wife and son. Family is everything to me—they're the reason I work the way I do and the support system that keeps me grounded when things get challenging.
-
-I have Ménière's disease and coeliac disease, which brings its own set of daily challenges. But I've learned that limitations don't have to define you—they just require better planning, clearer systems, and support from people who matter. My family makes all the difference.
 
 ### What Drives Me
 
