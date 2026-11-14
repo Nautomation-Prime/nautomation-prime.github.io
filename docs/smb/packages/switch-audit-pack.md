@@ -143,8 +143,7 @@ The majority of this time is spent on:
 
 **Can it run on a schedule automatically?**
 
-Yes. While the core delivery is an on-demand script, we can advise on scheduling via Windows Task Scheduler, cron (Linux), or a lightweight CI/CD trigger. Automated scheduling is included in [Automation-as-a-Service](./automation-as-a-service.md).
-
+Yes. While the core delivery is an on-demand script, we can advise on scheduling via Windows Task Scheduler, cron (Linux), or a lightweight CI/CD trigger.
 **Does it make any configuration changes?**
 
 No. This is a read-only audit tool. It uses SSH to run `show` commands only. No configuration changes are made.

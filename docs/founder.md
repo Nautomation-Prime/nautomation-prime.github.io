@@ -1,6 +1,6 @@
 ---
 title: Founder
-description: Learn about Christopher Davies, founder of Nautomation Prime. 10+ years in enterprise Cisco automation, working towards CCNP, driven by transparency and pragmatism.
+description: Christopher Davies, founder of Nautomation Prime. Cisco network automation engineer with 10+ years of enterprise experience, available for contract work.
 tags:
   - Founder
   - Christopher Davies
@@ -14,13 +14,13 @@ tags:
 
 ## Christopher Davies
 
-I'm the founder of Nautomation Prime and a network engineer focused on transparent, production-grade Cisco automation. After 10+ years in enterprise infrastructure, I built this practice to help teams move from brittle scripts and black-box delivery to automation they can understand, trust, and own.
+I'm the founder of Nautomation Prime and a network engineer focused on transparent, production-grade Cisco automation. After 10+ years in enterprise infrastructure, I built Nautomation Prime to show, in public, how teams can move from brittle scripts and black-box delivery to automation they can understand, trust, and own. I'm currently available for contract roles, fully remote or hybrid.
 
 <div class="np-action-row" markdown>
 
-[Contact & Discovery](./contact.md){.md-button .md-button--primary}
-[Explore Services](./services/index.md){.md-button}
-[How We Work](./how-we-work.md){.md-button}
+[Work With Me](./work-with-me/index.md){.md-button .md-button--primary}
+[Download My CV (PDF)](./assets/cv/Christopher_Davies_CV.pdf){.md-button}
+[Contact](./contact.md){.md-button}
 [About Nautomation Prime](./about/index.md){.md-button}
 
 </div>
@@ -35,8 +35,8 @@ I'm the founder of Nautomation Prime and a network engineer focused on transpare
     Senior Cisco background across infrastructure and automation
   </div>
   <div>
-    <strong>Founder-led</strong>
-    Direct context, delivery, and accountability from first conversation to handover
+    <strong>Available</strong>
+    For Cisco network automation and senior network engineering contracts
   </div>
 </div>
 
@@ -79,8 +79,8 @@ I cut my teeth in **hands-on network operations** at diverse organisations:
   - Proactive monitoring of enterprise networks across multiple UK dairy sites using SolarWinds Orion, Cisco DNAC and Netbox
   - Ground-up implementation of Cisco DNAC for network visibility and automation
   - Designed and executed site-wide wireless upgrades using Ekahau AI Pro
-  - Managed tens of thousands of network devices across multiple data centers
-  - Collaborated with engineers to deploy Python scripts for automatic configuration of 200+ switches during network upgrades across UK courts, prisons, and probation offices
+  - Managed thousands of network devices across multiple data centers
+  - Collaborated with engineers to deploy Python scripts for automatic configuration of switches during network upgrades across UK courts, prisons, and probation offices
   - Delivered NHS integration enabling video conferencing across health systems (Cisco networking, Dell Hyper-V, Pexip VoIP)
   - Ensured 99.9% uptime for mission-critical collaboration infrastructure
   - Led migration from on-premises Mitel telephony to cloud-based Cisco Catalyst platforms
@@ -139,20 +139,6 @@ Network automation is a *team sport*. If only one person understands the code, y
 
 ---
 
-## The Turning Point
-
-A few years ago, I completed an engagement for a large enterprise. We built a sophisticated Python framework that automated VLAN provisioning—taking 15-minute manual tasks down to 30 seconds.
-
-The client loved it. We delivered the code, documentation was okay, we invoiced, moved on.
-
-**Six months later, they called back:** "Our network team says they can't modify it. Can you add a feature?"
-
-That's when I realised: **We built a solution, not capability.**
-
-They'd gotten a tool but not the *understanding* to own it. That's when I created the **PRIME Framework**—a methodology that doesn't just deliver code, it builds organizational *capability*.
-
----
-
 ## Why Transparency Matters
 
 Throughout my career, I've seen automation fail because teams don't understand the code they're running on production networks. That's not just inefficient—it's *dangerous*.
@@ -171,8 +157,6 @@ Throughout my career, I've seen automation fail because teams don't understand t
 ### Life in Staffordshire
 
 I'm based in Leek, Staffordshire, where I live with my wife and son. Family is everything to me—they're the reason I work the way I do and the support system that keeps me grounded when things get challenging.
-
-I have Ménière's disease and coeliac disease, which brings its own set of daily challenges. But I've learned that limitations don't have to define you—they just require better planning, clearer systems, and support from people who matter. My family makes all the difference.
 
 ### What Drives Me
 
@@ -220,15 +204,15 @@ I can't fix that for anyone else. What I can do is refuse to run my own life tha
 
 <div class="np-cta-strip" markdown>
 
-### Need founder-led help with a real automation challenge?
+### Hiring for a Cisco automation or network engineering contract?
 
-Whether you're starting automation, rescuing inherited scripts, or trying to build sustainable capability across a larger estate, the next step is a short discovery conversation.
+I'm available for contract roles, fully remote or hybrid within about an hour of Leek. Send me the details, or download my CV first.
 
 <div class="np-action-row" markdown>
 
-[Book a Discovery Call](./contact.md){.md-button .md-button--primary}
-[Explore Services](./services/index.md){.md-button}
-[How We Work](./how-we-work.md){.md-button}
+[Work With Me](./work-with-me/index.md){.md-button .md-button--primary}
+[Download My CV (PDF)](./assets/cv/Christopher_Davies_CV.pdf){.md-button}
+[Contact](./contact.md){.md-button}
 
 </div>
 
@@ -242,6 +226,7 @@ Whether you're starting automation, rescuing inherited scripts, or trying to bui
 - **LinkedIn:** [Christopher Davies](https://www.linkedin.com/in/christopher-davies-6b345026/)
 - **GitHub:** [Nautomation-Prime](https://github.com/Nautomation-Prime)
 - **Email:** [enquiries@nautomationprime.io](mailto:enquiries@nautomationprime.io)
+- **CV:** [Download (PDF)](./assets/cv/Christopher_Davies_CV.pdf)
 
 ---
 

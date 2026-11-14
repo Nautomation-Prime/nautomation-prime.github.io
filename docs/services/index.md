@@ -28,13 +28,16 @@ Nautomation Prime helps enterprise Cisco teams move from manual workflows, inher
 <ul class="np-signal-list">
   <li>Enterprise Cisco focus</li>
   <li>Founder-led delivery</li>
-  <li>6-12 month typical payback</li>
+  <li>Fixed-fee, scoped up front</li>
   <li>Ownership built into handover</li>
 </ul>
 
 </div>
 
-> **Transparency note:** Nautomation Prime is an early-stage, founder-led practice. Figures, outcomes, and examples on this page are based on Christopher Davies' enterprise delivery experience unless explicitly identified as direct Nautomation Prime client results.
+!!! note "Consultancy is by enquiry"
+    My main focus is contract engagements, so I take on consultancy work by enquiry and schedule it around existing commitments. If you're hiring a contractor, see [Work With Me](../work-with-me/index.md).
+
+> **Transparency note:** Nautomation Prime is an early-stage, founder-led practice that is not yet trading with clients. Percentages, payback periods and time savings on this page are illustrative estimates of what well-scoped automation aims for, not measured client results.
 
 ---
 
@@ -136,13 +139,15 @@ The code is open by design. That is the point. So what are you actually paying f
 
 ---
 
-## Representative enterprise outcomes
+## Illustrative outcomes
+
+Estimates of what well-scoped automation typically aims for, not measured client results.
 
 <div class="grid cards" markdown>
 
 -   ### 6-12 month payback
 
-    Comparable enterprise environments often recover the investment within the first year when scope and adoption are disciplined.
+    Well-scoped automation commonly aims to recover its cost within the first year when scope and adoption are disciplined.
 
 -   ### 60-80 percent less manual effort
 
@@ -272,8 +277,7 @@ Our automation solutions support your compliance requirements:
 
 **Business Credentials:**
 
-- VAT-registered UK business (VAT number provided on invoices)
-- Professional Indemnity & Public Liability Insurance
+- Professional Indemnity & Public Liability insurance in place before any engagement starts
 - GDPR-compliant data handling (see [Privacy Policy](../legal/privacy-policy.md))
 - Client code ownership: full rights transfer or exclusive licence (your choice)
 
@@ -315,7 +319,7 @@ Our flagship service delivers the complete journey: from identifying the right o
 
 **Investment Range:** £18,000 - £65,000+ (see [typical investment ranges](#typical-investment-ranges) for focused, complex, and enterprise programmes)
 
-**Expected ROI:** In comparable enterprise environments, payback is often 6-12 months when scope and adoption are disciplined
+**Illustrative ROI:** well-scoped engagements typically aim for payback within 6-12 months when scope and adoption are disciplined
 
 **Ideal For:** Organisations seeking strategic, sustainable automation with proven methodology and measurable business outcomes
 
@@ -644,13 +648,13 @@ Traditional Python code that runs directly on workstations or servers. Full sour
 
 ## Enterprise Use Cases & Solutions
 
-### Proven Automation Scenarios
+### Typical Automation Scenarios
 
-Through the PRIME Framework, we've delivered measurable value across diverse enterprise scenarios:
+Common scenarios, with illustrative estimates of the gains automation typically targets (not measured client results):
 
 #### Operational Efficiency & Scale
 
-| Use Case | Manual Process | Automated Solution | Typical ROI |
+| Use Case | Manual Process | Automated Solution | Illustrative Gain |
 | :--------- | :-------------- | :------------------- | :------------ |
 | **VLAN Provisioning** | 15-20 min per device, error-prone | 30-second bulk deployment with validation | 95% time reduction |
 | **Interface Configuration** | 10-15 min per device, manual verification | Parallel bulk updates with automated rollback | 90% time reduction |
@@ -659,7 +663,7 @@ Through the PRIME Framework, we've delivered measurable value across diverse ent
 
 #### Fleet Management & Lifecycle
 
-| Use Case | Manual Process | Automated Solution | Typical ROI |
+| Use Case | Manual Process | Automated Solution | Illustrative Gain |
 | :--------- | :-------------- | :------------------- | :------------ |
 | **IOS-XE Upgrades** | 30-60 min per device, weekend work | Staged intelligent rollouts with health checks | 80% time reduction, predictable scheduling |
 | **Inventory Management** | Monthly spreadsheet updates | Real-time automated discovery and tracking | Always current, zero manual effort |
@@ -667,7 +671,7 @@ Through the PRIME Framework, we've delivered measurable value across diverse ent
 
 #### Security & Compliance
 
-| Use Case | Manual Process | Automated Solution | Typical ROI |
+| Use Case | Manual Process | Automated Solution | Illustrative Gain |
 | :--------- | :-------------- | :------------------- | :------------ |
 | **ISE Policy Management** | Hours per SGT assignment | Bulk automated assignment with validation | 90% time reduction |
 | **ACL Deployment** | Manual per-device, high error rate | Logic-based generation and deployment | 95%+ accuracy, audit trails |
@@ -675,7 +679,7 @@ Through the PRIME Framework, we've delivered measurable value across diverse ent
 
 #### Visibility & Intelligence
 
-| Use Case | Manual Process | Automated Solution | Typical ROI |
+| Use Case | Manual Process | Automated Solution | Illustrative Gain |
 | :--------- | :-------------- | :------------------- | :------------ |
 | **Topology Mapping** | Manual documentation, always outdated | Automated CDP/LLDP discovery | Always current, incident response acceleration |
 | **Health Monitoring** | Reactive troubleshooting | Proactive polling with anomaly detection | Mean time to detect (MTTD) reduction |
@@ -1079,8 +1083,7 @@ As a specialised practice, you receive dedicated principal engineer engagement t
 
 **Business & Compliance:**
 
-- VAT-registered UK business (VAT number provided on invoices)
-- Professional Indemnity & Public Liability Insurance
+- Professional Indemnity & Public Liability insurance in place before any engagement starts
 - GDPR-compliant data handling (see [Privacy Policy](../legal/privacy-policy.md))
 - Non-disclosure agreements (NDAs) standard for all engagements
 - Client code ownership: full IP transfer or exclusive licence (your choice)
@@ -1138,9 +1141,9 @@ As revenue scales, a percentage is allocated to vetted charities reviewed for tr
 
 ??? question "Are your examples from current Nautomation Prime client projects?"
 
-    Not always, and we state this deliberately.
+    No, and I state this deliberately.
 
-    Nautomation Prime is an early-stage, founder-led practice. Unless a result is explicitly labelled as a direct Nautomation Prime client engagement, metrics and examples are based on Christopher's prior enterprise delivery experience and presented in anonymised form.
+    Nautomation Prime is an early-stage, founder-led practice that is not yet trading with clients. Percentages and payback figures on this page are illustrative estimates, not measured client results. The experience behind the methods comes from my employed roles, described on the [Founder](../founder.md) page and in my [CV](../assets/cv/Christopher_Davies_CV.pdf).
 
     This is part of our Transparency Over Obscurity principle.
 
@@ -1154,7 +1157,7 @@ As revenue scales, a percentage is allocated to vetted charities reviewed for tr
     - Payback period estimates
     - Executive summary suitable for budget presentations
     
-    In comparable enterprise environments, many teams achieve payback within 6-12 months, with pure savings thereafter. The business case is built into the methodology.
+    Well-scoped automation often aims for payback within 6-12 months, and Pinpoint tests whether that is realistic for your environment before you commit. The business case is built into the methodology.
 
 ??? question "What if our requirements change mid-project?"
 
@@ -1219,7 +1222,7 @@ As revenue scales, a percentage is allocated to vetted charities reviewed for tr
     - **Portable Bundles**: Zero-install packages that run without internet access
     - **Transfer Protocols**: Secure code delivery via your approved file transfer methods
     
-    Professional Indemnity insurance and NDAs support security clearance requirements.
+    NDAs are standard, and Professional Indemnity insurance is in place before any engagement starts.
 
 ### Team Capability
 
@@ -1274,7 +1277,7 @@ As revenue scales, a percentage is allocated to vetted charities reviewed for tr
 
 ??? question "What industries do you work with?"
 
-    We serve enterprises across all sectors with Cisco infrastructure:
+    The approach applies to any sector running Cisco infrastructure, for example:
     
     - **Financial Services**: High-compliance environments requiring audit trails
     - **Healthcare**: HIPAA-compliant network segmentation and medical device management
@@ -1348,7 +1351,7 @@ Browse our [educational content](../foundation/tutorials/index.md) and [deep div
 
 **Response Time:** 24-48 hours (UK business days)
 
-**Jurisdiction:** United Kingdom (GDPR-compliant, VAT-registered)
+**Jurisdiction:** United Kingdom (GDPR-compliant)
 
 ---
 

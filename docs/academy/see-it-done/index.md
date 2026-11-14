@@ -14,12 +14,12 @@ tags:
 
 ## See it done
 
-**This track is for someone evaluating whether to hire Nautomation Prime.** Rather than claims, it shows finished work: real tools taken apart line by line, the framework that governs every engagement, and what you can actually buy.
+**This track is for someone evaluating whether to hire me, on contract or for a project.** Rather than claims, it shows finished work: real tools taken apart line by line, the framework that governs every engagement, and what you can actually buy.
 
 <div class="np-action-row" markdown>
 
 [Browse the deep dives](../../foundation/deep-dives/index.md){.md-button .md-button--primary}
-[Request Discovery Call](../../contact.md){.md-button}
+[Work With Me](../../work-with-me/index.md){.md-button}
 
 </div>
 

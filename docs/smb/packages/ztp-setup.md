@@ -139,7 +139,7 @@ No. Everything runs within your network. The provisioning script and templates a
 
 **What about Day-2 changes after initial provisioning?**
 
-ZTP handles Day-0 (initial provisioning). For Day-2 changes (ongoing configuration management), consider our [Custom Script Build](./custom-script-build.md) or [Automation-as-a-Service](./automation-as-a-service.md) packages.
+ZTP handles Day-0 (initial provisioning). For Day-2 changes (ongoing configuration management), consider the [Custom Script Build](./custom-script-build.md) package.
 
 ---
 

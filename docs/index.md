@@ -1,6 +1,6 @@
 ---
 title: Home
-description: Enterprise Cisco Python Automation, Explained Line-by-Line. Production-ready scripts, deep-dive guides, and bespoke automation services for network engineers.
+description: Enterprise Cisco Python automation, explained line by line. Free tutorials, production-grade standards and deep dives from Christopher Davies, a Cisco network automation engineer available for contract work.
 hide:
   - title
 tags:
@@ -21,27 +21,26 @@ tags:
 
 ## Advanced Cisco network automation your team can actually own
 
-Nautomation Prime helps network engineering teams move from manual operations and fragile scripts to transparent, production-grade Cisco automation. Every system is explained. Every design decision is documented. Every engagement is built so your team can operate and extend the result.
+I'm Christopher Davies, a Cisco network automation engineer. Nautomation Prime is where I publish how I build transparent, production-grade Cisco automation: free tutorials, standards and deep dives, with every system explained and every design decision documented. I'm also available for contract work.
 
 <div class="np-action-row" markdown>
 
-[Start Here](./start-here.md){.md-button .md-button--primary}
+[Explore the Academy](./academy/index.md){.md-button .md-button--primary}
+[Available for Contract Work](./work-with-me/index.md){.md-button}
 [Build netpipe: the Capstone](./foundation/tutorials/capstone/index.md){.md-button}
-[Explore Services](./services/index.md){.md-button}
-[Request Discovery Call](./contact.md){.md-button}
 [Meet Christopher Davies](./founder.md){.md-button}
 
 </div>
 
 <ul class="np-signal-list">
   <li>Enterprise Cisco focus</li>
-  <li>No black-box delivery</li>
-  <li>Capability transfer built in</li>
+  <li>No black-box automation</li>
+  <li>Open to remote and hybrid contracts</li>
 </ul>
 
 </div>
 
-> **Transparency note:** Nautomation Prime is an early-stage, founder-led practice. Methods, figures, and examples across this site are grounded in Christopher's enterprise delivery experience unless explicitly labelled as a direct Nautomation Prime client engagement.
+> **Transparency note:** Nautomation Prime is a one-person, founder-led practice. The work examples on this site come from my employed roles. Where a figure is an illustrative estimate rather than a measured result, it is labelled as one.
 
 ---
 
@@ -59,7 +58,7 @@ Nautomation Prime helps network engineering teams move from manual operations an
 
     Busy work gets scripted while higher-value operational bottlenecks and risk reduction are ignored.
 
-    [See how we prioritise work](./prime-framework/pinpoint.md)
+    [See how I prioritise work](./prime-framework/pinpoint.md)
 
 -   ### Leadership cannot see the ROI
 
@@ -71,7 +70,7 @@ Nautomation Prime helps network engineering teams move from manual operations an
 
 ---
 
-## Learn, deploy, or transform
+## Learn, build, or work with me
 
 <div class="grid cards" markdown>
 
@@ -81,17 +80,17 @@ Nautomation Prime helps network engineering teams move from manual operations an
 
     [Go to the Academy](./academy/index.md) · [Build netpipe](./foundation/tutorials/capstone/index.md)
 
--   ### Deploy
+-   ### Build
 
-    Use hardened scripts, implementation patterns, and deployment options to move faster without starting from zero.
+    See the code: hardened scripts, implementation patterns, and public repositories that show how I structure production automation.
 
-    [Explore the script library](./scripts/index.md)
+    [Explore the script library](./scripts/index.md) · [GitHub](https://github.com/Nautomation-Prime)
 
--   ### Transform
+-   ### Work with me
 
-    Bring in Nautomation Prime when scale, governance, ROI, or knowledge transfer matter as much as the code itself.
+    Hire me on contract for Cisco network automation or senior network engineering, fully remote or hybrid. Small fixed-scope projects are available by enquiry.
 
-    [View services](./services/index.md)
+    [Work with me](./work-with-me/index.md)
 
 </div>
 
@@ -99,15 +98,15 @@ Nautomation Prime helps network engineering teams move from manual operations an
 
 <div class="np-cta-strip" markdown>
 
-### Need structured delivery, not just documentation?
+### Looking for a Cisco network automation contractor?
 
-If you already know the problem and need an implementation partner, start with the services offering rather than piecing the whole solution together from scratch.
+I'm available for contract roles, fully remote or hybrid within reach of Leek, Staffordshire. Everything on this site shows how I work before you ever speak to me.
 
 <div class="np-action-row" markdown>
 
-[View Services](./services/index.md){.md-button .md-button--primary}
-[Request Discovery Call](./contact.md){.md-button}
-[Compare SMB Packages](./smb/index.md){.md-button}
+[Work With Me](./work-with-me/index.md){.md-button .md-button--primary}
+[Download My CV (PDF)](./assets/cv/Christopher_Davies_CV.pdf){.md-button}
+[Connect on LinkedIn](https://www.linkedin.com/in/christopher-davies-6b345026/){.md-button}
 
 </div>
 
@@ -115,31 +114,31 @@ If you already know the problem and need an implementation partner, start with t
 
 ---
 
-## Representative outcomes from enterprise delivery experience
+## Selected work from my career
 
-Comparable enterprise environments have seen results such as:
+Projects from my employed roles in enterprise networking, as they appear on my CV.
 
 <div class="grid cards" markdown>
 
--   ### 60x faster VLAN provisioning
+-   ### Zero-touch provisioning in production
 
-    Reduced a comparable manual workflow from 15 minutes to 30 seconds per VLAN.
+    A Python ZTP workflow on RHEL and AWX for a multi-site UK manufacturer, with site-aware logic, serial-number-based configuration mapping and fallback templates.
 
--   ### 200+ device IOS-XE upgrades
+-   ### A national switch rollout, automated
 
-    Automated upgrade execution with rollback safeguards and staged validation.
+    Python automation for large-scale switch configuration during a nationwide upgrade across UK courts, prisons and probation offices.
 
--   ### 90 percent fewer manual compliance checks
+-   ### Multi-site upgrades and wireless redesign
 
-    Replaced repetitive audit effort with continuous, structured verification.
+    Upgrade plans for multiple UK manufacturing sites, and site-wide wireless redesigns validated with Ekahau AI Pro and Sidekick.
 
--   ### Team-owned Python automation
+-   ### NHS collaboration integration
 
-    Rebuilt inherited black-box tooling into transparent, maintainable workflows.
+    A solution integrating Cisco networking, Dell virtualisation hosts and Pexip across the NHS HSCN network.
 
 </div>
 
-[See how we deliver these outcomes →](./how-we-work.md) | [Review the measurement model →](./prime-framework/measure.md)
+[See how I work →](./work-with-me/index.md) | [Read the production-grade principles →](./foundation/production-grade-network-automation-principles/index.md)
 
 ---
 
@@ -149,15 +148,15 @@ Comparable enterprise environments have seen results such as:
 
 -   ### Every system explained
 
-    Tutorials, deep dives, and delivered solutions are written for comprehension, not mystique.
+    Tutorials, deep dives, and the automation I build are written for comprehension, not mystique.
 
 -   ### Every design decision documented
 
     Logging, runbooks, validation strategy, and design rationale are treated as part of the deliverable.
 
--   ### Every engagement ends with ownership
+-   ### Everything I build is handed over
 
-    The PRIME Framework is designed to leave your team with capability, not dependency.
+    Whether on contract or on a project, the goal is to leave your team with capability, not dependency.
 
 </div>
 
@@ -186,22 +185,23 @@ Christopher Davies is a network engineer with 10+ years in enterprise infrastruc
 
 <div class="np-section-link-row">
   <a href="./founder.md">Read Christopher's story</a>
-  <a href="./about/index.md">About Nautomation Prime</a>
+  <a href="./work-with-me/index.md">Work with me</a>
+  <a href="./assets/cv/Christopher_Davies_CV.pdf">Download CV (PDF)</a>
 </div>
 
 </div>
 
 ---
 
-## Ready to move from experimentation to delivery?
+## Hiring, or just learning?
 
-Whether you're assessing automation opportunities, rebuilding inherited scripts, or planning a broader network transformation, Nautomation Prime offers structured support without black-box delivery.
+If you're recruiting for a Cisco automation or network engineering contract, I'd like to hear about it. If you're here to learn, everything in the Academy is free.
 
 <div class="np-action-row" markdown>
 
-[Request Discovery Call](./contact.md){.md-button .md-button--primary}
-[Compare Services](./services/index.md){.md-button}
+[Contract Role Enquiry](mailto:enquiries@nautomationprime.io?subject=Contract%20Role%20Enquiry){.md-button .md-button--primary}
 [Start Here](./start-here.md){.md-button}
+[Small Projects by Enquiry](./smb/index.md){.md-button}
 
 </div>
 
@@ -209,7 +209,7 @@ Whether you're assessing automation opportunities, rebuilding inherited scripts,
 
 ## Giving with integrity
 
-We are building Nautomation Prime to create value beyond technology delivery. As the business grows, a percentage of revenue will be donated to carefully vetted charities that demonstrate transparency, responsible spending, ethical governance, and measurable community impact. Alongside that, the **[Nautomation Prime Academy](./academy/index.md)** offers free network automation education to anyone, and the **[Nautomation Prime Foundation](./foundation/index.md)** sets out free or low-cost Cisco and general networking engineering, infrastructure advice, and automation services for registered UK charities and CICs.
+I'm building Nautomation Prime to create value beyond technology delivery. As it grows, a percentage of revenue will be donated to carefully vetted charities that demonstrate transparency, responsible spending, ethical governance, and measurable community impact. Alongside that, the **[Nautomation Prime Academy](./academy/index.md)** offers free network automation education to anyone, and the **[Nautomation Prime Foundation](./foundation/index.md)** sets out free or low-cost Cisco and general networking engineering, infrastructure advice, and automation services for registered UK charities and CICs.
 
 [Read the giving policy →](./charity.md) | [Explore the Foundation →](./foundation/index.md)
 
@@ -218,5 +218,5 @@ We are building Nautomation Prime to create value beyond technology delivery. As
 <div class="np-reflection" markdown>
 <p class="np-reflection-label">Between the Lines</p>
 <p>A pot of tea brewed properly takes longer than a coffee pulled through a machine, and it stays interesting for eight infusions instead of one.</p>
-<p>Good automation works on the same principle: speed was never really the point. It was always about buying back a few hours nobody would have got back otherwise. What you do with them is the part we don't automate.</p>
+<p>Good automation works on the same principle: speed was never really the point. It was always about buying back a few hours nobody would have got back otherwise. What you do with them is the part I don't automate.</p>
 </div>
