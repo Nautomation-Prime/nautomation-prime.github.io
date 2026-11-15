@@ -116,13 +116,13 @@ I'm available for contract roles, fully remote or hybrid within reach of Leek, S
 
 ## Selected work from my career
 
-Projects from my employed roles in enterprise networking, as they appear on my CV.
+Projects from my employed roles in enterprise networking.
 
 <div class="grid cards" markdown>
 
 -   ### Zero-touch provisioning in production
 
-    A Python ZTP workflow on RHEL and AWX for a multi-site UK manufacturer, with site-aware logic, serial-number-based configuration mapping and fallback templates.
+    A Python zero-touch provisioning script for a multi-site UK manufacturer that new or wiped Catalyst switches download and run automatically, with site-aware logic, serial-number-based configuration mapping and fallback templates. An AWX extension to finish configuration and register devices in SolarWinds and NetBox is in progress.
 
 -   ### A national switch rollout, automated
 

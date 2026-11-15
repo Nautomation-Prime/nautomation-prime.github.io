@@ -136,7 +136,7 @@ The principles define **how** I build automation (pragmatic, transparent, reliab
 
 **Christopher Davies** — Founder & Principal Network Automation Engineer
 
-A Cisco network engineer with 10+ years of enterprise experience across LAN, WAN, wireless and SD-WAN, and hands-on production automation with Python, RHEL and AWX. I'm working towards CCNP Enterprise and CCNP Automation.
+A Cisco network engineer with 10+ years of enterprise experience across LAN, WAN, wireless and SD-WAN, and hands-on automation skills in Python, RHEL and AWX. I'm working towards CCNP Enterprise and CCNP Automation.
 
 **[Read my background and story →](../founder.md)**
 

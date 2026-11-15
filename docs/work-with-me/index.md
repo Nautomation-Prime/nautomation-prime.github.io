@@ -17,7 +17,7 @@ tags:
 
 ## Work with me
 
-I'm Christopher Davies, a Cisco network engineer with 10+ years of enterprise experience and hands-on production automation in Python, RHEL and AWX. I take on contract roles where network automation, or a network that needs to become automatable, is the core of the work.
+I'm Christopher Davies, a Cisco network engineer with 10+ years of enterprise experience and hands-on automation skills in Python, RHEL and AWX. I take on contract roles where network automation, or a network that needs to become automatable, is the core of the work.
 
 <div class="np-action-row" markdown>
 
@@ -66,13 +66,13 @@ I'm Christopher Davies, a Cisco network engineer with 10+ years of enterprise ex
 
 ## What I bring
 
-These come from my employed roles, described as they appear on my CV.
+These come from my employed roles.
 
 <div class="grid cards" markdown>
 
 -   ### Zero-touch provisioning in production
 
-    Designed and built a Python ZTP workflow on RHEL and AWX for a multi-site UK manufacturer, using site-aware logic, serial-number-based configuration mapping and fallback templates.
+    Designed and built a Python zero-touch provisioning script for a multi-site UK manufacturer: new or wiped Catalyst switches download and run it automatically, using site-aware logic, serial-number-based configuration mapping and fallback templates. I'm now extending it to trigger an AWX workflow that finishes the device configuration and registers it in SolarWinds and NetBox.
 
 -   ### Automation for a national switch rollout
 
