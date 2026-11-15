@@ -27,7 +27,7 @@ These may be freely shared, adapted, and republished—with attribution to Nauto
 
 The code examples and snippets published in our tutorials, technical deep dives, and on this website are licenced under the **Apache License 2.0**, unless stated otherwise.
 
-The packaged automation **tools** are not free downloads. They are deployed and tailored as part of a contract or project engagement and provided under a **licence to use**. Source is included for your team to audit and maintain, but the tools are not open-source and may not be redistributed.
+The packaged automation **tools** are free and open source under the **Apache License 2.0**, published on GitHub. Tailoring, deployment, and bespoke development are paid work.
 
 Ownership and licensing of code written specifically for a client are set by the engagement agreement. Where it does not say otherwise, bespoke code is licenced under either:
 

@@ -94,19 +94,19 @@ This includes:
 ⚠️ Include NOTICE file with attribution  
 ⚠️ No warranty provided  
 
-> **Note:** This covers teaching examples and snippets only. Our complete automation **tools** (for example the CDP Network Audit, Access Switch Port Audit, Cisco Config Generator, and Cisco IOS-XE Compliance Audit) are not published under this licence — see Section 4 below.
+> **Note:** This covers teaching examples and snippets only. Our complete automation **tools** (for example the CDP Network Audit, Access Switch Port Audit, Cisco Config Generator, and Cisco IOS-XE Compliance Audit) are released under Apache 2.0 too — see Section 4 below.
 
 ---
 
-## 4. Nautomation Prime Tools (Licensed on Deployment)
+## 4. Nautomation Prime Tools (Apache 2.0)
 
-The packaged automation tools are not free downloads and are not sold off the shelf. They are deployed and tailored as part of a contract or project engagement, and provided to the client under a **licence to use**:
+The packaged automation tools are **free and open source** under the **Apache License 2.0**, published on [GitHub](https://github.com/Nautomation-Prime):
 
-- The source is included so your team can audit, learn from, and maintain what they run
-- The tools remain the intellectual property of Christopher Davies; the client receives a licence to use them in its own environment
-- The tools are **not** offered under an open-source licence and may not be redistributed
+- Use, modify, and redistribute them, including commercially
+- Keep the licence and copyright notices (see each repository's `LICENSE` and `NOTICE`)
+- No warranty is provided
 
-[Email me about a specific tool](mailto:enquiries@nautomationprime.io?subject=Tool%20Deployment%20Enquiry) or see [Work With Me](../work-with-me/index.md).
+Tailoring, deployment, and bespoke development are available as paid work. See [Work With Me](../work-with-me/index.md).
 
 ---
 
@@ -132,7 +132,7 @@ The specific license is negotiated during the project engagement.
 | Tutorials & Guides | CC-BY 4.0 | Share, adapt, distribute (with attribution) |
 | Technical Deep Dives | CC-BY 4.0 | Share, adapt, distribute (with attribution) |
 | Teaching Code Examples & Snippets | Apache 2.0 | Use, modify, distribute (with attribution) |
-| Nautomation Prime Tools | Licence to use | Provided on deployment; source included; no redistribution |
+| Nautomation Prime Tools | Apache 2.0 | Use, modify, distribute (with attribution) |
 | Contract & Project Deliverables | Custom | Per engagement agreement |
 
 ---
@@ -152,13 +152,11 @@ Just credit Nautomation Prime and link back if possible.
 
 ### The CDP Network Audit Tool — Can I get it for our environment?
 
-**Yes,** as part of a contract or project engagement. When I deploy it:
+**Yes.** It is free and open source under Apache 2.0 on [GitHub](https://github.com/Nautomation-Prime/Cisco-Discovery-Audit). You can:
 
-- It is tailored to your network
-- You receive a licence to use it in your environment
-- You can audit and maintain it using the source included
-
-The tool is not open-source and may not be redistributed. [Email me about it](mailto:enquiries@nautomationprime.io?subject=Tool%20Deployment%20Enquiry) to get started.
+- Use it in your environment, commercially or otherwise
+- Modify and redistribute it, keeping the licence and copyright notices
+- Ask me to tailor or deploy it as paid work ([Work With Me](../work-with-me/index.md))
 
 ### The PRIME Framework — Can I use it in my consulting practice?
 

@@ -1,6 +1,6 @@
 ---
 title: Script Library
-description: Production-grade Python automation tools for Cisco infrastructure, deployed and tailored to your estate as part of a contract or fixed-scope project.
+description: Free, open-source, production-grade Python automation tools for Cisco infrastructure, with paid tailoring and deployment available.
 tags:
   - Scripts
   - Tools
@@ -14,8 +14,8 @@ tags:
 
 This is the **Nautomation Prime Script Library**: the production-grade, hardened Python tools I have built for enterprise Cisco estates. Each one has a free deep dive that explains exactly how it works.
 
-!!! abstract "Deployed and tailored, not downloaded"
-    These tools are not free downloads, and they are not sold off the shelf. I deploy them and tailor them to your estate as part of a [contract engagement](../work-with-me/index.md) or a [fixed-scope project](../smb/index.md), and hand over the source, a setup runbook and the knowledge to run them. [Email me about a specific tool](mailto:enquiries@nautomationprime.io?subject=Tool%20Deployment%20Enquiry).
+!!! abstract "Free and open source"
+    Every tool here is released under the Apache License 2.0. [Get them on GitHub](https://github.com/Nautomation-Prime) and use, change and share them however you like. If you want a tool tailored, deployed or extended for your estate, I do that as paid work, on [contract](../work-with-me/index.md) or as a [fixed-scope project](../smb/index.md).
 
 !!! warning "Python Prerequisite"
     This site focuses on applying Python to network automation. I assume familiarity with core Python concepts (variables, functions, loops, exceptions, and file I/O). If you're new to Python, complete a fundamentals course first, then return here.
@@ -26,7 +26,7 @@ This is the **Nautomation Prime Script Library**: the production-grade, hardened
 
 ### CDP Network Audit Tool
 
-**Status:** ✅ Available — deployed and tailored as part of a contract or project
+**Status:** ✅ Free and open source (Apache 2.0)
 **Description:** A threaded discovery utility that starts from seed Cisco devices and crawls the network using Cisco Discovery Protocol (CDP), producing structured Excel reports with professional formatting.
 
 **Features:**
@@ -43,13 +43,13 @@ This is the **Nautomation Prime Script Library**: the production-grade, hardened
 - Extensive customisation options (credentials, paths, Excel formatting, DNS, logging, and more)
 
 
-[📖 View Deep Dive Documentation](../foundation/deep-dives/cdp-audit.md) | [💬 Discuss this tool](mailto:enquiries@nautomationprime.io?subject=Tool%20Deployment%20Enquiry)
+[📖 View Deep Dive Documentation](../foundation/deep-dives/cdp-audit.md) | [💻 Get it on GitHub](https://github.com/Nautomation-Prime/Cisco-Discovery-Audit)
 
 ---
 
 ### Access Switch Port Audit Tool
 
-**Status:** ✅ Available — deployed and tailored as part of a contract or project
+**Status:** ✅ Free and open source (Apache 2.0)
 **Description:** A production-hardened collector designed to map interface health and utilisation across your access layer.
 
 **Features:**
@@ -61,13 +61,13 @@ This is the **Nautomation Prime Script Library**: the production-grade, hardened
 - Full Jump-Host (Bastion) integration for restricted environments
 
 
-[📖 View Deep Dive Documentation](../foundation/deep-dives/access-switch-audit.md) | [💬 Discuss this tool](mailto:enquiries@nautomationprime.io?subject=Tool%20Deployment%20Enquiry)
+[📖 View Deep Dive Documentation](../foundation/deep-dives/access-switch-audit.md) | [💻 Get it on GitHub](https://github.com/Nautomation-Prime/Access_Switch_Audit)
 
 ---
 
 ### Cisco IOS-XE Compliance Audit
 
-**Status:** ✅ Available — deployed and tailored as part of a contract or project
+**Status:** ✅ Free and open source (Apache 2.0)
 **Description:** A policy-driven compliance auditor with 90+ role-aware checks, automated remediation generation, and multi-format reporting for enterprise Cisco switches.
 
 **Features:**
@@ -82,13 +82,13 @@ This is the **Nautomation Prime Script Library**: the production-grade, hardened
 - Concurrent device auditing for large-scale operations
 
 
-[📖 View Deep Dive Documentation](../foundation/deep-dives/cisco-compliance-audit.md) | [💬 Discuss this tool](mailto:enquiries@nautomationprime.io?subject=Tool%20Deployment%20Enquiry)
+[📖 View Deep Dive Documentation](../foundation/deep-dives/cisco-compliance-audit.md) | [💻 Get it on GitHub](https://github.com/Nautomation-Prime/Cisco-Compliance-Audit)
 
 ---
 
 ### Cisco Config Generator
 
-**Status:** ✅ Available — deployed and tailored as part of a contract or project  
+**Status:** ✅ Free and open source (Apache 2.0)  
 **Description:** Turns structured Excel intent into per-device Cisco IOS-XE configuration files using a reusable Python core and Jinja2 templates, with a validation-first workflow and a pack architecture that keeps customer rules in data and templates rather than hardcoded logic.
 
 **Features:**
@@ -100,13 +100,13 @@ This is the **Nautomation Prime Script Library**: the production-grade, hardened
 - Dual execution modes (interactive TUI and headless CLI)
 - Deterministic per-device Cisco IOS-XE configuration output
 
-[📖 View Deep Dive Documentation](../foundation/deep-dives/cisco-config-generator.md) | [💬 Discuss this tool](mailto:enquiries@nautomationprime.io?subject=Tool%20Deployment%20Enquiry)
+[📖 View Deep Dive Documentation](../foundation/deep-dives/cisco-config-generator.md) | [💻 Get it on GitHub](https://github.com/Nautomation-Prime/Cisco-Config-Generator)
 
 ---
 
 ### Cisco IOS-XE Software Upgrade Orchestrator
 
-**Status:** ✅ Available — deployed and tailored as part of a contract or project
+**Status:** ✅ Free and open source (Apache 2.0)
 **Description:** A production-grade Python CLI that coordinates multi-device IOS-XE software upgrades with persistent checkpoints, strict safety gates, and deterministic recovery for high-consequence maintenance windows.
 
 **Features:**
@@ -117,7 +117,7 @@ This is the **Nautomation Prime Script Library**: the production-grade, hardened
 - pyATS/Genie pre- and post-change comparison gates
 - Explicit handling of partial success and restart recovery
 
-[📖 View Deep Dive Documentation](../foundation/deep-dives/ios-xe-upgrade-orchestrator.md) | [💬 Discuss this tool](mailto:enquiries@nautomationprime.io?subject=Tool%20Deployment%20Enquiry)
+[📖 View Deep Dive Documentation](../foundation/deep-dives/ios-xe-upgrade-orchestrator.md) | [💻 Get it on GitHub](https://github.com/Nautomation-Prime/Cisco-IOS-XE-Software-Upgrade-Orchestrator)
 
 ---
 
@@ -186,11 +186,12 @@ Ready to build custom solutions:
 
 ### Installation & Setup
 
-When I deploy a tool, it is handed over as a package with a setup runbook. The typical workflow once you have it:
+Each tool lives in its own GitHub repository with a README and setup instructions. The typical workflow:
 
 ```bash
-# Unpack the tool package
-cd <tool-name>
+# Clone the tool's repository
+git clone https://github.com/Nautomation-Prime/<tool-repo>.git
+cd <tool-repo>
 
 # Install dependencies
 pip install -r requirements.txt
@@ -209,7 +210,7 @@ Scripts use your operating system's native credential manager for secure authent
 
 Credentials are never stored in plaintext files or hardcoded in scripts.
 
-The setup runbook handed over with each tool covers platform-specific instructions.
+Each repository's README covers platform-specific instructions.
 
 ### Configuration
 
@@ -224,13 +225,13 @@ All scripts follow the **Nautomation Prime** philosophy of transparency and secu
 For issues, feature requests, or questions about any script:  
 
 - Check the **Deep Dives** documentation for detailed explanations.  
-- [Email me](mailto:enquiries@nautomationprime.io?subject=Tool%20Deployment%20Enquiry) about having a tool deployed in your estate.  
-- See [Work With Me](../work-with-me/index.md) for contract availability.
+- Raise an issue on the tool's GitHub repository.  
+- For tailoring or deployment in your estate, see [Work With Me](../work-with-me/index.md).
 
 ---
 
 !!! success "Need one of these tools working in your environment?"
-    If you want a tool deployed, adapted, or rolled out across a live estate, I do that as part of a [contract engagement](../work-with-me/index.md) or a [fixed-scope project](../smb/index.md).
+    The tools are free. If you want one adapted, deployed, or rolled out across a live estate, I do that as paid work, on [contract](../work-with-me/index.md) or as a [fixed-scope project](../smb/index.md).
 
 ---
 
@@ -240,9 +241,9 @@ For issues, feature requests, or questions about any script:
 
 | Topic | Resources |
 | :--- | :--- |
-| **Network Discovery** | [📖 CDP Network Audit Deep Dive](../foundation/deep-dives/cdp-audit.md) • [💬 Discuss the tool](mailto:enquiries@nautomationprime.io?subject=Tool%20Deployment%20Enquiry) |
-| **Port & Interface Health** | [📖 Access Switch Audit Deep Dive](../foundation/deep-dives/access-switch-audit.md) • [💬 Discuss the tool](mailto:enquiries@nautomationprime.io?subject=Tool%20Deployment%20Enquiry) |
-| **Compliance & Governance** | [📖 Cisco Compliance Audit Deep Dive](../foundation/deep-dives/cisco-compliance-audit.md) • [💬 Discuss the tool](mailto:enquiries@nautomationprime.io?subject=Tool%20Deployment%20Enquiry) |
+| **Network Discovery** | [📖 CDP Network Audit Deep Dive](../foundation/deep-dives/cdp-audit.md) • [💻 GitHub](https://github.com/Nautomation-Prime/Cisco-Discovery-Audit) |
+| **Port & Interface Health** | [📖 Access Switch Audit Deep Dive](../foundation/deep-dives/access-switch-audit.md) • [💻 GitHub](https://github.com/Nautomation-Prime/Access_Switch_Audit) |
+| **Compliance & Governance** | [📖 Cisco Compliance Audit Deep Dive](../foundation/deep-dives/cisco-compliance-audit.md) • [💻 GitHub](https://github.com/Nautomation-Prime/Cisco-Compliance-Audit) |
 | **Configuration Management** | [🎓 Configuration Backup (Beginner)](../foundation/tutorials/beginner/multi-device-config-backup.md) • [🎓 Enterprise Backup with Nornir (Intermediate)](../foundation/tutorials/intermediate/enterprise-config-backup-nornir.md) |
 | **Data Collection & Reporting** | [🎓 Show Commands to Excel (Beginner)](../foundation/tutorials/beginner/netmiko-show-command-to-excel.md) • [🎓 Multi-Device Collection (Beginner)](../foundation/tutorials/beginner/multi-device-show-command.md) |
 | **Automation Frameworks** | [🎓 Nornir Fundamentals](../foundation/tutorials/intermediate/nornir-fundamentals.md) • [📖 Advanced Patterns](../foundation/tutorials/intermediate/advanced-nornir-patterns.md) |

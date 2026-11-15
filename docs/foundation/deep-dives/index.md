@@ -87,12 +87,12 @@ Across the four current flagship guides, you should now expect an additional lay
 
 - **The Real Runtime Path** — How modules cooperate during a live run, where control actually changes hands, and why the boundaries were designed that way
 
-Read these to understand exactly how each tool works. Whether you are learning Python at scale with Cisco hardware or deciding whether to have one of these tools deployed in your estate, start here.
+Read these to understand exactly how each tool works. The tools are free and open source on GitHub, so you can follow along in the real code.
 
 ---
 
 !!! tip "Want one of these tools in your environment?"
-    The tools are not downloads. I deploy and tailor them as part of a contract or a fixed-scope project. See [Work With Me](../../work-with-me/index.md), or [email me about a specific tool](mailto:enquiries@nautomationprime.io?subject=Tool%20Deployment%20Enquiry).
+    Every tool here is free and open source under the Apache License 2.0. [Get them on GitHub](https://github.com/Nautomation-Prime). If you'd like one tailored, deployed or extended for your estate, see [Work With Me](../../work-with-me/index.md).
 
 ---
 

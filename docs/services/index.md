@@ -83,7 +83,7 @@ The code is open by design. That is the point. So what are you actually paying f
 
 -   ### :material-lock-open-outline: You get the code, in full
 
-    No hidden modules, encrypted payloads, or vendor dependency. Code written specifically for you is yours under the engagement agreement, and existing tools come with full source and a licence to use them.
+    No hidden modules, encrypted payloads, or vendor dependency. Code written specifically for you is yours under the engagement agreement, and the existing tools are open source under Apache 2.0.
 
 -   ### :material-magnify: You can inspect everything
 
@@ -91,7 +91,7 @@ The code is open by design. That is the point. So what are you actually paying f
 
 -   ### :material-cart-outline: Start from proven tools
 
-    Pre-built, hardened automation for common Cisco problems, deployed and tailored to your estate so you don't start from scratch.
+    Free, open-source, hardened automation for common Cisco problems, tailored and deployed for your estate so you don't start from scratch.
 
 -   ### :material-tune: Commission bespoke versions
 
@@ -107,7 +107,7 @@ The code is open by design. That is the point. So what are you actually paying f
 
 </div>
 
-> **Tools are deployed, not sold off the shelf.** Starting from an existing tool keeps a project small. Fully bespoke work costs more because it is scoped, designed, adapted to your environment, tested against your constraints, and handed over with full documentation.
+> **The tools are free; the expertise is what you pay for.** Starting from an existing open-source tool keeps a project small. Fully bespoke work costs more because it is scoped, designed, adapted to your environment, tested against your constraints, and handed over with full documentation.
 
 ---
 
@@ -1112,7 +1112,7 @@ As a specialised practice, you receive dedicated principal engineer engagement t
 While bespoke client work remains confidential, we contribute to the network automation community through:
 
 - Educational content via [tutorials](../foundation/tutorials/index.md), [deep dives](../foundation/deep-dives/index.md), and structured implementation guides
-- Tools deployed with full source so your team can audit and maintain them
+- Free, open-source tools (Apache 2.0) your team can audit, maintain and extend
 - Knowledge sharing through [deep-dive technical articles](../foundation/deep-dives/index.md)
 
 This commitment to transparency strengthens the ecosystem while protecting client confidentiality.
