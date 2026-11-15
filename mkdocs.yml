@@ -292,7 +292,7 @@ nav:
       - ZTP Automation Platform: coming-soon/ztp-automation-platform.md
     - Consultancy (By Enquiry):
       - services/index.md
-      - How We Work: how-we-work.md
+      - How a Project Runs: how-we-work.md
     - Small Fixed-Scope Projects:
       - smb/index.md
       - smb/services.md
@@ -308,7 +308,6 @@ nav:
   - About:
       - about/index.md
       - founder.md
-      - Giving With Integrity: charity.md
       - Legal:
           - legal/brand.md
           - legal/disclaimer.md
@@ -322,6 +321,7 @@ plugins:
       redirect_maps:
         'getting-started.md': 'start-here.md'
         'smb/packages/automation-as-a-service.md': 'smb/index.md'
+        'charity.md': 'foundation/index.md'
         'deep-dives/access-switch-audit.md': 'foundation/deep-dives/access-switch-audit.md'
         'deep-dives/cdp-audit.md': 'foundation/deep-dives/cdp-audit.md'
         'deep-dives/cisco-compliance-audit.md': 'foundation/deep-dives/cisco-compliance-audit.md'

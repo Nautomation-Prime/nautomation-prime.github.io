@@ -24,14 +24,11 @@ tags:
 
 The **Cisco IOS-XE Software Upgrade Orchestrator** is a production-grade Python CLI that coordinates multi-device software upgrades with persistent checkpoints, strict safety gates, and deterministic recovery behaviour. It is designed for high-consequence maintenance windows where partial success and restart recovery must be handled explicitly, not guessed.
 
-!!! abstract "Premium tool — buy ready-to-run or have it customised"
-    The **IOS-XE Software Upgrade Orchestrator** is a production-grade Nautomation Prime tool. This deep dive explains exactly how it works; the tool itself is a premium product, available on request rather than as a free download.
+!!! abstract "Deployed and tailored, not downloaded"
+    The **IOS-XE Software Upgrade Orchestrator** is a production-grade Nautomation Prime tool. This deep dive shows exactly how it works, and that stays free. The tool itself is not a download: I deploy it and tailor it to your estate as part of a contract or a fixed-scope project, with the source, a setup runbook and a handover so your team can own and run it afterwards.
 
-    - **Buy as-is (unmodified):** production-ready orchestrator with setup guidance and operational runbook.
-    - **Customised to your estate:** platform policy tuning, workflow controls, and reporting integration aligned to your operating model.
-
-[Request this tool](../../contact.md){ .md-button .md-button--primary }
-[Explore Services](../../services/index.md){ .md-button }
+[Work With Me](../../work-with-me/index.md){ .md-button .md-button--primary }
+[Discuss This Tool](mailto:enquiries@nautomationprime.io?subject=IOS-XE%20Software%20Upgrade%20Orchestrator%20Enquiry){ .md-button }
 
 ---
 

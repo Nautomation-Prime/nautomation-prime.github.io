@@ -94,24 +94,25 @@ This includes:
 ⚠️ Include NOTICE file with attribution  
 ⚠️ No warranty provided  
 
-> **Note:** This covers teaching examples and snippets only. Our complete automation **tools** (for example the CDP Network Audit, Access Switch Port Audit, Cisco Config Generator, and Cisco IOS-XE Compliance Audit) are premium products — see Section 4 below.
+> **Note:** This covers teaching examples and snippets only. Our complete automation **tools** (for example the CDP Network Audit, Access Switch Port Audit, Cisco Config Generator, and Cisco IOS-XE Compliance Audit) are not published under this licence — see Section 4 below.
 
 ---
 
-## 4. Premium Tools (Commercial Licence)
+## 4. Nautomation Prime Tools (Licensed on Deployment)
 
-Our packaged automation tools are commercial products, not free downloads. When purchased they are provided under a **commercial licence**:
+The packaged automation tools are not free downloads and are not sold off the shelf. They are deployed and tailored as part of a contract or project engagement, and provided to the client under a **licence to use**:
 
-- Buy a tool **as-is (unmodified)** under a one-time commercial licence, or
-- Commission a **customised build** tailored to your environment
+- The source is included so your team can audit, learn from, and maintain what they run
+- The tools remain the intellectual property of Christopher Davies; the client receives a licence to use them in its own environment
+- The tools are **not** offered under an open-source licence and may not be redistributed
 
-Licensed source is included with each tool so your team can audit, learn from, and maintain what they run—but the tools are **not** offered under an open-source licence and may not be redistributed. [Request a tool or a quote](../contact.md) to discuss licensing and customisation.
+[Email me about a specific tool](mailto:enquiries@nautomationprime.io?subject=Tool%20Deployment%20Enquiry) or see [Work With Me](../work-with-me/index.md).
 
 ---
 
-## 5. Bespoke / Consulting Work
+## 5. Contract, Project and Bespoke Work
 
-For paid or commissioned automation projects, code is provided under a **custom agreement** tailored to the client, typically:
+For contract engagements and commissioned projects, ownership of code written specifically for the client is set by the engagement agreement. Pre-existing Nautomation Prime tools used in the work remain covered by Section 4. Where the agreement does not say otherwise, bespoke code is typically provided under:
 
 - **MIT License** (permissive)
 - **Apache License 2.0** (permissive + patent protection)
@@ -131,8 +132,8 @@ The specific license is negotiated during the project engagement.
 | Tutorials & Guides | CC-BY 4.0 | Share, adapt, distribute (with attribution) |
 | Technical Deep Dives | CC-BY 4.0 | Share, adapt, distribute (with attribution) |
 | Teaching Code Examples & Snippets | Apache 2.0 | Use, modify, distribute (with attribution) |
-| Premium Automation Tools | Commercial Licence | Purchased; licensed source included; no redistribution |
-| Consulting Deliverables | Custom | Per agreement |
+| Nautomation Prime Tools | Licence to use | Provided on deployment; source included; no redistribution |
+| Contract & Project Deliverables | Custom | Per engagement agreement |
 
 ---
 
@@ -151,13 +152,13 @@ Just credit Nautomation Prime and link back if possible.
 
 ### The CDP Network Audit Tool — Can I get it for our environment?
 
-**Yes.** It's a premium tool. When you purchase it you can:
+**Yes,** as part of a contract or project engagement. When I deploy it:
 
-- Buy it as-is (unmodified) under a commercial licence
-- Have it customised to your network as a bespoke engagement
-- Audit and maintain it using the licensed source included
+- It is tailored to your network
+- You receive a licence to use it in your environment
+- You can audit and maintain it using the source included
 
-The tool is not open-source and may not be redistributed. [Request the tool or a quote](../contact.md) to get started.
+The tool is not open-source and may not be redistributed. [Email me about it](mailto:enquiries@nautomationprime.io?subject=Tool%20Deployment%20Enquiry) to get started.
 
 ### The PRIME Framework — Can I use it in my consulting practice?
 

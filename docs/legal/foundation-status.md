@@ -34,7 +34,7 @@ Presenting an organisation as a registered charity when it is not one is a serio
 
 The Foundation does not solicit donations from the public for itself, does not operate a donation button, and does not hold funds collected for charitable purposes. All free education and free/low-cost charity engineering work described on the [Foundation](../foundation/index.md) and [Charity Services](../foundation/charity-services.md) pages is paid for out of Christopher Davies' own time and the ordinary revenue of Nautomation Prime — it is not funded by public donations.
 
-This is separate from the [Giving With Integrity](../charity.md) policy, under which Nautomation Prime intends to donate a percentage of its own *commercial* revenue to independently vetted, already-registered external charities as the business grows. If the Foundation's scope ever expands to include public fundraising, this page will be updated first, and any fundraising activity will only begin once it complies with the Charities Act 2011, the Charity Commission's fundraising rules, and, where applicable, the Fundraising Regulator's Code of Fundraising Practice.
+If the Foundation's scope ever expands to include public fundraising, this page will be updated first, and any fundraising activity will only begin once it complies with the Charities Act 2011, the Charity Commission's fundraising rules, and, where applicable, the Fundraising Regulator's Code of Fundraising Practice.
 
 ## 4. Plans for future registration
 
@@ -88,7 +88,6 @@ For questions about this page or the Foundation's legal status, contact [enquiri
 
 - [Nautomation Prime Foundation](../foundation/index.md)
 - [Free & Low-Cost Services for Charities](../foundation/charity-services.md)
-- [Giving With Integrity](../charity.md)
 - [Disclaimer](./disclaimer.md)
 - [Terms of Use](./terms-of-use.md)
 - [Privacy Policy](./privacy-policy.md)

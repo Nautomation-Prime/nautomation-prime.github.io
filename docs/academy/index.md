@@ -50,7 +50,7 @@ The Academy is everything Nautomation Prime publishes for free: tutorials from y
 
 -   ### See it done
 
-    **For someone deciding whether to hire.** Deep dives into finished tools, the PRIME Framework that governs delivery, and the services built on both.
+    **For someone deciding whether to hire.** Deep dives into finished tools, the PRIME Framework that shapes my work, and how to hire me on contract.
 
     [Go to See it done](see-it-done/index.md)
 

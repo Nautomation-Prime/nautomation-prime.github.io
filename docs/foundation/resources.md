@@ -152,9 +152,9 @@ Understand the philosophy and methodology behind Nautomation Prime.
 
 **Validate changes with PyATS** → [PyATS Fundamentals](tutorials/intermediate/pyats-fundamentals.md) → [PyATS for Network Validation](tutorials/intermediate/pyats-network-validation.md) → [Building Reliable Automation with PyATS](tutorials/intermediate/building-reliable-automation-with-pyats.md)
 
-**Understand our philosophy** → [PRIME Philosophy](../prime-framework/philosophy.md)
+**Understand the philosophy** → [PRIME Philosophy](../prime-framework/philosophy.md)
 
-**Understand our delivery model** → [PRIME Framework](../prime-framework/index.md)
+**Understand the method** → [PRIME Framework](../prime-framework/index.md)
 
 **Start from scratch** → [Start Here](../start-here.md)
 
@@ -167,17 +167,17 @@ Understand the philosophy and methodology behind Nautomation Prime.
     - **New to Python?** → [Start Here](../start-here.md) for environment setup
     - **Know Python, new to networking automation?** → [Beginner tutorials](tutorials/beginner/index.md)
     - **Why Nornir won't work for me?** → It will—see [Why Nornir?](tutorials/intermediate/why-nornir.md)
+    - **Building enterprise solutions?** → [Advanced Nornir Patterns](tutorials/intermediate/advanced-nornir-patterns.md)
+    - **Need validation after changes?** → [PyATS Fundamentals](tutorials/intermediate/pyats-fundamentals.md)
+    - **Want our core principles?** → [PRIME Philosophy](../prime-framework/philosophy.md)
+    - **Want the methodology?** → [PRIME Framework](../prime-framework/index.md)
+    - **Team lacks Python skills?** → [Engagement Tracks](../services/index.md#engagement-tracks-by-technical-capability) explain how project work is tailored to a team's capability
 
 ---
 
 ## When learning turns into delivery
 
-If you need help applying these patterns across a live Cisco estate, review our [Enterprise Automation Services](../services/index.md), the [SMB packages](../smb/index.md), or the [PRIME Framework](../prime-framework/index.md).
-    - **Building enterprise solutions?** → [Advanced Nornir Patterns](tutorials/intermediate/advanced-nornir-patterns.md)
-    - **Need validation after changes?** → [PyATS Fundamentals](tutorials/intermediate/pyats-fundamentals.md)
-    - **Want our core principles?** → [PRIME Philosophy](../prime-framework/philosophy.md)
-    - **Want the methodology?** → [PRIME Framework](../prime-framework/index.md)
-    - **Team lacks Python skills?** → [Engagement Tracks](../services/index.md#engagement-tracks-by-technical-capability) explain how we tailor to your capability
+If you need these patterns applied across a live Cisco estate, I'm available for [contract work](../work-with-me/index.md) and take on [small fixed-scope projects](../smb/index.md) by enquiry. The [PRIME Framework](../prime-framework/index.md) explains how I approach it.
 
 ---
 

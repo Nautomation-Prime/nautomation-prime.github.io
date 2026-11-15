@@ -14,13 +14,13 @@ tags:
 
 ## The PRIME Philosophy
 
-The PRIME Philosophy defines how Nautomation Prime thinks, builds, measures, documents, and hands over automation. Before there is a framework, there are principles: transparency, measurability, ownership, safety, and empowerment.
+The PRIME Philosophy defines how I think about, build, measure, document, and hand over automation. Before there is a framework, there are principles: transparency, measurability, ownership, safety, and empowerment.
 
 <div class="np-action-row" markdown>
 
 [See the PRIME Framework](./index.md){.md-button .md-button--primary}
-[How We Work](../how-we-work.md){.md-button}
-[Request Discovery Call](../contact.md){.md-button}
+[How a Project Runs](../how-we-work.md){.md-button}
+[Work With Me](../work-with-me/index.md){.md-button}
 
 </div>
 
@@ -267,7 +267,7 @@ The PRIME Philosophy and Framework work for organisations at different technical
 
 **The Philosophy doesn't require Python expertise**—it requires a commitment to transparent processes, measurable outcomes, and continuous improvement.
 
-See [Services: Engagement Tracks](../services/index.md#engagement-tracks-by-technical-capability) for tailored approaches based on your team's skill level.
+See [Engagement Tracks](../services/index.md#engagement-tracks-by-technical-capability) for how project work is tailored to a team's skill level.
 
 ---
 
@@ -287,22 +287,22 @@ But if you believe automation should be **transparent, measurable, owned by your
 
 - **Want to see the philosophy in action?** → [PRIME Framework Overview](./index.md)
 - **Understand why these principles matter?** → [Production-Grade Network Automation Principles](../foundation/production-grade-network-automation-principles/index.md)
-- **Ready to apply this approach?** → [How We Work](../how-we-work.md)
+- **Ready to apply this approach?** → [Work With Me](../work-with-me/index.md) or [How a Project Runs](../how-we-work.md)
 - **Explore the first stage?** → [Pinpoint: Identify High-Impact Opportunities](./pinpoint.md)
 
 ---
 
 <div class="np-cta-strip" markdown>
 
-### Want these principles applied to a real engagement?
+### Want these principles on your team?
 
-If the philosophy resonates, the next step is not to guess at a solution. It is to define the problem, the business case, and the safest delivery path before implementation begins.
+I bring this philosophy to every contract and project: define the problem, the business case, and the safest delivery path before implementation begins.
 
 <div class="np-action-row" markdown>
 
-[Request Discovery Call](../contact.md){.md-button .md-button--primary}
-[View Services](../services/index.md){.md-button}
-[How We Work](../how-we-work.md){.md-button}
+[Work With Me](../work-with-me/index.md){.md-button .md-button--primary}
+[How a Project Runs](../how-we-work.md){.md-button}
+[Small Projects by Enquiry](../smb/index.md){.md-button}
 
 </div>
 

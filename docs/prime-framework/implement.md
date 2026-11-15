@@ -578,7 +578,7 @@ For organisations with designs but need development help:
 - **[Previous Stage: Re-engineer](./re-engineer.md)** — Design blueprints implemented here
 - **[Next Stage: Measure](./measure.md)** — Tracking performance and ROI
 - **[View Tutorials](../foundation/tutorials/index.md)** — Learn implementation techniques
-- **[Request Discovery Call](../contact.md)** — Discuss your automation needs
+- **[Work With Me](../work-with-me/index.md)** — Hire me on contract, or ask about a small project
 
 ---
 

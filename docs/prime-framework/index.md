@@ -1,6 +1,6 @@
 ---
 title: The PRIME Framework
-description: A proven methodology for transforming network operations through intelligent Python automation. Five stages from identifying inefficiencies to empowering teams.
+description: The five-stage method Christopher Davies uses to take Cisco automation from identifying inefficiencies to a team that owns the result, on contract or project work.
 tags:
   - PRIME Framework
   - Methodology
@@ -10,24 +10,23 @@ tags:
 
 <div class="np-hero" markdown>
 
-<p class="np-eyebrow">Methodology for measurable, team-owned Cisco automation delivery</p>
+<p class="np-eyebrow">How I approach automation work, on contract or on a project</p>
 
 ## The PRIME Framework
 
-The PRIME Framework is Nautomation Prime's five-stage delivery model for turning operational pain points into production-grade automation, measurable ROI, and real team ownership. It exists to stop organisations automating the wrong things, shipping brittle scripts, and ending up dependent on the original author.
+The PRIME Framework is the five-stage method I use for turning operational pain points into production-grade automation, measurable ROI, and real team ownership. It exists to stop organisations automating the wrong things, shipping brittle scripts, and ending up dependent on the original author.
 
 <div class="np-action-row" markdown>
 
-[Request Discovery Call](../contact.md){.md-button .md-button--primary}
-[View Services](../services/index.md){.md-button}
-[How We Work](../how-we-work.md){.md-button}
-[Read the Philosophy](./philosophy.md){.md-button}
+[Read the Philosophy](./philosophy.md){.md-button .md-button--primary}
+[Work With Me](../work-with-me/index.md){.md-button}
+[How a Project Runs](../how-we-work.md){.md-button}
 
 </div>
 
 <ul class="np-signal-list">
   <li>Five-stage delivery model</li>
-  <li>Typical payback: 6-12 months</li>
+  <li>Business case before build</li>
   <li>Safety and handover built in</li>
   <li>Designed for team ownership</li>
 </ul>
@@ -68,7 +67,7 @@ Network automation isn't just about writing scripts—it's about **transforming 
 - ❌ Don't measure impact (no ROI visibility)
 - ❌ Fail to transfer knowledge (dependency on one person)
 
-The PRIME Framework addresses all of these challenges with a structured, proven approach.
+The PRIME Framework addresses all of these challenges with a structured approach.
 
 ---
 
@@ -248,22 +247,22 @@ Projects are priced as fixed-fee engagements based on scope and complexity. You 
 - **Selected Stages** (e.g., Implement + Empower) — When design documentation already exists
 - **Pinpoint Assessment Only** — Understand opportunities before committing to full engagement
 
-**See [Services & Pricing](../services/index.md) for detailed engagement models and cost estimates.**
+**For project pricing, see [Consultancy (by enquiry)](../services/index.md). On a contract, the same stages shape how I plan and deliver the work.**
 
-!!! info "Flexible Engagement Models"
-    We work with your timeline and budget. Most projects complete in 7-13 weeks. We can structure payment around project milestones to align with your financial planning.
+!!! info "Flexible structure"
+    The stages flex to your timeline and budget. Most projects would take 7-13 weeks, and payment for projects can be structured around milestones.
 
 ---
 
-## 📊 Proven Results
+## 📊 What the framework aims for
 
-The PRIME Framework has delivered measurable improvements across enterprise networks:
+!!! success "Target outcomes"
+    - **Large time savings** on repetitive tasks such as VLAN provisioning and config audits
+    - **Far fewer configuration errors**, because changes are templated, validated and checked before and after
+    - **A clear payback case**, estimated in Pinpoint before any build starts
+    - **Knowledge transfer** — the team can run, change and extend the automation without the original author
 
-!!! success "Framework Outcomes"
-    - **65% average time savings** on repetitive tasks (VLAN provisioning, config audits)
-    - **90% error reduction** in configuration changes
-    - **6-12 month payback period** on automation investments
-    - **Proven knowledge transfer success** — teams become self-sufficient and extend automation independently
+    These are the goals the stages are designed around, not measured client results.
 
 ---
 
@@ -271,25 +270,25 @@ The PRIME Framework has delivered measurable improvements across enterprise netw
 
 <div class="np-cta-strip" markdown>
 
-### Start with a discovery conversation, not a blind implementation
+### Want this method on your team?
 
-The usual entry point is a short discovery conversation to understand your environment, automation maturity, constraints, and likely ROI. If the fit is right, the next step is often [Pinpoint](./pinpoint.md), where priorities and business value are clarified before wider delivery begins.
+I apply the PRIME Framework whether I'm working on contract inside your team or on a fixed-scope project. Start with [Work With Me](../work-with-me/index.md), or read how a [project runs stage by stage](../how-we-work.md).
 
 <div class="np-action-row" markdown>
 
-[Request Discovery Call](../contact.md){.md-button .md-button--primary}
-[View Services & Pricing](../services/index.md){.md-button}
-[See How We Work](../how-we-work.md){.md-button}
+[Work With Me](../work-with-me/index.md){.md-button .md-button--primary}
+[How a Project Runs](../how-we-work.md){.md-button}
+[Small Projects by Enquiry](../smb/index.md){.md-button}
 
 </div>
 
 </div>
 
-### Typical entry path
+### Typical entry path for a project
 
-1. Discovery conversation to understand operational problems and constraints.
+1. A short conversation to understand operational problems and constraints.
 2. Optional [Pinpoint](./pinpoint.md) assessment to identify the highest-value opportunities.
-3. Full PRIME Framework engagement or selected stages, depending on your needs.
+3. The full framework or selected stages, depending on your needs.
 
 ---
 
@@ -336,15 +335,18 @@ Throughout our framework and services, you'll encounter these unique terms:
 | **Prime Overwatch™** | Continuous monitoring and metrics collection (Measure stage) for automation performance |
 | **Prime Capability** | The end goal of the Empower stage—teams that can maintain, modify, and extend automation independently |
 
-These aren't just buzzwords—they represent specific approaches that differentiate our methodology.
+These aren't just buzzwords: each names a specific approach in the method.
 
 ---
 
-## 📊 Case Study Examples
+## 📊 Illustrative Scenarios
 
-### Case Study 1: Access Layer VLAN Provisioning → Prime Automation™
+!!! note "Hypothetical examples"
+    These scenarios are hypothetical, written to show how the five stages fit together. They are not client case studies, and the figures are illustrative estimates.
 
-**Client:** UK financial services firm, 300+ access switches  
+### Scenario 1: Access Layer VLAN Provisioning → Prime Automation™
+
+**Scenario:** A UK financial services firm, 300+ access switches  
 **Challenge:** Manual VLAN adds taking 15 mins/switch, high error rate  
 **PRIME Stages:**
 
@@ -354,13 +356,13 @@ These aren't just buzzwords—they represent specific approaches that differenti
 - **Measure:** **Prime Overwatch™** tracked 2 mins/change average, error-free operations over 6 months
 - **Empower:** Team achieved **Prime Capability**—now extends scripts for SVI creation
 
-**ROI:** £12,500/year savings, 6-month payback
+**Illustrative ROI:** £12,500/year savings, 6-month payback
 
 ---
 
-### Case Study 2: Compliance Audit Automation → Prime Efficiency Stack
+### Scenario 2: Compliance Audit Automation → Prime Efficiency Stack
 
-**Client:** Healthcare provider, 150 Cisco devices, quarterly PCI-DSS audits  
+**Scenario:** A healthcare provider, 150 Cisco devices, quarterly PCI-DSS audits  
 **Challenge:** Manual config review taking 40 hours per quarter  
 **PRIME Stages:**
 
@@ -370,7 +372,7 @@ These aren't just buzzwords—they represent specific approaches that differenti
 - **Measure:** **Prime Overwatch™** showed 97% reduction in audit time (40h → 1h)
 - **Empower:** Security team gained **Prime Capability** to maintain golden configs
 
-**ROI:** £8,000/year savings, increased compliance confidence, 3x coverage
+**Illustrative ROI:** £8,000/year savings, increased compliance confidence, 3x coverage
 
 ---
 
@@ -407,11 +409,11 @@ graph TD
 
 ---
 
-## 📖 Additional Case Studies
+## 📖 Additional Scenario
 
-### Case Study 3: IOS-XE Upgrade Orchestration → Prime Agents Intelligence
+### Scenario 3: IOS-XE Upgrade Orchestration → Prime Agents Intelligence
 
-**Client:** Retail chain, 200+ branch routers requiring IOS-XE 17.x upgrade  
+**Scenario:** A retail chain, 200+ branch routers requiring IOS-XE 17.x upgrade  
 **Challenge:** Manual upgrades took 1 hour/device, required site visits, unpredictable failures  
 **PRIME Stages:**
 
@@ -421,7 +423,7 @@ graph TD
 - **Measure:** **Prime Overwatch™** tracked success rate (192/200 successful, 8 skipped due to hardware constraints)
 - **Empower:** Network team achieved **Prime Capability**—now handles firmware updates independently
 
-**ROI:** £22,000 saved (160 hours + travel elimination), 96% success rate, no network downtime incidents
+**Illustrative ROI:** £22,000 saved (160 hours + travel elimination), 96% success rate, no network downtime incidents
 
 ---
 
@@ -437,7 +439,7 @@ graph TD
 
     Most consultancies jump straight to implementation without understanding workflows ("Implement-first"). Others provide strategy without execution ("PowerPoint automation").
     
-    PRIME Framework combines **both strategy and execution** with a proven structure.
+    The PRIME Framework combines **both strategy and execution** in one structure.
 
 ??? question "Can I implement the framework myself?"
 
@@ -478,15 +480,14 @@ graph TD
 
 ---
 
-## 🌟 Ready to Transform Your Network Operations?
+## 🌟 Where to go next
 
-The PRIME Framework takes the guesswork out of network automation. Whether you're just starting your automation journey or scaling existing efforts, this proven methodology delivers results.
+The PRIME Framework takes the guesswork out of network automation, whether you're just starting or scaling existing efforts.
 
 **Next Steps:**
 
-- **[Understand our principles](./philosophy.md)** — Read the PRIME Philosophy
-- **[Request a free discovery call](mailto:enquiries@nautomationprime.io)** to discuss your needs
-- **[Explore our services](../services/index.md)** to see engagement options and pricing
+- **[Understand the principles](./philosophy.md)** — Read the PRIME Philosophy
+- **[Work with me](../work-with-me/index.md)** on contract, or ask about a [small fixed-scope project](../smb/index.md)
 - **[Learn the foundations](../foundation/tutorials/index.md)** with free tutorials
 - **[Study production tools](../foundation/deep-dives/index.md)** to see the framework in action
 

@@ -1302,7 +1302,7 @@ You've mastered advanced Nornir patterns used in enterprise deployments worldwid
    - Implement with confidence using proven patterns
    - Measure results and empower your team
 
-4. **[Services](../../../services/index.md)** — Consulting for enterprise automation at scale
+4. **[Work With Me](../../../work-with-me/index.md)** — Hire me on contract for automation at scale
    - Custom implementations
    - Team training and mentoring
    - Architecture reviews
