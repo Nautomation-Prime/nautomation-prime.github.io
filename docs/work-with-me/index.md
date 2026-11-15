@@ -17,7 +17,7 @@ tags:
 
 ## Work with me
 
-I'm Christopher Davies, a Cisco network engineer with 10+ years of enterprise experience and hands-on automation experience with Python, RHEL and AWX. I take on contract roles where network automation, or a network that needs to become automatable, is the core of the work.
+I'm Christopher Davies, a Cisco network engineer with 10+ years of enterprise experience and hands-on automation skills in Python, RHEL and AWX. I take on contract roles where network automation, or a network that needs to become automatable, is the core of the work.
 
 <div class="np-action-row" markdown>
 
