@@ -26,11 +26,11 @@ If your team needs "complete transparency", this guide is built for exactly that
 - **How** to run or verify it in practice
 - **Where** to customise safely
 
-!!! abstract "Deployed and tailored, not downloaded"
-    The **Cisco Config Generator** is a production-grade Nautomation Prime tool. This deep dive shows exactly how it works, and that stays free. The tool itself is not a download: I deploy it and tailor it to your estate as part of a contract or a fixed-scope project, with the source, a setup runbook and a handover so your team can own and run it afterwards.
+!!! abstract "Free and open source"
+    The **Cisco Config Generator** is a production-grade Nautomation Prime tool, released under the Apache License 2.0. This deep dive shows exactly how it works, and the code is on GitHub for you to use, change and share however you like. If you want it tailored, deployed or extended for your estate, I do that as paid work, on contract or as a fixed-scope project.
 
-[Work With Me](../../work-with-me/index.md){ .md-button .md-button--primary }
-[Discuss This Tool](mailto:enquiries@nautomationprime.io?subject=Cisco%20Config%20Generator%20Enquiry){ .md-button }
+[Get it on GitHub](https://github.com/Nautomation-Prime/Cisco-Config-Generator){ .md-button .md-button--primary }
+[Work With Me](../../work-with-me/index.md){ .md-button }
 
 ---
 

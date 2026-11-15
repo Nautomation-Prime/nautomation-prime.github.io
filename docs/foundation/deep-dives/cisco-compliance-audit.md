@@ -24,11 +24,11 @@ The **Cisco IOS-XE Compliance Audit** tool is a role-aware, policy-driven audit 
 
 This is one of the most comprehensive projects in the Nautomation Prime ecosystem, and this guide is intentionally thorough so your team can move from "we ran a script" to "we can defend every check and every result."
 
-!!! abstract "Deployed and tailored, not downloaded"
-    The **Cisco IOS-XE Compliance Audit** is a production-grade Nautomation Prime tool. This deep dive shows exactly how it works, and that stays free. The tool itself is not a download: I deploy it and tailor it to your estate as part of a contract or a fixed-scope project, with the source, a setup runbook and a handover so your team can own and run it afterwards.
+!!! abstract "Free and open source"
+    The **Cisco IOS-XE Compliance Audit** is a production-grade Nautomation Prime tool, released under the Apache License 2.0. This deep dive shows exactly how it works, and the code is on GitHub for you to use, change and share however you like. If you want it tailored, deployed or extended for your estate, I do that as paid work, on contract or as a fixed-scope project.
 
-[Work With Me](../../work-with-me/index.md){ .md-button .md-button--primary }
-[Discuss This Tool](mailto:enquiries@nautomationprime.io?subject=Cisco%20IOS-XE%20Compliance%20Audit%20Enquiry){ .md-button }
+[Get it on GitHub](https://github.com/Nautomation-Prime/Cisco-Compliance-Audit){ .md-button .md-button--primary }
+[Work With Me](../../work-with-me/index.md){ .md-button }
 
 ---
 
@@ -204,7 +204,7 @@ graph TD
 Install pattern (Linux/macOS/WSL):
 
 ```bash
-# The Cisco IOS-XE Compliance Audit package is handed over at deployment
+git clone https://github.com/Nautomation-Prime/Cisco-Compliance-Audit.git
 cd Cisco-Compliance-Audit
 python3 -m venv .venv
 source .venv/bin/activate
@@ -1427,7 +1427,7 @@ Recommended phased adoption:
 
 Use this as a single operational workflow that combines all five spotlight controls.
 
-Need a compact printable version? A full `RUNBOOK.md` is included with the deployed package.
+Need a compact printable version? A full `RUNBOOK.md` is included in the repository.
 
 ### Phase 1: Pre-Change Validation
 

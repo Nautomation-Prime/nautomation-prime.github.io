@@ -1,6 +1,6 @@
 ---
 title: About Nautomation Prime
-description: Nautomation Prime is Christopher Davies' platform for transparent, production-grade Cisco automation — a free Academy, tools deployed on contract or project, and a Foundation for charities.
+description: Nautomation Prime is Christopher Davies' platform for transparent, production-grade Cisco automation — a free Academy, free open-source tools, and a Foundation for charities.
 tags:
   - About
   - Company
@@ -43,7 +43,7 @@ Nautomation Prime is where I, Christopher Davies, publish how I build Cisco netw
 
 -   ### Build
 
-    Production-hardened tools, explained line by line in the deep dives, and deployed into real estates as part of contract or project work.
+    Production-hardened tools, explained line by line in the deep dives and free and open source on GitHub.
 
 -   ### Work with me
 
@@ -108,7 +108,7 @@ The charity arm. The **[Nautomation Prime Foundation](../foundation/index.md)** 
 
 ### 🛠️ Nautomation Prime Tools
 
-Production-hardened Python tools for common Cisco automation tasks. They are not downloads: I deploy and tailor them as part of a contract or project, and hand over the source and a runbook.
+Production-hardened Python tools for common Cisco automation tasks, free and open source under the Apache License 2.0 on [GitHub](https://github.com/Nautomation-Prime). Tailoring and deployment for your estate are available as paid work.
 
 - [CDP Network Audit](../foundation/deep-dives/cdp-audit.md)
 - [Access Switch Port Audit](../foundation/deep-dives/access-switch-audit.md)
@@ -186,14 +186,13 @@ The PRIME Framework and Philosophy are proprietary and represent the core of how
 
 Tutorials, guides, and technical deep dives are licensed under Creative Commons Attribution. Share them freely in courses, blogs, and educational settings — just credit Nautomation Prime.
 
-### 💻 Nautomation Prime Tools (Licensed on deployment)
+### 💻 Nautomation Prime Tools (Apache 2.0)
 
-The tools are deployed and tailored as part of a contract or project, and provided under a licence to use. Source is included so your team can audit, learn from, and maintain what they run:
+The tools are free and open source under the Apache License 2.0:
 
-- Full source transparency for the tools you run
-- Tailored to your estate during deployment
-- Setup runbook and handover included
-- Not open-source; no redistribution
+- Use, modify and redistribute them, commercially or otherwise
+- Keep the licence and copyright notices
+- Tailoring, deployment and bespoke development are available as paid work
 
 Ownership of code written specifically for a client is set by the engagement agreement.
 
@@ -221,11 +220,11 @@ Found a mistake in a guide, or have an idea for one? [Get in touch](../contact.m
 
 ??? question "Can I download the Nautomation Prime tools?"
 
-    No. The deep dives explaining them are free, but the tools themselves are deployed and tailored as part of a contract or project. If you want one in your environment, [email me about it](mailto:enquiries@nautomationprime.io?subject=Tool%20Deployment%20Enquiry).
+    Yes. They are free and open source under the Apache License 2.0 on [GitHub](https://github.com/Nautomation-Prime). If you'd like one tailored or deployed for your estate, see [Work With Me](../work-with-me/index.md).
 
 ??? question "Do I need Python installed to run the tools?"
 
-    Not necessarily. Tools can be deployed as [portable bundles](../services/index.md#zero-install-portable-bundles) that run without a Python installation, for restricted enterprise environments where Python may not be permitted. To modify or extend them, you'll need Python 3.10 or later.
+    Not necessarily. Tools can be packaged as [portable bundles](../services/index.md#zero-install-portable-bundles) that run without a Python installation, for restricted enterprise environments where Python may not be permitted. To modify or extend them, you'll need Python 3.10 or later.
 
 ??? question "What's the difference between tutorials, deep dives, and the PRIME Framework?"
 
