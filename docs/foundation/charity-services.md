@@ -26,11 +26,14 @@ Through the Nautomation Prime Foundation, Christopher Davies offers a limited am
 
 <ul class="np-signal-list">
   <li>Registered UK charities and CICs only</li>
-  <li>Capacity-limited, applications reviewed in order received</li>
+  <li>Capacity-limited, scheduled around contract commitments</li>
   <li>Delivered under a written, capped-liability scope agreement</li>
 </ul>
 
 </div>
+
+!!! note "Scheduled around contract work"
+    My main work is contract engagements, so charity work is scheduled around those commitments. Applications are reviewed in the order received, and I'll tell you honestly when I could start.
 
 !!! warning "This is not a registered charity giving scheme"
     This offer is made directly by Christopher Davies out of his own working capacity. It is not made by, or on behalf of, a registered charity, and no charitable tax treatment or Gift Aid applies to it. See [Foundation Legal Status & Governance](../legal/foundation-status.md) for the full legal position.
@@ -108,12 +111,12 @@ This section applies specifically to charity-services engagements delivered unde
 
 ### Ready to apply, or need something different?
 
-If your organisation isn't a registered charity or CIC but still needs low-cost help, see the [SMB packages](../smb/index.md) or [Services overview](../services/index.md) instead — or [get in touch](../contact.md) and ask.
+If your organisation isn't a registered charity or CIC but still needs low-cost help, see the [small project packages](../smb/index.md) or [consultancy overview](../services/index.md) instead — or [get in touch](../contact.md) and ask.
 
 <div class="np-action-row" markdown>
 
 [Apply for Charity Support](mailto:enquiries@nautomationprime.io?subject=Charity%20Support%20Application){.md-button .md-button--primary}
-[Compare SMB Packages](../smb/index.md){.md-button}
+[Small Projects by Enquiry](../smb/index.md){.md-button}
 [Contact Nautomation Prime](../contact.md){.md-button}
 
 </div>

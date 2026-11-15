@@ -87,12 +87,12 @@ Across the four current flagship guides, you should now expect an additional lay
 
 - **The Real Runtime Path** — How modules cooperate during a live run, where control actually changes hands, and why the boundaries were designed that way
 
-Read these to understand exactly how each premium tool works before you buy it as-is or commission a customised build. Whether deploying bespoke solutions or understanding Python at scale with Cisco hardware, start here.
+Read these to understand exactly how each tool works. Whether you are learning Python at scale with Cisco hardware or deciding whether to have one of these tools deployed in your estate, start here.
 
 ---
 
 !!! tip "Want one of these tools in your environment?"
-  Each tool is available to **buy as-is** or **customised to your estate**. [Request a tool or a quote](../../contact.md), explore our [Enterprise Automation Services](../../services/index.md), or review [How We Work](../../how-we-work.md).
+    The tools are not downloads. I deploy and tailor them as part of a contract or a fixed-scope project. See [Work With Me](../../work-with-me/index.md), or [email me about a specific tool](mailto:enquiries@nautomationprime.io?subject=Tool%20Deployment%20Enquiry).
 
 ---
 

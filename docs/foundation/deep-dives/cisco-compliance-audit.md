@@ -24,14 +24,11 @@ The **Cisco IOS-XE Compliance Audit** tool is a role-aware, policy-driven audit 
 
 This is one of the most comprehensive projects in the Nautomation Prime ecosystem, and this guide is intentionally thorough so your team can move from "we ran a script" to "we can defend every check and every result."
 
-!!! abstract "Premium tool — buy ready-to-run or have it customised"
-    The **Cisco IOS-XE Compliance Audit** tool is a production-grade Nautomation Prime tool — the most comprehensive in the catalogue. This deep dive shows exactly how it works; the tool itself is a premium product, available on request rather than as a free download.
+!!! abstract "Deployed and tailored, not downloaded"
+    The **Cisco IOS-XE Compliance Audit** is a production-grade Nautomation Prime tool. This deep dive shows exactly how it works, and that stays free. The tool itself is not a download: I deploy it and tailor it to your estate as part of a contract or a fixed-scope project, with the source, a setup runbook and a handover so your team can own and run it afterwards.
 
-    - **Buy as-is (unmodified) — £1,495:** the full auditor with its policy packs and multi-format reporting, delivered with a setup runbook and licensed for use in your environment.
-    - **Customised to your estate — £3,500–£8,000:** bespoke policy model, role classification, remediation workflow, and reporting aligned to your governance and change process.
-
-[Request this tool](../../contact.md){ .md-button .md-button--primary }
-[Explore Services](../../services/index.md){ .md-button }
+[Work With Me](../../work-with-me/index.md){ .md-button .md-button--primary }
+[Discuss This Tool](mailto:enquiries@nautomationprime.io?subject=Cisco%20IOS-XE%20Compliance%20Audit%20Enquiry){ .md-button }
 
 ---
 
@@ -207,7 +204,7 @@ graph TD
 Install pattern (Linux/macOS/WSL):
 
 ```bash
-# The licensed Cisco IOS-XE Compliance Audit package is provided on purchase
+# The Cisco IOS-XE Compliance Audit package is handed over at deployment
 cd Cisco-Compliance-Audit
 python3 -m venv .venv
 source .venv/bin/activate
@@ -1430,7 +1427,7 @@ Recommended phased adoption:
 
 Use this as a single operational workflow that combines all five spotlight controls.
 
-Need a compact printable version? A full `RUNBOOK.md` is included with the licensed package.
+Need a compact printable version? A full `RUNBOOK.md` is included with the deployed package.
 
 ### Phase 1: Pre-Change Validation
 

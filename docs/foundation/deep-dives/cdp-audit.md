@@ -24,14 +24,11 @@ A **modular, enterprise-grade** network discovery utility that crawls Cisco netw
 
 **What's New:** The tool has undergone a **complete architectural restructure** — migrated from a monolithic script to a **modular Python package** with YAML-based configuration, dedicated modules for each concern, and enhanced maintainability for enterprise deployments.
 
-!!! abstract "Premium tool — buy ready-to-run or have it customised"
-    The **CDP Network Audit** tool is a production-grade Nautomation Prime tool. This deep dive shows exactly how it works; the tool itself is a premium product, available on request rather than as a free download.
+!!! abstract "Deployed and tailored, not downloaded"
+    The **CDP Network Audit** is a production-grade Nautomation Prime tool. This deep dive shows exactly how it works, and that stays free. The tool itself is not a download: I deploy it and tailor it to your estate as part of a contract or a fixed-scope project, with the source, a setup runbook and a handover so your team can own and run it afterwards.
 
-    - **Buy as-is (unmodified) — £795:** the modular Python package and Excel templates, delivered with a setup runbook and licensed for use in your environment.
-    - **Customised to your estate — £2,000–£5,000:** tailored discovery, jump-host, credential, and reporting behaviour for your topology and operating model.
-
-[Request this tool](../../contact.md){ .md-button .md-button--primary }
-[Explore Services](../../services/index.md){ .md-button }
+[Work With Me](../../work-with-me/index.md){ .md-button .md-button--primary }
+[Discuss This Tool](mailto:enquiries@nautomationprime.io?subject=CDP%20Network%20Audit%20Enquiry){ .md-button }
 
 ---
 
@@ -2660,11 +2657,10 @@ Consistent with the **Nautomation Prime** delivery model, this tool is available
 
 ## 📦 Get This Tool
 
-The CDP Network Audit tool is a premium Nautomation Prime product. On purchase you receive the complete, production-ready package — modular source, TextFSM templates, and the Excel master — delivered with a setup runbook and licensed for your environment.
+The CDP Network Audit tool isn't sold as a download. I deploy it as part of a contract or a fixed-scope project: the modular source, TextFSM templates and Excel master, tailored to your topology and handed over with a setup runbook so your team can run it themselves.
 
-- **Buy as-is (unmodified) — £795**, or have it **customised to your estate (£2,000–£5,000)**.
-
-[Request this tool or a quote](../../contact.md){ .md-button .md-button--primary }
+[Discuss this tool](mailto:enquiries@nautomationprime.io?subject=CDP%20Network%20Audit%20Enquiry){ .md-button .md-button--primary }
+[Work With Me](../../work-with-me/index.md){ .md-button }
 
 ---
 
@@ -2681,7 +2677,7 @@ The CDP Network Audit tool is a premium Nautomation Prime product. On purchase y
 
 ## 🎬 Next Steps
 
-1. **Open the delivered package:** unzip the licensed `cdp_audit` package and `cd` into it
+1. **Open the delivered package:** unzip the `cdp_audit` package handed over at deployment and `cd` into it
 2. **Install dependencies:** `pip install -r requirements.txt`
 3. **Customise config.yaml** to match your environment:
    - Set `jump_host` under `network` section
@@ -2721,7 +2717,7 @@ excel:
 **Get Started Now:**
 
 - [📖 Script Library](../../scripts/index.md) — Find the CDP Network Audit tool and other automation scripts
-- [💬 Request this tool](../../contact.md) — Buy it as-is or discuss customisation for your estate
+- [💬 Discuss this tool](mailto:enquiries@nautomationprime.io?subject=CDP%20Network%20Audit%20Enquiry) — Have it deployed and tailored to your estate
 
 **Learn More:**
 
@@ -2736,7 +2732,7 @@ excel:
 
 ## Licence
 
-Premium tool — supplied under a commercial licence on purchase (buy as-is or customised to your environment). Not open-source; redistribution is not permitted. See [Licensing](../../legal/licensing.md) for details.
+Provided under a licence as part of a contract or project engagement, with source included. Not open-source; redistribution is not permitted. See [Licensing](../../legal/licensing.md) for details.
 
 ## 👤 Author
 

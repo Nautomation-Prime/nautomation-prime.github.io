@@ -111,7 +111,7 @@ These packages are not watered-down scripts. Every deliverable follows the same 
 - **Fully documented** — every line of code explained, every decision recorded
 - **Production-hardened** — pre-flight checks, post-change validation, rollback built in
 - **No black-box code** — you receive full source, not a compiled binary
-- **You own it** — full code ownership, no ongoing licence fees
+- **You keep it** — full source, a perpetual licence to use it, and no ongoing licence fees
 - **GDPR-compliant** — UK-based delivery, all data handled within UK jurisdiction
 - **Insured** — Professional Indemnity and Public Liability insurance in place before work starts
 

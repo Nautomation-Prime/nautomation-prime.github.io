@@ -1,31 +1,31 @@
 ---
-title: How We Work
-description: Step-by-step guide to how Nautomation Prime delivers automation. From discovery to team empowerment, here's what your engagement looks like.
+title: How a Project Runs
+description: Stage-by-stage guide to how I run a fixed-scope automation project with the PRIME Framework, from first conversation to team ownership.
 tags:
   - PRIME Framework
   - Process
   - Methodology
-  - How To Work With Us
+  - Work With Me
 ---
 
 <div class="np-hero" markdown>
 
-<p class="np-eyebrow">Founder-led delivery from discovery to handover</p>
+<p class="np-eyebrow">Project work is taken on by enquiry, around contract commitments</p>
 
-## See exactly what a PRIME Framework engagement looks like
+## How a PRIME Framework project runs
 
-This page shows how Nautomation Prime takes a network automation engagement from first conversation to team ownership. The goal is not just to deliver working code, but to build a delivery path your team can understand, approve, and sustain after handover.
+This page shows how I take a network automation project from first conversation to team ownership. On a contract, the same stages shape how I plan and deliver work inside your team. The goal is not just to deliver working code, but to build a delivery path your team can understand, approve, and sustain after handover.
 
 <div class="np-action-row" markdown>
 
-[Request Discovery Call](./contact.md){.md-button .md-button--primary}
-[View Services](./services/index.md){.md-button}
+[Work With Me](./work-with-me/index.md){.md-button .md-button--primary}
+[Discuss a Project](mailto:enquiries@nautomationprime.io?subject=Automation%20Project%20Enquiry){.md-button}
 [See Investment Ranges](./services/index.md#typical-investment-ranges){.md-button}
 
 </div>
 
 <ul class="np-signal-list">
-  <li>Typical engagement: 6-12 weeks</li>
+  <li>Typical project: 6-12 weeks</li>
   <li>Staged rollout, not blind deployment</li>
   <li>ROI tracking built in</li>
   <li>Knowledge transfer included</li>
@@ -39,7 +39,7 @@ This page shows how Nautomation Prime takes a network automation engagement from
 
 -   ### Structured discovery first
 
-  We start by clarifying the operational problem, constraints, risks, and business case before any build work begins.
+  I start by clarifying the operational problem, constraints, risks, and business case before any build work begins.
 
 -   ### Safety before speed
 
@@ -85,7 +85,7 @@ You're drowning in network operational tasks. Some feel painful. Some seem obvio
 
 #### 1. Discovery Workshop (4 hours)
 
-We sit with your network operations team and document:
+I sit with your network operations team and document:
 
 - Current operational workflows
 - Pain points and frustration areas
@@ -95,11 +95,11 @@ We sit with your network operations team and document:
 
 #### 2. Time-Motion Analysis (1–2 weeks background work)
 
-We analyse operational logs, ticket systems, and team feedback to build accurate time estimates.
+I analyse operational logs, ticket systems, and team feedback to build accurate time estimates.
 
 #### 3. ROI Calculation
 
-We calculate the payback period for each automation opportunity:
+I calculate the payback period for each automation opportunity:
 
 - Time savings per task
 - Annual operational cost reduction
@@ -113,11 +113,11 @@ You receive a **prioritised automation roadmap** with:
 - Top 3–5 automation opportunities ranked by ROI
 - Timeline and effort estimates for each
 - Risk assessment and feasibility notes
-- Business case (you'll know exactly why we recommended these)
+- Business case (you'll know exactly why I recommended these)
 
 ### The Guarantee (Pinpoint)
 
-You walk away with a clear roadmap of what to automate and why—**even if you decide not to proceed with us.**
+You walk away with a clear roadmap of what to automate and why—**even if you decide not to proceed with me.**
 
 **Investment:** £3,000–£5,000
 
@@ -131,15 +131,15 @@ You walk away with a clear roadmap of what to automate and why—**even if you d
 
 ### What Happens (Re-engineer)
 
-You've decided what to automate. Now we optimise the *workflow itself* before writing a single line of code.
+You've decided what to automate. Now I optimise the *workflow itself* before writing a single line of code.
 
-Most automation fails because teams automate broken processes. We fix the process first.
+Most automation fails because teams automate broken processes. I fix the process first.
 
 ### Your Experience (Re-engineer)
 
 #### 1. Current State Documentation
 
-We map the current workflow in detail:
+I map the current workflow in detail:
 
 - Steps (in order)
 - Decision points ("If this, then that")
@@ -149,7 +149,7 @@ We map the current workflow in detail:
 
 #### 2. Future State Design
 
-We design the optimised workflow:
+I design the optimised workflow:
 
 - Eliminate unnecessary steps
 - Add safety checkpoints (pre-flight, post-flight validation)
@@ -158,7 +158,7 @@ We design the optimised workflow:
 
 #### 3. Technical Architecture Blueprint
 
-We design how the code will be structured:
+I design how the code will be structured:
 
 - Library choices (Netmiko, Nornir, etc.)
 - Execution model (serial vs. parallel)
@@ -168,7 +168,7 @@ We design how the code will be structured:
 
 #### 4. Safety & Validation Specifications
 
-Before coding, we document:
+Before coding, I document:
 
 - Pre-flight checks ("Verify device is reachable before attempting config")
 - Validation tests ("Confirm config was actually applied")
@@ -197,22 +197,22 @@ You receive detailed **architecture documents** that show:
 
 ### What Happens (Implement)
 
-Now we build the automation—with transparency, safety, and maintainability as first-class requirements (not afterthoughts).
+Now I build the automation—with transparency, safety, and maintainability as first-class requirements (not afterthoughts).
 
 ### Your Experience (Implement)
 
 #### 1. Development with Transparency
 
-We code according to the **PRIME Philosophy**:
+I code according to the **PRIME Philosophy**:
 
-- **Line-by-line documentation** — Why we chose each library, why this approach, what this function does
+- **Line-by-line documentation** — Why I chose each library, why this approach, what this function does
 - **Verbose logging** — When the code runs, it tells you exactly what it's doing
 - **Pragmatic design** — Simple, direct solutions over over-engineered frameworks
 - **Hardened error handling** — Code doesn't crash; it fails gracefully with clear errors
 
 #### 2. Lab Testing (Week 6)
 
-We test in a sandboxed environment:
+I test in a sandboxed environment:
 
 - Does the code do what it's supposed to do?
 - Do error handlers work ("What happens if a device is unreachable?")
@@ -221,7 +221,7 @@ We test in a sandboxed environment:
 
 #### 3. Code Review & Documentation
 
-We document everything:
+I document everything:
 
 - README (how to install and run the code)
 - Technical reference (what each function does)
@@ -231,7 +231,7 @@ We document everything:
 
 #### 4. Pilot Deployment (Week 7-8)
 
-We deploy to a small subset of your network:
+I deploy to a small subset of your network:
 
 - A few test devices first
 - Measure actual time savings
@@ -240,10 +240,10 @@ We deploy to a small subset of your network:
 
 #### 5. Full Production Rollout (End of Stage 3)
 
-Once pilot is successful, we deploy to your full environment with:
+Once pilot is successful, I deploy to your full environment with:
 
-- Live monitoring (we watch the first few runs)
-- Direct support (if issues arise, we're available)
+- Live monitoring (I watch the first few runs)
+- Direct support (if issues arise, I'm available)
 - Handoff documentation (everything your team needs to run it independently)
 
 ### The Deliverable (Implement)
@@ -271,15 +271,15 @@ You receive:
 
 ### What Happens (Measure)
 
-Now we prove the value.
+Now I prove the value.
 
-This is where most automation consulting falls short—they deliver code and disappear. We quantify the business impact.
+This is where most automation consulting falls short—they deliver code and disappear. I quantify the business impact.
 
 ### Your Experience (Measure)
 
 #### 1. Baseline Reconstruction (Week 9)
 
-We reconstruct pre-automation metrics:
+I reconstruct pre-automation metrics:
 
 - Historical task duration (from logs, timesheets, ticket systems)
 - Manual effort required
@@ -288,7 +288,7 @@ We reconstruct pre-automation metrics:
 
 #### 2. Instrumentation (Week 10)
 
-We add lightweight tracking to your automation:
+I add lightweight tracking to your automation:
 
 - Execution time
 - Tasks completed
@@ -316,6 +316,9 @@ You receive a formal **ROI Report** with:
 - Recommendations for the next automation opportunity
 
 ### Example Report
+
+!!! note "Illustrative example"
+    The report below is a hypothetical example showing the format and the calculation, not a client result.
 
 **Before Automation:** Each VLAN change touched 20 access switches at 15 minutes per switch, so 5 hours per change (average across 2020-2023)  
 **After Automation:** Preparing, running, and reviewing the automated change takes 15 minutes
@@ -350,9 +353,9 @@ You receive a formal **ROI Report** suitable for:
 
 ### What Happens (Empower)
 
-We transfer full ownership of the automation to your team.
+I transfer full ownership of the automation to your team.
 
-After engagement ends, your network engineers can maintain, modify, and extend the automation independently. You're not dependent on us forever.
+After engagement ends, your network engineers can maintain, modify, and extend the automation independently. You're not dependent on me forever.
 
 ### Your Experience (Empower)
 
@@ -361,7 +364,7 @@ After engagement ends, your network engineers can maintain, modify, and extend t
 **Session 1: Architecture & Design** (Week 10)
 
 - How the automation is structured
-- Why we chose each library (Netmiko, Nornir, etc.)
+- Why I chose each library (Netmiko, Nornir, etc.)
 - How data flows through the system
 - Where validation and error handling happen
 
@@ -398,14 +401,14 @@ You receive a complete knowledge base:
 
 #### 3. 8 Weeks of Transition Support (Post-engagement)
 
-After we step back, you can still reach out. Email questions are answered within one UK business day, and there are four fortnightly 30-minute office-hours calls:
+After I step back, you can still reach out. Email questions are answered within one UK business day, and there are four fortnightly 30-minute office-hours calls:
 
 - Questions about the code ("Why did we do it this way?")
 - Bugs or edge cases you discover in the delivered automation
 - Guidance on your own changes ("How would I add support for device Y?")
 - Confidence building ("Is my proposed change safe?")
 
-We will advise on your team's changes; building new features or support for new device types ourselves is quoted separately. Support runs in UK business hours and is not an on-call or incident-response service.
+I will advise on your team's changes; building new features or support for new device types myself is quoted separately. Support runs in UK business hours and is not an on-call or incident-response service.
 
 ### The Deliverable (Empower)
 
@@ -492,9 +495,9 @@ You own the automation completely:
 ✅ **Ability to extend** — Add new features, support new device types  
 ✅ **No vendor lock-in** — Code uses industry-standard libraries (Netmiko, Nornir, NAPALM)  
 ✅ **8 weeks of support** — Post-engagement questions answered  
-✅ **30-day bug fix guarantee** — If critical issues arise, we fix them free  
+✅ **30-day bug fix guarantee** — If critical issues arise, I fix them free  
 
-**After 8 weeks:** You're completely independent. If you want future automation projects, we're happy to help—but you're not dependent on us.
+**After 8 weeks:** You're completely independent. If you want future automation projects, I'm happy to help, but you're not dependent on me.
 
 ---
 
@@ -524,15 +527,15 @@ You own the automation completely:
 
 <div class="np-cta-strip" markdown>
 
-### Start with a discovery conversation, not a hard sell
+### Start with a conversation, not a hard sell
 
-The first step is a low-pressure conversation about your operational bottlenecks, constraints, likely ROI, and whether the PRIME Framework is the right fit. If it is not, that will be made clear early.
+The first step is a low-pressure conversation about your operational bottlenecks, constraints, and whether a project is the right fit, or whether you really need someone on contract. If it is not a fit, I'll say so early.
 
 <div class="np-action-row" markdown>
 
-[Book a Discovery Call](./contact.md){.md-button .md-button--primary}
-[View Services](./services/index.md){.md-button}
-[Contact & Discovery](./contact.md#what-to-include-in-your-message){.md-button}
+[Discuss a Project](mailto:enquiries@nautomationprime.io?subject=Automation%20Project%20Enquiry){.md-button .md-button--primary}
+[Work With Me](./work-with-me/index.md){.md-button}
+[What to Include](./contact.md#what-to-include-in-your-message){.md-button}
 
 </div>
 
@@ -540,7 +543,7 @@ The first step is a low-pressure conversation about your operational bottlenecks
 
 ### Typical next steps
 
-1. Discovery conversation to understand your environment and goals.
+1. A short conversation to understand your environment and goals.
 2. If the fit is right, a paid [Pinpoint](./prime-framework/pinpoint.md) engagement defines priorities and ROI.
 3. From there, proceed with the full PRIME Framework or the specific stages you need.
 
@@ -558,7 +561,7 @@ The first step is a low-pressure conversation about your operational bottlenecks
 - [Measure](./prime-framework/measure.md) — ROI Tracking
 - [Empower](./prime-framework/empower.md) — Knowledge Transfer
 
-**[Services & Pricing](./services/index.md)** — Investment and deliverables
+**[Consultancy (by enquiry)](./services/index.md)** — Investment and deliverables
 
 **[Production-Grade Network Automation Principles](./foundation/production-grade-network-automation-principles/index.md)** — Understand the operating patterns PRIME applies in practice
 

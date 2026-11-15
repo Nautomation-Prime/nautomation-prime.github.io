@@ -16,7 +16,7 @@ tags:
 
 !!! success "Stage Outcome"
     **Deliverable:** Quantified ROI metrics dashboard, time savings analysis, error reduction reports, and executive communication ready.  
-    **Typical Result:** Prove 6-12 month payback period with concrete numbers: hours saved, errors eliminated, SLA improvements, and compliance gains.
+    **Aim:** Show the payback period with concrete numbers: hours saved, errors eliminated, SLA improvements, and compliance gains.
 
 ```mermaid
 graph TD
@@ -553,7 +553,7 @@ For organisations with existing automation needing ROI proof:
 - **[PRIME Framework Overview](./index.md)** — See how all five stages work together
 - **[Previous Stage: Implement](./implement.md)** — Building the automation we're now measuring
 - **[Next Stage: Empower](./empower.md)** — Knowledge transfer and capability building
-- **[Request Discovery Call](../contact.md)** — Discuss your automation needs
+- **[Work With Me](../work-with-me/index.md)** — Hire me on contract, or ask about a small project
 
 ---
 

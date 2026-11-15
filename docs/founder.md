@@ -52,7 +52,7 @@ My name is **Christopher Davies**, and I've spent the last 10+ years building ne
 
 Over a decade in enterprise networking, I noticed a pattern that frustrated me:
 
-**Organisations would invest £15,000–£25,000 in a "network automation solution," deploy it... and six months later, nobody was using it.**
+**Organisations would invest in a "network automation solution," deploy it... and six months later, nobody was using it.**
 
 Not because the code was bad. Sometimes it was brilliant code. But:
 
@@ -133,7 +133,7 @@ Network automation is a *team sport*. If only one person understands the code, y
 
 -   ### Education plus delivery
 
-    Nautomation Prime exists to teach, build, and hand over, not just ship scripts and disappear.
+    I teach, build, and hand over, whether on contract or on a project, rather than ship scripts and disappear.
 
 </div>
 
@@ -147,7 +147,7 @@ Throughout my career, I've seen automation fail because teams don't understand t
 
 - **Line-by-line documentation** — Every decision explained, not just every line
 - **Verbose logging** — When something breaks, the logs tell the story
-- **Runbooks & knowledge transfer** — Your team owns the solution when we walk away
+- **Runbooks & knowledge transfer** — Your team owns the solution when I walk away
 - **Open educational content** — We publish in-depth guides and tutorials so the community benefits
 
 ---

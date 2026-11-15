@@ -406,7 +406,7 @@ Sometimes clients have identified their automations but need design help:
 - **[PRIME Framework Overview](./index.md)** — See how all five stages work together
 - **[Previous Stage: Pinpoint](./pinpoint.md)** — How we identified this automation
 - **[Next Stage: Implement](./implement.md)** — Building production-ready code
-- **[Request Discovery Call](../contact.md)** — Discuss your automation needs
+- **[Work With Me](../work-with-me/index.md)** — Hire me on contract, or ask about a small project
 
 ---
 

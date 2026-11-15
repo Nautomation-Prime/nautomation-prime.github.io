@@ -81,17 +81,17 @@ The code is open by design. That is the point. So what are you actually paying f
 
 <div class="grid cards" markdown>
 
--   ### :material-lock-open-outline: You own the code outright
+-   ### :material-lock-open-outline: You get the code, in full
 
-    No hidden modules, encrypted payloads, or vendor dependency. What we deliver is yours — immediately, unconditionally, and permanently.
+    No hidden modules, encrypted payloads, or vendor dependency. Code written specifically for you is yours under the engagement agreement, and existing tools come with full source and a licence to use them.
 
 -   ### :material-magnify: You can inspect everything
 
     Architecture, logic, assumptions, and workflows are open to your team from day one. No black boxes, no trust required.
 
--   ### :material-cart-outline: Buy ready-made tools
+-   ### :material-cart-outline: Start from proven tools
 
-    Pre-built, hardened automation for common Cisco problems. Reviewed, tested, and documented — ready to deploy without starting from scratch.
+    Pre-built, hardened automation for common Cisco problems, deployed and tailored to your estate so you don't start from scratch.
 
 -   ### :material-tune: Commission bespoke versions
 
@@ -107,7 +107,7 @@ The code is open by design. That is the point. So what are you actually paying f
 
 </div>
 
-> **Standard tools are available to purchase directly.** Bespoke versions cost more because they are scoped, designed, adapted to your environment, tested against your constraints, and handed over with full documentation and support.
+> **Tools are deployed, not sold off the shelf.** Starting from an existing tool keeps a project small. Fully bespoke work costs more because it is scoped, designed, adapted to your environment, tested against your constraints, and handed over with full documentation.
 
 ---
 
@@ -1112,7 +1112,7 @@ As a specialised practice, you receive dedicated principal engineer engagement t
 While bespoke client work remains confidential, we contribute to the network automation community through:
 
 - Educational content via [tutorials](../foundation/tutorials/index.md), [deep dives](../foundation/deep-dives/index.md), and structured implementation guides
-- Premium tools delivered with licensed source so your team can audit and maintain them
+- Tools deployed with full source so your team can audit and maintain them
 - Knowledge sharing through [deep-dive technical articles](../foundation/deep-dives/index.md)
 
 This commitment to transparency strengthens the ecosystem while protecting client confidentiality.

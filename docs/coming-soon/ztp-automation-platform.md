@@ -20,7 +20,7 @@ tags:
 
 ## Executive Summary
 
-An end-to-end production-grade Cisco ZTP solution built in Python for enterprise rollouts. This is the fully managed platform version of our upcoming standalone ZTP script (available as a premium tool), with a configuration builder, data validation, and lifecycle tracking.
+An end-to-end production-grade Cisco ZTP solution built in Python for enterprise rollouts. This is the platform version of my upcoming standalone ZTP script, with a configuration builder, data validation, and lifecycle tracking.
 
 ---
 
@@ -34,9 +34,9 @@ An end-to-end production-grade Cisco ZTP solution built in Python for enterprise
 
 ---
 
-## Service Model
+## Delivery Model
 
-This is a paid, enterprise-grade service with optional bespoke add-ons by request.
+I build the platform in your environment as a project or as part of a contract, then hand it over with documentation so your team runs it. Optional add-ons are available by request.
 
 ---
 
@@ -44,7 +44,7 @@ This is a paid, enterprise-grade service with optional bespoke add-ons by reques
 
 - Large-scale rollouts with strict standardisation requirements
 - Teams needing repeatable, auditable provisioning workflows
-- Organisations that want a managed ZTP platform, not just a script
+- Organisations that want a full ZTP platform built and handed over, not just a script
 
 ---
 
@@ -84,11 +84,11 @@ Approval workflows, evidence collection, and rollback planning so changes are me
 
 ## Transparency: Inputs, Outputs, and Ownership
 
-We document exactly what the platform consumes, what it produces, and who owns each step.
+I document exactly what the platform consumes, what it produces, and who owns each step.
 
 - **Inputs:** Excel-based device, site, and variable data; approved templates; optional source-of-truth feeds
 - **Outputs:** Day 0 bootstrap configs, Day N configs, validation evidence, and inventory updates
-- **Ownership:** You own device data and templates; we implement the workflow and provide operational visibility
+- **Ownership:** You own device data and templates; I build the workflow and hand it over with operational visibility built in
 - **Auditability:** Every push is logged with timestamps, target devices, and validation results
 - **Rollback:** Defined rollback points and recovery steps for failed changes
 

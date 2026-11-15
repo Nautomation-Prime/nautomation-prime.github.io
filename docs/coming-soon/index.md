@@ -44,7 +44,7 @@ A production-ready Python script for automating Day 0 provisioning of Cisco Cata
 
 ### [ZTP Automation Platform](ztp-automation-platform.md)
 
-An end-to-end enterprise-grade Cisco ZTP solution built in Python. This managed platform covers Day 0 provisioning and Day N configuration at scale, with persistent device inventory tracking and a branded Excel-driven configuration builder.
+An end-to-end enterprise-grade Cisco ZTP solution built in Python. This platform covers Day 0 provisioning and Day N configuration at scale, with persistent device inventory tracking and a branded Excel-driven configuration builder.
 
 - Branded Excel intake for site and device variables
 - Config Builder uploads feed Jinja2 templates
@@ -52,7 +52,7 @@ An end-to-end enterprise-grade Cisco ZTP solution built in Python. This managed 
 - Day N configuration generation and push
 - Device inventory database built during provisioning
 
-**Service Model:** Paid service with optional bespoke add-ons by request
+**Delivery Model:** Built in your environment as a project or contract, then handed over
 
 **Status:** :fontawesome-solid-hammer: Build Phase
 

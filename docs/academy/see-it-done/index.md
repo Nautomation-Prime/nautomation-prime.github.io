@@ -1,11 +1,11 @@
 ---
 title: See It Done
-description: The See It Done track of the Nautomation Prime Academy — for anyone deciding whether to hire. Deep dives into finished tools, the PRIME Framework, and the services built on them.
+description: The See It Done track of the Nautomation Prime Academy — for anyone deciding whether to hire me. Deep dives into finished tools, the PRIME Framework, and how to work with me.
 tags:
   - Academy
   - See It Done
   - Deep Dives
-  - Services
+  - Hire
 ---
 
 <div class="np-hero" markdown>
@@ -14,7 +14,7 @@ tags:
 
 ## See it done
 
-**This track is for someone evaluating whether to hire me, on contract or for a project.** Rather than claims, it shows finished work: real tools taken apart line by line, the framework that governs every engagement, and what you can actually buy.
+**This track is for someone evaluating whether to hire me, on contract or for a project.** Rather than claims, it shows finished work: real tools taken apart line by line, the method I apply to every piece of work, and how to hire me.
 
 <div class="np-action-row" markdown>
 
@@ -39,21 +39,21 @@ tags:
 
 -   ### The PRIME Framework
 
-    How an engagement runs, from finding the right thing to automate through to handing your team something they can own.
+    How I approach automation work, from finding the right thing to automate through to handing your team something they can own.
 
     [PRIME Framework](../../prime-framework/index.md)
 
--   ### Services
+-   ### Work with me
 
-    Engagements for enterprise teams, and fixed-scope packages for small and medium businesses.
+    Contract availability, the roles I take on, where I work, and my CV.
 
-    [Services](../../services/index.md) · [SMB packages](../../smb/index.md)
+    [Work With Me](../../work-with-me/index.md)
 
--   ### How we work
+-   ### Projects by enquiry
 
-    What working together looks like in practice, and what you'll have at the end.
+    Consultancy for enterprise teams and fixed-scope packages for smaller estates, scheduled around contract commitments.
 
-    [How We Work](../../how-we-work.md)
+    [Consultancy](../../services/index.md) · [Small projects](../../smb/index.md) · [How a project runs](../../how-we-work.md)
 
 </div>
 
