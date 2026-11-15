@@ -1119,14 +1119,6 @@ This commitment to transparency strengthens the ecosystem while protecting clien
 
 ---
 
-## Giving With Integrity
-
-Alongside technical delivery, Nautomation Prime is building a transparent giving model so growth benefits communities as well as clients.
-
-As revenue scales, a percentage is allocated to vetted charities reviewed for transparency, governance, and measurable impact.
-
-**[Read the full Giving With Integrity policy ->](../charity.md)**
-
 <div class="np-reflection" markdown>
 <p class="np-reflection-label">Between the Lines</p>
 <p>Bertrand Russell&rsquo;s <em>In Praise of Idleness</em> made an argument that has aged strangely well: the point of doing something more efficiently is to do less of it, not to fit more in. He thought we had the reasoning backwards. He wrote it in 1932.</p>

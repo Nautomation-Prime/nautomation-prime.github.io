@@ -207,11 +207,11 @@ If you're recruiting for a Cisco automation or network engineering contract, I'd
 
 ---
 
-## Giving with integrity
+## Beyond paid work
 
-I'm building Nautomation Prime to create value beyond technology delivery. As it grows, a percentage of revenue will be donated to carefully vetted charities that demonstrate transparency, responsible spending, ethical governance, and measurable community impact. Alongside that, the **[Nautomation Prime Academy](./academy/index.md)** offers free network automation education to anyone, and the **[Nautomation Prime Foundation](./foundation/index.md)** sets out free or low-cost Cisco and general networking engineering, infrastructure advice, and automation services for registered UK charities and CICs.
+The **[Nautomation Prime Academy](./academy/index.md)** offers free network automation education to anyone, and the **[Nautomation Prime Foundation](./foundation/index.md)** sets out free or low-cost Cisco and general networking engineering, infrastructure advice, and automation help for registered UK charities and CICs, scheduled around contract commitments.
 
-[Read the giving policy →](./charity.md) | [Explore the Foundation →](./foundation/index.md)
+[Explore the Academy →](./academy/index.md) | [Explore the Foundation →](./foundation/index.md)
 
 ---
 

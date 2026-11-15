@@ -79,11 +79,10 @@ Christopher built Nautomation Prime on the belief that automation should never b
 
 Nautomation Prime is Christopher Davies' trading name for his Cisco automation engineering and consulting work. The Foundation is not a separate legal entity today; it is the free, community-facing part of that same business, run under the same sole-trader accountability, insurance considerations, and legal obligations described in the site's [Terms of Use](../legal/terms-of-use.md) and [Disclaimer](../legal/disclaimer.md).
 
-This is a deliberately different thing from the [Giving With Integrity](../charity.md) policy, which governs how a percentage of Nautomation Prime's *commercial revenue* will be donated to independently vetted, already-registered external charities as the business grows. The Foundation, by contrast, is Nautomation Prime *directly delivering* free or low-cost engineering time — it does not collect or distribute money on behalf of other charities.
+The Foundation is Nautomation Prime *directly delivering* free or low-cost engineering time. It does not collect or distribute money on behalf of other charities.
 
 <div class="np-action-row" markdown>
 
-[Read the Giving Policy](../charity.md){.md-button}
 [Read the Foundation's Legal Status](../legal/foundation-status.md){.md-button}
 
 </div>

@@ -1502,7 +1502,7 @@ Create configs for each stack member:
 | **Customizable workflows** | ✅ Fully custom | ✅ Python-based, fully custom | ⚠️ Limited (GUI-driven) |
 | **Excel/CSV integration** | ⚠️ Manual copy/paste | ✅ Python + openpyxl | ⚠️ Requires API integration |
 | **Offline deployment** | ✅ Yes | ⚠️ Requires HTTP/DHCP | ⚠️ Requires Catalyst Center |
-| **Cost** | Labor-intensive | Zero licensing (open-source) | Catalyst Center license required |
+| **Cost** | Labor-intensive | No Catalyst Center licence needed | Catalyst Center license required |
 | **Best for** | 1-10 devices | 10-1000+ devices | Large enterprises with existing Catalyst Center |
 
 ### When to Use Each Approach
@@ -1511,7 +1511,7 @@ Create configs for each stack member:
     - Deploying 10+ Cisco Catalyst switches at scale
     - Need device-specific configurations (unique hostnames, IPs)
     - Require centralized logging and monitoring (Graylog integration)
-    - Want zero-cost, open-source solution
+    - Want to avoid Catalyst Center licensing
     - Have existing HTTP/DHCP infrastructure
     - Need customizable workflows (Python-based logic)
 
@@ -1666,9 +1666,7 @@ If ZTP fails catastrophically:
 
 **Author:** Christopher Davies  
 **Email:** <enquiries@nautomationprime.io>  
-**License:** GNU General Public License v3.0
-
-**Repository:** (Add GitHub/GitLab URL when published)
+**Licence:** Deployed and tailored as part of a contract or project, and provided under a licence to use with source included. Not open-source; no redistribution. See [Licensing](../legal/licensing.md).
 
 **Reporting Issues:**
 
@@ -1689,7 +1687,7 @@ This Cisco IOS-XE Zero Touch Provisioning script transforms Day 0 deployment fro
 ✅ **Serial-based config lookup** — Each device gets unique configuration  
 ✅ **Centralized monitoring** — Graylog integration for real-time visibility  
 ✅ **Production-grade reliability** — Exponential backoff, retry logic, secure cleanup  
-✅ **Zero licensing cost** — Open-source alternative to Cisco PnP  
+✅ **No Catalyst Center licence needed** — A Python-based alternative to Cisco PnP  
 
 **Next Steps:**
 
